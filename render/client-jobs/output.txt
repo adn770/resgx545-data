@@ -1,0 +1,384 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+59435224CE8502E95E508C7
+#### query
+device          /dev/dri/renderD128
+core_id         0x01150000
+core_revision   0x0001000d
+host_bridge_rev 3
+quirks          0x1 SAMPLE_CACHE
+ddk             0.0.0 build 0 options 0x0
+fw_format       0
+fw_state        0
+job_types       0x3
+max_jobs        16
+max_sync_ops    16
+transfer_cmd    0xa8
+max_updates     0
+render_cmd      0x68 pb 0x422 pages max 4096x4096
+pixel_parts     31
+tile            32x16
+heap GENERAL     base 0x3e000000 size 0xb1fff000
+heap TEXTURE     base 0xf0000000 size 0x0ffff000
+heap PDS_PIXEL   base 0x2e000000 size 0x01fff000
+heap PDS_VERTEX  base 0x30400000 size 0x01bff000
+heap USSE_PIXEL  base 0x37000000 size 0x00500000 FIXED_WINDOWS
+heap USSE_VERTEX base 0x3c000000 size 0x00200000 FIXED_WINDOWS
+heap KERNEL_CODE base 0x30000000 size 0x0007f000 RESERVED
+heap KERNEL_DATA base 0x32000000 size 0x04fff000 RESERVED
+heap PARAMETERS  base 0x10000000 size 0x10000000 RESERVED
+heap TA_DATA     base 0x20000000 size 0x0d000000 RESERVED
+## exit 0
+#### dummy -n 8
+dummy: 8 jobs ok
+## exit 0
+## log dummy
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+#### fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+## exit 0
+#### fill --width 64 --height 32 --x 3 --y 2 --stride 512 --colour 0xff00ff00
+programs asm
+job: ok
+target: 64x32 hash 0xfc73845f9e506325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (3, 2), stride 512, colour 0xff00ff00
+## exit 0
+#### fill --width 300 --height 70 --stride 1280 --colour 0x80402010
+programs asm
+job: ok
+target: 300x70 hash 0x6e80418fd57dab25
+diff: 0 of 21000 pixels
+outside: 0 dwords
+fill: ok, 300x70 at (0, 0), stride 1280, colour 0x80402010
+## exit 0
+#### fill --width 1 --height 1 --colour 0xffffffff
+programs asm
+job: ok
+target: 1x1 hash 0x994f76653e2a3951
+diff: 0 of 1 pixels
+outside: 0 dwords
+fill: ok, 1x1 at (0, 0), stride 256, colour 0xffffffff
+## exit 0
+#### fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+## exit 0
+#### fill --width 64 --height 32 --x 3 --y 2 --stride 512 --colour 0xff00ff00
+programs asm
+job: ok
+target: 64x32 hash 0xfc73845f9e506325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (3, 2), stride 512, colour 0xff00ff00
+## exit 0
+#### fill --width 300 --height 70 --stride 1280 --colour 0x80402010
+programs asm
+job: ok
+target: 300x70 hash 0x6e80418fd57dab25
+diff: 0 of 21000 pixels
+outside: 0 dwords
+fill: ok, 300x70 at (0, 0), stride 1280, colour 0x80402010
+## exit 0
+#### fill --width 1 --height 1 --colour 0xffffffff
+programs asm
+job: ok
+target: 1x1 hash 0x994f76653e2a3951
+diff: 0 of 1 pixels
+outside: 0 dwords
+fill: ok, 1x1 at (0, 0), stride 256, colour 0xffffffff
+## exit 0
+#### fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+## exit 0
+#### fill --width 64 --height 32 --x 3 --y 2 --stride 512 --colour 0xff00ff00
+programs asm
+job: ok
+target: 64x32 hash 0xfc73845f9e506325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (3, 2), stride 512, colour 0xff00ff00
+## exit 0
+#### fill --width 300 --height 70 --stride 1280 --colour 0x80402010
+programs asm
+job: ok
+target: 300x70 hash 0x6e80418fd57dab25
+diff: 0 of 21000 pixels
+outside: 0 dwords
+fill: ok, 300x70 at (0, 0), stride 1280, colour 0x80402010
+## exit 0
+#### fill --width 1 --height 1 --colour 0xffffffff
+programs asm
+job: ok
+target: 1x1 hash 0x994f76653e2a3951
+diff: 0 of 1 pixels
+outside: 0 dwords
+fill: ok, 1x1 at (0, 0), stride 256, colour 0xffffffff
+## exit 0
+## log fill
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+#### copy
+programs asm
+job: ok
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+## exit 0
+#### copy --width 64 --height 32 --sx 5 --sy 1 --src-stride 512 --dx 2 --dy 3 --dst-stride 512
+programs asm
+job: ok
+target: 64x32 hash 0x71e8b08e63097e25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (5, 1) to (2, 3)
+## exit 0
+#### copy --width 300 --height 70 --src-stride 1280 --dst-stride 1280
+programs asm
+job: ok
+target: 300x70 hash 0xe2c1b802077c984d
+diff: 0 of 21000 pixels
+outside: 0 dwords
+copy: ok, 300x70 from (0, 0) to (0, 0)
+## exit 0
+#### copy
+programs asm
+job: ok
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+## exit 0
+#### copy --width 64 --height 32 --sx 5 --sy 1 --src-stride 512 --dx 2 --dy 3 --dst-stride 512
+programs asm
+job: ok
+target: 64x32 hash 0x71e8b08e63097e25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (5, 1) to (2, 3)
+## exit 0
+#### copy --width 300 --height 70 --src-stride 1280 --dst-stride 1280
+programs asm
+job: ok
+target: 300x70 hash 0xe2c1b802077c984d
+diff: 0 of 21000 pixels
+outside: 0 dwords
+copy: ok, 300x70 from (0, 0) to (0, 0)
+## exit 0
+#### copy
+programs asm
+job: ok
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+## exit 0
+#### copy --width 64 --height 32 --sx 5 --sy 1 --src-stride 512 --dx 2 --dy 3 --dst-stride 512
+programs asm
+job: ok
+target: 64x32 hash 0x71e8b08e63097e25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (5, 1) to (2, 3)
+## exit 0
+#### copy --width 300 --height 70 --src-stride 1280 --dst-stride 1280
+programs asm
+job: ok
+target: 300x70 hash 0xe2c1b802077c984d
+diff: 0 of 21000 pixels
+outside: 0 dwords
+copy: ok, 300x70 from (0, 0) to (0, 0)
+## exit 0
+## log copy
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+#### tri -n 4
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 6235 us
+job: ok
+target: 64x64 hash 0xab267bd98022a81d
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #2: 5205 us
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #3: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #3: 5055 us
+job: ok
+target: 64x64 hash 0xab267bd98022a81d
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #4: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #4: 5136 us
+tri: 4 renders ok
+## exit 0
+#### tri --width 128 --height 96 -n 2
+tri: render context for targets up to 128x96
+job: ok
+target: 128x96 hash 0x78d7390431620b65
+diff: 0 of 12288 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 128x96 #1: 3252 triangle, 9036 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 1989 if flipped; guard 0
+tri 128x96 #1: 15393 us
+job: ok
+target: 128x96 hash 0x0f2e7e7346f8843d
+diff: 0 of 12288 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 128x96 #2: 3252 triangle, 9036 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 1989 if flipped; guard 0
+tri 128x96 #2: 13515 us
+tri: 2 renders ok
+## exit 0
+#### tri --width 64 --height 64 --max-width 256 --max-height 256 -n 2
+tri: render context for targets up to 256x256
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 6160 us
+job: ok
+target: 64x64 hash 0xab267bd98022a81d
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #2: 5076 us
+tri: 2 renders ok
+## exit 0
+## log tri
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+#### contexts -n 32
+contexts: 32 render contexts for targets up to 64x64: MemFree -152084 KiB (4752 KiB each), LowFree -152084 KiB (4752 KiB each)
+contexts: destroyed
+## exit 0
+## log contexts
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+#### isolation
+programs asm
+PASS kernel-heap-unmappable
+PASS same-address-separate-vms
+PASS other-vm-address-faults
+fault recovered after 111 ms
+PASS fault-recovered-quickly
+PASS lost-context-cancelled
+PASS other-context-survives
+PASS queued-innocent-job-reruns
+PASS read-only-faults
+PASS faulting-file-banned
+## exit 0
+## log isolation
+[   63.046173] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3b92000
+[   63.046480] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   63.047305] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 644 us
+[   67.624986] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90020 at 0x3e10000c (PD 0xf4f2000) stalls job 39, recovering
+[   67.634096] gma500 0000:00:02.0: [drm] SGX stopped, 46 events seen
+[   67.644689] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+[   67.648659] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   67.652332] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 684 us
+[   67.756448] gma500 0000:00:02.0: [drm] sgxfive: error state captured in /sys/class/devcoredump
+[   67.861586] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90020 at 0x3e001002 (PD 0x6e38000) stalls job 41, recovering
+[   67.868338] gma500 0000:00:02.0: [drm] SGX stopped, 1 events seen
+[   67.872052] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+[   67.876716] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   67.880785] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 203 us
+[   68.088302] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80020 at 0x3e200002 (PD 0xf4d9000) stalls job 43, recovering
+[   68.093860] gma500 0000:00:02.0: [drm] sgxfive: 3 faults within a minute, file banned
+[   68.097373] gma500 0000:00:02.0: [drm] SGX stopped, 1 events seen
+[   68.100953] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+[   68.104701] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   68.107891] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 164 us
+#### tri --fault
+tri: render context for targets up to 64x64
+job: failed: job faulted, context lost (Input/output error)
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+## exit 1
+## log fault
+[   68.093860] gma500 0000:00:02.0: [drm] sgxfive: 3 faults within a minute, file banned
+[   68.097373] gma500 0000:00:02.0: [drm] SGX stopped, 1 events seen
+[   68.100953] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+[   68.104701] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   68.107891] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 164 us
+[   68.621648] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000001 (PD 0xf502000) stalls job 44, recovering
+[   68.629077] gma500 0000:00:02.0: [drm] SGX stopped, 0 events seen
+[   68.632998] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x480
+[   68.637610] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   68.641094] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 152 us
+#### tri -n 2
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 6289 us
+job: ok
+target: 64x64 hash 0xab267bd98022a81d
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #2: 5120 us
+tri: 2 renders ok
+## exit 0
+#### fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+## exit 0
+## log after
+[   68.621648] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000001 (PD 0xf502000) stalls job 44, recovering
+[   68.629077] gma500 0000:00:02.0: [drm] SGX stopped, 0 events seen
+[   68.632998] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x480
+[   68.637610] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   68.641094] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 152 us
+sgxfive-test: render: job faulted, context lost (Input/output error)
