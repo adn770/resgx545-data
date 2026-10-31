@@ -14,9 +14,9 @@
 ## write load 1: exit 0
 ## write boot 1: exit 0
 ## log boot
-[  113.818927] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3a45000
-[  113.946977] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  113.950139] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 165 us
+[   87.262056] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3e59000
+[   87.386788] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   87.389971] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 159 us
 ## regs boot
 sgxfive regs 1
 state loaded 1 live 1 sw_events 0 bif_faults 0
@@ -33,7 +33,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x0ab7abc0
+reg 0x0144 0x0a96433a
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -59,7 +59,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x00000000
@@ -187,13 +187,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x0105bcdc
+reg 0x0acc 0x01012681
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010000
 reg 0x0b10 0x00010000
-reg 0x0b14 0x000101ac
+reg 0x0b14 0x000101a5
 reg 0x0b18 0x00010000
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -223,10 +223,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000000f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x30000000
@@ -244,8 +244,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x000001a9
-hostctl 0x34 0xf4e5ac70
+hostctl 0x30 0x000001a2
+hostctl 0x34 0xf35070d0
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -272,7 +272,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -314,7 +314,7 @@ end
 #### fill 1
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 841 us, completion word already written
+SW_EVENT after 145 us, completion word already written
 status F         0x00000001 ok
 ccb read off     0x000001c0 ok
 ctx count        0x00000000 ok
@@ -323,7 +323,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 99 us, completion word already written
+SW_EVENT after 85 us, completion word already written
 status F         0x00000002 ok
 ccb read off     0x00000380 ok
 ctx count        0x00000000 ok
@@ -332,7 +332,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 119 us, completion word already written
+SW_EVENT after 102 us, completion word already written
 status F         0x00000003 ok
 ccb read off     0x00000540 ok
 ctx count        0x00000000 ok
@@ -341,7 +341,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 101 us, completion word already written
+SW_EVENT after 95 us, completion word already written
 status F         0x00000004 ok
 ccb read off     0x00000700 ok
 ctx count        0x00000000 ok
@@ -353,7 +353,7 @@ solid fill correct
 #### fill 2
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 119 us, completion word already written
+SW_EVENT after 127 us, completion word already written
 status F         0x00000005 ok
 ccb read off     0x000008c0 ok
 ctx count        0x00000000 ok
@@ -362,7 +362,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 100 us, completion word already written
+SW_EVENT after 90 us, completion word already written
 status F         0x00000006 ok
 ccb read off     0x00000a80 ok
 ctx count        0x00000000 ok
@@ -371,7 +371,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 139 us, completion word already written
+SW_EVENT after 86 us, completion word already written
 status F         0x00000007 ok
 ccb read off     0x00000c40 ok
 ctx count        0x00000000 ok
@@ -380,7 +380,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 87 us, completion word already written
+SW_EVENT after 94 us, completion word already written
 status F         0x00000008 ok
 ccb read off     0x00000e00 ok
 ctx count        0x00000000 ok
@@ -392,7 +392,7 @@ solid fill correct
 #### fill 3
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 131 us, completion word already written
+SW_EVENT after 133 us, completion word already written
 status F         0x00000009 ok
 ccb read off     0x00000fc0 ok
 ctx count        0x00000000 ok
@@ -401,7 +401,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 83 us, completion word already written
+SW_EVENT after 95 us, completion word already written
 status F         0x0000000a ok
 ccb read off     0x00001180 ok
 ctx count        0x00000000 ok
@@ -410,7 +410,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 93 us, completion word already written
+SW_EVENT after 95 us, completion word already written
 status F         0x0000000b ok
 ccb read off     0x00001340 ok
 ctx count        0x00000000 ok
@@ -419,7 +419,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 88 us, completion word already written
+SW_EVENT after 91 us, completion word already written
 status F         0x0000000c ok
 ccb read off     0x00001500 ok
 ctx count        0x00000000 ok
@@ -444,7 +444,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x0b6f0e5d
+reg 0x0144 0x0b498e35
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -470,7 +470,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x8855dcbb
@@ -598,13 +598,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x01013d98
+reg 0x0acc 0x01012063
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010186
 reg 0x0b10 0x00010000
-reg 0x0b14 0x000103b0
+reg 0x0b14 0x0001039f
 reg 0x0b18 0x00010186
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -620,7 +620,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080000
 reg 0x0c08 0x00000000
-reg 0x0c38 0x03a45000
+reg 0x0c38 0x03e59000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -634,10 +634,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x32100000
@@ -655,8 +655,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x00000389
-hostctl 0x34 0xf4e5ac70
+hostctl 0x30 0x00000378
+hostctl 0x34 0xf35070d0
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -683,7 +683,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -717,14 +717,14 @@ ta3dctl 0xd4 0x00000000
 ta3dctl 0xd8 0x00000002
 ta3dctl 0xdc 0x00000000
 ta3dctl 0xe0 0x00000000
-ta3dctl 0xe4 0x00000000
+ta3dctl 0xe4 0x00000001
 ta3dctl 0xe8 0x00000000
 ccbctl 0x00 0x0000000c
 ccbctl 0x04 0x0000000c
 end
 #### interleaved-dummy 1
 ## xfer_dummy
-dummy transfer 12: SW_EVENT after 145 us, completion word already written
+dummy transfer 12: SW_EVENT after 281 us, completion word already written
 status F         0x00001240 ok
 update U         0xcafe000c ok
 ccb read off     0x000016c0 ok
@@ -734,7 +734,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 123 us, completion word already written
+SW_EVENT after 143 us, completion word already written
 status F         0x0000000e ok
 ccb read off     0x00001880 ok
 ctx count        0x00000000 ok
@@ -743,7 +743,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 101 us, completion word already written
+SW_EVENT after 82 us, completion word already written
 status F         0x0000000f ok
 ccb read off     0x00001a40 ok
 ctx count        0x00000000 ok
@@ -752,7 +752,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 99 us, completion word already written
+SW_EVENT after 88 us, completion word already written
 status F         0x00000010 ok
 ccb read off     0x00001c00 ok
 ctx count        0x00000000 ok
@@ -761,7 +761,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 92 us, completion word already written
+SW_EVENT after 79 us, completion word already written
 status F         0x00000011 ok
 ccb read off     0x00001dc0 ok
 ctx count        0x00000000 ok
@@ -772,7 +772,7 @@ solid fill correct
 ## read xfer_fill: exit 0
 #### interleaved-dummy 2
 ## xfer_dummy
-dummy transfer 17: SW_EVENT after 138 us, completion word already written
+dummy transfer 17: SW_EVENT after 139 us, completion word already written
 status F         0x00001245 ok
 update U         0xcafe0011 ok
 ccb read off     0x00001f80 ok
@@ -782,7 +782,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 129 us, completion word already written
+SW_EVENT after 134 us, completion word already written
 status F         0x00000013 ok
 ccb read off     0x00002140 ok
 ctx count        0x00000000 ok
@@ -800,7 +800,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 137 us, completion word already written
+SW_EVENT after 115 us, completion word already written
 status F         0x00000015 ok
 ccb read off     0x000024c0 ok
 ctx count        0x00000000 ok
@@ -809,7 +809,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 90 us, completion word already written
+SW_EVENT after 100 us, completion word already written
 status F         0x00000016 ok
 ccb read off     0x00002680 ok
 ctx count        0x00000000 ok
@@ -819,7 +819,7 @@ wrong dwords     0x00000000 ok
 solid fill correct
 ## read xfer_fill: exit 0
 ## xfer_dummy
-dummy transfer 22: SW_EVENT after 111 us, completion word already written
+dummy transfer 22: SW_EVENT after 107 us, completion word already written
 status F         0x0000124a ok
 update U         0xcafe0016 ok
 ccb read off     0x00002840 ok
@@ -843,7 +843,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x0c7b32bc
+reg 0x0144 0x0c612d82
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -869,7 +869,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x1459cb9b
@@ -997,13 +997,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x0101c7a7
+reg 0x0acc 0x01010f3c
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x0001028a
 reg 0x0b10 0x00010000
-reg 0x0b14 0x0001068d
+reg 0x0b14 0x0001069a
 reg 0x0b18 0x0001028a
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -1019,7 +1019,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080000
 reg 0x0c08 0x00000000
-reg 0x0c38 0x03a45000
+reg 0x0c38 0x03e59000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -1033,10 +1033,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x32100000
@@ -1054,8 +1054,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x00000648
-hostctl 0x34 0xf4e5ac70
+hostctl 0x30 0x00000655
+hostctl 0x34 0xf35070d0
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -1082,7 +1082,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -1136,16 +1136,16 @@ reg 0xc78 = 0x0000100f
 reg 0xc04 = 0x00080000
 reg 0xc08 = 0x00000000
 reg 0xc8c = 0x00000000
-reg 0xc84 = 0x35bac000
-reg 0xc70 = 0x03a45000
-reg 0xb14 = 0x00010702
+reg 0xc84 = 0x35a79000
+reg 0xc70 = 0x03e59000
+reg 0xb14 = 0x0001070f
 reg 0xb20 = 0x00010000
 hostctl[ 0]: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 80 1a 06 00 00 00 00 00
-hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 bd 06 00 00 70 ac e5 f4 00 00 00 00 00 00 00 00
+hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ca 06 00 00 d0 70 50 f3 00 00 00 00 00 00 00 00
 hostctl[16]: 00 00 00 00
 ta3dctl[ 0]: 00 40 00 32 00 50 00 32 00 20 00 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 50 a4 03
+ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 90 e5 03
 ta3dctl[24]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[32]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[40]: 00 00 00 00 00 00 00 00 00 00 00 00 00 70 00 32 00 e0 00 32 00 f0 00 32 00 00 00 00 00 00 00 00
@@ -1155,6 +1155,6 @@ ccbctl[ 0]: 17 00 00 00 17 00 00 00
 ## read status: exit 0
 ## write stop 1: exit 0
 ## log stop
-[  107.626876] gma500 0000:00:02.0: [drm] SGX stopped, 14 events seen
-[  115.801676] gma500 0000:00:02.0: [drm] SGX power-off after 172 us
-[  115.804351] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen
+[   81.456808] gma500 0000:00:02.0: [drm] SGX stopped, 14 events seen
+[   89.254638] gma500 0000:00:02.0: [drm] SGX power-off after 233 us
+[   89.257317] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen

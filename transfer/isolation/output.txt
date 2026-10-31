@@ -14,9 +14,9 @@
 ## write load 1: exit 0
 ## write boot 1: exit 0
 ## log boot
-[  129.243085] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3a45000
-[  129.370826] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  129.373987] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 197 us
+[  102.503247] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3e59000
+[  102.628519] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[  102.631804] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 165 us
 ## regs boot
 sgxfive regs 1
 state loaded 1 live 1 sw_events 0 bif_faults 0
@@ -33,7 +33,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x1017914a
+reg 0x0144 0x0fee4b6d
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -59,7 +59,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x00000000
@@ -187,13 +187,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x010311c0
+reg 0x0acc 0x0105707d
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010000
 reg 0x0b10 0x00010000
-reg 0x0b14 0x000101c2
+reg 0x0b14 0x000101af
 reg 0x0b18 0x00010000
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -223,10 +223,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000000f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x32100000
@@ -244,8 +244,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x000001bf
-hostctl 0x34 0xf5d0fdcf
+hostctl 0x30 0x000001ac
+hostctl 0x34 0xf4390321
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -272,7 +272,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -315,9 +315,9 @@ end
 ## write no_alias 0: exit 0
 #### client-fill 1
 ## xfer_iso
-client PD at 0x4985000, EDM aliases read-write
+client PD at 0x550a000, EDM aliases read-write
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 148 us, completion word already written
+SW_EVENT after 145 us, completion word already written
 update word      0xc0ffee00 ok
 status F         0x00000001 ok
 ccb read off     0x000001c0 ok
@@ -330,9 +330,9 @@ solid fill correct
 ## read xfer_iso: exit 0
 #### client-fill 2
 ## xfer_iso
-client PD at 0x4985000, EDM aliases read-write
+client PD at 0x550a000, EDM aliases read-write
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 121 us, completion word already written
+SW_EVENT after 119 us, completion word already written
 update word      0xc0ffee01 ok
 status F         0x00000002 ok
 ccb read off     0x00000380 ok
@@ -346,9 +346,9 @@ solid fill correct
 ## write alias_ro 1: exit 0
 #### alias-ro
 ## xfer_iso
-client PD at 0x4985000, EDM aliases read-only
+client PD at 0x550a000, EDM aliases read-only
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 129 us, completion word already written
+SW_EVENT after 132 us, completion word already written
 update word      0xc0ffee02 ok
 status F         0x00000003 ok
 ccb read off     0x00000540 ok
@@ -363,9 +363,9 @@ solid fill correct
 ## write no_alias 1: exit 0
 #### no-alias
 ## xfer_iso
-client PD at 0x4985000, EDM aliases none, no updates
+client PD at 0x550a000, EDM aliases none, no updates
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 135 us, completion word already written
+SW_EVENT after 175 us, completion word already written
 status F         0x00000004 ok
 ccb read off     0x00000700 ok
 ctx count        0x00000000 ok
@@ -392,7 +392,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x120e9fbc
+reg 0x0144 0x11e77032
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -418,7 +418,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0xde3f240d
@@ -546,13 +546,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x0104bcd7
+reg 0x0acc 0x0104368d
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x000100a0
 reg 0x0b10 0x00010000
-reg 0x0b14 0x000106f5
+reg 0x0b14 0x000106e7
 reg 0x0b18 0x000100a0
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -568,7 +568,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080000
 reg 0x0c08 0x00000000
-reg 0x0c38 0x04985000
+reg 0x0c38 0x0550a000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -582,10 +582,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x32100000
@@ -603,8 +603,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x000006e6
-hostctl 0x34 0xf5d0fdcf
+hostctl 0x30 0x000006d8
+hostctl 0x34 0xf4390321
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -631,7 +631,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -692,14 +692,14 @@ BIF_INT_STAT 0x80020 BIF_FAULT 0x32200001 bif_faults 0
 kernel buffer protected; reload and boot to recover
 ## read xfer_ro: exit 0
 ## log fault
-[  121.690300] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3a45000
-[  121.815115] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  121.818197] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 161 us
-[  123.554142] gma500 0000:00:02.0: [drm] SGX power-off after 177 us
-[  123.556947] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen
-[  129.243085] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3a45000
-[  129.370826] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  129.373987] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 197 us
+[   95.055603] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3e59000
+[   95.179644] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   95.182730] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 164 us
+[   96.898182] gma500 0000:00:02.0: [drm] SGX power-off after 171 us
+[   96.900852] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen
+[  102.503247] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3e59000
+[  102.628519] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[  102.631804] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 165 us
 ## status
 loaded 1 live 1 sw_events 4 bif_faults 0
 reg 0x01c = 0x01150000
@@ -715,16 +715,16 @@ reg 0xc78 = 0x0000100f
 reg 0xc04 = 0x00080020
 reg 0xc08 = 0x32200001
 reg 0xc8c = 0x00000000
-reg 0xc84 = 0x35bac000
-reg 0xc70 = 0x03a45000
-reg 0xb14 = 0x0001076c
+reg 0xc84 = 0x35a79000
+reg 0xc70 = 0x03e59000
+reg 0xb14 = 0x00010761
 reg 0xb20 = 0x00010000
 hostctl[ 0]: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 80 1a 06 00 00 00 00 00
-hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 5b 07 00 00 cf fd d0 f5 00 00 00 00 00 00 00 00
+hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 50 07 00 00 21 03 39 f4 00 00 00 00 00 00 00 00
 hostctl[16]: 00 00 00 00
 ta3dctl[ 0]: 00 40 00 32 00 50 00 32 00 20 00 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 50 a4 03
+ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 90 e5 03
 ta3dctl[24]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[32]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[40]: 00 00 00 00 00 00 00 00 00 00 00 00 00 70 00 32 00 e0 00 32 00 f0 00 32 00 00 00 00 00 00 00 00
@@ -748,7 +748,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x13a2d918
+reg 0x0144 0x137c3cfb
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -774,7 +774,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x34d0dcfc
@@ -902,13 +902,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x0100ca6a
+reg 0x0acc 0x01034332
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x000100c8
 reg 0x0b10 0x00010000
-reg 0x0b14 0x0001076c
+reg 0x0b14 0x00010761
 reg 0x0b18 0x000100c8
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -924,7 +924,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080020
 reg 0x0c08 0x32200001
-reg 0x0c38 0x04985000
+reg 0x0c38 0x0550a000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -938,10 +938,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x32100000
@@ -959,8 +959,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x0000075b
-hostctl 0x34 0xf5d0fdcf
+hostctl 0x30 0x00000750
+hostctl 0x34 0xf4390321
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -987,7 +987,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -1029,19 +1029,19 @@ end
 #### recover
 ## write stop 1: exit 0
 ## log stop
-[  123.556947] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen
-[  132.830391] gma500 0000:00:02.0: [drm] SGX power-off: the EDM did not report it (-110)
-[  132.833207] gma500 0000:00:02.0: [drm] SGX power-off request failed: -110
-[  132.836079] gma500 0000:00:02.0: [drm] SGX stopped, 4 events seen
+[   96.900852] gma500 0000:00:02.0: [drm] SGX stopped, 23 events seen
+[  106.074603] gma500 0000:00:02.0: [drm] SGX power-off: the EDM did not report it (-110)
+[  106.077298] gma500 0000:00:02.0: [drm] SGX power-off request failed: -110
+[  106.080081] gma500 0000:00:02.0: [drm] SGX stopped, 4 events seen
 ## write alias_ro 0: exit 0
 ## write load 1: exit 0
 ## write boot 1: exit 0
 ## log boot
-[  129.373987] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 197 us
-[  133.398974] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  133.402178] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 164 us
+[  102.631804] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 165 us
+[  106.644079] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[  106.647239] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 166 us
 ## xfer_dummy
-dummy transfer 0: SW_EVENT after 141 us, completion word already written
+dummy transfer 0: SW_EVENT after 148 us, completion word already written
 status F         0x00001234 ok
 update U         0xcafe0000 ok
 ccb read off     0x000001c0 ok
@@ -1051,7 +1051,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 ## xfer_fill
 fill whole 64x32: command matches the 12 TQ_CMD words
-SW_EVENT after 109 us, completion word already written
+SW_EVENT after 131 us, completion word already written
 status F         0x00000002 ok
 ccb read off     0x00000380 ok
 ctx count        0x00000000 ok
@@ -1060,7 +1060,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 32x16 at (8,4), stride 320: command matches the 12 TQ_CMD words
-SW_EVENT after 86 us, completion word already written
+SW_EVENT after 89 us, completion word already written
 status F         0x00000003 ok
 ccb read off     0x00000540 ok
 ctx count        0x00000000 ok
@@ -1069,7 +1069,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill 33x16 at (20,10), across tiles: command matches the 12 TQ_CMD words
-SW_EVENT after 89 us, completion word already written
+SW_EVENT after 82 us, completion word already written
 status F         0x00000004 ok
 ccb read off     0x00000700 ok
 ctx count        0x00000000 ok
@@ -1078,7 +1078,7 @@ bif faults       0x00000000 ok
 wrong dwords     0x00000000 ok
 solid fill correct
 fill one pixel at (63,31): command matches the 12 TQ_CMD words
-SW_EVENT after 85 us, completion word already written
+SW_EVENT after 83 us, completion word already written
 status F         0x00000005 ok
 ccb read off     0x000008c0 ok
 ctx count        0x00000000 ok
@@ -1102,16 +1102,16 @@ reg 0xc78 = 0x0000100f
 reg 0xc04 = 0x00080000
 reg 0xc08 = 0x00000000
 reg 0xc8c = 0x00000000
-reg 0xc84 = 0x35bac000
-reg 0xc70 = 0x03a45000
-reg 0xb14 = 0x000102a8
+reg 0xc84 = 0x35a79000
+reg 0xc70 = 0x03e59000
+reg 0xb14 = 0x000102a3
 reg 0xb20 = 0x00010000
 hostctl[ 0]: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 80 1a 06 00 00 00 00 00
-hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 97 02 00 00 6c 7a 0e f6 00 00 00 00 00 00 00 00
+hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 92 02 00 00 a5 3e 76 f4 00 00 00 00 00 00 00 00
 hostctl[16]: 00 00 00 00
 ta3dctl[ 0]: 00 40 00 32 00 50 00 32 00 20 00 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 50 a4 03
+ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 90 e5 03
 ta3dctl[24]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[32]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[40]: 00 00 00 00 00 00 00 00 00 00 00 00 00 70 00 32 00 e0 00 32 00 f0 00 32 00 00 00 00 00 00 00 00
@@ -1121,6 +1121,6 @@ ccbctl[ 0]: 05 00 00 00 05 00 00 00
 ## read status: exit 0
 ## write stop 1: exit 0
 ## log stop
-[  132.836079] gma500 0000:00:02.0: [drm] SGX stopped, 4 events seen
-[  134.190431] gma500 0000:00:02.0: [drm] SGX power-off after 172 us
-[  134.193332] gma500 0000:00:02.0: [drm] SGX stopped, 5 events seen
+[  106.080081] gma500 0000:00:02.0: [drm] SGX stopped, 4 events seen
+[  107.427775] gma500 0000:00:02.0: [drm] SGX power-off after 173 us
+[  107.430587] gma500 0000:00:02.0: [drm] SGX stopped, 5 events seen

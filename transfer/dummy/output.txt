@@ -14,9 +14,9 @@
 ## write load 1: exit 0
 ## write boot 1: exit 0
 ## log boot
-[  104.787421] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3a45000
-[  104.913755] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
-[  104.916949] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 155 us
+[   78.604149] gma500 0000:00:02.0: [drm] SGX firmware DDK 1.7.862890 loaded, EDM PD at 0x3e59000
+[   78.730928] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+[   78.734019] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 158 us
 ## regs boot
 sgxfive regs 1
 state loaded 1 live 1 sw_events 0 bif_faults 0
@@ -33,7 +33,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x06a9c6e3
+reg 0x0144 0x0687712c
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -59,7 +59,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x00000000
@@ -187,13 +187,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x01023a62
+reg 0x0acc 0x01015198
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010000
 reg 0x0b10 0x00010000
-reg 0x0b14 0x0001019a
+reg 0x0b14 0x0001019e
 reg 0x0b18 0x00010000
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -223,10 +223,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000000f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x30000000
@@ -244,8 +244,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x00000197
-hostctl 0x34 0xf45bd982
+hostctl 0x30 0x0000019b
+hostctl 0x34 0xf2cc5d17
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -272,7 +272,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -313,7 +313,7 @@ ccbctl 0x04 0x00000000
 end
 #### repeat 1
 ## xfer_dummy
-dummy transfer 0: SW_EVENT after 275 us, completion word already written
+dummy transfer 0: SW_EVENT after 290 us, completion word already written
 status F         0x00001234 ok
 update U         0xcafe0000 ok
 ccb read off     0x000001c0 ok
@@ -323,7 +323,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 2
 ## xfer_dummy
-dummy transfer 1: SW_EVENT after 2535 us, completion word already written
+dummy transfer 1: SW_EVENT after 130 us, completion word already written
 status F         0x00001235 ok
 update U         0xcafe0001 ok
 ccb read off     0x00000380 ok
@@ -333,7 +333,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 3
 ## xfer_dummy
-dummy transfer 2: SW_EVENT after 132 us, completion word already written
+dummy transfer 2: SW_EVENT after 2717 us, completion word already written
 status F         0x00001236 ok
 update U         0xcafe0002 ok
 ccb read off     0x00000540 ok
@@ -343,7 +343,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 4
 ## xfer_dummy
-dummy transfer 3: SW_EVENT after 150 us, completion word already written
+dummy transfer 3: SW_EVENT after 149 us, completion word already written
 status F         0x00001237 ok
 update U         0xcafe0003 ok
 ccb read off     0x00000700 ok
@@ -353,7 +353,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 5
 ## xfer_dummy
-dummy transfer 4: SW_EVENT after 117 us, completion word already written
+dummy transfer 4: SW_EVENT after 135 us, completion word already written
 status F         0x00001238 ok
 update U         0xcafe0004 ok
 ccb read off     0x000008c0 ok
@@ -363,7 +363,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 6
 ## xfer_dummy
-dummy transfer 5: SW_EVENT after 110 us, completion word already written
+dummy transfer 5: SW_EVENT after 138 us, completion word already written
 status F         0x00001239 ok
 update U         0xcafe0005 ok
 ccb read off     0x00000a80 ok
@@ -373,7 +373,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 7
 ## xfer_dummy
-dummy transfer 6: SW_EVENT after 94 us, completion word already written
+dummy transfer 6: SW_EVENT after 138 us, completion word already written
 status F         0x0000123a ok
 update U         0xcafe0006 ok
 ccb read off     0x00000c40 ok
@@ -383,7 +383,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 8
 ## xfer_dummy
-dummy transfer 7: SW_EVENT after 132 us, completion word already written
+dummy transfer 7: SW_EVENT after 134 us, completion word already written
 status F         0x0000123b ok
 update U         0xcafe0007 ok
 ccb read off     0x00000e00 ok
@@ -393,7 +393,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 9
 ## xfer_dummy
-dummy transfer 8: SW_EVENT after 124 us, completion word already written
+dummy transfer 8: SW_EVENT after 136 us, completion word already written
 status F         0x0000123c ok
 update U         0xcafe0008 ok
 ccb read off     0x00000fc0 ok
@@ -413,7 +413,7 @@ dummy transfer complete
 ## read xfer_dummy: exit 0
 #### repeat 11
 ## xfer_dummy
-dummy transfer 10: SW_EVENT after 124 us, completion word already written
+dummy transfer 10: SW_EVENT after 136 us, completion word already written
 status F         0x0000123e ok
 update U         0xcafe000a ok
 ccb read off     0x00001340 ok
@@ -437,7 +437,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x08c9fefe
+reg 0x0144 0x08a57b70
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -463,7 +463,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x00000000
@@ -591,13 +591,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x010475cd
+reg 0x0acc 0x0100ed21
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010000
 reg 0x0b10 0x00010000
-reg 0x0b14 0x00010743
+reg 0x0b14 0x00010741
 reg 0x0b18 0x00010000
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -613,7 +613,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080000
 reg 0x0c08 0x00000000
-reg 0x0c38 0x03a45000
+reg 0x0c38 0x03e59000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -627,10 +627,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x30000000
@@ -648,8 +648,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x0000072a
-hostctl 0x34 0xf45bd982
+hostctl 0x30 0x00000728
+hostctl 0x34 0xf2cc5d17
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -676,7 +676,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -720,7 +720,7 @@ end
 held: status F   0x00000000 ok
 held: read off   0x00001340 ok
 held: count      0x00000001 ok
-dummy transfer 11: SW_EVENT after 81 us, completion word already written
+dummy transfer 11: SW_EVENT after 97 us, completion word already written
 status F         0x0000123f ok
 update U         0xcafe000b ok
 ccb read off     0x00001500 ok
@@ -735,7 +735,7 @@ sync wait and release correct
 held: status F   0x00000000 ok
 held: read off   0x00001500 ok
 held: count      0x00000001 ok
-dummy transfer 12: SW_EVENT after 85 us, completion word already written
+dummy transfer 12: SW_EVENT after 87 us, completion word already written
 status F         0x00001240 ok
 update U         0xcafe000c ok
 ccb read off     0x000016c0 ok
@@ -750,7 +750,7 @@ sync wait and release correct
 held: status F   0x00000000 ok
 held: read off   0x000016c0 ok
 held: count      0x00000001 ok
-dummy transfer 13: SW_EVENT after 82 us, completion word already written
+dummy transfer 13: SW_EVENT after 128 us, completion word already written
 status F         0x00001241 ok
 update U         0xcafe000d ok
 ccb read off     0x00001880 ok
@@ -776,7 +776,7 @@ reg 0x0130 0x00004000
 reg 0x0134 skip
 reg 0x0138 0x00000000
 reg 0x0140 skip
-reg 0x0144 0x09b8f876
+reg 0x0144 0x0999adf3
 reg 0x0148 0x00000000
 reg 0x0200 skip
 reg 0x0204 0x00000000
@@ -802,7 +802,7 @@ reg 0x0284 0x00000000
 reg 0x0290 0x00000000
 reg 0x02a8 0x00008000
 reg 0x02b0 0x01000000
-reg 0x02b4 0x000000ff
+reg 0x02b4 0x01d4feff
 reg 0x02d0 0x00004000
 reg 0x02d4 0x00000000
 reg 0x0308 0x00000000
@@ -930,13 +930,13 @@ reg 0x0aa0 0x00000000
 reg 0x0aa4 0xaaaaaaaa
 reg 0x0aa8 0xaaaaaaaa
 reg 0x0ab8 0x2e000000
-reg 0x0acc 0x0101adef
+reg 0x0acc 0x0100e61d
 reg 0x0ad0 skip
 reg 0x0ad4 skip
 reg 0x0ae0 skip
 reg 0x0b0c 0x00010000
 reg 0x0b10 0x00010000
-reg 0x0b14 0x000109c1
+reg 0x0b14 0x000109cd
 reg 0x0b18 0x00010000
 reg 0x0b1c 0x00010000
 reg 0x0b20 0x00010000
@@ -952,7 +952,7 @@ reg 0x0b98 0x00010000
 reg 0x0c00 0x00000000
 reg 0x0c04 0x00080000
 reg 0x0c08 0x00000000
-reg 0x0c38 0x03a45000
+reg 0x0c38 0x03e59000
 reg 0x0c3c 0x00000000
 reg 0x0c40 0x00000000
 reg 0x0c44 0x00000000
@@ -966,10 +966,10 @@ reg 0x0c60 0x00000000
 reg 0x0c64 0x00000000
 reg 0x0c68 0x00000000
 reg 0x0c6c 0x00000000
-reg 0x0c70 0x03a45000
+reg 0x0c70 0x03e59000
 reg 0x0c74 0x00000000
 reg 0x0c78 0x0000100f
-reg 0x0c84 0x35bac000
+reg 0x0c84 0x35a79000
 reg 0x0c8c 0x00000000
 reg 0x0c90 0x00000000
 reg 0x0cac 0x30000000
@@ -987,8 +987,8 @@ hostctl 0x20 0x00000000
 hostctl 0x24 0x00000000
 hostctl 0x28 0x00000000
 hostctl 0x2c 0x00000000
-hostctl 0x30 0x0000099c
-hostctl 0x34 0xf45bd982
+hostctl 0x30 0x000009a8
+hostctl 0x34 0xf2cc5d17
 hostctl 0x38 0x00000000
 hostctl 0x3c 0x00000000
 hostctl 0x40 0x00000000
@@ -1015,7 +1015,7 @@ ta3dctl 0x4c 0x00000000
 ta3dctl 0x50 0x00000000
 ta3dctl 0x54 0x00000000
 ta3dctl 0x58 0x32000000
-ta3dctl 0x5c 0x03a45000
+ta3dctl 0x5c 0x03e59000
 ta3dctl 0x60 0x00000000
 ta3dctl 0x64 0x00000000
 ta3dctl 0x68 0x00000000
@@ -1069,16 +1069,16 @@ reg 0xc78 = 0x0000100f
 reg 0xc04 = 0x00080000
 reg 0xc08 = 0x00000000
 reg 0xc8c = 0x00000000
-reg 0xc84 = 0x35bac000
-reg 0xc70 = 0x03a45000
-reg 0xb14 = 0x00010a37
+reg 0xc84 = 0x35a79000
+reg 0xc70 = 0x03e59000
+reg 0xb14 = 0x00010a43
 reg 0xb20 = 0x00010000
 hostctl[ 0]: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 80 1a 06 00 00 00 00 00
-hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 12 0a 00 00 82 d9 5b f4 00 00 00 00 00 00 00 00
+hostctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1e 0a 00 00 17 5d cc f2 00 00 00 00 00 00 00 00
 hostctl[16]: 00 00 00 00
 ta3dctl[ 0]: 00 40 00 32 00 50 00 32 00 20 00 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[ 8]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 50 a4 03
+ta3dctl[16]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 32 00 90 e5 03
 ta3dctl[24]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[32]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ta3dctl[40]: 00 00 00 00 00 00 00 00 00 00 00 00 00 70 00 32 00 e0 00 32 00 f0 00 32 00 00 00 00 00 00 00 00
@@ -1088,6 +1088,6 @@ ccbctl[ 0]: 11 00 00 00 11 00 00 00
 ## read status: exit 0
 ## write stop 1: exit 0
 ## log stop
-[   80.303816] gma500 0000:00:02.0: [drm] SGX stopped, 0 events seen
-[  107.623958] gma500 0000:00:02.0: [drm] SGX power-off after 173 us
-[  107.626876] gma500 0000:00:02.0: [drm] SGX stopped, 14 events seen
+[   72.504418] gma500 0000:00:02.0: [drm] SGX stopped, 0 events seen
+[   81.453901] gma500 0000:00:02.0: [drm] SGX power-off after 173 us
+[   81.456808] gma500 0000:00:02.0: [drm] SGX stopped, 14 events seen
