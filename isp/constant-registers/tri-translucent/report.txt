@@ -1,0 +1,14 @@
+sweep isp-constant-registers-tri-translucent: the ISP constant words under a translucent pass (pass type 1) over a depth test
+host: tri --poke blk:1=0x02400200
+cases: 239 of 239 run, 609.1 s
+baseline: ('ok', '0x99385a04ee01c585')
+summary: unchanged 233, changed 4, hang 1
+counters: 239 recorded, 0 counted
+
+cmd:11: ^=0x2000000 changed (4096 pixels); =0xffffffff changed (4096 pixels)
+cmd:13: ^=0x1 changed (693 pixels); ^=0x2 changed (750 pixels); =0xffffffff hang
+cmd:17: all unchanged
+cmd:21: all unchanged
+cmd:22: all unchanged
+rd:19: all unchanged [kpoke applied in 34 of 34]
+rd:21: all unchanged [kpoke applied in 34 of 34]

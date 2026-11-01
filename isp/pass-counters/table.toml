@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# isp pass counters: 5 sweeps, 0 probes.
+name = "isp-pass-counters"
+needs = ["render"]
+
+[[sweep]]
+name = "isp-pass-counters-tri-isp-timeline"
+about = "the triangle's CR_ISP_CTL and ISP0 words, ISP registers 0x0494-0x04b4 sampled"
+host = "tri"
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "cmd"
+indices = [12, 12]
+
+[[sweep.range]]
+space = "blk"
+indices = [1, 1]
+
+[[sweep]]
+name = "isp-pass-counters-tri-pass-repeat"
+about = "ISP0 bits 28:25 of the triangle, repeated, ISP registers sampled"
+host = "tri"
+bits = []
+values = ["^=0x2000000", "^=0x4000000", "^=0x6000000", "^=0x8000000", "^=0xa000000", "^=0xc000000", "^=0xe000000", "^=0x10000000", "^=0x12000000", "^=0x14000000", "^=0x16000000", "^=0x18000000", "^=0x1a000000", "^=0x1c000000", "^=0x1e000000"]
+repeat = 3
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "blk"
+indices = [1, 1]
+
+[[sweep]]
+name = "isp-pass-counters-tri-pass-size128"
+about = "ISP0 pass types 2, 4, 5 of a 128x128 triangle, ISP registers sampled"
+host = "tri"
+options = ["--width", "128", "--height", "128"]
+bits = []
+values = ["^=0x4000000", "^=0x8000000", "^=0xa000000"]
+repeat = 3
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "blk"
+indices = [1, 1]
+
+[[sweep]]
+name = "isp-pass-counters-tri-pass-size256"
+about = "ISP0 pass types 2, 4, 5 of a 256x256 triangle, ISP registers sampled"
+host = "tri"
+options = ["--width", "256", "--height", "256"]
+bits = []
+values = ["^=0x4000000", "^=0x8000000", "^=0xa000000"]
+repeat = 3
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "blk"
+indices = [1, 1]
+
+[[sweep]]
+name = "isp-pass-counters-tri-pass-size32"
+about = "ISP0 pass types 2, 4, 5 of a 32x32 triangle, ISP registers sampled"
+host = "tri"
+options = ["--width", "32", "--height", "32"]
+bits = []
+values = ["^=0x4000000", "^=0x8000000", "^=0xa000000"]
+repeat = 3
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "blk"
+indices = [1, 1]

@@ -1,0 +1,14 @@
+sweep isp-constant-registers-tri-equal: the ISP constant words under a bit-exact depth equal (0.3 against 0.3)
+host: tri --poke blk:1=0x00800200 --poke blk:10=0x3e99999a --poke cmd:14=0x3e99999a
+cases: 239 of 239 run, 609.0 s
+baseline: ('ok', '0x99385a04ee01c585')
+summary: unchanged 233, changed 4, hang 1
+counters: 239 recorded, 0 counted
+
+cmd:11: ^=0x2000000 changed (4096 pixels); =0xffffffff changed (4096 pixels)
+cmd:13: ^=0x1 changed (693 pixels); ^=0x2 changed (750 pixels); =0xffffffff hang
+cmd:17: all unchanged
+cmd:21: all unchanged
+cmd:22: all unchanged
+rd:19: all unchanged [kpoke applied in 34 of 34]
+rd:21: all unchanged [kpoke applied in 34 of 34]

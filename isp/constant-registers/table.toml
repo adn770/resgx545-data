@@ -1,0 +1,129 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# isp constant registers: 4 sweeps, 0 probes.
+name = "isp-constant-registers"
+needs = ["render", "kpoke"]
+
+[[sweep]]
+name = "isp-constant-registers-tri-depth"
+about = "the ISP constant words under a depth test (less) with depth written"
+host = "tri"
+options = ["--poke", "blk:1=0x00400200"]
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "cmd"
+indices = [11, 11]
+
+[[sweep.range]]
+space = "cmd"
+indices = [13, 13]
+
+[[sweep.range]]
+space = "cmd"
+indices = [17, 17]
+
+[[sweep.range]]
+space = "cmd"
+indices = [21, 22]
+
+[[sweep.range]]
+space = "rd"
+indices = [19, 19]
+
+[[sweep.range]]
+space = "rd"
+indices = [21, 21]
+
+[[sweep]]
+name = "isp-constant-registers-tri-translucent"
+about = "the ISP constant words under a translucent pass (pass type 1) over a depth test"
+host = "tri"
+options = ["--poke", "blk:1=0x02400200"]
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "cmd"
+indices = [11, 11]
+
+[[sweep.range]]
+space = "cmd"
+indices = [13, 13]
+
+[[sweep.range]]
+space = "cmd"
+indices = [17, 17]
+
+[[sweep.range]]
+space = "cmd"
+indices = [21, 22]
+
+[[sweep.range]]
+space = "rd"
+indices = [19, 19]
+
+[[sweep.range]]
+space = "rd"
+indices = [21, 21]
+
+[[sweep]]
+name = "isp-constant-registers-tri-punch"
+about = "the ISP constant words under a punch-through pass (pass type 4) over a depth test"
+host = "tri"
+options = ["--poke", "blk:1=0x08400200"]
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "cmd"
+indices = [11, 11]
+
+[[sweep.range]]
+space = "cmd"
+indices = [13, 13]
+
+[[sweep.range]]
+space = "cmd"
+indices = [17, 17]
+
+[[sweep.range]]
+space = "cmd"
+indices = [21, 22]
+
+[[sweep.range]]
+space = "rd"
+indices = [19, 19]
+
+[[sweep.range]]
+space = "rd"
+indices = [21, 21]
+
+[[sweep]]
+name = "isp-constant-registers-tri-equal"
+about = "the ISP constant words under a bit-exact depth equal (0.3 against 0.3)"
+host = "tri"
+options = ["--poke", "blk:1=0x00800200", "--poke", "blk:10=0x3e99999a", "--poke", "cmd:14=0x3e99999a"]
+timeline = { regs = "0x0494-0x04b4", total = 2.0, lead = 0.2 }
+
+[[sweep.range]]
+space = "cmd"
+indices = [11, 11]
+
+[[sweep.range]]
+space = "cmd"
+indices = [13, 13]
+
+[[sweep.range]]
+space = "cmd"
+indices = [17, 17]
+
+[[sweep.range]]
+space = "cmd"
+indices = [21, 22]
+
+[[sweep.range]]
+space = "rd"
+indices = [19, 19]
+
+[[sweep.range]]
+space = "rd"
+indices = [21, 21]

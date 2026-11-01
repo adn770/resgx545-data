@@ -1,0 +1,180 @@
+=== case baseline
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72998 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 644254 seconds 2 start 200001275 end 385646037 rc 0
+tl 1038 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.163 s
+=== case baseline#1
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72809 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 643846 seconds 2 start 200000417 end 385453109 rc 0
+tl 1369 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.166 s
+=== case baseline#2
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72803 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 642209 seconds 2 start 200001208 end 385556396 rc 0
+tl 1052 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.169 s
+=== case blk:1^=0x4000000
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x4000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72920 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 644010 seconds 2 start 200001093 end 385848492 rc 0
+tl 1158 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.166 s
+=== case blk:1^=0x4000000#1
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x4000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73101 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 644230 seconds 2 start 200002532 end 386716308 rc 0
+tl 973 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.167 s
+=== case blk:1^=0x4000000#2
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x4000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73240 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 643711 seconds 2 start 200001490 end 386664909 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.169 s
+=== case blk:1^=0x8000000
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x8000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72886 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 642304 seconds 2 start 200002286 end 385821179 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.171 s
+=== case blk:1^=0x8000000#1
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x8000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73338 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 643147 seconds 2 start 200001775 end 390462521 rc 0
+tl 687 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.165 s
+=== case blk:1^=0x8000000#2
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0x8000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 72856 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 641461 seconds 2 start 200000517 end 385897410 rc 0
+tl 1399 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.183 s
+=== case blk:1^=0xa000000
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0xa000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73030 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 644119 seconds 2 start 200001359 end 386510533 rc 0
+tl 1313 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.161 s
+=== case blk:1^=0xa000000#1
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0xa000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73289 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 643861 seconds 2 start 200001850 end 386131104 rc 0
+tl 1062 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.166 s
+=== case blk:1^=0xa000000#2
+$ sudo -n ./regtimeline 2.0 0.2 0x0494-0x04b4 -- ./sgxfive-test tri --width 256 --height 256 --poke 'blk:1^=0xa000000'
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 256x256 #1: 17208 triangle, 48328 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 11392 if flipped; guard 0
+tri 256x256 #1: 73243 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 644101 seconds 2 start 200002361 end 386663099 rc 0
+tl 1584 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 2.166 s
