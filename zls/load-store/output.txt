@@ -1,0 +1,214 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+59435224CE8502E95E508C7
+#### load-compare
+z.5 less, both scratch                                     tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.5 less, 0484 scratch 0488 target                         tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.5 less, 0484 target 0488 scratch                         tri 64x64 #1: 1062 triangle, 3034 backgr 
+z.1 less, 0484 scratch 0488 target                         tri 64x64 #1: 1062 triangle, 3034 backgr 
+z.1 greater, no load                                       tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, both scratch                                  tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, 0484 scratch 0488 target                      tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, 0484 target 0488 scratch                      tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.5 less, both scratch                                     tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.5 less, 0484 scratch 0488 target                         tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.5 less, 0484 target 0488 scratch                         tri 64x64 #1: 1062 triangle, 3034 backgr 
+z.1 less, 0484 scratch 0488 target                         tri 64x64 #1: 1062 triangle, 3034 backgr 
+z.1 greater, no load                                       tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, both scratch                                  tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, 0484 scratch 0488 target                      tri 64x64 #1: 0 triangle, 4096 backgroun 
+z.1 greater, 0484 target 0488 scratch                      tri 64x64 #1: 0 triangle, 4096 backgroun 
+## exit 0
+#### stencil-bases
+== store, 048c page 0, 0490 page 4
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 4: 1024 changed, first +0x0 0x00000000
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 5120 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+== store, 048c page 4, 0490 page 0
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 0: 1024 changed, first +0x0 0x00000000
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 5120 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+== store, no bit 31: 048c page 0, 0490 page 4
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+== bit 31 on 048c only
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+== bit 31 on 0490 only
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 4: 1024 changed, first +0x0 0x00000000
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 5120 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+== both, flag bit 8 off
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 12: 1024 changed, first +0x0 0x3f800000
+scratch page 13: 1024 changed, first +0x0 0x3f800000
+scratch page 14: 1024 changed, first +0x0 0x3f800000
+scratch page 15: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edg
+## exit 0
+#### store-load-bases
+== flag only
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x17100c, 0x0484 page 0, 0x0488 page 8
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 8: 1024 changed, first +0x0 0x3f800000
+scratch page 9: 1024 changed, first +0x0 0x3f800000
+scratch page 10: 1024 changed, first +0x0 0x3f800000
+scratch page 11: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x17100c, 0x0484 page 8, 0x0488 page 0
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 0: 1024 changed, first +0x0 0x3f800000
+scratch page 1: 1024 changed, first +0x0 0x3f800000
+scratch page 2: 1024 changed, first +0x0 0x3f800000
+scratch page 3: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x11700a, 0x0484 page 0, 0x0488 page 8
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== ctl 0x11700a, 0x0484 page 8, 0x0488 page 0
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== no load (flag only)
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== 0x0484 scratch, 0x0488 target
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== 0x0484 target, 0x0488 scratch
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== flag only
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x17100c, 0x0484 page 0, 0x0488 page 8
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 8: 1024 changed, first +0x0 0x3f800000
+scratch page 9: 1024 changed, first +0x0 0x3f800000
+scratch page 10: 1024 changed, first +0x0 0x3f800000
+scratch page 11: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x17100c, 0x0484 page 8, 0x0488 page 0
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch page 0: 1024 changed, first +0x0 0x3f800000
+scratch page 1: 1024 changed, first +0x0 0x3f800000
+scratch page 2: 1024 changed, first +0x0 0x3f800000
+scratch page 3: 1024 changed, first +0x0 0x3f800000
+scratch: 4096 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== ctl 0x11700a, 0x0484 page 0, 0x0488 page 8
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== ctl 0x11700a, 0x0484 page 8, 0x0488 page 0
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== no load (flag only)
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== 0x0484 scratch, 0x0488 target
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 936 of 4096 pixels, first (9, 9) 0xff203040 expected 0xff00ff00
+outside: 0 dwords
+tri 64x64 #1: 0 triangle, 4096 background, 0 other; wrong 936 inside, 0 outside, 0 at edges; 936 if flipped; guard 0
+== 0x0484 target, 0x0488 scratch
+scratch: 0x3e001000 16 pages, fill 0x3e800000
+job: ok
+scratch: 0 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+[42167.755068] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x91000 at 0x37001003 (PD 0x6b18000) stalls job 57890, recovering
+## exit 0
