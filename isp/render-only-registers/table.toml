@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# isp render only registers: 4 sweeps, 2 probes, hand-run script.
+name = "isp-render-only-registers"
+needs = ["render", "kreg", "kpoke"]
+script = "render-only-registers.sh"
+
+[[sweep]]
+name = "isp-render-only-registers-copy-kreg3d"
+about = "the render-only ISP registers through kreg, a plain copy (RGBA8888 texture)"
+host = "copy"
+
+[[sweep.range]]
+space = "kreg"
+indices = [1048, 2048]
+
+[[sweep]]
+name = "isp-render-only-registers-copy-every-kreg3d"
+about = "the render-only ISP registers through kreg, the every-value copy"
+host = "copy"
+options = ["--every-value"]
+
+[[sweep.range]]
+space = "kreg"
+indices = [1048, 2048]
+
+[[sweep]]
+name = "isp-render-only-registers-copy-uyvy-kreg3d"
+about = "the render-only ISP registers through kreg, a UYVY copy through colour-space set 0"
+host = "copy"
+options = ["--every-value", "--poke", "tex:1=0x7d03f01f", "--poke", "tex:0^=0x90", "--poke", "xfer:17^=0x1", "--poke", "xfer:18=0x00950095", "--poke", "xfer:19=0x00000095", "--poke", "xfer:20=0x010203ce", "--poke", "xfer:21=0x039800cc", "--poke", "xfer:22=0"]
+
+[[sweep.range]]
+space = "kreg"
+indices = [1048, 2048]
+
+[[sweep]]
+name = "isp-render-only-registers-fill-kreg3d"
+about = "the render-only ISP registers through kreg, a fill (no texture), the control"
+host = "fill"
+
+[[sweep.range]]
+space = "kreg"
+indices = [1048, 2048]
+
+[[probe]]
+name = "isp-render-only-registers-many-opaque"
+question = "42 overlapping triangles, opaque"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+vertices = 126
+size = [64, 64]
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, #0x0000000A"]]
+labels = ["42 opaque copies"]
+
+[[probe]]
+name = "isp-render-only-registers-many-less"
+question = "42 overlapping triangles at z 0, depth less"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+vertices = 126
+blk = { 1 = 0x400200 }
+size = [64, 64]
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, #0x0000000A"]]
+labels = ["42 copies, depth less"]
