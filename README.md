@@ -19,6 +19,10 @@ the files by hash and names this repository (`repo = "data"`). resgx545's tests 
 manifests against a checkout of this repository placed beside it, or named by
 `RESGX545_DATA`.
 
+`vectors/<unit>/<feature>/<probe>.vec.json` (and `vectors/followup/...` for the follow-up runs)
+are the same runs as instruction vectors, made by `tools/usse-asm/vectors.py` of resgx545
+(format: `doc/specs/vectors.md` there); the simulator's tests read them from here.
+
 Data that derives from the closed driver (its captures, its firmware) is not here.
 
 ## Licence

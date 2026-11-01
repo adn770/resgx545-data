@@ -1,0 +1,141 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "pds/vertex-programs/pds-vertex-programs-if0/raw.txt",
+  "raw_sha256": "2532eed5a5227eb87d808c6a3202385d038a1cd20ddc485ab53b0b5c93015166",
+  "converted": "2026-11-01T21:38:42+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "pds-vertex-programs-if0__0",
+   "program": {
+    "isa": "pds",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x67800072",
+     "0x2f032343",
+     "0x030403e5",
+     "0xaf000000"
+    ],
+    "data": 8
+   },
+   "init": {
+    "task": "pds-secondary",
+    "instances": 2048,
+    "temps": 16,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e006000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "attrs": 16,
+    "use": {
+     "source": "sa_dump.s",
+     "recorded": false,
+     "words": [
+      "0xfa44070000000000",
+      "0xfca1705003af0000",
+      "0xf0220000b0074000",
+      "0xf0220000b0074081",
+      "0xf0220000b0074102",
+      "0xf0220000b0074183",
+      "0xf0220000b0074204",
+      "0xf0220000b0074285",
+      "0xf0220000b0074306",
+      "0xf0220000b0074387",
+      "0xf0220000b0074408",
+      "0xf0220000b0074489",
+      "0xf0220000b007450a",
+      "0xf0220000b007458b",
+      "0xf0220000b007460c",
+      "0xf0220000b007468d",
+      "0xf0220000b007470e",
+      "0xf0220000b007478f",
+      "0xf820000000000000",
+      "0xf920000000000000",
+      "0xfca430d10007a000"
+     ]
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": null,
+    "mixed": [
+     [
+      "0xff203040",
+      3034
+     ],
+     [
+      "0xff00ff00",
+      1062
+     ]
+    ],
+    "scratch": {
+     "0x000": "0x7e570000",
+     "0x004": "0x3f400000",
+     "0x008": "0xbec00000",
+     "0x00c": "0x00000000",
+     "0x010": "0x3f800000",
+     "0x014": "0xbec00000",
+     "0x018": "0x3f800000",
+     "0x01c": "0xbf400000",
+     "0x080": "0x7e570002",
+     "0x084": "0xbf400000",
+     "0x088": "0xbf400000",
+     "0x08c": "0x00000000",
+     "0x090": "0x3f800000",
+     "0x094": "0x3f400000",
+     "0x098": "0xbec00000",
+     "0x09c": "0x3f800000",
+     "0x0c0": "0x7e570003",
+     "0x0c4": "0xbec00000",
+     "0x0c8": "0x3f400000",
+     "0x0cc": "0x00000000",
+     "0x0d0": "0x3f800000",
+     "0x0d4": "0x3f800000",
+     "0x0d8": "0xbf400000",
+     "0x0dc": "0x3f400000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "pds-vertex-programs-if0",
+    "case": 0,
+    "table": "vertex-programs.toml",
+    "template": "vtx_kick.s",
+    "template_sha256": "2c9c14db6c5225617e243130058e982db9bca42b85be519ba175790c54727249",
+    "inputs": {},
+    "params": {
+     "KICK": "        (if0) movs doutu, ds0[2], ds0[3], ds1[1], ds1[1]\n"
+    },
+    "options": [
+     "--temps",
+     "16",
+     "--tri",
+     "vtxpds:8",
+     "--width",
+     "64",
+     "--height",
+     "64",
+     "--slot",
+     "vtxuse=vtx_dump.bin"
+    ],
+    "question": "(if0) doutu after each vertex's DMA, as pds_vtx.s: which vertices share a task"
+   }
+  }
+ ],
+ "orphans": []
+}

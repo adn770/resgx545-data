@@ -1,0 +1,111 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "pds/vertex-programs/pds-vertex-programs-flag-pc/raw.txt",
+  "raw_sha256": "e136f99e5b182a1cfe8994d1095f93af0586ae6fea07e872246f94b736136fb3",
+  "converted": "2026-11-01T21:38:42+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "pds-vertex-programs-flag-pc__0",
+   "program": {
+    "isa": "pds",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x00000000",
+     "0x67800072",
+     "0x2f032343",
+     "0x17008260",
+     "0x0f010a60",
+     "0x87600000",
+     "0x90000007",
+     "0x070403e5",
+     "0xaf000000"
+    ],
+    "data": 8
+   },
+   "init": {
+    "task": "pds-secondary",
+    "instances": 2048,
+    "temps": 16,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e006000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "attrs": 16,
+    "use": {
+     "source": "sa_dump.s",
+     "recorded": false,
+     "words": [
+      "0xfa44070000000000",
+      "0xfca1705003af0000",
+      "0xf0220000b0074000",
+      "0xf0220000b0074081",
+      "0xf0220000b0074102",
+      "0xf0220000b0074183",
+      "0xf0220000b0074204",
+      "0xf0220000b0074285",
+      "0xf0220000b0074306",
+      "0xf0220000b0074387",
+      "0xf0220000b0074408",
+      "0xf0220000b0074489",
+      "0xf0220000b007450a",
+      "0xf0220000b007458b",
+      "0xf0220000b007460c",
+      "0xf0220000b007468d",
+      "0xf0220000b007470e",
+      "0xf0220000b007478f",
+      "0xf820000000000000",
+      "0xf920000000000000",
+      "0xfca430d10007a000"
+     ]
+    }
+   },
+   "readback": {
+    "failed": "job hung, context lost (Connection timed out)",
+    "o0": null,
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "pds-vertex-programs-flag-pc",
+    "case": 0,
+    "table": "vertex-programs.toml",
+    "template": "vtx_kick.s",
+    "template_sha256": "2c9c14db6c5225617e243130058e982db9bca42b85be519ba175790c54727249",
+    "inputs": {},
+    "params": {
+     "KICK": "        mov32 ds0[48], ds1[1]\n        .word 0x0f010a60        ; mov16 ds0[96], pc.1.l (field 266)\n        tstz p0, ds0[48]\n        (p0) bra skip\n        movs doutu, ds0[2], ds0[3], ds1[1], ds1[1]\nskip:\n"
+    },
+    "options": [
+     "--temps",
+     "16",
+     "--tri",
+     "vtxpds:8",
+     "--width",
+     "64",
+     "--height",
+     "64",
+     "--slot",
+     "vtxuse=vtx_dump.bin"
+    ],
+    "question": "is the mov16 flag a select on if0? kick where a flagged mov16 of pc.l is nonzero (RISKY: may hang)"
+   }
+  }
+ ],
+ "orphans": []
+}

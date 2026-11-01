@@ -1,0 +1,89 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/phases/usse-phases-phasreg2-4/raw.txt",
+  "raw_sha256": "a000e338ae98916f68faf93affb4c3013d9c7b52035b56cbca379a77fc749c07",
+  "converted": "2026-11-01T21:39:29+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-phases-phasreg2-4__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44000200000008",
+     "0xf800024000000001",
+     "0xf800010000a00000",
+     "0xfca3e12001240002",
+     "0xfca0000001400000",
+     "0xfca0000001800004",
+     "0x600010000160028c",
+     "0xfca0010001800000",
+     "0x500010080160058c",
+     "0xfca0000000c00009",
+     "0x4800118c00b70305",
+     "0xfca0000000e00002",
+     "0xfca0000001000003",
+     "0xf804014000000000",
+     "0xfa40000000000587",
+     "0xfca3f1f1001f0000",
+     "0xf804014000000000",
+     "0xfca3f181000000ff",
+     "0xfa4c070000000000"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 16,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e006000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {}
+   },
+   "readback": {
+    "failed": "job hung, context lost (Connection timed out)",
+    "o0": null,
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-phases-phasreg2-4",
+    "case": 0,
+    "table": "phases.toml",
+    "template": "pix_phas_reg.s",
+    "template_sha256": "cde1e216fdb442bd9f5a11cf1c5f15ec1881b0049375395d91c13330ef91412c",
+    "inputs": {
+     "PHAS": "phas r11, r7",
+     "CALL": "br.savelink #0x00000001",
+     "LINK": "mov r5, pclink\nmov.skipinv r9, #0xFA440002\nmov.skipinv r10, #0\nmov.skipinv r12, #4\nshl r11, r5, r12\nmov.skipinv r12, #0x02000000\nor r11, r11, r12",
+     "T1": "nop.end"
+    },
+    "params": {
+     "CTRL": "0x00000002"
+    },
+    "options": [
+     "--temps",
+     "16",
+     "--pixels",
+     "--tri",
+     "pixel",
+     "--width",
+     "64",
+     "--height",
+     "64"
+    ],
+    "question": "phas r11, r7 (U0 layout, fields): does phase 2 run"
+   }
+  }
+ ],
+ "orphans": []
+}

@@ -1,0 +1,135 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/memory/usse-memory-ldad-reg-off-fetch/raw.txt",
+  "raw_sha256": "45d00d6b735131bb188db00830636d2246442ed6a76a952e7cea8cda5bc49fbc",
+  "converted": "2026-11-01T21:39:22+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-memory-ldad-reg-off-fetch__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f8000",
+     "0xfca0000000440001",
+     "0xfca0408000711111",
+     "0xfca3b17003ceeeee",
+     "0xe801100023c04100",
+     "0xf920000000000000",
+     "0x2885100120000f00"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf8000",
+     "r2": "0x00040001",
+     "r3": "0x11111111",
+     "r30": "0xeeeeeeee"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xd0002002",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-memory-ldad-reg-off-fetch",
+    "case": 0,
+    "table": "memory.toml",
+    "template": "memoff.s",
+    "template_sha256": "95a87325c0a024346329c9f8a3327eb93fe911e1ede2b2a1d5b3b04af2ad7c8f",
+    "inputs": {
+     "O": "0x00040001"
+    },
+    "params": {
+     "OP": "ldad.fetch2 r30, [r1,+r2], drc0",
+     "OUT": "r30"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ldad.fetch2 r30, [r1,+r2]: does the register-offset fetch start one element after"
+   }
+  },
+  {
+   "id": "usse-memory-ldad-reg-off-fetch__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f8000",
+     "0xfca0000000440000",
+     "0xfca0408000711111",
+     "0xfca3b17003ceeeee",
+     "0xe801100023c04100",
+     "0xf920000000000000",
+     "0x2885100120000f00"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf8000",
+     "r2": "0x00040000",
+     "r3": "0x11111111",
+     "r30": "0xeeeeeeee"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xd0002001",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-memory-ldad-reg-off-fetch",
+    "case": 1,
+    "table": "memory.toml",
+    "template": "memoff.s",
+    "template_sha256": "95a87325c0a024346329c9f8a3327eb93fe911e1ede2b2a1d5b3b04af2ad7c8f",
+    "inputs": {
+     "O": "0x00040000"
+    },
+    "params": {
+     "OP": "ldad.fetch2 r30, [r1,+r2], drc0",
+     "OUT": "r30"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ldad.fetch2 r30, [r1,+r2]: does the register-offset fetch start one element after"
+   }
+  }
+ ],
+ "orphans": []
+}

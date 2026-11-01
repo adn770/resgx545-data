@@ -1,0 +1,79 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/decoder-vectors/usse-decoder-vectors-stad-imm63/raw.txt",
+  "raw_sha256": "0cd5243d6974b6945888f39821666ebeef24c1aaa34adb9d49ac96fe4e831d81",
+  "converted": "2026-11-01T21:38:54+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-decoder-vectors-stad-imm63__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f8000",
+     "0xfca0000000400000",
+     "0xfca0408000711111",
+     "0xfca3b17003ceeeee",
+     "0xf022000080005f83",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0xe8230000a3c05f80",
+     "0xf920000000000000",
+     "0x2885100120000f00"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf8000",
+     "r2": "0x00000000",
+     "r3": "0x11111111",
+     "r30": "0xeeeeeeee"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x11111111",
+    "mixed": [],
+    "scratch": {
+     "0x80fc": "0x11111111"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-decoder-vectors-stad-imm63",
+    "case": 0,
+    "table": "decoder-vectors.toml",
+    "template": "memoff.s",
+    "template_sha256": "95a87325c0a024346329c9f8a3327eb93fe911e1ede2b2a1d5b3b04af2ad7c8f",
+    "inputs": {
+     "O": "0x00000000"
+    },
+    "params": {
+     "OP": "stad [r1,+#63], r3\nidf drc0, bif\nwdf drc0\nldad r30, [r1,+#63], drc0",
+     "OUT": "r30"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "stad [r1,+#63] then load back"
+   }
+  }
+ ],
+ "orphans": []
+}

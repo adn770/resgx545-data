@@ -1,0 +1,83 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/phases/usse-phases-phasreg-2/raw.txt",
+  "raw_sha256": "b7973594fb84dbd31c1e707edc0e87db12e06d1b4479ee24d82feff6c378e71c",
+  "converted": "2026-11-01T21:39:28+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-phases-phasreg-2__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44000200000008",
+     "0xf800024000000001",
+     "0xf800010000a00000",
+     "0xfca0000000c00009",
+     "0x4800118c00b70305",
+     "0xfca0000000e00002",
+     "0xfca0000001000003",
+     "0xf804014000000000",
+     "0xfa40000000000385",
+     "0xfca3f1f1001f0000",
+     "0xf804014000000000",
+     "0xfca3f181000000ff",
+     "0xfa4c070000000000"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 12,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e006000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {}
+   },
+   "readback": {
+    "failed": "job faulted, context lost (Input/output error)",
+    "o0": null,
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-phases-phasreg-2",
+    "case": 0,
+    "table": "phases.toml",
+    "template": "pix_phas_reg.s",
+    "template_sha256": "cde1e216fdb442bd9f5a11cf1c5f15ec1881b0049375395d91c13330ef91412c",
+    "inputs": {
+     "PHAS": "phas r7, r5",
+     "CALL": "br.savelink #0x00000001",
+     "LINK": "mov r5, pclink",
+     "T1": "nop.end"
+    },
+    "params": {
+     "CTRL": "0x00000002"
+    },
+    "options": [
+     "--temps",
+     "12",
+     "--pixels",
+     "--tri",
+     "pixel",
+     "--width",
+     "64",
+     "--height",
+     "64"
+    ],
+    "question": "phas r7, r5 (fields, absolute index): does phase 2 run"
+   }
+  }
+ ],
+ "orphans": []
+}

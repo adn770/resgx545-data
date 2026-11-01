@@ -1,0 +1,73 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "vdm/state1/vdm-state1-lines3/raw.txt",
+  "raw_sha256": "5b6cb69367127a95418d62df0814d5c6f0738c8eac3fc5eb8e46dfb59916ff7b",
+  "converted": "2026-11-01T21:39:47+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "vdm-state1-lines3__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0x2885100160000000"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e006000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {}
+   },
+   "readback": {
+    "failed": "job hung, context lost (Connection timed out)",
+    "o0": null,
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "vdm-state1-lines3",
+    "case": 0,
+    "table": "state1.toml",
+    "template": "pix_op.s",
+    "template_sha256": "33a923cedbcb64d48e961773333cc13a7bd2078cde36ddd6a8718ae9df54a209",
+    "inputs": {
+     "OP": "mov.skipinv.end o0, o0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32",
+     "--pixels",
+     "--tri",
+     "pixel",
+     "--width",
+     "64",
+     "--height",
+     "64",
+     "--blk",
+     "1=0x01d08200",
+     "--vdm",
+     "2=0x84c00003",
+     "--dump-render",
+     "dumps"
+    ],
+    "question": "what the TA writes before three-index lines hang"
+   }
+  }
+ ],
+ "orphans": []
+}

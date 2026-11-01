@@ -1,0 +1,139 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/integer/usse-integer-ima16-imm-c/raw.txt",
+  "raw_sha256": "b9d1c445d5a24e859ebc24b38386956d0983c2bfa669912d6f3b6a1645753e7a",
+  "converted": "2026-11-01T21:39:21+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-integer-ima16-imm-c__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000250007",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xa0230800a0804082",
+     "0x2885100120000200"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00050007",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0x00000000"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00030005",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-integer-ima16-imm-c",
+    "case": 0,
+    "table": "integer.toml",
+    "template": "value.s",
+    "template_sha256": "0b4998c469d78bb5277bd3750506bc423a5120654f8112702b98cf3179224733",
+    "inputs": {
+     "A": "0x00050007"
+    },
+    "params": {
+     "OP": "ima16.s r4, r1, #1, #2.neg, u16, u16",
+     "OUT": "r4",
+     "B": 0,
+     "C": 0,
+     "D": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima16.s r4, r1, #1, #2.neg (the firmware's form): is the immediate c in both lanes"
+   }
+  },
+  {
+   "id": "usse-integer-ima16-imm-c__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xa0230800a0804082",
+     "0x2885100120000200"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0x00000000"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xfffeffff",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-integer-ima16-imm-c",
+    "case": 1,
+    "table": "integer.toml",
+    "template": "value.s",
+    "template_sha256": "0b4998c469d78bb5277bd3750506bc423a5120654f8112702b98cf3179224733",
+    "inputs": {
+     "A": "0x00000001"
+    },
+    "params": {
+     "OP": "ima16.s r4, r1, #1, #2.neg, u16, u16",
+     "OUT": "r4",
+     "B": 0,
+     "C": 0,
+     "D": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima16.s r4, r1, #1, #2.neg (the firmware's form): is the immediate c in both lanes"
+   }
+  }
+ ],
+ "orphans": []
+}

@@ -1,0 +1,155 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/float-minmax/usse-float-minmax-allnan/raw.txt",
+  "raw_sha256": "8cac237a47f75875bbed2720e06fdc0a449599ce5fa79c0104bb42d961900423",
+  "converted": "2026-11-01T21:39:18+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-float-minmax-allnan__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca1f1e000200000",
+     "0xfca1f1d000400001",
+     "0xfca3f1e000600000",
+     "0xfca1f1f0009fffff",
+     "0xfca3f1c000a00001",
+     "0xfca1f1c000c00001",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x1820020001404103",
+     "0x1820000001604103",
+     "0x1820020001808084",
+     "0x1820000001a10286",
+     "0x1820020001c14285",
+     "0x1820000001e18306",
+     "0x1820020002004107",
+     "0x182000000221c103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x7fc00000",
+     "r2": "0x7fa00001",
+     "r3": "0xffc00000",
+     "r4": "0x7fffffff",
+     "r5": "0xff800001",
+     "r6": "0x7f800001",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xffc00000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xffc00000",
+     "0x004": "0x7fa00001",
+     "0x008": "0x7fffffff",
+     "0x00c": "0xff800001",
+     "0x010": "0xff800001",
+     "0x014": "0x7f800001",
+     "0x018": "0x00000000",
+     "0x01c": "0x00000000",
+     "0x020": "0x7fc00000",
+     "0x024": "0x7fa00001",
+     "0x028": "0xffc00000",
+     "0x02c": "0x7fffffff",
+     "0x030": "0xff800001",
+     "0x034": "0x7f800001",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-float-minmax-allnan",
+    "case": 0,
+    "table": "float-minmax.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "fminmax r10, r1, r2, r3\nfmaxmin r11, r1, r2, r3\nfminmax r12, r2, r1, r4\nfmaxmin r13, r4, r5, r6\nfminmax r14, r5, r5, r5\nfmaxmin r15, r6, r6, r6\nfminmax r16, r1, r2, r7\nfmaxmin r17, r7, r2, r3",
+     "A": "0x7fc00000",
+     "B": "0x7fa00001",
+     "C": "0xffc00000",
+     "D": "0x7fffffff",
+     "E": "0xff800001",
+     "F": "0x7f800001",
+     "G": "0x00000000",
+     "H": "0x00000000"
+    },
+    "params": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0,
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "fminmax/fmaxmin when both operands of a step are NaN"
+   }
+  }
+ ],
+ "orphans": []
+}

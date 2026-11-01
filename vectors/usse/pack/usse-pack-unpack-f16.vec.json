@@ -1,0 +1,147 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/pack/usse-pack-unpack-f16/raw.txt",
+  "raw_sha256": "364b8094bdf6cbe4c3c18b7002c18aee3e75d8b7531b7b1bca065009e862f1e6",
+  "converted": "2026-11-01T21:39:26+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-pack-unpack-f16__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f00000207c00",
+     "0xfca0000000417e00",
+     "0xfca0f00000608000",
+     "0xfca1e1f0009f03ff",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x40001bbc01400081",
+     "0x40001bbc01620081",
+     "0x40001bbc01800101",
+     "0x40001bbc01a20101",
+     "0x40001bbc01c00181",
+     "0x40001bbc01e20181",
+     "0x40001bbc02000201",
+     "0x40001bbc02220201",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xfc007c00",
+     "r2": "0x00017e00",
+     "r3": "0x3c008000",
+     "r4": "0x7bff03ff",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x7f800000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x7f800000",
+     "0x004": "0xff800000",
+     "0x008": "0x7fffffff",
+     "0x00c": "0x33800000",
+     "0x010": "0x80000000",
+     "0x014": "0x3f800000",
+     "0x018": "0x387fc000",
+     "0x01c": "0x477fe000",
+     "0x020": "0xfc007c00",
+     "0x024": "0x00017e00",
+     "0x028": "0x3c008000",
+     "0x02c": "0x7bff03ff",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-pack-unpack-f16",
+    "case": 0,
+    "table": "pack.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "unpckf32f16 r10, r1.0, r1.0, nearest\nunpckf32f16 r11, r1.2, r1.0, nearest\nunpckf32f16 r12, r2.0, r1.0, nearest\nunpckf32f16 r13, r2.2, r1.0, nearest\nunpckf32f16 r14, r3.0, r1.0, nearest\nunpckf32f16 r15, r3.2, r1.0, nearest\nunpckf32f16 r16, r4.0, r1.0, nearest\nunpckf32f16 r17, r4.2, r1.0, nearest"
+    },
+    "params": {
+     "A": 4227890176,
+     "B": 97792,
+     "C": 1006665728,
+     "D": 2080310271,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0,
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "unpckf32f16: infinities, NaN, denormals, -0 (low and high halves)"
+   }
+  }
+ ],
+ "orphans": []
+}

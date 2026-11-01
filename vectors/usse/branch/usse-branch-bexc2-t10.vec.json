@@ -1,0 +1,69 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/branch/usse-branch-bexc2-t10/raw.txt",
+  "raw_sha256": "7373cdb35f869720b49e9ceb2232a900441e7fd4ed1581034420a7ecced43e37",
+  "converted": "2026-11-01T21:38:50+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-branch-bexc2-t10__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xf800004000000002",
+     "0xfca43001000c0c0c",
+     "0xfca0000004200001",
+     "0x48081181000c50a1",
+     "0xf80800000000000a",
+     "0xfca0218002ab0b0b",
+     "0x2885100120000a80",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xfca43081000d0d0d"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {}
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0d0d0d0d",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-branch-bexc2-t10",
+    "case": 0,
+    "table": "branch.toml",
+    "template": "bexc_path.s",
+    "template_sha256": "d67f4292475f4f57f090d1de70efef2576157ecf4b26895533c5c3901ae06de5",
+    "inputs": {
+     "OP": ".long 0xF80800000000000A ; bexception, target 10"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "bexception, target field 10: fall through (0x0b0b0b0b), to instruction 10 (0x0d0d0d0d), back to 2 (0x0c0c0c0c) or hang"
+   }
+  }
+ ],
+ "orphans": []
+}

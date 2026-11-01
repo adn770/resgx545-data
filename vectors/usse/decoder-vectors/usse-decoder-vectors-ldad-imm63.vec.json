@@ -1,0 +1,74 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/decoder-vectors/usse-decoder-vectors-ldad-imm63/raw.txt",
+  "raw_sha256": "7bab9f9cde81910d000e977e31077d6871344cafea42292851aa1895676680bb",
+  "converted": "2026-11-01T21:38:53+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-decoder-vectors-ldad-imm63__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f8000",
+     "0xfca0000000400000",
+     "0xfca0408000711111",
+     "0xfca3b17003ceeeee",
+     "0xe8230000a3c05f80",
+     "0xf920000000000000",
+     "0x2885100120000f00"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf8000",
+     "r2": "0x00000000",
+     "r3": "0x11111111",
+     "r30": "0xeeeeeeee"
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xd000203f",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-decoder-vectors-ldad-imm63",
+    "case": 0,
+    "table": "decoder-vectors.toml",
+    "template": "memoff.s",
+    "template_sha256": "95a87325c0a024346329c9f8a3327eb93fe911e1ede2b2a1d5b3b04af2ad7c8f",
+    "inputs": {
+     "O": "0x00000000"
+    },
+    "params": {
+     "OP": "ldad r30, [r1,+#63], drc0",
+     "OUT": "r30"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ldad [r1,+#63]"
+   }
+  }
+ ],
+ "orphans": []
+}
