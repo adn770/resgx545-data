@@ -1,0 +1,8 @@
+usse-gradients-fds-quad: SETTLED: coarse: fdsx d, a, b = a(TR) - b(TL) and fdsy = a(BL) - b(TL), for all four pixels of the quad
+  question: fdsx/fdsy: which pixels of the 2x2 quad the two sources come from
+  [0] fdsx r10, r3, r7: a = mark, b = 0: mixed 0x45001000x4 0x45003000x4 0x45005000x4 0x45007000x4
+  [1] fdsx r10, r7, r3.neg: a = 0, b = -mark: mixed 0x45000000x4 0x45002000x4 0x45004000x4 0x45006000x4
+  [2] fdsy r10, r3, r7: a = mark, b = 0: mixed 0x45040000x4 0x45042000x4 0x45044000x4 0x45046000x4
+  [3] fdsy r10, r7, r3.neg: a = 0, b = -mark: mixed 0x45000000x4 0x45002000x4 0x45004000x4 0x45006000x4
+  [4] fdsx r10, r20, r20: a = b = 1 + p/2048: 0x3a000000
+  [5] fdsy r10, r20, r20: a = b = 1 + p/2048: 0x3d000000

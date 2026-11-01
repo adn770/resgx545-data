@@ -1,0 +1,14 @@
+usse-branch-divergent: recorded (no hypotheses)
+  question: what a predicated br does when a quad's instances disagree (Rogue: .ALLINST/.ANYINST branch modes; .synce/.syncent/.mon are open): p0 instances should store 4, the others 7
+  [0] x parity within the quad (g25 & 1 == 0), p0 br #3: 0x00000004
+  [1] x parity within the quad (g25 & 1 == 0), p0 br.synce #3: failed (job hung, context lost (Connection timed out))
+  [2] x parity within the quad (g25 & 1 == 0), p0 br.syncent #3: 0x00000004
+  [3] x parity within the quad (g25 & 1 == 0), p0 br.mon #3: failed (job hung, context lost (Connection timed out))
+  [4] x parity within the quad (g25 & 1 == 0), p0 br.nosched #3: 0x00000004
+  [5] tile row bit 3, uniform per quad (g24 & 8 == 0), p0 br #3: mixed 0x00000004x1024 0x00000007x1024
+  [6] tile row bit 3, uniform per quad (g24 & 8 == 0), p0 br.synce #3: failed (job hung, context lost (Connection timed out))
+  [7] tile row bit 3, uniform per quad (g24 & 8 == 0), p0 br.syncent #3: mixed 0x00000004x1024 0x00000007x1024
+  [8] tile row bit 3, uniform per quad (g24 & 8 == 0), p0 br.mon #3: failed (job hung, context lost (Connection timed out))
+  [9] tile row bit 3, uniform per quad (g24 & 8 == 0), p0 br.nosched #3: mixed 0x00000004x1024 0x00000007x1024
+  [10] x parity inverted: p0 on odd x (instance 0 clear), p0 br #3: 0x00000007
+  [11] p0 on instances 1-3 of the quad (g25 & 3 != 0), p0 br #3: 0x00000007
