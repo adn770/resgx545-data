@@ -14,9 +14,9 @@ echo "## module"; modinfo -F srcversion gma500_gfx 2>/dev/null
 
 mte_floats_under_clipping() (
 # The MTE's two 1e-6 floats (ta:152 -> 0x0240, ta:153 -> 0x0244) under the clipping scenes of
-# the probe tri-wclip (programs built into $SGXFIVE_PROBE_BINS/wclip, default
-# $HOME/sgxprobes/wclip): each case's image hashed, per value of each float.
-B=${SGXFIVE_PROBE_BINS:-$HOME/sgxprobes}/wclip
+# the probe mte-clipping-wclip (programs built into $SGXFIVE_PROBE_BINS, default
+# $HOME/sgxprobes): each case's image hashed, per value of each float.
+B=${SGXFIVE_PROBE_BINS:-$HOME/sgxprobes}
 one() { f=$1; poke=$2
 	printf '%s\n' clear $poke | sudo -n tee "$D/kpoke" >/dev/null
 	r=$(sudo -n "$T" probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 "$f" 2>&1)
@@ -25,7 +25,7 @@ one() { f=$1; poke=$2
 	echo "$(basename "$f" .bin) ${poke:-base} $h $s | left: $(sudo -n cat "$D/kpoke" | tr '\n' ' ')"
 	printf 'clear\n' | sudo -n tee "$D/kpoke" >/dev/null
 }
-for f in "$B"/*.bin; do
+for f in "$B"/mte-clipping-wclip__*.bin; do
 	one "$f" ""
 	for v in 0 0x3c23d70a 0x3dcccccd 0x3f000000 0x3f800000 0xbf800000 0x447a0000 0x7f7fffff; do
 		one "$f" ta:152=$v
@@ -45,7 +45,7 @@ one() { label=$1 blk=$2 pokes=$3
 	for n in 3 4 5 6 7; do
 		printf '%s\n' clear $pokes | sudo -n tee "$D/kpoke" >/dev/null
 		r=$(sudo -n "$T" probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 \
-			$blk "$B/tri-w-scan__$n.bin" 2>&1)
+			$blk "$B/mte-clipping-w-scan__$n.bin" 2>&1)
 		echo "$label case $n: $(echo "$r" | grep -E "o0 mixed|o0 0x|failed" |
 			sed 's/^probe [^:]*: //' | cut -c1-70) | image $(echo "$r" | grep " row " | md5sum | cut -c1-8)"
 	done

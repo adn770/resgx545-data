@@ -13,7 +13,7 @@ echo "## firmware"; sha256sum /lib/firmware/sgx545_ukernel.fw
 echo "## module"; modinfo -F srcversion gma500_gfx 2>/dev/null
 
 depth_scenes() (
-# Five overlapping objects (the probes tri-depth-always, -less, -translucent,
+# Five overlapping objects (the probes isp-depth-test-always, -less, -translucent,
 # -translucent-nowrite and -punch: five copies of the triangle at clip z 0, 1/16 .. 4/16, each
 # pixel coloured with the z of the copy that won it) with every implemented bit of the
 # render-only registers flipped through the kernel's rd pokes (rd:26 0x0418, rd:21 0x04dc,
@@ -22,7 +22,7 @@ depth_scenes() (
 B=${SGXFIVE_PROBE_BINS:-$HOME/sgxprobes}
 for sc in always:0x01D00200 less:0x00400200 translucent:0x02400200 translucent-nowrite:0x03D00200 punch:0x08400200; do
 	n=${sc%%:*}; isp0=${sc#*:}
-	P="$T probe --tri pixpds:12 --width 64 --height 64 --vertices 15 --copy-depth --vtx-coords 2 --blk 1=$isp0 --pixels --slot pixel=$B/pix_pa0.bin --slot vtxuse=$B/vtx_z.bin $B/tri-depth-${n}__0.bin"
+	P="$T probe --tri pixpds:12 --width 64 --height 64 --vertices 15 --copy-depth --vtx-coords 2 --blk 1=$isp0 --pixels --slot pixel=$B/pix_pa0.bin --slot vtxuse=$B/vtx_z.bin $B/isp-depth-test-${n}__0.bin"
 	printf "clear\n" | sudo -n tee "$D/kpoke" >/dev/null
 	base=$(sudo -n $P 2>&1 | grep -vE "scratch at|scratch unchanged" | md5sum | cut -c1-8)
 	again=$(sudo -n $P 2>&1 | grep -vE "scratch at|scratch unchanged" | md5sum | cut -c1-8)
@@ -48,15 +48,15 @@ echo done
 
 many_triangles() (
 # The render-only ISP registers under 42 overlapping triangles per tile (the probes
-# tri-many-opaque and tri-many-less; the programs built with tools/usse-asm/probe.py build into
+# isp-render-only-registers-many-opaque and isp-render-only-registers-many-less; the programs built with tools/usse-asm/probe.py build into
 # $SGXFIVE_PROBE_BINS, default $HOME/sgxprobes). In a render these registers load from the
 # render details, so each value goes in through a kernel poke (rd:22 0x0800, rd:51 0x04e8,
 # rd:21 0x04dc, rd:26 0x0418, rd:19 0x0520); "left" is empty when the job took it. Each case
 # prints the probe's summary and the job's wall time.
 B=${SGXFIVE_PROBE_BINS:-$HOME/sgxprobes}
 run() { poke=$1
-	for p in tri-many-opaque tri-many-less; do
-		extra=""; [ $p = tri-many-less ] && extra="--blk 1=0x00400200"
+	for p in isp-render-only-registers-many-opaque isp-render-only-registers-many-less; do
+		extra=""; [ $p = isp-render-only-registers-many-less ] && extra="--blk 1=0x00400200"
 		printf '%s\n' clear $poke | sudo -n tee "$D/kpoke" >/dev/null
 		t0=$(date +%s%N)
 		r=$(sudo -n "$T" probe --temps 32 --pixels --tri pixel --width 64 --height 64 \
@@ -78,11 +78,11 @@ done
 )
 
 textured_triangle() (
-# The same flips and values of the render-only registers on a textured 3D triangle (the probe
-# tri-tex-fetch: sampling, wrap and the twiddled fetch): a case prints only when its pixels
-# differ from the baseline (taken twice first).
+# The same flips and values of the render-only registers on a textured 3D triangle (the
+# probe texture-fetch-tex-fetch: sampling, wrap and the twiddled fetch): a case prints only
+# when its pixels differ from the baseline (taken twice first).
 B=${SGXFIVE_PROBE_BINS:-$HOME/sgxprobes}
-P="$T probe --tri pixpds:12 --width 64 --height 64 --vtx-coords 2 --pixels --slot pixel=$B/pix_pa0.bin --slot vtxuse=$B/vtx_coords.bin $B/tri-tex-fetch__0.bin"
+P="$T probe --tri pixpds:12 --width 64 --height 64 --vtx-coords 2 --pixels --slot pixel=$B/pix_pa0.bin --slot vtxuse=$B/vtx_coords.bin $B/texture-fetch-tex-fetch__0.bin"
 h() { sudo -n $P 2>&1 | grep -vE "scratch at|scratch unchanged" | md5sum | cut -c1-8; }
 printf "clear\n" | sudo -n tee "$D/kpoke" >/dev/null
 base=$(h); base2=$(h); echo "baseline $base $base2"

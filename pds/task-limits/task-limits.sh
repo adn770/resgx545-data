@@ -13,7 +13,7 @@ echo "## firmware"; sha256sum /lib/firmware/sgx545_ukernel.fw
 echo "## module"; modinfo -F srcversion gma500_gfx 2>/dev/null
 
 0800_pixel_time() (
-# CR_REG_0800 bits 5:0 as a pixel task limit: a 1024x1024 render of the probe tri-long-pixel
+# CR_REG_0800 bits 5:0 as a pixel task limit: a 1024x1024 render of the probe pds-task-limits-long-pixel
 # (case 0: 150 dependent fmads per pixel, case 1: the store alone; programs built into
 # $SGXFIVE_PROBE_BINS, default $HOME/sgxprobes), 0x0800 poked through rd:22. The wall time is
 # the CPU's setup and readback; the render's own time is taken from CR_CLKGATESTATUS (0x0008)
@@ -24,7 +24,7 @@ run() { poke=$1 bin=$2
 	printf '%s\n' clear $poke | sudo -n tee "$D/kpoke" >/dev/null
 	t0=$(date +%s%N)
 	r=$(sudo -n "$RT" 0 0 0x0008 -- "$T" probe --temps 4 --pixels --tri \
-		pixel --width 1024 --height 1024 "$B/tri-long-pixel__$bin.bin" 2>&1)
+		pixel --width 1024 --height 1024 "$B/pds-task-limits-long-pixel__$bin.bin" 2>&1)
 	isp=$(echo "$r" | awk '/^tl /{ if (on) sum += $2 - pt; on = and(strtonum("0x" $3), 1); pt = $2 }
 		END { printf "%d", sum / 1000 }')
 	t1=$(date +%s%N)
