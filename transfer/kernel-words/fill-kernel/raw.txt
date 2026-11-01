@@ -1,0 +1,2667 @@
+=== case baseline
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8877 seconds 0 start 1007 end 97299592 rc 0
+tl 1007 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.654 s
+=== case tq:16^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7491 seconds 0 start 1132 end 100533850 rc 0
+tl 1132 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.642 s
+=== case tq:16^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7605 seconds 0 start 1198 end 100974838 rc 0
+tl 1198 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7641 seconds 0 start 1203 end 101048296 rc 0
+tl 1203 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7535 seconds 0 start 1123 end 100169560 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7660 seconds 0 start 998 end 101578920 rc 0
+tl 998 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:16^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7673 seconds 0 start 1102 end 101253394 rc 0
+tl 1102 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:16^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7543 seconds 0 start 1128 end 100671415 rc 0
+tl 1128 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7662 seconds 0 start 1102 end 101526468 rc 0
+tl 1102 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.645 s
+=== case tq:16^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7547 seconds 0 start 1083 end 100188256 rc 0
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.684 s
+=== case tq:16^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7539 seconds 0 start 983 end 101122377 rc 0
+tl 983 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:16^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7509 seconds 0 start 1098 end 100590803 rc 0
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.642 s
+=== case tq:16^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8100 seconds 0 start 1072 end 100110792 rc 0
+tl 1072 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:16^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7509 seconds 0 start 1108 end 100017785 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:16^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6797 seconds 0 start 1188 end 99916968 rc 0
+tl 1188 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.648 s
+=== case tq:16^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7580 seconds 0 start 1103 end 100472106 rc 0
+tl 1103 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.640 s
+=== case tq:16^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7569 seconds 0 start 1032 end 100875069 rc 0
+tl 1032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7683 seconds 0 start 1017 end 100650432 rc 0
+tl 1017 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:16^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7617 seconds 0 start 1133 end 100153404 rc 0
+tl 1133 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.671 s
+=== case tq:16^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7525 seconds 0 start 1053 end 101056507 rc 0
+tl 1053 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.637 s
+=== case tq:16^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7693 seconds 0 start 1083 end 101685701 rc 0
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:16^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7546 seconds 0 start 1178 end 99903705 rc 0
+tl 1178 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:16^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7588 seconds 0 start 1173 end 100649856 rc 0
+tl 1173 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.638 s
+=== case tq:16^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7615 seconds 0 start 958 end 100178943 rc 0
+tl 958 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.655 s
+=== case tq:16^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7522 seconds 0 start 1052 end 99196265 rc 0
+tl 1052 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:16^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7502 seconds 0 start 1007 end 99439569 rc 0
+tl 1007 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:16^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7631 seconds 0 start 1002 end 100388206 rc 0
+tl 1002 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.644 s
+=== case tq:16^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7591 seconds 0 start 953 end 99459660 rc 0
+tl 953 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.643 s
+=== case tq:16^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7563 seconds 0 start 1002 end 99653008 rc 0
+tl 1002 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:16^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7534 seconds 0 start 1092 end 99358947 rc 0
+tl 1092 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.625 s
+=== case tq:16^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7486 seconds 0 start 1073 end 99066035 rc 0
+tl 1073 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:16^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7343 seconds 0 start 1087 end 97768459 rc 0
+tl 1087 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:16^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:16^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7414 seconds 0 start 918 end 98548125 rc 0
+tl 918 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.649 s
+=== case tq:16=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:16=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8629 seconds 0 start 1073 end 98043327 rc 0
+tl 1073 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.648 s
+=== case tq:16=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:16=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7319 seconds 0 start 1083 end 98222942 rc 0
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:42^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7489 seconds 0 start 963 end 98359854 rc 0
+tl 963 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.617 s
+=== case tq:42^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6420 seconds 0 start 1163 end 98881037 rc 0
+tl 1163 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.647 s
+=== case tq:42^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7480 seconds 0 start 1082 end 98705533 rc 0
+tl 1082 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:42^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7452 seconds 0 start 1147 end 98479904 rc 0
+tl 1147 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:42^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7472 seconds 0 start 1057 end 98268836 rc 0
+tl 1057 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.637 s
+=== case tq:42^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7556 seconds 0 start 1072 end 99000896 rc 1
+tl 1072 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 1 0.632 s
+=== case tq:42^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7416 seconds 0 start 1143 end 98676882 rc 0
+tl 1143 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:42^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7316 seconds 0 start 1067 end 98340290 rc 0
+tl 1067 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:42^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7984 seconds 0 start 943 end 97859287 rc 0
+tl 943 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.642 s
+=== case tq:42^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7765 seconds 0 start 1043 end 102367180 rc 0
+tl 1043 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:42^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7448 seconds 0 start 1123 end 98477924 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:42^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7523 seconds 0 start 1113 end 98627448 rc 0
+tl 1113 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:42^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7417 seconds 0 start 1108 end 98377112 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:42^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7473 seconds 0 start 1163 end 99306747 rc 0
+tl 1163 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:42^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7414 seconds 0 start 963 end 97961057 rc 0
+tl 963 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:42^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7573 seconds 0 start 1112 end 99058165 rc 0
+tl 1112 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:42^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7426 seconds 0 start 1033 end 97970099 rc 0
+tl 1033 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.625 s
+=== case tq:42^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7622 seconds 0 start 877 end 99658667 rc 0
+tl 877 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:42^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7508 seconds 0 start 1133 end 98150926 rc 0
+tl 1133 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.620 s
+=== case tq:42^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7454 seconds 0 start 968 end 98347634 rc 0
+tl 968 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:42^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7576 seconds 0 start 1057 end 99007869 rc 0
+tl 1057 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:42^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7392 seconds 0 start 702 end 98519824 rc 0
+tl 702 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:42^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8076 seconds 0 start 1744 end 107503219 rc 0
+tl 1744 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.647 s
+=== case tq:42^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6244 seconds 0 start 1519 end 95988218 rc 0
+tl 1519 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.650 s
+=== case tq:42^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7372 seconds 0 start 1098 end 97641127 rc 0
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.635 s
+=== case tq:42^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7519 seconds 0 start 923 end 98864281 rc 0
+tl 923 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.658 s
+=== case tq:42^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7486 seconds 0 start 1032 end 99276225 rc 0
+tl 1032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.673 s
+=== case tq:42^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8811 seconds 0 start 998 end 100002191 rc 0
+tl 998 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:42^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7327 seconds 0 start 1238 end 97940666 rc 0
+tl 1238 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:42^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7569 seconds 0 start 1152 end 99532331 rc 0
+tl 1152 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:42^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7310 seconds 0 start 1279 end 98206260 rc 0
+tl 1279 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:42^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:42^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7387 seconds 0 start 1183 end 98388220 rc 0
+tl 1183 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:42=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:42=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7388 seconds 0 start 978 end 98432060 rc 0
+tl 978 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:42=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:42=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7537 seconds 0 start 1128 end 98819509 rc 1
+tl 1128 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 1 0.624 s
+=== case tq:98^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7678 seconds 0 start 1118 end 100611184 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:98^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7493 seconds 0 start 933 end 99126612 rc 0
+tl 933 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:98^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7413 seconds 0 start 1123 end 99294722 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:98^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7484 seconds 0 start 1294 end 98891078 rc 0
+tl 1294 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.625 s
+=== case tq:98^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7404 seconds 0 start 1128 end 98474465 rc 0
+tl 1128 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:98^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7257 seconds 0 start 1093 end 98665769 rc 0
+tl 1093 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:98^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7327 seconds 0 start 1093 end 98259182 rc 0
+tl 1093 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.656 s
+=== case tq:98^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7446 seconds 0 start 1148 end 98314080 rc 0
+tl 1148 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.647 s
+=== case tq:98^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6407 seconds 0 start 978 end 97938375 rc 0
+tl 978 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.654 s
+=== case tq:98^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6339 seconds 0 start 1078 end 98356856 rc 0
+tl 1078 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:98^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6250 seconds 0 start 1078 end 97859353 rc 0
+tl 1078 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.650 s
+=== case tq:98^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7469 seconds 0 start 1118 end 97897593 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:98^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7530 seconds 0 start 1162 end 99154150 rc 0
+tl 1162 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.636 s
+=== case tq:98^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6432 seconds 0 start 1028 end 96882214 rc 0
+tl 1028 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.647 s
+=== case tq:98^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7446 seconds 0 start 1228 end 98400901 rc 0
+tl 1228 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:98^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7448 seconds 0 start 1233 end 97884089 rc 0
+tl 1233 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.645 s
+=== case tq:98^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7232 seconds 0 start 1143 end 97818976 rc 0
+tl 1143 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.640 s
+=== case tq:98^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7310 seconds 0 start 998 end 97857162 rc 0
+tl 998 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.637 s
+=== case tq:98^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7557 seconds 0 start 1108 end 99191413 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:98^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7512 seconds 0 start 1068 end 98957874 rc 0
+tl 1068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:98^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7568 seconds 0 start 933 end 99524106 rc 0
+tl 933 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:98^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7518 seconds 0 start 1158 end 98650155 rc 0
+tl 1158 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:98^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7466 seconds 0 start 1078 end 97783027 rc 0
+tl 1078 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.622 s
+=== case tq:98^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7490 seconds 0 start 1148 end 98584260 rc 0
+tl 1148 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:98^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7496 seconds 0 start 1368 end 97537818 rc 0
+tl 1368 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:98^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7288 seconds 0 start 1037 end 98799473 rc 0
+tl 1037 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:98^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7501 seconds 0 start 1123 end 97941834 rc 0
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:98^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8509 seconds 0 start 1118 end 99328120 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:98^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7507 seconds 0 start 1128 end 98080701 rc 0
+tl 1128 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:98^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7387 seconds 0 start 1128 end 97860385 rc 0
+tl 1128 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:98^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7618 seconds 0 start 1233 end 100635910 rc 0
+tl 1233 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:98^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:98^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7601 seconds 0 start 1048 end 99840622 rc 0
+tl 1048 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:98=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:98=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9418 seconds 0 start 947 end 101396052 rc 0
+tl 947 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.635 s
+=== case tq:98=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:98=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7496 seconds 0 start 887 end 99477379 rc 0
+tl 887 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.635 s
+=== case tq:99^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7584 seconds 0 start 1098 end 100164201 rc 0
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:99^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7508 seconds 0 start 1048 end 98835458 rc 0
+tl 1048 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:99^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7650 seconds 0 start 1173 end 100113505 rc 0
+tl 1173 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:99^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7428 seconds 0 start 1027 end 98931077 rc 0
+tl 1027 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.647 s
+=== case tq:99^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7590 seconds 0 start 1338 end 100423770 rc 0
+tl 1338 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:99^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9406 seconds 0 start 912 end 101826283 rc 0
+tl 912 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:99^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7861 seconds 0 start 1654 end 105854481 rc 0
+tl 1654 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.646 s
+=== case tq:99^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7520 seconds 0 start 1083 end 98763107 rc 0
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.642 s
+=== case tq:99^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7492 seconds 0 start 1163 end 99292281 rc 0
+tl 1163 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:99^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7441 seconds 0 start 797 end 98654090 rc 0
+tl 797 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:99^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7488 seconds 0 start 1053 end 99089378 rc 0
+tl 1053 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:99^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7422 seconds 0 start 1163 end 98702792 rc 0
+tl 1163 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:99^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7273 seconds 0 start 902 end 98286826 rc 0
+tl 902 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.638 s
+=== case tq:99^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8504 seconds 0 start 972 end 98357488 rc 0
+tl 972 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.652 s
+=== case tq:99^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7343 seconds 0 start 1068 end 98373944 rc 0
+tl 1068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.655 s
+=== case tq:99^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8879 seconds 0 start 1173 end 100079484 rc 0
+tl 1173 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.646 s
+=== case tq:99^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6531 seconds 0 start 1093 end 97707848 rc 0
+tl 1093 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:99^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6377 seconds 0 start 1374 end 97067718 rc 0
+tl 1374 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.638 s
+=== case tq:99^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6404 seconds 0 start 912 end 97317091 rc 0
+tl 912 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.637 s
+=== case tq:99^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6588 seconds 0 start 1147 end 98014485 rc 0
+tl 1147 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.638 s
+=== case tq:99^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6538 seconds 0 start 902 end 97784821 rc 0
+tl 902 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:99^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7324 seconds 0 start 1063 end 98646451 rc 0
+tl 1063 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.665 s
+=== case tq:99^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7433 seconds 0 start 1193 end 98468380 rc 0
+tl 1193 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:99^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7562 seconds 0 start 1264 end 98836742 rc 0
+tl 1264 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:99^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7485 seconds 0 start 1137 end 99092490 rc 0
+tl 1137 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.677 s
+=== case tq:99^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7434 seconds 0 start 933 end 98473202 rc 0
+tl 933 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:99^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7564 seconds 0 start 1273 end 100010637 rc 0
+tl 1273 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:99^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7592 seconds 0 start 662 end 98909218 rc 0
+tl 662 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.660 s
+=== case tq:99^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7298 seconds 0 start 1063 end 97915974 rc 0
+tl 1063 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.651 s
+=== case tq:99^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7463 seconds 0 start 1112 end 98281022 rc 0
+tl 1112 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.621 s
+=== case tq:99^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7520 seconds 0 start 1208 end 98887438 rc 0
+tl 1208 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.643 s
+=== case tq:99^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:99^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7274 seconds 0 start 993 end 98212435 rc 0
+tl 993 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:99=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:99=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7510 seconds 0 start 1068 end 98814942 rc 0
+tl 1068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:99=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:99=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7483 seconds 0 start 1293 end 97927297 rc 0
+tl 1293 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:100^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7607 seconds 0 start 1177 end 98682054 rc 0
+tl 1177 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:100^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7581 seconds 0 start 1122 end 99651699 rc 0
+tl 1122 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:100^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8311 seconds 0 start 1113 end 98210144 rc 0
+tl 1113 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:100^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8202 seconds 0 start 1082 end 97434515 rc 0
+tl 1082 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:100^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7427 seconds 0 start 1168 end 98438284 rc 0
+tl 1168 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:100^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7565 seconds 0 start 1248 end 97696966 rc 0
+tl 1248 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.655 s
+=== case tq:100^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7780 seconds 0 start 1178 end 103975597 rc 0
+tl 1178 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.649 s
+=== case tq:100^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7536 seconds 0 start 1118 end 98842416 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.636 s
+=== case tq:100^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7594 seconds 0 start 1173 end 99344411 rc 0
+tl 1173 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.664 s
+=== case tq:100^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7119 seconds 0 start 1289 end 97946596 rc 0
+tl 1289 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:100^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7490 seconds 0 start 1158 end 98432771 rc 0
+tl 1158 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.630 s
+=== case tq:100^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7540 seconds 0 start 1474 end 98371994 rc 0
+tl 1474 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:100^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7473 seconds 0 start 1097 end 98314545 rc 0
+tl 1097 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:100^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7282 seconds 0 start 1203 end 97803413 rc 0
+tl 1203 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:100^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7584 seconds 0 start 1007 end 99493062 rc 0
+tl 1007 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:100^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7521 seconds 0 start 1097 end 98546054 rc 0
+tl 1097 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.625 s
+=== case tq:100^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7470 seconds 0 start 1057 end 98316540 rc 0
+tl 1057 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.653 s
+=== case tq:100^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7570 seconds 0 start 1108 end 99375669 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:100^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9263 seconds 0 start 1514 end 105771925 rc 0
+tl 1514 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.655 s
+=== case tq:100^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7439 seconds 0 start 1233 end 98966370 rc 0
+tl 1233 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:100^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7545 seconds 0 start 1133 end 99037113 rc 0
+tl 1133 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.621 s
+=== case tq:100^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7136 seconds 0 start 1058 end 99240927 rc 0
+tl 1058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:100^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7304 seconds 0 start 1183 end 97340535 rc 0
+tl 1183 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:100^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7415 seconds 0 start 1118 end 98745634 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:100^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7521 seconds 0 start 1208 end 99803940 rc 0
+tl 1208 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.670 s
+=== case tq:100^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7547 seconds 0 start 962 end 99554050 rc 0
+tl 962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:100^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7459 seconds 0 start 1003 end 98373954 rc 0
+tl 1003 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.623 s
+=== case tq:100^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7439 seconds 0 start 1137 end 98529753 rc 0
+tl 1137 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.639 s
+=== case tq:100^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6241 seconds 0 start 1183 end 97412790 rc 0
+tl 1183 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:100^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7370 seconds 0 start 1088 end 97562024 rc 0
+tl 1088 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:100^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7405 seconds 0 start 1298 end 98480676 rc 0
+tl 1298 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:100^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:100^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7467 seconds 0 start 1188 end 98776746 rc 0
+tl 1188 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.637 s
+=== case tq:100=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:100=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7462 seconds 0 start 1203 end 98494646 rc 0
+tl 1203 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:100=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:100=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7443 seconds 0 start 892 end 97790996 rc 0
+tl 892 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.621 s
+=== case tq:101^=0x1
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x1' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7429 seconds 0 start 1087 end 98051623 rc 0
+tl 1087 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:101^=0x2
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x2' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: failed: job hung, context lost (Connection timed out)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 109078 seconds 0 start 1042 end 1171521913 rc 1
+tl 1042 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+sgxfive-test: fill: Connection timed out
+--- rc 1 1.698 s
+=== case tq:101^=0x4
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x4' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: failed: job hung, context lost (Connection timed out)
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 117443 seconds 0 start 1243 end 1272004075 rc 1
+tl 1243 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+sgxfive-test: fill: Connection timed out
+--- rc 1 1.811 s
+=== case tq:101^=0x8
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x8' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7657 seconds 0 start 1108 end 100395906 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.640 s
+=== case tq:101^=0x10
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x10' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7635 seconds 0 start 967 end 99851919 rc 0
+tl 967 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:101^=0x20
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x20' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7678 seconds 0 start 1037 end 100977350 rc 0
+tl 1037 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:101^=0x40
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x40' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7575 seconds 0 start 1219 end 99832758 rc 0
+tl 1219 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.624 s
+=== case tq:101^=0x80
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x80' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7639 seconds 0 start 977 end 100683174 rc 0
+tl 977 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:101^=0x100
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x100' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7505 seconds 0 start 977 end 100624903 rc 0
+tl 977 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.658 s
+=== case tq:101^=0x200
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x200' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6544 seconds 0 start 982 end 100049484 rc 0
+tl 982 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.644 s
+=== case tq:101^=0x400
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x400' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7669 seconds 0 start 1138 end 101699355 rc 0
+tl 1138 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.635 s
+=== case tq:101^=0x800
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x800' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7720 seconds 0 start 1057 end 102299080 rc 0
+tl 1057 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:101^=0x1000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x1000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7679 seconds 0 start 1158 end 99237624 rc 0
+tl 1158 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.626 s
+=== case tq:101^=0x2000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x2000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7572 seconds 0 start 1193 end 101041384 rc 0
+tl 1193 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:101^=0x4000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x4000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7797 seconds 0 start 1052 end 101693039 rc 0
+tl 1052 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:101^=0x8000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x8000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9314 seconds 0 start 987 end 101065204 rc 0
+tl 987 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.636 s
+=== case tq:101^=0x10000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x10000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7735 seconds 0 start 952 end 101995826 rc 0
+tl 952 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.634 s
+=== case tq:101^=0x20000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x20000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7578 seconds 0 start 1037 end 99863604 rc 0
+tl 1037 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:101^=0x40000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x40000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7566 seconds 0 start 1118 end 100707906 rc 0
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:101^=0x80000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x80000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7655 seconds 0 start 1017 end 100869439 rc 0
+tl 1017 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:101^=0x100000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x100000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7539 seconds 0 start 1187 end 100150978 rc 0
+tl 1187 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.636 s
+=== case tq:101^=0x200000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x200000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7636 seconds 0 start 1258 end 100323485 rc 0
+tl 1258 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:101^=0x400000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x400000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7653 seconds 0 start 912 end 101037345 rc 0
+tl 912 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.625 s
+=== case tq:101^=0x800000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x800000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7659 seconds 0 start 1058 end 101011786 rc 0
+tl 1058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.628 s
+=== case tq:101^=0x1000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x1000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7453 seconds 0 start 922 end 100115669 rc 0
+tl 922 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.631 s
+=== case tq:101^=0x2000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x2000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7603 seconds 0 start 1113 end 100382948 rc 0
+tl 1113 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.629 s
+=== case tq:101^=0x4000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x4000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7503 seconds 0 start 1037 end 99675248 rc 0
+tl 1037 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:101^=0x8000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x8000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7527 seconds 0 start 1047 end 99211498 rc 0
+tl 1047 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.627 s
+=== case tq:101^=0x10000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x10000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7578 seconds 0 start 1108 end 100062501 rc 0
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.633 s
+=== case tq:101^=0x20000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x20000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9268 seconds 0 start 1063 end 99744747 rc 0
+tl 1063 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.641 s
+=== case tq:101^=0x40000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x40000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7594 seconds 0 start 1053 end 99236892 rc 0
+tl 1053 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.649 s
+=== case tq:101^=0x80000000
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear 'tq:101^=0x80000000' || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7587 seconds 0 start 1233 end 99749259 rc 0
+tl 1233 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.632 s
+=== case tq:101=0
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:101=0 || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7434 seconds 0 start 1072 end 99642456 rc 0
+tl 1072 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+--- rc 0 0.636 s
+=== case tq:101=0xffffffff
+$ d=/sys/kernel/debug/dri/0/sgx; put() { f=$1; shift; printf '%s\n' "$@" | sudo -n tee "$d/$f" >/dev/null; }; reg() { sudo -n cat "$d/kreg" | awk -v o="$1" '$1 == o { print $2 }'; }; die() { echo "sweep.py: $1" >&2; exit 3; }; put kpoke clear tq:101=0xffffffff || die 'kpoke not armed'; sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill; rc=$?; l=$(sudo -n cat "$d/kpoke" | tr '\n' ' '); echo "kpoke left: ${l:-none}"; put kpoke clear || echo 'sweep.py: kpoke not cleared' >&2; exit "$rc"
+programs asm
+job: failed: job hung, context lost (Connection timed out)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 115796 seconds 0 start 1263 end 1188731841 rc 1
+tl 1263 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+kpoke left: none
+--- stderr
+sgxfive-test: fill: Connection timed out
+--- rc 1 1.752 s
