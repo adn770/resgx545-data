@@ -1,0 +1,6 @@
+usse-instance-masking-skipinv-inst: SETTLED: every instance of the full 64x32 fill runs an instruction without .skipinv
+  question: which instances of a fill run an instruction without .skipinv (Rogue: only enabled instances unless (ignorepe)); only o0 and temporaries written, no stores
+  [0] mov r10, r3 without .skipinv over r10 = 0x0BAD0000: mixed 0x45000000x1 0x45001000x1 0x45002000x1 0x45003000x1
+  [1] control: mov.skipinv r10, r3: mixed 0x45000000x1 0x45001000x1 0x45002000x1 0x45003000x1
+  [2] mov o0, r3 without .skipinv over o0 = 0x0BAD0000 (the final mov copies o0): mixed 0x45000000x1 0x45001000x1 0x45002000x1 0x45003000x1
+  [3] or r10, r3, #0 without .skipinv over r10 = 0x0BAD0000: mixed 0x45000000x1 0x45001000x1 0x45002000x1 0x45003000x1
