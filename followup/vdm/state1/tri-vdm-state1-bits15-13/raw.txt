@@ -1,0 +1,117 @@
+=== case baseline
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 8052 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6079 seconds 0 start 7543 end 134436802 rc 0
+tl 7543 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.307 s
+=== case vdm:1^=0x2000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0x2000'
+tri: render context for targets up to 64x64
+job: failed: job hung, context lost (Connection timed out)
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 72100 seconds 0 start 7752 end 1264180787 rc 1
+tl 7752 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: render: job hung, context lost (Connection timed out)
+--- rc 1 1.432 s
+=== case vdm:1^=0x4000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0x4000'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7569 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6121 seconds 0 start 8101 end 133332611 rc 0
+tl 8101 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.286 s
+=== case vdm:1^=0x6000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0x6000'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7567 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6187 seconds 0 start 7962 end 131006058 rc 0
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.287 s
+=== case vdm:1^=0x8000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0x8000'
+tri: render context for targets up to 64x64
+job: failed: job hung, context lost (Connection timed out)
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 74055 seconds 0 start 10546 end 1287201106 rc 1
+tl 10546 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: render: job hung, context lost (Connection timed out)
+--- rc 1 1.462 s
+=== case vdm:1^=0xa000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0xa000'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 8283 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6049 seconds 0 start 7892 end 133833792 rc 0
+tl 7892 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.305 s
+=== case vdm:1^=0xc000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0xc000'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 8098 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6092 seconds 0 start 7822 end 133304186 rc 0
+tl 7822 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.303 s
+=== case vdm:1^=0xe000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'vdm:1^=0xe000'
+tri: render context for targets up to 64x64
+job: failed: job hung, context lost (Connection timed out)
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 73174 seconds 0 start 7962 end 1284950471 rc 1
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: render: job hung, context lost (Connection timed out)
+--- rc 1 1.450 s
