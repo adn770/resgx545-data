@@ -1,0 +1,166 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# vdm vertex tasks: 1 sweeps, 11 probes.
+needs = ["render", "render_param", "render_tadata"]
+name = "vdm-vertex-tasks"
+about = "every value of the triangle's vertex-task word 0 (vdm:6) bits 31:28, 15 in our stream"
+host = "tri"
+bits = []
+values = ["^=0x10000000", "^=0x20000000", "^=0x30000000", "^=0x40000000", "^=0x50000000", "^=0x60000000", "^=0x70000000", "^=0x80000000", "^=0x90000000", "^=0xa0000000", "^=0xb0000000", "^=0xc0000000", "^=0xd0000000", "^=0xe0000000", "^=0xf0000000"]
+
+[[range]]
+space = "vdm"
+indices = [6, 6]
+
+[[probe]]
+name = "vdm-vertex-tasks-vdm-task-7"
+question = "what the TA writes with VDM_TASK0 bits 31:28 = 7"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm_xor = { 6 = 0x80000000 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-vertex-tasks-vdm-task-1"
+question = "what the TA writes with VDM_TASK0 bits 31:28 = 1"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm_xor = { 6 = 0xe0000000 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-vertex-tasks-vdm-task-0"
+question = "what the TA writes with VDM_TASK0 bits 31:28 = 0"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm_xor = { 6 = 0xf0000000 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-15"
+question = "VDM_TASK0 bits 31:28 = 15: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+pixels = true
+cases = [[]]
+labels = ["field 15"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-07"
+question = "VDM_TASK0 bits 31:28 = 7: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0x80000000 }
+pixels = true
+cases = [[]]
+labels = ["field 7"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-03"
+question = "VDM_TASK0 bits 31:28 = 3: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0xc0000000 }
+pixels = true
+cases = [[]]
+labels = ["field 3"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-01"
+question = "VDM_TASK0 bits 31:28 = 1: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0xe0000000 }
+pixels = true
+cases = [[]]
+labels = ["field 1"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-00"
+question = "VDM_TASK0 bits 31:28 = 0: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0xf0000000 }
+pixels = true
+cases = [[]]
+labels = ["field 0"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-02"
+question = "VDM_TASK0 bits 31:28 = 2: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0xd0000000 }
+pixels = true
+cases = [[]]
+labels = ["field 2"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-05"
+question = "VDM_TASK0 bits 31:28 = 5: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0xa0000000 }
+pixels = true
+cases = [[]]
+labels = ["field 5"]
+
+[[probe]]
+name = "vdm-vertex-tasks-vtxtask-06"
+question = "VDM_TASK0 bits 31:28 = 6: the vertices' quad neighbours (task grouping)"
+source = "vtx_task.s"
+host = "tri"
+slot = "vtxuse"
+size = [64, 64]
+vertices = 126
+temps = 16
+vdm_xor = { 6 = 0x90000000 }
+pixels = true
+cases = [[]]
+labels = ["field 6"]

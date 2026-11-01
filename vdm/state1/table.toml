@@ -1,0 +1,253 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# vdm state1: 2 sweeps, 16 probes.
+name = "vdm-state1"
+needs = ["render", "render_param", "render_tadata"]
+
+[[sweep]]
+name = "vdm-state1-tri-vdm-state1-bits11-9"
+about = "every value of the triangle's VDM state word 1 (vdm:1) bits 11:9, 2 in our stream"
+host = "tri"
+bits = []
+values = ["^=0x200", "^=0x400", "^=0x600", "^=0x800", "^=0xa00", "^=0xc00", "^=0xe00"]
+
+[[sweep.range]]
+space = "vdm"
+indices = [1, 1]
+
+[[sweep]]
+name = "vdm-state1-tri-vdm-state1-bits15-13"
+about = "every value of the triangle's VDM state word 1 (vdm:1) bits 15:13, 1 in our stream"
+host = "tri"
+bits = []
+values = ["^=0x2000", "^=0x4000", "^=0x6000", "^=0x8000", "^=0xa000", "^=0xc000", "^=0xe000"]
+
+[[sweep.range]]
+space = "vdm"
+indices = [1, 1]
+
+[[probe]]
+name = "vdm-state1-vdm-state-0"
+question = "what the TA writes with VDM state word 1 bits 11:9 = 0 (removes the triangle)"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa022005 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-1"
+question = "what the TA writes with VDM state word 1 bits 11:9 = 1 (renders)"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa022205 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-6"
+question = "what the TA writes with VDM state word 1 bits 11:9 = 6 (renders)"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa022c05 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-closed"
+question = "what the TA writes with VDM state word 1 as the closed driver's constant blocks (15:13 = 7, 11:9 = 0, bit 8)"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa02e105 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-mtectl-bit6"
+question = "what the TA writes with MTECTL bit 6 (removes the triangle)"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+blk = { 15 = 0x1555660 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-15-13-0"
+question = "what the TA writes before VDM state word 1 bits 15:13 = 0 hangs"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa020405 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-15-13-5"
+question = "what the TA writes before VDM state word 1 bits 15:13 = 5 hangs"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa02a405 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-15-13-6"
+question = "what the TA writes before VDM state word 1 bits 15:13 = 6 hangs"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa02c405 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-11-9-7"
+question = "what the TA writes before VDM state word 1 bits 11:9 = 7 hangs"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa022e05 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-lines3"
+question = "what the TA writes before three-index lines hang"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+blk = { 1 = 0x1d08200 }
+vdm = { 2 = 0x84c00003 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-hang-pixel"
+question = "whether a job hung in its pixel task leaves its objects in the PB pages after recovery"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_pa0.s", vtxuse = "vtx_coords.s" }
+vtx_coords = 2
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+cases = [[0x800, 0, 0x1000004]]
+labels = ["U1 bit 24, DOUTI0 bit 29 clear: hangs in the pixel task"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm-state-bit8"
+question = "what the TA writes with VDM_STATE1 bit 8 set"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm_xor = { 1 = 0x100 }
+pixels = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+dump_render = true
+
+[[probe]]
+name = "vdm-state1-vdm1-default"
+question = "what the TA writes with VDM state word 1 the host's word, the control"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa022405 }
+pixels = true
+dump_render = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+
+[[probe]]
+name = "vdm-state1-vdm1-b25-clear"
+question = "what the TA writes with VDM state word 1 bit 25 clear"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0x8022405 }
+pixels = true
+dump_render = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+
+[[probe]]
+name = "vdm-state1-vdm1-b12-set"
+question = "what the TA writes with VDM state word 1 bit 12 set"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0xa023405 }
+pixels = true
+dump_render = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
+
+[[probe]]
+name = "vdm-state1-vdm1-b25-clear-b12-set"
+question = "what the TA writes with VDM state word 1 bit 25 clear and bit 12 set"
+source = "pix_op.s"
+host = "tri"
+slot = "pixel"
+size = [64, 64]
+vdm = { 1 = 0x8023405 }
+pixels = true
+dump_render = true
+inputs = ["OP"]
+cases = [["mov.skipinv.end o0, o0"]]
+labels = ["o0 = o0"]
