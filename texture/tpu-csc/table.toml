@@ -1,0 +1,102 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# texture tpu csc: 8 sweeps, 0 probes, hand-run script.
+name = "texture-tpu-csc"
+needs = ["render"]
+script = "tpu-csc.sh"
+
+[[sweep]]
+name = "texture-tpu-csc-copy-tpu-group"
+about = "the 0x0860-0x0868 words with their load flag, every-value copy"
+host = "copy"
+options = ["--every-value", "--poke", "xfer:17^=0x2"]
+
+[[sweep.range]]
+space = "xfer"
+indices = [29, 31]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-uyvy-tpu-group"
+about = "the 0x0860-0x0868 words with their load flag, UYVY copy, BT.601 set 0"
+host = "copy"
+options = ["--every-value", "--poke", "tex:1=0x7d03f01f", "--poke", "tex:0^=0x90", "--poke", "xfer:17^=0x3", "--poke", "xfer:18=0x00950095", "--poke", "xfer:19=0x00000095", "--poke", "xfer:20=0x010203ce", "--poke", "xfer:21=0x039800cc", "--poke", "xfer:22=0"]
+
+[[sweep.range]]
+space = "xfer"
+indices = [29, 31]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-uyvy-csc1"
+about = "colour-space set 1 and 0x0848, UYVY copy, BT.601 set 0"
+host = "copy"
+options = ["--every-value", "--poke", "tex:1=0x7d03f01f", "--poke", "tex:0^=0x90", "--poke", "xfer:17^=0x1", "--poke", "xfer:18=0x00950095", "--poke", "xfer:19=0x00000095", "--poke", "xfer:20=0x010203ce", "--poke", "xfer:21=0x039800cc", "--poke", "xfer:22=0"]
+
+[[sweep.range]]
+space = "xfer"
+indices = [23, 28]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-border"
+about = "T0 bits with out-of-range coordinates, 0x0860-0x0868 loaded with marker colours"
+host = "copy"
+options = ["--poke", "xfer:17^=0x2", "--poke", "xfer:29=0xff123456", "--poke", "xfer:30=0xff654321", "--poke", "xfer:31=0xffabcdef", "--poke", "bg:5=0x40000000", "--poke", "bg:8=0x40000000"]
+
+[[sweep.range]]
+space = "tex"
+indices = [0, 0]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-border-t13"
+about = "T1 and T3 bits with out-of-range coordinates, 0x0860-0x0868 loaded with marker colours"
+host = "copy"
+options = ["--poke", "xfer:17^=0x2", "--poke", "xfer:29=0xff123456", "--poke", "xfer:30=0xff654321", "--poke", "xfer:31=0xffabcdef", "--poke", "bg:5=0x40000000", "--poke", "bg:8=0x40000000"]
+
+[[sweep.range]]
+space = "tex"
+indices = [1, 1]
+
+[[sweep.range]]
+space = "tex"
+indices = [3, 3]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-tpu-diff-init-values"
+about = "T0, T1, T3 bits, every-value copy, 0x0860-0x0868 loaded with their init values"
+host = "copy"
+options = ["--every-value", "--poke", "xfer:17^=0x2", "--poke", "xfer:29=0x02020106", "--poke", "xfer:30=0x00210064", "--poke", "xfer:31=0xff008000"]
+
+[[sweep.range]]
+space = "tex"
+indices = [0, 1]
+
+[[sweep.range]]
+space = "tex"
+indices = [3, 3]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-tpu-diff-other-values"
+about = "T0, T1, T3 bits, every-value copy, 0x0860-0x0868 loaded with other values"
+host = "copy"
+options = ["--every-value", "--poke", "xfer:17^=0x2", "--poke", "xfer:29=0x40ff7f10", "--poke", "xfer:30=0x7fff0020", "--poke", "xfer:31=0x00ff0080"]
+
+[[sweep.range]]
+space = "tex"
+indices = [0, 1]
+
+[[sweep.range]]
+space = "tex"
+indices = [3, 3]
+
+[[sweep]]
+name = "texture-tpu-csc-copy-uyvy-csc-select"
+about = "T0, T1, T3 bits of the UYVY copy, CSC set 0 BT.601 and set 1 BT.709"
+host = "copy"
+options = ["--every-value", "--poke", "tex:1=0x7d03f01f", "--poke", "tex:0^=0x90", "--poke", "xfer:17^=0x1", "--poke", "xfer:18=0x00950095", "--poke", "xfer:19=0x00000095", "--poke", "xfer:20=0x010203ce", "--poke", "xfer:21=0x039800cc", "--poke", "xfer:22=0", "--poke", "xfer:23=0x00950095", "--poke", "xfer:24=0x00000095", "--poke", "xfer:25=0x010e03e5", "--poke", "xfer:26=0x03bc00e6", "--poke", "xfer:27=0"]
+
+[[sweep.range]]
+space = "tex"
+indices = [0, 1]
+
+[[sweep.range]]
+space = "tex"
+indices = [3, 3]

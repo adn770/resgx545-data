@@ -1,0 +1,887 @@
+=== case baseline
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7867 seconds 0 start 1058 end 97848837 rc 1
+tl 1058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.268 s
+=== case tex:1^=0x1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x1'
+programs asm
+job: ok
+target: 64x32 hash 0xc12566eed5a8d2a5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7601 seconds 0 start 1022 end 99516962 rc 1
+tl 1022 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:1^=0x2
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x2'
+programs asm
+job: ok
+target: 64x32 hash 0x146f4b1ec0bb0ea5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7368 seconds 0 start 1188 end 98144822 rc 1
+tl 1188 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:1^=0x4
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x4'
+programs asm
+job: ok
+target: 64x32 hash 0xaaec5817920f4ba5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7259 seconds 0 start 978 end 98536646 rc 1
+tl 978 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:1^=0x8
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x8'
+programs asm
+job: ok
+target: 64x32 hash 0x2b54af0f975e4ea5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7424 seconds 0 start 1037 end 98615528 rc 1
+tl 1037 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case tex:1^=0x10
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x10'
+programs asm
+job: ok
+target: 64x32 hash 0x6a44e9253e5e3825
+diff: 2032 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2032 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7517 seconds 0 start 1223 end 98885664 rc 1
+tl 1223 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:1^=0x20
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x20'
+programs asm
+job: ok
+target: 64x32 hash 0xc3aef25c82531ba5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5020103 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5020103, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7569 seconds 0 start 1133 end 99635078 rc 1
+tl 1133 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.267 s
+=== case tex:1^=0x40
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x40'
+programs asm
+job: ok
+target: 64x32 hash 0xbbf6e856cd64b6a5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5030102 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5030102, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7530 seconds 0 start 862 end 98506782 rc 1
+tl 862 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case tex:1^=0x80
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x80'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 27526 seconds 0 start 1449 end 344337645 rc 1
+tl 1449 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.514 s
+=== case tex:1^=0x100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x100'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 28016 seconds 0 start 1243 end 341265030 rc 1
+tl 1243 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.500 s
+=== case tex:1^=0x200
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x200'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 28332 seconds 0 start 997 end 346310928 rc 1
+tl 997 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.507 s
+=== case tex:1^=0x400
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x400'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 28534 seconds 0 start 1038 end 348491476 rc 1
+tl 1038 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.508 s
+=== case tex:1^=0x800
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x800'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 28257 seconds 0 start 1048 end 349858279 rc 1
+tl 1048 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.519 s
+=== case tex:1^=0x1000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x1000'
+programs asm
+job: ok
+target: 64x32 hash 0x52c06ee1b9fbb6a5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7605 seconds 0 start 1012 end 99100069 rc 1
+tl 1012 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case tex:1^=0x2000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x2000'
+programs asm
+job: ok
+target: 64x32 hash 0xb655bf65ad04afa5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7349 seconds 0 start 1253 end 98078104 rc 1
+tl 1253 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.261 s
+=== case tex:1^=0x4000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x4000'
+programs asm
+job: ok
+target: 64x32 hash 0x4166e8e97b2a1be5
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7263 seconds 0 start 1063 end 98508511 rc 1
+tl 1063 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:1^=0x8000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x8000'
+programs asm
+job: ok
+target: 64x32 hash 0xe0adeb55d1fd4865
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7509 seconds 0 start 1429 end 99701109 rc 1
+tl 1429 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.261 s
+=== case tex:1^=0x10000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x10000'
+programs asm
+job: ok
+target: 64x32 hash 0xc352421a30bba565
+diff: 2046 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2046 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7590 seconds 0 start 1032 end 98528631 rc 1
+tl 1032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.268 s
+=== case tex:1^=0x20000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x20000'
+programs asm
+job: ok
+target: 64x32 hash 0x98babe20f53101a5
+diff: 2016 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2016 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7408 seconds 0 start 952 end 98300685 rc 1
+tl 952 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:1^=0x40000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x40000'
+programs asm
+job: ok
+target: 64x32 hash 0xdcfc9e8281c82ae5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5010203 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010203, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9177 seconds 0 start 1118 end 99444145 rc 1
+tl 1118 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:1^=0x80000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x80000'
+programs asm
+job: ok
+target: 64x32 hash 0xa8bb8048de2895a5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5010302 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010302, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7598 seconds 0 start 1148 end 101038161 rc 1
+tl 1148 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:1^=0x100000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x100000'
+programs asm
+job: ok
+target: 64x32 hash 0xb48b8aedb47144e5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5010504 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010504, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7324 seconds 0 start 1083 end 98167939 rc 1
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:1^=0x200000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x200000'
+programs asm
+job: ok
+target: 64x32 hash 0xc296c8d9038991e5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5010908 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010908, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7399 seconds 0 start 1107 end 97914540 rc 1
+tl 1107 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:1^=0x400000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x400000'
+programs asm
+job: ok
+target: 64x32 hash 0x517bf9f708746aa5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5011110 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5011110, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7486 seconds 0 start 1098 end 98989649 rc 1
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.268 s
+=== case tex:1^=0x800000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x800000'
+programs asm
+job: ok
+target: 64x32 hash 0x51bf566e1963f525
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5012120 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5012120, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9866 seconds 0 start 1103 end 103676836 rc 1
+tl 1103 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:1^=0x1000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x1000000'
+programs asm
+job: ok
+target: 64x32 hash 0xf45968cabdec48a5
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7448 seconds 0 start 1042 end 98608030 rc 1
+tl 1042 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:1^=0x2000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x2000000'
+programs asm
+job: ok
+target: 64x32 hash 0xd6fbef1694813225
+diff: 2048 of 2048 pixels, first (0, 0) 0x10044010 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0x10044010, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7392 seconds 0 start 1113 end 98179227 rc 1
+tl 1113 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.261 s
+=== case tex:1^=0x4000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x4000000'
+programs asm
+job: ok
+target: 64x32 hash 0xeb1b318240b4e125
+diff: 2048 of 2048 pixels, first (0, 0) 0x0000a501 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0x0000a501, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7455 seconds 0 start 1082 end 98652350 rc 1
+tl 1082 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:1^=0x8000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x8000000'
+programs asm
+job: ok
+target: 64x32 hash 0xd7be9f57dcfe1525
+diff: 2048 of 2048 pixels, first (0, 0) 0xff4a4208 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xff4a4208, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7408 seconds 0 start 1238 end 98763628 rc 1
+tl 1238 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:1^=0x10000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x10000000'
+programs asm
+job: ok
+target: 64x32 hash 0xd3522437a14b6325
+diff: 2048 of 2048 pixels, first (0, 0) 0xff000000 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xff000000, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7681 seconds 0 start 987 end 99677293 rc 1
+tl 987 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:1^=0x20000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x20000000'
+programs asm
+job: ok
+target: 64x32 hash 0xde5607d405d5dd25
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5000303 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000303, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7297 seconds 0 start 1117 end 97921637 rc 1
+tl 1117 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:1^=0x40000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x40000000'
+programs asm
+job: ok
+target: 64x32 hash 0xbedcf01f46078b25
+diff: 2032 of 2048 pixels, first (0, 0) 0xa5002121 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5002121, expected 0xa5000000
+copy: FAIL, 2032 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9044 seconds 0 start 992 end 99606055 rc 1
+tl 992 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.271 s
+=== case tex:1^=0x80000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:1^=0x80000000'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 27677 seconds 0 start 702 end 347969051 rc 1
+tl 702 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.510 s
+=== case tex:1=0
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke tex:1=0
+programs asm
+job: ok
+target: 64x32 hash 0xb9d103fd6854a325
+diff: 2048 of 2048 pixels, first (0, 0) 0x00000000 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0x00000000, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7484 seconds 0 start 1073 end 98887644 rc 1
+tl 1073 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:1=0xffffffff
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke tex:1=0xffffffff
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 26693 seconds 0 start 887 end 345836482 rc 1
+tl 887 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.506 s
+=== case tex:3^=0x1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x1'
+programs asm
+job: ok
+target: 64x32 hash 0x61c1f50f1c69f365
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5020103 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5020103, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7509 seconds 0 start 993 end 98661443 rc 1
+tl 993 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.258 s
+=== case tex:3^=0x2
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x2'
+programs asm
+job: ok
+target: 64x32 hash 0x295ee2b00e7ff365
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5030102 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5030102, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7607 seconds 0 start 1268 end 99621629 rc 1
+tl 1268 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:3^=0x4
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x4'
+programs asm
+job: ok
+target: 64x32 hash 0xe9e0a1f6cd91c665
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5050104 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5050104, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7691 seconds 0 start 927 end 99461664 rc 1
+tl 927 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:3^=0x8
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x8'
+programs asm
+job: ok
+target: 64x32 hash 0x33253adf210656a5
+diff: 2045 of 2048 pixels, first (0, 0) 0xa5000101 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5000101, expected 0xa5000000
+copy: FAIL, 2045 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7693 seconds 0 start 1062 end 100496818 rc 1
+tl 1062 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:3^=0x10
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x10'
+programs asm
+job: ok
+target: 64x32 hash 0x68c7f70a4fdef945
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010203 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010203, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7639 seconds 0 start 997 end 100493474 rc 1
+tl 997 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:3^=0x20
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x20'
+programs asm
+job: ok
+target: 64x32 hash 0x3956f09ad28919a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010302 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010302, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6395 seconds 0 start 1554 end 98781528 rc 1
+tl 1554 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.267 s
+=== case tex:3^=0x40
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x40'
+programs asm
+job: ok
+target: 64x32 hash 0x614bab8b34de94e5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010504 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010504, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7462 seconds 0 start 1253 end 98302725 rc 1
+tl 1253 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.255 s
+=== case tex:3^=0x80
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x80'
+programs asm
+job: ok
+target: 64x32 hash 0x082758b6f79eec65
+diff: 2045 of 2048 pixels, first (0, 0) 0xa5010001 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010001, expected 0xa5000000
+copy: FAIL, 2045 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7566 seconds 0 start 1213 end 99155934 rc 1
+tl 1213 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.255 s
+=== case tex:3^=0x100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x100'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7544 seconds 0 start 998 end 99483133 rc 1
+tl 998 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:3^=0x200
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x200'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7433 seconds 0 start 1053 end 99364305 rc 1
+tl 1053 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:3^=0x400
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x400'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7372 seconds 0 start 1083 end 98645403 rc 1
+tl 1083 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case tex:3^=0x800
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x800'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7593 seconds 0 start 1188 end 99483534 rc 1
+tl 1188 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.266 s
+=== case tex:3^=0x1000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x1000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9480 seconds 0 start 1193 end 100481715 rc 1
+tl 1193 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x2000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x2000'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 28553 seconds 0 start 1098 end 346219871 rc 1
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.512 s
+=== case tex:3^=0x4000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x4000'
+programs asm
+job: ok
+target: 64x32 hash 0x59977ecdf2ddcb75
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5020103 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5020103, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7695 seconds 0 start 1038 end 100502256 rc 1
+tl 1038 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x8000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x8000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7417 seconds 0 start 1002 end 99087904 rc 1
+tl 1002 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:3^=0x10000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x10000'
+programs asm
+job: ok
+target: 64x32 hash 0x6b5ee0080d2b3725
+diff: 2048 of 2048 pixels, first (0, 0) 0x00100400 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0x00100400, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8696 seconds 0 start 1318 end 99383474 rc 1
+tl 1318 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.268 s
+=== case tex:3^=0x20000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x20000'
+programs asm
+job: ok
+target: 64x32 hash 0xbed076be8510aa35
+diff: 2048 of 2048 pixels, first (0, 0) 0x3c003c00 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0x3c003c00, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7561 seconds 0 start 1087 end 98551774 rc 1
+tl 1087 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:3^=0x40000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x40000'
+programs asm
+job: ok
+target: 64x32 hash 0x3590a4a56054d725
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5020200 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5020200, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7385 seconds 0 start 1308 end 97864058 rc 1
+tl 1308 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:3^=0x80000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x80000'
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 26639 seconds 0 start 1213 end 345453660 rc 1
+tl 1213 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.508 s
+=== case tex:3^=0x100000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x100000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 9542 seconds 0 start 1047 end 100696120 rc 1
+tl 1047 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x200000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x200000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7585 seconds 0 start 1153 end 99030902 rc 1
+tl 1153 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x400000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x400000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7799 seconds 0 start 1113 end 99469289 rc 1
+tl 1113 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.270 s
+=== case tex:3^=0x800000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x800000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7520 seconds 0 start 1072 end 98560485 rc 1
+tl 1072 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.266 s
+=== case tex:3^=0x1000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x1000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7457 seconds 0 start 1068 end 98846120 rc 1
+tl 1068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:3^=0x2000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x2000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7375 seconds 0 start 947 end 98970912 rc 1
+tl 947 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case tex:3^=0x4000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x4000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7527 seconds 0 start 1073 end 98653448 rc 1
+tl 1073 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x8000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x8000000'
+programs asm
+job: ok
+target: 64x32 hash 0x90485aecfc7ac925
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5200020 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5200020, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7505 seconds 0 start 973 end 97881057 rc 1
+tl 973 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case tex:3^=0x10000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x10000000'
+programs asm
+job: ok
+target: 64x32 hash 0x961e832445d2bf65
+diff: 2048 of 2048 pixels, first (0, 0) 0xa5280028 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5280028, expected 0xa5000000
+copy: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7625 seconds 0 start 908 end 99714452 rc 1
+tl 908 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.261 s
+=== case tex:3^=0x20000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x20000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7641 seconds 0 start 1253 end 99599574 rc 1
+tl 1253 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x40000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x40000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7591 seconds 0 start 1363 end 99620040 rc 1
+tl 1363 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case tex:3^=0x80000000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke 'tex:3^=0x80000000'
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7471 seconds 0 start 1062 end 99323774 rc 1
+tl 1062 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.261 s
+=== case tex:3=0
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke tex:3=0
+programs asm
+job: ok
+target: 64x32 hash 0x0612a9d439b7b9a5
+diff: 2047 of 2048 pixels, first (0, 0) 0xa5010100 expected 0xa5000000
+outside: 0 dwords
+copy: dword 0 (0, 0) = 0xa5010100, expected 0xa5000000
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7604 seconds 0 start 1063 end 100055449 rc 1
+tl 1063 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case tex:3=0xffffffff
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'xfer:17^=0x2' --poke xfer:29=0xff123456 --poke xfer:30=0xff654321 --poke xfer:31=0xffabcdef --poke bg:5=0x40000000 --poke bg:8=0x40000000 --poke tex:3=0xffffffff
+programs asm
+job: failed: job faulted, context lost (Input/output error)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 27487 seconds 0 start 1058 end 344387424 rc 1
+tl 1058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Input/output error
+--- rc 1 0.508 s
