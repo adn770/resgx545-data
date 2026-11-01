@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# dpm parameter buffer: 2 sweeps, 0 probes.
+name = "dpm-parameter-buffer"
+needs = ["render", "render_pb_pages"]
+
+[[sweep]]
+name = "dpm-parameter-buffer-pb-1024x768"
+about = "the 1024x768 triangle under smaller parameter buffers, registers sampled"
+host = "tri"
+options = ["--width", "1024", "--height", "768"]
+repeat = 2
+timeline = { regs = "0x0400-0x07fc", total = 3.0, lead = 0.2 }
+pb_pages = [1058, 512, 256, 128, 98, 64, 48, 40, 36, 35]
+
+[[sweep]]
+name = "dpm-parameter-buffer-pb-4096x4096"
+about = "the 4096x4096 triangle under smaller parameter buffers, registers sampled"
+host = "tri"
+options = ["--width", "4096", "--height", "4096"]
+repeat = 2
+timeline = { regs = "0x0400-0x07fc", total = 3.0, lead = 0.2 }
+pb_pages = [1058, 512, 256, 128, 98, 64, 48, 40, 36, 35]
