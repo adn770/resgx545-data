@@ -1,0 +1,414 @@
+=== case baseline
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy
+programs asm
+job: ok
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7553 seconds 0 start 1318 end 97371873 rc 0
+tl 1318 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.270 s
+=== case pds:prim:4^=0x1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1'
+programs asm
+job: failed: job hung, context lost (Connection timed out)
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+outside: 0 dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 114638 seconds 0 start 1042 end 1260956883 rc 1
+tl 1042 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+sgxfive-test: copy: Connection timed out
+--- rc 1 1.423 s
+=== case pds:prim:4^=0x2
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x2'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7690 seconds 0 start 1043 end 99621429 rc 1
+tl 1043 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.270 s
+=== case pds:prim:4^=0x3
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x3'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7356 seconds 0 start 1092 end 99345554 rc 1
+tl 1092 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case pds:prim:4^=0x4
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x4'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7582 seconds 0 start 1093 end 99427088 rc 1
+tl 1093 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case pds:prim:4^=0x5
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x5'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 8136 seconds 0 start 1248 end 110615638 rc 1
+tl 1248 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.280 s
+=== case pds:prim:4^=0x6
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x6'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7564 seconds 0 start 1098 end 98751875 rc 1
+tl 1098 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case pds:prim:4^=0x7
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x7'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7487 seconds 0 start 1168 end 98291558 rc 1
+tl 1168 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case pds:prim:4^=0x8
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x8'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7576 seconds 0 start 1258 end 100240462 rc 1
+tl 1258 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case pds:prim:4^=0x9
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x9'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7526 seconds 0 start 1023 end 98696837 rc 1
+tl 1023 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case pds:prim:4^=0xa
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xa'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7520 seconds 0 start 1158 end 99178827 rc 1
+tl 1158 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.268 s
+=== case pds:prim:4^=0xb
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xb'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7412 seconds 0 start 1148 end 98689067 rc 1
+tl 1148 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case pds:prim:4^=0xc
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xc'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7564 seconds 0 start 987 end 99598055 rc 1
+tl 987 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.266 s
+=== case pds:prim:4^=0xd
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xd'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7481 seconds 0 start 1028 end 98758130 rc 1
+tl 1028 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.262 s
+=== case pds:prim:4^=0xe
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xe'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7496 seconds 0 start 988 end 98853814 rc 1
+tl 988 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.259 s
+=== case pds:prim:4^=0xf
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0xf'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7234 seconds 0 start 922 end 98291141 rc 1
+tl 922 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.259 s
+=== case pds:prim:4^=0x10
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x10'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7342 seconds 0 start 1153 end 97735101 rc 1
+tl 1153 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.257 s
+=== case pds:prim:4^=0x11
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x11'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7438 seconds 0 start 1334 end 97917728 rc 1
+tl 1334 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.255 s
+=== case pds:prim:4^=0x12
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x12'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7408 seconds 0 start 947 end 97383196 rc 1
+tl 947 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.252 s
+=== case pds:prim:4^=0x13
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x13'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7477 seconds 0 start 1188 end 98113162 rc 1
+tl 1188 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.256 s
+=== case pds:prim:4^=0x14
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x14'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7394 seconds 0 start 1117 end 97451903 rc 1
+tl 1117 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.258 s
+=== case pds:prim:4^=0x15
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x15'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7411 seconds 0 start 1082 end 97411918 rc 1
+tl 1082 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case pds:prim:4^=0x16
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x16'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7487 seconds 0 start 1078 end 97707793 rc 1
+tl 1078 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.255 s
+=== case pds:prim:4^=0x17
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x17'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7534 seconds 0 start 1213 end 98207082 rc 1
+tl 1213 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.259 s
+=== case pds:prim:4^=0x18
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x18'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7508 seconds 0 start 1108 end 97412755 rc 1
+tl 1108 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.256 s
+=== case pds:prim:4^=0x19
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x19'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7414 seconds 0 start 1093 end 97128775 rc 1
+tl 1093 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.257 s
+=== case pds:prim:4^=0x1a
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1a'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7389 seconds 0 start 1148 end 97539944 rc 1
+tl 1148 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.256 s
+=== case pds:prim:4^=0x1b
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1b'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7369 seconds 0 start 1489 end 97277888 rc 1
+tl 1489 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.259 s
+=== case pds:prim:4^=0x1c
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1c'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7572 seconds 0 start 1027 end 98772135 rc 1
+tl 1027 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
+=== case pds:prim:4^=0x1d
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1d'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7609 seconds 0 start 1123 end 98116506 rc 1
+tl 1123 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.258 s
+=== case pds:prim:4^=0x1e
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1e'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7511 seconds 0 start 1132 end 97988229 rc 1
+tl 1132 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.258 s
+=== case pds:prim:4^=0x1f
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test copy --poke 'pds:prim:4^=0x1f'
+programs asm
+job: ok
+target: 64x32 hash 0x88e0d03d1b42e325
+diff: 2047 of 2048 pixels, first (1, 0) 0xa5000000 expected 0xa5000101
+outside: 0 dwords
+copy: dword 1 (1, 0) = 0xa5000000, expected 0xa5000101
+copy: FAIL, 2047 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 7583 seconds 0 start 1133 end 99666657 rc 1
+tl 1133 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.260 s
