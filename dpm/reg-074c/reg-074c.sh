@@ -15,11 +15,15 @@ echo "## module"; modinfo -F srcversion gma500_gfx 2>/dev/null
 fault_addresses() (
 # TA command word 167 (register 0x074c) with bit 8 set and different high bits, one render each,
 # and the kernel's fault report for each: whether the faulting address follows the high bits.
-# The kernel log is read from the line count before the case (never cleared: the runner's mark).
+# The cases fault the GPU on purpose and rely on the kernel's recovery between them. Each case
+# keeps the test's job lines and its exit status. The kernel log is read from the line count
+# before the case (never cleared: the runner's mark), which assumes the log does not wrap.
 for v in 0x100 0x1100 0x10100 0x100100 0x1000100 0x10000100 0x80000100 0x101; do
 	n=$(sudo -n dmesg | wc -l)
-	echo "== ta:167=$v: $(sudo -n "$T" tri -n 1 --keep-going --kpoke-render "1:ta:167=$v" 2>&1 |
-		grep -E '^job' | tr '\n' ' ')"
+	out=$(sudo -n "$T" tri -n 1 --keep-going --kpoke-render "1:ta:167=$v" 2>&1)
+	st=$?
+	echo "== ta:167=$v: $(printf '%s\n' "$out" | grep -E '^job' | tr '\n' ' ')"
+	echo "status $st"
 	sudo -n dmesg | tail -n +$((n + 1)) | grep -iE "fault|bif|0x0*74c" | head -4
 done
 )

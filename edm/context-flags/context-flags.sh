@@ -17,12 +17,20 @@ own_pb() (
 # Render-context flag bit 5: the loaded-PB slots (TA3DCtl dwords 46 and 47) before a render
 # context's cleanup and after its RT, RC and PB steps (render_cleanup), for contexts made with
 # the bit clear and set (render_ctx_flags); then contexts with the bit set destroyed while a
-# long-running one has loaded its own PB since their render.
+# long-running one has loaded its own PB since their render. render_ctx_flags goes back to the
+# value it had before the script, also when the script stops early; each case keeps its status.
+orig=$(sudo -n cat "$D/render_ctx_flags")
 flags() { echo "$1" | sudo -n tee "$D/render_ctx_flags" >/dev/null; }
+trap 'flags "$orig"' EXIT
+trap 'exit 130' INT TERM
 one() {
-	echo "== flags $1: $(sudo -n "$T" tri 2>&1 | grep '^diff')"
+	out=$(sudo -n "$T" tri 2>&1)
+	st=$?
+	echo "== flags $1: $(printf '%s\n' "$out" | grep '^diff')"
+	echo "status $st"
 	sudo -n cat "$D/render_cleanup"
 }
+echo "== render_ctx_flags before: $orig"
 for f in 0 0x20 0 0x20; do
 	flags $f
 	one $f
@@ -34,10 +42,11 @@ pid=$!
 sleep 1
 for i in 1 2 3 4; do one "0x20, beside a long-running context"; done
 wait $pid
+st=$?
 echo "== the long-running context: $(grep -c '^diff: 0 of' "$long") of 1500 renders exact"
+echo "status $st"
 sudo -n cat "$D/render_cleanup"
 rm -f "$long"
-flags 0
 )
 echo "#### own-pb"
 own_pb
