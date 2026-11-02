@@ -1,0 +1,944 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse-encoding-bits-mov-imm/raw.txt",
+  "raw_sha256": "37f4cd09738620507752469562d53f0004fc1e4e9458cc9b9e5d4b7886d676dd",
+  "converted": "2026-11-02T20:01:22+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-encoding-bits-mov-imm__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411001545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 0,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411001545678 ; base: mov r10, #0x12345678",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411011545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 1,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411011545678 ; bit 28",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411021545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 2,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411021545678 ; bit 29",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411041545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 3,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411041545678 ; bit 30",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411081545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 4,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411081545678 ; bit 31",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411401545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 5,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411401545678 ; bit 34",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  },
+  {
+   "id": "usse-encoding-bits-mov-imm__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000201234",
+     "0xfca1000000505678",
+     "0xfca200000061c003",
+     "0xfca00070009f7f80",
+     "0xfca0f1c000a00001",
+     "0xfca3002000c00002",
+     "0xfca0411000f45678",
+     "0xfca1f1b0011f0101",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0xfc20411801545678",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc01234",
+     "r2": "0x40105678",
+     "r3": "0x8001c003",
+     "r4": "0x00ff7f80",
+     "r5": "0x3f800001",
+     "r6": "0xc0400002",
+     "r7": "0x12345678",
+     "r8": "0x7f7f0101",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x12345678",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x12345678",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x3fc01234",
+     "0x024": "0x40105678",
+     "0x028": "0x8001c003",
+     "0x02c": "0x00ff7f80",
+     "0x030": "0x3f800001",
+     "0x034": "0xc0400002",
+     "0x038": "0x12345678",
+     "0x03c": "0x7f7f0101"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-encoding-bits-mov-imm",
+    "case": 6,
+    "table": "encoding-bits.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": ".long 0xFC20411801545678 ; bit 35",
+     "A": "0x3FC01234",
+     "B": "0x40105678",
+     "C": "0x8001C003",
+     "D": "0x00FF7F80",
+     "E": "0x3F800001",
+     "F": "0xC0400002",
+     "G": "0x12345678",
+     "H": "0x7F7F0101"
+    },
+    "params": {
+     "OUT": "r10"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "which unmapped bits of form 0 '{0}mov{1}{2}{3} {4}, #{5}' the hardware reads (0x0000000cf0000000), base 'mov r10, #0x12345678'; may hang"
+   }
+  }
+ ],
+ "orphans": []
+}
