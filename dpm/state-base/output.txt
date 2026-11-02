@@ -1,0 +1,52 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+59435224CE8502E95E508C7
+regs: reg 0x062c 0x20003000 reg 0x0634 0x20001000 reg 0x0674 0x20006000 reg 0x0720 0x00000010 
+== partial-1024x768: tri --width 1024 --height 768 (pb 0x30)
+sgxfive-test: render: scene overflowed the parameter buffer, context kept (No space left on device)
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 154574 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+regs: reg 0x062c 0x20006000 reg 0x0634 0x20004000 reg 0x0674 0x20006000 reg 0x0720 0x00000010 
+== reg074c-0x100-a: tri -n 1 --kpoke-render 1:ta:167=0x100 (pb 0x422)
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+regs: reg 0x062c 0x20003000 reg 0x0634 0x20001000 reg 0x0674 0x20006000 reg 0x0720 0x00000000 
+== partial-4096x4096: tri --width 4096 --height 4096 (pb 0x100)
+sgxfive-test: render: scene overflowed the parameter buffer, context kept (No space left on device)
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 3429571 of 16777216 pixels, first (513, 513) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+regs: reg 0x062c 0x20042000 reg 0x0634 0x20040000 reg 0x0674 0x20042000 reg 0x0720 0x00000010 
+== reg074c-0x100-b: tri -n 1 --kpoke-render 1:ta:167=0x100 (pb 0x422)
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+regs: reg 0x062c 0x20003000 reg 0x0634 0x20001000 reg 0x0674 0x20042000 reg 0x0720 0x00000000 
+== max4096-reg074c-0x100: probe --tri pixel 64x64 max 4096x4096 --kpoke ta:167=0x100
+programs asm
+probe dpm-state-base-green__0: scratch at 0x42002000 (64 KiB)
+probe dpm-state-base-green__0: tri 64x64, pixel replaced
+probe dpm-state-base-green__0: kpoke ta:167=0x100
+probe dpm-state-base-green__0: o0 mixed 0xff203040 x3034 0xff00ff00 x1062
+probe dpm-state-base-green__0: render memory to /tmp/tmp.zCBoyIaKPR/dpm-state-base-green__0.{param,tadata}.bin (4603904, 1060864 bytes)
+regs: reg 0x062c 0x20042000 reg 0x0634 0x20040000 reg 0x0674 0x20042000 reg 0x0720 0x00000000 
+tadata 0x40000: 
+tadata 0x41000: 
+tadata 0x42000: 
+regs: reg 0x062c 0x20042000 reg 0x0634 0x20040000 reg 0x0674 0x20042000 reg 0x0720 0x00000000 
+== max4096-control: probe --tri pixel 64x64 max 4096x4096 
+programs asm
+probe dpm-state-base-green__0: scratch at 0x42002000 (64 KiB)
+probe dpm-state-base-green__0: tri 64x64, pixel replaced
+probe dpm-state-base-green__0: o0 mixed 0xff203040 x3034 0xff00ff00 x1062
+probe dpm-state-base-green__0: render memory to /tmp/tmp.zCBoyIaKPR/dpm-state-base-green__0.{param,tadata}.bin (4603904, 1060864 bytes)
+regs: reg 0x062c 0x20042000 reg 0x0634 0x20040000 reg 0x0674 0x20042000 reg 0x0720 0x00000000 
+tadata 0x40000: 
+tadata 0x41000: 
+tadata 0x42000: 
+pb_pages: 0x00000422
