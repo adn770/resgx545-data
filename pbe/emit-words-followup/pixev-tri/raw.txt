@@ -1,0 +1,165 @@
+=== case baseline
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7861 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6698 seconds 0 start 7962 end 133443030 rc 0
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.316 s
+=== case pds:pixev:8^=0x100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'pds:pixev:8^=0x100'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 0 triangle, 0 background, 4096 other; wrong 936 inside, 2860 outside, 300 at edges; 3796 if flipped; guard 0
+tri 64x64 #1: 7826 us
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 5959 seconds 0 start 7892 end 132705087 rc 1
+tl 7892 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.302 s
+=== case pds:pixev:8^=0x8100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'pds:pixev:8^=0x8100'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 8004 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6301 seconds 0 start 7683 end 135683399 rc 0
+tl 7683 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.306 s
+=== case pds:pixev:8^=0x300
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'pds:pixev:8^=0x300'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7906 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6330 seconds 0 start 7823 end 134349291 rc 0
+tl 7823 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.301 s
+=== case pds:pixev:8^=0x4100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'pds:pixev:8^=0x4100'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7945 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6678 seconds 0 start 7823 end 136207000 rc 0
+tl 7823 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.301 s
+=== case pds:pixev:8^=0x8000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke 'pds:pixev:8^=0x8000'
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7985 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6124 seconds 0 start 7962 end 132404001 rc 0
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.298 s
+=== case pds:pixev:8=0
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke pds:pixev:8=0
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 0 triangle, 0 background, 4096 other; wrong 936 inside, 2860 outside, 300 at edges; 3796 if flipped; guard 0
+tri 64x64 #1: 7741 us
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6041 seconds 0 start 7683 end 132478731 rc 1
+tl 7683 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.297 s
+=== case pds:pixev:8=0x2
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke pds:pixev:8=0x2
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0xe4364b426cdce325
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 0 triangle, 0 background, 4096 other; wrong 936 inside, 2860 outside, 300 at edges; 3796 if flipped; guard 0
+tri 64x64 #1: 7853 us
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6650 seconds 0 start 8032 end 136848003 rc 1
+tl 8032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.298 s
+=== case pds:pixev:8=0x4
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke pds:pixev:8=0x4
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0xf1851658c6811b85
+diff: 512 of 4096 pixels, first (32, 48) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 2522 background, 512 other; wrong 0 inside, 512 outside, 0 at edges; 1106 if flipped; guard 0
+tri 64x64 #1: 7643 us
+tri: FAILED after 0 renders
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 5934 seconds 0 start 7822 end 130734096 rc 1
+tl 7822 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.285 s
+=== case pds:pixev:8=0x8
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke pds:pixev:8=0x8
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7631 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 5922 seconds 0 start 7683 end 132477265 rc 0
+tl 7683 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.285 s
+=== case pds:pixev:8=0x200
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test tri --poke pds:pixev:8=0x200
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 7808 us
+tri: 1 renders ok
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 6548 seconds 0 start 8032 end 134669164 rc 0
+tl 8032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.296 s

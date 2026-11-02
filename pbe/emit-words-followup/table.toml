@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# pbe emit words followup: 3 sweeps, 2 probes (written by tools/usse-asm/pbe_words.py).
+# emit-words again: the fields, 12 values of bits 15:8, dword 8.
+needs = ["render"]
+name = "pbe-emit-words-followup"
+
+[[sweep]]
+name = "pbe-emit-words-followup-pixev-fill"
+about = "the fill's pixel-event data dword 8, E046's values and single bits"
+host = "fill"
+bits = []
+values = ["^=0x100", "^=0x8100", "^=0x300", "^=0x4100", "^=0x8000", "=0", "=0x2", "=0x4", "=0x8", "=0x200"]
+repeat = 1
+
+[[sweep.range]]
+space = "pds:pixev"
+indices = [8, 8]
+
+[[sweep]]
+name = "pbe-emit-words-followup-pixev-copy"
+about = "the copy's pixel-event data dword 8, E046's values and single bits"
+host = "copy"
+bits = []
+values = ["^=0x100", "^=0x8100", "^=0x300", "^=0x4100", "^=0x8000", "=0", "=0x2", "=0x4", "=0x8", "=0x200"]
+repeat = 1
+
+[[sweep.range]]
+space = "pds:pixev"
+indices = [8, 8]
+
+[[sweep]]
+name = "pbe-emit-words-followup-pixev-tri"
+about = "the tri's pixel-event data dword 8, E046's values and single bits"
+host = "tri"
+bits = []
+values = ["^=0x100", "^=0x8100", "^=0x300", "^=0x4100", "^=0x8000", "=0", "=0x2", "=0x4", "=0x8", "=0x200"]
+repeat = 1
+
+[[sweep.range]]
+space = "pds:pixev"
+indices = [8, 8]
+
+[[probe]]
+name = "pbe-emit-words-followup-fields"
+question = "what each field of EMIT0-EMIT3 does at other values, and whether the end-of-tile emit reads the bits outside the fields"
+source = "eot_words.s"
+host = "tri"
+slot = "eot"
+slots = { pixel = "pix_colour.s" }
+size = [0x40, 0x40]
+pixels = true
+inputs = ["R", "AND", "OR"]
+labels = ["base", "EMIT0 clip min (8, 0)", "EMIT0 clip min (0, 8)", "EMIT0 clip min (8, 8)", "EMIT0 clip min (32, 16)", "EMIT0 clip min (40, 24)", "EMIT1 clip max (31, 63)", "EMIT1 clip max (63, 31)", "EMIT1 clip max (40, 40)", "EMIT1 clip max (15, 15)", "EMIT2.BITS15_8 = 0x00", "EMIT2.BITS15_8 = 0x01", "EMIT2.BITS15_8 = 0x40", "EMIT2.BITS15_8 = 0x7f", "EMIT2.BITS15_8 = 0x81", "EMIT2.BITS15_8 = 0x83", "EMIT2.BITS15_8 = 0xc1", "EMIT2.BITS15_8 = 0xff", "EMIT2.LINE_STRIDE = 15", "EMIT2.LINE_STRIDE = 0", "EMIT2.LINE_STRIDE = 63", "EMIT3 + 0x4", "EMIT3 + 0x40", "EMIT3 + 0x100", "EMIT0 bit 13", "EMIT0 bit 14", "EMIT0 bit 15", "EMIT0 bit 29", "EMIT0 bit 30", "EMIT0 bit 31", "EMIT1 bit 13", "EMIT1 bit 14", "EMIT1 bit 15", "EMIT1 bit 29", "EMIT1 bit 30", "EMIT1 bit 31", "EMIT2 bit 0", "EMIT2 bit 1", "EMIT2 bit 2", "EMIT2 bit 3", "EMIT2 bit 4", "EMIT2 bit 5", "EMIT2 bit 6", "EMIT2 bit 7", "EMIT2 bit 28", "EMIT2 bit 29", "EMIT2 bit 30", "EMIT2 bit 31", "EMIT3 bit 0", "EMIT3 bit 1"]
+cases = [["r0", "0xFFFFFFFF", "0x00000000"], ["r0", "0x00000000", "0x00000008"], ["r0", "0x00000000", "0x00080000"], ["r0", "0x00000000", "0x00080008"], ["r0", "0x00000000", "0x00100020"], ["r0", "0x00000000", "0x00180028"], ["r1", "0x00000000", "0x003F001F"], ["r1", "0x00000000", "0x001F003F"], ["r1", "0x00000000", "0x00280028"], ["r1", "0x00000000", "0x000F000F"], ["r2", "0xFFFF00FF", "0x00000000"], ["r2", "0xFFFF00FF", "0x00000100"], ["r2", "0xFFFF00FF", "0x00004000"], ["r2", "0xFFFF00FF", "0x00007F00"], ["r2", "0xFFFF00FF", "0x00008100"], ["r2", "0xFFFF00FF", "0x00008300"], ["r2", "0xFFFF00FF", "0x0000C100"], ["r2", "0xFFFF00FF", "0x0000FF00"], ["r2", "0xF000FFFF", "0x000F0000"], ["r2", "0xF000FFFF", "0x00000000"], ["r2", "0xF000FFFF", "0x003F0000"], ["r3", "0xFFFFFFFF", "0x00000004"], ["r3", "0xFFFFFFFF", "0x00000040"], ["r3", "0xFFFFFFFF", "0x00000100"], ["r0", "0xFFFFFFFF", "0x00002000"], ["r0", "0xFFFFFFFF", "0x00004000"], ["r0", "0xFFFFFFFF", "0x00008000"], ["r0", "0xFFFFFFFF", "0x20000000"], ["r0", "0xFFFFFFFF", "0x40000000"], ["r0", "0xFFFFFFFF", "0x80000000"], ["r1", "0xFFFFFFFF", "0x00002000"], ["r1", "0xFFFFFFFF", "0x00004000"], ["r1", "0xFFFFFFFF", "0x00008000"], ["r1", "0xFFFFFFFF", "0x20000000"], ["r1", "0xFFFFFFFF", "0x40000000"], ["r1", "0xFFFFFFFF", "0x80000000"], ["r2", "0xFFFFFFFF", "0x00000001"], ["r2", "0xFFFFFFFF", "0x00000002"], ["r2", "0xFFFFFFFF", "0x00000004"], ["r2", "0xFFFFFFFF", "0x00000008"], ["r2", "0xFFFFFFFF", "0x00000010"], ["r2", "0xFFFFFFFF", "0x00000020"], ["r2", "0xFFFFFFFF", "0x00000040"], ["r2", "0xFFFFFFFF", "0x00000080"], ["r2", "0xFFFFFFFF", "0x10000000"], ["r2", "0xFFFFFFFF", "0x20000000"], ["r2", "0xFFFFFFFF", "0x40000000"], ["r2", "0xFFFFFFFF", "0x80000000"], ["r3", "0xFFFFFFFF", "0x00000001"], ["r3", "0xFFFFFFFF", "0x00000002"]]
+
+[[probe]]
+name = "pbe-emit-words-followup-bits15-8"
+question = "whether any value of EMIT2 bits 15:8 changes what the end-of-tile emit stores"
+source = "eot_words.s"
+host = "tri"
+slot = "eot"
+slots = { pixel = "pix_colour.s" }
+size = [0x40, 0x40]
+pixels = true
+inputs = ["R", "AND", "OR"]
+labels = ["EMIT2.BITS15_8 = 0x00", "EMIT2.BITS15_8 = 0x01", "EMIT2.BITS15_8 = 0x02", "EMIT2.BITS15_8 = 0x04", "EMIT2.BITS15_8 = 0x10", "EMIT2.BITS15_8 = 0x40", "EMIT2.BITS15_8 = 0x7e", "EMIT2.BITS15_8 = 0x80", "EMIT2.BITS15_8 = 0x81", "EMIT2.BITS15_8 = 0x82", "EMIT2.BITS15_8 = 0xc0", "EMIT2.BITS15_8 = 0xfe"]
+cases = [["r2", "0xFFFF00FF", "0x00000000"], ["r2", "0xFFFF00FF", "0x00000100"], ["r2", "0xFFFF00FF", "0x00000200"], ["r2", "0xFFFF00FF", "0x00000400"], ["r2", "0xFFFF00FF", "0x00001000"], ["r2", "0xFFFF00FF", "0x00004000"], ["r2", "0xFFFF00FF", "0x00007E00"], ["r2", "0xFFFF00FF", "0x00008000"], ["r2", "0xFFFF00FF", "0x00008100"], ["r2", "0xFFFF00FF", "0x00008200"], ["r2", "0xFFFF00FF", "0x0000C000"], ["r2", "0xFFFF00FF", "0x0000FE00"]]

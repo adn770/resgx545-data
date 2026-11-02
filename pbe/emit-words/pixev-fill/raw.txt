@@ -1,0 +1,272 @@
+=== case baseline
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4540 seconds 0 start 7962 end 98303432 rc 0
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.803 s
+=== case baseline#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4670 seconds 0 start 7892 end 98852944 rc 0
+tl 7892 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.272 s
+=== case pds:pixev:8^=0x100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x100'
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4585 seconds 0 start 7962 end 97595940 rc 1
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case pds:pixev:8^=0x100#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x100'
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4672 seconds 0 start 7683 end 99142925 rc 1
+tl 7683 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.265 s
+=== case pds:pixev:8^=0x8100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x8100'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4618 seconds 0 start 7753 end 98363217 rc 0
+tl 7753 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.265 s
+=== case pds:pixev:8^=0x8100#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x8100'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4521 seconds 0 start 7822 end 98286531 rc 0
+tl 7822 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.271 s
+=== case pds:pixev:8^=0x300
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x300'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4507 seconds 0 start 7613 end 97922937 rc 0
+tl 7613 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.267 s
+=== case pds:pixev:8^=0x300#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x300'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4515 seconds 0 start 7753 end 96843959 rc 0
+tl 7753 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.265 s
+=== case pds:pixev:8^=0x4100
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x4100'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4571 seconds 0 start 7893 end 97417706 rc 0
+tl 7893 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.264 s
+=== case pds:pixev:8^=0x4100#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x4100'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4581 seconds 0 start 7822 end 98709978 rc 0
+tl 7822 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.262 s
+=== case pds:pixev:8^=0x8000
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x8000'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4578 seconds 0 start 7683 end 98087414 rc 0
+tl 7683 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.269 s
+=== case pds:pixev:8^=0x8000#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke 'pds:pixev:8^=0x8000'
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4523 seconds 0 start 8032 end 97662150 rc 0
+tl 8032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.265 s
+=== case pds:pixev:8=0
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4620 seconds 0 start 7753 end 99576919 rc 1
+tl 7753 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.257 s
+=== case pds:pixev:8=0#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4569 seconds 0 start 7823 end 98074144 rc 1
+tl 7823 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.263 s
+=== case pds:pixev:8=0x2
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x2
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4588 seconds 0 start 8031 end 97163133 rc 1
+tl 8031 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.264 s
+=== case pds:pixev:8=0x2#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x2
+programs asm
+job: ok
+target: 64x32 hash 0xfc8ce806207f8325
+diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 0 (0, 0) = 0xdeadbeef
+fill: FAIL, 2048 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4507 seconds 0 start 7682 end 97076740 rc 1
+tl 7682 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.267 s
+=== case pds:pixev:8=0x4
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x4
+programs asm
+job: ok
+target: 64x32 hash 0x707ec625adfcbf25
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 1056 (32, 16) = 0xdeadbeef
+fill: FAIL, 512 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4601 seconds 0 start 8032 end 98234848 rc 1
+tl 8032 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.269 s
+=== case pds:pixev:8=0x4#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x4
+programs asm
+job: ok
+target: 64x32 hash 0x707ec625adfcbf25
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff336699
+outside: 0 dwords
+fill: dword 1056 (32, 16) = 0xdeadbeef
+fill: FAIL, 512 wrong dwords
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4690 seconds 0 start 7962 end 99698721 rc 1
+tl 7962 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 1 0.273 s
+=== case pds:pixev:8=0x8
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x8
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4551 seconds 0 start 7612 end 97633444 rc 0
+tl 7612 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.265 s
+=== case pds:pixev:8=0x8#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x8
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 3730 seconds 0 start 10546 end 95277348 rc 0
+tl 10546 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.270 s
+=== case pds:pixev:8=0x200
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x200
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 5156 seconds 0 start 7753 end 99579712 rc 0
+tl 7753 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.271 s
+=== case pds:pixev:8=0x200#1
+$ sudo -n ./regtimeline 0 0 0x0494-0x04b4 -- ./sgxfive-test fill --poke pds:pixev:8=0x200
+programs asm
+job: ok
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+timeline: regs 0x0494 0x0498 0x049c 0x04a0 0x04a4 0x04a8 0x04ac 0x04b0 0x04b4 samples 4609 seconds 0 start 8241 end 98649775 rc 0
+tl 8241 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+--- stderr
+--- rc 0 0.270 s
