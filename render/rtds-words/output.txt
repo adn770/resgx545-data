@@ -1,0 +1,102 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+59435224CE8502E95E508C7
+== control-one: tri -n 1
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+cleanup: before ta 0x32411380 3d 0x32411380
+cleanup: rt ta 0x32411380 3d 0x32411380
+cleanup: rc ta 0x32411380 3d 0x32411380
+cleanup: pb ta 0x00000000 3d 0x00000000
+== control-two: tri -n 2 --geometry 1
+job: ok
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 2 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x32411380
+== one-rd:54-0x8: tri -n 1 --kpoke-render 1:rd:54^=0x8
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x32411380
+== two-rd:54-0x8: tri -n 2 --geometry 1 --kpoke-render 1:rd:54^=0x8
+job: ok
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 2 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+cleanup: before ta 0x32411380 3d 0x32411380
+cleanup: rt ta 0x32411380 3d 0x32411380
+cleanup: rc ta 0x32411380 3d 0x32411380
+cleanup: pb ta 0x00000000 3d 0x00000000
+== one-rd:54-0xc: tri -n 1 --kpoke-render 1:rd:54^=0xc
+sgxfive-test: render: scene overflowed the parameter buffer, context kept (No space left on device)
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 0 of 4096 pixels
+tri: FAILED after 0 renders
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x32411380
+== two-rd:54-0xc: tri -n 2 --geometry 1 --kpoke-render 1:rd:54^=0xc
+sgxfive-test: render: scene overflowed the parameter buffer, context kept (No space left on device)
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x00000000
+== one-ta:16-0x8: tri -n 1 --kpoke-render 1:ta:16^=0x8
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+cleanup: before ta 0x32411380 3d 0x32411380
+cleanup: rt ta 0x32411380 3d 0x32411380
+cleanup: rc ta 0x32411380 3d 0x32411380
+cleanup: pb ta 0x00000000 3d 0x00000000
+== two-ta:16-0x8: tri -n 2 --geometry 1 --kpoke-render 1:ta:16^=0x8
+job: ok
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 2 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x32411380
+== one-ta:16-0xc: tri -n 1 --kpoke-render 1:ta:16^=0xc
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+cleanup: before ta 0x32411380 3d 0x32411380
+cleanup: rt ta 0x32411380 3d 0x32411380
+cleanup: rc ta 0x32411380 3d 0x32411380
+cleanup: pb ta 0x00000000 3d 0x00000000
+== two-ta:16-0xc: tri -n 2 --geometry 1 --kpoke-render 1:ta:16^=0xc
+job: ok
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #2: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 2 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32411380 3d 0x32411380
+== control-after: tri -n 1
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+cleanup: before ta 0x32411380 3d 0x32411380
+cleanup: rt ta 0x32411380 3d 0x32411380
+cleanup: rc ta 0x32411380 3d 0x32411380
+cleanup: pb ta 0x00000000 3d 0x00000000
