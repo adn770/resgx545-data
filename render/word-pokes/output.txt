@@ -1,0 +1,455 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+20D096C6D8D6FDD3551F3D6
+## tool
+54cee43b72b0f044353522a00d83ae981802a6c47daa38d4a1f1ddb6eec06806  /home/jtorra/sgxfive-test-1110
+== ctx7-control-r1: tri -n 1
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+== ctx7-dead-r1: tri -n 1 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2030.387296] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+== ctx7-bg-r1: tri -n 1 --kpoke-render 1:ctx:7=0x10464000
+tri: kpoke before render 1: ctx:7=0x10464000
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10464000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2031.482363] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0x10464000 applied
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+background object: 
+background object (control): 
+== ctx7-scene-control-r1: tri -n 3 --geometry 1 --geometry 2
+job: ok
+tri 64x64 #1: geometry only, the scene left open
+job: ok
+tri 64x64 #2: geometry only, the scene left open
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #3: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 3 renders ok
+ctx:7 after render 3: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== ctx7-scene-dead-r1: tri -n 3 --geometry 1 --geometry 2 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: ok
+tri 64x64 #1: geometry only, the scene left open
+job: ok
+tri 64x64 #2: geometry only, the scene left open
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #3: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 3 renders ok
+ctx:7 after render 3: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2033.917123] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+== ctx7-partial-control-r1: tri --width 1024 --height 768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 154574 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== ctx7-partial-dead-r1: tri --width 1024 --height 768 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 154574 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2036.080108] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+== pbflag-r1: tri -n 1 --kpoke-render 1:pb:0^=0x1
+tri: kpoke before render 1: pb:0^=0x1
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000001 ret 0
+kline: [ 2037.314813] gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:0^=0x00000001 applied
+kline: [ 2037.424485] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80400 at 0x3241100e (PD 0x85c7000) stalls job 290, recovering
+kline: [ 2037.432059] gma500 0000:00:02.0: [drm] SGX stopped, 89 events seen
+kline: [ 2037.435447] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x400
+kline: [ 2037.440145] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [ 2037.444197] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 191 us
+page table vs ctx7-control-r1: differ: no dump
+page table: 
+page table (control): 03ff0401 04000402 04010403 04020404 04030405 04040406 04050407 04060408 04070409 0408040a 0409040b 040a040c 040b040d 040c040e 040d040f 040e0410
+== ctx7-control-r2: tri -n 1
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+== ctx7-dead-r2: tri -n 1 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2039.793733] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+== ctx7-bg-r2: tri -n 1 --kpoke-render 1:ctx:7=0x10464000
+tri: kpoke before render 1: ctx:7=0x10464000
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10464000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2040.933049] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0x10464000 applied
+primitive block: 04000004 00030000 04000002 00000000 00000000 00000000 00000000 00000000 00000000 00100000 00001000 00000000 10400010 00000000 00104000 00001000
+background object: 
+background object (control): 
+== ctx7-scene-control-r2: tri -n 3 --geometry 1 --geometry 2
+job: ok
+tri 64x64 #1: geometry only, the scene left open
+job: ok
+tri 64x64 #2: geometry only, the scene left open
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #3: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 3 renders ok
+ctx:7 after render 3: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== ctx7-scene-dead-r2: tri -n 3 --geometry 1 --geometry 2 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: ok
+tri 64x64 #1: geometry only, the scene left open
+job: ok
+tri 64x64 #2: geometry only, the scene left open
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #3: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 3 renders ok
+ctx:7 after render 3: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2043.357083] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+== ctx7-partial-control-r2: tri --width 1024 --height 768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 154574 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== ctx7-partial-dead-r2: tri --width 1024 --height 768 --kpoke-render 1:ctx:7=0xdeadbeef
+tri: kpoke before render 1: ctx:7=0xdeadbeef
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+diff: 154574 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0xdeadbeef
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2045.509332] gma500 0000:00:02.0: [drm] sgxfive: kpoke ctx:7=0xdeadbeef applied
+== pbflag-r2: tri -n 1 --kpoke-render 1:pb:0^=0x1
+tri: kpoke before render 1: pb:0^=0x1
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000001 ret 0
+kline: [ 2046.723830] gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:0^=0x00000001 applied
+kline: [ 2046.834488] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80400 at 0x32411008 (PD 0x534d000) stalls job 302, recovering
+kline: [ 2046.843887] gma500 0000:00:02.0: [drm] SGX stopped, 18 events seen
+kline: [ 2046.847552] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x400
+kline: [ 2046.852310] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [ 2046.857186] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 995 us
+page table vs ctx7-control-r2: differ: no dump
+page table: 
+page table (control): 03ff0401 04000402 04010403 04020404 04030405 04040406 04050407 04060408 04070409 0408040a 0409040b 040a040c 040b040d 040c040e 040d040f 040e0410
+== reg074c-4096x4096-control: tri -n 1 --max-width 4096 --max-height 4096
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== reg074c-4096x4096-0x100: tri -n 1 --max-width 4096 --max-height 4096 --kpoke-render 1:ta:167=0x100
+tri: kpoke before render 1: ta:167=0x100
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2049.017202] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:167=0x00000100 applied
+tadata vs control: differ: 0 dwords; 
+== reg074c-4096x4096-0x1ff: tri -n 1 --max-width 4096 --max-height 4096 --kpoke-render 1:ta:167=0x1ff
+tri: kpoke before render 1: ta:167=0x1ff
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2050.767909] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:167=0x000001ff applied
+tadata vs control: differ: 0 dwords; 
+== reg074c-1024x768-control: tri -n 1 --max-width 1024 --max-height 768
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+== reg074c-1024x768-0x100: tri -n 1 --max-width 1024 --max-height 768 --kpoke-render 1:ta:167=0x100
+tri: kpoke before render 1: ta:167=0x100
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2053.313131] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:167=0x00000100 applied
+tadata vs control: differ: 0 dwords; 
+== reg074c-1024x768-0x1ff: tri -n 1 --max-width 1024 --max-height 768 --kpoke-render 1:ta:167=0x1ff
+tri: kpoke before render 1: ta:167=0x1ff
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri: 1 renders ok
+ctx:7 after render 1: ctx:7=0x10463000
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret 0
+kline: [ 2054.404676] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:167=0x000001ff applied
+tadata vs control: differ: 0 dwords; 
+hold_recovery: Y
+== flag0: tri -n 1 --kpoke-render 1:ta:7^=0x1 --wait-ms 20000 (hold_recovery Y)
+#### words held
+ctx:0=0x00000000
+ctx:1=0x00000000
+ctx:2=0x05d19000
+ctx:3=0x32400000
+ctx:4=0x32411100
+ctx:5=0x00000001
+ctx:6=0x32411380
+ctx:7=0x10463000
+ctx:8=0x32411400
+ctx:9=0x32411400
+ctx:10=0x00000000
+ctx:11=0x00000000
+ctx:12=0x00000000
+ctx:13=0x00000000
+ctx:14=0x00000000
+ctx:15=0x00000000
+ctx:16=0x00000000
+rtds:0=0x3241120c
+rtds:1=0x00000000
+rtds:2=0x00000008
+rtds:3=0x00000000
+rtds:4=0x00000000
+rtds:5=0x00000001
+rtds:6=0x32411000
+rtds:7=0x32411400
+rtds:8=0x00000001
+rtds:9=0x000000c0
+rtds:10=0x10464000
+rtds:11=0x20003000
+rtds:12=0x20001000
+rtds:13=0x20002000
+rtds:14=0x20000000
+rtds:15=0x00000100
+rtds:16=0x00000001
+rtds:17=0x00000000
+rtds:18=0x32411210
+rtds:19=0x00000020
+pb:0=0x00000000
+pb:1=0x00000422
+pb:2=0x04220001
+pb:3=0x04210000
+pb:4=0x10423000
+pb:5=0x00000002
+pb:6=0x04220003
+pb:7=0x04210000
+pb:8=0x00000002
+pb:9=0x00000000
+pb:10=0x00000432
+pb:11=0x00000400
+pb:12=0x00000400
+pb:13=0x00000300
+pb:14=0x324113c0
+kw:0=0x00000000
+kw:1=0x00000001
+kw:2=0x00000000
+kw:3=0x04000002
+rd:0=0x10000000
+rd:1=0x00000000
+rd:2=0x00000080
+rd:3=0x000f0100
+rd:4=0x80000000
+rd:5=0x00000000
+rd:6=0x00000000
+rd:7=0x00000000
+rd:8=0x20004000
+rd:9=0x00000000
+rd:10=0x20005000
+rd:11=0x00000000
+rd:12=0x00000000
+rd:13=0x00000000
+rd:14=0x80000000
+rd:15=0x80000000
+rd:16=0x3f800000
+rd:17=0x00000300
+rd:18=0x00046400
+rd:19=0x00000000
+rd:20=0x00000088
+rd:21=0x00000000
+rd:22=0x00000030
+rd:23=0x2e000080
+rd:24=0x00000005
+rd:25=0x00000001
+rd:26=0x00000001
+rd:27=0x00000000
+rd:28=0x00000000
+rd:29=0x00000000
+rd:30=0x00000000
+rd:31=0x00000000
+rd:32=0x00000000
+rd:33=0x00000000
+rd:34=0x00000000
+rd:35=0x00000000
+rd:36=0x00000000
+rd:37=0x00000000
+rd:38=0x00000000
+rd:39=0x00000000
+rd:40=0x00000000
+rd:41=0x00000000
+rd:42=0x00000000
+rd:43=0x00000000
+rd:44=0x00000000
+rd:45=0x00000000
+rd:46=0x00000000
+rd:47=0x00000000
+rd:48=0x00000000
+rd:49=0x00000000
+rd:50=0x00000000
+rd:51=0x00000100
+rd:52=0x32411208
+rd:53=0x00000401
+rd:54=0x32411300
+rd:55=0x32411318
+rd:56=0x00000000
+rd:57=0x00000000
+rd:58=0x00000000
+rd:59=0x00000000
+rd:60=0x00000000
+rd:61=0x00000000
+rd:62=0x00000000
+rd:63=0x00000000
+rd:64=0x00000000
+rd:65=0x00000001
+rd:66=0x00000000
+rd:67=0x00000000
+rd:68=0x00000000
+rd:69=0x32411214
+rd:70=0x00000000
+rd:71=0x00000000
+rd:72=0x00000000
+rd:73=0x00000000
+rd:74=0x00000000
+rd:75=0x00000000
+rd:76=0x04000004
+rd:77=0x00030000
+rd:78=0x04000002
+rd:79=0x07c00000
+rd:80=0x00000001
+rd:81=0x00000001
+rd:82=0x32411200
+rd:83=0x00000001
+rd:84=0x00000000
+rd:85=0x00000000
+rd:86=0x00000000
+rd:87=0x00000000
+rd:88=0x00000000
+rd:89=0x00000000
+rd:90=0x00000000
+rd:91=0x00000000
+rd:92=0x00000000
+rd:93=0x00000000
+rd:94=0x00000000
+rd:95=0x00000000
+rd:96=0x00000000
+rd:97=0x00000000
+rd:98=0x00000000
+rd:99=0x00000000
+rd:100=0x00000000
+rd:101=0x00000000
+rd:102=0x00000000
+rd:103=0x00000000
+rd:104=0x00000000
+rd:105=0x00000000
+rd:106=0x00000000
+rd:107=0x00000000
+rd:108=0x00000000
+rd:109=0x00000000
+rd:110=0x00000000
+rd:111=0x00000000
+rd:112=0x00000000
+rd:113=0x00000000
+rd:114=0x00000000
+rd:115=0x00000000
+rd:116=0x00000000
+rd:117=0x00000000
+rd:118=0x00000000
+rd:119=0x00000000
+rd:120=0x00000000
+rd:121=0x00000000
+rd:122=0x00000000
+#### end
+ta3d held: 32004000 32005000 32002000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 32000000 04d33000 32400000 00000000 32411400 32411000 32411318 32411400 00000000 00000000 32411380 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001 00000001 32007000 3200e000 3200f000 32411380 32411380 00000000 00000007 00000000 00000000 00000000 00000000 00000003 00000000 00000000 00000001 00000000 
+kline: [ 2055.608298] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:7^=0x00000001 applied
+kline: [ 2056.644561] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: job 309 hung, recovering
+kline: [ 2056.647901] gma500 0000:00:02.0: [drm] sgxfive: job 309 hung, recovery held (debugfs hold_recovery)
+reset: ret 0
+hold_recovery: N
+tri: kpoke before render 1: ta:7^=0x1
+job: failed: job hung, context lost (Connection timed out)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000001 ret 0
+kline: [ 2055.608298] gma500 0000:00:02.0: [drm] sgxfive: kpoke ta:7^=0x00000001 applied
+kline: [ 2056.644561] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: job 309 hung, recovering
+kline: [ 2056.647901] gma500 0000:00:02.0: [drm] sgxfive: job 309 hung, recovery held (debugfs hold_recovery)
+kline: [ 2058.566173] gma500 0000:00:02.0: [drm] SGX stopped, 13 events seen
+kline: [ 2058.570391] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000800/0x400
+kline: [ 2058.575173] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [ 2058.578708] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 194 us
+## render_pb_pages 0x00000422
+hold_recovery: N
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "<string>", line 3, in <genexpr>
+struct.error: unpack_from requires a buffer of at least 4603908 bytes for unpacking 4 bytes at offset 4603904 (actual buffer size is 4603904)
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "<string>", line 3, in <genexpr>
+struct.error: unpack_from requires a buffer of at least 4603908 bytes for unpacking 4 bytes at offset 4603904 (actual buffer size is 4603904)
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmp.DL054x7Rfw/pbflag-r1/tri.param.bin'
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "<string>", line 3, in <genexpr>
+struct.error: unpack_from requires a buffer of at least 4603908 bytes for unpacking 4 bytes at offset 4603904 (actual buffer size is 4603904)
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "<string>", line 3, in <genexpr>
+struct.error: unpack_from requires a buffer of at least 4603908 bytes for unpacking 4 bytes at offset 4603904 (actual buffer size is 4603904)
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmp.DL054x7Rfw/pbflag-r2/tri.param.bin'

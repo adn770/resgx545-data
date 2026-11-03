@@ -1,0 +1,131 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+20D096C6D8D6FDD3551F3D6
+## tool
+54cee43b72b0f044353522a00d83ae981802a6c47daa38d4a1f1ddb6eec06806  /home/jtorra/sgxfive-test-1110
+== fault
+hold_recovery: Y
+## lines held-4s
+kline: [  819.858115] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000007 (PD 0x52fb000) stalls job 36, recovering
+kline: [  819.863893] gma500 0000:00:02.0: [drm] sgxfive: job 36 hung, recovery held (debugfs hold_recovery)
+## state held
+hold_recovery: Y
+status: loaded 1 live 1 sw_events 10 bif_faults 0 ccb_sent 172 deferred 0
+status: reg 0x008 = 0x000ccff8
+status: reg 0x118 = 0x00000480
+miscinfo: 646497 us: cat: /sys/kernel/debug/dri/0/sgx/miscinfo: Connection timed out
+## lines held-10s
+kline: [  819.858115] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000007 (PD 0x52fb000) stalls job 36, recovering
+kline: [  819.863893] gma500 0000:00:02.0: [drm] sgxfive: job 36 hung, recovery held (debugfs hold_recovery)
+reset: ret 0, 270237 us
+hold_recovery: N
+## tool fault
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+## lines after-reset
+kline: [  819.858115] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000007 (PD 0x52fb000) stalls job 36, recovering
+kline: [  819.863893] gma500 0000:00:02.0: [drm] sgxfive: job 36 hung, recovery held (debugfs hold_recovery)
+kline: [  831.070017] gma500 0000:00:02.0: [drm] SGX stopped, 10 events seen
+kline: [  831.073701] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x480
+kline: [  831.078620] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [  831.082705] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 179 us
+## state after-reset
+hold_recovery: N
+status: loaded 1 live 1 sw_events 0 bif_faults 0 ccb_sent 178 deferred 0
+status: reg 0x008 = 0x00000078
+status: reg 0x118 = 0x00000400
+miscinfo: 146280 us: GETMISCINFO answered after 181 us
+## health
+job: ok
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== hang
+hold_recovery: Y
+## lines held-3s
+kline: [  833.844561] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: job 39 hung, recovering
+kline: [  833.847583] gma500 0000:00:02.0: [drm] sgxfive: job 39 hung, recovery held (debugfs hold_recovery)
+## state held
+hold_recovery: Y
+status: loaded 1 live 1 sw_events 4 bif_faults 0 ccb_sent 188 deferred 0
+status: reg 0x008 = 0x000fffa7
+status: reg 0x118 = 0x00000440
+miscinfo: 648822 us: cat: /sys/kernel/debug/dri/0/sgx/miscinfo: Connection timed out
+reset: ret 0, 263116 us
+hold_recovery: N
+## tool hang
+probe vdm-state1-hang-pixel__0: tri 64x64 (2 coordinates), vtxuse pixel pixpds replaced
+probe vdm-state1-hang-pixel__0: failed: job hung, context lost (Connection timed out)
+## lines after-reset
+kline: [  833.844561] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: job 39 hung, recovering
+kline: [  833.847583] gma500 0000:00:02.0: [drm] sgxfive: job 39 hung, recovery held (debugfs hold_recovery)
+kline: [  836.952068] gma500 0000:00:02.0: [drm] SGX stopped, 4 events seen
+kline: [  836.955238] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+kline: [  836.959102] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [  836.963060] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 179 us
+## state after-reset
+hold_recovery: N
+status: loaded 1 live 1 sw_events 0 bif_faults 0 ccb_sent 194 deferred 0
+status: reg 0x008 = 0x00000020
+status: reg 0x118 = 0x00000400
+miscinfo: 147308 us: GETMISCINFO answered after 170 us
+## health
+job: ok
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+== cleanup
+hold_recovery: Y
+tri: 4589380 us
+## tool tri
+job: ok
+diff: 0 of 16384 pixels
+tri 128x128 #1: 4284 triangle, 12100 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 2709 if flipped; guard 0
+tri: 1 renders ok
+## lines held-after-cleanup
+kline: [  839.871209] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000004 (PD 0x6aa7000) stalls job 43, recovering
+kline: [  839.877108] gma500 0000:00:02.0: [drm] sgxfive: job 43 hung, recovery held (debugfs hold_recovery)
+kline: [  843.153634] gma500 0000:00:02.0: [drm] sgxfive: render context cleanup failed, resetting
+## state held-after-cleanup
+hold_recovery: Y
+status: loaded 1 live 1 sw_events 5 bif_faults 0 ccb_sent 207 deferred 7
+status: reg 0x008 = 0x000ccff8
+status: reg 0x118 = 0x00000480
+miscinfo: 649339 us: cat: /sys/kernel/debug/dri/0/sgx/miscinfo: Connection timed out
+cleanup: rtds 0x32411300 ctx 0x32411000 pbdesc 0x32411380 flags 0x00000000 ret -110
+cleanup: before ta 0x32423380 3d 0x32411380
+reset: ret 0, 274622 us
+hold_recovery: N
+## tool cleanup
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+## lines after-reset
+kline: [  839.871209] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90008 at 0x3e000004 (PD 0x6aa7000) stalls job 43, recovering
+kline: [  839.877108] gma500 0000:00:02.0: [drm] sgxfive: job 43 hung, recovery held (debugfs hold_recovery)
+kline: [  843.153634] gma500 0000:00:02.0: [drm] sgxfive: render context cleanup failed, resetting
+kline: [  846.561929] gma500 0000:00:02.0: [drm] SGX stopped, 5 events seen
+kline: [  846.566983] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x480
+kline: [  846.575115] gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM
+kline: [  846.579196] gma500 0000:00:02.0: [drm] SGX boot: EDM up after 176 us
+## state after-reset
+hold_recovery: N
+status: loaded 1 live 1 sw_events 0 bif_faults 0 ccb_sent 213 deferred 0
+status: reg 0x008 = 0x00000078
+status: reg 0x118 = 0x00000400
+miscinfo: 147177 us: GETMISCINFO answered after 170 us
+cleanup: rtds 0x32423300 ctx 0x32423000 pbdesc 0x32423380 flags 0x00000001 ret 0
+cleanup: before ta 0x00000000 3d 0x00000000
+cleanup: rt ta 0x00000000 3d 0x00000000
+cleanup: rc ta 0x00000000 3d 0x00000000
+cleanup: pb ta 0x00000000 3d 0x00000000
+## health
+job: ok
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery: N

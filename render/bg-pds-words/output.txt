@@ -1,0 +1,218 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+20D096C6D8D6FDD3551F3D6
+## tool
+54cee43b72b0f044353522a00d83ae981802a6c47daa38d4a1f1ddb6eec06806  /home/jtorra/sgxfive-test-1110
+== control-64x32: tri --width 64 --height 32
+job: ok
+diff: 0 of 2048 pixels
+tri 64x32 #1: 540 triangle, 1508 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 279 if flipped; guard 0
+tri 64x32 #1: 6439 us
+tri: 1 renders ok
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:64 17:64 18:64 19:64 20:64 21:64 22:64 23:64 24:64 25:64 26:64 27:64 28:64 29:64 30:64 31:64
+== cmd23-0x08000000-64x32-r1: tri --width 64 --height 32 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1152 of 2048 pixels, first (32, 12) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:32 13:32 14:32 15:32 28:8
+kline: [ 2150.134429] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f068 (PD 0x5a68000) stalls job 317, recovering
+kline: [ 2150.144983] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-64x32-r1: tri --width 64 --height 32 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1184 of 2048 pixels, first (32, 11) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:32 12:32 13:32 14:32 15:32 28:8
+kline: [ 2150.921113] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f061 (PD 0xa12f000) stalls job 318, recovering
+kline: [ 2150.930039] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-64x32-r1: tri --width 64 --height 32 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2151.701139] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x57b0000) stalls job 319, recovering
+kline: [ 2151.711065] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-64x32-r1: tri --width 64 --height 32 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2152.484466] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x528a000) stalls job 320, recovering
+kline: [ 2152.493331] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x08000000-64x32-r2: tri --width 64 --height 32 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1184 of 2048 pixels, first (32, 11) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:32 12:32 13:32 14:32 15:32 28:8
+kline: [ 2153.271127] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f061 (PD 0x61fa000) stalls job 321, recovering
+kline: [ 2153.280280] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-64x32-r2: tri --width 64 --height 32 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1184 of 2048 pixels, first (32, 11) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:32 12:32 13:32 14:32 15:32 28:8
+kline: [ 2154.054447] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f061 (PD 0x62ba000) stalls job 322, recovering
+kline: [ 2154.068237] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-64x32-r2: tri --width 64 --height 32 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2154.864459] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x86c2000) stalls job 323, recovering
+kline: [ 2154.874301] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-64x32-r2: tri --width 64 --height 32 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2155.640897] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x5de8000) stalls job 324, recovering
+kline: [ 2155.650551] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x08000000-64x32-r3: tri --width 64 --height 32 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1152 of 2048 pixels, first (32, 12) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:32 13:32 14:32 15:32 28:8
+kline: [ 2156.434465] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f061 (PD 0x5801000) stalls job 325, recovering
+kline: [ 2156.443472] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-64x32-r3: tri --width 64 --height 32 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 1088 of 2048 pixels, first (32, 14) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:32 15:32 28:8
+kline: [ 2157.217798] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f061 (PD 0x5803000) stalls job 326, recovering
+kline: [ 2157.226619] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-64x32-r3: tri --width 64 --height 32 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2158.007749] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x629d000) stalls job 327, recovering
+kline: [ 2158.016669] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-64x32-r3: tri --width 64 --height 32 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 512 of 2048 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:32 17:32 18:32 19:32 20:32 21:32 22:32 23:32 24:32 25:32 26:32 27:32 28:36 29:32 30:32 31:32
+kline: [ 2158.801167] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x5db6000) stalls job 328, recovering
+kline: [ 2158.810967] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== control-128x128: tri --width 128 --height 128
+job: ok
+diff: 0 of 16384 pixels
+tri 128x128 #1: 4284 triangle, 12100 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 2709 if flipped; guard 0
+tri 128x128 #1: 54710 us
+tri: 1 renders ok
+rows: 0:128 1:128 2:128 3:128 4:128 5:128 6:128 7:128 8:128 9:128 10:128 11:128 12:128 13:128 14:128 15:128 16:128 17:128 18:128 19:128 20:128 21:128 22:128 23:128 24:128 25:128 26:128 27:128 28:128 29:128 30:128 31:128 32:128 33:128 34:128 35:128 36:128 37:128 38:128 39:128 40:128 41:128 42:128 43:128 44:128 45:128 46:128 47:128 48:128 49:128 50:128 51:128 52:128 53:128 54:128 55:128 56:128 57:128 58:128 59:128 60:128 61:128 62:128 63:128 64:128 65:128 66:128 67:128 68:128 69:128 70:128 71:128 72:128 73:128 74:128 75:128 76:128 77:128 78:128 79:128 80:128 81:128 82:128 83:128 84:128 85:128 86:128 87:128 88:128 89:128 90:128 91:128 92:128 93:128 94:128 95:128 96:128 97:128 98:128 99:128 100:128 101:128 102:128 103:128 104:128 105:128 106:128 107:128 108:128 109:128 110:128 111:128 112:128 113:128 114:128 115:128 116:128 117:128 118:128 119:128 120:128 121:128 122:128 123:128 124:128 125:128 126:128 127:128
+== cmd23-0x08000000-128x128-r1: tri --width 128 --height 128 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2160.201110] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f022 (PD 0x8805000) stalls job 330, recovering
+kline: [ 2160.212584] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-128x128-r1: tri --width 128 --height 128 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2160.987744] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f021 (PD 0x6df1000) stalls job 331, recovering
+kline: [ 2160.996484] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-128x128-r1: tri --width 128 --height 128 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2161.787791] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x880b000) stalls job 332, recovering
+kline: [ 2161.797488] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-128x128-r1: tri --width 128 --height 128 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2162.587803] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x5af9000) stalls job 333, recovering
+kline: [ 2162.598732] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x08000000-128x128-r2: tri --width 128 --height 128 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2163.384413] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f021 (PD 0x55ce000) stalls job 334, recovering
+kline: [ 2163.393886] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-128x128-r2: tri --width 128 --height 128 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2164.171112] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f021 (PD 0x5370000) stalls job 335, recovering
+kline: [ 2164.180474] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-128x128-r2: tri --width 128 --height 128 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2164.964423] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x87fd000) stalls job 336, recovering
+kline: [ 2164.976048] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-128x128-r2: tri --width 128 --height 128 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2165.777774] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x5890000) stalls job 337, recovering
+kline: [ 2165.789338] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x08000000-128x128-r3: tri --width 128 --height 128 --poke cmd:23^=0x08000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2166.587801] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f021 (PD 0x3b0c000) stalls job 338, recovering
+kline: [ 2166.596796] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x10000000-128x128-r3: tri --width 128 --height 128 --poke cmd:23^=0x10000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2167.437766] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xd0400 at 0x1f021 (PD 0x87fd000) stalls job 339, recovering
+kline: [ 2167.447277] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x40000000-128x128-r3: tri --width 128 --height 128 --poke cmd:23^=0x40000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2168.281184] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x8825000) stalls job 340, recovering
+kline: [ 2168.292167] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd23-0x80000000-128x128-r3: tri --width 128 --height 128 --poke cmd:23^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 127:8
+kline: [ 2169.087780] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001011 (PD 0x8825000) stalls job 341, recovering
+kline: [ 2169.097120] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
+== cmd24-0x08000000-64x64: tri --poke cmd:24^=0x08000000
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 9522 us
+tri: 1 renders ok
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:64 17:64 18:64 19:64 20:64 21:64 22:64 23:64 24:64 25:64 26:64 27:64 28:64 29:64 30:64 31:64 32:64 33:64 34:64 35:64 36:64 37:64 38:64 39:64 40:64 41:64 42:64 43:64 44:64 45:64 46:64 47:64 48:64 49:64 50:64 51:64 52:64 53:64 54:64 55:64 56:64 57:64 58:64 59:64 60:64 61:64 62:64 63:64
+== cmd24-0x80000000-64x64: tri --poke cmd:24^=0x80000000
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 11549 us
+tri: 1 renders ok
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:64 17:64 18:64 19:64 20:64 21:64 22:64 23:64 24:64 25:64 26:64 27:64 28:64 29:64 30:64 31:64 32:64 33:64 34:64 35:64 36:64 37:64 38:64 39:64 40:64 41:64 42:64 43:64 44:64 45:64 46:64 47:64 48:64 49:64 50:64 51:64 52:64 53:64 54:64 55:64 56:64 57:64 58:64 59:64 60:64 61:64 62:64 63:64
+== cmd25-0x08000000-64x64: tri --poke cmd:25^=0x08000000
+job: ok
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 11604 us
+tri: 1 renders ok
+rows: 0:64 1:64 2:64 3:64 4:64 5:64 6:64 7:64 8:64 9:64 10:64 11:64 12:64 13:64 14:64 15:64 16:64 17:64 18:64 19:64 20:64 21:64 22:64 23:64 24:64 25:64 26:64 27:64 28:64 29:64 30:64 31:64 32:64 33:64 34:64 35:64 36:64 37:64 38:64 39:64 40:64 41:64 42:64 43:64 44:64 45:64 46:64 47:64 48:64 49:64 50:64 51:64 52:64 53:64 54:64 55:64 56:64 57:64 58:64 59:64 60:64 61:64 62:64 63:64
+== cmd25-0x80000000-64x64: tri --poke cmd:25^=0x80000000
+job: failed: job faulted, context lost (Input/output error)
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+tri: FAILED after 0 renders
+rows: 62:8
+kline: [ 2171.657795] gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x92000 at 0x2e001014 (PD 0x78b1000) stalls job 345, recovering
+kline: [ 2171.666718] gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/0x440
