@@ -1,0 +1,4763 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse-hazards-chain/raw.txt",
+  "raw_sha256": "7e38785cb02039c46fb282adf63fcb66bc631d4f4f26b6265cf9f7049ba568c6",
+  "converted": "2026-11-03T20:35:02+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-hazards-chain__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801100021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 0,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801100021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 1,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801100021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 2,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801100021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 3,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801100021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 4,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801180021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 5,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov.nosched r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801180021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 6,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov.nosched r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801180021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 7,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov.nosched r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801180021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 8,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov.nosched r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x2801180021400200",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000007",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000007",
+     "0x004": "0x00000007"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 9,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "mov.nosched r10, r4",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5000100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 10,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__11",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5000100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 11,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__12",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5000100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 12,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__13",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5000100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 13,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__14",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5000100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 14,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__15",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5040100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 15,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or.nosched r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__16",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5040100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 16,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or.nosched r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__17",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5040100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 17,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or.nosched r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__18",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5040100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 18,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or.nosched r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__19",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x5040100801400205",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000000f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000000f",
+     "0x004": "0x0000000f"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 19,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "or.nosched r10, r4, r5",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__20",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020000001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 20,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__21",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020000001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 21,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__22",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020000001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 22,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__23",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020000001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 23,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__24",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020000001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 24,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__25",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020080001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 25,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad.nosched r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__26",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020080001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 26,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad.nosched r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__27",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020080001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 27,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad.nosched r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__28",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020080001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 28,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad.nosched r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__29",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0020080001404103",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x41180000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x41180000",
+     "0x004": "0x41180000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 29,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fmad.nosched r10, r1, r2, r3",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__30",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800100001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 30,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__31",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800100001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 31,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__32",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800100001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 32,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__33",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800100001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 33,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__34",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800100001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 34,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__35",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800180001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 35,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp.nosched r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__36",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800180001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 36,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp.nosched r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__37",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800180001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 37,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp.nosched r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__38",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800180001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 38,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp.nosched r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__39",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800180001400100",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x3eaaaaab",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x3eaaaaab",
+     "0x004": "0x3eaaaaab"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 39,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "frcp.nosched r10, r2",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__40",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800160001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 40,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__41",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800160001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 41,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__42",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800160001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 42,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__43",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800160001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 43,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__44",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x0800160001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 44,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__45",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x08001e0001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 45,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp.nosched r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__46",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x08001e0001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 46,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp.nosched r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__47",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x08001e0001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 47,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp.nosched r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__48",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x08001e0001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 48,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp.nosched r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  },
+  {
+   "id": "usse-hazards-chain__49",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0f1e000200000",
+     "0xfca1002000400000",
+     "0xfca1005000600000",
+     "0xfca0000000800007",
+     "0xfca0000000a00009",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0x08001e0001400080",
+     "0x500010080160050a",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000580"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x3fc00000",
+     "r2": "0x40400000",
+     "r3": "0x40a00000",
+     "r4": "0x00000007",
+     "r5": "0x00000009",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x403504f3",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x403504f3",
+     "0x004": "0x403504f3"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-hazards-chain",
+    "case": 49,
+    "table": "hazards.toml",
+    "template": "hazard.s",
+    "template_sha256": "9fafa0ac9b5a78fdbacdebf597551bbefed5b298f59cf9393612438b4beaacf7",
+    "inputs": {
+     "WR": "fexp.nosched r10, r1",
+     "GAP": "",
+     "READ": "or r11, r10, r10"
+    },
+    "params": {
+     "A": "0x3FC00000",
+     "B": "0x40400000",
+     "C": "0x40A00000",
+     "D": "0x00000007",
+     "E": "0x00000009",
+     "F": "0",
+     "G": "0",
+     "H": "0"
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "a write read as both sources of the very next instruction, with and without .nosched on the writer, five runs"
+   }
+  }
+ ],
+ "orphans": []
+}
