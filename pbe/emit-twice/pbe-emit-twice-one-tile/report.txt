@@ -1,0 +1,20 @@
+pbe-emit-twice-one-tile: recorded (no hypotheses)
+  question: what a second end-of-tile emit does to its job and the next ones on 32x16, and SIDEBAND bit 9 on one of two emits; may hang
+  [0] run 1: two emits, sideband 0x200 and 0x200: mixed 0xff203040x377 0x00ff8040x135
+  [1] run 1: one emit after it: mixed 0xff203040x377 0x00ff8040x135
+  [2] run 1: a blank job after that: mixed 0xff203040x377 0x00ff8040x135
+  [3] run 1: two emits, bit 9 on the second only (0x000, 0x200): failed (no pixel written)
+  [4] run 1: one emit after it: failed (job hung, context lost (Connection timed out))
+  [5] run 1: a blank job after that: failed (no pixel written)
+  [6] run 1: two emits, bit 9 on the first only (0x200, 0x000): mixed 0xff203040x377 0x00ff8040x135
+  [7] run 1: one emit after it: mixed 0xff203040x377 0x00ff8040x135
+  [8] run 1: a blank job after that: mixed 0xff203040x377 0x00ff8040x135
+  [9] run 2: two emits, sideband 0x200 and 0x200: failed (no pixel written)
+  [10] run 2: one emit after it: mixed 0xff203040x377 0x00ff8040x135
+  [11] run 2: a blank job after that: mixed 0xff203040x377 0x00ff8040x135
+  [12] run 2: two emits, bit 9 on the second only (0x000, 0x200): mixed 0xff203040x377 0x00ff8040x135
+  [13] run 2: one emit after it: failed (no pixel written)
+  [14] run 2: a blank job after that: failed (job hung, context lost (Connection timed out))
+  [15] run 2: two emits, bit 9 on the first only (0x200, 0x000): mixed 0xff203040x377 0x00ff8040x135
+  [16] run 2: one emit after it: mixed 0xff203040x377 0x00ff8040x135
+  [17] run 2: a blank job after that: mixed 0xff203040x377 0x00ff8040x135
