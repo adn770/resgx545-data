@@ -1,0 +1,137 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+F156823E6F1F976458D94BF
+## tool
+d09d27de74a046c4664ae2408f38d471b82779ff6b4918cb4cfe1e975ea623b4  /home/jtorra/sgxfive-test-1117
+#### idle control
+kregnow: host_irqs 0 extra 0 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0xffffffff 0x0110=0xffffffff
+kregnow: host_irqs 2 extra 2 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+#### an unfaulted fill after the control
+job: ok
+job time: 905 us
+diff: 0 of 2048 pixels
+#### fault ta
+== ta-none
+before: status 0x20000000 0x00000480 bif_int 0x00090008 bif_fault 0x3e000001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+after: status 0x20000000 0x00000480 bif_int 0x00090008 enable 0x00004000
+kregnow after: host_irqs 0 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+kernel: 
+job: job: failed: job faulted, context lost (Input/output error)
+== ta-all
+before: status 0x20000000 0x00000480 bif_int 0x00090008 bif_fault 0x3e000001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0xffffffff
+write 0x0110=0xffffffff
+after: status 0xa0000000 0x00000480 bif_int 0x00090008 enable 0x00004000
+kregnow after: host_irqs 2 extra 2 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x480;gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0xffffffff, reads 0xb7fdffff;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x480;gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0xffffffff, reads 0x0000ffef;
+job: job: failed: job hung, context lost (Connection timed out)
+== ta-enable-bit29
+before: status 0x20000000 0x00000480 bif_int 0x00090008 bif_fault 0x3e000001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0x20004000
+after: status 0xa0000000 0x00000480 bif_int 0x00090008 enable 0x00004000
+kregnow after: host_irqs 1 extra 1 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0x20004000, reads 0x20004000;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x480;
+job: job: failed: job faulted, context lost (Input/output error)
+== ta-enable2-bit7
+before: status 0x20000000 0x00000480 bif_int 0x00090008 bif_fault 0x3e000001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+write 0x0110=0x80
+after: status 0xa0000000 0x00000480 bif_int 0x00090008 enable 0x00004000
+kregnow after: host_irqs 1 extra 1 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0x00000080, reads 0x00000080;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x480;
+job: job: failed: job faulted, context lost (Input/output error)
+== ta-enable2-bit10
+before: status 0x20000000 0x00000480 bif_int 0x00090008 bif_fault 0x3e000001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+write 0x0110=0x400
+after: status 0xa0000000 0x00000480 bif_int 0x00090008 enable 0x00004000
+kregnow after: host_irqs 1 extra 1 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x480;gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0x00000400, reads 0x00000400;
+job: job: failed: job faulted, context lost (Input/output error)
+#### fault ta3d
+== ta3d-none
+before: status 0x20000000 0x00000400 bif_int 0x00080400 bif_fault 0x32004001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+after: status 0x20000000 0x00000400 bif_int 0x00080400 enable 0x00004000
+kregnow after: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+kernel: 
+job: job: failed: job faulted, context lost (Input/output error)
+== ta3d-all
+before: status 0x20000000 0x00000400 bif_int 0x00080400 bif_fault 0x32004001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000480 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0xffffffff
+write 0x0110=0xffffffff
+after: status 0xa0000000 0x00000400 bif_int 0x00080400 enable 0x00004000
+kregnow after: host_irqs 2 extra 2 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0xffffffff, reads 0xb7fdffff;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x400;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x400;gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0xffffffff, reads 0x0000ffef;
+job: job: failed: job faulted, context lost (Input/output error)
+== ta3d-enable-bit29
+before: status 0x20000000 0x00000400 bif_int 0x00080400 bif_fault 0x32004001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0x20004000
+after: status 0xa0000000 0x00000400 bif_int 0x00080400 enable 0x00004000
+kregnow after: host_irqs 1 extra 1 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0x20004000, reads 0x20004000;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x400;
+job: job: failed: job faulted, context lost (Input/output error)
+== ta3d-enable2-bit10
+before: status 0x20000000 0x00000400 bif_int 0x00080400 bif_fault 0x32004001 enable 0x00004000
+kregnow before: host_irqs 0 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+write 0x0110=0x400
+after: status 0xa0000000 0x00000400 bif_int 0x00080400 enable 0x00004000
+kregnow after: host_irqs 1 extra 1 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0x00000400, reads 0x00000400;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x400;
+job: job: failed: job faulted, context lost (Input/output error)
+#### fault pds
+== pds-none
+before: status 0x20000000 0x00000440 bif_int 0x000d0400 bif_fault 0x0001f061 enable 0x00004000
+kregnow before: host_irqs 1 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+after: status 0x20000000 0x00000440 bif_int 0x000d0400 enable 0x00004000
+kregnow after: host_irqs 1 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+kernel: 
+job: job: failed: job faulted, context lost (Input/output error)
+== pds-all
+before: status 0x20000000 0x00000440 bif_int 0x000d0400 bif_fault 0x0001f061 enable 0x00004000
+kregnow before: host_irqs 1 extra 0 last 0xa0000000 0x00000400 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0xffffffff
+write 0x0110=0xffffffff
+after: status 0xa0000000 0x00000440 bif_int 0x000d0400 enable 0x00004000
+kregnow after: host_irqs 3 extra 2 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0xffffffff, reads 0xb7fdffff;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x440;gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0xffffffff, reads 0x0000ffef;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x440;
+job: job: failed: job faulted, context lost (Input/output error)
+== pds-enable-bit29
+before: status 0x20000000 0x00000440 bif_int 0x000d0400 bif_fault 0x0001f061 enable 0x00004000
+kregnow before: host_irqs 1 extra 0 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+write 0x0130=0x20004000
+after: status 0xa0000000 0x00000440 bif_int 0x000d0400 enable 0x00004000
+kregnow after: host_irqs 2 extra 1 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0130: 0x00004000 -> 0x20004000, reads 0x20004000;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x440;
+job: job: failed: job faulted, context lost (Input/output error)
+== pds-enable2-bit6
+before: status 0x20000000 0x00000440 bif_int 0x000d0400 bif_fault 0x0001f061 enable 0x00004000
+kregnow before: host_irqs 1 extra 0 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+write 0x0110=0x40
+after: status 0xa0000000 0x00000440 bif_int 0x000d0400 enable 0x00004000
+kregnow after: host_irqs 2 extra 1 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0x00000040, reads 0x00000040;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x440;
+job: job: failed: job faulted, context lost (Input/output error)
+== pds-enable2-bit10
+before: status 0x20000000 0x00000440 bif_int 0x000d0400 bif_fault 0x0001f061 enable 0x00004000
+kregnow before: host_irqs 1 extra 0 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+write 0x0110=0x400
+after: status 0xa0000000 0x00000440 bif_int 0x000d0400 enable 0x00004000
+kregnow after: host_irqs 2 extra 1 last 0xa0000000 0x00000440 armed 0 saved 0x00004000 0x00000000
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0110: 0x00000000 -> 0x00000400, reads 0x00000400;gma500 0000:00:02.0: sgxfive: host interrupt with no SW_EVENT: status 0xa0000000/0x440;
+job: job: failed: job faulted, context lost (Input/output error)
+#### health
+job: ok
+job time: 985 us
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
