@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# Whether narrowing 0x0810, 0x0814 or 0x0818 (init values 0x1, 0xffff, 0x7ff) changes a job:
+# each register written with 0, with each single bit, and with the init value's bits flipped
+# one at a time (0 to 15), around a triangle (the fill's table is init-register-jobs).
+name = "platform-init-register-tri"
+about = "0x0810, 0x0814 and 0x0818 narrowed through kreg around a triangle"
+host = "tri"
+bits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+values = ["=0x0", "=0x1", "=0x2", "=0x4", "=0x8", "=0x10", "=0x20", "=0x40", "=0x80", "=0x100", "=0x200", "=0x400", "=0x800", "=0x1000", "=0x2000", "=0x4000", "=0x8000", "=0x10000", "=0x20000", "=0x40000", "=0x80000", "=0x100000", "=0x200000", "=0x400000", "=0x800000", "=0x1000000", "=0x2000000", "=0x4000000", "=0x8000000", "=0x10000000", "=0x20000000", "=0x40000000", "=0x80000000"]
+
+[[range]]
+space = "kreg"
+indices = [0x0810, 0x0818]

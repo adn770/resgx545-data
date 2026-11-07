@@ -1,0 +1,4829 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## module
+F156823E6F1F976458D94BF
+## tool
+f43ce2d104dd50dea0c759875f4a1eeeaf931b01f0ab5d16688ea3b0690e10b2  /home/jtorra/sgxfive-test-1115
+## start: 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 init: set 0x0810=0x1 0x0814=0xffff 0x0818=0x7ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+== run 1 init fill-64x32: rc 0 wall 235 ms
+job: ok
+job time: 567 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 init copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 2826 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 init tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6381 us
+tri: 1 renders ok
+== run 1 init fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2565 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 init copy-1024x1024: rc 0 wall 837 ms
+job: ok
+job time: 5545 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 init tri-1024x1024: rc 0 wall 1401 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146354 us
+tri: 1 renders ok
+== run 1 init tri-2048x2048: rc 0 wall 4845 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4588098 us
+tri: 1 renders ok
+== run 1 init tri-256x256-n8: rc 0 wall 794 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 74939 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69334 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67005 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66713 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66631 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67439 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67348 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67193 us
+tri: 8 renders ok
+== run 1 init dummy-64: rc 0 wall 234 ms
+dummy: 64 jobs ok
+== run 1 init loop-1000: rc 0 wall 237 ms
+probe loop-1000: job time: 9767 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 init loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61602 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 init loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44050 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 init: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 init: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0x1ffff: set 0x0814=0x1ffff reads 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+== run 1 r0814=0x1ffff fill-64x32: rc 0 wall 234 ms
+job: ok
+job time: 631 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0x1ffff copy-64x32: rc 0 wall 239 ms
+job: ok
+job time: 590 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0x1ffff tri-64x64: rc 0 wall 256 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6002 us
+tri: 1 renders ok
+== run 1 r0814=0x1ffff fill-1024x1024: rc 0 wall 682 ms
+job: ok
+job time: 2403 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0x1ffff copy-1024x1024: rc 0 wall 849 ms
+job: ok
+job time: 5115 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0x1ffff tri-1024x1024: rc 0 wall 1396 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145137 us
+tri: 1 renders ok
+== run 1 r0814=0x1ffff tri-2048x2048: rc 0 wall 4833 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4577707 us
+tri: 1 renders ok
+== run 1 r0814=0x1ffff tri-256x256-n8: rc 0 wall 806 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73741 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69087 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67940 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67436 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67052 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 71219 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66404 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67048 us
+tri: 8 renders ok
+== run 1 r0814=0x1ffff dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 1 r0814=0x1ffff loop-1000: rc 0 wall 242 ms
+probe loop-1000: job time: 9655 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x1ffff loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61714 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x1ffff loop-1250000: rc 0 wall 289 ms
+probe loop-1250000: job time: 44193 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0x1ffff: after the jobs 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+## case 1 r0814=0x1ffff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0x7fff: set 0x0814=0x7fff reads 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+== run 1 r0814=0x7fff fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 645 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0x7fff copy-64x32: rc 0 wall 230 ms
+job: ok
+job time: 625 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0x7fff tri-64x64: rc 0 wall 262 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6063 us
+tri: 1 renders ok
+== run 1 r0814=0x7fff fill-1024x1024: rc 0 wall 696 ms
+job: ok
+job time: 2376 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0x7fff copy-1024x1024: rc 0 wall 912 ms
+job: ok
+job time: 5088 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0x7fff tri-1024x1024: rc 0 wall 1406 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1148890 us
+tri: 1 renders ok
+== run 1 r0814=0x7fff tri-2048x2048: rc 0 wall 4839 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4583002 us
+tri: 1 renders ok
+== run 1 r0814=0x7fff tri-256x256-n8: rc 0 wall 798 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73326 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68815 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67141 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66880 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66942 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66748 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66662 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66757 us
+tri: 8 renders ok
+== run 1 r0814=0x7fff dummy-64: rc 0 wall 240 ms
+dummy: 64 jobs ok
+== run 1 r0814=0x7fff loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9775 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x7fff loop-400000: rc 0 wall 299 ms
+probe loop-400000: job time: 61826 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x7fff loop-1250000: rc 0 wall 281 ms
+probe loop-1250000: job time: 44050 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0x7fff: after the jobs 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+## case 1 r0814=0x7fff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0x3ff: set 0x0814=0x3ff reads 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+== run 1 r0814=0x3ff fill-64x32: rc 0 wall 232 ms
+job: ok
+job time: 662 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0x3ff copy-64x32: rc 0 wall 235 ms
+job: ok
+job time: 565 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0x3ff tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6120 us
+tri: 1 renders ok
+== run 1 r0814=0x3ff fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2447 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0x3ff copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5151 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0x3ff tri-1024x1024: rc 0 wall 1400 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146544 us
+tri: 1 renders ok
+== run 1 r0814=0x3ff tri-2048x2048: rc 0 wall 4859 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4606347 us
+tri: 1 renders ok
+== run 1 r0814=0x3ff tri-256x256-n8: rc 0 wall 799 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73446 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69319 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66802 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67000 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 69018 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66895 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66833 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66776 us
+tri: 8 renders ok
+== run 1 r0814=0x3ff dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 1 r0814=0x3ff loop-1000: rc 0 wall 246 ms
+probe loop-1000: job time: 9656 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x3ff loop-400000: rc 0 wall 293 ms
+probe loop-400000: job time: 61740 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x3ff loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44067 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0x3ff: after the jobs 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+## case 1 r0814=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0xff: set 0x0814=0xff reads 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+== run 1 r0814=0xff fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 574 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0xff copy-64x32: rc 0 wall 229 ms
+job: ok
+job time: 568 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0xff tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6176 us
+tri: 1 renders ok
+== run 1 r0814=0xff fill-1024x1024: rc 0 wall 682 ms
+job: ok
+job time: 2356 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0xff copy-1024x1024: rc 0 wall 847 ms
+job: ok
+job time: 5093 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0xff tri-1024x1024: rc 0 wall 1397 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145445 us
+tri: 1 renders ok
+== run 1 r0814=0xff tri-2048x2048: rc 0 wall 4861 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4603577 us
+tri: 1 renders ok
+== run 1 r0814=0xff tri-256x256-n8: rc 0 wall 819 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73564 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69367 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66893 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67140 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66958 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66870 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 69712 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67122 us
+tri: 8 renders ok
+== run 1 r0814=0xff dummy-64: rc 0 wall 234 ms
+dummy: 64 jobs ok
+== run 1 r0814=0xff loop-1000: rc 0 wall 246 ms
+probe loop-1000: job time: 9721 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0xff loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61778 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0xff loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44187 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0xff: after the jobs 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+## case 1 r0814=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0xf: set 0x0814=0xf reads 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+== run 1 r0814=0xf fill-64x32: rc 0 wall 226 ms
+job: ok
+job time: 562 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0xf copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 556 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0xf tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6030 us
+tri: 1 renders ok
+== run 1 r0814=0xf fill-1024x1024: rc 0 wall 688 ms
+job: ok
+job time: 2428 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0xf copy-1024x1024: rc 0 wall 840 ms
+job: ok
+job time: 5182 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0xf tri-1024x1024: rc 0 wall 1427 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1172433 us
+tri: 1 renders ok
+== run 1 r0814=0xf tri-2048x2048: rc 0 wall 4842 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4585002 us
+tri: 1 renders ok
+== run 1 r0814=0xf tri-256x256-n8: rc 0 wall 793 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 74204 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69026 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67460 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66917 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66729 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66793 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66752 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66987 us
+tri: 8 renders ok
+== run 1 r0814=0xf dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 1 r0814=0xf loop-1000: rc 0 wall 242 ms
+probe loop-1000: job time: 9634 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0xf loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61695 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0xf loop-1250000: rc 0 wall 275 ms
+probe loop-1250000: job time: 44119 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0xf: after the jobs 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+## case 1 r0814=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0x1: set 0x0814=0x1 reads 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+== run 1 r0814=0x1 fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 564 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0x1 copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 631 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0x1 tri-64x64: rc 0 wall 261 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6039 us
+tri: 1 renders ok
+== run 1 r0814=0x1 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2345 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0x1 copy-1024x1024: rc 0 wall 842 ms
+job: ok
+job time: 5002 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0x1 tri-1024x1024: rc 0 wall 1395 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146333 us
+tri: 1 renders ok
+== run 1 r0814=0x1 tri-2048x2048: rc 0 wall 4856 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4600891 us
+tri: 1 renders ok
+== run 1 r0814=0x1 tri-256x256-n8: rc 0 wall 796 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73611 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69110 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67312 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 68027 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67095 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66606 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66787 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66733 us
+tri: 8 renders ok
+== run 1 r0814=0x1 dummy-64: rc 0 wall 238 ms
+dummy: 64 jobs ok
+== run 1 r0814=0x1 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9704 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x1 loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61815 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0x1 loop-1250000: rc 0 wall 277 ms
+probe loop-1250000: job time: 44101 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0x1: after the jobs 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+## case 1 r0814=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0814=0: set 0x0814=0x0 reads 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+== run 1 r0814=0 fill-64x32: rc 0 wall 226 ms
+job: ok
+job time: 956 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0814=0 copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 771 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0814=0 tri-64x64: rc 0 wall 262 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6307 us
+tri: 1 renders ok
+== run 1 r0814=0 fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2363 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0814=0 copy-1024x1024: rc 0 wall 845 ms
+job: ok
+job time: 5235 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0814=0 tri-1024x1024: rc 0 wall 1398 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145646 us
+tri: 1 renders ok
+== run 1 r0814=0 tri-2048x2048: rc 0 wall 4832 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4574968 us
+tri: 1 renders ok
+== run 1 r0814=0 tri-256x256-n8: rc 0 wall 800 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73451 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68723 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67174 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66799 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66722 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66853 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66733 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66653 us
+tri: 8 renders ok
+== run 1 r0814=0 dummy-64: rc 0 wall 232 ms
+dummy: 64 jobs ok
+== run 1 r0814=0 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9696 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0 loop-400000: rc 0 wall 303 ms
+probe loop-400000: job time: 61830 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0814=0 loop-1250000: rc 0 wall 278 ms
+probe loop-1250000: job time: 44076 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0814=0: after the jobs 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+## case 1 r0814=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0818=0x3ff: set 0x0818=0x3ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+== run 1 r0818=0x3ff fill-64x32: rc 0 wall 233 ms
+job: ok
+job time: 762 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0818=0x3ff copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 540 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0818=0x3ff tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6056 us
+tri: 1 renders ok
+== run 1 r0818=0x3ff fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2479 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0818=0x3ff copy-1024x1024: rc 0 wall 845 ms
+job: ok
+job time: 5213 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0818=0x3ff tri-1024x1024: rc 1 wall 1434 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0xa23e388e56c32f85
+diff: 1038886 of 1048576 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 1024x1024 #1: 1179866 us
+tri: FAILED after 0 renders
+== run 1 r0818=0x3ff tri-2048x2048: rc 1 wall 4908 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x5f8664b941192f85
+diff: 4184614 of 4194304 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 2048x2048 #1: 4643580 us
+tri: FAILED after 0 renders
+== run 1 r0818=0x3ff tri-256x256-n8: rc 1 wall 327 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0xf4eb177bd41eaf85
+diff: 59427 of 65536 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 256x256 #1: 73708 us
+tri: FAILED after 0 renders
+== run 1 r0818=0x3ff dummy-64: rc 0 wall 239 ms
+dummy: 64 jobs ok
+== run 1 r0818=0x3ff loop-1000: rc 0 wall 269 ms
+probe loop-1000: job time: 9728 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0x3ff loop-400000: rc 0 wall 311 ms
+probe loop-400000: job time: 61689 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0x3ff loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44156 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0818=0x3ff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+## case 1 r0818=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0818=0xff: set 0x0818=0xff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+== run 1 r0818=0xff fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 531 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0818=0xff copy-64x32: rc 0 wall 234 ms
+job: ok
+job time: 648 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0818=0xff tri-64x64: rc 0 wall 260 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 5962 us
+tri: 1 renders ok
+== run 1 r0818=0xff fill-1024x1024: rc 0 wall 676 ms
+job: ok
+job time: 2415 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0818=0xff copy-1024x1024: rc 0 wall 839 ms
+job: ok
+job time: 5462 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0818=0xff tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147380 us
+tri: 1 renders ok
+== run 1 r0818=0xff tri-2048x2048: rc 0 wall 4870 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4609540 us
+tri: 1 renders ok
+== run 1 r0818=0xff tri-256x256-n8: rc 0 wall 799 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73356 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69023 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66621 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66699 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67220 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66814 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66935 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66875 us
+tri: 8 renders ok
+== run 1 r0818=0xff dummy-64: rc 0 wall 234 ms
+dummy: 64 jobs ok
+== run 1 r0818=0xff loop-1000: rc 0 wall 244 ms
+probe loop-1000: job time: 11106 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0xff loop-400000: rc 0 wall 297 ms
+probe loop-400000: job time: 61799 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0xff loop-1250000: rc 0 wall 281 ms
+probe loop-1250000: job time: 44072 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0818=0xff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+## case 1 r0818=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0818=0xf: set 0x0818=0xf reads 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+== run 1 r0818=0xf fill-64x32: rc 0 wall 230 ms
+job: ok
+job time: 684 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0818=0xf copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 671 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0818=0xf tri-64x64: rc 0 wall 258 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 5999 us
+tri: 1 renders ok
+== run 1 r0818=0xf fill-1024x1024: rc 0 wall 682 ms
+job: ok
+job time: 2481 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0818=0xf copy-1024x1024: rc 0 wall 846 ms
+job: ok
+job time: 4953 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0818=0xf tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1148154 us
+tri: 1 renders ok
+== run 1 r0818=0xf tri-2048x2048: rc 0 wall 4882 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4623570 us
+tri: 1 renders ok
+== run 1 r0818=0xf tri-256x256-n8: rc 0 wall 812 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 74233 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69342 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67419 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67316 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67747 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67257 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67067 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67148 us
+tri: 8 renders ok
+== run 1 r0818=0xf dummy-64: rc 0 wall 244 ms
+dummy: 64 jobs ok
+== run 1 r0818=0xf loop-1000: rc 0 wall 249 ms
+probe loop-1000: job time: 9646 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0xf loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61694 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0xf loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44263 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0818=0xf: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+## case 1 r0818=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0818=0x1: set 0x0818=0x1 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+== run 1 r0818=0x1 fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 625 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0818=0x1 copy-64x32: rc 0 wall 229 ms
+job: ok
+job time: 627 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0818=0x1 tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6018 us
+tri: 1 renders ok
+== run 1 r0818=0x1 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2134 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0818=0x1 copy-1024x1024: rc 0 wall 883 ms
+job: ok
+job time: 4929 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0818=0x1 tri-1024x1024: rc 0 wall 1395 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1144759 us
+tri: 1 renders ok
+== run 1 r0818=0x1 tri-2048x2048: rc 0 wall 4834 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4575934 us
+tri: 1 renders ok
+== run 1 r0818=0x1 tri-256x256-n8: rc 0 wall 800 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73001 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68846 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67293 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67123 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66973 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67134 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67009 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66756 us
+tri: 8 renders ok
+== run 1 r0818=0x1 dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 1 r0818=0x1 loop-1000: rc 0 wall 240 ms
+probe loop-1000: job time: 9663 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0x1 loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61820 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0x1 loop-1250000: rc 0 wall 278 ms
+probe loop-1250000: job time: 44052 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0818=0x1: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+## case 1 r0818=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0818=0: set 0x0818=0x0 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+== run 1 r0818=0 fill-64x32: rc 0 wall 232 ms
+job: ok
+job time: 566 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0818=0 copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 589 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0818=0 tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6064 us
+tri: 1 renders ok
+== run 1 r0818=0 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2259 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0818=0 copy-1024x1024: rc 0 wall 844 ms
+job: ok
+job time: 5313 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0818=0 tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146360 us
+tri: 1 renders ok
+== run 1 r0818=0 tri-2048x2048: rc 0 wall 4895 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4638367 us
+tri: 1 renders ok
+== run 1 r0818=0 tri-256x256-n8: rc 0 wall 795 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73833 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69283 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67081 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67356 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67070 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66552 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66854 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66931 us
+tri: 8 renders ok
+== run 1 r0818=0 dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 1 r0818=0 loop-1000: rc 0 wall 239 ms
+probe loop-1000: job time: 9656 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0 loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61827 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0818=0 loop-1250000: rc 0 wall 278 ms
+probe loop-1250000: job time: 44192 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0818=0: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+## case 1 r0818=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0810=0: set 0x0810=0x0 reads 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+== run 1 r0810=0 fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 551 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 r0810=0 copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 562 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 r0810=0 tri-64x64: rc 0 wall 290 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 8500 us
+tri: 1 renders ok
+== run 1 r0810=0 fill-1024x1024: rc 0 wall 684 ms
+job: ok
+job time: 2161 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 r0810=0 copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 4895 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 r0810=0 tri-1024x1024: rc 0 wall 1403 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147359 us
+tri: 1 renders ok
+== run 1 r0810=0 tri-2048x2048: rc 0 wall 4850 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4585283 us
+tri: 1 renders ok
+== run 1 r0810=0 tri-256x256-n8: rc 0 wall 795 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73578 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68798 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67212 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67040 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66984 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67083 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67037 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66652 us
+tri: 8 renders ok
+== run 1 r0810=0 dummy-64: rc 0 wall 234 ms
+dummy: 64 jobs ok
+== run 1 r0810=0 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9606 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 r0810=0 loop-400000: rc 0 wall 297 ms
+probe loop-400000: job time: 61700 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 r0810=0 loop-1250000: rc 0 wall 275 ms
+probe loop-1250000: job time: 44073 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 r0810=0: after the jobs 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+## case 1 r0810=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 1 all=0: set 0x0810=0x0 0x0814=0x0 0x0818=0x0 reads 0810=0x00000000 0814=0x00000000 0818=0x00000000
+== run 1 all=0 fill-64x32: rc 0 wall 227 ms
+job: ok
+job time: 549 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 1 all=0 copy-64x32: rc 0 wall 235 ms
+job: ok
+job time: 684 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 1 all=0 tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6106 us
+tri: 1 renders ok
+== run 1 all=0 fill-1024x1024: rc 0 wall 680 ms
+job: ok
+job time: 2362 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 1 all=0 copy-1024x1024: rc 0 wall 840 ms
+job: ok
+job time: 5096 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 1 all=0 tri-1024x1024: rc 0 wall 1400 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147082 us
+tri: 1 renders ok
+== run 1 all=0 tri-2048x2048: rc 0 wall 4865 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4598484 us
+tri: 1 renders ok
+== run 1 all=0 tri-256x256-n8: rc 0 wall 804 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73201 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68573 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67236 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66929 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67277 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67243 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67085 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67048 us
+tri: 8 renders ok
+== run 1 all=0 dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 1 all=0 loop-1000: rc 0 wall 247 ms
+probe loop-1000: job time: 9713 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 1 all=0 loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61726 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 1 all=0 loop-1250000: rc 0 wall 275 ms
+probe loop-1250000: job time: 44016 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 1 all=0: after the jobs 0810=0x00000000 0814=0x00000000 0818=0x00000000
+## case 1 all=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 init: set 0x0810=0x1 0x0814=0xffff 0x0818=0x7ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+== run 2 init fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 786 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 init copy-64x32: rc 0 wall 229 ms
+job: ok
+job time: 570 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 init tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 5926 us
+tri: 1 renders ok
+== run 2 init fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2187 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 init copy-1024x1024: rc 0 wall 838 ms
+job: ok
+job time: 5188 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 init tri-1024x1024: rc 0 wall 1419 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1156178 us
+tri: 1 renders ok
+== run 2 init tri-2048x2048: rc 0 wall 4887 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4587052 us
+tri: 1 renders ok
+== run 2 init tri-256x256-n8: rc 0 wall 795 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73289 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69075 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66736 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66715 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66730 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67237 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67121 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67285 us
+tri: 8 renders ok
+== run 2 init dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 2 init loop-1000: rc 0 wall 243 ms
+probe loop-1000: job time: 9770 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 init loop-400000: rc 0 wall 292 ms
+probe loop-400000: job time: 61724 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 init loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 44073 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 init: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 init: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0x1ffff: set 0x0814=0x1ffff reads 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+== run 2 r0814=0x1ffff fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 604 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0x1ffff copy-64x32: rc 0 wall 229 ms
+job: ok
+job time: 651 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0x1ffff tri-64x64: rc 0 wall 261 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6290 us
+tri: 1 renders ok
+== run 2 r0814=0x1ffff fill-1024x1024: rc 0 wall 690 ms
+job: ok
+job time: 2260 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0x1ffff copy-1024x1024: rc 0 wall 845 ms
+job: ok
+job time: 5025 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0x1ffff tri-1024x1024: rc 0 wall 1402 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1144922 us
+tri: 1 renders ok
+== run 2 r0814=0x1ffff tri-2048x2048: rc 0 wall 4849 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4591449 us
+tri: 1 renders ok
+== run 2 r0814=0x1ffff tri-256x256-n8: rc 0 wall 798 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73549 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69023 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66869 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67235 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67198 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67330 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67154 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66926 us
+tri: 8 renders ok
+== run 2 r0814=0x1ffff dummy-64: rc 0 wall 241 ms
+dummy: 64 jobs ok
+== run 2 r0814=0x1ffff loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9675 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x1ffff loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61732 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x1ffff loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44070 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0x1ffff: after the jobs 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+## case 2 r0814=0x1ffff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0x7fff: set 0x0814=0x7fff reads 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+== run 2 r0814=0x7fff fill-64x32: rc 0 wall 233 ms
+job: ok
+job time: 552 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0x7fff copy-64x32: rc 0 wall 234 ms
+job: ok
+job time: 595 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0x7fff tri-64x64: rc 0 wall 260 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6205 us
+tri: 1 renders ok
+== run 2 r0814=0x7fff fill-1024x1024: rc 0 wall 690 ms
+job: ok
+job time: 2377 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0x7fff copy-1024x1024: rc 0 wall 850 ms
+job: ok
+job time: 5268 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0x7fff tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145045 us
+tri: 1 renders ok
+== run 2 r0814=0x7fff tri-2048x2048: rc 0 wall 4839 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4580776 us
+tri: 1 renders ok
+== run 2 r0814=0x7fff tri-256x256-n8: rc 0 wall 792 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73710 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69271 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66861 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66864 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67043 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66722 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66765 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66605 us
+tri: 8 renders ok
+== run 2 r0814=0x7fff dummy-64: rc 0 wall 240 ms
+dummy: 64 jobs ok
+== run 2 r0814=0x7fff loop-1000: rc 0 wall 239 ms
+probe loop-1000: job time: 9644 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x7fff loop-400000: rc 0 wall 293 ms
+probe loop-400000: job time: 61595 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x7fff loop-1250000: rc 0 wall 281 ms
+probe loop-1250000: job time: 44072 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0x7fff: after the jobs 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+## case 2 r0814=0x7fff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0x3ff: set 0x0814=0x3ff reads 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+== run 2 r0814=0x3ff fill-64x32: rc 0 wall 236 ms
+job: ok
+job time: 554 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0x3ff copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 663 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0x3ff tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6040 us
+tri: 1 renders ok
+== run 2 r0814=0x3ff fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2354 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0x3ff copy-1024x1024: rc 0 wall 842 ms
+job: ok
+job time: 5063 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0x3ff tri-1024x1024: rc 0 wall 1396 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145122 us
+tri: 1 renders ok
+== run 2 r0814=0x3ff tri-2048x2048: rc 0 wall 4835 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4578162 us
+tri: 1 renders ok
+== run 2 r0814=0x3ff tri-256x256-n8: rc 0 wall 795 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73847 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68646 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67280 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67378 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66821 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66555 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66829 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67022 us
+tri: 8 renders ok
+== run 2 r0814=0x3ff dummy-64: rc 0 wall 236 ms
+dummy: 64 jobs ok
+== run 2 r0814=0x3ff loop-1000: rc 0 wall 240 ms
+probe loop-1000: job time: 9829 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x3ff loop-400000: rc 0 wall 311 ms
+probe loop-400000: job time: 61941 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x3ff loop-1250000: rc 0 wall 282 ms
+probe loop-1250000: job time: 44149 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0x3ff: after the jobs 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+## case 2 r0814=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0xff: set 0x0814=0xff reads 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+== run 2 r0814=0xff fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 545 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0xff copy-64x32: rc 0 wall 241 ms
+job: ok
+job time: 878 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0xff tri-64x64: rc 0 wall 256 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6070 us
+tri: 1 renders ok
+== run 2 r0814=0xff fill-1024x1024: rc 0 wall 678 ms
+job: ok
+job time: 2339 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0xff copy-1024x1024: rc 0 wall 844 ms
+job: ok
+job time: 4995 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0xff tri-1024x1024: rc 0 wall 1402 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1144824 us
+tri: 1 renders ok
+== run 2 r0814=0xff tri-2048x2048: rc 0 wall 4843 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4590456 us
+tri: 1 renders ok
+== run 2 r0814=0xff tri-256x256-n8: rc 0 wall 819 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 77894 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 70304 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 68273 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 68104 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 68082 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67981 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67500 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67326 us
+tri: 8 renders ok
+== run 2 r0814=0xff dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 2 r0814=0xff loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9670 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0xff loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61727 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0xff loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44147 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0xff: after the jobs 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+## case 2 r0814=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0xf: set 0x0814=0xf reads 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+== run 2 r0814=0xf fill-64x32: rc 0 wall 236 ms
+job: ok
+job time: 603 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0xf copy-64x32: rc 0 wall 235 ms
+job: ok
+job time: 557 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0xf tri-64x64: rc 0 wall 258 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6148 us
+tri: 1 renders ok
+== run 2 r0814=0xf fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2458 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0xf copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5349 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0xf tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145423 us
+tri: 1 renders ok
+== run 2 r0814=0xf tri-2048x2048: rc 0 wall 4833 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4576427 us
+tri: 1 renders ok
+== run 2 r0814=0xf tri-256x256-n8: rc 0 wall 797 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73603 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68870 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66715 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66891 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66730 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67451 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67134 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67033 us
+tri: 8 renders ok
+== run 2 r0814=0xf dummy-64: rc 0 wall 256 ms
+dummy: 64 jobs ok
+== run 2 r0814=0xf loop-1000: rc 0 wall 246 ms
+probe loop-1000: job time: 9932 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0xf loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 62059 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0xf loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 44069 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0xf: after the jobs 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+## case 2 r0814=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0x1: set 0x0814=0x1 reads 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+== run 2 r0814=0x1 fill-64x32: rc 0 wall 227 ms
+job: ok
+job time: 690 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0x1 copy-64x32: rc 0 wall 238 ms
+job: ok
+job time: 2428 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0x1 tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6123 us
+tri: 1 renders ok
+== run 2 r0814=0x1 fill-1024x1024: rc 0 wall 680 ms
+job: ok
+job time: 2501 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0x1 copy-1024x1024: rc 0 wall 846 ms
+job: ok
+job time: 4918 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0x1 tri-1024x1024: rc 0 wall 1400 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145745 us
+tri: 1 renders ok
+== run 2 r0814=0x1 tri-2048x2048: rc 0 wall 4855 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4597273 us
+tri: 1 renders ok
+== run 2 r0814=0x1 tri-256x256-n8: rc 0 wall 795 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73069 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68800 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67036 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66882 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66907 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66770 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66577 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66838 us
+tri: 8 renders ok
+== run 2 r0814=0x1 dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 2 r0814=0x1 loop-1000: rc 0 wall 243 ms
+probe loop-1000: job time: 9637 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x1 loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61698 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0x1 loop-1250000: rc 0 wall 278 ms
+probe loop-1250000: job time: 44058 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0x1: after the jobs 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+## case 2 r0814=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0814=0: set 0x0814=0x0 reads 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+== run 2 r0814=0 fill-64x32: rc 0 wall 233 ms
+job: ok
+job time: 568 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0814=0 copy-64x32: rc 0 wall 230 ms
+job: ok
+job time: 642 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0814=0 tri-64x64: rc 0 wall 258 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6177 us
+tri: 1 renders ok
+== run 2 r0814=0 fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2380 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0814=0 copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 4992 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0814=0 tri-1024x1024: rc 0 wall 1403 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147972 us
+tri: 1 renders ok
+== run 2 r0814=0 tri-2048x2048: rc 0 wall 4854 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4590669 us
+tri: 1 renders ok
+== run 2 r0814=0 tri-256x256-n8: rc 0 wall 805 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73597 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69245 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67222 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67578 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67052 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67519 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67353 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67199 us
+tri: 8 renders ok
+== run 2 r0814=0 dummy-64: rc 0 wall 231 ms
+dummy: 64 jobs ok
+== run 2 r0814=0 loop-1000: rc 0 wall 238 ms
+probe loop-1000: job time: 9685 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0 loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61704 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0814=0 loop-1250000: rc 0 wall 277 ms
+probe loop-1250000: job time: 44141 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0814=0: after the jobs 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+## case 2 r0814=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0818=0x3ff: set 0x0818=0x3ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+== run 2 r0818=0x3ff fill-64x32: rc 0 wall 234 ms
+job: ok
+job time: 628 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0818=0x3ff copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 559 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0818=0x3ff tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6121 us
+tri: 1 renders ok
+== run 2 r0818=0x3ff fill-1024x1024: rc 0 wall 688 ms
+job: ok
+job time: 2384 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0818=0x3ff copy-1024x1024: rc 0 wall 843 ms
+job: ok
+job time: 5065 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0818=0x3ff tri-1024x1024: rc 1 wall 1409 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0xa23e388e56c32f85
+diff: 1038886 of 1048576 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 1024x1024 #1: 1154152 us
+tri: FAILED after 0 renders
+== run 2 r0818=0x3ff tri-2048x2048: rc 1 wall 4904 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0xe6d47f46ba707b25
+diff: 4183552 of 4194304 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 2048x2048 #1: 4643585 us
+tri: FAILED after 0 renders
+== run 2 r0818=0x3ff tri-256x256-n8: rc 1 wall 326 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x7f614078d3dc7b25
+diff: 58449 of 65536 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 256x256 #1: 74199 us
+tri: FAILED after 0 renders
+== run 2 r0818=0x3ff dummy-64: rc 0 wall 238 ms
+dummy: 64 jobs ok
+== run 2 r0818=0x3ff loop-1000: rc 0 wall 243 ms
+probe loop-1000: job time: 9673 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0x3ff loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61740 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0x3ff loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44066 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0818=0x3ff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+## case 2 r0818=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0818=0xff: set 0x0818=0xff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+== run 2 r0818=0xff fill-64x32: rc 0 wall 233 ms
+job: ok
+job time: 557 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0818=0xff copy-64x32: rc 0 wall 234 ms
+job: ok
+job time: 673 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0818=0xff tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6071 us
+tri: 1 renders ok
+== run 2 r0818=0xff fill-1024x1024: rc 0 wall 683 ms
+job: ok
+job time: 2420 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0818=0xff copy-1024x1024: rc 0 wall 840 ms
+job: ok
+job time: 5309 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0818=0xff tri-1024x1024: rc 0 wall 1402 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1150487 us
+tri: 1 renders ok
+== run 2 r0818=0xff tri-2048x2048: rc 0 wall 4846 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4588210 us
+tri: 1 renders ok
+== run 2 r0818=0xff tri-256x256-n8: rc 0 wall 802 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73507 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68629 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67117 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66746 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67686 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66673 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66689 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67804 us
+tri: 8 renders ok
+== run 2 r0818=0xff dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 2 r0818=0xff loop-1000: rc 0 wall 249 ms
+probe loop-1000: job time: 9639 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0xff loop-400000: rc 0 wall 293 ms
+probe loop-400000: job time: 61863 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0xff loop-1250000: rc 0 wall 275 ms
+probe loop-1250000: job time: 44490 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0818=0xff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+## case 2 r0818=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0818=0xf: set 0x0818=0xf reads 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+== run 2 r0818=0xf fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 694 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0818=0xf copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 636 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0818=0xf tri-64x64: rc 0 wall 265 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6152 us
+tri: 1 renders ok
+== run 2 r0818=0xf fill-1024x1024: rc 0 wall 689 ms
+job: ok
+job time: 2395 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0818=0xf copy-1024x1024: rc 0 wall 846 ms
+job: ok
+job time: 5227 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0818=0xf tri-1024x1024: rc 0 wall 1406 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1149491 us
+tri: 1 renders ok
+== run 2 r0818=0xf tri-2048x2048: rc 0 wall 4858 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4600575 us
+tri: 1 renders ok
+== run 2 r0818=0xf tri-256x256-n8: rc 0 wall 809 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73597 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69072 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66645 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66849 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67571 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67070 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67328 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67276 us
+tri: 8 renders ok
+== run 2 r0818=0xf dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 2 r0818=0xf loop-1000: rc 0 wall 251 ms
+probe loop-1000: job time: 9899 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0xf loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61721 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0xf loop-1250000: rc 0 wall 277 ms
+probe loop-1250000: job time: 44068 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0818=0xf: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+## case 2 r0818=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0818=0x1: set 0x0818=0x1 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+== run 2 r0818=0x1 fill-64x32: rc 0 wall 242 ms
+job: ok
+job time: 1000 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0818=0x1 copy-64x32: rc 0 wall 230 ms
+job: ok
+job time: 556 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0818=0x1 tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6124 us
+tri: 1 renders ok
+== run 2 r0818=0x1 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2330 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0818=0x1 copy-1024x1024: rc 0 wall 844 ms
+job: ok
+job time: 5058 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0818=0x1 tri-1024x1024: rc 0 wall 1402 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145283 us
+tri: 1 renders ok
+== run 2 r0818=0x1 tri-2048x2048: rc 0 wall 4864 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4608791 us
+tri: 1 renders ok
+== run 2 r0818=0x1 tri-256x256-n8: rc 0 wall 791 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73394 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69201 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67143 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66706 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66821 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66862 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66879 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66856 us
+tri: 8 renders ok
+== run 2 r0818=0x1 dummy-64: rc 0 wall 233 ms
+dummy: 64 jobs ok
+== run 2 r0818=0x1 loop-1000: rc 0 wall 244 ms
+probe loop-1000: job time: 9727 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0x1 loop-400000: rc 0 wall 293 ms
+probe loop-400000: job time: 61825 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0x1 loop-1250000: rc 0 wall 281 ms
+probe loop-1250000: job time: 44084 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0818=0x1: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+## case 2 r0818=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0818=0: set 0x0818=0x0 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+== run 2 r0818=0 fill-64x32: rc 0 wall 227 ms
+job: ok
+job time: 549 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0818=0 copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 672 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0818=0 tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6040 us
+tri: 1 renders ok
+== run 2 r0818=0 fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2405 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0818=0 copy-1024x1024: rc 0 wall 846 ms
+job: ok
+job time: 5220 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0818=0 tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1143486 us
+tri: 1 renders ok
+== run 2 r0818=0 tri-2048x2048: rc 0 wall 4845 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4591158 us
+tri: 1 renders ok
+== run 2 r0818=0 tri-256x256-n8: rc 0 wall 797 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73181 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68816 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66993 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 68433 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67143 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66950 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66925 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66962 us
+tri: 8 renders ok
+== run 2 r0818=0 dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 2 r0818=0 loop-1000: rc 0 wall 243 ms
+probe loop-1000: job time: 9628 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0 loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61718 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0818=0 loop-1250000: rc 0 wall 281 ms
+probe loop-1250000: job time: 44084 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0818=0: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+## case 2 r0818=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0810=0: set 0x0810=0x0 reads 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+== run 2 r0810=0 fill-64x32: rc 0 wall 230 ms
+job: ok
+job time: 588 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 r0810=0 copy-64x32: rc 0 wall 236 ms
+job: ok
+job time: 664 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 r0810=0 tri-64x64: rc 0 wall 263 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6134 us
+tri: 1 renders ok
+== run 2 r0810=0 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2462 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 r0810=0 copy-1024x1024: rc 0 wall 848 ms
+job: ok
+job time: 5114 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 r0810=0 tri-1024x1024: rc 0 wall 1404 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146285 us
+tri: 1 renders ok
+== run 2 r0810=0 tri-2048x2048: rc 0 wall 4950 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4688980 us
+tri: 1 renders ok
+== run 2 r0810=0 tri-256x256-n8: rc 0 wall 804 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73559 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68388 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67769 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66981 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66810 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66880 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67213 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66946 us
+tri: 8 renders ok
+== run 2 r0810=0 dummy-64: rc 0 wall 236 ms
+dummy: 64 jobs ok
+== run 2 r0810=0 loop-1000: rc 0 wall 253 ms
+probe loop-1000: job time: 9640 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 r0810=0 loop-400000: rc 0 wall 292 ms
+probe loop-400000: job time: 61830 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 r0810=0 loop-1250000: rc 0 wall 273 ms
+probe loop-1250000: job time: 44155 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 r0810=0: after the jobs 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+## case 2 r0810=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 2 all=0: set 0x0810=0x0 0x0814=0x0 0x0818=0x0 reads 0810=0x00000000 0814=0x00000000 0818=0x00000000
+== run 2 all=0 fill-64x32: rc 0 wall 231 ms
+job: ok
+job time: 671 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 2 all=0 copy-64x32: rc 0 wall 230 ms
+job: ok
+job time: 558 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 2 all=0 tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6088 us
+tri: 1 renders ok
+== run 2 all=0 fill-1024x1024: rc 0 wall 684 ms
+job: ok
+job time: 2485 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 2 all=0 copy-1024x1024: rc 0 wall 840 ms
+job: ok
+job time: 4995 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 2 all=0 tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147344 us
+tri: 1 renders ok
+== run 2 all=0 tri-2048x2048: rc 0 wall 4870 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4607696 us
+tri: 1 renders ok
+== run 2 all=0 tri-256x256-n8: rc 0 wall 801 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73086 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69010 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67136 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67187 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67213 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67222 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66990 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66878 us
+tri: 8 renders ok
+== run 2 all=0 dummy-64: rc 0 wall 238 ms
+dummy: 64 jobs ok
+== run 2 all=0 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9746 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 2 all=0 loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61723 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 2 all=0 loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 44055 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 2 all=0: after the jobs 0810=0x00000000 0814=0x00000000 0818=0x00000000
+## case 2 all=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 init: set 0x0810=0x1 0x0814=0xffff 0x0818=0x7ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+== run 3 init fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 538 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 init copy-64x32: rc 0 wall 237 ms
+job: ok
+job time: 665 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 init tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6057 us
+tri: 1 renders ok
+== run 3 init fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2458 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 init copy-1024x1024: rc 0 wall 843 ms
+job: ok
+job time: 5064 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 init tri-1024x1024: rc 0 wall 1403 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1144128 us
+tri: 1 renders ok
+== run 3 init tri-2048x2048: rc 0 wall 4837 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4581350 us
+tri: 1 renders ok
+== run 3 init tri-256x256-n8: rc 0 wall 792 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 74778 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 70545 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66740 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 65927 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66021 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 65645 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 65529 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66023 us
+tri: 8 renders ok
+== run 3 init dummy-64: rc 0 wall 240 ms
+dummy: 64 jobs ok
+== run 3 init loop-1000: rc 0 wall 257 ms
+probe loop-1000: job time: 9852 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 init loop-400000: rc 0 wall 312 ms
+probe loop-400000: job time: 61929 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 init loop-1250000: rc 0 wall 297 ms
+probe loop-1250000: job time: 44619 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 init: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 init: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0x1ffff: set 0x0814=0x1ffff reads 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+== run 3 r0814=0x1ffff fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 658 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0x1ffff copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 542 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0x1ffff tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6458 us
+tri: 1 renders ok
+== run 3 r0814=0x1ffff fill-1024x1024: rc 0 wall 686 ms
+job: ok
+job time: 2368 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0x1ffff copy-1024x1024: rc 0 wall 842 ms
+job: ok
+job time: 4908 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0x1ffff tri-1024x1024: rc 0 wall 1407 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1148072 us
+tri: 1 renders ok
+== run 3 r0814=0x1ffff tri-2048x2048: rc 0 wall 4837 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4579365 us
+tri: 1 renders ok
+== run 3 r0814=0x1ffff tri-256x256-n8: rc 0 wall 798 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73490 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68838 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66666 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66671 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67432 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66910 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66885 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66585 us
+tri: 8 renders ok
+== run 3 r0814=0x1ffff dummy-64: rc 0 wall 231 ms
+dummy: 64 jobs ok
+== run 3 r0814=0x1ffff loop-1000: rc 0 wall 239 ms
+probe loop-1000: job time: 9696 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x1ffff loop-400000: rc 0 wall 292 ms
+probe loop-400000: job time: 61736 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x1ffff loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 44080 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0x1ffff: after the jobs 0810=0x00000001 0814=0x0001ffff 0818=0x000007ff
+## case 3 r0814=0x1ffff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0x7fff: set 0x0814=0x7fff reads 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+== run 3 r0814=0x7fff fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 536 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0x7fff copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 570 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0x7fff tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6049 us
+tri: 1 renders ok
+== run 3 r0814=0x7fff fill-1024x1024: rc 0 wall 683 ms
+job: ok
+job time: 2375 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0x7fff copy-1024x1024: rc 0 wall 843 ms
+job: ok
+job time: 4983 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0x7fff tri-1024x1024: rc 0 wall 1417 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1167032 us
+tri: 1 renders ok
+== run 3 r0814=0x7fff tri-2048x2048: rc 0 wall 4861 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4601556 us
+tri: 1 renders ok
+== run 3 r0814=0x7fff tri-256x256-n8: rc 0 wall 804 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73600 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69260 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67488 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67305 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67303 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67597 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67119 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67815 us
+tri: 8 renders ok
+== run 3 r0814=0x7fff dummy-64: rc 0 wall 239 ms
+dummy: 64 jobs ok
+== run 3 r0814=0x7fff loop-1000: rc 0 wall 240 ms
+probe loop-1000: job time: 9654 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x7fff loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61824 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x7fff loop-1250000: rc 0 wall 273 ms
+probe loop-1250000: job time: 44050 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0x7fff: after the jobs 0810=0x00000001 0814=0x00007fff 0818=0x000007ff
+## case 3 r0814=0x7fff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0x3ff: set 0x0814=0x3ff reads 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+== run 3 r0814=0x3ff fill-64x32: rc 0 wall 227 ms
+job: ok
+job time: 725 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0x3ff copy-64x32: rc 0 wall 227 ms
+job: ok
+job time: 552 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0x3ff tri-64x64: rc 0 wall 252 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6026 us
+tri: 1 renders ok
+== run 3 r0814=0x3ff fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2474 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0x3ff copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5030 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0x3ff tri-1024x1024: rc 0 wall 1421 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1151786 us
+tri: 1 renders ok
+== run 3 r0814=0x3ff tri-2048x2048: rc 0 wall 4868 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4608874 us
+tri: 1 renders ok
+== run 3 r0814=0x3ff tri-256x256-n8: rc 0 wall 798 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73375 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69296 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66454 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66822 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66707 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 68264 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67237 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67381 us
+tri: 8 renders ok
+== run 3 r0814=0x3ff dummy-64: rc 0 wall 233 ms
+dummy: 64 jobs ok
+== run 3 r0814=0x3ff loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9652 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x3ff loop-400000: rc 0 wall 292 ms
+probe loop-400000: job time: 61693 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x3ff loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44049 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0x3ff: after the jobs 0810=0x00000001 0814=0x000003ff 0818=0x000007ff
+## case 3 r0814=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0xff: set 0x0814=0xff reads 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+== run 3 r0814=0xff fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 675 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0xff copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 644 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0xff tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6025 us
+tri: 1 renders ok
+== run 3 r0814=0xff fill-1024x1024: rc 0 wall 685 ms
+job: ok
+job time: 2397 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0xff copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5137 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0xff tri-1024x1024: rc 0 wall 1398 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1145289 us
+tri: 1 renders ok
+== run 3 r0814=0xff tri-2048x2048: rc 0 wall 4843 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4585614 us
+tri: 1 renders ok
+== run 3 r0814=0xff tri-256x256-n8: rc 0 wall 800 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73515 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68623 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67352 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66830 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67803 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67227 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66524 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67365 us
+tri: 8 renders ok
+== run 3 r0814=0xff dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 3 r0814=0xff loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9629 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0xff loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61792 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0xff loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44084 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0xff: after the jobs 0810=0x00000001 0814=0x000000ff 0818=0x000007ff
+## case 3 r0814=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0xf: set 0x0814=0xf reads 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+== run 3 r0814=0xf fill-64x32: rc 0 wall 226 ms
+job: ok
+job time: 552 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0xf copy-64x32: rc 0 wall 227 ms
+job: ok
+job time: 563 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0xf tri-64x64: rc 0 wall 254 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6130 us
+tri: 1 renders ok
+== run 3 r0814=0xf fill-1024x1024: rc 0 wall 680 ms
+job: ok
+job time: 2416 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0xf copy-1024x1024: rc 0 wall 843 ms
+job: ok
+job time: 4943 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0xf tri-1024x1024: rc 0 wall 1399 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146115 us
+tri: 1 renders ok
+== run 3 r0814=0xf tri-2048x2048: rc 0 wall 4831 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4579385 us
+tri: 1 renders ok
+== run 3 r0814=0xf tri-256x256-n8: rc 0 wall 799 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73454 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68828 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67389 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67348 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67518 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67501 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67361 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67621 us
+tri: 8 renders ok
+== run 3 r0814=0xf dummy-64: rc 0 wall 235 ms
+dummy: 64 jobs ok
+== run 3 r0814=0xf loop-1000: rc 0 wall 244 ms
+probe loop-1000: job time: 9659 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0xf loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61723 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0xf loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 44088 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0xf: after the jobs 0810=0x00000001 0814=0x0000000f 0818=0x000007ff
+## case 3 r0814=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0x1: set 0x0814=0x1 reads 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+== run 3 r0814=0x1 fill-64x32: rc 0 wall 233 ms
+job: ok
+job time: 636 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0x1 copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 566 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0x1 tri-64x64: rc 0 wall 256 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6059 us
+tri: 1 renders ok
+== run 3 r0814=0x1 fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2443 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0x1 copy-1024x1024: rc 0 wall 842 ms
+job: ok
+job time: 5373 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0x1 tri-1024x1024: rc 0 wall 1394 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1144647 us
+tri: 1 renders ok
+== run 3 r0814=0x1 tri-2048x2048: rc 0 wall 4845 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4590711 us
+tri: 1 renders ok
+== run 3 r0814=0x1 tri-256x256-n8: rc 0 wall 796 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73636 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69258 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66688 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66558 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66704 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66625 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66714 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66596 us
+tri: 8 renders ok
+== run 3 r0814=0x1 dummy-64: rc 0 wall 238 ms
+dummy: 64 jobs ok
+== run 3 r0814=0x1 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9866 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x1 loop-400000: rc 0 wall 293 ms
+probe loop-400000: job time: 61726 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0x1 loop-1250000: rc 0 wall 271 ms
+probe loop-1250000: job time: 44043 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0x1: after the jobs 0810=0x00000001 0814=0x00000001 0818=0x000007ff
+## case 3 r0814=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0814=0: set 0x0814=0x0 reads 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+== run 3 r0814=0 fill-64x32: rc 0 wall 237 ms
+job: ok
+job time: 570 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0814=0 copy-64x32: rc 0 wall 231 ms
+job: ok
+job time: 590 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0814=0 tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6088 us
+tri: 1 renders ok
+== run 3 r0814=0 fill-1024x1024: rc 0 wall 681 ms
+job: ok
+job time: 2375 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0814=0 copy-1024x1024: rc 0 wall 851 ms
+job: ok
+job time: 5216 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0814=0 tri-1024x1024: rc 0 wall 1401 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1148427 us
+tri: 1 renders ok
+== run 3 r0814=0 tri-2048x2048: rc 0 wall 4833 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4573393 us
+tri: 1 renders ok
+== run 3 r0814=0 tri-256x256-n8: rc 0 wall 804 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73860 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69278 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66985 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67069 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 69962 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67040 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67052 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66968 us
+tri: 8 renders ok
+== run 3 r0814=0 dummy-64: rc 0 wall 237 ms
+dummy: 64 jobs ok
+== run 3 r0814=0 loop-1000: rc 0 wall 240 ms
+probe loop-1000: job time: 9654 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0 loop-400000: rc 0 wall 291 ms
+probe loop-400000: job time: 61626 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0814=0 loop-1250000: rc 0 wall 292 ms
+probe loop-1250000: job time: 44294 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0814=0: after the jobs 0810=0x00000001 0814=0x00000000 0818=0x000007ff
+## case 3 r0814=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0818=0x3ff: set 0x0818=0x3ff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+== run 3 r0818=0x3ff fill-64x32: rc 0 wall 231 ms
+job: ok
+job time: 563 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0818=0x3ff copy-64x32: rc 0 wall 233 ms
+job: ok
+job time: 541 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0818=0x3ff tri-64x64: rc 0 wall 260 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6048 us
+tri: 1 renders ok
+== run 3 r0818=0x3ff fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2553 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0818=0x3ff copy-1024x1024: rc 0 wall 847 ms
+job: ok
+job time: 5094 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0818=0x3ff tri-1024x1024: rc 1 wall 1422 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0xa23e388e56c32f85
+diff: 1038886 of 1048576 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 1024x1024 #1: 1167300 us
+tri: FAILED after 0 renders
+== run 3 r0818=0x3ff tri-2048x2048: rc 1 wall 4879 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x5f8664b941192f85
+diff: 4184614 of 4194304 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 2048x2048 #1: 4620813 us
+tri: FAILED after 0 renders
+== run 3 r0818=0x3ff tri-256x256-n8: rc 1 wall 332 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0xf4eb177bd41eaf85
+diff: 59427 of 65536 pixels, first (96, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+tri 256x256 #1: 74186 us
+tri: FAILED after 0 renders
+== run 3 r0818=0x3ff dummy-64: rc 0 wall 239 ms
+dummy: 64 jobs ok
+== run 3 r0818=0x3ff loop-1000: rc 0 wall 242 ms
+probe loop-1000: job time: 9665 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0x3ff loop-400000: rc 0 wall 295 ms
+probe loop-400000: job time: 61686 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0x3ff loop-1250000: rc 0 wall 279 ms
+probe loop-1250000: job time: 43990 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0818=0x3ff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000003ff
+## case 3 r0818=0x3ff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0818=0xff: set 0x0818=0xff reads 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+== run 3 r0818=0xff fill-64x32: rc 0 wall 232 ms
+job: ok
+job time: 552 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0818=0xff copy-64x32: rc 0 wall 229 ms
+job: ok
+job time: 732 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0818=0xff tri-64x64: rc 0 wall 256 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6046 us
+tri: 1 renders ok
+== run 3 r0818=0xff fill-1024x1024: rc 0 wall 685 ms
+job: ok
+job time: 2389 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0818=0xff copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5074 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0818=0xff tri-1024x1024: rc 0 wall 1402 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1149854 us
+tri: 1 renders ok
+== run 3 r0818=0xff tri-2048x2048: rc 0 wall 4836 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4584333 us
+tri: 1 renders ok
+== run 3 r0818=0xff tri-256x256-n8: rc 0 wall 801 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73999 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69020 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67515 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67962 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66961 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66955 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66957 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67294 us
+tri: 8 renders ok
+== run 3 r0818=0xff dummy-64: rc 0 wall 239 ms
+dummy: 64 jobs ok
+== run 3 r0818=0xff loop-1000: rc 0 wall 252 ms
+probe loop-1000: job time: 9745 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0xff loop-400000: rc 0 wall 297 ms
+probe loop-400000: job time: 61710 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0xff loop-1250000: rc 0 wall 277 ms
+probe loop-1250000: job time: 44188 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0818=0xff: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x000000ff
+## case 3 r0818=0xff: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0818=0xf: set 0x0818=0xf reads 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+== run 3 r0818=0xf fill-64x32: rc 0 wall 231 ms
+job: ok
+job time: 653 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0818=0xf copy-64x32: rc 0 wall 236 ms
+job: ok
+job time: 631 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0818=0xf tri-64x64: rc 0 wall 258 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6507 us
+tri: 1 renders ok
+== run 3 r0818=0xf fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2421 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0818=0xf copy-1024x1024: rc 0 wall 847 ms
+job: ok
+job time: 5218 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0818=0xf tri-1024x1024: rc 0 wall 1398 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146618 us
+tri: 1 renders ok
+== run 3 r0818=0xf tri-2048x2048: rc 0 wall 4857 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4604094 us
+tri: 1 renders ok
+== run 3 r0818=0xf tri-256x256-n8: rc 0 wall 808 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73215 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69717 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67529 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67320 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67392 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 68085 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67131 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66967 us
+tri: 8 renders ok
+== run 3 r0818=0xf dummy-64: rc 0 wall 236 ms
+dummy: 64 jobs ok
+== run 3 r0818=0xf loop-1000: rc 0 wall 243 ms
+probe loop-1000: job time: 9673 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0xf loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61681 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0xf loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44128 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0818=0xf: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x0000000f
+## case 3 r0818=0xf: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0818=0x1: set 0x0818=0x1 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+== run 3 r0818=0x1 fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 547 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0818=0x1 copy-64x32: rc 0 wall 234 ms
+job: ok
+job time: 596 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0818=0x1 tri-64x64: rc 0 wall 259 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6133 us
+tri: 1 renders ok
+== run 3 r0818=0x1 fill-1024x1024: rc 0 wall 677 ms
+job: ok
+job time: 2396 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0818=0x1 copy-1024x1024: rc 0 wall 841 ms
+job: ok
+job time: 5116 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0818=0x1 tri-1024x1024: rc 0 wall 1401 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1147521 us
+tri: 1 renders ok
+== run 3 r0818=0x1 tri-2048x2048: rc 0 wall 4895 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4628960 us
+tri: 1 renders ok
+== run 3 r0818=0x1 tri-256x256-n8: rc 0 wall 796 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73580 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68709 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66939 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67165 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67200 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66813 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 66836 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67110 us
+tri: 8 renders ok
+== run 3 r0818=0x1 dummy-64: rc 0 wall 233 ms
+dummy: 64 jobs ok
+== run 3 r0818=0x1 loop-1000: rc 0 wall 241 ms
+probe loop-1000: job time: 9620 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0x1 loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61711 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0x1 loop-1250000: rc 0 wall 274 ms
+probe loop-1250000: job time: 44070 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0818=0x1: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000001
+## case 3 r0818=0x1: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0818=0: set 0x0818=0x0 reads 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+== run 3 r0818=0 fill-64x32: rc 0 wall 230 ms
+job: ok
+job time: 571 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0818=0 copy-64x32: rc 0 wall 228 ms
+job: ok
+job time: 553 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0818=0 tri-64x64: rc 0 wall 257 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6086 us
+tri: 1 renders ok
+== run 3 r0818=0 fill-1024x1024: rc 0 wall 679 ms
+job: ok
+job time: 2438 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0818=0 copy-1024x1024: rc 0 wall 846 ms
+job: ok
+job time: 5016 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0818=0 tri-1024x1024: rc 0 wall 1410 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1156815 us
+tri: 1 renders ok
+== run 3 r0818=0 tri-2048x2048: rc 0 wall 4842 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4583397 us
+tri: 1 renders ok
+== run 3 r0818=0 tri-256x256-n8: rc 0 wall 804 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73738 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 69227 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67712 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67856 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 67339 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67338 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 68144 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67263 us
+tri: 8 renders ok
+== run 3 r0818=0 dummy-64: rc 0 wall 236 ms
+dummy: 64 jobs ok
+== run 3 r0818=0 loop-1000: rc 0 wall 245 ms
+probe loop-1000: job time: 9690 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0 loop-400000: rc 0 wall 299 ms
+probe loop-400000: job time: 61822 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0818=0 loop-1250000: rc 0 wall 278 ms
+probe loop-1250000: job time: 44068 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0818=0: after the jobs 0810=0x00000001 0814=0x0000ffff 0818=0x00000000
+## case 3 r0818=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0810=0: set 0x0810=0x0 reads 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+== run 3 r0810=0 fill-64x32: rc 0 wall 226 ms
+job: ok
+job time: 571 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 r0810=0 copy-64x32: rc 0 wall 227 ms
+job: ok
+job time: 564 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 r0810=0 tri-64x64: rc 0 wall 255 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6116 us
+tri: 1 renders ok
+== run 3 r0810=0 fill-1024x1024: rc 0 wall 684 ms
+job: ok
+job time: 2375 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 r0810=0 copy-1024x1024: rc 0 wall 844 ms
+job: ok
+job time: 5039 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 r0810=0 tri-1024x1024: rc 0 wall 1405 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1152405 us
+tri: 1 renders ok
+== run 3 r0810=0 tri-2048x2048: rc 0 wall 4841 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4585354 us
+tri: 1 renders ok
+== run 3 r0810=0 tri-256x256-n8: rc 0 wall 793 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73505 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68920 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 67015 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 66910 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66810 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 66959 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67176 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 67025 us
+tri: 8 renders ok
+== run 3 r0810=0 dummy-64: rc 0 wall 233 ms
+dummy: 64 jobs ok
+== run 3 r0810=0 loop-1000: rc 0 wall 244 ms
+probe loop-1000: job time: 9665 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 r0810=0 loop-400000: rc 0 wall 296 ms
+probe loop-400000: job time: 61719 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 r0810=0 loop-1250000: rc 0 wall 276 ms
+probe loop-1250000: job time: 44041 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 r0810=0: after the jobs 0810=0x00000000 0814=0x0000ffff 0818=0x000007ff
+## case 3 r0810=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## case 3 all=0: set 0x0810=0x0 0x0814=0x0 0x0818=0x0 reads 0810=0x00000000 0814=0x00000000 0818=0x00000000
+== run 3 all=0 fill-64x32: rc 0 wall 229 ms
+job: ok
+job time: 574 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 3 all=0 copy-64x32: rc 0 wall 232 ms
+job: ok
+job time: 662 us
+target: 64x32 hash 0x9b1c0be484ac0d25
+diff: 0 of 2048 pixels
+outside: 0 dwords
+copy: ok, 64x32 from (0, 0) to (0, 0)
+== run 3 all=0 tri-64x64: rc 0 wall 256 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 5917 us
+tri: 1 renders ok
+== run 3 all=0 fill-1024x1024: rc 0 wall 680 ms
+job: ok
+job time: 2394 us
+target: 1024x1024 hash 0xe267631457822325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+fill: ok, 1024x1024 at (0, 0), stride 4096, colour 0xff336699
+== run 3 all=0 copy-1024x1024: rc 0 wall 845 ms
+job: ok
+job time: 4933 us
+target: 1024x1024 hash 0xd0e5f337dca22325
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+copy: ok, 1024x1024 from (0, 0) to (0, 0)
+== run 3 all=0 tri-1024x1024: rc 0 wall 1421 ms
+tri: render context for targets up to 1024x1024
+job: ok
+target: 1024x1024 hash 0x5ccd4bcb79455725
+diff: 0 of 1048576 pixels
+outside: 0 dwords
+tri 1024x1024 #1: 1146174 us
+tri: 1 renders ok
+== run 3 all=0 tri-2048x2048: rc 0 wall 4844 ms
+tri: render context for targets up to 2048x2048
+job: ok
+target: 2048x2048 hash 0x94d72dfdf573ab25
+diff: 0 of 4194304 pixels
+outside: 0 dwords
+tri 2048x2048 #1: 4585036 us
+tri: 1 renders ok
+== run 3 all=0 tri-256x256-n8: rc 0 wall 803 ms
+tri: render context for targets up to 256x256
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #1: 73444 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #2: 68958 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #3: 66900 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #4: 67134 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #5: 66720 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #6: 67108 us
+job: ok
+target: 256x256 hash 0x6f2fbd77531efe25
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #7: 67186 us
+job: ok
+target: 256x256 hash 0x63489f5be58d26d5
+diff: 0 of 65536 pixels
+outside: 0 dwords
+tri 256x256 #8: 66693 us
+tri: 8 renders ok
+== run 3 all=0 dummy-64: rc 0 wall 231 ms
+dummy: 64 jobs ok
+== run 3 all=0 loop-1000: rc 0 wall 236 ms
+probe loop-1000: job time: 9601 us
+probe loop-1000: o0 0x00000000 (2048 of 2048)
+== run 3 all=0 loop-400000: rc 0 wall 294 ms
+probe loop-400000: job time: 61797 us
+probe loop-400000: o0 0x00000000 (2048 of 2048)
+== run 3 all=0 loop-1250000: rc 0 wall 277 ms
+probe loop-1250000: job time: 44017 us
+probe loop-1250000: o0 0x00000000 (2048 of 2048)
+## case 3 all=0: after the jobs 0810=0x00000000 0814=0x00000000 0818=0x00000000
+## case 3 all=0: restored 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+## reset
+before the reset: 0810=0x00000000 0814=0x000003ff 0818=0x000000ff
+reset: ret 0
+after the reset: 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
+== run 0 after-reset fill-64x32: rc 0 wall 228 ms
+job: ok
+job time: 630 us
+target: 64x32 hash 0xb60c6095080bd325
+diff: 0 of 2048 pixels
+outside: 0 dwords
+fill: ok, 64x32 at (0, 0), stride 256, colour 0xff336699
+== run 0 after-reset tri-64x64: rc 0 wall 264 ms
+tri: render context for targets up to 64x64
+job: ok
+target: 64x64 hash 0x99385a04ee01c585
+diff: 0 of 4096 pixels
+outside: 0 dwords
+tri 64x64 #1: 6123 us
+tri: 1 renders ok
+## end: 0810=0x00000001 0814=0x0000ffff 0818=0x000007ff
