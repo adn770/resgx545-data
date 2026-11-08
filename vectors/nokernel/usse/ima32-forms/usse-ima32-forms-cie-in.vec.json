@@ -1,0 +1,3277 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/ima32-forms/usse-ima32-forms-cie-in/raw.txt",
+  "raw_sha256": "2f28ce9757f86f91f0c8d08469e14316a8677b3df899e31ca6169b5375be103b",
+  "converted": "2026-11-08T19:57:32+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-ima32-forms-cie-in__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a10000",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00010000",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00010000",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 0,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00010000",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca2000000a00000",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x80000000",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x80000000",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 1,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x80000000",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca3f1f000bffffe",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0xfffffffe",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0xfffffffe",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 2,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0xfffffffe",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a10001",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00010001",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00010001",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 3,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00010001",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca2000000a00001",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x80000001",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x80000001",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 4,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x80000001",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00002",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000002",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000002",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 5,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000002",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca150a000b55554",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x55555554",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x55555554",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 6,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x55555554",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca2a15000aaaaab",
+     "0xfca0000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000040001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0xaaaaaaab",
+     "r6": "0x00000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0xaaaaaaab",
+     "0x034": "0x00000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 7,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i0",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0xaaaaaaab",
+     "F": "0x00000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c10000",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00010000",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00010000",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 8,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00010000",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca2000000c00000",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x80000000",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x80000000",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 9,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x80000000",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca3f1f000dffffe",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0xfffffffe",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0xfffffffe",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 10,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0xfffffffe",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__11",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c10001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00010001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00010001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 11,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00010001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__12",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca2000000c00001",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x80000001",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x80000001",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 12,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x80000001",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__13",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00002",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000002",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000002",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 13,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000002",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__14",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca150a000d55554",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x55555554",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x55555554",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 14,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x55555554",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__15",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca2a15000caaaab",
+     "0xfca0000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000080001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0xaaaaaaab",
+     "r7": "0x00000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0xaaaaaaab",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 15,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i1",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0xaaaaaaab",
+     "G": "0x00000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__16",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca0000000e10000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x00010000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x00010000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 16,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x00010000"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__17",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca2000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x80000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x80000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 17,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x80000000"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__18",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca3f1f000fffffe",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0xfffffffe",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0xfffffffe",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 18,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0xfffffffe"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__19",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca0000000e10001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x00010001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x00010001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 19,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x00010001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__20",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca2000000e00001",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x80000001",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x80000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 20,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x80000001"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__21",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca0000000e00002",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x00000002",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x00000002",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 21,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x00000002"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__22",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca150a000f55554",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0x55555554",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0x55555554",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 22,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0x55555554"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  },
+  {
+   "id": "usse-ima32-forms-cie-in__23",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00001",
+     "0xfca0000000c00001",
+     "0xfca2a15000eaaaab",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd0000c0001404103",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000001",
+     "r6": "0x00000001",
+     "r7": "0xaaaaaaab",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x0000007a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x0000007a",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000001",
+     "0x038": "0xaaaaaaab",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-ima32-forms-cie-in",
+    "case": 23,
+    "table": "ima32-forms.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\nima32.u r10, r1, r2, r3, cie, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000001",
+     "F": "0x00000001",
+     "G": "0xaaaaaaab"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.u r10, r1, r2, r3, cie, iK for K = 0, 1, 2 and iK = 0x10000, 0x80000000, 0xfffffffe, 0x10001, 0x80000001, 2, 0x55555554, 0xaaaaaaab, the other two i registers 1: what does the carry in add (E470 measured iN of 0, 1, 2, 0xffff, 0xffffffff in i0 only: bit 0 of iN)"
+   }
+  }
+ ],
+ "orphans": []
+}

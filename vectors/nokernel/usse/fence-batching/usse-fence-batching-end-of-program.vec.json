@@ -1,0 +1,548 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fence-batching/usse-fence-batching-end-of-program/raw.txt",
+  "raw_sha256": "c8868ab947bd22ca249e4f2cb67a03618ac6f8ac9fc96ff464f86226cc1d7ff5",
+  "converted": "2026-11-08T19:57:30+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fence-batching-end-of-program__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 0,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3",
+     "END": ""
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf820000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 1,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3",
+     "END": "idf drc0, bif"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 2,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3",
+     "END": "wdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 3,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf800014000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 4,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3",
+     "END": "nop"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf022000080004083",
+     "0xf022000080004103",
+     "0xf022000080004183",
+     "0xf022000080004203",
+     "0xf022000080004283",
+     "0xf022000080004303",
+     "0xf022000080004383",
+     "0xf022000080004403",
+     "0xf022000080004483",
+     "0xf022000080004503",
+     "0xf022000080004583",
+     "0xf022000080004603",
+     "0xf022000080004683",
+     "0xf022000080004703",
+     "0xf022000080004783",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x004": "0x5107e001",
+     "0x008": "0x5107e001",
+     "0x00c": "0x5107e001",
+     "0x010": "0x5107e001",
+     "0x014": "0x5107e001",
+     "0x018": "0x5107e001",
+     "0x01c": "0x5107e001",
+     "0x020": "0x5107e001",
+     "0x024": "0x5107e001",
+     "0x028": "0x5107e001",
+     "0x02c": "0x5107e001",
+     "0x030": "0x5107e001",
+     "0x034": "0x5107e001",
+     "0x038": "0x5107e001",
+     "0x03c": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 5,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3\nstad [r1,+#1], r3\nstad [r1,+#2], r3\nstad [r1,+#3], r3\nstad [r1,+#4], r3\nstad [r1,+#5], r3\nstad [r1,+#6], r3\nstad [r1,+#7], r3\nstad [r1,+#8], r3\nstad [r1,+#9], r3\nstad [r1,+#10], r3\nstad [r1,+#11], r3\nstad [r1,+#12], r3\nstad [r1,+#13], r3\nstad [r1,+#14], r3\nstad [r1,+#15], r3",
+     "END": ""
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  },
+  {
+   "id": "usse-fence-batching-end-of-program__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca140800067e001",
+     "0xf022000080004003",
+     "0xf022000080004083",
+     "0xf022000080004103",
+     "0xf022000080004183",
+     "0xf022000080004203",
+     "0xf022000080004283",
+     "0xf022000080004303",
+     "0xf022000080004383",
+     "0xf022000080004403",
+     "0xf022000080004483",
+     "0xf022000080004503",
+     "0xf022000080004583",
+     "0xf022000080004603",
+     "0xf022000080004683",
+     "0xf022000080004703",
+     "0xf022000080004783",
+     "0xf820000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r3": "0x5107e001"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x004": "0x5107e001",
+     "0x008": "0x5107e001",
+     "0x00c": "0x5107e001",
+     "0x010": "0x5107e001",
+     "0x014": "0x5107e001",
+     "0x018": "0x5107e001",
+     "0x01c": "0x5107e001",
+     "0x020": "0x5107e001",
+     "0x024": "0x5107e001",
+     "0x028": "0x5107e001",
+     "0x02c": "0x5107e001",
+     "0x030": "0x5107e001",
+     "0x034": "0x5107e001",
+     "0x038": "0x5107e001",
+     "0x03c": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-end-of-program",
+    "case": 6,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r3, #0x5107E001",
+     "OP": "",
+     "POST": "stad [r1,+#0], r3\nstad [r1,+#1], r3\nstad [r1,+#2], r3\nstad [r1,+#3], r3\nstad [r1,+#4], r3\nstad [r1,+#5], r3\nstad [r1,+#6], r3\nstad [r1,+#7], r3\nstad [r1,+#8], r3\nstad [r1,+#9], r3\nstad [r1,+#10], r3\nstad [r1,+#11], r3\nstad [r1,+#12], r3\nstad [r1,+#13], r3\nstad [r1,+#14], r3\nstad [r1,+#15], r3",
+     "END": "idf drc0, bif"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stores before a program that ends with no idf, with idf only, with wdf only: what the host reads"
+   }
+  }
+ ],
+ "orphans": []
+}

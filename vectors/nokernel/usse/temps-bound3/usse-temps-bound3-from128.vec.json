@@ -1,0 +1,141 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/temps-bound3/usse-temps-bound3-from128/raw.txt",
+  "raw_sha256": "c8697ec030e27db31849f19d7e0904f1c51f2f8a97d87a87f48fdc248a11ccd5",
+  "converted": "2026-11-08T19:57:53+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-temps-bound3-from128__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44003000000002",
+     "0xf804014000000000",
+     "0xfca17050002f0000",
+     "0xfca1f1200f77007b",
+     "0x2881100020403d80",
+     "0xf022000080004002",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2881100120000100",
+     "0xfa4c070000000000"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 128,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x7e57007b",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x7e57007b"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-temps-bound3-from128",
+    "case": 0,
+    "table": "temps-bound3.toml",
+    "template": "temps_phas.s",
+    "template_sha256": "5bdf553e66a73e828f2a91ccc250857e7196798890e82cc69f7efcc560526a9c",
+    "inputs": {
+     "T": "192",
+     "HI": "123",
+     "MARK": "0x7E57007B"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "128"
+    ],
+    "question": "a two-phase fill started with 128 temporaries whose phas asks for 192 and 196 for phase 1"
+   }
+  },
+  {
+   "id": "usse-temps-bound3-from128__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44003100000002",
+     "0xf804014000000000",
+     "0xfca17050002f0000",
+     "0xfca1f1200f77007b",
+     "0x2881100020403d80",
+     "0xf022000080004002",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2881100120000100",
+     "0xfa4c070000000000"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 128,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": "job hung, context lost (Connection timed out)",
+    "o0": null,
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-temps-bound3-from128",
+    "case": 1,
+    "table": "temps-bound3.toml",
+    "template": "temps_phas.s",
+    "template_sha256": "5bdf553e66a73e828f2a91ccc250857e7196798890e82cc69f7efcc560526a9c",
+    "inputs": {
+     "T": "196",
+     "HI": "123",
+     "MARK": "0x7E57007B"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "128"
+    ],
+    "question": "a two-phase fill started with 128 temporaries whose phas asks for 192 and 196 for phase 1"
+   }
+  }
+ ],
+ "orphans": []
+}

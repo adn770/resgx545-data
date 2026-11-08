@@ -1,0 +1,1681 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/raw25/usse-raw25-ima32-x/raw.txt",
+  "raw_sha256": "897d8345e3da2e25e77b977f80c0df20d26ee4747c769879bc2dddc684967fde",
+  "converted": "2026-11-08T19:57:44+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-raw25-ima32-x__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000007001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 0,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000007001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca3f1f0007fffff",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000007001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0xffffffff",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0xffffffff",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 1,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000007001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0xffffffff",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400001",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000007001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000001",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000001",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 2,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000007001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0x00000001",
+     "C": "0x00000001",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000001001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 3,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000001001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca3f1f0007fffff",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000001001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0xffffffff",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0xffffffff",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 4,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000001001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0xffffffff",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400001",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000001001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000001",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000001",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 5,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000001001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0x00000001",
+     "C": "0x00000001",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000002001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 6,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000002001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca3f1f0007fffff",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000002001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0xffffffff",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0xffffffff",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 7,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000002001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0xffffffff",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400001",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000002001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000001",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000001",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 8,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000002001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0x00000001",
+     "C": "0x00000001",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200003",
+     "0xfca0000000400007",
+     "0xfca0000000600064",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000003001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000003",
+     "r2": "0x00000007",
+     "r3": "0x00000064",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000079",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000079",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000003",
+     "0x024": "0x00000007",
+     "0x028": "0x00000064",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 9,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000003001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0x00000003",
+     "B": "0x00000007",
+     "C": "0x00000064",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca3f1f0007fffff",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000003001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0xffffffff",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0xffffffff",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 10,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000003001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0xffffffff",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  },
+  {
+   "id": "usse-raw25-ima32-x__11",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400001",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00055",
+     "0xfca0000000c00066",
+     "0xfca0000000e00077",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x280110002f800280",
+     "0x280110002fa00300",
+     "0x280110002fc00380",
+     "0xd000003001404103",
+     "0x2801100021603e00",
+     "0x2801100021803e80",
+     "0x2801100021a03f00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000001",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000055",
+     "r6": "0x00000066",
+     "r7": "0x00000077",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000055",
+     "0x008": "0x00000066",
+     "0x00c": "0x00000077",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000001",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000055",
+     "0x034": "0x00000066",
+     "0x038": "0x00000077",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-raw25-ima32-x",
+    "case": 11,
+    "table": "raw25.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "OP": "mov i0, r5\nmov i1, r6\nmov i2, r7\n.long 0xD000003001404103\nmov r11, i0\nmov r12, i1\nmov r13, i2",
+     "A": "0xffffffff",
+     "B": "0x00000001",
+     "C": "0x00000001",
+     "E": "0x00000055",
+     "F": "0x00000066",
+     "G": "0x00000077"
+    },
+    "params": {
+     "OUT": "r10",
+     "D": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "raw ima32.u words with the extra operand field enc[38] and enc[37:36] set outside what the assembler writes (enc[38] with i3, and enc[37:36] = 1, 2, 3 with enc[38] clear): r10 = the result, r11-r13 = i0-i2 (preset 0x55, 0x66, 0x77) after"
+   }
+  }
+ ],
+ "orphans": []
+}

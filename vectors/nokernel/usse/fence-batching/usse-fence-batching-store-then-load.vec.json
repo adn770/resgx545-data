@@ -1,0 +1,991 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fence-batching/usse-fence-batching-store-then-load/raw.txt",
+  "raw_sha256": "bda0889ac9144eb63c707138b5d3de6d5897b8ba6d46b35ee4def211fb8c02db",
+  "converted": "2026-11-08T19:57:30+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fence-batching-store-then-load__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe8230000a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 0,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nldad r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0xe8230000a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 1,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nidf drc0, bif\nwdf drc0\nldad r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe82b0002a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 2,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nldad.bypassl1 r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe82b0000a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 3,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nldad.fcfill r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe840000001411405",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 4,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\neldd r10, [r40, r4, #0], r5, drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe8230000a14a0080",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xd0000801",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 5,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nldad r10, [r40,+#1], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xf820000100000000",
+     "0xf920000100000000",
+     "0xe8230001a14a0000",
+     "0xf920000100000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 6,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nidf drc1, bif\nwdf drc1\nldad r10, [r40,+#0], drc1\nwdf drc1",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xe8230001a14a0000",
+     "0xf920000100000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 7,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nldad r10, [r40,+#0], drc1\nwdf drc1",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xf0220000800a0006",
+     "0xe8230000a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e002",
+     "0x2000": "0x5107e002"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 8,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nstad [r40,+#0], r6\nldad r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xf0220000800a0083",
+     "0xf0220000800a0103",
+     "0xf0220000800a0183",
+     "0xf0220000800a0203",
+     "0xf0220000800a0283",
+     "0xf0220000800a0303",
+     "0xf0220000800a0383",
+     "0xf0220000800a0403",
+     "0xf0220000800a0483",
+     "0xf0220000800a0503",
+     "0xf0220000800a0583",
+     "0xf0220000800a0603",
+     "0xf0220000800a0683",
+     "0xf0220000800a0703",
+     "0xf0220000800a0786",
+     "0xe8230000a14a0780",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e002",
+     "0x2000": "0x5107e001",
+     "0x2004": "0x5107e001",
+     "0x2008": "0x5107e001",
+     "0x200c": "0x5107e001",
+     "0x2010": "0x5107e001",
+     "0x2014": "0x5107e001",
+     "0x2018": "0x5107e001",
+     "0x201c": "0x5107e001",
+     "0x2020": "0x5107e001",
+     "0x2024": "0x5107e001",
+     "0x2028": "0x5107e001",
+     "0x202c": "0x5107e001",
+     "0x2030": "0x5107e001",
+     "0x2034": "0x5107e001",
+     "0x2038": "0x5107e001",
+     "0x203c": "0x5107e002"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 9,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nstad [r40,+#1], r3\nstad [r40,+#2], r3\nstad [r40,+#3], r3\nstad [r40,+#4], r3\nstad [r40,+#5], r3\nstad [r40,+#6], r3\nstad [r40,+#7], r3\nstad [r40,+#8], r3\nstad [r40,+#9], r3\nstad [r40,+#10], r3\nstad [r40,+#11], r3\nstad [r40,+#12], r3\nstad [r40,+#13], r3\nstad [r40,+#14], r3\nstad [r40,+#15], r6\nldad r10, [r40,+#15], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  },
+  {
+   "id": "usse-fence-batching-store-then-load__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f2000",
+     "0xfca140800067e001",
+     "0xfca1408000c7e002",
+     "0xfca2a1200155000a",
+     "0xfca0000000800000",
+     "0xfca0000000a00008",
+     "0xf0220000800a0003",
+     "0xf0220000800a0083",
+     "0xf0220000800a0103",
+     "0xf0220000800a0183",
+     "0xf0220000800a0203",
+     "0xf0220000800a0283",
+     "0xf0220000800a0303",
+     "0xf0220000800a0383",
+     "0xf0220000800a0403",
+     "0xf0220000800a0483",
+     "0xf0220000800a0503",
+     "0xf0220000800a0583",
+     "0xf0220000800a0603",
+     "0xf0220000800a0683",
+     "0xf0220000800a0703",
+     "0xf0220000800a0786",
+     "0xe8230000a14a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf2000",
+     "r3": "0x5107e001",
+     "r6": "0x5107e002",
+     "r10": "0xaa55000a",
+     "r4": "0x00000000",
+     "r5": "0x00000008"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x5107e001",
+     "0x2000": "0x5107e001",
+     "0x2004": "0x5107e001",
+     "0x2008": "0x5107e001",
+     "0x200c": "0x5107e001",
+     "0x2010": "0x5107e001",
+     "0x2014": "0x5107e001",
+     "0x2018": "0x5107e001",
+     "0x201c": "0x5107e001",
+     "0x2020": "0x5107e001",
+     "0x2024": "0x5107e001",
+     "0x2028": "0x5107e001",
+     "0x202c": "0x5107e001",
+     "0x2030": "0x5107e001",
+     "0x2034": "0x5107e001",
+     "0x2038": "0x5107e001",
+     "0x203c": "0x5107e002"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-store-then-load",
+    "case": 10,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF2000\nmov.skipinv r3, #0x5107E001\nmov.skipinv r6, #0x5107E002\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r4, #0\nmov.skipinv r5, #8",
+     "OP": "stad [r40,+#0], r3\nstad [r40,+#1], r3\nstad [r40,+#2], r3\nstad [r40,+#3], r3\nstad [r40,+#4], r3\nstad [r40,+#5], r3\nstad [r40,+#6], r3\nstad [r40,+#7], r3\nstad [r40,+#8], r3\nstad [r40,+#9], r3\nstad [r40,+#10], r3\nstad [r40,+#11], r3\nstad [r40,+#12], r3\nstad [r40,+#13], r3\nstad [r40,+#14], r3\nstad [r40,+#15], r6\nldad r10, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "stad then ldad of the same dword, with and without idf drcN, bif: when is the idf needed"
+   }
+  }
+ ],
+ "orphans": []
+}

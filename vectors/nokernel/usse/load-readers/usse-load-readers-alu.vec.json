@@ -1,0 +1,588 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/load-readers/usse-load-readers-alu/raw.txt",
+  "raw_sha256": "37a953b8840fcc46314bfcabc3b3eec63925d4d37c418eb3706398aafd0fb2ac",
+  "converted": "2026-11-08T19:57:38+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-load-readers-alu__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 0,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\n\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  },
+  {
+   "id": "usse-load-readers-alu__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xf800014000000000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 1,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\nnop\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  },
+  {
+   "id": "usse-load-readers-alu__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 2,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\nnop\nnop\nnop\nnop\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  },
+  {
+   "id": "usse-load-readers-alu__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 3,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  },
+  {
+   "id": "usse-load-readers-alu__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 4,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  },
+  {
+   "id": "usse-load-readers-alu__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca0000001800007",
+     "0xe8230000a14a0000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xf800014000000000",
+     "0xd00200008162808c",
+     "0xf02200008000400b",
+     "0xf02200008000408a",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0x00000007"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xaa550011",
+     "0x004": "0xaa55000a"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-load-readers-alu",
+    "case": 5,
+    "table": "load-readers.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0x00000007",
+     "OP": "ldad r10, [r40,+#0], drc0\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nima32.u r11, r10, #1, r12",
+     "POST": "stad [r1,+#0], r11\nstad [r1,+#1], r10",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "an ALU instruction reads the destination of a load that was not waited for, after n nop"
+   }
+  }
+ ],
+ "orphans": []
+}

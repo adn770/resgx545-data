@@ -1,0 +1,159 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/place-link/usse-place-link-jump-400000/raw.txt",
+  "raw_sha256": "f23574d3dc5b93ad6bff091961d368bd91b20096824039b3802998e2c2889c24",
+  "converted": "2026-11-08T19:57:41+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-place-link-jump-400000__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca400010000ba5e"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    },
+    "placed": {
+     "offset": 4194304,
+     "words": [
+      "0xfa44070000000000",
+      "0xf800024000000001",
+      "0xf800010001400000",
+      "0xfc20000000c00008",
+      "0xd002000080a28086",
+      "0xf80000c000000280",
+      "0xf800014000000000",
+      "0xf800008000000000",
+      "0xfca400010000fa11",
+      "0xf800014000000000",
+      "0x2885100120000500"
+     ]
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000002",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-place-link-jump-400000",
+    "case": 0,
+    "table": "place-link.toml",
+    "template": "place_base.s",
+    "template_sha256": "63e02afdf9ad58f09f78c89bee90c841c72502a701fc348f494a96aa1da3237e",
+    "inputs": {
+     "RUN": "0x00000001"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32",
+     "--place",
+     "4194304=place_link.bin",
+     "--place-form",
+     "cbase"
+    ],
+    "question": "a lapc to link + 8 computed at run time in a program placed at heap offset 0x400000 (cbase): o0 = the link when it lands, 0xFA11 when it falls through (no model: the placed program counts indices from the code base the start fixes)"
+   }
+  },
+  {
+   "id": "usse-place-link-jump-400000__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca400010000ba5e"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    },
+    "placed": {
+     "offset": 4194304,
+     "words": [
+      "0xfa44070000000000",
+      "0xf800024000000001",
+      "0xf800010001400000",
+      "0xfc20000000c00008",
+      "0xd002000080a28086",
+      "0xf80000c000000280",
+      "0xf800014000000000",
+      "0xf800008000000000",
+      "0xfca400010000fa11",
+      "0xf800014000000000",
+      "0x2885100120000500"
+     ]
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000002",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-place-link-jump-400000",
+    "case": 1,
+    "table": "place-link.toml",
+    "template": "place_base.s",
+    "template_sha256": "63e02afdf9ad58f09f78c89bee90c841c72502a701fc348f494a96aa1da3237e",
+    "inputs": {
+     "RUN": "0x00000002"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32",
+     "--place",
+     "4194304=place_link.bin",
+     "--place-form",
+     "cbase"
+    ],
+    "question": "a lapc to link + 8 computed at run time in a program placed at heap offset 0x400000 (cbase): o0 = the link when it lands, 0xFA11 when it falls through (no model: the placed program counts indices from the code base the start fixes)"
+   }
+  }
+ ],
+ "orphans": []
+}

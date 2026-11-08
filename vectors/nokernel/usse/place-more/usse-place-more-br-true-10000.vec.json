@@ -1,0 +1,153 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/place-more/usse-place-more-br-true-10000/raw.txt",
+  "raw_sha256": "df23182d4bb8063eab2c7e8ff8039d157ea2cfbdd6d69d58186ba9665e7fb972",
+  "converted": "2026-11-08T19:57:42+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-place-more-br-true-10000__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca400010000ba5e"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    },
+    "placed": {
+     "offset": 65536,
+     "words": [
+      "0xfa44070000000000",
+      "0xfca0000000a00077",
+      "0xfca0000000c00001",
+      "0xf80000c000000280",
+      "0x48081281000c0306",
+      "0xf900024000000001",
+      "0xf800010001400000",
+      "0x2885100120000500"
+     ]
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00002006",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-place-more-br-true-10000",
+    "case": 0,
+    "table": "place-more.toml",
+    "template": "place_base.s",
+    "template_sha256": "63e02afdf9ad58f09f78c89bee90c841c72502a701fc348f494a96aa1da3237e",
+    "inputs": {
+     "RUN": "0x00000001"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32",
+     "--place",
+     "65536=p25_false_br-true_1.bin",
+     "--place-form",
+     "cbase"
+    ],
+    "question": "a predicated call that is not taken (p0 br.savelink #1, p0 = 1: the tag br-true) in a program placed at heap offset 0x10000; pclink preset 0x77; o0 = pclink read after it (the heap index of the word after the call, 0x2006, when the link is written; 0x77 when it is not)"
+   }
+  },
+  {
+   "id": "usse-place-more-br-true-10000__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca400010000ba5e"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {},
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    },
+    "placed": {
+     "offset": 65536,
+     "words": [
+      "0xfa44070000000000",
+      "0xfca0000000a00077",
+      "0xfca0000000c00001",
+      "0xf80000c000000280",
+      "0x48081281000c0306",
+      "0xf900024000000001",
+      "0xf800010001400000",
+      "0x2885100120000500"
+     ]
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00002006",
+    "mixed": [],
+    "scratch": {},
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-place-more-br-true-10000",
+    "case": 1,
+    "table": "place-more.toml",
+    "template": "place_base.s",
+    "template_sha256": "63e02afdf9ad58f09f78c89bee90c841c72502a701fc348f494a96aa1da3237e",
+    "inputs": {
+     "RUN": "0x00000002"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "32",
+     "--place",
+     "65536=p25_false_br-true_1.bin",
+     "--place-form",
+     "cbase"
+    ],
+    "question": "a predicated call that is not taken (p0 br.savelink #1, p0 = 1: the tag br-true) in a program placed at heap offset 0x10000; pclink preset 0x77; o0 = pclink read after it (the heap index of the word after the call, 0x2006, when the link is written; 0x77 when it is not)"
+   }
+  }
+ ],
+ "orphans": []
+}

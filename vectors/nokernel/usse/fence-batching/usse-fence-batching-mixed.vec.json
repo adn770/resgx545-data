@@ -1,0 +1,566 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fence-batching/usse-fence-batching-mixed/raw.txt",
+  "raw_sha256": "5a02b9ba23fff10af306d749aa4ffa20e21b9b2532153c0063ccf64de07c6bef",
+  "converted": "2026-11-08T19:57:30+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fence-batching-mixed__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca2a1200195000c",
+     "0xfca2a12001b5000d",
+     "0xfca2a12001d5000e",
+     "0xfca2a12001f5000f",
+     "0xfca2a12002150010",
+     "0xe8230000a14a0000",
+     "0xe8033000a16a0800",
+     "0xfe21000021e00007",
+     "0xe8230000a20a1000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf02200008000408b",
+     "0xf02200008000410c",
+     "0xf02200008000418d",
+     "0xf02200008000420e",
+     "0xf02200008000428f",
+     "0xf022000080004310",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0xaa55000c",
+     "r13": "0xaa55000d",
+     "r14": "0xaa55000e",
+     "r15": "0xaa55000f",
+     "r16": "0xaa550010"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xd0000400",
+     "0x004": "0xd0000411",
+     "0x008": "0xd0000412",
+     "0x00c": "0xd0000413",
+     "0x010": "0xd0000414",
+     "0x014": "0x01150000",
+     "0x018": "0xd0000420"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-mixed",
+    "case": 0,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0xAA55000C\nmov.skipinv r13, #0xAA55000D\nmov.skipinv r14, #0xAA55000E\nmov.skipinv r15, #0xAA55000F\nmov.skipinv r16, #0xAA550010",
+     "OP": "ldad r10, [r40,+#0], drc0\nldad.fetch4 r11, [r40,+#16], drc0\nldr r15, #7, drc0\nldad r16, [r40,+#32], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10\nstad [r1,+#1], r11\nstad [r1,+#2], r12\nstad [r1,+#3], r13\nstad [r1,+#4], r14\nstad [r1,+#5], r15\nstad [r1,+#6], r16",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "ldad, ldad.fetchN and ldr under one wdf drc0: does it cover them all"
+   }
+  },
+  {
+   "id": "usse-fence-batching-mixed__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca2a1200195000c",
+     "0xfe21000021400007",
+     "0xfe21000021600008",
+     "0xe8230000a18a0000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf02200008000408b",
+     "0xf02200008000410c",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0xaa55000c"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x01150000",
+     "0x004": "0x0001000d",
+     "0x008": "0xd0000400"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-mixed",
+    "case": 1,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0xAA55000C",
+     "OP": "ldr r10, #7, drc0\nldr r11, #8, drc0\nldad r12, [r40,+#0], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10\nstad [r1,+#1], r11\nstad [r1,+#2], r12",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "ldad, ldad.fetchN and ldr under one wdf drc0: does it cover them all"
+   }
+  },
+  {
+   "id": "usse-fence-batching-mixed__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca2a1200195000c",
+     "0xfca2a12001b5000d",
+     "0xfca2a12001d5000e",
+     "0xfca2a12001f5000f",
+     "0xfca2a12002150010",
+     "0xfca2a12002350011",
+     "0xfca2a12002550012",
+     "0xfca2a12002750013",
+     "0xfca2a12002950014",
+     "0xfca2a12002b50015",
+     "0xfca2a12002d50016",
+     "0xfca2a12002f50017",
+     "0xfca2a12003150018",
+     "0xfca2a12003350019",
+     "0xfca2a1200355001a",
+     "0xfca2a1200375001b",
+     "0xe803f000a14a0000",
+     "0xe8230000a34a1000",
+     "0xfe21000023600007",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf02200008000408b",
+     "0xf02200008000410c",
+     "0xf02200008000418d",
+     "0xf02200008000420e",
+     "0xf02200008000428f",
+     "0xf022000080004310",
+     "0xf022000080004391",
+     "0xf022000080004412",
+     "0xf022000080004493",
+     "0xf022000080004514",
+     "0xf022000080004595",
+     "0xf022000080004616",
+     "0xf022000080004697",
+     "0xf022000080004718",
+     "0xf022000080004799",
+     "0xf02200008000481a",
+     "0xf02200008000489b",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0xaa55000c",
+     "r13": "0xaa55000d",
+     "r14": "0xaa55000e",
+     "r15": "0xaa55000f",
+     "r16": "0xaa550010",
+     "r17": "0xaa550011",
+     "r18": "0xaa550012",
+     "r19": "0xaa550013",
+     "r20": "0xaa550014",
+     "r21": "0xaa550015",
+     "r22": "0xaa550016",
+     "r23": "0xaa550017",
+     "r24": "0xaa550018",
+     "r25": "0xaa550019",
+     "r26": "0xaa55001a",
+     "r27": "0xaa55001b"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xd0000401",
+     "0x004": "0xd0000402",
+     "0x008": "0xd0000403",
+     "0x00c": "0xd0000404",
+     "0x010": "0xd0000405",
+     "0x014": "0xd0000406",
+     "0x018": "0xd0000407",
+     "0x01c": "0xd0000408",
+     "0x020": "0xd0000409",
+     "0x024": "0xd000040a",
+     "0x028": "0xd000040b",
+     "0x02c": "0xd000040c",
+     "0x030": "0xd000040d",
+     "0x034": "0xd000040e",
+     "0x038": "0xd000040f",
+     "0x03c": "0xd0000410",
+     "0x040": "0xd0000420",
+     "0x044": "0x01150000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-mixed",
+    "case": 2,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0xAA55000C\nmov.skipinv r13, #0xAA55000D\nmov.skipinv r14, #0xAA55000E\nmov.skipinv r15, #0xAA55000F\nmov.skipinv r16, #0xAA550010\nmov.skipinv r17, #0xAA550011\nmov.skipinv r18, #0xAA550012\nmov.skipinv r19, #0xAA550013\nmov.skipinv r20, #0xAA550014\nmov.skipinv r21, #0xAA550015\nmov.skipinv r22, #0xAA550016\nmov.skipinv r23, #0xAA550017\nmov.skipinv r24, #0xAA550018\nmov.skipinv r25, #0xAA550019\nmov.skipinv r26, #0xAA55001A\nmov.skipinv r27, #0xAA55001B",
+     "OP": "ldad.fetch16 r10, [r40,+#0], drc0\nldad r26, [r40,+#32], drc0\nldr r27, #7, drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10\nstad [r1,+#1], r11\nstad [r1,+#2], r12\nstad [r1,+#3], r13\nstad [r1,+#4], r14\nstad [r1,+#5], r15\nstad [r1,+#6], r16\nstad [r1,+#7], r17\nstad [r1,+#8], r18\nstad [r1,+#9], r19\nstad [r1,+#10], r20\nstad [r1,+#11], r21\nstad [r1,+#12], r22\nstad [r1,+#13], r23\nstad [r1,+#14], r24\nstad [r1,+#15], r25\nstad [r1,+#16], r26\nstad [r1,+#17], r27",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "ldad, ldad.fetchN and ldr under one wdf drc0: does it cover them all"
+   }
+  },
+  {
+   "id": "usse-fence-batching-mixed__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca2a1200195000c",
+     "0xfca2a12001b5000d",
+     "0xfca2a12001d5000e",
+     "0xfca2a12001f5000f",
+     "0xe8031000a14a0000",
+     "0xe8031000a18a0800",
+     "0xe8031000a1ca1000",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf02200008000408b",
+     "0xf02200008000410c",
+     "0xf02200008000418d",
+     "0xf02200008000420e",
+     "0xf02200008000428f",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0xaa55000c",
+     "r13": "0xaa55000d",
+     "r14": "0xaa55000e",
+     "r15": "0xaa55000f"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xd0000401",
+     "0x004": "0xd0000402",
+     "0x008": "0xd0000411",
+     "0x00c": "0xd0000412",
+     "0x010": "0xd0000421",
+     "0x014": "0xd0000422"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-mixed",
+    "case": 3,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0xAA55000C\nmov.skipinv r13, #0xAA55000D\nmov.skipinv r14, #0xAA55000E\nmov.skipinv r15, #0xAA55000F",
+     "OP": "ldad.fetch2 r10, [r40,+#0], drc0\nldad.fetch2 r12, [r40,+#16], drc0\nldad.fetch2 r14, [r40,+#32], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10\nstad [r1,+#1], r11\nstad [r1,+#2], r12\nstad [r1,+#3], r13\nstad [r1,+#4], r14\nstad [r1,+#5], r15",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "ldad, ldad.fetchN and ldr under one wdf drc0: does it cover them all"
+   }
+  },
+  {
+   "id": "usse-fence-batching-mixed__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca17050002f0000",
+     "0xfca30060005e0001",
+     "0xfca17050050f1000",
+     "0xfca2a1200155000a",
+     "0xfca2a1200175000b",
+     "0xfca2a1200195000c",
+     "0xfca2a12001b5000d",
+     "0xfca2a12001d5000e",
+     "0xfca2a12001f5000f",
+     "0xfca2a12002150010",
+     "0xfca2a12002350011",
+     "0xfca2a12002550012",
+     "0xfca2a12002750013",
+     "0xfca2a12002950014",
+     "0xfca2a12002b50015",
+     "0xfca2a12002d50016",
+     "0xfca2a12002f50017",
+     "0xfca2a12003150018",
+     "0xe8037000a14a0000",
+     "0xe8033000a24a0800",
+     "0xe8031000a2ca1000",
+     "0xe8230000a30a1800",
+     "0xf920000000000000",
+     "0xf02200008000400a",
+     "0xf02200008000408b",
+     "0xf02200008000410c",
+     "0xf02200008000418d",
+     "0xf02200008000420e",
+     "0xf02200008000428f",
+     "0xf022000080004310",
+     "0xf022000080004391",
+     "0xf022000080004412",
+     "0xf022000080004493",
+     "0xf022000080004514",
+     "0xf022000080004595",
+     "0xf022000080004616",
+     "0xf022000080004697",
+     "0xf022000080004718",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000100"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 48,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x5caf0000",
+     "r2": "0xc0de0001",
+     "r40": "0x5caf1000",
+     "r10": "0xaa55000a",
+     "r11": "0xaa55000b",
+     "r12": "0xaa55000c",
+     "r13": "0xaa55000d",
+     "r14": "0xaa55000e",
+     "r15": "0xaa55000f",
+     "r16": "0xaa550010",
+     "r17": "0xaa550011",
+     "r18": "0xaa550012",
+     "r19": "0xaa550013",
+     "r20": "0xaa550014",
+     "r21": "0xaa550015",
+     "r22": "0xaa550016",
+     "r23": "0xaa550017",
+     "r24": "0xaa550018"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xc0de0001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xd0000401",
+     "0x004": "0xd0000402",
+     "0x008": "0xd0000403",
+     "0x00c": "0xd0000404",
+     "0x010": "0xd0000405",
+     "0x014": "0xd0000406",
+     "0x018": "0xd0000407",
+     "0x01c": "0xd0000408",
+     "0x020": "0xd0000411",
+     "0x024": "0xd0000412",
+     "0x028": "0xd0000413",
+     "0x02c": "0xd0000414",
+     "0x030": "0xd0000421",
+     "0x034": "0xd0000422",
+     "0x038": "0xd0000430"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fence-batching-mixed",
+    "case": 4,
+    "table": "fence-batching.toml",
+    "template": "fence.s",
+    "template_sha256": "369b2f6a4b7bab422ac0af872d45b83e6e3d54701327004fadba859cecb8f64f",
+    "inputs": {
+     "FIRST": "",
+     "SETUP": "mov.skipinv r40, #0x5CAF1000\nmov.skipinv r10, #0xAA55000A\nmov.skipinv r11, #0xAA55000B\nmov.skipinv r12, #0xAA55000C\nmov.skipinv r13, #0xAA55000D\nmov.skipinv r14, #0xAA55000E\nmov.skipinv r15, #0xAA55000F\nmov.skipinv r16, #0xAA550010\nmov.skipinv r17, #0xAA550011\nmov.skipinv r18, #0xAA550012\nmov.skipinv r19, #0xAA550013\nmov.skipinv r20, #0xAA550014\nmov.skipinv r21, #0xAA550015\nmov.skipinv r22, #0xAA550016\nmov.skipinv r23, #0xAA550017\nmov.skipinv r24, #0xAA550018",
+     "OP": "ldad.fetch8 r10, [r40,+#0], drc0\nldad.fetch4 r18, [r40,+#16], drc0\nldad.fetch2 r22, [r40,+#32], drc0\nldad r24, [r40,+#48], drc0\nwdf drc0",
+     "POST": "stad [r1,+#0], r10\nstad [r1,+#1], r11\nstad [r1,+#2], r12\nstad [r1,+#3], r13\nstad [r1,+#4], r14\nstad [r1,+#5], r15\nstad [r1,+#6], r16\nstad [r1,+#7], r17\nstad [r1,+#8], r18\nstad [r1,+#9], r19\nstad [r1,+#10], r20\nstad [r1,+#11], r21\nstad [r1,+#12], r22\nstad [r1,+#13], r23\nstad [r1,+#14], r24",
+     "END": "idf drc0, bif\nwdf drc0"
+    },
+    "params": {},
+    "options": [
+     "--temps",
+     "48"
+    ],
+    "question": "ldad, ldad.fetchN and ldr under one wdf drc0: does it cover them all"
+   }
+  }
+ ],
+ "orphans": []
+}
