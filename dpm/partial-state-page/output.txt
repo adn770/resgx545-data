@@ -1,0 +1,310 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+14D099861204842EA496D85
+## loaded module
+14D099861204842EA496D85
+## tool
+fa7592a6170712ed0080066c56602304607ed31ec608afd66441a597587675a7  /home/jtorra/sgxfive-test-1120
+## clock
+Sun Nov  8 08:28:22 CET 2026
+== P1-one-render-1: pb 0x28, kregnow none, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P2-two-renders-1: pb 0x28, kregnow none, tadata_fill none; tri -n 2
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff000080 expected 0xffff0000
+tri 1024x768 #2: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 2 renders ok, 2 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+tri.2.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=0001001d 0x00c=0000001d 0x010=00010022 0x014=00000022 0x028=0002001e 0x02c=00000020 0x030=00030023 0x034=00000027 0x038=00010028 0x03c=00000028 ... | 
+== P3-second-flag8-1: pb 0x28, kregnow none, tadata_fill none; tri -n 2 --kpoke-render 2:ta:7^=0x8
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: kpoke before render 2: ta:7^=0x8
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff000080 expected 0xffff0000
+tri 1024x768 #2: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 2 renders ok, 2 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+tri.2.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=0001001d 0x00c=0000001d 0x010=00010022 0x014=00000022 0x028=0002001e 0x02c=00000020 0x030=00030023 0x034=00000027 0x038=00010028 0x03c=00000028 ... | 
+== P4-ramp-partial-1: pb 0x28, kregnow none, tadata_fill ramp; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 1008 non-zero, 990 equal to the ramp 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P5-ramp-whole-pb-1: pb 0x422, kregnow none, tadata_fill ramp; tri 
+tri: render context for targets up to 1024x768
+job: ok
+reg 0x0720 0x00000000
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 0 of 786432 pixels
+tri 1024x768 #1: 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri: 1 renders ok
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 1024 non-zero, 1024 equal to the ramp 0x000=a5000000 0x004=a5000001 0x008=a5000002 0x00c=a5000003 0x010=a5000004 0x014=a5000005 0x018=a5000006 0x01c=a5000007 0x020=a5000008 0x024=a5000009 ... | 
+== P6-reg0740-0x200-1: pb 0x28, kregnow 0x0740=0x200, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+[32478.728552] gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x0740: 0x00000000 -> 0x00000200, reads 0x00000000
+== P7-reg0740-0x3fe00-1: pb 0x28, kregnow 0x0740=0x3fe00, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P0-whole-pb-1: pb 0x422, kregnow none, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: ok
+reg 0x0720 0x00000000
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 0 of 786432 pixels
+tri 1024x768 #1: 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri: 1 renders ok
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 0 non-zero | 
+== P1-one-render-2: pb 0x28, kregnow none, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P2-two-renders-2: pb 0x28, kregnow none, tadata_fill none; tri -n 2
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff000080 expected 0xffff0000
+tri 1024x768 #2: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 2 renders ok, 2 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+tri.2.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=0001001d 0x00c=0000001d 0x010=00010022 0x014=00000022 0x028=0002001e 0x02c=00000020 0x030=00030023 0x034=00000027 0x038=00010028 0x03c=00000028 ... | 
+== P3-second-flag8-2: pb 0x28, kregnow none, tadata_fill none; tri -n 2 --kpoke-render 2:ta:7^=0x8
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: kpoke before render 2: ta:7^=0x8
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff000080 expected 0xffff0000
+tri 1024x768 #2: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 2 renders ok, 2 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+tri.2.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=0001001d 0x00c=0000001d 0x010=00010022 0x014=00000022 0x028=0002001e 0x02c=00000020 0x030=00030023 0x034=00000027 0x038=00010028 0x03c=00000028 ... | 
+== P4-ramp-partial-2: pb 0x28, kregnow none, tadata_fill ramp; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 1008 non-zero, 990 equal to the ramp 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P5-ramp-whole-pb-2: pb 0x422, kregnow none, tadata_fill ramp; tri 
+tri: render context for targets up to 1024x768
+job: ok
+reg 0x0720 0x00000000
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 0 of 786432 pixels
+tri 1024x768 #1: 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri: 1 renders ok
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 1024 non-zero, 1024 equal to the ramp 0x000=a5000000 0x004=a5000001 0x008=a5000002 0x00c=a5000003 0x010=a5000004 0x014=a5000005 0x018=a5000006 0x01c=a5000007 0x020=a5000008 0x024=a5000009 ... | 
+== P6-reg0740-0x200-2: pb 0x28, kregnow 0x0740=0x200, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P7-reg0740-0x3fe00-2: pb 0x28, kregnow 0x0740=0x3fe00, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: failed: scene overflowed the parameter buffer, context kept (No space left on device)
+reg 0x0720 0x00000009
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0xff00ff00
+tri 1024x768 #1: overflowed, 162544 triangle, 623888 background, 0 other; wrong 44191 inside, 0 outside, 0 at edges; 136225 if flipped; guard 0
+tri: 0 of 1 renders ok, 1 overflowed
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 18 non-zero 0x008=00010009 0x00c=00000009 0x010=0001000e 0x014=0000000e 0x028=0002000a 0x02c=0000000c 0x030=0003000f 0x034=00000013 0x038=00010014 0x03c=00000014 ... | 
+== P0-whole-pb-2: pb 0x422, kregnow none, tadata_fill none; tri 
+tri: render context for targets up to 1024x768
+job: ok
+reg 0x0720 0x00000000
+reg 0x0724 0x00000000
+reg 0x0728 0x00000000
+reg 0x072c 0x00000000
+reg 0x0740 0x00000000
+reg 0x0744 0x00000000
+reg 0x0748 0x0000001f
+reg 0x074c 0x00000000
+diff: 0 of 786432 pixels
+tri 1024x768 #1: 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri: 1 renders ok
+tri.1.tadata.bin: tadata 0x4000: 0 non-zero | tadata 0x5000: 0 non-zero | tadata 0x6000: 0 non-zero | 
+pb_pages: 0x00000422
+#### health
+job: ok
+job time: 426 us
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
