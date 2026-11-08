@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# phase 11.30 stage A (Q147): E519's fill with a distinct marker per job; q147-a
+needs = ["render"]
+
+[[probe]]
+name = "q147-a"
+question = "a two-phase fill started with 8 temporaries whose phas asks for T; r(HI) written with a marker no other job writes"
+source = "temps_phas.s"
+temps = 8
+params = {  }
+inputs = ["T", "HI", "MARK"]
+labels = ["--temps 8; phas asks for 4 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 8 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 16 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 32 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 64 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 100 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 260 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 264 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 300 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 316 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 376 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 448 for phase 1; r123 written with a marker of its own, past", "--temps 8; phas asks for 124 for phase 1; r123 written with a marker of its own, ctrl", "--temps 8; phas asks for 128 for phase 1; r123 written with a marker of its own, ctrl", "--temps 8; phas asks for 192 for phase 1; r123 written with a marker of its own, ctrl", "--temps 8; phas asks for 8 for phase 1; r3 written with a marker of its own, ctrl", "--temps 8; phas asks for 32 for phase 1; r31 written with a marker of its own, ctrl", "--temps 8; phas asks for 64 for phase 1; r63 written with a marker of its own, ctrl"]
+cases = [["4", "123", "0x78ADD1E2"], ["8", "123", "0x75E6996C"], ["16", "123", "0x7BAFF489"], ["32", "123", "0x790AEDB7"], ["64", "123", "0x77A99FC1"], ["100", "123", "0x74C8A250"], ["260", "123", "0x74F45F4F"], ["264", "123", "0x765BCFE4"], ["300", "123", "0x7D7EDE4F"], ["316", "123", "0x76EC4F0D"], ["376", "123", "0x75B8536C"], ["448", "123", "0x704013DC"], ["124", "123", "0x751C7C6B"], ["128", "123", "0x7B0150D9"], ["192", "123", "0x7C48E6ED"], ["8", "3", "0x76461CB8"], ["32", "31", "0x7C818325"], ["64", "63", "0x72F89D2B"]]
+[probe.hypotheses]
+"every write landed (o0 is the job's own marker)" = [{ o0 = 0x78ADD1E2 }, { o0 = 0x75E6996C }, { o0 = 0x7BAFF489 }, { o0 = 0x790AEDB7 }, { o0 = 0x77A99FC1 }, { o0 = 0x74C8A250 }, { o0 = 0x74F45F4F }, { o0 = 0x765BCFE4 }, { o0 = 0x7D7EDE4F }, { o0 = 0x76EC4F0D }, { o0 = 0x75B8536C }, { o0 = 0x704013DC }, { o0 = 0x751C7C6B }, { o0 = 0x7B0150D9 }, { o0 = 0x7C48E6ED }, { o0 = 0x76461CB8 }, { o0 = 0x7C818325 }, { o0 = 0x72F89D2B }]
+"a write past the allocation is dropped, a write inside lands (o0 is the own marker only for the controls)" = [{ o0_not = 0x78ADD1E2 }, { o0_not = 0x75E6996C }, { o0_not = 0x7BAFF489 }, { o0_not = 0x790AEDB7 }, { o0_not = 0x77A99FC1 }, { o0_not = 0x74C8A250 }, { o0_not = 0x74F45F4F }, { o0_not = 0x765BCFE4 }, { o0_not = 0x7D7EDE4F }, { o0_not = 0x76EC4F0D }, { o0_not = 0x75B8536C }, { o0_not = 0x704013DC }, { o0 = 0x751C7C6B }, { o0 = 0x7B0150D9 }, { o0 = 0x7C48E6ED }, { o0 = 0x76461CB8 }, { o0 = 0x7C818325 }, { o0 = 0x72F89D2B }]
