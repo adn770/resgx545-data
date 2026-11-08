@@ -1,0 +1,11 @@
+usse-fence-batching-no-wait: SETTLED: loads are asynchronous, the register keeps its marker until a wdf (the documented model)
+  question: ldad then a read of its register at 0 to 32 nops, with no wdf: how long a load stays in flight
+  [0] one ldad on drc0, 0 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [1] one ldad on drc0, 1 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [2] one ldad on drc0, 2 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [3] one ldad on drc0, 4 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [4] one ldad on drc0, 8 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [5] one ldad on drc0, 16 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [6] one ldad on drc0, 32 nop(s), the register read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a
+  [7] four ldad on drc0, 0 nop(s), the registers read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a +0x004=0xaa55000b +0x008=0xaa55000c +0x00c=0xaa55000d
+  [8] four ldad on drc0, 16 nop(s), the registers read with no wdf: 0xc0de0001 scratch +0x000=0xaa55000a +0x004=0xaa55000b +0x008=0xaa55000c +0x00c=0xaa55000d

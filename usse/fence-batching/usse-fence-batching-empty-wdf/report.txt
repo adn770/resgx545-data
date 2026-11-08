@@ -1,0 +1,13 @@
+usse-fence-batching-empty-wdf: SETTLED: a wdf with nothing outstanding returns at once (the documented model)
+  question: wdf (and idf bif) as the first instruction, and a second wdf, with nothing outstanding
+  [0] first instruction after phas: wdf drc0: 0xc0de0001
+  [1] first instruction after phas: wdf drc1: 0xc0de0001
+  [2] first instruction after phas: wdf drc2: 0xc0de0001
+  [3] first instruction after phas: wdf drc3: 0xc0de0001
+  [4] first instruction after phas: wdf drc0; wdf drc0: 0xc0de0001
+  [5] first instruction after phas: wdf drc0; wdf drc1; wdf drc2; wdf drc3: 0xc0de0001
+  [6] first instruction after phas: idf drc0, bif: 0xc0de0001
+  [7] first instruction after phas: idf drc0, bif; wdf drc0: 0xc0de0001
+  [8] first instruction after phas: idf drc1, bif; wdf drc1: 0xc0de0001
+  [9] one ldad; wdf drc0 three times (the second and third with nothing outstanding): 0xc0de0001 scratch +0x000=0xd0000400
+  [10] one ldad drc0; wdf drc0; wdf drc1 (nothing was ever on drc1): 0xc0de0001 scratch +0x000=0xd0000400
