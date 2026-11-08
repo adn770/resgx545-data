@@ -1,0 +1,60 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+14D099861204842EA496D85
+## loaded module
+14D099861204842EA496D85
+## tool
+ec423efc3d9aa34576553da70916be4ceb715a729cbc02cc4bd89fa052511244  /home/jtorra/sgxfive-test-1122
+## clock
+Sun Nov  8 11:07:44 CET 2026
+## A bits 26:24 (the stored format), no stencil buffer
+format 0 ctl=0x0017110c job: ok: changed 786432, slots of 512 dwords 1536, first 0 last 834559
+  format 0: the stored dword is the float z of the ramp at 786432 of 786432 pixels (1e-5)
+format 1 ctl=0x0117110c job: ok: changed 786432, slots of 512 dwords 1536, first 0 last 834559
+  x run first dwords 00400555 00400555 00401000 00401000 00400555 00400555 | y run 0040071c 00401555 0040071c 00401555 0040238e 004031c7
+  24-bit: stored minus round(z * 0xffffff), by difference: [(0, 786432)]
+  24-bit: stored minus floor(z * 0xffffff), by difference: [(0, 333955), (1, 452477)]
+format 2 ctl=0x0217110c job: ok: changed 393216, slots of 512 dwords 768, first 0 last 417279
+  x run first dwords 40054005 40104010 40054005 40104010 401a401a 40254025 | y run 40154007 40154007 40314023 40314023 40154007 40154007
+  16-bit (256 dwords a tile, rows y even and odd in the low and high half): stored minus round(z * 0xffffff) >> 8, by difference: [(0, 786432)]
+  16-bit (256 dwords a tile, rows y even and odd in the low and high half): stored minus floor(z * 65536), by difference: [(0, 786432)]
+  16-bit (256 dwords a tile, rows y even and odd in the low and high half): stored minus round(z * 65535), by difference: [(-1, 122563), (0, 663869)]
+format 3 ctl=0x0317110c job: ok: changed 965120, slots of 512 dwords 1885, first 0 last 1023999
+  x run first dwords 80355500 200000be aa00be80 00be800a 755500be 0000be80 | y run 800e3800 0e3800be 3800be80 00be800e 0e3800be 3800be80
+format 4 ctl=0x0417110c job: ok: changed 0, slots of 512 dwords 0, first - last -
+  x run first dwords deadbeef deadbeef deadbeef deadbeef deadbeef deadbeef | y run deadbeef deadbeef deadbeef deadbeef deadbeef deadbeef
+format 5 ctl=0x0517110c job: ok: changed 96580, slots of 512 dwords 1508, first 0 last 1023423
+  x run first dwords 9d15551f aa801556 903e800a 3f924924 15551f00 8015569d | y run 1f003f00 389e0000 003e800e 3f000000 3f000000 00001f00
+format 6 ctl=0x0617110c job: ok: changed 86084, slots of 512 dwords 1536, first 0 last 833079
+  x run first dwords 9d15553f aa801556 903e800a 3f924924 3f924924 569d1555 | y run 3f000000 389e0000 003e800e 3f000000 003e8047 3f000000
+format 7 ctl=0x0717110c job: ok: changed 0, slots of 512 dwords 0, first - last -
+  x run first dwords deadbeef deadbeef deadbeef deadbeef deadbeef deadbeef | y run deadbeef deadbeef deadbeef deadbeef deadbeef deadbeef
+## B bit 19
+bit 19 ctl=0x001f110c job: ok: changed 786432, slots of 512 dwords 1536, first 0 last 834559
+  distinct 1674, most frequent [('be800aaa', 768), ('be802000', 768), ('be803555', 768)]
+bit 19, format 1 ctl=0x011f110c job: ok: changed 786432, slots of 512 dwords 1536, first 0 last 834559
+  distinct 1375, most frequent [('00400555', 768), ('00401000', 768), ('00401aaa', 768)]
+bit 19, format 2 ctl=0x021f110c job: ok: changed 393216, slots of 512 dwords 768, first 0 last 417279
+  distinct 1211, most frequent [('40054005', 384), ('40104010', 384), ('401a401a', 384)]
+## C store enables
+bit 2 cleared ctl=0x00171108 job: ok: changed 0, slots of 512 dwords 0, first - last -
+bit 17 cleared ctl=0x0015110c job: ok: changed 786432, slots of 512 dwords 1536, first 0 last 834559
+bit 18 cleared ctl=0x0013110c job: ok: changed 0, slots of 512 dwords 0, first - last -
+## D bits 26:24 with a stencil buffer (the stencil flag, both stencil bases)
+format 0 ctl=0x0017110c job: ok: depth changed 786432 (slots of 512 dwords 1536), stencil changed 196608 (first 0 last 208639), stencil first dwords 00000000 00000000 00000000 00000000
+format 1 ctl=0x0117110c job: ok: depth changed 786432 (slots of 512 dwords 1536), stencil changed 196608 (first 0 last 208639), stencil first dwords 00000000 00000000 00000000 00000000
+format 2 ctl=0x0217110c job: ok: depth changed 393216 (slots of 512 dwords 768), stencil changed 196608 (first 0 last 208639), stencil first dwords 00000000 00000000 00000000 00000000
+format 3 ctl=0x0317110c job: ok: depth changed 965120 (slots of 512 dwords 1885), stencil changed 17920 (first 0 last 17919), stencil first dwords b0355500 200000be aa00beb0 00beb00a
+format 4 ctl=0x0417110c job: ok: depth changed 245760 (slots of 512 dwords 768), stencil changed 0 (first - last -), stencil first dwords deadbeef deadbeef deadbeef deadbeef
+format 5 ctl=0x0517110c job: ok: depth changed 96580 (slots of 512 dwords 1508), stencil changed 1792 (first 0 last 17343), stencil first dwords 9d15551f aa801556 903eb00a 3f924924
+format 6 ctl=0x0617110c job: ok: depth changed 86084 (slots of 512 dwords 1536), stencil changed 0 (first - last -), stencil first dwords deadbeef deadbeef deadbeef deadbeef
+format 7 ctl=0x0717110c job: ok: depth changed 18432 (slots of 512 dwords 768), stencil changed 0 (first - last -), stencil first dwords deadbeef deadbeef deadbeef deadbeef
+#### health
+job: ok
+job time: 476 us
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0

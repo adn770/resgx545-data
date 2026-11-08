@@ -1,0 +1,51 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+14D099861204842EA496D85
+## loaded module
+14D099861204842EA496D85
+## tool
+ec423efc3d9aa34576553da70916be4ceb715a729cbc02cc4bd89fa052511244  /home/jtorra/sgxfive-test-1122
+## clock
+Sun Nov  8 11:07:09 CET 2026
+## A copy: load buffers hold each dword's index, depth test never
+clear and store ctl=0x0017110c job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bit 1 ctl=0x0017110e job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bit 13 ctl=0x0017310c job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bit 14 ctl=0x0017510c job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bits 13, 14 ctl=0x0017710c job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bits 1, 13 ctl=0x0017310e job: ok: depth store (32768, {'1.0 (the clear value)': 32768}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 1, 'the loaded dword': 8191})
+bits 1, 14 ctl=0x0017510e job: ok: depth store (32768, {'0 (the clear value of a stencil, or loaded dword 0)': 1, 'the loaded dword': 32767}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 8192})
+bits 1, 13, 14 ctl=0x0017710e job: ok: depth store (32768, {'0 (the clear value of a stencil, or loaded dword 0)': 1, 'the loaded dword': 32767}) | stencil store (8192, {'0 (the clear value of a stencil, or loaded dword 0)': 1, 'the loaded dword': 8191})
+load only, bits 1, 13, 14 (0x11710a + 0x6000) ctl=0x0011d10a job: ok: depth store (0, {}) | stencil store (0, {})
+load only, bit 1 (0x11710a) ctl=0x0011710a job: ok: depth store (0, {}) | stencil store (0, {})
+## B depth test less against loaded 0.25f / 0.75f (bit K of the dword index)
+bit:0 clear and store ctl=0x0017110c job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:0 bits 1, 13 ctl=0x0017310e job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:0 bits 1, 14 ctl=0x0017510e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+bit:0 bits 1, 13, 14 ctl=0x0017710e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+bit:3 clear and store ctl=0x0017110c job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:3 bits 1, 13 ctl=0x0017310e job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:3 bits 1, 14 ctl=0x0017510e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+bit:3 bits 1, 13, 14 ctl=0x0017710e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+bit:9 clear and store ctl=0x0017110c job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:9 bits 1, 13 ctl=0x0017310e job: ok: triangle pixels ['32768'] of 32768, stored depth [('3f000000', 32768)]
+bit:9 bits 1, 14 ctl=0x0017510e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+bit:9 bits 1, 13, 14 ctl=0x0017710e job: ok: triangle pixels ['16384'] of 32768, stored depth [('3e800000', 16384), ('3f000000', 16384)]
+## C loaded depth values with the sign bit set or all bits set, depth test never
+load 0xbe800000 bits 1, 13, 14 ctl=0x0017710e job: ok: stored depth [('3e800000', 32768)]
+load 0xbe800000 clear and store ctl=0x0017110c job: ok: stored depth [('3f800000', 32768)]
+load 0xdeadbeef bits 1, 13, 14 ctl=0x0017710e job: ok: stored depth [('5eadbeef', 32768)]
+load 0xdeadbeef clear and store ctl=0x0017110c job: ok: stored depth [('3f800000', 32768)]
+load 0xffffffff bits 1, 13, 14 ctl=0x0017710e job: ok: stored depth [('7fffffff', 32768)]
+load 0xffffffff clear and store ctl=0x0017110c job: ok: stored depth [('3f800000', 32768)]
+load 0x80000000 bits 1, 13, 14 ctl=0x0017710e job: ok: stored depth [('00000000', 32768)]
+load 0x80000000 clear and store ctl=0x0017110c job: ok: stored depth [('3f800000', 32768)]
+#### health
+job: ok
+job time: 528 us
+diff: 0 of 2048 pixels
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
