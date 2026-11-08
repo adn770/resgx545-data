@@ -1,0 +1,10 @@
+usse-store-own-one: NONE of the hypotheses fits
+  question: only one instance (selected by a test of pa0, as the emitpds probe does) stores and loads: does it see its own unfenced stad, and does its lone store reach the host with no fence
+  [0] only instance 0 (pa0 == 0): stad own; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e000x1 0x5107e001x1 0x5107e040x1 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [1] only instance 1 (pa0 == 1): stad own; ldad; wdf; no fence: 0xc0de0001
+  [2] only instance 0: stad own; idf drc0, bif; wdf; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e000x1 0x5107e001x1 0x5107e040x1 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [3] only instance 0: stad own only; idf drc0, bif; wdf at the end (r10 = the sentinel): 0xc0de0001 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [4] only instance 0: stad own only; no fence at all (r10 = the sentinel): 0xc0de0001 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [5] no instance selected (pa0 == 64 never holds): stad own; ldad; no fence: 0xc0de0001
+  [6] only instance 2 (pa0 == 2): stad own; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e002x1 0x5107e003x1 0x5107e042x1 scratch +0x8008=0x5107e002 +0x800c=0x5107e003 +0x8108=0x5107e042 +0x810c=0x5107e043
+  [7] control: only instance 0 runs mov r10, #0xBBBB0002 (br #2 skips one instruction): mixed 0xc0de0001x2044 0xbbbb0002x4

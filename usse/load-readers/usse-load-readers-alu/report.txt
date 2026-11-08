@@ -1,0 +1,8 @@
+usse-load-readers-alu: SETTLED: an ALU instruction reads the destination's old value until a wdf
+  question: an ALU instruction reads the destination of a load that was not waited for, after n nop
+  [0] ldad r10 (drc0); 0 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a
+  [1] ldad r10 (drc0); 1 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a
+  [2] ldad r10 (drc0); 4 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a
+  [3] ldad r10 (drc0); 16 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a
+  [4] ldad r10 (drc0); 32 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a
+  [5] ldad r10 (drc0); 48 nop; ima32.u r11, r10, #1, r12; the result and r10 stored with no wdf: 0xc0de0001 scratch +0x000=0xaa550011 +0x004=0xaa55000a

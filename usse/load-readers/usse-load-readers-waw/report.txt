@@ -1,0 +1,7 @@
+usse-load-readers-waw: SETTLED: the load lands over the later write
+  question: a register written after a load to it was issued and before the wdf: which value does it hold
+  [0] ldad r10 (drc0); 0 nop; mov r10, #0x77AA0001; wdf drc0; stad r10: 0xc0de0001 scratch +0x000=0xd0000400
+  [1] ldad r10 (drc0); 4 nop; mov r10, #0x77AA0001; wdf drc0; stad r10: 0xc0de0001 scratch +0x000=0xd0000400
+  [2] ldad r10 (drc0); 16 nop; mov r10, #0x77AA0001; wdf drc0; stad r10: 0xc0de0001 scratch +0x000=0xd0000400
+  [3] ldad r10 (drc0); 32 nop; mov r10, #0x77AA0001; wdf drc0; stad r10: 0xc0de0001 scratch +0x000=0xd0000400
+  [4] control: ldad r10; wdf drc0; mov r10, #0x77AA0001; stad r10: 0xc0de0001 scratch +0x000=0x77aa0001

@@ -1,0 +1,11 @@
+usse-store-own2-quad: SETTLED: the top-left lane's test decides for its quad; the four lanes run the code, see their own unfenced stad, and the stores reach the host with no fence
+  question: only a selected quad (a test of pa0 and a branch over the code, as the emitpds probe does) stores and loads: does a lane see its own unfenced stad, and does a lone store reach the host with no fence; which lanes run
+  [0] pa0 == 0 (a top-left lane): stad own; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e000x1 0x5107e001x1 0x5107e040x1 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [1] pa0 == 1 (a top-right lane): stad own; ldad; wdf; no fence: 0xc0de0001
+  [2] pa0 == 0: stad own; idf drc0, bif; wdf; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e000x1 0x5107e001x1 0x5107e040x1 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [3] pa0 == 0: stad own only; idf drc0, bif; wdf at the end (r10 = the sentinel): 0xc0de0001 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [4] pa0 == 0: stad own only; no fence at all (r10 = the sentinel): 0xc0de0001 scratch +0x8000=0x5107e000 +0x8004=0x5107e001 +0x8100=0x5107e040 +0x8104=0x5107e041
+  [5] no lane selected (pa0 == 64 never holds): stad own; ldad; no fence: 0xc0de0001
+  [6] pa0 == 2 (a top-left lane of another quad): stad own; ldad; wdf; no fence: mixed 0xc0de0001x2044 0x5107e002x1 0x5107e003x1 0x5107e042x1 scratch +0x8008=0x5107e002 +0x800c=0x5107e003 +0x8108=0x5107e042 +0x810c=0x5107e043
+  [7] pa0 == 3 (a top-right lane): stad own; ldad; wdf; no fence: 0xc0de0001
+  [8] control: pa0 == 0 runs mov r10, #0xBBBB0002 (br #2 skips one instruction); its quad holds it: mixed 0xc0de0001x2044 0xbbbb0002x4
