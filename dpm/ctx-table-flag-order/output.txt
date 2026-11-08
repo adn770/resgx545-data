@@ -1,0 +1,337 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+FC6EB50DEF21E3A6249727F
+## loaded module
+FC6EB50DEF21E3A6249727F
+## tool
+83318889c15e63f183252395ac1f4d2504af3757a5eb56698538081e0a48bf5a  /home/jtorra/sgxfive-test-1118
+## clock
+Sun Nov  8 02:58:37 CET 2026
+scratch address: 0x3e101000
+== A1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+job: ok
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 5197 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 0 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 04220002 0001ffff ffff0004 /  04200422 04210001 00000000 00000000
+== flag-then-base-zero-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 1023 changed, first +0x4 0x04220002
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 15293 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:4=0x3e101000 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-then-flag-zero-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: ok
+scratch page 0: 1023 changed, first +0x4 0x04220002
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 15421 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:0=0x00000001 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== flag-then-base-K-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 17447 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:4=0x3e101000 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-then-flag-K-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 14831 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:0=0x00000001 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-K-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 11999 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-zero-1 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 2 changed, first +0x0 0xffff0000
+scratch: 2 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== flag-then-base-zero-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 1023 changed, first +0x4 0xffff0002
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== base-then-flag-zero-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 1023 changed, first +0x4 0xffffffff
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== flag-then-base-K-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 14270 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:4=0x3e101000 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-then-flag-K-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 15812 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-K-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 12563 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-zero-2 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 2 changed, first +0x0 0xffff0000
+scratch: 2 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== flag-then-base-zero-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 1023 changed, first +0x4 0xffff0002
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== base-then-flag-zero-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 1023 changed, first +0x4 0xffffffff
+scratch page 1: 35 changed, first +0x0 0x03ff0401
+scratch: 1058 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+== flag-then-base-K-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:0=0x1
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 15220 us
+tri: 1 renders ok
+kernel: gma500 0000:00:02.0: [drm] sgxfive: kpoke pb:4=0x3e101000 applied;
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-then-flag-K-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+tri: kpoke before render 1: pb:0=0x1
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 15462 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-K-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000, file 1059 dwords
+tri: kpoke before render 1: pb:4=0x3e101000
+job: ok
+scratch page 0: 3 changed, first +0x4 0x04220002
+scratch page 1: 1 changed, first +0x88 0x04210001
+scratch: 4 dwords changed
+diff: 0 of 4096 pixels
+outside: 0 dwords
+layout: fb 0x3e001000
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+tri 64x64 #1: 10113 us
+tri: 1 renders ok
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+param vs A1: 8 bytes differ
+page table (dump offset 0x422000), entries 0-3 and 1057-1060:  00000000 ffff0002 00010003 00020004 /  04200422 0421ffff 00000000 00000000
+== base-only-zero-3 (alias_ctx_rw Y)
+tri: render context for targets up to 64x64
+scratch: 0x3e101000 16 pages, fill 0x00000000
+tri: kpoke before render 1: pb:4=0x3e101000
+job: failed: job faulted, context lost (Input/output error)
+scratch page 0: 2 changed, first +0x0 0xffff0000
+scratch: 2 dwords changed
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+outside: 0 dwords
+layout: fb 0x3e001000
+tri: FAILED after 0 renders
+kernel: 
+bif: int 0x00080000 fault 0x00000000
+alias_ctx_rw at the end: N
+#### health
+job: ok
+job time: 440 us
+diff: 0 of 2048 pixels
+diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
