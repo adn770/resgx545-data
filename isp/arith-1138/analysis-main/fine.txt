@@ -1,0 +1,61 @@
+# fine_p1138 on finedump: 874 cases, 874 jobs ok
+
+## 1 sweeps: the change of the first (or last) covered pixel against the exact model
+   csweepH+far    cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepH+near   cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepH-far    cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepH-near   cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepV+far    cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepV+near   cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepV-far    cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   csweepV-near   cases 33: observed changes after case index [], exact model [16], per-case agreement 17 of 33
+   fsweepD+       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   fsweepD-       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   fsweepH+       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   fsweepH-       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   fsweepV+       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   fsweepV-       cases 65: observed changes after case index [39], exact model [32], per-case agreement 58 of 65
+   sweeps in total: observed flip equals the exact model's in 484 of 654 cases
+
+## 2 random fine triangles: coverage against models (mismatching pixels of the bounding boxes)
+   fsmall     exact          mismatching pixels     1, inexact triangles   1 of 100
+   fsmall     float32 edge   mismatching pixels     1, inexact triangles   1 of 100
+   fsmall     snap 1/256     mismatching pixels     0, inexact triangles   0 of 100
+   fsmall     snap 1/512     mismatching pixels     0, inexact triangles   0 of 100
+   fsmall     snap 1/1024    mismatching pixels     1, inexact triangles   1 of 100
+   fsmall     snap 1/2048    mismatching pixels     1, inexact triangles   1 of 100
+   fmedium    exact          mismatching pixels     0, inexact triangles   0 of 60
+   fmedium    float32 edge   mismatching pixels     0, inexact triangles   0 of 60
+   fmedium    snap 1/256     mismatching pixels     0, inexact triangles   0 of 60
+   fmedium    snap 1/512     mismatching pixels     1, inexact triangles   1 of 60
+   fmedium    snap 1/1024    mismatching pixels     0, inexact triangles   0 of 60
+   fmedium    snap 1/2048    mismatching pixels     0, inexact triangles   0 of 60
+   nearcentre exact          mismatching pixels   239, inexact triangles  52 of 60
+   nearcentre float32 edge   mismatching pixels   239, inexact triangles  52 of 60
+   nearcentre snap 1/256     mismatching pixels     0, inexact triangles   0 of 60
+   nearcentre snap 1/512     mismatching pixels     0, inexact triangles   0 of 60
+   nearcentre snap 1/1024    mismatching pixels   204, inexact triangles  42 of 60
+   nearcentre snap 1/2048    mismatching pixels   233, inexact triangles  50 of 60
+
+## 3 depth of the covered pixels of the fine triangles (plane through the unsnapped vertices at the centre)
+   csweepH+far  pixels   5148  within 1 ulp 0.0425  max 77.03 ulp
+   csweepH+near pixels   5148  within 1 ulp 0.0557  max 96.84 ulp
+   csweepH-far  pixels   1980  within 1 ulp 0.0303  max 191.02 ulp
+   csweepH-near pixels   1980  within 1 ulp 0.0303  max 226.83 ulp
+   csweepV+far  pixels   8316  within 1 ulp 0.1515  max 35.30 ulp
+   csweepV+near pixels   8316  within 1 ulp 0.0428  max 64.10 ulp
+   csweepV-far  pixels   2904  within 1 ulp 0.0606  max 172.66 ulp
+   csweepV-near pixels   2904  within 1 ulp 0.0303  max 109.38 ulp
+   fmedium      pixels   3892  within 1 ulp 0.0064  max 4245.55 ulp
+   fsweepD+     pixels  23580  within 1 ulp 0.0905  max 279.17 ulp
+   fsweepD-     pixels  27150  within 1 ulp 0.0929  max 290.85 ulp
+   fsweepH+     pixels  15780  within 1 ulp 0.0932  max 352.70 ulp
+   fsweepH-     pixels  15420  within 1 ulp 0.0934  max 371.78 ulp
+   fsweepV+     pixels  15780  within 1 ulp 0.0768  max 379.67 ulp
+   fsweepV-     pixels  15420  within 1 ulp 0.0770  max 527.50 ulp
+   nearcentre   pixels  13270  within 1 ulp 0.0258  max 7855.21 ulp
+
+## 4 the frozen criteria of predictions-fine-1138.toml
+PF1   FAIL  the 65-step edge sweeps at 1/4096 (and the 33-step at 1/65536 near the origin) flip exactly at the tie, as the exact model: 484 of 654 cases
+PF2   FAIL  random fine triangles: the exact model misses 240 pixels (<= 0.05% of the pixels) and the 1/256 snapped one misses 0 (> 50)
+PF3   FAIL  far from the origin (x or y about 215/100 at 1/65536): the flips equal the exact model's in 68 of 132 cases

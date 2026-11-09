@@ -1,0 +1,32 @@
+# fine2_p1138 on fine2dump: 422 cases, 422 jobs ok
+
+## 1 coverage of the held-out set against models (mismatching pixels of the bounding boxes)
+   M* (half-up to 1/256)  mismatching pixels     0  {'gmedium': (50, 0, 0), 'gnearcentre': (50, 0, 0), 'gsmall': (50, 0, 0), 'gsweep': (132, 0, 0), 'hnearcentre': (60, 0, 0)}
+   half-down to 1/256     mismatching pixels   280  {'gmedium': (50, 2, 2), 'gnearcentre': (50, 15, 83), 'gsmall': (50, 0, 0), 'gsweep': (132, 6, 160), 'hnearcentre': (60, 2, 35)}
+   floor to 1/256         mismatching pixels  1403  {'gmedium': (50, 4, 5), 'gnearcentre': (50, 15, 83), 'gsmall': (50, 0, 0), 'gsweep': (132, 48, 1280), 'hnearcentre': (60, 2, 35)}
+   half-up to 1/512       mismatching pixels  1226  {'gmedium': (50, 3, 3), 'gnearcentre': (50, 40, 242), 'gsmall': (50, 0, 0), 'gsweep': (132, 24, 640), 'hnearcentre': (60, 51, 341)}
+   no rounding            mismatching pixels  1717  {'gmedium': (50, 3, 3), 'gnearcentre': (50, 37, 215), 'gsmall': (50, 0, 0), 'gsweep': (132, 44, 1140), 'hnearcentre': (60, 53, 359)}
+
+## 2 sweeps: observed flip against M*
+   gsweepH+  cases 33: observed change after case index [23], M* [23], agreement 33 of 33
+   gsweepH-  cases 33: observed change after case index [23], M* [23], agreement 33 of 33
+   gsweepV+  cases 33: observed change after case index [23], M* [23], agreement 33 of 33
+   gsweepV-  cases 33: observed change after case index [23], M* [23], agreement 33 of 33
+
+## 3 tiny edges: the sample pixel (128, 128) on an edge at a cross product of +1 or -1 (units of 1/256 pixel squared)
+   tinyedge+1  cases 40: observed pixel equals the exact model's 40, the float32 model's 22
+   tinyedge-1  cases 40: observed pixel equals the exact model's 40, the float32 model's 40
+   whole images of the tiny-edge cases equal to the exact model's: 80 of 80
+
+## 4 depth through the rounded vertices at the centre (the sweeps and the 1/65536 near-centre triangles)
+   gmedium      pixels   2425  within 1 ulp 0.9555  above 4 ulp 0.0041  max 9.11 ulp
+   gnearcentre  pixels  61990  within 1 ulp 0.9919  above 4 ulp 0.0000  max 1.97 ulp
+   gsmall       pixels     32  within 1 ulp 0.2812  above 4 ulp 0.0938  max 5.19 ulp
+   gsweep       pixels  26400  within 1 ulp 0.9813  above 4 ulp 0.0000  max 1.70 ulp
+   hnearcentre  pixels 137108  within 1 ulp 0.9961  above 4 ulp 0.0000  max 1.86 ulp
+
+## 5 the frozen criteria of predictions-fine2-1138.toml
+PH1   PASS  M* misses 0 pixels of 6586368 (<= 0.05%) and its sweep flips equal the observed in 132 of 132
+PH2   PASS  the alternatives (half-down, floor, 1/512) miss [280, 1403, 1226] pixels (each >= 50)
+PH3   PASS  tiny edges: the observed pixel equals the exact integer model's in 80 of 80 cases (the float32 model's in 62)
+PH4   PASS  depth through the rounded vertices on the sweeps: within 1 ulp 0.9813, max 1.70 ulp
