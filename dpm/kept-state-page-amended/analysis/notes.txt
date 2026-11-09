@@ -1,0 +1,8 @@
+The amended series (review of 11.34's kernel commits): old tip da1eaeaa1247 (the module 34729EB8 of
+the runs), new tip 1dd291a61499 (module B21FDA82BD5E5CB5A627E3B). No experiment ran on the new module.
+The previous module is kept on the laptop as ~/gma500_gfx.ko.34729eb8 (modinfo reads it only with a .ko suffix).
+install.txt's "kept previous:" line is empty because modinfo was given a bare file name; its
+"KUnit: 14 suites ok, 5 not ok" counts the lines `ok N gma500_*` and `not ok N gma500_*` together:
+the load log has 12 suites ok and 2 not ok (gma500_sgxfive_coredump, gma500_sgxfive_debug), 3 failed
+cases, all "Expected ... mem.va != NULL" after a kernel "page allocation failure: order:5" warning.
+health.txt is one plain 64x64 triangle after the load (diff 0 of 4096).

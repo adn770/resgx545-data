@@ -1,0 +1,165 @@
+diff --git a/drivers/gpu/drm/gma500/sgxfive/sgxfive_debug.c b/drivers/gpu/drm/gma500/sgxfive/sgxfive_debug.c
+index 5a0703ba1..dc9a1c264 100644
+--- a/drivers/gpu/drm/gma500/sgxfive/sgxfive_debug.c
++++ b/drivers/gpu/drm/gma500/sgxfive/sgxfive_debug.c
+@@ -1359,7 +1359,7 @@ static ssize_t sgxfive_render_tadata_read(struct file *f, char __user *ubuf, siz
+ 	return sgxfive_render_dump_read(f, ubuf, len, ppos, true);
+ }
+ 
+-/* debugfs render_kept: the TA data of the newest kept render context (render_keep), as the dumps. */
++/* debugfs render_kept: the TA data of the newest kept render context (render_keep). */
+ static ssize_t sgxfive_render_kept_read(struct file *f, char __user *ubuf, size_t len,
+ 					loff_t *ppos)
+ {
+diff --git a/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke.h b/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke.h
+index cd5540bb6..bd0075bbd 100644
+--- a/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke.h
++++ b/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke.h
+@@ -24,7 +24,9 @@
+  * next render submitted, tq to the next transfer submitted that is not a
+  * dummy; ctx, rtds, pb, kw and bg to the next render the kernel kicks, after
+  * it has written its own words there (the EDM then writes bg words 0-2 again
+- * at the kick, so a poke there is lost); th to the next transfer submitted, a
++ * at the kick, so a poke there is lost, and a bg poke is lost too when the
++ * render is replayed after a recovery, which rebuilds the object unpoked); th
++ * to the next transfer submitted, a
+  * dummy too, in the HW context of the context it is submitted on, where it
+  * stays until another poke or the context goes), and is then dropped. debugfs
+  * dri/N/sgx/render_words shows the render spaces' words of the newest render
+@@ -216,6 +218,11 @@ bool sgxfive_tdfill_place(const struct sgxfive_tdfill *f, u8 *td, unsigned int t
+  * VM can touch them (a render following a closed DPM owner, Q045). The kept
+  * contexts are parked here, oldest first, until debugfs reset or the device's
+  * destruction lets them go the usual way. lock guards the list and n.
++ *
++ * The switch is taken when the close starts, before the CLEANUP: a CLEANUP the
++ * firmware does not answer runs a recovery reset, which would drop a switch
++ * still set and so silently cancel the keep; taken first, the context is kept
++ * even when its CLEANUP timed out.
+  */
+ struct sgxfive_kept {
+ 	struct list_head link;
+diff --git a/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke_test.c b/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke_test.c
+index 85a726015..e033e1b1d 100644
+--- a/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke_test.c
++++ b/drivers/gpu/drm/gma500/sgxfive/sgxfive_kpoke_test.c
+@@ -1017,6 +1017,21 @@ static void sgxfive_kpoke_test_keep(struct kunit *test)
+ 	KUNIT_EXPECT_PTR_EQ(test, s.node[3], &node[1]);
+ }
+ 
++static void keep_test_free_page(void *page)
++{
++	__free_page(page);
++}
++
++/* A page the test frees at its end, whether it passes or an assertion stops it; NULL on failure. */
++static struct page *keep_test_page(struct kunit *test)
++{
++	struct page *page = alloc_page(GFP_KERNEL);
++
++	if (page && kunit_add_action_or_reset(test, keep_test_free_page, page))
++		return NULL;
++	return page;
++}
++
+ /* debugfs render_kept: the newest kept context's TA data, across its pages, nothing past them. */
+ static void sgxfive_kpoke_test_keep_read(struct kunit *test)
+ {
+@@ -1031,12 +1046,12 @@ static void sgxfive_kpoke_test_keep_read(struct kunit *test)
+ 	sgxfive_keep_init(k);
+ 	KUNIT_EXPECT_EQ(test, sgxfive_keep_read(k, buf, 16, 0), 0u);
+ 	for (i = 0; i < ARRAY_SIZE(op); i++) {
+-		op[i] = alloc_page(GFP_KERNEL);
++		op[i] = keep_test_page(test);
+ 		KUNIT_ASSERT_NOT_NULL(test, op[i]);
+ 		memset(page_address(op[i]), 0x11, PAGE_SIZE);
+ 	}
+ 	for (i = 0; i < ARRAY_SIZE(np); i++) {
+-		np[i] = alloc_page(GFP_KERNEL);
++		np[i] = keep_test_page(test);
+ 		KUNIT_ASSERT_NOT_NULL(test, np[i]);
+ 		memset(page_address(np[i]), 0x22 + 0x11 * i, PAGE_SIZE);
+ 	}
+@@ -1059,10 +1074,6 @@ static void sgxfive_kpoke_test_keep_read(struct kunit *test)
+ 	/* Drained, nothing is left to read. */
+ 	sgxfive_keep_drain(k, keep_seen_fn, &(struct keep_seen){ .k = k });
+ 	KUNIT_EXPECT_EQ(test, sgxfive_keep_read(k, buf, 16, 0), 0u);
+-	for (i = 0; i < ARRAY_SIZE(op); i++)
+-		__free_page(op[i]);
+-	for (i = 0; i < ARRAY_SIZE(np); i++)
+-		__free_page(np[i]);
+ }
+ 
+ /* The switch is taken once, by the first render context closed, and reset drops it. */
+diff --git a/drivers/gpu/drm/gma500/sgxfive/sgxfive_render.c b/drivers/gpu/drm/gma500/sgxfive/sgxfive_render.c
+index 191e7c8c5..23028f504 100644
+--- a/drivers/gpu/drm/gma500/sgxfive/sgxfive_render.c
++++ b/drivers/gpu/drm/gma500/sgxfive/sgxfive_render.c
+@@ -71,13 +71,15 @@ static u32 *render_bg(struct sgxfive_render *r)
+  */
+ static void render_spaces(struct sgxfive_ctx *ctx, u32 *w[SGXFIVE_KPOKE_SPACES])
+ {
++	struct sgxfive_render *r = READ_ONCE(ctx->render);
++
+ 	memset(w, 0, SGXFIVE_KPOKE_SPACES * sizeof(*w));
+ 	w[SGXFIVE_KPOKE_CTX] = rctx(ctx, SGXFIVE_CTX_HW_OFF);
+ 	w[SGXFIVE_KPOKE_RTDS] = rctx(ctx, SGXFIVE_RCTX_RTDS_OFF);
+ 	w[SGXFIVE_KPOKE_PB] = rctx(ctx, SGXFIVE_RCTX_PBDESC_OFF);
+ 	w[SGXFIVE_KPOKE_KW] = rctx(ctx, SGXFIVE_RCTX_ACCESS_OFF);
+ 	w[SGXFIVE_KPOKE_RD] = rctx(ctx, SGXFIVE_RCTX_RD_OFF);
+-	w[SGXFIVE_KPOKE_BG] = ctx->render ? render_bg(ctx->render) : NULL;
++	w[SGXFIVE_KPOKE_BG] = r ? render_bg(r) : NULL;
+ }
+ #endif
+ 
+@@ -307,18 +309,18 @@ static void sgxfive_render_drop(struct sgxfive_render *r)
+  * With debugfs render_keep armed, the context closed next is not dropped: the
+  * firmware has had its CLEANUP, but its pages stay mapped in its VM, its slot
+  * stays taken and its memory stays, parked until debugfs reset or the device's
+- * destruction (sgxfive_render_keep_release). Returns whether it was kept.
++ * destruction (sgxfive_render_keep_release). The switch is taken before the
++ * CLEANUP (sgxfive_render_fini), because a CLEANUP the firmware does not
++ * answer runs a recovery, which drops a switch still set.
+  */
+-static bool sgxfive_render_keep(struct sgxfive_ctx *ctx, struct sgxfive_render *r)
++static void sgxfive_render_park(struct sgxfive_ctx *ctx, struct sgxfive_render *r)
+ {
+-	if (!sgxfive_take_render_keep(ctx->sgx))
+-		return false;
+ 	r->kept.td = r->td;
+ 	r->kept.td_pages = r->td_pages;
+ 	sgxfive_keep_park(&ctx->sgx->kept, &r->kept);
+-	drm_info(ctx->sgx->dev, "sgxfive: render context %#x closed and kept: slot %u, TA data %#x\n",
++	drm_info(ctx->sgx->dev,
++		 "sgxfive: render context %#x closed and kept: slot %u, TA data %#x\n",
+ 		 r->a.ctx, r->slot, r->a.tadata);
+-	return true;
+ }
+ 
+ static void sgxfive_render_keep_one(struct sgxfive_kept *kept, void *arg)
+@@ -335,9 +337,8 @@ void sgxfive_render_keep_release(struct sgxfive *sgx)
+ 		drm_info(sgx->dev, "sgxfive: %u kept render context(s) released\n", n);
+ }
+ #else
+-static bool sgxfive_render_keep(struct sgxfive_ctx *ctx, struct sgxfive_render *r)
++static void sgxfive_render_park(struct sgxfive_ctx *ctx, struct sgxfive_render *r)
+ {
+-	return false;
+ }
+ #endif
+ 
+@@ -355,11 +356,14 @@ void sgxfive_render_fini(struct sgxfive_ctx *ctx)
+ {
+ 	struct sgxfive_render *r = ctx->render;
+ 	struct sgxfive *sgx = ctx->sgx;
++	bool keep = sgxfive_take_render_keep(sgx);	/* before a CLEANUP reset can drop it */
+ 
+ 	if (sgxfive_render_cleanup(sgx, r->a.rtds, r->a.ctx, r->pb_shared ? 0 : r->a.pbdesc,
+ 				   *rctx(ctx, SGXFIVE_CTX_HW_OFF)))
+ 		sgxfive_cleanup_reset(sgx);
+-	if (!sgxfive_render_keep(ctx, r))
++	if (keep)
++		sgxfive_render_park(ctx, r);
++	else
+ 		sgxfive_render_drop(r);
+ }
+ 
