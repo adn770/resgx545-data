@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# Phase 11.38 follow-up "fine": predictions frozen before any fine job (manifest-fine-1138.sha256, predictions-fine-1138.sha256).
+# Declared after the main fit set (692 cases) was read: the main fit gave, with 0 mismatching pixels in 413856, no snapping
+# down to 1/256 pixel, the sample at the pixel centre and a top-left tie rule (left and top edges own a sample on them); a snap
+# grid of 1/128 pixel gives 21 mismatches. The main held-out set (128x128, 256x128, 64x64 batch 2) had not been analysed.
+# cases-fine.tsv sha256 6c895cd8186e13e115553620223b411e8f88ee04b80564dbe50912001a57c30e. Tool: tool-b, ~/sgxfive-test-1138b (--tri-unit K, tests first).
+# Sets: fine (all of it; FA and FB at 1/4096 on 64x64 are the fit of this follow-up, FC at 1/65536 on 256x128 the held-out part).
+
+[[row]]
+id = "PF1"
+tier = "infer"
+declared = "edge sweeps at 1/4096 pixel (64 x 64, 65 steps across the tie, six edge kinds) and at 1/65536 pixel (256 x 128, near the origin and far from it): the first covered pixel flips exactly at the tie, i.e. the exact model (no snap, centre sample, left and top edges own the tie) is reproduced in at least 99.5% of the 1/4096 sweep cases and of the 1/65536 ones"
+falsifier = "a flip displaced from the tie by one or more units (a snap grid between 1/256 and 1/65536, or a float32 edge function)"
+expect = ">= 99.5%"
+
+[[row]]
+id = "PF2"
+tier = "infer"
+declared = "random fine triangles (100 small, 60 medium, 60 nearcentre with half-integer vertices jittered by 0 to 3 units of 1/4096): the exact model misses at most 0.05% of the pixels of the 220 triangles' images; the same model with the vertices snapped to 1/256 misses more than 50 pixels on the nearcentre class"
+falsifier = "more than 0.05% mismatching, or fewer than 51 pixels differing for the 1/256 snap"
+expect = "exact model within 0.05%, 1/256 snap > 50 pixels"
+
+[[row]]
+id = "PF3"
+tier = "infer"
+declared = "the edge function is exact (not float32): at 1/65536 pixel in a 256-wide target far from the origin (a vertical edge near x = 215, a horizontal one near y = 100) the flips equal the exact model's in at least 95% of the cases"
+falsifier = "flips displaced by a unit or more far from the origin only (a float32 evaluation loses bits there)"
+expect = ">= 95%"

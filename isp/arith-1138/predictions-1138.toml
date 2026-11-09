@@ -1,0 +1,96 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# Phase 11.38 arithmetic sweep: the predictions, frozen before any run (predictions-1138.sha256 holds this
+# file's sha256, manifest-1138.sha256 every file the run and the analysis use). cases.tsv sha256 0a73ca8f4a2dadb6929e14db4d830d13a49116054f084295abfc1f2f90a2102d.
+# Tool: sgxfive-test-1138, sha256 e915fa768d44296b125bd2090a92452d084a864c5a7944ba47bb83e2f8eb0579
+# (source fcb1aea98b621f4e04137e2e2b818f118f239b4179a09c5e7f05c87d078c01e6). Thresholds are those of
+# recompute/recompute_p1138.py section 6. Sets: fit = 64x64 batch 1, heldout = 128x128, 256x128 and 64x64 batch 2.
+
+[[row]]
+id = "P1"
+tier = "infer"
+declared = "coverage on the fit set: the cell (snap round to 1/16 pixel, sample point the pixel centre, exact edge function, tie rule R1) misses at most 0.05% of the pixels of the bounding boxes (+2) of the fit triangles, and no cell of the grid does better by more than that"
+falsifier = "more than 0.05% mismatching pixels for that cell"
+expect = "<= 0.05% of the fit pixels"
+
+[[row]]
+id = "P2"
+tier = "infer"
+declared = "vertices are snapped: the cell (none, centre, R1) misses at least 50 fit pixels (the 1/256 positions matter)"
+falsifier = "fewer than 50 pixels differ between the unsnapped and the 1/16 snapped model on the fit set"
+expect = ">= 50 pixels"
+
+[[row]]
+id = "P3"
+tier = "infer"
+declared = "the primary cell, fixed before the runs, on the held-out set (128x128, 256x128, 64x64 batch 2): at most 0.1% mismatching pixels and at most 2% inexact triangles"
+falsifier = "either bound exceeded"
+expect = "<= 0.1% pixels, <= 2% triangles"
+
+[[row]]
+id = "P5"
+tier = "infer"
+declared = "fill rule: in every shared-edge pair no pixel centre within a pixel of the shared edge is drawn by both triangles and none is drawn by neither (centres exactly on the edge included): the rule partitions"
+falsifier = "any pixel drawn twice or not at all along a shared edge"
+expect = "0 gaps, 0 doubles"
+
+[[row]]
+id = "P6"
+tier = "infer"
+declared = "depth: the stored value of covered pixels equals the plane through the (snapped) vertices' depths evaluated at the fitted sample point within 1 float32 ulp at 99% of the pixels, maximum 4 ulp, on the fit set and on the held-out set at the fitted cell"
+falsifier = "less than 99% within 1 ulp, or a maximum above 4 ulp, in either set"
+expect = ">= 0.99, <= 4 ulp"
+
+[[row]]
+id = "P7"
+tier = "infer"
+declared = "iteration: pa0 (clip z) is the plane through the vertices' clip z (unsnapped) at the sample point (6, 2)/16 pixel from the pixel's corner (x + 0.375, y + 0.125, E502) within 1 ulp at 99% of the covered pixels; P7b: the x of pa1 is x + 0.375 at the best fitted point"
+falsifier = "another sample point fits best, or less than 99% within 1 ulp"
+expect = "(96, 32) /256 pixel, >= 0.99"
+
+[[row]]
+id = "P8"
+tier = "HW"
+declared = "repeatability: the 30 repeat runs give byte-identical colour images and depth buffers to their first runs"
+falsifier = "any difference"
+expect = "30 of 30"
+
+[[row]]
+id = "P9"
+tier = "HW"
+declared = "H-ind: the coverage of the plain green probe and of the two iteration probes equals that of the depth job's colour image, case by case"
+falsifier = "any pixel differing between pixel programs"
+expect = "all cases equal"
+
+[[row]]
+id = "P10"
+tier = "HW"
+declared = "collinear (zero-area) triangles draw no pixel, 31 triangles"
+falsifier = "any pixel drawn"
+expect = "0 pixels"
+
+[[row]]
+id = "P11"
+tier = "HW"
+declared = "at least 99% of the 3112 jobs complete unflagged (no fault, no hang)"
+falsifier = "more than 31 flagged jobs"
+expect = ">= 99%"
+
+# Declared after a pilot of 3 cases outside every set (a default triangle, a small and a 128x128 one; the
+# pilot is not part of any set and is kept in the data as pilot, pilot2). The pilot's depth and iteration
+# fitted the plane through the UNSNAPPED vertices at the pixel centre; it said nothing about coverage.
+# P7 above, written before it, stays as declared and is expected to fail.
+
+[[row]]
+id = "P7c"
+tier = "infer"
+declared = "after the pilot: pa0 (clip z) is the plane through the unsnapped vertices at the pixel centre (128, 128)/256, within 1 ulp at 99% of the covered pixels of the fit set"
+falsifier = "another snap or sample point fits best, or less than 99% within 1 ulp"
+expect = "(none, centre), >= 0.99"
+
+[[row]]
+id = "P7d"
+tier = "infer"
+declared = "after the pilot: the stored depth likewise: plane through the unsnapped vertices at the pixel centre, 99% within 1 ulp on the fit set"
+falsifier = "another snap or sample point fits best"
+expect = "(none, centre), >= 0.99"

@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# Phase 11.38 confirmation "fine2": predictions frozen before any fine2 job (manifest-fine2-1138.sha256, predictions-fine2-1138.sha256).
+# Declared after the fine set (874 cases) was read. The frozen predictions of that set (no snapping below 1/256: PF1, PF2, PF3) FAILED:
+# the observed flips are 8 units of 1/4096 pixel after the tie, not at it. Post hoc on the fine set one rule reproduces all 874 cases
+# with 0 mismatching pixels: the vertices rounded half-up to 1/256 pixel, then the exact centre-sample test with the left/top tie rule
+# (half-down 144 mismatching pixels, floor 1152, round to 1/512 577, to 1/128 1157). That is a fit on the fine set (one of 24
+# variants). This set is held out from it: new seed 11381 (cases-fine2.tsv sha256 c619780ed789735814188359c7419d25fd110dca08bc3469f70038f7f9d236d7), other target sizes and positions, tiny edges.
+# Tool: ~/sgxfive-test-1138b as the fine set.
+
+[[row]]
+id = "PH1"
+tier = "infer"
+declared = "M* (vertices rounded half-up to 1/256 pixel, exact centre sample, left/top tie): at most 0.05% of the pixels of the bounding boxes of the 150 random fine triangles (128 x 128, 1/4096), the 60 near-centre ones (256 x 128, 1/65536) and the 132 sweeps mismatch, and the observed sweep flips equal M*'s in at least 99.5% of the 132 sweep cases"
+falsifier = "more than 0.05% mismatching pixels or fewer than 99.5% of sweep cases agreeing"
+expect = "<= 0.05%, >= 99.5%"
+
+[[row]]
+id = "PH2"
+tier = "infer"
+declared = "the alternatives half-down to 1/256, floor to 1/256 and half-up to 1/512 each mismatch at least 50 pixels over the same cases"
+falsifier = "any of them below 50 pixels (not separable)"
+expect = ">= 50 each"
+
+[[row]]
+id = "PH3"
+tier = "infer"
+declared = "edge-function precision: in 80 cases of a long edge (50 to 120 pixels) passing a pixel centre at a cross product of +1 or -1 (1/65536 pixel squared, 256 x 256 target at 1/256), the observed coverage of that pixel equals the exact integer model's in at least 95% of the cases (a float32 edge function would misclassify many)"
+falsifier = "fewer than 95% equal (a limited-precision edge setup)"
+expect = ">= 76 of 80"
+
+[[row]]
+id = "PH4"
+tier = "infer"
+declared = "depth through the rounded vertices at the centre: on the 132 sweeps at least 98% of the covered pixels are within 1 ulp of 1.0 (2^-23) and none above 4 ulp"
+falsifier = "less than 98% or a maximum above 4 ulp"
+expect = ">= 0.98, <= 4"
