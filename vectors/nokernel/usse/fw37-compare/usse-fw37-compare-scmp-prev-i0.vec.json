@@ -1,0 +1,4429 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fw37-compare/usse-fw37-compare-scmp-prev-i0/raw.txt",
+  "raw_sha256": "20952f94218d716bccf5b8c72e3c3c84cbf0ed4e87c13afbbb4ac2b2354d5efa",
+  "converted": "2026-11-09T09:09:48+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 0,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca3d06000901306",
+     "0xfca3012000a7d940",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0xf4d01306",
+     "r5": "0xc247d940",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0x328839c6",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0xf4d01306",
+     "0x030": "0xc247d940",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 1,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x00000001",
+     "D": "0xf4d01306",
+     "E": "0xc247d940",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 2,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000001",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca1b0e000886142",
+     "0xfca1114000b8eb1b",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0x6dc86142",
+     "r5": "0x4698eb1b",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x272f7627",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0x6dc86142",
+     "0x030": "0x4698eb1b",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 3,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000001",
+     "C": "0x00000000",
+     "D": "0x6dc86142",
+     "E": "0x4698eb1b",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 4,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x00000000",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca010100084ec33",
+     "0xfca350c000b1dfdb",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0x0424ec33",
+     "r5": "0xd591dfdb",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0x2e930c58",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x0424ec33",
+     "0x030": "0xd591dfdb",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 5,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x00000000",
+     "C": "0x00000001",
+     "D": "0x0424ec33",
+     "E": "0xd591dfdb",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000000",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 6,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0x00000000",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca3e070008ead90",
+     "0xfca290a000bce89d",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0xf8eead90",
+     "r5": "0xa55ce89d",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x5391c4f3",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000000",
+     "0x028": "0x00000000",
+     "0x02c": "0xf8eead90",
+     "0x030": "0xa55ce89d",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 7,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0x00000000",
+     "C": "0x00000000",
+     "D": "0xf8eead90",
+     "E": "0xa55ce89d",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 8,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0xffffffff",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca1f01000970682",
+     "0xfca340e000bbc915",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x7c370682",
+     "r5": "0xd1dbc915",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xaa5b3d6d",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x7c370682",
+     "0x030": "0xd1dbc915",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 9,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0xffffffff",
+     "C": "0x00000001",
+     "D": "0x7c370682",
+     "E": "0xd1dbc915",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0x7fffffff",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 10,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x00000001",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__11",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca3f10000878088",
+     "0xfca0c1e000a11771",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0xfe078088",
+     "r5": "0x33c11771",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0x7fffffff",
+     "0x008": "0xca466917",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0xfe078088",
+     "0x030": "0x33c11771",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 11,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x00000001",
+     "C": "0x00000000",
+     "D": "0xfe078088",
+     "E": "0x33c11771",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__12",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x80000001",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 12,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__13",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca1814000824fa7",
+     "0xfca2a02000a6e1e5",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x62824fa7",
+     "r5": "0xa846e1e5",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x80000001",
+     "0x008": "0xba3b6dc2",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x62824fa7",
+     "0x030": "0xa846e1e5",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 13,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0x62824fa7",
+     "E": "0xa846e1e5",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__14",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca1f1f0003fffff",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x7fffffff",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xffffffff",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x7fffffff",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 14,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x7fffffff",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__15",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca1f1f0003fffff",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca3f1c000868b70",
+     "0xfca3c0e000bb4df7",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x7fffffff",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0xff868b70",
+     "r5": "0xf1db4df7",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xffffffff",
+     "0x008": "0x0dab3d79",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x7fffffff",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0xff868b70",
+     "0x030": "0xf1db4df7",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 15,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x7fffffff",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0xff868b70",
+     "E": "0xf1db4df7",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__16",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca1f1f0005fffff",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x7fffffff",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0x00000001",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x7fffffff",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 16,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x7fffffff",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__17",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca1f1f0005fffff",
+     "0xfca0000000600000",
+     "0xfca0d0a000943667",
+     "0xfca3716000a21415",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x7fffffff",
+     "r3": "0x00000000",
+     "r4": "0x35543667",
+     "r5": "0xdec21415",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0x00000001",
+     "0x008": "0x56922252",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x7fffffff",
+     "0x028": "0x00000000",
+     "0x02c": "0x35543667",
+     "0x030": "0xdec21415",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 17,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x7fffffff",
+     "C": "0x00000000",
+     "D": "0x35543667",
+     "E": "0xdec21415",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__18",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca000000020ffff",
+     "0xfca0000000410000",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x0000ffff",
+     "r2": "0x00010000",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x0000ffff",
+     "0x024": "0x00010000",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 18,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x0000ffff",
+     "B": "0x00010000",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__19",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca000000020ffff",
+     "0xfca0000000410000",
+     "0xfca0000000600000",
+     "0xfca13080008c61fb",
+     "0xfca3301000b3195a",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x0000ffff",
+     "r2": "0x00010000",
+     "r3": "0x00000000",
+     "r4": "0x4d0c61fb",
+     "r5": "0xcc33195a",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xffffffff",
+     "0x008": "0x80d948a1",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x0000ffff",
+     "0x024": "0x00010000",
+     "0x028": "0x00000000",
+     "0x02c": "0x4d0c61fb",
+     "0x030": "0xcc33195a",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 19,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x0000ffff",
+     "B": "0x00010000",
+     "C": "0x00000000",
+     "D": "0x4d0c61fb",
+     "E": "0xcc33195a",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__20",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000210000",
+     "0xfca000000040ffff",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00010000",
+     "r2": "0x0000ffff",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00010000",
+     "0x024": "0x0000ffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 20,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00010000",
+     "B": "0x0000ffff",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__21",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000210000",
+     "0xfca000000040ffff",
+     "0xfca0000000600001",
+     "0xfca1702000843449",
+     "0xfca3a13000ae482f",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00010000",
+     "r2": "0x0000ffff",
+     "r3": "0x00000001",
+     "r4": "0x5c443449",
+     "r5": "0xea6e482f",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0x71d5ec1a",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00010000",
+     "0x024": "0x0000ffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x5c443449",
+     "0x030": "0xea6e482f",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 21,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00010000",
+     "B": "0x0000ffff",
+     "C": "0x00000001",
+     "D": "0x5c443449",
+     "E": "0xea6e482f",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__22",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 22,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__23",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca201e00080d89e",
+     "0xfca3e09000ba3e50",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x83c0d89e",
+     "r5": "0xf93a3e50",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0x8a869a4e",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x83c0d89e",
+     "0x030": "0xf93a3e50",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 23,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0x00000001",
+     "D": "0x83c0d89e",
+     "E": "0xf93a3e50",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__24",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 24,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000001",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__25",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca000700097e1f5",
+     "0xfca041a000a88002",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00f7e1f5",
+     "r5": "0x13488002",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000001",
+     "0x008": "0xedaf61f3",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00f7e1f5",
+     "0x030": "0x13488002",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 25,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000001",
+     "B": "0x80000000",
+     "C": "0x00000001",
+     "D": "0x00f7e1f5",
+     "E": "0x13488002",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__26",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200005",
+     "0xfca0000000400005",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000005",
+     "r2": "0x00000005",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000005",
+     "0x024": "0x00000005",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 26,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000005",
+     "B": "0x00000005",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__27",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200005",
+     "0xfca0000000400005",
+     "0xfca0000000600001",
+     "0xfca04000009817ce",
+     "0xfca1c1d000bc102b",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000005",
+     "r2": "0x00000005",
+     "r3": "0x00000001",
+     "r4": "0x101817ce",
+     "r5": "0x73bc102b",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0x00000000",
+     "0x008": "0x9c5c07a3",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000005",
+     "0x024": "0x00000005",
+     "0x028": "0x00000001",
+     "0x02c": "0x101817ce",
+     "0x030": "0x73bc102b",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 27,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000005",
+     "B": "0x00000005",
+     "C": "0x00000001",
+     "D": "0x101817ce",
+     "E": "0x73bc102b",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__28",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca191100028a325",
+     "0xfca241c000436e64",
+     "0xfca0000000600001",
+     "0xfca0000000800003",
+     "0xfca0000000a00005",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x6628a325",
+     "r2": "0x93836e64",
+     "r3": "0x00000001",
+     "r4": "0x00000003",
+     "r5": "0x00000005",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xd2a534c1",
+     "0x008": "0xfffffffe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x6628a325",
+     "0x024": "0x93836e64",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000003",
+     "0x030": "0x00000005",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 28,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x6628a325",
+     "B": "0x93836e64",
+     "C": "0x00000001",
+     "D": "0x00000003",
+     "E": "0x00000005",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__29",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca191100028a325",
+     "0xfca241c000436e64",
+     "0xfca0000000600001",
+     "0xfca0f1900090f134",
+     "0xfca1119000bd33af",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x6628a325",
+     "r2": "0x93836e64",
+     "r3": "0x00000001",
+     "r4": "0x3f30f134",
+     "r5": "0x473d33af",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xd2a534c1",
+     "0x008": "0xf7f3bd85",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x6628a325",
+     "0x024": "0x93836e64",
+     "0x028": "0x00000001",
+     "0x02c": "0x3f30f134",
+     "0x030": "0x473d33af",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 29,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x6628a325",
+     "B": "0x93836e64",
+     "C": "0x00000001",
+     "D": "0x3f30f134",
+     "E": "0x473d33af",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__30",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0d0d00033e794",
+     "0xfca100300054160f",
+     "0xfca0000000600000",
+     "0xfca0000000800005",
+     "0xfca0000000a00003",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x35b3e794",
+     "r2": "0x4074160f",
+     "r3": "0x00000000",
+     "r4": "0x00000005",
+     "r5": "0x00000003",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xf53fd185",
+     "0x008": "0x00000002",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x35b3e794",
+     "0x024": "0x4074160f",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000005",
+     "0x030": "0x00000003",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 30,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x35b3e794",
+     "B": "0x4074160f",
+     "C": "0x00000000",
+     "D": "0x00000005",
+     "E": "0x00000003",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-prev-i0__31",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0d0d00033e794",
+     "0xfca100300054160f",
+     "0xfca0000000600000",
+     "0xfca3c140009bd624",
+     "0xfca3e1a000ba4426",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x48081281000c0183",
+     "0xd002024041815c04",
+     "0xd002024041609c01",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x35b3e794",
+     "r2": "0x4074160f",
+     "r3": "0x00000000",
+     "r4": "0xf29bd624",
+     "r5": "0xfb5a4426",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xf53fd185",
+     "0x008": "0xf74191fe",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x35b3e794",
+     "0x024": "0x4074160f",
+     "0x028": "0x00000000",
+     "0x02c": "0xf29bd624",
+     "0x030": "0xfb5a4426",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-prev-i0",
+    "case": 31,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x35b3e794",
+     "B": "0x4074160f",
+     "C": "0x00000000",
+     "D": "0xf29bd624",
+     "E": "0xfb5a4426",
+     "F": "0x00000000"
+    },
+    "params": {
+     "OP": "and.testtanz.chan0 !c0, p0, r3, r3\nima32.s r12, i0, r5, c56, r4\nima32.s r11, i0, r2, c56, r1\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "the signed compare right after another compare that left i0 = its high word: does the second test read the second compare's high word (r10 = a<b) or the previous one"
+   }
+  }
+ ],
+ "orphans": []
+}

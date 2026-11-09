@@ -1,0 +1,1373 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fw37-ima32hi-repeat/usse-fw37-ima32hi-repeat-his-aaab/raw.txt",
+  "raw_sha256": "58d41f6f6ad6ef081d5aaca707b0ae9f6f448a7bbe16dc0fbabc4fb2b526e91d",
+  "converted": "2026-11-09T09:34:28+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca3f1f0007fffff",
+     "0xfca3a14000830e4b",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a00",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0xffffffff",
+     "r4": "0xea830e4b",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a00",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xbd8e49f8",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xbd8e49f8",
+     "0x004": "0x01cdbca2",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0xffffffff",
+     "0x02c": "0xea830e4b",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a00"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 0,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0xffffffff",
+     "D": "0xea830e4b",
+     "H": "0x0a5a5a00"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca3c180008526a6",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a11",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0xf30526a6",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a11",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xac51b3a4",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xac51b3a4",
+     "0x004": "0x00a87a2d",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x00000000",
+     "0x02c": "0xf30526a6",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a11"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 1,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x00000000",
+     "D": "0xf30526a6",
+     "H": "0x0a5a5a11"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca3f1f0007fffff",
+     "0xfca2e0f0008c367d",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a22",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0xffffffff",
+     "r4": "0xb9ec367d",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a22",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x2c10f908",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x2c10f908",
+     "0x004": "0x132ed3bb",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0xffffffff",
+     "0x02c": "0xb9ec367d",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a22"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 2,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0xffffffff",
+     "D": "0xb9ec367d",
+     "H": "0x0a5a5a22"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca2e120008051db",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a33",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0xba4051db",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a33",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x43ac515a",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x43ac515a",
+     "0x004": "0x1300e365",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0xba4051db",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a33"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 3,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x00000001",
+     "D": "0xba4051db",
+     "H": "0x0a5a5a33"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca040c0006d8405",
+     "0xfca3e080008a31c9",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a44",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x118d8405",
+     "r4": "0xf90a31c9",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a44",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00f013d6",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00f013d6",
+     "0x004": "0x003071af",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x118d8405",
+     "0x02c": "0xf90a31c9",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a44"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 4,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x118d8405",
+     "D": "0xf90a31c9",
+     "H": "0x0a5a5a44"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0b0f0007fe4a9",
+     "0xfca2117000919eee",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a55",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x2dffe4a9",
+     "r4": "0x86f19eee",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a55",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xf4c689ed",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xf4c689ed",
+     "0x004": "0x393e9891",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x2dffe4a9",
+     "0x02c": "0x86f19eee",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a55"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 5,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x2dffe4a9",
+     "D": "0x86f19eee",
+     "H": "0x0a5a5a55"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca21060007ceb3e",
+     "0xfca3d080009e1eac",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a66",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x84dceb3e",
+     "r4": "0xf51e1eac",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a66",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xf0d9aece",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xf0d9aece",
+     "0x004": "0x00766ce7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x84dceb3e",
+     "0x02c": "0xf51e1eac",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a66"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 6,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x84dceb3e",
+     "D": "0xf51e1eac",
+     "H": "0x0a5a5a66"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca310a0007abea8",
+     "0xfca2710000927215",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a77",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0xc55abea8",
+     "r4": "0x9e127215",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a77",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xef257461",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xef257461",
+     "0x004": "0x2575e1fb",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0xc55abea8",
+     "0x02c": "0x9e127215",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a77"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 7,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0xc55abea8",
+     "D": "0x9e127215",
+     "H": "0x0a5a5a77"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca3c0900071baf0",
+     "0xfca3f0d000938e30",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a88",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0xf131baf0",
+     "r4": "0xfdb38e30",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a88",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0xf74b03f0",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0xf74b03f0",
+     "0x004": "0x0005489a",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0xf131baf0",
+     "0x02c": "0xfdb38e30",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a88"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 8,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0xf131baf0",
+     "D": "0xfdb38e30",
+     "H": "0x0a5a5a88"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  },
+  {
+   "id": "usse-fw37-ima32hi-repeat-his-aaab__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca051e00074e2fb",
+     "0xfca2c1b0008cf686",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca02120011a5a99",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100021400200",
+     "0x280110002f800400",
+     "0xd000024001428503",
+     "0x2801100021603e00",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x17d4e2fb",
+     "r4": "0xb36cf686",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x0a5a5a99",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x6a4ab11f",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x6a4ab11f",
+     "0x004": "0x16e7a214",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x17d4e2fb",
+     "0x02c": "0xb36cf686",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x0a5a5a99"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-ima32hi-repeat-his-aaab",
+    "case": 9,
+    "table": "fw37-ima32hi-repeat.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x17d4e2fb",
+     "D": "0xb36cf686",
+     "H": "0x0a5a5a99"
+    },
+    "params": {
+     "OP": "mov r10, r4\nmov i0, r8\nima32.s r10, i0, r10, r10, r3\nmov r11, i0",
+     "OUT": "r10",
+     "E": 0,
+     "F": 0,
+     "G": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "ima32.s r10, i0, r10, r10, r3 (registers shared as r10/r3): r10 = low word, r11 = high word of a*b+c read before the write"
+   }
+  }
+ ],
+ "orphans": []
+}

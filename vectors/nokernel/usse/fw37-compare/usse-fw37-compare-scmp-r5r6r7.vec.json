@@ -1,0 +1,2237 @@
+{
+ "format": "sgx545-vectors",
+ "version": 1,
+ "run": {
+  "raw": "usse/fw37-compare/usse-fw37-compare-scmp-r5r6r7/raw.txt",
+  "raw_sha256": "44695036cc29fa11f6c409514185612fe6a7111cb8ee7162e5b90f1774e7dacc",
+  "converted": "2026-11-09T09:09:48+01:00",
+  "tool": "vectors.py 1"
+ },
+ "vectors": [
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__0",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000000",
+     "0x034": "0x00000000",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 0,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000000",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__1",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000000",
+     "0x034": "0x00000001",
+     "0x038": "0xffffffff",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 1,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0x00000001",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__2",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca0000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x00000000",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x00000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x00000000",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 2,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x00000000",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__3",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca0000000400000",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0x00000000",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0x00000000",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0xffffffff",
+     "0x034": "0x00000000",
+     "0x038": "0xffffffff",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 3,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0x00000000",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__4",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200000",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000000",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000000",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000000",
+     "0x034": "0xffffffff",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 4,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000000",
+     "B": "0xffffffff",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__5",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca0000000400001",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x00000001",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x00000001",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0x80000000",
+     "0x034": "0x00000001",
+     "0x038": "0x7fffffff",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 5,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x00000001",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__6",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000001",
+     "0x034": "0x80000000",
+     "0x038": "0x80000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 6,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000001",
+     "B": "0x80000000",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__7",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca1f1f0003fffff",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x7fffffff",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x7fffffff",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x7fffffff",
+     "0x034": "0x80000000",
+     "0x038": "0xffffffff",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 7,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x7fffffff",
+     "B": "0x80000000",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__8",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200000",
+     "0xfca1f1f0005fffff",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000000",
+     "r2": "0x7fffffff",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000000",
+     "0x024": "0x7fffffff",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0x80000000",
+     "0x034": "0x7fffffff",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 8,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000000",
+     "B": "0x7fffffff",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__9",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca000000020ffff",
+     "0xfca0000000410000",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x0000ffff",
+     "r2": "0x00010000",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x0000ffff",
+     "0x024": "0x00010000",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0x0000ffff",
+     "0x034": "0x00010000",
+     "0x038": "0xffffffff",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 9,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x0000ffff",
+     "B": "0x00010000",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__10",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000210000",
+     "0xfca000000040ffff",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00010000",
+     "r2": "0x0000ffff",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00010000",
+     "0x024": "0x0000ffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00010000",
+     "0x034": "0x0000ffff",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 10,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00010000",
+     "B": "0x0000ffff",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__11",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca3f1f0003fffff",
+     "0xfca3f1f0005fffff",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0xffffffff",
+     "r2": "0xffffffff",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0xffffffff",
+     "0x024": "0xffffffff",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0xffffffff",
+     "0x034": "0xffffffff",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 11,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0xffffffff",
+     "B": "0xffffffff",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__12",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca2000000200001",
+     "0xfca2000000400000",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x80000001",
+     "r2": "0x80000000",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x80000001",
+     "0x024": "0x80000000",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x80000001",
+     "0x034": "0x80000000",
+     "0x038": "0x00000001",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 12,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x80000001",
+     "B": "0x80000000",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__13",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0000000200005",
+     "0xfca0000000400005",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x00000005",
+     "r2": "0x00000005",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x00000005",
+     "0x024": "0x00000005",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x00000005",
+     "0x034": "0x00000005",
+     "0x038": "0x00000000",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 13,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x00000005",
+     "B": "0x00000005",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__14",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca191100028a325",
+     "0xfca241c000436e64",
+     "0xfca0000000600001",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x6628a325",
+     "r2": "0x93836e64",
+     "r3": "0x00000001",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000000",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000000",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x6628a325",
+     "0x024": "0x93836e64",
+     "0x028": "0x00000001",
+     "0x02c": "0x00000000",
+     "0x030": "0x6628a325",
+     "0x034": "0x93836e64",
+     "0x038": "0xd2a534c1",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 14,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x6628a325",
+     "B": "0x93836e64",
+     "C": "0x00000001"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  },
+  {
+   "id": "usse-fw37-compare-scmp-r5r6r7__15",
+   "program": {
+    "isa": "usse",
+    "entry": 0,
+    "source": "recorded",
+    "words": [
+     "0xfa44070000000000",
+     "0xfca0d0d00033e794",
+     "0xfca100300054160f",
+     "0xfca0000000600000",
+     "0xfca0000000800000",
+     "0xfca0000000a00000",
+     "0xfca0000000c00000",
+     "0xfca0000000e00000",
+     "0xfca0000001000000",
+     "0xfca280500141a2a3",
+     "0xfca290500165a6a7",
+     "0xfca2a0500189aaab",
+     "0xfca2b05001adaeaf",
+     "0xfca2c05001d1b2b3",
+     "0xfca2d05001f5b6b7",
+     "0xfca2e0500219babb",
+     "0xfca2f050023dbebf",
+     "0x2801100020a00080",
+     "0x2801100020c00100",
+     "0x48081281000c0183",
+     "0xd002024040e19c05",
+     "0x48091281200cbe00",
+     "0xfc20000001400000",
+     "0xfc20020001400001",
+     "0xfca1705003af0000",
+     "0xf02200008007400a",
+     "0xf02200008007408b",
+     "0xf02200008007410c",
+     "0xf02200008007418d",
+     "0xf02200008007420e",
+     "0xf02200008007428f",
+     "0xf022000080074310",
+     "0xf022000080074391",
+     "0xf022000080074401",
+     "0xf022000080074482",
+     "0xf022000080074503",
+     "0xf022000080074584",
+     "0xf022000080074605",
+     "0xf022000080074686",
+     "0xf022000080074707",
+     "0xf022000080074788",
+     "0xf820000000000000",
+     "0xf920000000000000",
+     "0x2885100120000500"
+    ]
+   },
+   "init": {
+    "task": "pixel",
+    "instances": 2048,
+    "temps": 32,
+    "pa0": "fill",
+    "scratch": {
+     "base": "0x3e003000",
+     "bytes": 65536,
+     "fill": "0xd0000000|i"
+    },
+    "regs": {
+     "r1": "0x35b3e794",
+     "r2": "0x4074160f",
+     "r3": "0x00000000",
+     "r4": "0x00000000",
+     "r5": "0x00000000",
+     "r6": "0x00000000",
+     "r7": "0x00000000",
+     "r8": "0x00000000",
+     "r10": "0xa0a1a2a3",
+     "r11": "0xa4a5a6a7",
+     "r12": "0xa8a9aaab",
+     "r13": "0xacadaeaf",
+     "r14": "0xb0b1b2b3",
+     "r15": "0xb4b5b6b7",
+     "r16": "0xb8b9babb",
+     "r17": "0xbcbdbebf"
+    },
+    "job": {
+     "pokes": [],
+     "use_coeffs": {
+      "load": false
+     }
+    }
+   },
+   "readback": {
+    "failed": null,
+    "o0": "0x00000001",
+    "mixed": [],
+    "scratch": {
+     "0x000": "0x00000001",
+     "0x004": "0xa4a5a6a7",
+     "0x008": "0xa8a9aaab",
+     "0x00c": "0xacadaeaf",
+     "0x010": "0xb0b1b2b3",
+     "0x014": "0xb4b5b6b7",
+     "0x018": "0xb8b9babb",
+     "0x01c": "0xbcbdbebf",
+     "0x020": "0x35b3e794",
+     "0x024": "0x4074160f",
+     "0x028": "0x00000000",
+     "0x02c": "0x00000000",
+     "0x030": "0x35b3e794",
+     "0x034": "0x4074160f",
+     "0x038": "0xf53fd185",
+     "0x03c": "0x00000000"
+    },
+    "pixels": null
+   },
+   "provenance": {
+    "probe": "usse-fw37-compare-scmp-r5r6r7",
+    "case": 15,
+    "table": "fw37-compare.toml",
+    "template": "dump.s",
+    "template_sha256": "bbb6e93a9442a857fa2930071ec14fe80e2be44316178ffb99127b6ce958ec51",
+    "inputs": {
+     "A": "0x35b3e794",
+     "B": "0x4074160f",
+     "C": "0x00000000"
+    },
+    "params": {
+     "OP": "mov r5, r1\nmov r6, r2\nand.testtanz.chan0 !c0, p0, r3, r3\nima32.s r7, i0, r6, c56, r5\nxor.testtanz.chan0 !c0, p0, i0, #0\nmov r10, #0\np0 mov r10, #1",
+     "OUT": "r10",
+     "D": 0,
+     "E": 0,
+     "F": 0,
+     "G": 0,
+     "H": 0
+    },
+    "options": [
+     "--temps",
+     "32"
+    ],
+    "question": "signed a<b from `ima32.s r7, i0, r6, c56, r5` and the test of the high word on registers r5, r6, r7 (r10 = a<b; p0 is set to the opposite first, so a p0 that is not written shows)"
+   }
+  }
+ ],
+ "orphans": []
+}
