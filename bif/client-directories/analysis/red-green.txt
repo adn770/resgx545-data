@@ -1,0 +1,12 @@
+TDD record of the 11.35 series (laptop, chroot runner, debug=on KUnit under qemu TCG; dev1135.sh)
+46 (bg poke): red at run time: red46.log: build ok (1 warning: frame size of the first test form, fixed), kunit 172/173,
+   sgxfive_kpoke_test_bg failed 6 expectations (words(BG) 0, parse of bg:0 and bg:16 -ERANGE, format, parse of the lines).
+   The stub was the enum value and the name only. Green: kunit 175/175 in red47.log's run (bg test passes).
+47 (render_keep): red at run time: red47.log: kunit 172/175, 3 failures (sgxfive_kpoke_test_keep 10 expectations,
+   _keep_switch, reset_disarms): the stubs did nothing (take false, park/drain no-ops). Green: 176/176 (green48.log).
+48 (render_kept): first run (red48.log) was a COMPILE failure only (page_address without linux/mm.h: 7 warnings, rc 2,
+   no kunit result); after the include, red at run time: red48b.log: kunit 175/176, sgxfive_kpoke_test_keep_read failed
+   (keep_read stub returned 0: 5 expectations). Green: 176/176 (green48.log).
+Not seen failing: the wiring in sgxfive_render.c (render_spaces w[BG], sgxfive_render_keep in the close,
+   sgxfive_render_keep_release from debugfs reset and sgxfive_destroy, the debugfs files): they need a real render
+   context and the hardware (the laptop run of the experiments).
