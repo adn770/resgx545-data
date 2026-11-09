@@ -1,0 +1,21 @@
+# Declared before any run of phase 11.35 (2026-11-09). Tool sgxfive-test-1135, the audit's reruns.
+# Seeds: temps-fresh-a 1135, temps-fresh-b 1136, temps-fresh-c 1137 (probes/p1135/gen_temps.py).
+# A job's marker for register n is (half << 16) | n, a half of its own (a: 25 halves, b: 25, c: 8 full markers).
+
+[rank1]   # temps-fresh-a (jobs in the table order of E485: temps-max t052..t128, then temps-sparse
+          # t080..t128) and temps-fresh-b (the reverse), a debugfs reset and 3 s before every job
+claim = "E485 stands: every job of the 50 reads, in every register it samples, the marker that job wrote"
+p1 = "50 of 50 jobs complete (no failed job, no hang); the baseline triangle draws before and after each run"
+p2 = "temps-max t052 and t064 (2 jobs each, per order): every dword (26 and 32) and the pixel are the job's own marker"
+p3 = "temps-max t080..t128 (the cut-off ones): the first 32 shown dwords are own markers, 'scratch N more changed' is n_registers - 32 (t080 8, t096 16, t112 24, t124 30, t128 30; the i0-i3 job of t128 shows 4 dwords and none more), the pixel is the top register's own marker"
+p4 = "temps-sparse: 10 of 10 jobs per order read every sampled register's own marker; the 64-wrap hypothesis is false"
+p5 = "the i0-i3 job (temps-max t128 case 3): i0, i1, i2 read own markers (the load into r124 leaves them), i3 reads i0's marker (E485's reading of E075)"
+p6 = "no job reads another job's half: stale reads of an earlier job's marker occur in 0 of 50 jobs, in either order, after a reset"
+falsified_if = "any job returns a value whose half is another job's (including the previous job of the order), or a wrapped register number"
+
+[rank2]   # temps-fresh-c (E487's jobs on E535's template)
+claim = "E487's jobs T = 132, 136, 144, 160 (started with 8) and T = 192 (started with 8, 32, 64, 128) read their own marker"
+p1 = "8 of 8 jobs complete and the pixel o0 equals the job's own marker in 2048 of 2048 pixels (the pixels reading uniform)"
+p2 = "no job hangs (T mod 256 is 4 to 192 for all eight: E519's rule)"
+p3 = "the jobs take 420 to 600 microseconds (as E487's)"
+falsified_if = "a job reads a marker other than its own (a leftover of the job before) or hangs"
