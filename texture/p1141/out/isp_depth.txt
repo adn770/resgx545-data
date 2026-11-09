@@ -1,0 +1,19 @@
+== main: corner offset -> tiles with a narrow interval, within 0.05 ulp of the float32 grid, (intervals empty)
+   offset (0, 0):   487 tiles,   292 on the grid =  60.0 %  (empty 1308)
+   offset (16, 8):   519 tiles,    74 on the grid =  14.3 %  (empty 1300)
+   offset (8, 4):   498 tiles,    55 on the grid =  11.0 %  (empty 1311)
+   offset (16, 0):   510 tiles,    88 on the grid =  17.3 %  (empty 1301)
+   offset (0, 8):   495 tiles,    72 on the grid =  14.5 %  (empty 1304)
+   offset (32, 16):   512 tiles,    62 on the grid =  12.1 %  (empty 1306)
+== fine2: corner offset -> tiles with a narrow interval, within 0.05 ulp of the float32 grid, (intervals empty)
+   offset (0, 0):   459 tiles,   344 on the grid =  74.9 %  (empty 1091)
+   offset (16, 8):   465 tiles,    83 on the grid =  17.8 %  (empty 1087)
+   offset (8, 4):   464 tiles,    57 on the grid =  12.3 %  (empty 1088)
+   offset (16, 0):   461 tiles,    74 on the grid =  16.1 %  (empty 1087)
+   offset (0, 8):   465 tiles,    71 on the grid =  15.3 %  (empty 1090)
+   offset (32, 16):   454 tiles,    64 on the grid =  14.1 %  (empty 1095)
+
+tiles with >= 60 covered pixels (all stored tiles), strict truncation of T + A dx + B dy with the exact plane:
+  main  : 2122 tiles; no single T fits 1308 (62 %); interval wider than 0.08 ulp 313; narrow and usable 501
+  fine2 : 1671 tiles; no single T fits 1091 (65 %); interval wider than 0.08 ulp 118; narrow and usable 462
+(the statistic above is on the usable minority: 25 % of main's tiles, 28 % of fine2's)

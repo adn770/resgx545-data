@@ -1,0 +1,11 @@
+phas #0, #0, pixel, end, parallel
+mov.skipinv r0, #0x00000000
+mov.skipinv r0, #0x00000000
+mov.skipinv r0, #0x00000000
+mov.skipinv r0, #0x00000000
+mov r4, #0x5CAF0090
+stad [r4,+#0], r2
+idf drc0, bif
+wdf drc0
+emitpix1.freep #0 /* incp */, r0, r1
+emitpix2.end.freep #0 /* incp */, r2, r3, r0, #0x00000000

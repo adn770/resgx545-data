@@ -1,0 +1,61 @@
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+ba6baa62fe33a5aa510c05ea1aa9a04c25798c60c4954655882682f05a5b8291  /home/jtorra/sgxfive-test-1138b
+## clock
+Mon Nov  9 14:30:02 CET 2026
+  health: ok
+== q140-256x160 (tri -)
+  rc 0 
+tri: render context for targets up to 256x160
+tri: triangle (0,0) (768,0) (0,480), depth 0.5 0.5 0.5
+diff: 0 of 40960 pixels
+tri 256x160 #1: 40960 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0
+tri: 1 renders ok
+  kept q140-256x160: 372 bytes raw, 252 gz, raw sha256 c5c6c265ebce07c78737502e936ecf9cbdb7ac339040af0395ca318a1d989bfe
+  health: ok
+== q140-320x128 (tri -)
+  rc 0 
+tri: render context for targets up to 320x128
+tri: triangle (0,0) (960,0) (0,384), depth 0.5 0.5 0.5
+diff: 0 of 40960 pixels
+tri 320x128 #1: 40960 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0
+tri: 1 renders ok
+  kept q140-320x128: 372 bytes raw, 252 gz, raw sha256 a60697036786a840b69b97fce24b259a853a26fe7e531ff05fa7290faa9c399d
+  health: ok
+== q140-288x144 (tri -)
+  rc 1 sgxfive-test: render: job faulted, context lost (Input/output error)
+tri: render context for targets up to 288x144
+tri: triangle (0,0) (864,0) (0,432), depth 0.5 0.5 0.5
+diff: 41472 of 41472 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+  kept q140-288x144: 342 bytes raw, 252 gz, raw sha256 e04b35bdaee6872641513d35540941bb3af111898fa4ba13b4d23d4f07ab9997
+  kept q140-288x144.err: 69 bytes raw, 87 gz, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  health: ok after a reset
+== q140-256x288 (tri -)
+  rc 1 sgxfive-test: render: job faulted, context lost (Input/output error)
+tri: render context for targets up to 256x288
+tri: triangle (0,0) (768,0) (0,864), depth 0.5 0.5 0.5
+diff: 73728 of 73728 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+  kept q140-256x288: 342 bytes raw, 253 gz, raw sha256 5868daae85676c6cc79c2bb878dd5294ecf5689c6b94196958b0ee2d642b4aff
+  kept q140-256x288.err: 69 bytes raw, 87 gz, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  health: recovered on the retry
+== q140-384x384 (tri -)
+  rc 1 sgxfive-test: render: job faulted, context lost (Input/output error)
+tri: render context for targets up to 384x384
+tri: triangle (0,0) (1152,0) (0,1152), depth 0.5 0.5 0.5
+diff: 147456 of 147456 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00
+tri: FAILED after 0 renders
+  kept q140-384x384: 346 bytes raw, 254 gz, raw sha256 85d37abf3a959b61b975395a0fc81b2875911d0e99ff85cf307a905e3a72b017
+  kept q140-384x384.err: 69 bytes raw, 87 gz, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  health: recovered on the retry
+  health: ok
+## end
+## journalctl -k: 682 lines, 15 naming sgxfive, a BIF fault or a recovery

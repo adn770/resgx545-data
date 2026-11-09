@@ -1,0 +1,33 @@
+A1 operand pairing (op0,op2),(op1,op3), euclid of the larger; tile law
+  gradient jobs, E563's order (control)        in-sample  exact  0 of  3   {'gr-uu-k2': 8, 'gr-vv-k2': 8, 'gr-uvy-k2': 52}
+  gradient jobs, paired                        in-sample  exact  0 of  3   {'gr-uu-k2': 2024, 'gr-vv-k2': 2024, 'gr-uvy-k2': 2035}
+  gradient jobs, paired, and gr-all/neg (both rules) in-sample  exact  1 of  3   {'gr-all-k2': 2024, 'gr-neg-k2': 2024, 'gr-all-k4': 2048}
+  gr-vx (no discrimination: max4 also exact)   in-sample  exact  1 of  2   {'gr-vx-k2': 2016, 'gr-vx-k4': 2048}
+  gr-vx under max4                             in-sample  exact  1 of  2   {'gr-vx-k2': 2016, 'gr-vx-k4': 2048}
+  lod-auto, euclid, tile law, no pairing (the quad) mixed      exact 24 of 24   
+  note: 'ab-t43' needs T0 bit 27 (srgb); the quad's own derivatives do not test the operand order
+A2 two-stage bilinear: an-ctl, an-r1..r5 (the 45-form search jobs); then the landed vectors (vec_bilinear.py)
+  two-stage P=64 xy, tile, paired              in-sample  exact  6 of  6   
+  joint rounding (control)                     in-sample  exact  0 of  6   {'an-ctl': 1528, 'an-r1': 1320, 'an-r2': 1540, 'an-r3': 1528, 'an-r4': 1580, 'an-r5': 1792}
+A3 T0 bit 27 = sRGB decode to half floats
+  s64x32-t0b27 (found on)                      in-sample  exact  1 of  1   
+  ind-t0b27, ab-t43                            held out   exact  1 of  1   
+  ab-t43 (the job that drew the report's eye)  in-sample  exact  1 of  1   
+  an-t0b27 (bilinear: report says open)        open       exact  0 of  1   {'an-t0b27': 25}
+A4 T3 address model (level offset by W*H, shift by 19:18, bit 10 = 0)
+  s64x32, s64x16, s32x32, tw32 t3b18/t3b28     in-sample  exact 12 of 12   
+  ind-t3b10/b18/b27/b28 (16x16 twiddled, smp3d) held out   exact  4 of  4   
+  r-b18-19, r-b27-28 (first rows read before)  part-seen  exact  2 of  2   
+A6 T3 7:0 offset before the address mode, tile law (the 24 tv-* jobs)
+  tv-*, t3off=pre, tile law                    held out   exact 24 of 24   
+  tv-*, t3off=post, tile law                   held out   exact  1 of 24   {'tv-m0-01': 1984, 'tv-m0-08': 1536, 'tv-m0-11': 1922, 'tv-m0-2f': 1860, 'tv-m0-3c': 1624, 'tv-m0-79': 1250, 'tv-m0-80': 1536, 'tv-m0-8f': 1488, 'tv-m0-a5': 1404, 'tv-m0-c3': 1624, 'tv-m0-f1': 1922, 'tv-m0-ff': 1922, 'tv-m1-11': 0, 'tv-m1-3c': 0, 'tv-m1-79': 0, 'tv-m1-8f': 0, 'tv-m1-c3': 0, 'tv-m1-f1': 0, 'tv-m2-11': 2048, 'tv-m2-3c': 0, 'tv-m2-79': 0, 'tv-m2-8f': 0, 'tv-m2-c3': 0, 'tv-m2-f1': 0}
+A7 format 27 = ETC1, block words as stored, Morton y-low, alpha 0xff, 0xAARRGGBB
+  fb-27-base, ordA, ordB (found on)            in-sample  exact  3 of  3   
+  fb-27-lo, fb-27-hi, fn-27                    held out   exact  3 of  3   
+A8 TEXTYPE 1/3 (stride 16) and 4 (stride 32) rasters that wrap, 16x16 only
+  rt1-2d       exact 2048 of 2048
+  rt1-3d-w5    exact 2048 of 2048
+  ty3-2d       exact 2048 of 2048
+  ty3-3d-w10   exact 2048 of 2048
+  rt4-2d       exact 2048 of 2048
+  rt4-3d-w15   exact 2048 of 2048
