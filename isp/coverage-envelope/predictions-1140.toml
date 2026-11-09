@@ -1,0 +1,36 @@
+# predictions-1140.toml: frozen by hash before any main job (freeze1140.sh); sets, hypotheses, alternatives and criteria.
+# Hardware is the truth: nothing is refitted; a failed criterion stays failed.  Seed 1140; cases-1140.tsv is in the manifest.
+
+[sets]
+fit = "every case marked fit: S1 512x256, 96x64, 640x480; S2 sweeps on the same three; S3 on 64x64 and 512x256; S5 512^2 and 1024^2; S4 on 64x64"
+heldout = "every case marked heldout: S1 512x512, 1024x768, 2048x1024, 4096x4096, 200x120, 1000x600, 130x66; S2 on 1024x768, 2048x1024, 4096x4096, 200x120; S3 on 96x64, 640x480, 1024x768, 130x66; S5 2048^2 and 4096^2; S4 on 512x512"
+repeat = "30 of the fit S1 cases run a second time (P11)"
+pilot = "6 cases outside every set, run before the freeze to test the pipeline; they say nothing about the rule"
+rule = "a rule or variant may be chosen on fit only; held-out is compared with the choice made on fit; a refit on held-out is information and never a pass"
+
+[hypotheses]
+H0 = "E606/E607: the vertex window coordinate (clip x half-size + half-size; for a vertex given in 1/2^k pixel) is rounded half up to 1/256 pixel (floor(256 x + 1/2), also for negative x), then the pixel centre is tested with exact integer edge functions, left and top edges own ties (rule R4)"
+H0_scope = "the claim to test is that H0 holds without change on every target and every vertex of this sweep; the float32 clip conversion of a vertex is assumed not to move any rounding by itself (error far below 1/512 pixel) except possibly at 4096 wide"
+alternatives_rounding = ["HD half down", "FL floor", "CE ceil", "TR toward zero", "HA half away from zero", "HE half to even", "NONE exact (no rounding)"]
+alternatives_edge = ["f32: edge functions evaluated in float32 from pixel-unit coordinates"]
+alternatives_limit = ["clamp P: each coordinate limited to +-2^P pixels, P 14..23", "wrap P: each coordinate wrapped into the signed P+1 bit pixel range, P 14..23", "empty: no pixel drawn (triangle culled)"]
+float_note = "far vertices are +-2^k pixels (exact in float32 on a power-of-two half-size); on the other targets the clip coordinate is rounded to float32 and the model does not follow that rounding"
+
+[criteria]
+P1 = "S1 fit: 0 mismatching pixels against H0 over all images (whole targets)"
+P2 = "S1 held-out below 4096 wide (the non power of two half-sizes 48.., 100x60, 500x300, 65x33 included): 0 mismatching pixels against H0"
+P2b = "S1 held-out 4096x4096: 0 mismatching pixels against H0 (the float32 window arithmetic may move a rounding there)"
+P3 = "S2 fit sweeps: 0 mismatching pixels against H0 (flips 8 units of 1/4096 after the tie, as E607)"
+P4 = "S2 held-out sweeps (1/1024 steps at 2048 and 4096 wide): 0 mismatching pixels against H0"
+P4b = "S2 power: half-down would mispredict at least 20 sweep cases (a check of the set, from the model alone)"
+P5 = "S3 fit: negative coordinates with sub-grid fractions, H0 (floor(256 x + 1/2) also for x < 0) 0 mismatching pixels"
+P5b = "S3 power: each alternative rounding mispredicts at least one pixel on fit"
+P6 = "S3 held-out: H0 0 mismatching pixels"
+P7 = "S5 fit (512^2, 1024^2): a long edge passing a centre at a cross product of +-1 in 1/65536 pixel^2: H0 exact (0 inexact cases)"
+P7b = "S5 power: a float32 edge function mispredicts at least 10 of the cases"
+P8a = "S5 2048^2: H0 exact (0 inexact cases)"
+P8b = "S5 4096^2: at least 1 case inexact against H0 (the edge function is not exact to the 42 bits of this target's cross product)"
+P9 = "S4: every far case with |v| <= 2^15 pixels is exact (0 mismatching pixels), fit and held-out"
+P10 = "S4: the first k (vertex at 2^k pixels) with a mismatching pixel against H0 is 16, on both targets (a 16-bit pixel range)"
+P11 = "repeats: the 30 images equal the first run's"
+P12 = "no job flagged, the tool's triangle count equals the image's, only the two colours appear"

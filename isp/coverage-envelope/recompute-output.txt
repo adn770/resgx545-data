@@ -1,0 +1,287 @@
+p1140 recompute: 1816 cases read from /Users/jtorra/src/resgx545-data/isp/coverage-envelope/main /Users/jtorra/src/resgx545-data/isp/coverage-envelope/far
+
+## 1 S1 size: random 1/256 triangles; H0 = round half up to 1/256 + exact centre test + left/top ties
+  fit        96x64   cases  60 inexact   0 mismatching pixels 0 of 368640
+  fit       512x256  cases  60 inexact   0 mismatching pixels 0 of 7864320
+  fit       640x480  cases  60 inexact   0 mismatching pixels 0 of 18432000
+  heldout   130x66   cases  60 inexact   0 mismatching pixels 0 of 514800
+  heldout   200x120  cases  60 inexact   0 mismatching pixels 0 of 1440000
+  heldout   512x512  cases  60 inexact   0 mismatching pixels 0 of 15728640
+  heldout  1000x600  cases  60 inexact   0 mismatching pixels 0 of 36000000
+  heldout  1024x768  cases  60 inexact   0 mismatching pixels 0 of 47185920
+  heldout  2048x1024 cases  60 inexact   0 mismatching pixels 0 of 125829120
+  heldout  4096x4096 cases  50 inexact   0 mismatching pixels 0 of 838860800
+  class fit      centre   cases  24 mismatching pixels 0
+  class fit      large    cases  36 mismatching pixels 0
+  class fit      medium   cases  36 mismatching pixels 0
+  class fit      pairA    cases  24 mismatching pixels 0
+  class fit      pairB    cases  24 mismatching pixels 0
+  class fit      small    cases  36 mismatching pixels 0
+  class heldout  centre   cases  56 mismatching pixels 0
+  class heldout  large    cases  84 mismatching pixels 0
+  class heldout  medium   cases  84 mismatching pixels 0
+  class heldout  pairA    cases  51 mismatching pixels 0
+  class heldout  pairB    cases  51 mismatching pixels 0
+  class heldout  small    cases  84 mismatching pixels 0
+  shared edges: 75 pairs, pixels drawn by both triangles 0, pixels the model gives to one and the hardware to none 0
+
+## 2 S2 sweeps of an edge across the half-grid tie (steps of 1/4096 pixel; 1/1024 from 2048 wide)
+  fit        96x64   cases 100 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 36 NONE 44
+  fit       512x256  cases 100 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 36 NONE 44
+  fit       640x480  cases 100 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 36 NONE 44
+  heldout   200x120  cases 100 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 36 NONE 44
+  heldout  1024x768  cases 100 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 36 NONE 44
+  heldout  2048x1024 cases  44 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 12 NONE 8
+  heldout  4096x4096 cases  44 H0 mismatching pixels 0; cases the alternatives would mispredict: HD 6 FL 12 NONE 8
+  observed flips (the first t of the sweep at which the covered pixel set changes; t in the case's unit):
+    fit        96x64   H+ [4, 20]; H- [4, 20]; V+ [20]; V- [20]
+    fit       512x256  H+ [4, 20]; H- [4, 20]; V+ [20]; V- [20]
+    fit       640x480  H+ [4, 20]; H- [4, 20]; V+ [20]; V- [20]
+    heldout   200x120  H+ [4, 20]; H- [4, 20]; V+ [20]; V- [20]
+    heldout  1024x768  H+ [4, 20]; H- [4, 20]; V+ [20]; V- [20]
+    heldout  2048x1024 H+ [3, 7]; H- [3, 7]; V+ [7]; V- [7]
+    heldout  4096x4096 H+ [3, 7]; H- [3, 7]; V+ [7]; V- [7]
+
+## 3 S3 negative coordinates with sub-grid fractions: mismatching pixels per rounding variant
+  fit      HU 76 (51 cases inexact)  HD 33 (24 cases inexact)  FL 142 (64 cases inexact)  CE 157 (69 cases inexact)  TR 153 (70 cases inexact)  HA 23 (16 cases inexact)  HE 62 (39 cases inexact)  NONE 84 (55 cases inexact)
+  heldout  HU 212 (98 cases inexact)  HD 109 (64 cases inexact)  FL 358 (131 cases inexact)  CE 491 (147 cases inexact)  TR 379 (150 cases inexact)  HA 78 (51 cases inexact)  HE 147 (71 cases inexact)  NONE 240 (121 cases inexact)
+
+## 5 S5 tinyedge: a long edge passing the pixel centre (W/2, H/2) at a cross product of +1 / -1 (1/65536 pixel^2)
+  fit       512^2 cases  40 H0 inexact cases 0 (pixels 0); float32 edge function inexact cases 9; sample pixel not as the sign says: 0
+  fit      1024^2 cases  40 H0 inexact cases 0 (pixels 0); float32 edge function inexact cases 13; sample pixel not as the sign says: 0
+  heldout  2048^2 cases  40 H0 inexact cases 0 (pixels 0); float32 edge function inexact cases 11; sample pixel not as the sign says: 0
+  heldout  4096^2 cases  40 H0 inexact cases 0 (pixels 0); float32 edge function inexact cases 9; sample pixel not as the sign says: 0
+
+## 4 S4 far vertices (one vertex at +-2^k pixels): mismatching pixels against H0 and the best limit variant
+  fit      64x64 k= 9 d=0 covered     173 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=1 covered      82 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=2 covered     853 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=3 covered     113 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=4 covered     232 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=5 covered       0 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23,empty
+  fit      64x64 k= 9 d=6 covered     124 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k= 9 d=7 covered     609 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=0 covered    1029 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=1 covered     401 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=2 covered     860 H0 mismatching       1 matches: none
+  fit      64x64 k=10 d=3 covered     623 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=4 covered     591 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=5 covered    1735 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=6 covered      40 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=10 d=7 covered      12 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=0 covered      68 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=1 covered     174 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=2 covered    1825 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=3 covered     375 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=4 covered       9 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=5 covered     637 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=6 covered     293 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=11 d=7 covered     476 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=0 covered     513 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=1 covered      26 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=2 covered     706 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=3 covered     376 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=4 covered     453 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=5 covered     662 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=6 covered     935 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=12 d=7 covered    1514 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=0 covered     528 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=1 covered     368 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=2 covered    1358 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=3 covered      95 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=4 covered     676 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=5 covered    1046 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=6 covered     346 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=13 d=7 covered    1166 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=0 covered     197 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=1 covered     346 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=2 covered     793 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=3 covered     285 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=4 covered     894 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=5 covered       0 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23,empty
+  fit      64x64 k=14 d=6 covered     361 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=14 d=7 covered     231 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=0 covered     141 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=1 covered    1814 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=2 covered      97 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=3 covered     222 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=4 covered    1522 H0 mismatching       1 matches: none
+  fit      64x64 k=15 d=5 covered     132 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=6 covered     394 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=15 d=7 covered    1346 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=0 covered     841 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=1 covered     134 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=2 covered     428 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=3 covered     993 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=4 covered     527 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=5 covered     464 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=6 covered     367 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=16 d=7 covered      82 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=0 covered     288 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=1 covered     528 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=2 covered     624 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=3 covered     263 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=4 covered     115 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=5 covered     752 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=6 covered     858 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=17 d=7 covered    1029 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=0 covered     176 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=1 covered     460 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=2 covered     220 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=3 covered     119 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=4 covered     913 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=5 covered    1190 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=6 covered     912 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=18 d=7 covered     200 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=0 covered    1540 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=1 covered     147 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=2 covered    1228 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=3 covered     739 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=4 covered     373 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=5 covered     108 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=6 covered     332 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=19 d=7 covered     306 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=0 covered     292 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=1 covered     626 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=2 covered    1196 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=3 covered    1482 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=4 covered     796 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=5 covered    1136 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=6 covered     599 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=20 d=7 covered     992 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=21 d=0 covered     208 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  fit      64x64 k=21 d=1 covered     469 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=21 d=2 covered    1571 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  fit      64x64 k=21 d=3 covered     302 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=21 d=4 covered    1010 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  fit      64x64 k=21 d=5 covered     193 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  fit      64x64 k=21 d=6 covered    1335 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  fit      64x64 k=21 d=7 covered     266 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  heldout  512x512 k= 9 d=0 covered    2470 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=1 covered   28252 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=2 covered    5454 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=3 covered    3139 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=4 covered   11860 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=5 covered   13967 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=6 covered   60695 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k= 9 d=7 covered   13075 H0 mismatching       1 matches: none
+  heldout  512x512 k=10 d=0 covered    2997 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=10 d=1 covered   17940 H0 mismatching       1 matches: none
+  heldout  512x512 k=10 d=2 covered   63868 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=10 d=3 covered  111580 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=10 d=4 covered   57776 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=10 d=5 covered    2810 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=10 d=6 covered   31148 H0 mismatching       1 matches: none
+  heldout  512x512 k=10 d=7 covered   13026 H0 mismatching       1 matches: none
+  heldout  512x512 k=11 d=0 covered   52112 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=1 covered    9842 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=2 covered   33511 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=3 covered    5810 H0 mismatching       1 matches: none
+  heldout  512x512 k=11 d=4 covered   81321 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=5 covered   27336 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=6 covered    6876 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=11 d=7 covered    5522 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=0 covered   54479 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=1 covered    3064 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=2 covered   45427 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=3 covered    1905 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=4 covered   21909 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=5 covered   45631 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=12 d=6 covered   58345 H0 mismatching       1 matches: none
+  heldout  512x512 k=12 d=7 covered   81234 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=0 covered    7395 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=1 covered   14893 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=2 covered   52194 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=3 covered    4714 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=4 covered   12295 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=5 covered   42866 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=6 covered   11784 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=13 d=7 covered    9348 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=0 covered   47852 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=1 covered   70002 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=2 covered   37674 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=3 covered    4461 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=4 covered   69981 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=5 covered   62996 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap14,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=6 covered   11573 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=14 d=7 covered   99929 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=0 covered   36394 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=1 covered   50726 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=2 covered   47100 H0 mismatching       1 matches: none
+  heldout  512x512 k=15 d=3 covered    1722 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=4 covered   56575 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=5 covered    6568 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap15,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=6 covered   11454 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=15 d=7 covered   12333 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=0 covered   95017 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=1 covered   43649 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=2 covered   27990 H0 mismatching       1 matches: none
+  heldout  512x512 k=16 d=3 covered   21495 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=4 covered   48237 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=5 covered  109831 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap16,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=6 covered   41624 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=16 d=7 covered   53067 H0 mismatching       1 matches: none
+  heldout  512x512 k=17 d=0 covered   60345 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=1 covered   17101 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=2 covered   12315 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=3 covered    1490 H0 mismatching       0 matches: exact,clamp14,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=4 covered    4109 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=5 covered   11703 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap17,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=6 covered   15233 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=17 d=7 covered   60344 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=0 covered   10916 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=1 covered   25476 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=2 covered   36549 H0 mismatching       2 matches: none
+  heldout  512x512 k=18 d=3 covered     760 H0 mismatching       2 matches: none
+  heldout  512x512 k=18 d=4 covered   44325 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=5 covered   36671 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap18,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=6 covered   10920 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=18 d=7 covered   11979 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=0 covered   20353 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=1 covered  103053 H0 mismatching       0 matches: exact,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=2 covered   83186 H0 mismatching       0 matches: exact,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=3 covered   50756 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=4 covered   81662 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=5 covered   38768 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap19,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=6 covered   32036 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=19 d=7 covered    4833 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=0 covered    8862 H0 mismatching       0 matches: exact,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=1 covered   35646 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=2 covered   31537 H0 mismatching       0 matches: exact,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=3 covered    3238 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=4 covered   64055 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=5 covered   18890 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap20,wrap21,wrap22,wrap23
+  heldout  512x512 k=20 d=6 covered   14061 H0 mismatching       1 matches: none
+  heldout  512x512 k=20 d=7 covered   34060 H0 mismatching       0 matches: exact,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=21 d=0 covered    7656 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  heldout  512x512 k=21 d=1 covered    3337 H0 mismatching       0 matches: exact,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=21 d=2 covered   23718 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  heldout  512x512 k=21 d=3 covered   27359 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=21 d=4 covered   25352 H0 mismatching       0 matches: exact,clamp15,clamp16,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  heldout  512x512 k=21 d=5 covered   61036 H0 mismatching       0 matches: exact,clamp21,clamp22,clamp23,wrap21,wrap22,wrap23
+  heldout  512x512 k=21 d=6 covered   95612 H0 mismatching       0 matches: exact,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  heldout  512x512 k=21 d=7 covered   71178 H0 mismatching       0 matches: exact,clamp17,clamp18,clamp19,clamp20,clamp21,clamp22,clamp23,wrap22,wrap23
+  first k with a mismatch against H0: {('fit', 64): 10, ('heldout', 512): 9}
+
+## 6 repeats, tool counts, colours, flags
+  repeats identical to the first run: 30 of 30
+  jobs flagged or without an exact record: 0; images whose count differs from the tool's line: 0; images with a colour other than the two: 0
+
+## 7 criteria (predictions-1140.toml)
+  P1   PASS S1 fit (180 cases, 512x256, 96x64, 640x480): 0 mismatching pixels, want 0
+  P2   PASS S1 held-out below 4096 (360 cases): 0 mismatching pixels, want 0
+  P2b  PASS S1 4096x4096 (50 cases): 0 mismatching pixels, want 0
+  P3   PASS S2 fit sweeps (300 cases): 0 mismatching pixels against H0, want 0
+  P4   PASS S2 heldout sweeps (288 cases): 0 mismatching pixels against H0, want 0
+  P4b  PASS S2 power: half-down would mispredict 42 sweep cases (>= 20 needed for the set to separate it)
+  P5   FAIL S3 fit negative (80 cases): H0 mismatching pixels 76, want 0
+  P6   FAIL S3 heldout negative (160 cases): H0 mismatching pixels 212, want 0
+  P5b  PASS S3 fit power: every alternative rounding mispredicts at least one pixel: HD 33, FL 142, CE 157, TR 153, HA 23, HE 62
+  P7   PASS S5 fit (512^2, 1024^2): H0 inexact cases 0 of 80, want 0
+  P7b  PASS S5 power: a float32 edge function mispredicts 42 cases (>= 10 needed)
+  P8a  PASS S5 2048^2: H0 inexact cases 0 of 40, want 0
+  P8b  FAIL S5 4096^2: H0 inexact cases 0 of 40, want >= 1 (the edge function is not exact to 42 bits)
+  P9   FAIL S4 far vertices with |v| <= 2^15 pixels: 9 cases mismatching (fit and held-out), want 0
+  P10  FAIL S4 first k with a mismatch: {('fit', 64): 10, ('heldout', 512): 9}, want 16 on every target
+  P11  PASS repeats identical: 30 of 30
+  P12  PASS no flagged job, tool counts equal image counts, two colours only: (0, 0, 0)
