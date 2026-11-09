@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# tx-gate: 4 cases, written by p1132/gen/gen_p1132.py (phase 11.32 draft); questions Q104,Q050.
+needs = ["render"]
+
+[[probe]]
+name = "tx-gate"
+question = "smp on a 64 x 32 fill, one coordinate rule a pixel (Q104,Q050): gate"
+source = "tx_map.s"
+coords = true
+pixels = true
+params = { }
+inputs = ["PRE", "SETUP", "SMP"]
+labels = ["g1-tw16", "g2-st64x32", "g3-tw16-lod2", "g4-tw16-u-mirror"]
+cases = [["", "and.skipinv r1, pa0, #0x3f\nand.skipinv r1, r1, #15\nshl.skipinv r1, r1, #1\nor.skipinv r1, r1, #1\nshl.skipinv r1, r1, #18\nor.skipinv r24, r1, #0x3f800000\nshr.skipinv r1, pa0, #16\nand.skipinv r1, r1, #15\nshl.skipinv r1, r1, #1\nor.skipinv r1, r1, #1\nshl.skipinv r1, r1, #18\nor.skipinv r25, r1, #0x3f800000\nmov.skipinv r26, #0x00000000\nmov r20, #0x07fe0000\nmov r21, #0x0c00f00f\nmov r22, #0x5caf0000\nmov r23, #0x00800800", "smp2dreplace r10, r24, r20, r26, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xa0800000", "smp2d r10, r24, r20, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nand.skipinv r1, r1, #15\nshl.skipinv r1, r1, #1\nor.skipinv r1, r1, #1\nshl.skipinv r1, r1, #18\nor.skipinv r24, r1, #0x3f800000\nshr.skipinv r1, pa0, #16\nand.skipinv r1, r1, #15\nshl.skipinv r1, r1, #1\nor.skipinv r1, r1, #1\nshl.skipinv r1, r1, #18\nor.skipinv r25, r1, #0x3f800000\nmov.skipinv r26, #0x40000000\nmov r20, #0x07fc0000\nmov r21, #0x0c00f00f\nmov r22, #0x5caf0000\nmov r23, #0x00800800", "smp2dreplace r10, r24, r20, r26, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x40800000\nmov.skipinv r3, #0xc0af0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf800000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x07fe0050\nmov r21, #0x0c00f00f\nmov r22, #0x5caf0000\nmov r23, #0x00800800", "smp2d r10, r24, r20, drc0"]]

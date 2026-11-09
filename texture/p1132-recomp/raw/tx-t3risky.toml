@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# tx-t3risky: 5 cases, written by p1132/gen/gen_p1132.py (phase 11.32 draft); questions Q078.
+needs = ["render"]
+
+[[probe]]
+name = "tx-t3risky"
+question = "smp on a 64 x 32 fill, one coordinate rule a pixel (Q078): t3risky"
+source = "tx_map.s"
+coords = true
+pixels = true
+params = { }
+inputs = ["PRE", "SETUP", "SMP"]
+labels = ["r-b19", "r-b13", "r-b18-19", "r-b27-28", "r-b10-14"]
+cases = [["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xa0880000", "smp2d r10, r24, r20, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xa0802000", "smp2d r10, r24, r20, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xa08c0000", "smp2d r10, r24, r20, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xb8800000", "smp2d r10, r24, r20, drc0"], ["", "and.skipinv r1, pa0, #0x3f\nshl.skipinv r1, r1, #17\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7e0000\nfmad.skipinv r24, r1, r2, r3\nshr.skipinv r1, pa0, #16\nshl.skipinv r1, r1, #18\nor.skipinv r1, r1, #0x3f800000\nmov.skipinv r2, #0x3f800000\nmov.skipinv r3, #0xbf7c0000\nfmad.skipinv r25, r1, r2, r3\nmov r20, #0x000e0e00\nmov r21, #0xcc03f01f\nmov r22, #0x5caf0000\nmov r23, #0xa0804400", "smp2d r10, r24, r20, drc0"]]
