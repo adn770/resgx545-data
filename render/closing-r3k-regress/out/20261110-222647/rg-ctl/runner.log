@@ -1,0 +1,217 @@
+## stage rg-ctl
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+230E0EF50FFFD606C53AE3C
+## loaded module
+230E0EF50FFFD606C53AE3C
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+bf4f8be2d8a8fe50034559450928e05695dc96d396d4892f9b00ea6bc0d4f053 /home/jtorra/sgxfive-test-r1
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000001
+## clock
+Tue Nov 10 22:26:49 CET 2026
+## R3K-regress safety rules: see the header of lib_k.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 23aafd6dfc3c750e7ea4958efc7d9424412456feb98ee53647e928da2161c2e2
+== ctl-u-1024-n1 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 1024x768 job: ok tri: 1 renders ok 
+  kept ctl-u-1024-n1.txt: 334 bytes raw, raw sha256 3b39f3e2b62cced610ac9807bae387b3bce5ae4c49eabe0b2bed5ccf01218f94
+  kept ctl-u-1024-n1.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-n1.snap0.regs: 6474 bytes raw, raw sha256 a5747aa5edea95cf4daf3d530d3be04573dcf93407c5a553ddaa9f090ac71464
+  class ok
+== ctl-u-1024-n2g set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:0,288 --keep-going --keep-overflow --wait-ms 20000
+  rc 1 tri: render context for targets up to 1024x768 job: ok tri: render 2 moved by 0,288 
+  kept ctl-u-1024-n2g.txt: 16998 bytes raw, raw sha256 eeb84a2ba49fcf09246e72e39df8657f3a701871576dfa6db23f91e46007dfe5
+  kept ctl-u-1024-n2g.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-n2g.snap0.regs: 6474 bytes raw, raw sha256 2f4e3ff0f77f14babc9f11d9df23a97e6a4578b17cabe6b132a0c275aec1b3a6
+  class ok
+== ctl-u-1024-m32 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 1 --move 1:32,0 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 1024x768 tri: render 1 moved by 32,0 job: ok 
+  kept ctl-u-1024-m32.txt: 362 bytes raw, raw sha256 f09f7389b6dc1230255fdfe05f5a6ca975d61d923a0397c08909f7a495ca6214
+  kept ctl-u-1024-m32.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-m32.snap0.regs: 6474 bytes raw, raw sha256 70ec6c676f42c731bb9a4a1ed2e7dd11ebaa38dadacb8240c5a3b02d517fb62e
+  class ok
+== ctl-u-1024-m0-96 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 1 --move 1:0,96 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 1024x768 tri: render 1 moved by 0,96 job: ok 
+  kept ctl-u-1024-m0-96.txt: 362 bytes raw, raw sha256 3edd4b6426231eeb51bc093e4e6d2c26b8bf8f4eab95bf768876078dc2efe9eb
+  kept ctl-u-1024-m0-96.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-m0-96.snap0.regs: 6474 bytes raw, raw sha256 a96aa1ddeeed8bedcfe1a0a5988028700b18ae7a0a17081acd43fb536ed59e5b
+  class ok
+== ctl-u-1024-n2-256-192 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:256,192 --keep-going --keep-overflow --wait-ms 20000
+  rc 1 tri: render context for targets up to 1024x768 job: ok tri: render 2 moved by 256,192 
+  kept ctl-u-1024-n2-256-192.txt: 17000 bytes raw, raw sha256 07c7a758bf6b4eaf23972764aa4a9f03308494492ef9f8dc8d0b6d0bb5889885
+  kept ctl-u-1024-n2-256-192.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-n2-256-192.snap0.regs: 6474 bytes raw, raw sha256 dfeacff89dd44ade20b443550b1cc32ca1d47fccdc2d8b82481a16f8a0ad381c
+  class ok
+== ctl-u-1024-n3-stk set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:16,0 --move 3:0,16 --keep-going --keep-overflow --wait-ms 20000
+  rc 1 tri: render context for targets up to 1024x768 job: ok tri: render 2 moved by 16,0 
+  kept ctl-u-1024-n3-stk.txt: 17083 bytes raw, raw sha256 a678b47b76bf1f9d6bee292d7b6af6bd7a0551616e9715b13c017947852623ff
+  kept ctl-u-1024-n3-stk.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-n3-stk.snap0.regs: 6474 bytes raw, raw sha256 9c1f80163792c13a96732636cd3d803fb049bd995abe8708ee84fdbb0214382d
+  class ok
+== ctl-u-1024-n4-corners set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:512,0 --move 3:0,384 --move 4:512,384 --keep-going --keep-overflow --wait-ms 20000
+  rc 1 tri: render context for targets up to 1024x768 job: ok tri: render 2 moved by 512,0 
+  kept ctl-u-1024-n4-corners.txt: 17178 bytes raw, raw sha256 23e3b52d3e874d4cefa3582a3e83d2f9bd164c71aa67bd120d5f24bcf3289ffd
+  kept ctl-u-1024-n4-corners.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1024-n4-corners.snap0.regs: 6474 bytes raw, raw sha256 fbb48e0a66d307e24061b2130bf7ec35020d78010fafcd7eac9925bb5fae7b12
+  class ok
+== ctl-u-640x480 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 640 --height 480 -n 1 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 640x480 job: ok tri: 1 renders ok 
+  kept ctl-u-640x480.txt: 328 bytes raw, raw sha256 00fbe663ec0841e9335b5416fffd911430c5f1b60387a842094dba77c2b9b393
+  kept ctl-u-640x480.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-640x480.snap0.regs: 6474 bytes raw, raw sha256 7d43201889da97c12cc82477b37dc42df84943d2ec6ea5c0c4423d6455621c78
+  class ok
+== ctl-u-1280x1024 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 1280 --height 1024 -n 1 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 1280x1024 job: ok tri: 1 renders ok 
+  kept ctl-u-1280x1024.txt: 340 bytes raw, raw sha256 67232b54449d03511c184e4a7fbb799452ada85c7dbe5301c9489f60ae9798f4
+  kept ctl-u-1280x1024.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-1280x1024.snap0.regs: 6474 bytes raw, raw sha256 5a2f7a643454fe270d524219fadc82a1d9f83c4a7681d3a74924c8ce2b1aaa13
+  class ok
+== ctl-u-512x384-m128 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 512 --height 384 -n 1 --move 1:128,0 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 512x384 tri: render 1 moved by 128,0 job: ok 
+  kept ctl-u-512x384-m128.txt: 357 bytes raw, raw sha256 0ea319195fa0266eea218ec0de1e0f921efbcdf70d62a2dcc0de1720e5ea08ea
+  kept ctl-u-512x384-m128.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-512x384-m128.snap0.regs: 6474 bytes raw, raw sha256 e9df3c8d868eef98fcdf3531763a27f1f6618768ff551c9cc7a1e804e7c395c7
+  class ok
+== ctl-u-2048x1536 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 2048 --height 1536 -n 1 --keep-going --keep-overflow --wait-ms 20000
+  rc 0 tri: render context for targets up to 2048x1536 job: ok tri: 1 renders ok 
+  kept ctl-u-2048x1536.txt: 341 bytes raw, raw sha256 0d94099c8466ff0ae82b6c4d8bfd941f3e000c34c651af496094b5d61181698c
+  kept ctl-u-2048x1536.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-u-2048x1536.snap0.regs: 6474 bytes raw, raw sha256 120073d5932cefbccdbd9423fe4228e9cbcb2fd8a7f81d75ba725dfeaefeceff
+  class ok
+== ctl-green-8x8 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 8 --height 8 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-8x8.txt: 190 bytes raw, raw sha256 1bdba7026ef4ff420ffc87041f6805bbce9581f2772f7083cee20937d0959865
+  kept ctl-green-8x8.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-8x8.snap0.regs: 6474 bytes raw, raw sha256 258e2aefb1ee223f7a74aeb6dede174a2cc901516b742c66ee6c81eb295f8581
+  class ok
+== ctl-green-16x16 set=control risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 16 --height 16 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-16x16.txt: 194 bytes raw, raw sha256 11c8c4a168025d24cfed654b63e6efc3130d6448b4429abfbe316ffab688b0f3
+  kept ctl-green-16x16.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-16x16.snap0.regs: 6474 bytes raw, raw sha256 2f4cc6d5f241b069510069557792084c72b679fd92a3c7841e5d767ea75bd188
+  class ok
+== ctl-green-32x16 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 32 --height 16 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-32x16.txt: 194 bytes raw, raw sha256 957b847a99738a35f5df832549dc7225215a9ffaa53218d96a8276a4cc99a736
+  kept ctl-green-32x16.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-32x16.snap0.regs: 6474 bytes raw, raw sha256 fede6a47fe3e4cabccf6464dcd4f35741e4f0a8e1d430e35d22c6b9fcb127744
+  class ok
+== ctl-green-32x32 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 32 --height 32 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-32x32.txt: 196 bytes raw, raw sha256 69cb97ce5628589fae0a3f6ab4c99d82d49b1cd164bcef862c0239e7f3ada5db
+  kept ctl-green-32x32.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-32x32.snap0.regs: 6474 bytes raw, raw sha256 ac31191c35adbb71b13220927e1dfe286c46b961c49bc480d33e2b1323f3d9f5
+  class ok
+== ctl-green-64x32 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 64 --height 32 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-64x32.txt: 197 bytes raw, raw sha256 5a9cc14adcbf8c6170d39dca75602e4ddadca884ab259541caeb5dea738d74fc
+  kept ctl-green-64x32.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-64x32.snap0.regs: 6474 bytes raw, raw sha256 8c98a8e743bd92a1c4b674602db219bc88086ea1b0f69141ecd3c520ef1ff1a0
+  class ok
+== ctl-green-128x128 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 128 --height 128 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-128x128.txt: 202 bytes raw, raw sha256 ed832101dcbd18c8ba965813170ab9f3cd844f98c5c04ea3c8afcd79132fccc9
+  kept ctl-green-128x128.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-128x128.snap0.regs: 6474 bytes raw, raw sha256 1f2ed753cf2d93d43e36fab7d8e7dadcaa9439a10ec964929a732aa282e9edca
+  class ok
+== ctl-green-256x256 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --temps 32 --width 256 --height 256 --tri-full /home/jtorra/r3kreg-stage/pix_green.bin
+  rc 0 
+  kept ctl-green-256x256.txt: 202 bytes raw, raw sha256 30b9ff3aebf443458a7ebccb54c6a40e3c2fc4bab30cf51b2e8c3e9377109cf3
+  kept ctl-green-256x256.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-green-256x256.snap0.regs: 6474 bytes raw, raw sha256 ec6d8d6fb76b2896d1b9e8bc0225795f6f5240f43e1296faf438bc5a311f422c
+  class ok
+== ctl-dd-p1 set=control risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render /tmp/tmp.aM6FRhLoKt/19-ctl-dd-p1/dump --slot pixel=/home/jtorra/r3kreg-stage/pix_green.bin /home/jtorra/r3kreg-stage/dd-p1__0.bin
+  rc 0 
+  kept ctl-dd-p1.txt: 38695 bytes raw, raw sha256 7b8537ce9b5419870d9004c29866fc7b07ffebcc2b439b0b1e9ccc3bbbc41310
+  kept ctl-dd-p1.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-dd-p1.snap0.regs: 6474 bytes raw, raw sha256 85bed06dce79e5cc0bf27aa6f64900b5643eb2cfd9df6813147e8207b623d9ac
+  kept ctl-dd-p1.dd-p1__0.param.bin: 4603904 bytes raw, raw sha256 4b8fec7532b896d5723636912c8b07c2ad7bb129fd2b34c8d6877db4f9ac0552
+  kept ctl-dd-p1.dd-p1__0.tadata.bin: 24576 bytes raw, raw sha256 e05c220a2ed1f6b353aed82d157117a97648a4a5c74ba82bfce5550bd75cda4c
+  class ok
+== ctl-dd-p2 set=heldout risk=safe knobs=[stophang]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render /tmp/tmp.aM6FRhLoKt/20-ctl-dd-p2/dump --slot pixel=/home/jtorra/r3kreg-stage/pix_green.bin /home/jtorra/r3kreg-stage/dd-p2__0.bin
+  rc 0 
+  kept ctl-dd-p2.txt: 38695 bytes raw, raw sha256 7f9c9e1f905417e367f037628647ce5972296eddf557f035ebfbf9eff1cb48bc
+  kept ctl-dd-p2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-dd-p2.snap0.regs: 6474 bytes raw, raw sha256 77dc3a88edf0fe5079fa41e9cff9d8f369d089892be517bfe55570c34102655f
+  kept ctl-dd-p2.dd-p2__0.param.bin: 4603904 bytes raw, raw sha256 bfebd8f942c539d6d3f2d74019b120e540e254b93e10f590285552bfe0e81841
+  kept ctl-dd-p2.dd-p2__0.tadata.bin: 24576 bytes raw, raw sha256 b42df765d4da2358b94cd71798d319b1903ca5436ac9e49f009c86f7b70cfbd1
+  class ok
+== ctl-a4-320x400-te20-max544 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.aM6FRhLoKt/21-ctl-a4-320x400-te20-max544/dump
+  rc 1 tri: render context for targets up to 544x400 tri: triangle (0,0) (960,0) (0,1200), depth 0.5 0.5 0.5 job: ok 
+  kept ctl-a4-320x400-te20-max544.txt: 563 bytes raw, raw sha256 ba223b43e054daa8eea2219529a8a5c9a166d0e180b81f4b8815a2fc34380d00
+  kept ctl-a4-320x400-te20-max544.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-a4-320x400-te20-max544.snap0.regs: 6474 bytes raw, raw sha256 fbfab66ca8d7f4281cc8e3cd941a469fb9ae4db56f180a0ed1ba639f7a5201b1
+  kept ctl-a4-320x400-te20-max544.tri.param.bin: 4603904 bytes raw, raw sha256 ead87e47e3e30e100f8b9c75df2956dbdc203024166e84dea6df75698428fbae
+  kept ctl-a4-320x400-te20-max544.tri.tadata.bin: 40960 bytes raw, raw sha256 eded049cc995bf897f7d5be22ac495d92a71a32f125c51112a900a548ef4ae6d
+  class ok
+== ctl-a1-256x160-tee0 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.aM6FRhLoKt/22-ctl-a1-256x160-tee0/dump
+  rc 0 tri: render context for targets up to 256x160 tri: triangle (0,0) (768,0) (0,480), depth 0.5 0.5 0.5 job: ok 
+  kept ctl-a1-256x160-tee0.txt: 494 bytes raw, raw sha256 0b3ca6fbfd643cb801e31bc8d965251cec235adc0cc46ab84b656b7bc5b8cde2
+  kept ctl-a1-256x160-tee0.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-a1-256x160-tee0.snap0.regs: 6474 bytes raw, raw sha256 a3df452d1232b4c2f97560b7053465d3b46584e89e0a2239be35579784063cb7
+  kept ctl-a1-256x160-tee0.tri.param.bin: 4603904 bytes raw, raw sha256 4c517e438d2f16a3a1abdec6887890a88b1e4970d834eb44cdb2164d2b168e07
+  kept ctl-a1-256x160-tee0.tri.tadata.bin: 24576 bytes raw, raw sha256 eaa6c96c0b8d77398bbf15b3b246e6e4947fe9790143d8379ce52d01a4372992
+  class ok
+== ctl-a2-320x128-tee0 set=heldout risk=safe knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 128 --max-width 320 --max-height 128 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.aM6FRhLoKt/23-ctl-a2-320x128-tee0/dump
+  rc 0 tri: render context for targets up to 320x128 tri: triangle (0,0) (960,0) (0,384), depth 0.5 0.5 0.5 job: ok 
+  kept ctl-a2-320x128-tee0.txt: 494 bytes raw, raw sha256 de274ef8689dff23cfb8cd5bc19f50c245a247dbe47c064be7b0dfea7d80e5b5
+  kept ctl-a2-320x128-tee0.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ctl-a2-320x128-tee0.snap0.regs: 6474 bytes raw, raw sha256 ca9108a157783db0cbbdedea6be625dd80b364a6d72ffeeb8eafc24d1565aa44
+  kept ctl-a2-320x128-tee0.tri.param.bin: 4603904 bytes raw, raw sha256 540fdd036b9d354e9549117f5193cd671967c1f009c2768e9689374110a193f4
+  kept ctl-a2-320x128-tee0.tri.tadata.bin: 24576 bytes raw, raw sha256 95b1d5dc32fb053de204c71d3f35c4c85c5973d52c213a84232380d3268730da
+  class ok
+  kept end.health2.txt: 311 bytes raw, raw sha256 5e7f50ea3bde47b319e1d42fc5ed0ecdd0b23c96ef799f2e72326aec64534a0e
+## end: 23 jobs of rg-ctl
+## exit: hold_recovery=N render_rgn_arrays=0x00000001 (read only: nothing was written)
+## kernel log (journalctl)
+## kernel log: 23 case markers kept in /home/jtorra/r3kreg-out/20261110-222647/rg-ctl/kernel.log

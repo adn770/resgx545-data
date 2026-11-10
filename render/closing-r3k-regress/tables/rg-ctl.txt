@@ -1,0 +1,31 @@
+#stage rg-ctl
+#need $S/pix_green.bin
+#need $S/dd-p1__0.bin
+#need $S/dd-p2__0.bin
+# Module regression, control rows: 23 jobs from closing sessions that passed on the OLD module (srcversion B21FDA82...), each with
+# its OLD kept value frozen (predictions/rg-ctl.tsv; the record and kept file are in the last column).  Plain tri and geometry
+# jobs (E773), fills (E806), the closing probes (E798) and the r2-a-safe tri rows (E763, E788), through the pinned tool only.
+# No fault, no hold, no firmware task, no kreg/kregnow/kpoke, no BIF write, no clock gate, knobs at their defaults.
+ctl-u-1024-n1|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-n2g|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:0,288 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-m32|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 1 --move 1:32,0 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-m0-96|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 1 --move 1:0,96 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-n2-256-192|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:256,192 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-n3-stk|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:16,0 --move 3:0,16 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1024-n4-corners|heldout|safe|expectdiff|-|tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:512,0 --move 3:0,384 --move 4:512,384 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-640x480|heldout|safe|expectdiff|-|tri --width 640 --height 480 -n 1 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-1280x1024|heldout|safe|expectdiff|-|tri --width 1280 --height 1024 -n 1 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-512x384-m128|heldout|safe|expectdiff|-|tri --width 512 --height 384 -n 1 --move 1:128,0 --keep-going --keep-overflow --wait-ms 20000
+ctl-u-2048x1536|heldout|safe|expectdiff|-|tri --width 2048 --height 1536 -n 1 --keep-going --keep-overflow --wait-ms 20000
+ctl-green-8x8|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/pix_green.bin"
+ctl-green-16x16|control|safe|stophang|-|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/pix_green.bin"
+ctl-green-32x16|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/pix_green.bin"
+ctl-green-32x32|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/pix_green.bin"
+ctl-green-64x32|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/pix_green.bin"
+ctl-green-128x128|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/pix_green.bin"
+ctl-green-256x256|heldout|safe|stophang|-|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/pix_green.bin"
+ctl-dd-p1|control|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-p1__0.bin"
+ctl-dd-p2|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-p2__0.bin"
+ctl-a4-320x400-te20-max544|heldout|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+ctl-a1-256x160-tee0|heldout|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+ctl-a2-320x128-tee0|heldout|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 128 --max-width 320 --max-height 128 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

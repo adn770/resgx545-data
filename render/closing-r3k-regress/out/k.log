@@ -1,0 +1,69 @@
+attempt 20261110-222647: /Users/jtorra/src/scratch/resgx545/closing3/overnight/r3k-regress/out/20261110-222647; FROZEN.sha256 8f34b89af6de5e893e36788d5bf1cfb2654a2daec7050fa1eccd0e46d7a3c7e5
+files verified
+#### rg-ctl 22:26:47
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+## exit: hold_recovery=N render_rgn_arrays=0x00000001 (read only: nothing was written)
+SUMMARY: rg-ctl: control 2 PASS of 2; heldout 21 PASS of 21; every row reproduced its old value (no module regression in these classes)
+job: ok
+job time: 725 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[13251.332602] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[13251.335745] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[13251.339100] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 159 us
+stage rg-ctl done, health ok, render_rgn_arrays 0x00000001
+files verified
+gate rg-pb: open (every rg-ctl row ran, class ok; image mismatches are results, not a closed gate)
+#### rg-pb 22:29:06
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+  class ok
+## exit: hold_recovery=N render_rgn_arrays=0x00000001 (read only: nothing was written)
+SUMMARY: rg-pb: E728-shape 7 of 7 held-out rows as H-OLD, controls {'pb-e20-m2-64': 'PASS', 'pb-ee0-m2-64': 'PASS'}; -n 2 --geometry 1: 3 of 3 as H-NEW, twin row H-NEW; H-SHAPE: the module did not change E728's image (7 of 7 E728-shape rows reproduce E728's hash, diff, dwords and dump sha256s, both E728 controls too); k-pb0's value is reproducible (3 of 3 -n 2 --geometry 1 rows give 0x8ea26cdfee74a325) and belongs to that job shape, not to the module [infer: the shape differs from E728's, the tool prints render 2 in other colours]
+job: ok
+job time: 465 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[13336.439712] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[13336.442378] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[13336.445345] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 143 us
+stage rg-pb done, health ok, render_rgn_arrays 0x00000001
+R3K-regress done: /Users/jtorra/src/scratch/resgx545/closing/pixel-faults/.venv/bin/python /Users/jtorra/src/scratch/resgx545/closing3/overnight/r3k-regress/score/score_rg.py verdict /Users/jtorra/src/scratch/resgx545/closing3/overnight/r3k-regress/out/20261110-222647
