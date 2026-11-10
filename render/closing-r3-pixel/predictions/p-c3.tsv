@@ -1,0 +1,122 @@
+case	quantity	value	model	set
+c-e709-x	g_o4_words	10..100	G-o4 structural (26 runs of R1 p-c2 and S1b p-c: tag-5 words 19..50 in the x and y job)	control
+c-e709-x	g_o4_pairs	5..60	G-o4 structural (26 runs: pairs 8..42; one program 8..33)	control
+c-e709-x	g_o4_parity	even,even	G-o4 structural (571 of 571 pair sources are (even x, even y))	control
+c-e709-x	g_o4_tag5p_max	2	G-o4 structural (no tag-5' word in the x job of any of the 26 runs)	control
+c-o4-u-x	marker	0x303	frozen program marker (knob proof)	control
+c-o4-u-x	g_o4_words	10..100	G-o4 structural (26 runs of R1 p-c2 and S1b p-c: tag-5 words 19..50 in the x and y job)	control
+c-o4-u-x	g_o4_pairs	5..60	G-o4 structural (26 runs: pairs 8..42; one program 8..33)	control
+c-o4-u-x	g_o4_parity	even,even	G-o4 structural (571 of 571 pair sources are (even x, even y))	control
+c-o4-u-x	g_o4_tag5p_max	2	G-o4 structural (no tag-5' word in the x job of any of the 26 runs)	control
+c-o4-u-x	o4_class	5	M (the last o4 write wins: tag 5)	control
+c-u-x	marker	0x305	frozen program marker (knob proof)	control
+c-u-x	ctl_min_frac	0.98	frozen criterion (R1 / S1b: tag-2 fraction 0.990 to 0.996 in 5 runs)	control
+c-u-r2-x	marker	0x307	frozen program marker (knob proof)	control
+c-u-r2-x	ctl_min_frac	0.98	frozen criterion (R1 / S1b: tag-2 fraction 0.990 to 0.996 in 5 runs)	control
+c-g23r4-x	marker	0x309	frozen program marker (knob proof)	control
+c-g23r4-x	rule	x:4	M (g23 = x mod 32: bit 4; S1b's immediate form gave x bit 4)	control
+c-o4s-u-x	marker	0x30b	frozen program marker (knob proof)	control
+c-o4s-u-x	o4_class	5'	M (the last o4 write wins: tag 5')	control
+c-rd-pa-x	marker	0x30d	frozen program marker (knob proof)	control
+c-rd-pa-x	rd_identity	0.9	o0 lands at the pixel's own position (>= 90% of the written pixels)	control
+c-rdf-pa-x	marker	0x30f	frozen program marker (knob proof)	control
+c-rdf-pa-x	rd_identity	0.9	o0 lands at the pixel's own position (>= 90% of the written pixels)	control
+c-k0-x	marker	0x311	frozen program marker (knob proof)	control
+c-k0-x	frac_tag2_of_o1	0.25	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k0-x	rule	lane:0:A	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k0-x	tag2_parity	0,0	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k1-x	marker	0x313	frozen program marker (knob proof)	control
+c-k1-x	frac_tag2_of_o1	0.25	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k1-x	rule	lane:1:A	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k1-x	tag2_parity	1,0	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k1-x	frac_tag2_of_o1	0.25	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k1-x	rule	lane:1:B	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k1-x	tag2_parity	0,1	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k2-x	marker	0x315	frozen program marker (knob proof)	control
+c-k2-x	frac_tag2_of_o1	0.25	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k2-x	rule	lane:2:A	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k2-x	tag2_parity	0,1	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k2-x	frac_tag2_of_o1	0.25	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k2-x	rule	lane:2:B	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k2-x	tag2_parity	1,0	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-k3-x	marker	0x317	frozen program marker (knob proof)	control
+c-k3-x	frac_tag2_of_o1	0.25	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k3-x	rule	lane:3:A	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k3-x	tag2_parity	1,1	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-k5-x	marker	0x319	frozen program marker (knob proof)	control
+c-k5-x	frac_tag2_of_o1	0.0	M (a lane id is 0..3: g25 == 5 never)	repeat
+c-k5-x	rule	never	M (a lane id is 0..3: g25 == 5 never)	repeat
+c-k7-x	marker	0x31b	frozen program marker (knob proof)	control
+c-k7-x	frac_tag2_of_o1	0.0	M (a lane id is 0..3: g25 == 7 never)	repeat
+c-k7-x	rule	never	M (a lane id is 0..3: g25 == 7 never)	repeat
+c-g23r0-x	marker	0x31d	frozen program marker (knob proof)	control
+c-g23r0-x	rule	x:0	M (g23 = x mod 32, high half 0)	repeat
+c-g23r3-x	marker	0x31f	frozen program marker (knob proof)	control
+c-g23r3-x	rule	x:3	M (g23 = x mod 32, high half 0)	repeat
+c-g23r5-x	marker	0x321	frozen program marker (knob proof)	control
+c-g23r5-x	rule	never	M (g23 = x mod 32, high half 0)	repeat
+c-g23r5-x	rule	x:5	X (g23 = x, no wrap: bit 5 true for x in 32..63)	repeat
+c-g23r20-x	marker	0x323	frozen program marker (knob proof)	control
+c-g23r20-x	rule	never	M (g23 = x mod 32, high half 0)	repeat
+c-g23r20-x	rule	y:4	XY (g23 = y << 16 | x: bit 20 is y bit 4)	repeat
+c-o4-k0-x	marker	0x325	frozen program marker (knob proof)	control
+c-o4-k0-x	o4_class	5	M (a predicate on the o4 write is ignored: the last write, tag 5, wins)	repeat
+c-o4-k3-x	marker	0x327	frozen program marker (knob proof)	control
+c-o4-k3-x	o4_class	5	M (a predicate on the o4 write is ignored: the last write, tag 5, wins)	repeat
+c-o4-k3-x	o4_class	not5	G (the o4 write gated like o1 by g25 == k: tag 5' for the instances where p1 is false)	repeat
+c-o4-k7-x	marker	0x329	frozen program marker (knob proof)	control
+c-o4-k7-x	o4_class	5	M (a predicate on the o4 write is ignored: the last write, tag 5, wins)	repeat
+c-o4-k7-x	o4_class	not5	G (the o4 write gated like o1 by g25 == k: tag 5' for the instances where p1 is false)	repeat
+c-rd-g23	rd_value	g23:xmod32	M (g23 = x mod 32)	repeat
+c-rd-g23	rd_value	g23:x	X (g23 = x)	repeat
+c-rd-g23	rd_value	g23:y<<16|x	XY (g23 = y << 16 | x)	repeat
+c-rd-g25	rd_value	g25:A	M (g25 = (x&1) | (y&1)<<1)	repeat
+c-rd-g25	rd_value	g25:B	T (g25 = (x&1)<<1 | (y&1), the transpose)	repeat
+c-g23r1-x	marker	0x32d	frozen program marker (knob proof)	control
+c-g23r1-x	rule	x:1	M (g23 = x mod 32, high half 0)	heldout
+c-g23r2-x	marker	0x32f	frozen program marker (knob proof)	control
+c-g23r2-x	rule	x:2	M (g23 = x mod 32, high half 0)	heldout
+c-g23r6-x	marker	0x331	frozen program marker (knob proof)	control
+c-g23r6-x	rule	never	M (g23 = x mod 32, high half 0)	heldout
+c-g23r6-x	rule	x:6	X (g23 = x: bit 6 true at x >= 64 only; also never in a 64-wide target: reported apart)	heldout
+c-g23m18-x	marker	0x333	frozen program marker (knob proof)	control
+c-g23m18-x	rule	xany:24	M (g23 = x mod 32: true iff bit 3 or 4 of x)	heldout
+c-g23eq20-x	marker	0x335	frozen program marker (knob proof)	control
+c-g23eq20-x	rule	xeq:20	M (g23 = x mod 32: true iff x mod 32 == 20; x = 20 and 52 for 20, never for 40)	heldout
+c-g23eq20-x	rule	xe:20	X (g23 = x: true only at x == 20)	heldout
+c-g23eq40-x	marker	0x337	frozen program marker (knob proof)	control
+c-g23eq40-x	rule	xeq:40	M (g23 = x mod 32: true iff x mod 32 == 40; x = 20 and 52 for 20, never for 40)	heldout
+c-g23eq40-x	rule	xe:40	X (g23 = x: true only at x == 40)	heldout
+c-g25b0-x	marker	0x339	frozen program marker (knob proof)	control
+c-g25b0-x	rule	x:0	M (g25 = (x&1) | (y&1)<<1: g25 & 1 is odd x)	heldout
+c-g25b0-x	rule	y:0	T (the transpose: g25 & 1 is odd y)	heldout
+c-g25b1-x	marker	0x33b	frozen program marker (knob proof)	control
+c-g25b1-x	rule	y:0	M (g25 & 2 is odd y)	heldout
+c-g25b1-x	rule	x:0	T (the transpose: g25 & 2 is odd x)	heldout
+c-o4s-k0-x	marker	0x33d	frozen program marker (knob proof)	control
+c-o4s-k0-x	o4_class	5'	M (a predicate on the o4 write is ignored: the last write, tag 5', wins)	heldout
+c-o4s-k0-x	o4_class	not5'	G (the o4 write gated like o1: the p1-true instances keep tag 5)	heldout
+c-o4s-k3-x	marker	0x33f	frozen program marker (knob proof)	control
+c-o4s-k3-x	o4_class	5'	M (a predicate on the o4 write is ignored: the last write, tag 5', wins)	heldout
+c-o4s-k3-x	o4_class	not5'	G (the o4 write gated like o1: the p1-true instances keep tag 5)	heldout
+c-o4s-k7-x	marker	0x341	frozen program marker (knob proof)	control
+c-o4s-k7-x	o4_class	5'	M (a predicate on the o4 write is ignored: the last write, tag 5', wins)	heldout
+c-o4s-k7-x	o4_class	not5'	G (the o4 write gated like o1: the p1-true instances keep tag 5)	heldout
+c-rd-g24	rd_value	g24:ymod16	M (g24 = y mod 16, E086's fill reading)	heldout
+c-rd-g24	rd_value	g24:y	Y (g24 = y)	heldout
+c-rdf-g23	rd_value	g23:xmod32	M (g23 = x mod 32)	heldout
+c-rdf-g23	rd_value	g23:x	X (g23 = x)	heldout
+c-rdf-g23	rd_value	g23:y<<16|x	XY (g23 = y << 16 | x)	heldout
+c-rdf-g24	rd_value	g24:ymod16	M (g24 = y mod 16, E086's fill reading)	heldout
+c-rdf-g24	rd_value	g24:y	Y (g24 = y)	heldout
+c-rdf-g25	rd_value	g25:A	M (g25 = (x&1) | (y&1)<<1)	heldout
+c-rdf-g25	rd_value	g25:B	T (g25 = (x&1)<<1 | (y&1), the transpose)	heldout
+c-rdf128-pa-x	marker	0x347	frozen program marker (knob proof)	control
+c-rdf128-pa-x	rd_identity	0.9	o0 lands at the pixel's own position (>= 90% of the written pixels)	control
+c-rdf128-g23	rd_value	g23:xmod32	M (g23 = x mod 32)	heldout
+c-rdf128-g23	rd_value	g23:x	X (g23 = x)	heldout
+c-rdf128-g23	rd_value	g23:y<<16|x	XY (g23 = y << 16 | x)	heldout
+c-rdf128-g23	rd_value	g23:xmod64	X64 (g23 = x mod 64)	heldout
+c-rdf128-g25	rd_value	g25:A	M (g25 = (x&1) | (y&1)<<1)	heldout
+c-rdf128-g25	rd_value	g25:B	T (g25 = (x&1)<<1 | (y&1), the transpose)	heldout
+c-k1-x-rep	frac_tag2_of_o1	same as c-k1-x	repeat	replicate

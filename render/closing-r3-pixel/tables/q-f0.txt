@@ -1,0 +1,26 @@
+#stage q-f0
+#need $S/loop-rel-b8-i53.bin
+#need $S/loop-rel-b8-i56.bin
+#need $S/loop-abs-b8-i53.bin
+#need $S/loop-abs-b8-i56.bin
+#need $S/loop-rel-b8-i16.bin
+#need $S/loop-rel-b8-i136.bin
+# Q082 pixel side, stage q-f0: the loop controls on FILLS (10 jobs).  The first control is the relative backward `br` in a
+# pixel task (decision R3-P1): relative loop + MARK proof (prologue mov r30 = 0xC0DE0000 | N, last instruction xor.end o0, r1, r30),
+# so o0 = MARK on 2048 of 2048 only where the counter reached zero (E770's unwritten register cannot pass).  A fill's shader
+# sits at index 0 of the code base, so E431's absolute `ba` loop works in a fill (o0 = 0, E431/E769) and is kept here as the abs
+# control: never in a --tri slot (the generator and the guard refuse).  Rows: rel 53, 56, 53, 56 (proofstop: a failed proof stops
+# the stage with rc 17 and ends the pixel loop stages cleanly), abs 53, 56, 53, 56, rel 16 (clear, burst 204 +- 125 us), rel 136
+# (set, t6 120..340 us after the burst starts).  STATUS2 is read after the reset (must be 0x400) and after the job; every row
+# runs under regtimeline 0x0008 (clock-gate status, the burst), 0x0118 (STATUS2), 0x012c.  If abs and rel disagree on the bit
+# the session stops (driver exit 41): the fill ladders would have to run with both.
+f0-rel-b8-53|control|safe|stophang s2 proofstop:0xc0de0035:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i53.bin"
+f0-rel-b8-56|control|safe|stophang s2 proofstop:0xc0de0038:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i56.bin"
+f0-rel-b8-53b|control|safe|stophang s2 proofstop:0xc0de0035:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i53.bin"
+f0-rel-b8-56b|control|safe|stophang s2 proofstop:0xc0de0038:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i56.bin"
+f0-abs-b8-53|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-abs-b8-i53.bin"
+f0-abs-b8-56|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-abs-b8-i56.bin"
+f0-abs-b8-53b|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-abs-b8-i53.bin"
+f0-abs-b8-56b|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-abs-b8-i56.bin"
+f0-rel-b8-16|control|safe|stophang s2 proofstop:0xc0de0010:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i16.bin"
+f0-rel-b8-136|control|safe|stophang s2 proofstop:0xc0de0088:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i136.bin"

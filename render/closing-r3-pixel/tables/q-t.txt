@@ -1,0 +1,116 @@
+#stage q-t
+#need $S/pix_green.bin
+#need $S/loop-rel-b8-i1.bin
+#need $S/loop-rel-b8-i53.bin
+#need $S/loop-rel-b8-i56.bin
+#need $S/loop-rel-b8-i4.bin
+#need $S/loop-rel-b8-i14.bin
+#need $S/loop-rel-b8-i28.bin
+#need $S/loop-rel-b8-i110.bin
+#need $S/loop-rel-b8-i220.bin
+#need $S/loop-rel-b8-i440.bin
+#need $S/loop-rel-b8-i880.bin
+#need $S/loop-rel-b8-i1760.bin
+#need $S/loop-rel-b8-i3520.bin
+# Q082 pixel side, stage q-t: occupancy with the working triangle loop (decisions R3-P1, P2, P5, P8).  `probe --tri pixel --temps 32
+# --width W --height H --tri-full` with the relative b8 loop + MARK: the triangle covers the whole target (the tool prints
+# `triangle (0,0) (3W,0) (0,3H)`), so every pixel must hold MARK.  Sizes 8x8, 16x16, 32x16, 32x32, 64x32, 128x128, 256x256; ladder
+# N = 4, 14, 28, 53, 56, 110, 220, 440, 880, 1760, 3520 cut where pixels x N would pass 2.3e7 (E357's longest completed fill, 112 ms).
+# Controls: the stock pix_green full triangle at seven sizes, the loop at N = 1 at seven sizes (MARK on W x H of W x H, else void),
+# and the 64x32 bridge at 53 and 56 (clear, set: the fill's threshold).  The ladders are HELD OUT.  The first ladder point with the
+# bit set, by hypothesis (frozen table in score/r3const.py, scaled by the measured 64x32 first set / 56): H-INST per instance
+# (including H-MA), H-TILE per 32x16 tile (including H-WD), H-JOB for the whole job.  E770 done right (the partial default triangle
+# at 64x64, N = 53, 56, 110) is exploratory.  The 4x4 rows (R3-P8) are last.  Every row runs under regtimeline and STATUS2 reads.
+t-ctl-green-8x8|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/pix_green.bin"
+t-ctl-green-16x16|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/pix_green.bin"
+t-ctl-green-32x16|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/pix_green.bin"
+t-ctl-green-32x32|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/pix_green.bin"
+t-ctl-green-64x32|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/pix_green.bin"
+t-ctl-green-128x128|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/pix_green.bin"
+t-ctl-green-256x256|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/pix_green.bin"
+t-ctl-n1-8x8|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-16x16|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-32x16|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-32x32|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-64x32|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-128x128|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i1.bin"
+t-ctl-n1-256x256|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i1.bin"
+t-bridge-64x32-n53|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i53.bin"
+t-bridge-64x32-n56|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i56.bin"
+t-64x32-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i4.bin"
+t-64x32-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i14.bin"
+t-64x32-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i28.bin"
+t-64x32-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i53.bin"
+t-64x32-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i56.bin"
+t-64x32-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i110.bin"
+t-64x32-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i220.bin"
+t-64x32-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i440.bin"
+t-64x32-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i880.bin"
+t-64x32-n1760|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i1760.bin"
+t-64x32-n3520|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 32 --tri-full "$S/loop-rel-b8-i3520.bin"
+t-32x32-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i4.bin"
+t-32x32-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i14.bin"
+t-32x32-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i28.bin"
+t-32x32-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i53.bin"
+t-32x32-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i56.bin"
+t-32x32-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i110.bin"
+t-32x32-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i220.bin"
+t-32x32-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i440.bin"
+t-32x32-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i880.bin"
+t-32x32-n1760|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i1760.bin"
+t-32x32-n3520|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 32 --tri-full "$S/loop-rel-b8-i3520.bin"
+t-32x16-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i4.bin"
+t-32x16-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i14.bin"
+t-32x16-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i28.bin"
+t-32x16-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i53.bin"
+t-32x16-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i56.bin"
+t-32x16-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i110.bin"
+t-32x16-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i220.bin"
+t-32x16-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i440.bin"
+t-32x16-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i880.bin"
+t-32x16-n1760|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i1760.bin"
+t-32x16-n3520|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 32 --height 16 --tri-full "$S/loop-rel-b8-i3520.bin"
+t-16x16-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i4.bin"
+t-16x16-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i14.bin"
+t-16x16-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i28.bin"
+t-16x16-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i53.bin"
+t-16x16-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i56.bin"
+t-16x16-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i110.bin"
+t-16x16-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i220.bin"
+t-16x16-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i440.bin"
+t-16x16-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i880.bin"
+t-16x16-n1760|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i1760.bin"
+t-16x16-n3520|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 16 --height 16 --tri-full "$S/loop-rel-b8-i3520.bin"
+t-8x8-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i4.bin"
+t-8x8-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i14.bin"
+t-8x8-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i28.bin"
+t-8x8-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i53.bin"
+t-8x8-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i56.bin"
+t-8x8-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i110.bin"
+t-8x8-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i220.bin"
+t-8x8-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i440.bin"
+t-8x8-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i880.bin"
+t-8x8-n1760|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i1760.bin"
+t-8x8-n3520|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 8 --height 8 --tri-full "$S/loop-rel-b8-i3520.bin"
+t-128x128-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i4.bin"
+t-128x128-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i14.bin"
+t-128x128-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i28.bin"
+t-128x128-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i53.bin"
+t-128x128-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i56.bin"
+t-128x128-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i110.bin"
+t-128x128-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i220.bin"
+t-128x128-n440|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i440.bin"
+t-128x128-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 128 --height 128 --tri-full "$S/loop-rel-b8-i880.bin"
+t-256x256-n4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i4.bin"
+t-256x256-n14|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i14.bin"
+t-256x256-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i28.bin"
+t-256x256-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i53.bin"
+t-256x256-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i56.bin"
+t-256x256-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i110.bin"
+t-256x256-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 256 --height 256 --tri-full "$S/loop-rel-b8-i220.bin"
+t-par-64x64-n53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 64 "$S/loop-rel-b8-i53.bin"
+t-par-64x64-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 64 "$S/loop-rel-b8-i56.bin"
+t-par-64x64-n110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 64 --height 64 "$S/loop-rel-b8-i110.bin"
+t-4x4-n56|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 4 --height 4 --tri-full "$S/loop-rel-b8-i56.bin"
+t-4x4-n220|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 4 --height 4 --tri-full "$S/loop-rel-b8-i220.bin"
+t-4x4-n880|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --temps 32 --width 4 --height 4 --tri-full "$S/loop-rel-b8-i880.bin"

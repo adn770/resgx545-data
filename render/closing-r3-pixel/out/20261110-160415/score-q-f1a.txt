@@ -1,0 +1,73 @@
+q-f1a: per job (loop proof, STATUS2 after, burst B, t6)
+job           state  STATUS2  B us   t6 us
+fa-b16-n6     ok     0x400    170    -    
+fa-b16-n12    ok     0x400    286    -    
+fa-b16-n21    ok     0x400    462    -    
+fa-b16-n22    ok     0x400    484    -    
+fa-b16-n23    ok     0x400    503    -    
+fa-b16-n24    ok     0x400    522    -    
+fa-b16-n25    ok     0x400    537    -    
+fa-b16-n104   ok     0x440    2082   246  
+fa-b12-n8     ok     0x400    200    -    
+fa-b12-n16    ok     0x400    311    -    
+fa-b12-n28    ok     0x400    450    -    
+fa-b12-n30    ok     0x400    480    -    
+fa-b12-n31    ok     0x400    494    -    
+fa-b12-n32    ok     0x400    533    -    
+fa-b12-n33    ok     0x400    519    -    
+fa-b12-n34    ok     0x400    539    -    
+fa-b12-n35    ok     0x440    554    283  
+fa-b12-n36    ok     0x440    567    287  
+fa-b12-n38    ok     0x440    585    287  
+fa-b12-n136   ok     0x440    1995   305  
+fa-b4-n40     ok     0x400    222    -    
+fa-b4-n80     ok     0x400    391    -    
+fa-b4-n130    ok     0x440    599    291  
+fa-b4-n140    ok     0x440    679    303  
+fa-b4-n150    ok     0x440    680    183  
+fa-b4-n156    ok     0x440    718    180  
+fa-b4-n160    ok     0x440    730    180  
+fa-b4-n164    ok     0x440    752    182  
+fa-b4-n168    ok     0x440    767    185  
+fa-b4-n172    ok     0x440    777    182  
+fa-b4-n180    ok     0x440    812    187  
+fa-b4-n200    ok     0x440    898    187  
+fa-b4-n240    ok     0x440    1065   197  
+fa-b4-n320    ok     0x440    1410   209  
+fa-b4-n640    ok     0x440    2744   273  
+fa-b2-n500    ok     0x440    1377   214  
+fa-b2-n1000   ok     0x440    2700   273  
+fa-b2-n2000   ok     0x440    5345   154  
+fa-b2-n4000   ok     0x440    10636  148  
+fa-b2-n8000   ok     0x440    21220  149  
+fa-b2-n16000  ok     0x440    42399  152  
+fa-b8n-n60    ok     0x440    594    291  
+fa-b8n-n120   ok     0x440    1126   201  
+fa-b8n-n240   ok     0x440    2219   255  
+fa-b8n-n480   ok     0x440    4404   155  
+fa-b8n-n960   ok     0x440    8734   151  
+fa-b8n-n1920  ok     0x440    17442  151  
+fa-b8n-n3840  ok     0x440    34726  154  
+fa-ld8-n20    ok     0x400    896    -    
+fa-ld8-n70    ok     0x400    2980   -    
+fa-ld8-n79    ok     0x400    3496   -    
+fa-ld8-n84    ok     0x400    3549   -    
+fa-ld8-n160   ok     0x400    6718   -    
+fa-ld8-n320   ok     0x400    13382  -    
+
+single-order view (the verdict needs both orders; `unreplicated` here is expected):
+ladder b16: N* (H-WD) = 26.0 +- 29%; 6:c* 12:c* 21:c* 22:c* 23:c* 24:c* 25:c* 104:S*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+ladder b12: N* (H-WD) = 30.4 +- 25%; 8:c* 16:c* 28:c* 30:c* 31:c* 32:c* 33:c* 34:c* 35:S* 36:S* 38:S* 136:S*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+ladder b4: N* (H-WD) = 118.4 +- 20%; 40:c* 80:c* 130:S* 140:S* 150:S* 156:S* 160:S* 164:S* 168:S* 172:S* 180:S* 200:S* 240:S* 320:S* 640:S*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+ladder b2: N* (H-WD) = 184.6 +- 8%; 500:S* 1000:S* 2000:S* 4000:S* 8000:S* 16000:S*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+ladder b8n: N* (H-WD) = 54.8 +- 8%; 60:S* 120:S* 240:S* 480:S* 960:S* 1920:S* 3840:S*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+ladder ld8: N* (H-WD) = 11.7 +- 8%; 20:c* 70:c* 79:c* 84:c* 160:c* 320:c*  (S set, c clear, E edge = the orders differ, . void, * one order only)
+H-MA: open (unreplicated ['b16', 'b12', 'b4', 'b2', 'b8n', 'ld8'], no decided point [])
+H-WD: open (unreplicated ['ld8'], no decided point [])
+H-WD-busy: open (unreplicated [], no decided point ['ld8'])
+H-BURST: open (unreplicated ['ld8'], no decided point [])
+time of the latch (jobs set at N >= 1.3 N*): 24 jobs; t6 in [120, 340] us (H-EARLY): 24; within 15% of B (H-END): 0
+near the threshold: 6 of 7 set jobs have t6 on an H-WD tile cluster (25 + k (B - 60.2)/4 + 121.8 +- 30 us)
+ld8: first N with the bit set = None (H-WD-busy: later than H-WD's first set point)
+
+SUMMARY: q-f1a: 54 jobs read, 0 void (loop proof or STATUS2 pre failed), 31 with bit 6 set; H-MA open; H-WD open; H-WD-busy open; H-BURST open (single order: the two-order verdict is `verdict`)

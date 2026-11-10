@@ -1,0 +1,116 @@
+#stage q-f1a
+#need $S/loop-rel-b16-i6.bin
+#need $S/loop-rel-b16-i12.bin
+#need $S/loop-rel-b16-i21.bin
+#need $S/loop-rel-b16-i22.bin
+#need $S/loop-rel-b16-i23.bin
+#need $S/loop-rel-b16-i24.bin
+#need $S/loop-rel-b16-i25.bin
+#need $S/loop-rel-b16-i104.bin
+#need $S/loop-rel-b12-i8.bin
+#need $S/loop-rel-b12-i16.bin
+#need $S/loop-rel-b12-i28.bin
+#need $S/loop-rel-b12-i30.bin
+#need $S/loop-rel-b12-i31.bin
+#need $S/loop-rel-b12-i32.bin
+#need $S/loop-rel-b12-i33.bin
+#need $S/loop-rel-b12-i34.bin
+#need $S/loop-rel-b12-i35.bin
+#need $S/loop-rel-b12-i36.bin
+#need $S/loop-rel-b12-i38.bin
+#need $S/loop-rel-b12-i136.bin
+#need $S/loop-rel-b4-i40.bin
+#need $S/loop-rel-b4-i80.bin
+#need $S/loop-rel-b4-i130.bin
+#need $S/loop-rel-b4-i140.bin
+#need $S/loop-rel-b4-i150.bin
+#need $S/loop-rel-b4-i156.bin
+#need $S/loop-rel-b4-i160.bin
+#need $S/loop-rel-b4-i164.bin
+#need $S/loop-rel-b4-i168.bin
+#need $S/loop-rel-b4-i172.bin
+#need $S/loop-rel-b4-i180.bin
+#need $S/loop-rel-b4-i200.bin
+#need $S/loop-rel-b4-i240.bin
+#need $S/loop-rel-b4-i320.bin
+#need $S/loop-rel-b4-i640.bin
+#need $S/loop-rel-b2-i500.bin
+#need $S/loop-rel-b2-i1000.bin
+#need $S/loop-rel-b2-i2000.bin
+#need $S/loop-rel-b2-i4000.bin
+#need $S/loop-rel-b2-i8000.bin
+#need $S/loop-rel-b2-i16000.bin
+#need $S/loop-rel-b8n-i60.bin
+#need $S/loop-rel-b8n-i120.bin
+#need $S/loop-rel-b8n-i240.bin
+#need $S/loop-rel-b8n-i480.bin
+#need $S/loop-rel-b8n-i960.bin
+#need $S/loop-rel-b8n-i1920.bin
+#need $S/loop-rel-b8n-i3840.bin
+#need $S/loop-rel-ld8-i20.bin
+#need $S/loop-rel-ld8-i70.bin
+#need $S/loop-rel-ld8-i79.bin
+#need $S/loop-rel-ld8-i84.bin
+#need $S/loop-rel-ld8-i160.bin
+#need $S/loop-rel-ld8-i320.bin
+# Q082 pixel side, stage q-f1a: what the latch counts (fills, 54 jobs; order a: ascending in the table order b16 b12 b4 b2 b8n ld8).  Relative `br` loops with MARK
+# (decision R3-P1), STATUS2 read after the reset (0x400) and after the job, regtimeline 0x0008 / 0x0118 / 0x012c.  Ladders: b16 (14 imae,
+# N 6..104), b12 (10 imae, 8..136), b4 (2 imae, 40..640), b2 (no imae, 500..16000), b8n (6 `or`, 60..3840), ld8 (ldad, wdf, 4 imae,
+# 20..320).  The first two points of a ladder are its FIT rows (the burst slope s_body); every other point is HELD OUT.  Hypotheses
+# (frozen in score/r3const.py): H-MA (multiply-adds of an instance >= M*, M* in (318, 336]), H-WD (a tile's time (B - 60.2) / 4 >=
+# 121.8 us), H-WD-busy, H-BURST (B >= 536 +- 20 us); H-ITER and H-INSTR are E769's refuted rows, printed without weight.  A hypothesis is
+# refuted by one ladder whose two orders agree and contradict it; the orders disagreeing at one N marks that N `edge`.
+fa-b16-n6|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i6.bin"
+fa-b16-n12|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i12.bin"
+fa-b16-n21|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i21.bin"
+fa-b16-n22|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i22.bin"
+fa-b16-n23|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i23.bin"
+fa-b16-n24|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i24.bin"
+fa-b16-n25|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i25.bin"
+fa-b16-n104|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b16-i104.bin"
+fa-b12-n8|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i8.bin"
+fa-b12-n16|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i16.bin"
+fa-b12-n28|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i28.bin"
+fa-b12-n30|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i30.bin"
+fa-b12-n31|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i31.bin"
+fa-b12-n32|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i32.bin"
+fa-b12-n33|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i33.bin"
+fa-b12-n34|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i34.bin"
+fa-b12-n35|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i35.bin"
+fa-b12-n36|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i36.bin"
+fa-b12-n38|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i38.bin"
+fa-b12-n136|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b12-i136.bin"
+fa-b4-n40|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i40.bin"
+fa-b4-n80|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i80.bin"
+fa-b4-n130|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i130.bin"
+fa-b4-n140|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i140.bin"
+fa-b4-n150|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i150.bin"
+fa-b4-n156|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i156.bin"
+fa-b4-n160|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i160.bin"
+fa-b4-n164|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i164.bin"
+fa-b4-n168|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i168.bin"
+fa-b4-n172|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i172.bin"
+fa-b4-n180|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i180.bin"
+fa-b4-n200|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i200.bin"
+fa-b4-n240|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i240.bin"
+fa-b4-n320|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i320.bin"
+fa-b4-n640|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b4-i640.bin"
+fa-b2-n500|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i500.bin"
+fa-b2-n1000|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i1000.bin"
+fa-b2-n2000|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i2000.bin"
+fa-b2-n4000|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i4000.bin"
+fa-b2-n8000|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i8000.bin"
+fa-b2-n16000|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b2-i16000.bin"
+fa-b8n-n60|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i60.bin"
+fa-b8n-n120|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i120.bin"
+fa-b8n-n240|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i240.bin"
+fa-b8n-n480|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i480.bin"
+fa-b8n-n960|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i960.bin"
+fa-b8n-n1920|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i1920.bin"
+fa-b8n-n3840|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8n-i3840.bin"
+fa-ld8-n20|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i20.bin"
+fa-ld8-n70|control|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i70.bin"
+fa-ld8-n79|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i79.bin"
+fa-ld8-n84|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i84.bin"
+fa-ld8-n160|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i160.bin"
+fa-ld8-n320|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i320.bin"
