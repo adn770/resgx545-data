@@ -1,0 +1,66 @@
+## stage r2-a-fault
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+bf4f8be2d8a8fe50034559450928e05695dc96d396d4892f9b00ea6bc0d4f053 /home/jtorra/sgxfive-test-r1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000
+## clock
+Tue Nov 10 10:54:57 CET 2026
+## R2 safety rules: see the header of lib_r2.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 441cc3a4b33d009574215642a23edd870454867382c8ba8fffbc53991392fe12
+== a5-320x400-max544 set=heldout risk=risky mode=held knobs=[held hypo:fx:2 expectdiff] rt=0x0118,0x012c,0x0c00-0x0c08
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.r4tWI67QnU/1-a5-320x400-max544/dump
+  snap 1: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  snap 2: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  debugfs reset: status 0
+  hold_recovery written N, read back N
+  snap 3: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 tri: render context for targets up to 544x400 tri: triangle (0,0) (960,0) (0,1200), depth 0.5 0.5 0.5 job: ok 
+  kept a5-320x400-max544.txt: 1005 bytes raw, raw sha256 6637b3df7e6112d80925f5f96ee902bbd3d813f26dc80d310444578af5630d40
+  kept a5-320x400-max544.dmesg: 3733 bytes raw, raw sha256 1f008373fe53fad4a8d7454cac3983e3b1cba56a6afc6245f78391b25300c810
+  kept a5-320x400-max544.snap0.regs: 6474 bytes raw, raw sha256 f509562f847f156ca7a8caa3517aab2f67e7bdd4dbc1be9e13a6e38535f886d7
+  kept a5-320x400-max544.snap1.regs: 6474 bytes raw, raw sha256 25604180031a804f33cf59a3ee2b1a5245f6a992b9ab28aad9acb1309171ea11
+  kept a5-320x400-max544.snap2.regs: 6474 bytes raw, raw sha256 86502ace2d514262e36d988a84296e0d1992ed0db48eb89890c3aaa67b12faee
+  kept a5-320x400-max544.snap3.regs: 6474 bytes raw, raw sha256 0e04d0b615a73aff6cbfd46493cf5377c3eaa4c242cec600800f399443cd95aa
+  kept a5-320x400-max544.tri.param.bin: 4603904 bytes raw, raw sha256 5d09f332833ee7e6d8198714e894217115b394654d1fd5831b12317d558dbe3b
+  kept a5-320x400-max544.tri.tadata.bin: 40960 bytes raw, raw sha256 0aa02103e99253b1dfd1bf217c35bfda987380acfd9be57e38b5fac93b44be1b
+  class ok (fault bits 15:0 at snap 1: 0, hold message: no)
+== a6-320x400-max320 set=control risk=risky mode=held knobs=[held hypo:fx:2 expectdiff] rt=0x0118,0x012c,0x0c00-0x0c08
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.r4tWI67QnU/2-a6-320x400-max320/dump
+  snap 1: status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20008061
+  snap 2: status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20008061
+tee: /sys/kernel/debug/dri/0/sgx/reset: Connection timed out
+  debugfs reset: status 1
+  hold_recovery written N, read back N
+  snap 3: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 tri: render context for targets up to 320x400 tri: triangle (0,0) (960,0) (0,1200), depth 0.5 0.5 0.5 job: failed: job faulted, context lost (Input/output error) 
+  kept a6-320x400-max320.txt: 1284 bytes raw, raw sha256 26095b29631b6056973f179085a385d972f52d9520c07a2656021a24de33bd35
+  kept a6-320x400-max320.dmesg: 7262 bytes raw, raw sha256 ae147888b86ceb5ab98e3ea20c1b4a68740c496b06701fbbb435ca8a094e502b
+  kept a6-320x400-max320.snap0.regs: 6474 bytes raw, raw sha256 e44fddab8885ff9cd79bfa5b029835768aaa6c782dab4af6055235cc2ab98f2a
+  kept a6-320x400-max320.snap1.regs: 6474 bytes raw, raw sha256 0f5777117a4e3093b0795edf2d6e82366393e4d8e796f9cef611f09cc19309cd
+  kept a6-320x400-max320.snap2.regs: 6474 bytes raw, raw sha256 f5a7109e37d9414231e740b3bd2085867a9bc6843193f98362953c8568a5b678
+  kept a6-320x400-max320.snap3.regs: 6474 bytes raw, raw sha256 2565b20502fc8d6505b944b66e356f267f8c97ef3892a3dea70150ab72f6a279
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  fault 1 of at most 2 in group fx (a hypothesis: measured); fault-class events of the session: 3 of 5
+  kept a6-320x400-max320.health2.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept a6-320x400-max320.health3.txt: 311 bytes raw, raw sha256 8d99cd46cc811a864d7a0b86994a84c6ee9de2558c9bcb1e064faef35cd8f5e8
+  health: recovered after a reset
+  kept end.health4.txt: 311 bytes raw, raw sha256 963ed41e1f3b185fb8acc3753c834af24ae716590c2f81d189907763575798f8
+## end: 2 jobs of r2-a-fault
+## exit: hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 2 case markers kept in /home/jtorra/r2-out/20261110-105258/r2-a-fault/kernel.log

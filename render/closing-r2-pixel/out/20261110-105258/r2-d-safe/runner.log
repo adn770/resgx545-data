@@ -1,0 +1,63 @@
+## stage r2-d-safe
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+bf4f8be2d8a8fe50034559450928e05695dc96d396d4892f9b00ea6bc0d4f053 /home/jtorra/sgxfive-test-r1
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000
+## clock
+Tue Nov 10 10:53:00 CET 2026
+## R2 safety rules: see the header of lib_r2.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 3a0f8aaf981a515aa668a59d975b8b5c26c92b11fb7dc940fa8ac2f1bbad40d8
+== d-ok-64 set=control risk=safe mode=plain knobs=[stophang] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 32 --coords --pixels --scratch-pages 64 /home/jtorra/r2-stage/s1d-tw128x32-l0e2__0.bin
+  rc 0 
+  kept d-ok-64.txt: 19797 bytes raw, raw sha256 91882c5543d9bbb19f4d2155ac63c6534fca63313698027c7e82166b3e5e3d10
+  kept d-ok-64.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept d-ok-64.snap0.regs: 6474 bytes raw, raw sha256 02a6422b0910237eccbf3f6157830811c7f713e1d2eb7dec28a6d476a1f18b22
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== d-L2e2-19 set=control risk=safe mode=plain knobs=[expectnopix] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 32 --coords --pixels --scratch-pages 19 /home/jtorra/r2-stage/s1d-tw64x64-l2e2__0.bin
+  rc 0 
+  kept d-L2e2-19.txt: 19765 bytes raw, raw sha256 184b3799eb469f9021a4f4d5e61949d0fcd1f1ae585e6079e6009488423343b7
+  kept d-L2e2-19.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept d-L2e2-19.snap0.regs: 6474 bytes raw, raw sha256 4c5354b566b6b699647d52a5bed209259310959cd1f014a089ebd03df102b82f
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== d-L2e2-19x set=control risk=safe mode=plain knobs=[expectnopix] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 32 --coords --pixels --scratch-pages 19 /home/jtorra/r2-stage/s1d-tw64x64-l2e2-x1__0.bin
+  rc 0 
+  kept d-L2e2-19x.txt: 19870 bytes raw, raw sha256 8e12c515618afaf3b71074f627309d81d7a7fc8e55ee48d9fa27321d14ef213b
+  kept d-L2e2-19x.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept d-L2e2-19x.snap0.regs: 6474 bytes raw, raw sha256 14f629fdbb729561844836b7cb644b9c1e8a2c1689c8ad7cca118faead69ade6
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== d-L2e2-18x set=heldout risk=safe mode=plain knobs=[expectnopix] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 32 --coords --pixels --scratch-pages 18 /home/jtorra/r2-stage/s1d-tw64x64-l2e2-x1__0.bin
+  rc 0 
+  kept d-L2e2-18x.txt: 19818 bytes raw, raw sha256 8fdd8228d42fdcbb868c7927ae934cf1aaec07583cc37db835981bf5bd2320f3
+  kept d-L2e2-18x.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept d-L2e2-18x.snap0.regs: 6474 bytes raw, raw sha256 40b44b5c437bf589e179f563e3906f108f3921d7788da5f42f2407105a0ba870
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== d-L2e2-18 set=repeat risk=safe mode=plain knobs=[expectnopix] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 probe --temps 32 --coords --pixels --scratch-pages 18 /home/jtorra/r2-stage/s1d-tw64x64-l2e2__0.bin
+  rc 3 probe s1d-tw64x64-l2e2__0: failed: no pixel written 
+  kept d-L2e2-18.txt: 167 bytes raw, raw sha256 251208e85411872f17fceff9a3c15b67e5b18a9de71f503c8276c814f5422b96
+  kept d-L2e2-18.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept d-L2e2-18.snap0.regs: 6474 bytes raw, raw sha256 ebab3a303c924d718a9ce2cd0cc6b45a3496c5ff15afe76b53ef3022b167b2a3
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  kept end.health2.txt: 311 bytes raw, raw sha256 cb14a7c83af2602de34d4f0a2f4e6fab4c5c2f6b58215cc537fbef7229c951fe
+## end: 5 jobs of r2-d-safe
+## exit: hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 5 case markers kept in /home/jtorra/r2-out/20261110-105258/r2-d-safe/kernel.log

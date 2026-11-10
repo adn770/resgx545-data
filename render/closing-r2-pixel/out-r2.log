@@ -1,0 +1,76 @@
+attempt 20261110-105258: /Users/jtorra/src/scratch/resgx545/closing2/r2-pixel/out/20261110-105258; FROZEN.sha256 a10173fee22715a9aecda1a151f0619fa474d33a926a6299932d00cdd291d9d2; fault-class events before this attempt: 0 (limit 5)
+files verified
+#### r2-d-safe 10:52:58 (fault-class events so far: 0 of 5)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+SUMMARY: r2-d-safe: held out {'d-L2e2-18x': 'HL'}; repeat (fit, tallied apart) {'d-L2e2-18': 'PASS'}; controls {'d-ok-64': 'PASS', 'd-L2e2-19': 'PASS', 'd-L2e2-19x': 'PASS'}
+job: ok
+job time: 424 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 5238.461348] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 5238.463999] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 5238.466774] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 141 us
+stage r2-d-safe done, health ok
+files verified
+SUMMARY: gate r2-d-fault: open
+#### r2-d-fault 10:53:37 (fault-class events so far: 0 of 5)
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+SUMMARY: r2-d-fault: held out {'d-L2e2-17': 'HL'}; repeat (fit, tallied apart) none; controls {'d-L2e2-16': 'PASS'}
+job: ok
+job time: 380 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 5278.721319] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 5278.723994] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 5278.726874] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 146 us
+stage r2-d-fault done, health ok
+files verified
+#### r2-a-safe 10:54:17 (fault-class events so far: 2 of 5)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+SUMMARY: r2-a-safe: a4 control PASS (TA data 0xa000, 28 wrong pixels as E727); slot 4 zero at 256x160 and 320x128: H4 for what the TA writes (f = 4)
+job: ok
+job time: 409 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 5315.744011] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 5315.746734] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 5315.749576] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 140 us
+stage r2-a-safe done, health ok
+files verified
+SUMMARY: gate r2-a-fault: open
+#### r2-a-fault 10:54:55 (fault-class events so far: 2 of 5)
+  class ok (fault bits 15:0 at snap 1: 0, hold message: no)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  health: recovered after a reset
+SUMMARY: r2-a-fault: a6 PASS; a5 COMPLETES with 4 arrays in 0xa000: four arrays suffice at 320x400 (H4 sufficiency); E1 TA write: HE
+job: ok
+job time: 465 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 5372.387202] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 5372.389945] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 5372.392802] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 141 us
+stage r2-a-fault done, health ok
+SUMMARY: gate r2-a-slack: not needed (a5 completed with four arrays: H4)
+the slack pair is not run (gate status 3: 3 not needed, 1 closed)
+R2 done: /Users/jtorra/src/scratch/resgx545/closing/pixel-faults/.venv/bin/python /Users/jtorra/src/scratch/resgx545/closing2/r2-pixel/score/score_r2.py verdict /Users/jtorra/src/scratch/resgx545/closing2/r2-pixel/out/20261110-105258

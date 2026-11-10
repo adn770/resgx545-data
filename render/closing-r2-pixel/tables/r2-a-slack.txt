@@ -1,0 +1,7 @@
+#stage r2-a-slack
+# A2 slack pair (PRE-APPROVED fallback, 2026-11-10 R2-8): 288x656 in a context made for 544x656 (rgn 0x7000,
+# rgn_size 0x2400, size 0x11000: four arrays end at 0x10000, one page of slack; a fifth would end at 0x12400).  Run only when
+# the decision rule says a5 cannot tell (PREFLIGHT.md section 5).
+sa4-ctl-288x656-te20|control|safe|stophang expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 656 --max-width 544 --max-height 656 --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+sa5-288x656-max544|heldout|risky|held hypo:fx:2 expectdiff|0x0118,0x012c,0x0c00-0x0c08|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 656 --max-width 544 --max-height 656 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+sa6-288x656-max288|control|risky|held hypo:fx:2 expectdiff|0x0118,0x012c,0x0c00-0x0c08|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 656 --max-width 288 --max-height 656 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

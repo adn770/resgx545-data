@@ -1,0 +1,15 @@
+#stage r2-d-safe
+#need $S/s1d-tw128x32-l0e2__0.bin
+#need $S/s1d-tw64x64-l2e2__0.bin
+#need $S/s1d-tw64x64-l2e2-x1__0.bin
+# D2 (Q281, safe part): the 18-page outcome is the probe's own VM layout (closing2/exp-pixel.md section 0.1).
+# HL: scratch (P pages) then the 3-page coords surface, adjacent: P = 19 reads coords page 1 (the coords words), P = 18 reads
+# coords page 2 (0xdeadbeef = 'no pixel written' to the probe's sentinel check).  HS: a sampler/BIF effect between 16 and 19.
+# The variant s1d-tw64x64-l2e2-x1 is tx_map.s with `xor.skipinv.end o0, r10, #1`: at 18 pages a job writing 0xdeadbeee is
+# not 'no pixel written': HL says the image is 0xdeadbeee everywhere (2048 of 2048), HS says rc 3 or another image.
+# Knob proof: the probe's `scratch at 0x3e003000 (N KiB)` line (another base voids the row).  Non-faulting rows only.
+d-ok-64|control|safe|stophang|-|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/s1d-tw128x32-l0e2__0.bin"
+d-L2e2-19|control|safe|expectnopix|-|probe --temps 32 --coords --pixels --scratch-pages 19 "$S/s1d-tw64x64-l2e2__0.bin"
+d-L2e2-19x|control|safe|expectnopix|-|probe --temps 32 --coords --pixels --scratch-pages 19 "$S/s1d-tw64x64-l2e2-x1__0.bin"
+d-L2e2-18x|heldout|safe|expectnopix|-|probe --temps 32 --coords --pixels --scratch-pages 18 "$S/s1d-tw64x64-l2e2-x1__0.bin"
+d-L2e2-18|repeat|safe|expectnopix|-|probe --temps 32 --coords --pixels --scratch-pages 18 "$S/s1d-tw64x64-l2e2__0.bin"

@@ -1,0 +1,63 @@
+## stage r2-a-safe
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+bf4f8be2d8a8fe50034559450928e05695dc96d396d4892f9b00ea6bc0d4f053 /home/jtorra/sgxfive-test-r1
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000
+## clock
+Tue Nov 10 10:54:19 CET 2026
+## R2 safety rules: see the header of lib_r2.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 de2bd8d9b5dd0e2cc1ee8facd65e43d06a74e8c3d288a9953ec6ecc88e083cef
+== a4-ctl-320x400-te20 set=control risk=safe mode=plain knobs=[stophang expectdiff] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.4DMadQGPnq/1-a4-ctl-320x400-te20/dump
+  rc 1 tri: render context for targets up to 544x400 tri: triangle (0,0) (960,0) (0,1200), depth 0.5 0.5 0.5 job: ok 
+  kept a4-ctl-320x400-te20.txt: 555 bytes raw, raw sha256 08f0ab6177886f0dd0efdd60fe54be4e8c4d01daec6f1095d9c74dff40602745
+  kept a4-ctl-320x400-te20.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a4-ctl-320x400-te20.snap0.regs: 6474 bytes raw, raw sha256 d40d7c087f1ba0ee4f94257fe69bff2fedb97f10e0841864dd184e06514c05a8
+  kept a4-ctl-320x400-te20.tri.param.bin: 4603904 bytes raw, raw sha256 ead87e47e3e30e100f8b9c75df2956dbdc203024166e84dea6df75698428fbae
+  kept a4-ctl-320x400-te20.tri.tadata.bin: 40960 bytes raw, raw sha256 eded049cc995bf897f7d5be22ac495d92a71a32f125c51112a900a548ef4ae6d
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a1-256x160-dump set=heldout risk=risky mode=plain knobs=[stophang expectdiff] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.4DMadQGPnq/2-a1-256x160-dump/dump
+  rc 0 tri: render context for targets up to 256x160 tri: triangle (0,0) (768,0) (0,480), depth 0.5 0.5 0.5 job: ok 
+  kept a1-256x160-dump.txt: 489 bytes raw, raw sha256 5ee000374da6ac92db913a764e923e5738fd9e857eb5ae939b07ac5a858fbdac
+  kept a1-256x160-dump.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a1-256x160-dump.snap0.regs: 6474 bytes raw, raw sha256 f950623e27420fa6ad58307d1906af4a8a65e57ba2a0a1c1ee1fda503e70ac04
+  kept a1-256x160-dump.tri.param.bin: 4603904 bytes raw, raw sha256 4c517e438d2f16a3a1abdec6887890a88b1e4970d834eb44cdb2164d2b168e07
+  kept a1-256x160-dump.tri.tadata.bin: 24576 bytes raw, raw sha256 eaa6c96c0b8d77398bbf15b3b246e6e4947fe9790143d8379ce52d01a4372992
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a2-320x128-dump set=heldout risk=risky mode=plain knobs=[stophang expectdiff] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 128 --max-width 320 --max-height 128 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.4DMadQGPnq/3-a2-320x128-dump/dump
+  rc 0 tri: render context for targets up to 320x128 tri: triangle (0,0) (960,0) (0,384), depth 0.5 0.5 0.5 job: ok 
+  kept a2-320x128-dump.txt: 489 bytes raw, raw sha256 7b306d09647d01dce98de1fdb365e507bb3a8eba76935abac33e0480b1d9e112
+  kept a2-320x128-dump.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a2-320x128-dump.snap0.regs: 6474 bytes raw, raw sha256 5970cccedee5e0a4f13e974cfbe7bc9ff7f6000a1c35ea7a3a0734a3d6504572
+  kept a2-320x128-dump.tri.param.bin: 4603904 bytes raw, raw sha256 540fdd036b9d354e9549117f5193cd671967c1f009c2768e9689374110a193f4
+  kept a2-320x128-dump.tri.tadata.bin: 24576 bytes raw, raw sha256 95b1d5dc32fb053de204c71d3f35c4c85c5973d52c213a84232380d3268730da
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a3-256x160-rep set=replicate risk=risky mode=plain knobs=[stophang expectdiff] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-r1 tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.4DMadQGPnq/4-a3-256x160-rep/dump
+  rc 0 tri: render context for targets up to 256x160 tri: triangle (0,0) (768,0) (0,480), depth 0.5 0.5 0.5 job: ok 
+  kept a3-256x160-rep.txt: 488 bytes raw, raw sha256 095bc8ef713bdf1874e1011a4ba01edb8d35bade34cb3b32fd6f31a66b9ae128
+  kept a3-256x160-rep.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a3-256x160-rep.snap0.regs: 6474 bytes raw, raw sha256 b078502eae5e224378ecc4ef9d4a372a381bf014395e630a78026361491590a0
+  kept a3-256x160-rep.tri.param.bin: 4603904 bytes raw, raw sha256 4c517e438d2f16a3a1abdec6887890a88b1e4970d834eb44cdb2164d2b168e07
+  kept a3-256x160-rep.tri.tadata.bin: 24576 bytes raw, raw sha256 eaa6c96c0b8d77398bbf15b3b246e6e4947fe9790143d8379ce52d01a4372992
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  kept end.health2.txt: 311 bytes raw, raw sha256 013d7c8a58131c9d94d6268d3cdca2a0b68d56bf20945bc6cdb87b0971f2ca7f
+## end: 4 jobs of r2-a-safe
+## exit: hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 4 case markers kept in /home/jtorra/r2-out/20261110-105258/r2-a-safe/kernel.log
