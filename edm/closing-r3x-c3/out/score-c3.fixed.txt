@@ -1,0 +1,25 @@
+s0: class ok; S0 as found: pclink 0x98 p 1100 sa63 0x0 sa64 0x2
+n1: class ok; next event: pclink 0x98 p 1011 (flags 0011); after gap: p 1111 sa63 0xe76b8bb8 r20 0x840cd1a7 r21 0xda94de03 i0 0xc0780b5c i1 0xba49de17
+n2: class ok; next event: pclink 0x98 p 1100 (flags 0100); after gap: p 1100 sa63 0x8480a93d r20 0xc115040b r21 0xdc47a408 i0 0x879a81a3 i1 0x9fe8ee84
+n3: class ok; next event: pclink 0x98 p 1010 (flags 1010); after gap: p 1110 sa63 0x8721d664 r20 0xcdcf8140 r21 0xb5caf44b i0 0x817bfb1e i1 0xd1d5482b
+f1: class ok; next event: pclink 0x98 p 1011 (flags 0011); after fill: p 1101 sa63 0xbf524cdc r20 0x0 r21 0x1000 i0 0xb84be483 i1 0x94a323fa
+f2: class ok; next event: pclink 0x98 p 1100 (flags 0100); after fill: p 1100 sa63 0xe4ab4e3b r20 0x0 r21 0x2000 i0 0x8c9c0478 i1 0xe87b8de1
+f3: class ok; next event: pclink 0x98 p 1010 (flags 1010); after fill: p 1100 sa63 0xe25e0f64 r20 0x0 r21 0x3000 i0 0xea66125c i1 0xfddd4a1a
+l1: class ok; next event: pclink 0x98 p 1011 (flags 0011); after reload: p 1101 sa63 0x0 r20 0x0 r21 0x99bebc5c i0 0xf7cba36a i1 0x90837e5c
+l2: class ok; next event: pclink 0x98 p 1100 (flags 0100); after reload: p 1100 sa63 0x0 r20 0x0 r21 0xcfc286ba i0 0x8be05db7 i1 0xcf342cbd
+l3: class ok; next event: pclink 0x98 p 1010 (flags 1010); after reload: p 1100 sa63 0x0 r20 0x0 r21 0xec17da47 i0 0xf2c6c8f8 i1 0xd419f677
+r1: class ok; next event: pclink 0x98 p 1011 (flags 0011); after reset: p 1101 sa63 0x0 r20 0x0 r21 0xd5795879 i0 0x953f36f1 i1 0xf598ec81
+r2: class ok; next event: pclink 0x98 p 1100 (flags 0100); after reset: p 1100 sa63 0x0 r20 0x0 r21 0xaf61ce4f i0 0xa6c7a6d1 i1 0xde26b172
+r3: class ok; next event: pclink 0x98 p 1010 (flags 1010); after reset: p 1100 sa63 0x0 r20 0x0 r21 0x86ab65b8 i0 0xd8a79106 i1 0xfbb0b493
+Q124 p2/p3 at the next entry, 8 discriminating jobs (a flag 0): H-KEEP supported (the writer's p2 p3 read back 8 of 8), H-SET refuted
+Q158 L (reload (no reset)): kept i0/i1 3/3, sa63 0/3, r20/r21 both survived 0/3 (r20 0/3, r21 3/3); p2 p3 after: 01 00 00
+Q158 R (debugfs reset and reload): kept i0/i1 3/3, sa63 0/3, r20/r21 both survived 0/3 (r20 0/3, r21 3/3); p2 p3 after: 01 00 00
+Q158 F (client fill): kept i0/i1 3/3, sa63 3/3, r20/r21 replaced 3/3; p2 p3 after: 01 00 00
+Q158 N (1200 ms): sa63, r20, r21, i0, i1 kept in 3 of 3 jobs
+start state S0 (as found after the stage's own arm): sa100/sa127 as found 0x3cc00010 0x3f800000, sa20 0x0, sa24 0x0, i0 0xcd7aa809, i1 0xff326b8c, r20 0x0, r21 0x2000, p 1100, pclink 0x98
+sa100 and sa127 are not 0 at S0 (set before this run): 'unchanged' in every later reading is persistence of an old value
+H-KEEP, its r20/r21 row only (both kept after a reload or a reset): held in all 6
+H-KEEP as a whole (its i, r and sa63 rows after a reload or a reset): 12 held, 6 FAILED of 18
+H-ALL, its r20/r21 row only (both kept after a reload or a reset): FAILED in 6 of 6 jobs
+H-ALL as a whole (its i, r and sa63 rows after a reload or a reset): 6 held, 12 FAILED of 18
+SUMMARY: c3: kept 13 of 13 read jobs, stops 0 []; controls failed none; rows: fit: 38 held, 0 FAILED, 0 cannot tell/void; held out: 39 held, 10 FAILED, 0 cannot tell/void; refuted ['E536 (fill: p2 p3 = 0 1)', 'E536 controls (after reset and reload: 0 0)', "H-ALL (r survives too: E537's r21 0x3000 after a reload)", 'H-KEEP (i and sa survive, r does not: the sketch)']; replicate: 116 held, 20 FAILED, 0 cannot tell/void; refuted ["H-ALL (r survives too: E537's r21 0x3000 after a reload)", 'H-KEEP (i and sa survive, r does not: the sketch)', 'H-SET (the next entry has p2 = p3 = 1)']; control: 24 held, 0 FAILED, 0 cannot tell/void

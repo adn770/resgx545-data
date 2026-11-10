@@ -1,0 +1,248 @@
+case	quantity	value	model	set
+s0	rd0_pclink	0x98	E792 A0, E536/E537 controls	fit
+s0	rd0_p0p1	11	E792 A0, E536/E537 controls	fit
+s0	rd0_p2p3	00	E792 A0, E536/E537 controls	fit
+s0	rd0_sa64	2	E792 A0, E536/E537 controls	fit
+s0	rd0_sa63	0	E792 A0, E536/E537 controls	fit
+s0	rd0_sa20	0	E792 A0, E536/E537 controls	fit
+s0	rd0_sa24	0	E792 A0, E536/E537 controls	fit
+s0	kept	yes	H-NOSTOP	fit
+n1	kept	yes	H-NOSTOP	heldout
+n1	carry	yes	E536 (state lasts between reads)	control
+n1	a_markers	yes	E536 next event, E791 A1	control
+n1	a_pclink	0x98	E792 (sa64 not written)	fit
+n1	a_p0	1	E792 (p0 reads 1 whatever the writer left)	fit
+n1	a_p1	0	E792 (p1 = the writer's tail)	fit
+n1	a_p2p3	11	H-KEEP (p2, p3 as the writer left them)	heldout
+n1	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	heldout
+n1	b_markers	yes	E536 (1200 ms)	fit
+n1	b_p0p1	11	E536 (1200 ms)	fit
+n1	b_pclink	0x98	E536 (1200 ms)	fit
+n1	b_p2p3	11	E536 (1200 ms, p2 p3 as written)	fit
+n1	b_sa100_same	yes	E536 (1200 ms)	fit
+n1	b_sa127_same	yes	E536 (1200 ms)	fit
+n1	b_sa20_same	yes	E536 (1200 ms)	fit
+n1	b_sa24_same	yes	E536 (1200 ms)	fit
+n2	kept	yes	H-NOSTOP	replicate
+n2	carry	yes	E536 (state lasts between reads)	control
+n2	a_markers	yes	E536 next event, E791 A1	control
+n2	a_pclink	0x98	E792 (sa64 not written)	replicate
+n2	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+n2	a_p1	1	E792 (p1 = the writer's tail)	replicate
+n2	a_p2p3	00	H-KEEP (p2, p3 as the writer left them)	replicate
+n2	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+n2	b_markers	yes	E536 (1200 ms)	replicate
+n2	b_p0p1	11	E536 (1200 ms)	replicate
+n2	b_pclink	0x98	E536 (1200 ms)	replicate
+n2	b_p2p3	00	E536 (1200 ms, p2 p3 as written)	heldout
+n2	b_sa100_same	yes	E536 (1200 ms)	replicate
+n2	b_sa127_same	yes	E536 (1200 ms)	replicate
+n2	b_sa20_same	yes	E536 (1200 ms)	replicate
+n2	b_sa24_same	yes	E536 (1200 ms)	replicate
+n3	kept	yes	H-NOSTOP	replicate
+n3	carry	yes	E536 (state lasts between reads)	control
+n3	a_markers	yes	E536 next event, E791 A1	control
+n3	a_pclink	0x98	E792 (sa64 not written)	replicate
+n3	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+n3	a_p1	0	E792 (p1 = the writer's tail)	replicate
+n3	a_p2p3	10	H-KEEP (p2, p3 as the writer left them)	replicate
+n3	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+n3	b_markers	yes	E536 (1200 ms)	replicate
+n3	b_p0p1	11	E536 (1200 ms)	replicate
+n3	b_pclink	0x98	E536 (1200 ms)	replicate
+n3	b_p2p3	10	E536 (1200 ms, p2 p3 as written)	heldout
+n3	b_sa100_same	yes	E536 (1200 ms)	replicate
+n3	b_sa127_same	yes	E536 (1200 ms)	replicate
+n3	b_sa20_same	yes	E536 (1200 ms)	replicate
+n3	b_sa24_same	yes	E536 (1200 ms)	replicate
+f1	kept	yes	H-NOSTOP	heldout
+f1	carry	yes	E536 (state lasts between reads)	control
+f1	a_markers	yes	E536 next event, E791 A1	control
+f1	a_pclink	0x98	E792 (sa64 not written)	fit
+f1	a_p0	1	E792 (p0 reads 1 whatever the writer left)	fit
+f1	a_p1	0	E792 (p1 = the writer's tail)	fit
+f1	a_p2p3	11	H-KEEP (p2, p3 as the writer left them)	heldout
+f1	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	heldout
+f1	b_i_kept	yes	E536 (fill)	fit
+f1	b_r_replaced	yes	E536 (fill: r20 = 0, r21 a counter)	fit
+f1	b_r20_zero	yes	E536 (fill)	fit
+f1	b_sa63_kept	yes	H-KEEP-SA (sa63 survives a fill as sa100 did)	heldout
+f1	b_p0p1	11	E536 (fill)	fit
+f1	b_pclink	0x98	E536 (fill)	fit
+f1	b_p2p3	01	E536 (fill: p2 p3 = 0 1)	fit
+f1	b_sa100_same	yes	E536 (fill)	fit
+f1	b_sa127_same	yes	E536 (fill)	fit
+f1	b_sa20_same	yes	E536 (fill)	fit
+f1	b_sa24_same	yes	E536 (fill)	fit
+f2	kept	yes	H-NOSTOP	replicate
+f2	carry	yes	E536 (state lasts between reads)	control
+f2	a_markers	yes	E536 next event, E791 A1	control
+f2	a_pclink	0x98	E792 (sa64 not written)	replicate
+f2	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+f2	a_p1	1	E792 (p1 = the writer's tail)	replicate
+f2	a_p2p3	00	H-KEEP (p2, p3 as the writer left them)	replicate
+f2	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+f2	b_i_kept	yes	E536 (fill)	replicate
+f2	b_r_replaced	yes	E536 (fill: r20 = 0, r21 a counter)	replicate
+f2	b_r20_zero	yes	E536 (fill)	replicate
+f2	b_r21_step	0x1000	E536 (+0x1000 a fill)	heldout
+f2	b_sa63_kept	yes	H-KEEP-SA (sa63 survives a fill as sa100 did)	heldout
+f2	b_p0p1	11	E536 (fill)	replicate
+f2	b_pclink	0x98	E536 (fill)	replicate
+f2	b_p2p3	01	E536 (fill: p2 p3 = 0 1)	heldout
+f2	b_sa100_same	yes	E536 (fill)	replicate
+f2	b_sa127_same	yes	E536 (fill)	replicate
+f2	b_sa20_same	yes	E536 (fill)	replicate
+f2	b_sa24_same	yes	E536 (fill)	replicate
+f3	kept	yes	H-NOSTOP	replicate
+f3	carry	yes	E536 (state lasts between reads)	control
+f3	a_markers	yes	E536 next event, E791 A1	control
+f3	a_pclink	0x98	E792 (sa64 not written)	replicate
+f3	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+f3	a_p1	0	E792 (p1 = the writer's tail)	replicate
+f3	a_p2p3	10	H-KEEP (p2, p3 as the writer left them)	replicate
+f3	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+f3	b_i_kept	yes	E536 (fill)	replicate
+f3	b_r_replaced	yes	E536 (fill: r20 = 0, r21 a counter)	replicate
+f3	b_r20_zero	yes	E536 (fill)	replicate
+f3	b_r21_step	0x1000	E536 (+0x1000 a fill)	heldout
+f3	b_sa63_kept	yes	H-KEEP-SA (sa63 survives a fill as sa100 did)	heldout
+f3	b_p0p1	11	E536 (fill)	replicate
+f3	b_pclink	0x98	E536 (fill)	replicate
+f3	b_p2p3	01	E536 (fill: p2 p3 = 0 1)	heldout
+f3	b_sa100_same	yes	E536 (fill)	replicate
+f3	b_sa127_same	yes	E536 (fill)	replicate
+f3	b_sa20_same	yes	E536 (fill)	replicate
+f3	b_sa24_same	yes	E536 (fill)	replicate
+l1	kept	yes	H-NOSTOP	heldout
+l1	carry	yes	E536 (state lasts between reads)	control
+l1	a_markers	yes	E536 next event, E791 A1	control
+l1	a_pclink	0x98	E792 (sa64 not written)	fit
+l1	a_p0	1	E792 (p0 reads 1 whatever the writer left)	fit
+l1	a_p1	0	E792 (p1 = the writer's tail)	fit
+l1	a_p2p3	11	H-KEEP (p2, p3 as the writer left them)	heldout
+l1	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	heldout
+l1	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+l1	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+l1	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+l1	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+l1	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+l1	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+l1	b_p2p3	00	E536 controls (after reset and reload: 0 0)	heldout
+l1	b_p0p1	11	E536 controls	heldout
+l1	b_pclink	0x98	E536 controls	heldout
+l1	b_sa100_same	yes	H-KEEP (sa left as it is)	heldout
+l1	b_sa127_same	yes	H-KEEP (sa left as it is)	heldout
+l1	b_sa20_same	yes	H-KEEP (sa left as it is)	heldout
+l1	b_sa24_same	yes	H-KEEP (sa left as it is)	heldout
+l1	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	heldout
+l2	kept	yes	H-NOSTOP	replicate
+l2	carry	yes	E536 (state lasts between reads)	control
+l2	a_markers	yes	E536 next event, E791 A1	control
+l2	a_pclink	0x98	E792 (sa64 not written)	replicate
+l2	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+l2	a_p1	1	E792 (p1 = the writer's tail)	replicate
+l2	a_p2p3	00	H-KEEP (p2, p3 as the writer left them)	replicate
+l2	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+l2	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l2	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l2	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l2	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l2	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l2	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l2	b_p2p3	00	E536 controls (after reset and reload: 0 0)	replicate
+l2	b_p0p1	11	E536 controls	replicate
+l2	b_pclink	0x98	E536 controls	replicate
+l2	b_sa100_same	yes	H-KEEP (sa left as it is)	replicate
+l2	b_sa127_same	yes	H-KEEP (sa left as it is)	replicate
+l2	b_sa20_same	yes	H-KEEP (sa left as it is)	replicate
+l2	b_sa24_same	yes	H-KEEP (sa left as it is)	replicate
+l2	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	replicate
+l3	kept	yes	H-NOSTOP	replicate
+l3	carry	yes	E536 (state lasts between reads)	control
+l3	a_markers	yes	E536 next event, E791 A1	control
+l3	a_pclink	0x98	E792 (sa64 not written)	replicate
+l3	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+l3	a_p1	0	E792 (p1 = the writer's tail)	replicate
+l3	a_p2p3	10	H-KEEP (p2, p3 as the writer left them)	replicate
+l3	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+l3	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l3	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l3	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+l3	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l3	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l3	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+l3	b_p2p3	00	E536 controls (after reset and reload: 0 0)	replicate
+l3	b_p0p1	11	E536 controls	replicate
+l3	b_pclink	0x98	E536 controls	replicate
+l3	b_sa100_same	yes	H-KEEP (sa left as it is)	replicate
+l3	b_sa127_same	yes	H-KEEP (sa left as it is)	replicate
+l3	b_sa20_same	yes	H-KEEP (sa left as it is)	replicate
+l3	b_sa24_same	yes	H-KEEP (sa left as it is)	replicate
+l3	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	replicate
+r1	kept	yes	H-NOSTOP	heldout
+r1	carry	yes	E536 (state lasts between reads)	control
+r1	a_markers	yes	E536 next event, E791 A1	control
+r1	a_pclink	0x98	E792 (sa64 not written)	fit
+r1	a_p0	1	E792 (p0 reads 1 whatever the writer left)	fit
+r1	a_p1	0	E792 (p1 = the writer's tail)	fit
+r1	a_p2p3	11	H-KEEP (p2, p3 as the writer left them)	heldout
+r1	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	heldout
+r1	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+r1	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+r1	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	heldout
+r1	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+r1	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+r1	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	heldout
+r1	b_p2p3	00	E536 controls (after reset and reload: 0 0)	heldout
+r1	b_p0p1	11	E536 controls	heldout
+r1	b_pclink	0x98	E536 controls	heldout
+r1	b_sa100_same	yes	H-KEEP (sa left as it is)	heldout
+r1	b_sa127_same	yes	H-KEEP (sa left as it is)	heldout
+r1	b_sa20_same	yes	H-KEEP (sa left as it is)	heldout
+r1	b_sa24_same	yes	H-KEEP (sa left as it is)	heldout
+r1	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	heldout
+r2	kept	yes	H-NOSTOP	replicate
+r2	carry	yes	E536 (state lasts between reads)	control
+r2	a_markers	yes	E536 next event, E791 A1	control
+r2	a_pclink	0x98	E792 (sa64 not written)	replicate
+r2	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+r2	a_p1	1	E792 (p1 = the writer's tail)	replicate
+r2	a_p2p3	00	H-KEEP (p2, p3 as the writer left them)	replicate
+r2	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+r2	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r2	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r2	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r2	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r2	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r2	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r2	b_p2p3	00	E536 controls (after reset and reload: 0 0)	replicate
+r2	b_p0p1	11	E536 controls	replicate
+r2	b_pclink	0x98	E536 controls	replicate
+r2	b_sa100_same	yes	H-KEEP (sa left as it is)	replicate
+r2	b_sa127_same	yes	H-KEEP (sa left as it is)	replicate
+r2	b_sa20_same	yes	H-KEEP (sa left as it is)	replicate
+r2	b_sa24_same	yes	H-KEEP (sa left as it is)	replicate
+r2	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	replicate
+r3	kept	yes	H-NOSTOP	replicate
+r3	carry	yes	E536 (state lasts between reads)	control
+r3	a_markers	yes	E536 next event, E791 A1	control
+r3	a_pclink	0x98	E792 (sa64 not written)	replicate
+r3	a_p0	1	E792 (p0 reads 1 whatever the writer left)	replicate
+r3	a_p1	0	E792 (p1 = the writer's tail)	replicate
+r3	a_p2p3	10	H-KEEP (p2, p3 as the writer left them)	replicate
+r3	a_p2p3	11	H-SET (the next entry has p2 = p3 = 1)	replicate
+r3	b_i_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r3	b_r_kept	no	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r3	b_sa63_kept	yes	H-KEEP (i and sa survive, r does not: the sketch)	replicate
+r3	b_i_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r3	b_r_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r3	b_sa63_kept	yes	H-ALL (r survives too: E537's r21 0x3000 after a reload)	replicate
+r3	b_p2p3	00	E536 controls (after reset and reload: 0 0)	replicate
+r3	b_p0p1	11	E536 controls	replicate
+r3	b_pclink	0x98	E536 controls	replicate
+r3	b_sa100_same	yes	H-KEEP (sa left as it is)	replicate
+r3	b_sa127_same	yes	H-KEEP (sa left as it is)	replicate
+r3	b_sa20_same	yes	H-KEEP (sa left as it is)	replicate
+r3	b_sa24_same	yes	H-KEEP (sa left as it is)	replicate
+r3	b_sa20_sa24_zero	yes	E537 (sa20 and sa24 read 0 after a reload)	replicate

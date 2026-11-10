@@ -1,0 +1,14 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# mock ssh: drop the options and the host, run the remote command locally in the mock laptop home (MOCK_HOME)
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-o) shift 2 ;;
+	-*) shift ;;
+	*) break ;;
+	esac
+done
+shift                                   # the host
+echo "ssh $*" >> "$MOCK_DIR/ssh.log"
+cd "$MOCK_HOME" || exit 255
+HOME="$MOCK_HOME" exec bash -c "$*"

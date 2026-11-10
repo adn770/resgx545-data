@@ -1,0 +1,89 @@
+#### h 16:37:55
+GATE h OPEN (no previous stage)
+## preflight ok: {"srcversion_loaded": "B21FDA82BD5E5CB5A627E3B", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== h0: class ok 
+== h0-r2: class ok 
+== h0-r3: class ok 
+== h1: class ok 
+== h1-r2: class ok 
+== h1-r3: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 455 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[25920.580453] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[25920.583321] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 144 us
+[25921.195974] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 203 us
+SUMMARY: h: H0 DIFFERS; H1 reads H-NOTENDED (3 of 3 jobs look exactly like a running task), D offsets [()]; stops 0 []; Q152 rows: held out: 1 held, 1 FAILED, 1 cannot tell/void; refuted ['H-REARM']; cannot tell ['H-NOTENDED']; replicate: 2 held, 2 FAILED, 2 cannot tell/void; refuted ['H-REARM']; cannot tell ['H-NOTENDED']; control: 6 held, 3 FAILED, 0 cannot tell/void; refuted ['control (D0 one modal value)']
+stage h done, health ok
+#### c 16:38:17
+GATE c OPEN: h finished (exit 0, run 1794325077-15713)
+== c2-r2: class ok 
+== c3: class ok 
+== c3-r2: class ok 
+== c4: class ok 
+== c4-r2: class ok 
+== c5: class ok 
+== c5-r2: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 897 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[25936.085564] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[25936.088410] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 141 us
+[25936.704746] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 235 us
+SUMMARY: c: C0 held; C1 kept 3 of 3; C2 kept 2 of 2; C3 kept 2 of 2; C4 kept 2 of 2; C5 kept 2 of 2; stops 0 []; Q152 rows: fit: 12 held, 0 FAILED, 0 cannot tell/void; held out: 17 held, 0 FAILED, 1 cannot tell/void; cannot tell ['E792 A4']; replicate: 22 held, 0 FAILED, 1 cannot tell/void; cannot tell ['E792 A4']
+stage c done, health ok
+#### e 16:38:33
+GATE e OPEN: c finished (exit 0, run 1794325098-15810)
+== x1: class ok 
+== x1-r2: class ok 
+== x20: class ok 
+== x20-r2: class ok 
+## STOP SIGNATURE b3 (after-window): [{"t": 0.85, "regs": {"0x8": 839584, "0xb14": 4965, "0xacc": 17170832, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 4918, "hc14": 0, "ccb": [3, 2], "pass": [205, 205]}, {"t": 0.8914, "regs": {"0x8": 839584, "0xb14": 4965, "0xacc": 16946759, "0x12c": 536870
+== b3: class stop 
+## stop1-b3: reset ok True, gate ok True, health ok True
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 828 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[25950.907754] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[25950.910633] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 142 us
+[25951.515279] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 170 us
+SUMMARY: e: E0 held; H-EXIT (a tick pass handed to a fast-path task keeps the tick, a skipped kick pass stops it); stops 1 [b3: busy (E537), read-write -1, dword 14 0x0]; Q152 rows: held out: 21 held, 2 FAILED, 0 cannot tell/void; refuted ['H-BODY', 'H-TICKONLY']; replicate: 8 held, 1 FAILED, 0 cannot tell/void; refuted ['H-BODY']; control: 6 held, 0 FAILED, 0 cannot tell/void
+stage e done, health ok
+#### d 16:38:47
+GATE d OPEN: e finished (exit 0, run 1794325115-15889)
+== d1: class stop 
+## stop1-d1: reset ok True, gate ok True, health ok True
+== d1-r2: skipped (row D1 stopped: a stopped row is never replicated)
+== d1-r3: skipped (row D1 stopped: a stopped row is never replicated)
+## STOP SIGNATURE d2 (after-reader): [{"t": 2.3796, "regs": {"0x8": 839584, "0xb14": 1006, "0xacc": 17149181, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1002, "hc14": 2902468096, "ccb": [2, 3], "pass": [1004, 1004]}, {"t": 2.4205, "regs": {"0x8": 839584, "0xb14": 1006, "0xacc": 16983737, "0
+== d2: class stop 
+## stop2-d2: reset ok True, gate ok True, health ok True
+## STOP 8: d2: tick stop number 2 ends the stage (reset and gate exact)
+job: ok
+job time: 722 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[25966.187799] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[25966.191134] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 158 us
+[25966.809734] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 277 us
+SUMMARY: d: D0 held; D1 and D2 both stop it: neither H-CCB nor H-HANDLER alone (the stage ended before D3); kept 1 of 3 read jobs, stops 2 ['d1', 'd2'] [d1: busy (E537), read-write 0, dword 14 0x0; d2: busy (E537), read-write 1, dword 14 0xad002600]; P3 answered in 0 of 2 stops; Q152 rows: fit: 0 held, 0 FAILED, 7 cannot tell/void; cannot tell ['H-CCB', 'H-HANDLER', 'H-ONCE']; held out: 9 held, 6 FAILED, 1 cannot tell/void; refuted ['H-CCB', 'H-HANDLER', 'H-ONCE', 'H-REARM']; control: 6 held, 0 FAILED, 0 cannot tell/void; stage exit 8: d2: tick stop number 2 ends the stage (reset and gate exact)
+STOP (by design): stage d was ended by its tick-stop budget (h the first stop, c e d the SECOND); reset and gate are exact, health is fine, the stage is scored.
+      The lead decides whether to go on: run/r3.sh --from NEXT-STAGE (its gate accepts exit 8).
