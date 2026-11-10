@@ -1,0 +1,65 @@
+#stage g-da
+#need $S/da-ctl-z0-w3__0.bin
+#need $S/da-ctl-zm05-w1__0.bin
+#need $S/da-rep-m2p6-3__0.bin
+#need $S/da-rep-m6p1-7__0.bin
+#need $S/da-p2-w2__0.bin
+#need $S/da-p2-w05__0.bin
+#need $S/da-lo1__0.bin
+#need $S/da-lo2__0.bin
+#need $S/da-mid1__0.bin
+#need $S/da-mid2__0.bin
+#need $S/da-mid3__0.bin
+#need $S/da-in1__0.bin
+#need $S/da-in2__0.bin
+#need $S/da-in3__0.bin
+#need $S/da-in4__0.bin
+#need $S/da-in5__0.bin
+#need $S/da-in6__0.bin
+#need $S/da-in7__0.bin
+#need $S/da-in8__0.bin
+#need $S/da-in9__0.bin
+#need $S/da-in10__0.bin
+#need $S/da-hi1__0.bin
+#need $S/da-hi2__0.bin
+#need $S/da-hi3__0.bin
+#need $S/da-hi4__0.bin
+#need $S/da-up1__0.bin
+#need $S/da-up2__0.bin
+# g-da (Q230, depth at w != 1): the threshold ladder.  Offline FIT (post hoc, closing3/geometry/exp-geometry-r3.md): E783's six words
+# and E782's four kept vertices are all matched by ONE family, "round |z RZ(1/w)| away from zero iff its fraction exceeds t", t between
+# 0.3655 and 0.4667 (T26: t = 3/8, T27: t = 7/16; K23, z cut to 23 bits, also fits), round to nearest (D1) and the others miss one word
+# or more.  The fit rests on ONE word (t4-m2p6-3); 257 models were tried.  z/w in (-1, -0.5] keeps the sum 0.5 + 0.5 q exact, so the
+# stored word is a function of the rounded product alone.  Controls (6, each can fail): the two R2 controls, repeats of t4-m2p6-3 and
+# t4-m6p1-7 (the first one is the fit's own word: another word stops the reading), w = 2 and 0.5 (exact products).  Held out (21):
+# five cells below t (fraction 0.02-0.10, 0.30-0.36: down), four above (0.47-0.498: up, D1 down), two above one half (up), ten inside
+# the interval in five bins of two (T26 up from 0.375, T27 from 0.4375).  H-thr holds iff the 11 outside cells read as frozen and the
+# 10 inside cells are monotone in the fraction; T26 or T27 is named only if one is right 10 of 10 inside.  A non-monotone inside row
+# refutes the threshold family; the simulator then keeps refusing z != 0.  Each W is used at most three times.
+da-ctl-z0-w3|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-ctl-z0-w3__0.bin"
+da-ctl-zm05-w1|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-ctl-zm05-w1__0.bin"
+da-rep-m2p6-3|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-rep-m2p6-3__0.bin"
+da-rep-m6p1-7|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-rep-m6p1-7__0.bin"
+da-p2-w2|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-p2-w2__0.bin"
+da-p2-w05|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-p2-w05__0.bin"
+da-lo1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-lo1__0.bin"
+da-lo2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-lo2__0.bin"
+da-mid1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-mid1__0.bin"
+da-mid2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-mid2__0.bin"
+da-mid3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-mid3__0.bin"
+da-in1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in1__0.bin"
+da-in2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in2__0.bin"
+da-in3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in3__0.bin"
+da-in4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in4__0.bin"
+da-in5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in5__0.bin"
+da-in6|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in6__0.bin"
+da-in7|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in7__0.bin"
+da-in8|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in8__0.bin"
+da-in9|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in9__0.bin"
+da-in10|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-in10__0.bin"
+da-hi1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-hi1__0.bin"
+da-hi2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-hi2__0.bin"
+da-hi3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-hi3__0.bin"
+da-hi4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-hi4__0.bin"
+da-up1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-up1__0.bin"
+da-up2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/da-up2__0.bin"

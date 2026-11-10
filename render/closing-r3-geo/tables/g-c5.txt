@@ -1,0 +1,47 @@
+#stage g-c5
+#need $S/p1139-green.bin
+# g-c5 (Q210): three more targets, 1500 vertices, a plain context of the target's size, 12 jobs each: a calibration at P 0x422, five
+# fixed cells (the ends of the affine-in-regions bracket and LT's flip pair; the runner skips a cell whose 2 thr0 is above the page
+# need: void by construction), then up to six bisect cells whose thr0 the runner picks from the kept observations of the target's group
+# (none run if the bracket is closed, absent or non-monotone).  Laws, frozen as formulas over the MEASURED C(2048x2048) of g-c4: LT (one
+# point, from 4096x4096), and affine through the two exact points in regions, in the tail-pointer side squared, in the macrotile area.
+# 4096x2048 and 2048x4096 have equal regions (16384) and tail-pointer sides 128 and 256: different limits there refute every law in
+# regions alone.  The scorer evaluates a law's predicted interval against the measured last-raise interval.  The controls are
+# g-c4's.  Void cells (second run short of thr0) are expected above about half the page need; a law whose flip lies there is
+# "not reached", not refuted.
+c5a-cal|heldout|safe|0x422|stophang cal:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-f1|heldout|safe|0x1bd|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-f2|heldout|safe|0x1ca|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-f3|heldout|safe|0x1cb|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-f4|heldout|safe|0x1e7|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-f5|heldout|safe|0x1e8|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b1|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b2|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b3|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b4|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b5|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5a-b6|heldout|safe|B:c5a|stophang obs:c5a fit:c5a|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-cal|heldout|safe|0x422|stophang cal:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-f1|heldout|safe|0x1bd|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-f2|heldout|safe|0x1ca|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-f3|heldout|safe|0x1cb|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-f4|heldout|safe|0x1e7|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-f5|heldout|safe|0x1e8|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b1|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b2|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b3|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b4|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b5|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5b-b6|heldout|safe|B:c5b|stophang obs:c5b fit:c5b|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-cal|heldout|safe|0x422|stophang cal:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-f1|heldout|safe|0x1f3|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-f2|heldout|safe|0x1ff|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-f3|heldout|safe|0x200|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-f4|heldout|safe|0x218|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-f5|heldout|safe|0x219|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b1|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b2|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b3|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b4|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b5|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c5c-b6|heldout|safe|B:c5c|stophang obs:c5c fit:c5c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 3072 --height 3072 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"

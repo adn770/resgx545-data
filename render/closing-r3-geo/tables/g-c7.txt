@@ -1,0 +1,19 @@
+#stage g-c7
+#need $S/p1139-green.bin
+# g-c7 (Q210): another scene, LAST, hang-recovery class.  `--tri-full --vertices 1500` at 2048x2048: the triangle covers the target.  The only
+# stage that tells scene from target (the 1350-vertex scene is a prefix of the 1500 one, so E774's HP1 does not).  The calibration at P
+# 0x422 is the gate: more than 3 partial renders and the stage ends after one job (E630 and E706 saw `job hung` in long partial-render
+# sequences).  Otherwise: cells at g-c4's flip pair (last raise L, first silent F) and four around it (L - 16, L - 4, F + 4, F + 16),
+# then up to four bisect cells picked by the runner.  H-target: the flip of g-c4; H-scene: another.  Cells with 2 thr0 above the
+# scene's own page need are skipped as void by construction.  The controls are g-c4's.
+c7-cal|heldout|safe|0x422|stophang cal:c7 gate:3|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-L|heldout|safe|L:c4|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-F|heldout|safe|F:c4|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-L-16|heldout|safe|L:c4:-16|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-L-4|heldout|safe|L:c4:-4|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-F+4|heldout|safe|F:c4:+4|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-F+16|heldout|safe|F:c4:+16|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-b1|heldout|safe|B:c7|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-b2|heldout|safe|B:c7|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-b3|heldout|safe|B:c7|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"
+c7-b4|heldout|safe|B:c7|stophang obs:c7 fit:c7|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --tri-full --dump-render "$W/dump" "$S/p1139-green.bin"

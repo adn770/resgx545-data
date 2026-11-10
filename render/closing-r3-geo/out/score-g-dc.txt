@@ -1,0 +1,25 @@
+g-dc: object decode per job
+job             object   nvert  x,y (pixels)     1/w words 
+dc-ctl-default  present  3      8,8;56,20;20,56  0x3f800000
+dc-w1-o25s5     present  3      8,8;56,20;20,56  0x3f800000
+dc-w1-o5s25     present  3      8,8;56,20;20,56  0x3f800000
+dc-w1-s3o6      present  3      8,8;56,20;20,56  0x3f800000
+dc-wn1          present  3      8,8;56,20;20,56  0x3eaaaaaa
+dc-wn2          present  3      8,8;56,20;20,56  0x3eaaaaaa
+dc-wn3          present  3      8,8;56,20;20,56  0x3eaaaaaa
+dc-wn4          present  3      8,8;56,20;20,56  0x3eaaaaaa
+dc-wn5          present  3      8,8;56,20;20,56  0x3eaaaaaa
+dc-wn6          present  3      8,8;56,20;20,56  0x3eaaaaaa
+
+g-dc: stored word per job (models giving it)
+  dc-ctl-default: 0x3e800000 <- ['measured']
+  dc-w1-o25s5: 0x3dc00000 <- ['VF', 'VT', 'VZ']
+  dc-w1-o5s25: 0x3ed80000 <- ['VF', 'VT', 'VZ']
+  dc-w1-s3o6: 0x3eb3a2f3 <- ['VF']
+  dc-wn1: 0x3ea8587b <- ['VZ']
+  dc-wn2: 0x3eb42c3e <- ['VT', 'VZ']
+  dc-wn3: 0x3e9a5e37 <- ['VF', 'VT', 'VZ']
+  dc-wn4: 0x3e9b7177 <- ['VF', 'VT', 'VZ']
+  dc-wn5: 0x3e9c84b7 <- ['VF', 'VT', 'VZ']
+  dc-wn6: 0x3e9d97f7 <- ['VF', 'VT', 'VZ']
+SUMMARY: controls pass; held out: consistent ['in band (x, y scaled by w): no clip (9)'], refuted ['VF (offset (blk 10) + scale (blk 11) x ((z RZ(1/w)) to nearest), one rounding of the sum) (2 of 9)', 'VT (the same with the scale product rounded first, then the sum) (2 of 9)', 'VZ ((z x scale) rounded, times RZ(1/w) rounded, then the sum) (1 of 9)', 'VS (blk 10 is the scale and blk 11 the offset (order swapped), one rounding of the sum) (9 of 9)']; repeat only: consistent none, refuted none

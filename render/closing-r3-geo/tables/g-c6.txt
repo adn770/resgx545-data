@@ -1,0 +1,13 @@
+#stage g-c6
+#need $S/p1139-green.bin
+# g-c6 (Q210): context against target.  The render context is created for up to --max-width x --max-height; R2's 2048x2048 jobs ran in a
+# 2048x2048 context.  Here the same 2048x2048 target in a 4096x4096 context: a calibration at P 0x422, the two cells at g-c4's flip
+# (the runner reads g-c4's kept observations: the last raise L and the first silent F; a stage run without g-c4's state skips them) and
+# thr0 0x100, 0x120.  H-target: the flip of g-c4 (L raises, F none, 0x100 and 0x120 none).  H-context: raise at every valid cell (the
+# 4096 limit).  A page need other than 0x213 is reported and makes the cells a measurement.  Cells with 2 thr0 above the need are skipped
+# by the runner (fit:c6) as void by construction.
+c6-cal|heldout|safe|0x422|stophang cal:c6|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --max-width 4096 --max-height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c6-L|heldout|safe|L:c4|stophang fit:c6|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --max-width 4096 --max-height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c6-F|heldout|safe|F:c4|stophang fit:c6|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --max-width 4096 --max-height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c6-0x100|heldout|safe|0x122|stophang fit:c6|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --max-width 4096 --max-height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c6-0x120|heldout|safe|0x142|stophang fit:c6|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --max-width 4096 --max-height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"

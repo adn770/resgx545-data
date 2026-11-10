@@ -1,0 +1,16 @@
+#stage g-d36
+#need $S/p1139-green.bin
+# g-d36 (Q273): dword 36 of the control block against the 0x072c page count at the LAST abort.  H-last (fit post hoc on 49 kept jobs, 49
+# of 49, only two of them separating it from the peak and second-abort readings): the firmware writes dword 36 = max(global page count
+# - 2, 0) at every abort and the last write stays; no abort reads 0.  E790 refuted "peak less 2" (13 of 15) and "first abort less 2" (8
+# of 15).  Six jobs, 1500 vertices, the knob only: 2048x2048 at thr0 0x60, 0x70, 0x90, 0xb0 (E785 had three aborts at 0x80 and 0xc0), 4096x4096
+# at 0x2c0 and 0x300 (E786's k-1500-0x300 had three).  The scorer prints per job the counts before each abort, marks a job SEP when H-last's value differs
+# from the peak reading's or the second-abort reading's.  H-last holds iff every separating job fits and at least 3
+# jobs separate; one miss in a separating job refutes it; fewer than 3 separating jobs: cannot tell.  The controls are g-c4's (the
+# session's): the scorer needs g-c4's four controls to pass.  Partial renders are expected 3 to 8 a job; the stage stops on `job hung`.
+d36-2048-0x60|heldout|safe|0x82|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+d36-2048-0x70|heldout|safe|0x92|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+d36-2048-0x90|heldout|safe|0xb2|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+d36-2048-0xb0|heldout|safe|0xd2|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+d36-4096-0x2c0|heldout|safe|0x2e2|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+d36-4096-0x300|heldout|safe|0x322|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"

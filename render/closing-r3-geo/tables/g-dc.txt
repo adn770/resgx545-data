@@ -1,0 +1,29 @@
+#stage g-dc
+#need $S/dc-ctl-default__0.bin
+#need $S/dc-w1-o25s5__0.bin
+#need $S/dc-w1-o5s25__0.bin
+#need $S/dc-w1-s3o6__0.bin
+#need $S/dc-wn1__0.bin
+#need $S/dc-wn2__0.bin
+#need $S/dc-wn3__0.bin
+#need $S/dc-wn4__0.bin
+#need $S/dc-wn5__0.bin
+#need $S/dc-wn6__0.bin
+# g-dc (Q230): the viewport z words, `--blk 10=V --blk 11=V` (vp4, vp5).  E193 reads vp4 as the z offset and vp5 as the z scale (both
+# 0.5 by default); one slope never separated which is which, nor how the sum is rounded.  Candidates: VF (offset + scale x the
+# product to nearest, one rounding of the sum), VT (the scale product rounded first), VZ ((z scale) rounded, times RZ(1/w)
+# rounded, then the sum), VS (the order swapped).  Four jobs at w = 1: the default words written explicitly (control: 0x3e800000),
+# offset 0.25 with scale 0.5, the swap, and scale 0.3 with offset 0.6 and a z where one and two roundings of the sum differ; then
+# six at w != 1 with scale 0.3 chosen by the generator (greedy) to tell (z rhw) scale from (z scale) rhw.  Depth stays inside [0, 1].
+# The product at w != 1 is rounded to nearest in every candidate (D1): g-da decides that rule first, so a miss at w != 1 is read
+# together with its result.
+dc-ctl-default|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f000000 --blk 11=0x3f000000 --dump-render "$W/dump" "$S/dc-ctl-default__0.bin"
+dc-w1-o25s5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3e800000 --blk 11=0x3f000000 --dump-render "$W/dump" "$S/dc-w1-o25s5__0.bin"
+dc-w1-o5s25|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f000000 --blk 11=0x3e800000 --dump-render "$W/dump" "$S/dc-w1-o5s25__0.bin"
+dc-w1-s3o6|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-w1-s3o6__0.bin"
+dc-wn1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn1__0.bin"
+dc-wn2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn2__0.bin"
+dc-wn3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn3__0.bin"
+dc-wn4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn4__0.bin"
+dc-wn5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn5__0.bin"
+dc-wn6|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 10=0x3f19999a --blk 11=0x3e99999a --dump-render "$W/dump" "$S/dc-wn6__0.bin"

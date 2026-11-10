@@ -1,0 +1,20 @@
+#stage g-dd
+#need $S/dd-p1__0.bin
+#need $S/pix_green.bin
+#need $S/dd-p2__0.bin
+#need $S/pix_green.bin
+#need $S/dd-m1__0.bin
+#need $S/pix_green.bin
+#need $S/dd-m2__0.bin
+#need $S/pix_green.bin
+#need $S/p1139-green.bin
+# g-dd (Q230): the made vertices at w != 1, measurement (vtx_zw.s: z = A x + B, w = C x + D).  Two cuts on the +w plane and two on the
+# -w plane, new constants (E782 had 4/3 and 6/5 on +w only).  Frozen: the polygon (set, order, prim words, window positions: E782's rules
+# held out again), the made vertices' 1/w by HI-w (RZ of 1/w_made, exact and within one ulp), and "depth exactly 1.0 (+w) / 0.0 (-w)"
+# at a made vertex (HDP-made), the rule E782 refuted at one of four vertices and which can be refuted again.  The depth words are
+# recorded either way.  The structure (nvert, set, order, prims) is the control that can fail: a job whose structure fails is flagged and its
+# made-vertex words are not tallied.  Whether the made z is the made w bit for bit [infer] stays open unless a pattern shows.
+dd-p1|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-p1__0.bin"
+dd-p2|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-p2__0.bin"
+dd-m1|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-m1__0.bin"
+dd-m2|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/dd-m2__0.bin"

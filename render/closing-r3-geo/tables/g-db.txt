@@ -1,0 +1,42 @@
+#stage g-db
+#need $S/db-pos1__0.bin
+#need $S/db-pos2__0.bin
+#need $S/db-pos3__0.bin
+#need $S/db-pos4__0.bin
+#need $S/db-pos5__0.bin
+#need $S/db-pos6__0.bin
+#need $S/db-q1__0.bin
+#need $S/db-q2__0.bin
+#need $S/db-q3__0.bin
+#need $S/db-q4__0.bin
+#need $S/db-q5__0.bin
+#need $S/db-q6__0.bin
+#need $S/db-near1__0.bin
+#need $S/db-near2__0.bin
+#need $S/db-near3__0.bin
+#need $S/db-near4__0.bin
+# g-db (Q230): sign, magnitude and the sum.  The threshold family of g-da is asked, on the cells it can still be wrong, whether
+# "up" means away from zero (T26 / T27: the fraction of |p|) or toward +infinity (T26d / T27d: the floor fraction; the same on
+# every negative product, so g-da cannot tell), and how the sum 0.5 + 0.5 q' is rounded where it is not exact: nearest even (rn),
+# toward zero (rz), half up (rh).  Six pairs with z > 0 and z/w in [0.5, 1) (the sum ties when q' is odd): 7 rules x 3 sums = 21
+# labels, the generator keeps the six pairs that tell the most label pairs apart (greedy).  Six pairs with |z/w| in (0.25, 0.5),
+# three of each sign: the product at its own float32 precision against the product kept on the 2^-23 grid of the sum (D1, D5, T26,
+# T27), K23 and the sums.  Four pairs with w next to 1 (E783's "near w = 1"): z = -0.75 (or the nearest z that separates), w = 1 + 2^-23, 1 - 2^-23 (E783 named 1 - 2^-24, whose RZ reciprocal is exactly 1: no rule can differ), 1.5, 1.0000004,
+# eight rules.  No control job: the stage reads only cells that g-da's controls guard (the scorer needs every pair to carry at least two
+# distinct frozen words); a held-out label is `consistent` only if it fits all 16 cells it is frozen on.
+db-pos1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos1__0.bin"
+db-pos2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos2__0.bin"
+db-pos3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos3__0.bin"
+db-pos4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos4__0.bin"
+db-pos5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos5__0.bin"
+db-pos6|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-pos6__0.bin"
+db-q1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q1__0.bin"
+db-q2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q2__0.bin"
+db-q3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q3__0.bin"
+db-q4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q4__0.bin"
+db-q5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q5__0.bin"
+db-q6|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-q6__0.bin"
+db-near1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-near1__0.bin"
+db-near2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-near2__0.bin"
+db-near3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-near3__0.bin"
+db-near4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/db-near4__0.bin"
