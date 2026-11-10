@@ -1,0 +1,23 @@
+a0: class ok; reader pclink 0x98 p1 1 sa64 0x2 sa65 0x2000000 sa63 0x0
+a0-r2: class ok; reader pclink 0x98 p1 1 sa64 0x2 sa65 0x2000000 sa63 0x0
+a1: class ok; sa63 at the next event 0xf55ff16f, after 1200 ms 0xf55ff16f
+a1-r2: class ok; sa63 at the next event 0xec6207ce, after 1200 ms 0xec6207ce
+a1-r3: class ok; sa63 at the next event 0xee92efcc, after 1200 ms 0xee92efcc
+a2: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a2-r2: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a2-r3: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a3: class ok
+a3-r2: class ok
+a3-r3: class ok
+a4: class ok; pclink 0x6 (want 0x6) p1 0 (want 0); d12 - passes in (-9, 6) (want -1)
+a4-r2: class ok; pclink 0x6 (want 0x6) p1 0 (want 0); d12 - passes in (-8, 5) (want -1)
+a4-r3: class ok; pclink 0x6 (want 0x6) p1 0 (want 0); d12 - passes in (-7, 6) (want -1)
+a5: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a5-r2: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a5-r3: class ok; pclink 0x98 (want 0x98) p1 0 (want 1)
+a6: class ok
+a6-r2: class ok
+H-63 (sa63 stops it): A1 kept the tick 3 of 3: refuted
+H-P11 (p0 = p1 = 1 with r and i written stops it): A6 kept the tick 2 of 2: refuted
+H-ALIAS (sa64 write, A4): the next entry shows the other path (pclink 6, p1 0) in every kept A4 rep: supported
+SUMMARY: a: A0 held; kept 19 of 19 read jobs, stops 0 []; Q152 rows: fit: 12 held, 0 FAILED, 0 cannot tell/void; held out: 21 held, 4 FAILED, 1 cannot tell/void; refuted ['H-63', 'H-ALIAS', 'H-P11']; replicate: 40 held, 7 FAILED, 2 cannot tell/void; refuted ['H-63', 'H-ALIAS', 'H-P11']
