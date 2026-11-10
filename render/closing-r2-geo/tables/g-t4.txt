@@ -1,0 +1,23 @@
+#stage g-t4
+#need $S/t4-ctl-z0-w3__0.bin
+#need $S/t4-ctl-zm05-w1__0.bin
+#need $S/t4-m2p1-3__0.bin
+#need $S/t4-m2p6-3__0.bin
+#need $S/t4-m5p3-7__0.bin
+#need $S/t4-m0p0027-0p003__0.bin
+#need $S/t4-m0p83-1p1__0.bin
+#need $S/t4-m6p1-7__0.bin
+# T4 (geometry, Q230): the stored depth at w != 1 (vtx_wzclip.s: vtx_wclip plus `mov o2, #Z`; w = W constant, x and y
+# scaled by W so the triangle stays the default one).  z/w in (-1, -0.5] makes 0.5 + 0.5 q exact (Sterbenz) so the word is
+# a function of q = the stored z/w alone.  Six candidates for q (frozen words per pair, 3 to 4 distinct words a pair):
+# D1 RN(Z * RZ(1/W)), D2 RZ(Z/W), D3 RN(Z/W), D5 RZ(Z * RZ(1/W)), D6 RN(RN(Z + W)/(2W)) as a depth directly, D7 RN(Z *
+# RN(1/W)).  Controls: Z = 0, W = 3 (E754 e3i-w3) and Z = -0.5, W = 1 (cut-p's A); a group counts only if both hold.
+# Decision: the one candidate right in 6 of 6; none = the words are recorded and the clause narrows to one ulp.
+t4-ctl-z0-w3|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-ctl-z0-w3__0.bin"
+t4-ctl-zm05-w1|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-ctl-zm05-w1__0.bin"
+t4-m2p1-3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m2p1-3__0.bin"
+t4-m2p6-3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m2p6-3__0.bin"
+t4-m5p3-7|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m5p3-7__0.bin"
+t4-m0p0027-0p003|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m0p0027-0p003__0.bin"
+t4-m0p83-1p1|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m0p83-1p1__0.bin"
+t4-m6p1-7|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/t4-m6p1-7__0.bin"

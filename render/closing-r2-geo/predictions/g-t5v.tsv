@@ -1,0 +1,85 @@
+case	quantity	value	model	set
+t5v-ctl0	depth_words	0x3f200000,0x3f200000,0x3f200000	E651/S1b (z = 0.25 flat: depth 0.625)	control
+t5v-ctl0	object	present	E651	control
+t5v-ctl0	status2_pre	0x400	R1-events (a reset leaves 0x400)	control
+t5v-ctl0	status2_bit7	clear	R1-events T6 (the stock vertex program: 0x400 after)	control
+t5v-n1	depth_words	0x3f200001,0x3f200001,0x3f200001	HLOOP (the loop ran 1 times on every vertex: depth word 0x3f200000 + N)	control
+t5v-n1	object	present	HLOOP (the object is the default triangle)	control
+t5v-n1	object_equals_default_xy	yes	HLOOP	control
+t5v-n1	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	control
+t5v-n1	status2_bit7	clear	R1-events T6 / E769 (far below the 55-iteration point)	control
+t5v-n3	depth_words	0x3f200003,0x3f200003,0x3f200003	HLOOP (the loop ran 3 times on every vertex: depth word 0x3f200000 + N)	control
+t5v-n3	object	present	HLOOP (the object is the default triangle)	control
+t5v-n3	object_equals_default_xy	yes	HLOOP	control
+t5v-n3	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	control
+t5v-n3	status2_bit7	clear	R1-events T6 / E769 (far below the 55-iteration point)	control
+t5v-i28	depth_words	0x3f20001c,0x3f20001c,0x3f20001c	HLOOP (the loop ran 28 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i28	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i28	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i28	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i28	status2_bit7	clear	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i28	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i28	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i53	depth_words	0x3f200035,0x3f200035,0x3f200035	HLOOP (the loop ran 53 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i53	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i53	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i53	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i53	status2_bit7	clear	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i53	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i53	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i55	depth_words	0x3f200037,0x3f200037,0x3f200037	HLOOP (the loop ran 55 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i55	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i55	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i55	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i55	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i55	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i55	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i110	depth_words	0x3f20006e,0x3f20006e,0x3f20006e	HLOOP (the loop ran 110 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i110	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i110	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i110	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i110	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i110	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i110	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i220	depth_words	0x3f2000dc,0x3f2000dc,0x3f2000dc	HLOOP (the loop ran 220 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i220	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i220	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i220	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i220	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i220	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i220	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i440	depth_words	0x3f2001b8,0x3f2001b8,0x3f2001b8	HLOOP (the loop ran 440 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i440	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i440	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i440	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i440	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i440	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i440	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i880	depth_words	0x3f200370,0x3f200370,0x3f200370	HLOOP (the loop ran 880 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i880	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i880	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i880	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i880	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i880	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i880	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i1760	depth_words	0x3f2006e0,0x3f2006e0,0x3f2006e0	HLOOP (the loop ran 1760 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i1760	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i1760	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i1760	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i1760	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i1760	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i1760	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i3520	depth_words	0x3f200dc0,0x3f200dc0,0x3f200dc0	HLOOP (the loop ran 3520 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i3520	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i3520	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i3520	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i3520	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i3520	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i3520	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout
+t5v-i7040	depth_words	0x3f201b80,0x3f201b80,0x3f201b80	HLOOP (the loop ran 7040 times on every vertex: depth word 0x3f200000 + N)	heldout
+t5v-i7040	object	present	HLOOP (the object is the default triangle)	heldout
+t5v-i7040	object_equals_default_xy	yes	HLOOP	heldout
+t5v-i7040	status2_pre	0x400	a debugfs reset leaves CR_EVENT_STATUS2 at 0x400 (R1-events: every job)	heldout
+t5v-i7040	status2_bit7	set	H-ITER / H-INSTR (E769: the pixel latch clear at 53, set from 55 iterations of body 8)	heldout
+t5v-i7040	status2_bit7	monotone: clear below one length, set from it	H-TIME (~121 us a vertex instance: the point depends on the vertex rate, not frozen)	heldout
+t5v-i7040	status2_bit7	clear	H-NEVER (bit 7 is the TA fault latch of E357/E764, not an occupancy latch)	heldout

@@ -1,0 +1,40 @@
+#stage g-t5v
+#need $S/t5v-ctl0__0.bin
+#need $S/pix_green.bin
+#need $S/t5v-n1__0.bin
+#need $S/t5v-n3__0.bin
+#need $S/t5v-i28__0.bin
+#need $S/t5v-i53__0.bin
+#need $S/t5v-i55__0.bin
+#need $S/t5v-i110__0.bin
+#need $S/t5v-i220__0.bin
+#need $S/t5v-i440__0.bin
+#need $S/t5v-i880__0.bin
+#need $S/t5v-i1760__0.bin
+#need $S/t5v-i3520__0.bin
+#need $S/t5v-i7040__0.bin
+#need $S/p1139-green.bin
+# T5 (Q082): a looping vertex program through probe --tri vtxuse (templates/vtx_loop.s: 8 instructions an iteration as
+# E769's body 8, a RELATIVE backward branch `p1 br -#7`, the loop count carried into the vertex's depth).  Why relative:
+# the tool places the vtxuse program at instruction 0x40 of its page and absolute indices count from the code base (E476), so
+# the `ba` loops of R1-events landed elsewhere (E770: the pixel loops wrote o0 in 16 of 64 pixels).  Offline (sgx-sim):
+# tests/test_t5loop.py runs it at five code indices (all give the same z), and the absolute-`ba` form stops at a non-zero one.
+# Knob proof: every vertex's stored depth word is 0x3f200000 + N (z = 0.25 + 4N ulp, exact), so a loop that did not run N
+# times on EVERY vertex shows (E770's failure mode), as does a branch that fell through (word + 1).  CR_EVENT_STATUS2 (0x0118)
+# is read from the debugfs regs after the reset (must be 0x400) and after the job.  The sweep (knob sweep:t5v) stops at the
+# first length whose post-job STATUS2 has bit 7 (0x80) set: the rest are recorded as skipped.  H-ITER / H-INSTR: set from 55;
+# H-TIME: monotone, point by the vertex rate; H-NEVER: no length sets it.  Order: t5v-ctl0, n1, n3 (the first backward
+# branch, before any long loop), then the ladder.  A hang or fault stops the stage (rc 4), the debugfs reset recovers.
+t5v-ctl0|control|safe|-|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-ctl0__0.bin"
+t5v-n1|control|safe|-|stophang s2|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-n1__0.bin"
+t5v-n3|control|safe|-|stophang s2|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-n3__0.bin"
+t5v-i28|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i28__0.bin"
+t5v-i53|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i53__0.bin"
+t5v-i55|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i55__0.bin"
+t5v-i110|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i110__0.bin"
+t5v-i220|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i220__0.bin"
+t5v-i440|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i440__0.bin"
+t5v-i880|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i880__0.bin"
+t5v-i1760|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i1760__0.bin"
+t5v-i3520|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i3520__0.bin"
+t5v-i7040|heldout|safe|-|stophang s2 sweep:t5v|-|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t5v-i7040__0.bin"

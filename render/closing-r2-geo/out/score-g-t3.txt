@@ -1,0 +1,11 @@
+T3: object decode per job
+job       object   nvert  x,y (pixels)                                                 1/w words                                  
+z-cut-p   present  4      32,44;20,56;32,14;8,8                                        0x3f800000,0x3f800001                      
+t3-w-pos  present  4      36,37;20.707,54.5898;36,19.5;4.57031,4.57031                 0x3f400000,0x3f400001,0x3f70f0f0,0x3f924924
+t3-w-neg  present  4      34.668,39.332;23.6523,48.6953;34.668,17.668;17.2305,17.2305  0x3f1d89d8,0x3f321642,0x3f555554,0x3f555556
+t3-nocut  present  3      4.57031,4.57031;46.7695,24.6172;20.707,54.5898               0x3f1d89d8,0x3f70f0f0,0x3f924924           
+
+t3-w-pos: stored 1/w minus HI-w's word, per vertex: +1 +0 +0 +0
+t3-w-neg: stored 1/w minus HI-w's word, per vertex: -1 +0 +1 +0
+t3-nocut: stored 1/w minus HI-w's word, per vertex: +0 +0 +0
+SUMMARY: controls pass; held out: consistent ['clip (2)', 'HSH (Sutherland-Hodgman in (x, y, z, w), planes z <= w and z >= -w) (2)', 'HSH (window = 32 + 32 x/w, made vertices at the cut) (2)', 'HZZ (strip zigzag of the SH polygon) (2)', 'HPR (index | 16 for a boundary edge) (2)', 'HI-w (made 1/w = RZ of 1/w_made), within 1 ulp (2)', 'no clip: z = 0 is inside +-w (1)', 'HSH (nothing crosses) (1)', 'HPD (window = 32 + 32 x/w per vertex, input order kept) (1)', 'HI-w (original vertices: RZ of 1/w), exact word (1)', 'HDP (z = 0: depth 0.5 whatever w) (1)'], refuted ['HI-w (made 1/w = RZ of 1/w_made), exact word (2 of 2)', 'HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), exact word (2 of 2)', 'HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), within 1 ulp (2 of 2)', 'HDP-made (z = +w / -w gives depth 1.0 / 0.0 exactly at a made vertex, whatever w) (1 of 2)']; repeat only: consistent none, refuted none

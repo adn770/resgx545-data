@@ -1,0 +1,26 @@
+C1: per job (the 0x0624 of the job itself is the knob proof)
+job            0x0624  parts  peaks                        control block                  raise                                       
+c3-4096-0x372  0x350   2      ['0x350', '0x370', '0x23d']  dw36=3 dw37=0x10350 dw38=0x20  raise                                       
+c3-4096-0x374  0x352   2      ['0x352', '0x352', '0x352']  dw36=1 dw37=0x0 dw38=0x0       none                                        
+c3-2048-cal    0x400   0      ['0x213']                    dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x354  0x332   0      ['0x213']                    dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x372  0x350   0      ['0x213']                    dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x374  0x352   0      ['0x213']                    dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x394  0x372   0      ['0x213']                    dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x162  0x140   1      ['0x140', '0xe6']            dw36=3 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+c3-2048-0x122  0x100   2      ['0x100', '0x100', '0x4f']   dw36=3 dw37=0x0 dw38=0x0       none                                        
+c3-2048-0xe2   0xc0    3      ['0xc0', '0xe0', '0xe0']     dw36=1 dw37=0x100c0 dw38=0x20  raise                                       
+c3-2048-0xa2   0x80    3      ['0x80', '0xa0', '0xa0']     dw36=2 dw37=0x10080 dw38=0x20  raise                                       
+
+D36 side table (never gating): dword 36 = max(0x072c count at the first abort - 2, 0)
+job            0x072c count  predicted  dword 36  job           
+c3-4096-0x372  3             1          3         raised    MISS
+c3-4096-0x374  3             1          1         unraised  ok  
+c3-2048-0x162  5             3          3         unraised  ok  
+c3-2048-0x122  4             2          3         unraised  MISS
+c3-2048-0xe2   3             1          1         raised    ok  
+c3-2048-0xa2   2             0          2         raised    MISS
+D36: unraised jobs 2 of 3; raised jobs (held out) 1 of 3
+raise per job: c3-4096-0x372:R c3-4096-0x374:- c3-2048-cal:void c3-2048-0x354:void c3-2048-0x372:void c3-2048-0x374:void c3-2048-0x394:void c3-2048-0x162:void c3-2048-0x122:- c3-2048-0xe2:R c3-2048-0xa2:R
+c3-2048-cal: page need at P = 0x422: peak status 0x213, 0 partial render(s)
+SUMMARY: controls pass; 2048x2048: 0xa2:R 0xe2:R 0x122:- 0x162:void 0x354:void 0x372:void 0x374:void 0x394:void -> flip: last raise 0xe2, first silent 0x122: C in [0xe0, 0x120); H-same REFUTED (2 of 3 cells as 0x371 predicts); D36 unraised 2/3, raised 1/3

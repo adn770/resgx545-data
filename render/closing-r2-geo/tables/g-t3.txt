@@ -1,0 +1,22 @@
+#stage g-t3
+#need $S/z-cut-p__0.bin
+#need $S/pix_green.bin
+#need $S/t3-w-pos__0.bin
+#need $S/pix_green.bin
+#need $S/t3-w-neg__0.bin
+#need $S/pix_green.bin
+#need $S/t3-nocut__0.bin
+#need $S/pix_green.bin
+#need $S/p1139-green.bin
+# T3 (geometry, Q230): the 1/w of clip-made vertices (vtx_zw.s: z = A x + B, w = C x + D from the vertex's own x).
+# Offline model (r2models.predict_zwclip): Sutherland-Hodgman in (x, y, z, w) against z <= w and z >= -w (a plane runs
+# only if a vertex crosses it), the strip zigzag, window = 32 + 32 x/w, a made vertex's depth exactly 1.0 / 0.0.  The made
+# vertex's stored 1/w by two candidates: HI-w (the reciprocal of the made w, RZ) and HI-rhw (the 1/w of the two ends
+# interpolated with the same edge parameter): 0.75 against 0.8205 at w = 0.5x + 1.25.  Originals: RZ of 1/w.  Frozen per
+# row: the vertex SET, ORDER, prim words, the 1/w words by position (exact and within one ulp: S1b saw 0x3f800001 on one
+# made vertex of two), the made vertices' depth words.  The originals' depth word is T4's clause (not scored here).
+# Controls: z-cut-p (w = 1, the T2 model); a group counts only if it holds.  t3-nocut (no clip) is held out.
+z-cut-p|control|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-p__0.bin"
+t3-w-pos|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t3-w-pos__0.bin"
+t3-w-neg|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t3-w-neg__0.bin"
+t3-nocut|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/t3-nocut__0.bin"

@@ -1,0 +1,127 @@
+## stage g-c2
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+bf4f8be2d8a8fe50034559450928e05695dc96d396d4892f9b00ea6bc0d4f053 /home/jtorra/sgxfive-test-r1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803  /home/jtorra/regtimeline
+## knobs at start
+render_pb_pages=0x00000422
+## kmsg marker arrived
+## clock
+Tue Nov 10 10:56:17 CET 2026
+## R2 safety rules: see the header of lib_r2.sh (allow-listed knob only; pb:11 only in g-c2)
+== k-tri-0x80 set=control risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words /tmp/r2w.4YYFh8/words --regs 0x0700-0x074c --kpoke-render 1:pb:11=0x80
+  rc 0 tri: render context for targets up to 4096x4096 tri: words 0 to /tmp/r2w.4YYFh8/words/words.0.txt (3079 bytes), /tmp/r2w.4YYFh8/words/ta3d.0.bin (236 
+tri 4096x4096 #1: overflowed, 4544 triangle, 16772672 background, 0 other; wrong 4409730 inside, 0 outside, 0 at edges; 4418630 if flipped; guard 0
+  kept k-tri-0x80.txt: 15680 bytes raw, raw sha256 599e502e3272e24aac4b39924b9521e075bf473717e18a812b37cbec37c4a6e5
+  kept k-tri-0x80.dmesg: 82 bytes raw, raw sha256 66b5aacea224167057d8f47d07ac2f3823933c93f8364a67cbacf3dc5b190276
+  kept k-tri-0x80.after.buf09.bin: 236 bytes raw, raw sha256 e093cd18bc9ea2944c5dc0b4ae2475b1a981168870601c3cbf377cb19593c7ef
+  kept k-tri-0x80.after.regs.txt: 6474 bytes raw, raw sha256 c2fc9aa659d2515af6eade97456e1988892f2b2744b75cd6fcd7a14e44de1ede
+  kept k-tri-0x80.ta3d.0.bin: 236 bytes raw, raw sha256 e0d187c234ed9694158a1c5dd2d9a501a245d91ede1d8b2ce734d1e34671931d
+  kept k-tri-0x80.ta3d.1.bin: 236 bytes raw, raw sha256 cd64e51ca03bbdcce0f9cd0b364e68669b970cd8ce33a17b373ccc82122b89e0
+  kept k-tri-0x80.words.0.txt: 3079 bytes raw, raw sha256 637fe229de11ac9c5583f771947053a3fb3b3bc3485b32a645899bb2c73fac3e
+  kept k-tri-0x80.words.1.txt: 3079 bytes raw, raw sha256 9286bf059f45b0eed370c24450ff9f1d7788554f434715e8f104169bfb54dd01
+  class ok
+== k-tri-0x100 set=control risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words /tmp/r2w.4YYFh8/words --regs 0x0700-0x074c --kpoke-render 1:pb:11=0x100
+  rc 0 tri: render context for targets up to 4096x4096 tri: words 0 to /tmp/r2w.4YYFh8/words/words.0.txt (3079 bytes), /tmp/r2w.4YYFh8/words/ta3d.0.bin (236 
+tri 4096x4096 #1: overflowed, 434240 triangle, 16342976 background, 0 other; wrong 3981570 inside, 0 outside, 0 at edges; 4037417 if flipped; guard 0
+  kept k-tri-0x100.txt: 13629 bytes raw, raw sha256 58a95827acb552e9e0a1907c798825d212b48a3348cd60e39ee4487c0b40ac2f
+  kept k-tri-0x100.dmesg: 82 bytes raw, raw sha256 f8efe69f7b48ad2c5c3c7ab5fab9e6a0dccfd6a1e48d37692b56aac54aee91de
+  kept k-tri-0x100.after.buf09.bin: 236 bytes raw, raw sha256 d25c8bcc60d66d4a9e1f34c4da40c124b65e3aebf5fd82b3ff1ff3be99ddd03a
+  kept k-tri-0x100.after.regs.txt: 6474 bytes raw, raw sha256 8eff1f2c2ac175546d673adffd0ccd1297fb313671c52559ade7069fc9a5719b
+  kept k-tri-0x100.ta3d.0.bin: 236 bytes raw, raw sha256 e0d187c234ed9694158a1c5dd2d9a501a245d91ede1d8b2ce734d1e34671931d
+  kept k-tri-0x100.ta3d.1.bin: 236 bytes raw, raw sha256 24f1521300f026b7f6af61a9d218334dfcb27073ae6c461e9dc4f8afbb9d7c4c
+  kept k-tri-0x100.words.0.txt: 3079 bytes raw, raw sha256 49c6966656fe5f666e3486717981cf661ed0b0d4f5050366c344352a61e8153d
+  kept k-tri-0x100.words.1.txt: 3079 bytes raw, raw sha256 40b1c8db70849157db64e4c3e60c49f5c63aa9a5dc414dca7f70fe9307450ef1
+  class ok
+== k-1500-0x300 set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x300 --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x300.txt: 178222 bytes raw, raw sha256 81c6c912b4ff3404272710b09ad5ddd4caa2d1bd6fc77ef9beefef53bfaa869d
+  kept k-1500-0x300.dmesg: 82 bytes raw, raw sha256 9e9575991abd3d1dedcf0c48184247986a172fb036c2b0a427a23e63977cda84
+  kept k-1500-0x300.after.buf09.bin: 236 bytes raw, raw sha256 ca0612f26bec7863a37c25c1d363e650622e87069d41e5a6b68a8b80e5662e63
+  kept k-1500-0x300.after.regs.txt: 6474 bytes raw, raw sha256 517a3b15a412a80b7ac04fe9c3afb194084472ff8e319233babef5de96872825
+  kept k-1500-0x300.p1139-green.param.bin: 4603904 bytes raw, raw sha256 23f91535b3e6fb969af142cf4586150fe5167eb06de39b8cf4d40cef711883bb
+  kept k-1500-0x300.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 4f67330c3d13273547aeecff279ac579aba26d1c6b543f47ab8b6fedb5b9f8e5
+  class ok
+== k-1500-0x33e set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x33e --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x33e.txt: 153508 bytes raw, raw sha256 2f8b32941c70689730efd8134e41f002d972a1336a20aff00b063f482de116ad
+  kept k-1500-0x33e.dmesg: 82 bytes raw, raw sha256 ac4debe9d249bcf1b11a4e9ff8fe49539a1b8927e15648aa6453c90f7786a0eb
+  kept k-1500-0x33e.after.buf09.bin: 236 bytes raw, raw sha256 a655f943de715753323dc3454e3bb4fbcf47206679a277b217dd0fa09f3c0688
+  kept k-1500-0x33e.after.regs.txt: 6474 bytes raw, raw sha256 ac4e8111566c64c9207e267dcf85446fc4d6d27aea88b5050a1b09dddce0371d
+  kept k-1500-0x33e.p1139-green.param.bin: 4603904 bytes raw, raw sha256 ecf8b54fff31927cc7fb9fcf9ec6250bbec0149d784764d5d2467132a2ceb38a
+  kept k-1500-0x33e.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 328dcf468f854a0a75a69b2735c7f0d05263d80f38e5e2bfdc7f5163a9e9a4b9
+  class ok
+== k-1500-0x351 set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x351 --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x351.txt: 155903 bytes raw, raw sha256 531ae4f344fdf92fd06e8e935f76b889c2667646e6088ba0e466c784c87b3ae8
+  kept k-1500-0x351.dmesg: 82 bytes raw, raw sha256 acc54d1e2fd933e865e5741e8ecd29458e00bd82510a373bff40f8b8ea9c270c
+  kept k-1500-0x351.after.buf09.bin: 236 bytes raw, raw sha256 e555265ccc039de3327547d97d8cfddf464ef30d8a57b1c495b7d5255a135692
+  kept k-1500-0x351.after.regs.txt: 6474 bytes raw, raw sha256 6d5ef2a903ecc90d7b12599c5938cd57fc838633d763c896dbbca649a0c15472
+  kept k-1500-0x351.p1139-green.param.bin: 4603904 bytes raw, raw sha256 c1c3c11d6a6d29758dc4fe498055338c27d99c3c06c8747ed5b93e3ec1c62640
+  kept k-1500-0x351.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 ddb769dd3125d09adccb4b17dfeaeb041355e925a160020f4b97557067aae202
+  class ok
+== k-1500-0x352 set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x352 --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x352.txt: 165820 bytes raw, raw sha256 0232068b6d9a5bc71e483423d0a9e1c2ffa7a0099b08fc1e9480068990004e38
+  kept k-1500-0x352.dmesg: 82 bytes raw, raw sha256 7c4aa1a64d0dbcc30ca6dc85e52a63b1b9261517880b6f4466d6101e6e948a4a
+  kept k-1500-0x352.after.buf09.bin: 236 bytes raw, raw sha256 47a3db1fa7f1e8c3dcd0dc97c93e1087fdd4d94217f71b1d8bc5c9bbe44a217f
+  kept k-1500-0x352.after.regs.txt: 6474 bytes raw, raw sha256 1ee3960c3d3497d58cff17a98ca601e03827a0fa57305a15936c0614eb879acd
+  kept k-1500-0x352.p1139-green.param.bin: 4603904 bytes raw, raw sha256 7bcb908b64c699402a0466d27d25f9ee90f699668d4b62653ba2715c7e55c8f2
+  kept k-1500-0x352.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 c092a218a74d778289371158d25802dc13b693035dc80df89c046eed67efab69
+  class ok
+== k-1500-0x35e set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x35e --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x35e.txt: 138895 bytes raw, raw sha256 c6df8e2a4df77761f367f1d8cc3d4d782c70718ac680ee94a4f9cba7cc83e378
+  kept k-1500-0x35e.dmesg: 82 bytes raw, raw sha256 53dbcad096fedba3af6562bad9925742044444a047d9674541ec5a180cd40297
+  kept k-1500-0x35e.after.buf09.bin: 236 bytes raw, raw sha256 114c5ba88af4270f9c2ba18e6d9dc1311004fecf977feb5a3120fd30da77d8a7
+  kept k-1500-0x35e.after.regs.txt: 6474 bytes raw, raw sha256 894fa714e1777ed17d48c319c733e91967ba3be8f2a6b89b752731c6d876c34a
+  kept k-1500-0x35e.p1139-green.param.bin: 4603904 bytes raw, raw sha256 2f43c4e0233ab28982b4805647dd15cf3e48ca606f98cc1a9b7b5c8a9ff95fb1
+  kept k-1500-0x35e.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 8a45fc1b2c69ba374b1262c82886a766c90a7decbd7867f080ebb72775dfd8ca
+  class ok
+== k-1500-0x3a0 set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x3a0 --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x3a0.txt: 136679 bytes raw, raw sha256 4b3d81c748681b4f64a3a39791ad08685407bbc011074ac8ff8f420b790e4aa8
+  kept k-1500-0x3a0.dmesg: 82 bytes raw, raw sha256 774377acc63e84a2c7ee0360654837cdd595ad1a3298ba9a32c11e19df4f7672
+  kept k-1500-0x3a0.after.buf09.bin: 236 bytes raw, raw sha256 99acd86c3f2c231e8114d4e62e800645c9837d5de5aca4f7c84fc01ec2590116
+  kept k-1500-0x3a0.after.regs.txt: 6474 bytes raw, raw sha256 06bd6193813f3f9dc55743c0d0da32086574b430b0f80a33fdd14ce7db43495e
+  kept k-1500-0x3a0.p1139-green.param.bin: 4603904 bytes raw, raw sha256 e07bd5babf3403e89a83c4996e7bab454890d6ba5d74520a8e5bf996dd3752b1
+  kept k-1500-0x3a0.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 1f7f79b55a103b7044571b147deb6b4b596fd4c7cf1493bcb6e8b78fafb80662
+  class ok
+== k-1500-0x3de set=heldout risk=risky P=0x422 knobs=[stophang expectdiff kpoke wd:75] rt=0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-r1 probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x3de --dump-render /tmp/r2w.4YYFh8/dump /home/jtorra/r2-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+  kept k-1500-0x3de.txt: 148043 bytes raw, raw sha256 e9674b70756e07475a7074da47f80c79502da8411bd74a9d082bd78bbc08094c
+  kept k-1500-0x3de.dmesg: 82 bytes raw, raw sha256 b54ed5df3daf7c0cdc3e637f8ca1f7d7e3f86be318846e0f10f24bdf6e409e36
+  kept k-1500-0x3de.after.buf09.bin: 236 bytes raw, raw sha256 af129bbe45054551b84ee4041d98533610e2c91304c3ed31a08c6f5f8e441414
+  kept k-1500-0x3de.after.regs.txt: 6474 bytes raw, raw sha256 1c23187bc90486949f12e41e615ee4f6f4df827d4d4e436b92b770e59413d7af
+  kept k-1500-0x3de.p1139-green.param.bin: 4603904 bytes raw, raw sha256 9e211d8ae841964025cb4b0bc7c71ca09619fd0437e7a4f389ca4122480b84f0
+  kept k-1500-0x3de.p1139-green.tadata.bin: 1060864 bytes raw, raw sha256 617c7f8601cdbf49f505ec5eb96a2cfbf585b5e8408d94eaacaba19891666643
+  class ok
+## end: 9 jobs of g-c2
+## kernel log: 9 case markers kept in /home/jtorra/r2-out/g-c2/kernel.log

@@ -1,0 +1,32 @@
+case	quantity	value	model	set
+z-cut-p	object	present	clip	control
+z-cut-p	nvert	4	HSH (Sutherland-Hodgman polygon of A->B, B->C, C->A)	control
+z-cut-p	xy_set	8,8;20,56;32,14;32,44	HSH (Sutherland-Hodgman polygon of A->B, B->C, C->A)	control
+z-cut-p	prims	16,1,18;2,17,19	HPR (prim entry = stored index | 16 for a boundary edge, strip triangles)	control
+z-cut-p	xy_ordered	32,44;20,56;32,14;8,8	HZZ (strip zigzag of the SH polygon)	control
+z-cut-p	depth_words	0x3f800000,0x3f200000,0x3f800000,0x3e800000	HDP (stored depth = 0.5 + 0.5 z at every vertex, clip-made included)	control
+t3-w-pos	object	present	clip	heldout
+t3-w-pos	nvert	4	HSH (Sutherland-Hodgman in (x, y, z, w), planes z <= w and z >= -w)	heldout
+t3-w-pos	xy_set	4.571429,4.571429;20.705882,54.588235;36.000000,19.500000;36.000000,37.000000	HSH (window = 32 + 32 x/w, made vertices at the cut)	heldout
+t3-w-pos	xy_ordered	36.000000,37.000000;20.705882,54.588235;36.000000,19.500000;4.571429,4.571429	HZZ (strip zigzag of the SH polygon)	heldout
+t3-w-pos	prims	16,1,18;2,17,19	HPR (index | 16 for a boundary edge)	heldout
+t3-w-pos	rhw_by_xy	36.0000,37.0000=0x3f400000;20.7059,54.5882=0x3f70f0f0;36.0000,19.5000=0x3f400000;4.5714,4.5714=0x3f924924	HI-w (made 1/w = RZ of 1/w_made), exact word	heldout
+t3-w-pos	rhw_by_xy	36.0000,37.0000=0x3f400000;20.7059,54.5882=0x3f70f0f0;36.0000,19.5000=0x3f400000;4.5714,4.5714=0x3f924924	HI-w (made 1/w = RZ of 1/w_made), within 1 ulp	heldout
+t3-w-pos	rhw_by_xy	36.0000,37.0000=0x3f48c8c8;20.7059,54.5882=0x3f70f0f0;36.0000,19.5000=0x3f520d20;4.5714,4.5714=0x3f924924	HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), exact word	heldout
+t3-w-pos	rhw_by_xy	36.0000,37.0000=0x3f48c8c8;20.7059,54.5882=0x3f70f0f0;36.0000,19.5000=0x3f520d20;4.5714,4.5714=0x3f924924	HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), within 1 ulp	heldout
+t3-w-pos	depth_made_by_xy	36.0000,37.0000=0x3f800000;36.0000,19.5000=0x3f800000	HDP-made (z = +w / -w gives depth 1.0 / 0.0 exactly at a made vertex, whatever w)	heldout
+t3-w-neg	object	present	clip	heldout
+t3-w-neg	nvert	4	HSH (Sutherland-Hodgman in (x, y, z, w), planes z <= w and z >= -w)	heldout
+t3-w-neg	xy_set	17.230769,17.230769;23.652174,48.695652;34.666667,17.666667;34.666667,39.333333	HSH (window = 32 + 32 x/w, made vertices at the cut)	heldout
+t3-w-neg	xy_ordered	34.666667,39.333333;23.652174,48.695652;34.666667,17.666667;17.230769,17.230769	HZZ (strip zigzag of the SH polygon)	heldout
+t3-w-neg	prims	16,1,18;2,17,19	HPR (index | 16 for a boundary edge)	heldout
+t3-w-neg	rhw_by_xy	34.6667,39.3333=0x3f555555;23.6522,48.6957=0x3f321642;34.6667,17.6667=0x3f555555;17.2308,17.2308=0x3f1d89d8	HI-w (made 1/w = RZ of 1/w_made), exact word	heldout
+t3-w-neg	rhw_by_xy	34.6667,39.3333=0x3f555555;23.6522,48.6957=0x3f321642;34.6667,17.6667=0x3f555555;17.2308,17.2308=0x3f1d89d8	HI-w (made 1/w = RZ of 1/w_made), within 1 ulp	heldout
+t3-w-neg	rhw_by_xy	34.6667,39.3333=0x3f626cc2;23.6522,48.6957=0x3f321642;34.6667,17.6667=0x3f6a0ea0;17.2308,17.2308=0x3f1d89d8	HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), exact word	heldout
+t3-w-neg	rhw_by_xy	34.6667,39.3333=0x3f626cc2;23.6522,48.6957=0x3f321642;34.6667,17.6667=0x3f6a0ea0;17.2308,17.2308=0x3f1d89d8	HI-rhw (made 1/w = the 1/w of the ends interpolated with the edge parameter), within 1 ulp	heldout
+t3-w-neg	depth_made_by_xy	34.6667,39.3333=0x3f800000;34.6667,17.6667=0x3f800000	HDP-made (z = +w / -w gives depth 1.0 / 0.0 exactly at a made vertex, whatever w)	heldout
+t3-nocut	object	present	no clip: z = 0 is inside +-w	heldout
+t3-nocut	nvert	3	HSH (nothing crosses)	heldout
+t3-nocut	xy_ordered	4.571429,4.571429;46.769231,24.615385;20.705882,54.588235	HPD (window = 32 + 32 x/w per vertex, input order kept)	heldout
+t3-nocut	rhw_by_xy	4.5714,4.5714=0x3f924924;46.7692,24.6154=0x3f1d89d8;20.7059,54.5882=0x3f70f0f0	HI-w (original vertices: RZ of 1/w), exact word	heldout
+t3-nocut	depth_words	0x3f000000,0x3f000000,0x3f000000	HDP (z = 0: depth 0.5 whatever w)	heldout

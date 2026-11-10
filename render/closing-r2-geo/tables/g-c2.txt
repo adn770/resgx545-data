@@ -1,0 +1,20 @@
+#stage g-c2
+#need $S/p1139-green.bin
+# C2 (geometry, Q210): decouple the threshold from P by the descriptor poke pb:11 = V (debugfs kpoke, user decision R2-12, E625's
+# `--kpoke-render 1:pb:11=V` ran 5 jobs without incident), P = 0x422 throughout, LAST in its session.  The kernel applies the poke once
+# to the next render it kicks and drops it; a debugfs reset (before every job) clears anything still armed.  R1 fixed the limit at
+# C = 0x371 for the threshold set through the knob: raise iff thr0 + 0x20 <= 0x371.  H-abs: the same comparison holds for a poked
+# threshold (V <= 0x351 raises: 0x351 and 0x352 bracket the limit exactly); H-P: the raise is tied to the knob's P (0x373), so no
+# poke raises at P = 0x422 (E625's 0x80 raise on the one-triangle scene is evidence against it); H-rel: the limit follows P (raise at
+# every V).  Knob proof per job: the first abort's status (0x0658 stretch start) is V; 0x0624's own reading is recorded.  A hung or
+# faulted job stops the stage; the runner's watchdog (wd:75) writes the kernel's own debugfs reset 75 s after the tool started and
+# the stage ends with a reset and a health triangle.
+k-tri-0x80|control|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c --kpoke-render 1:pb:11=0x80
+k-tri-0x100|control|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c --kpoke-render 1:pb:11=0x100
+k-1500-0x300|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x300 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x33e|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x33e --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x351|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x351 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x352|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x352 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x35e|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x35e --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x3a0|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x3a0 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-1500-0x3de|heldout|risky|0x422|stophang expectdiff kpoke wd:75|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --kpoke pb:11=0x3de --dump-render "$W/dump" "$S/p1139-green.bin"

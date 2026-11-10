@@ -1,0 +1,38 @@
+C1: per job (the 0x0624 of the job itself is the knob proof)
+job           0x0624  parts  peaks                        control block                  raise                                       
+k-tri-0x80    0x80    2      ['0x80', '0xa0', '0x2']      dw36=0 dw37=0x10400 dw38=0x20  raise                                       
+k-tri-0x100   0x100   1      ['0x100', '0x20']            dw36=0 dw37=0x0 dw38=0x0       none  (second run does not reach thr0: void)
+k-1500-0x300  0x300   3      ['0x300', '0x320', '0x320']  dw36=1 dw37=0x10400 dw38=0x20  raise                                       
+k-1500-0x33e  0x33e   2      ['0x33e', '0x35e', '0x23e']  dw36=3 dw37=0x10400 dw38=0x20  raise                                       
+k-1500-0x351  0x351   2      ['0x351', '0x371', '0x23d']  dw36=3 dw37=0x10400 dw38=0x20  raise                                       
+k-1500-0x352  0x352   2      ['0x352', '0x352', '0x352']  dw36=1 dw37=0x0 dw38=0x0       none                                        
+k-1500-0x35e  0x35e   2      ['0x35e', '0x35e', '0x124']  dw36=2 dw37=0x0 dw38=0x0       none                                        
+k-1500-0x3a0  0x3a0   2      ['0x3a0', '0x3a0', '0x121']  dw36=3 dw37=0x0 dw38=0x0       none                                        
+k-1500-0x3de  0x3de   2      ['0x3de', '0x3de', '0x11e']  dw36=3 dw37=0x0 dw38=0x0       none                                        
+
+C2: first abort status (the poked threshold) and the raise per job
+job           V      first status  0x0624 read   raise
+k-tri-0x80    0x80   0x80          0x0624 0x80   raise
+k-tri-0x100   0x100  0x100         0x0624 0x100  none 
+k-1500-0x300  0x300  0x300         0x0624 0x300  raise
+k-1500-0x33e  0x33e  0x33e         0x0624 0x33e  raise
+k-1500-0x351  0x351  0x351         0x0624 0x351  raise
+k-1500-0x352  0x352  0x352         0x0624 0x352  none 
+k-1500-0x35e  0x35e  0x35e         0x0624 0x35e  none 
+k-1500-0x3a0  0x3a0  0x3a0         0x0624 0x3a0  none 
+k-1500-0x3de  0x3de  0x3de         0x0624 0x3de  none 
+
+D36 side table (never gating): dword 36 = max(0x072c count at the first abort - 2, 0)
+job           0x072c count  predicted  dword 36  job           
+k-tri-0x80    1             0          0         raised    ok  
+k-tri-0x100   1             0          0         unraised  ok  
+k-1500-0x300  3             1          1         raised    ok  
+k-1500-0x33e  3             1          3         raised    MISS
+k-1500-0x351  3             1          3         raised    MISS
+k-1500-0x352  3             1          1         unraised  ok  
+k-1500-0x35e  4             2          2         unraised  ok  
+k-1500-0x3a0  4             2          3         unraised  MISS
+k-1500-0x3de  4             2          3         unraised  MISS
+D36: unraised jobs 3 of 5; raised jobs (held out) 2 of 4
+poked ladder: 0x300:R 0x33e:R 0x351:R 0x352:- 0x35e:- 0x3a0:- 0x3de:-  (raise at 0x351, none at 0x352)
+SUMMARY: controls pass; held out: consistent ['H-abs (7)'], refuted ['H-P (3 of 7)', 'H-rel (4 of 7)']; repeat only: consistent none, refuted none; raise at 0x351, none at 0x352; D36 unraised 3/5, raised 2/4

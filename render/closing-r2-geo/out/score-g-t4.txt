@@ -1,0 +1,19 @@
+T4: object decode per job
+job               object   nvert  x,y (pixels)     1/w words 
+t4-ctl-z0-w3      present  3      8,8;56,20;20,56  0x3eaaaaaa
+t4-ctl-zm05-w1    present  3      8,8;56,20;20,56  0x3f800000
+t4-m2p1-3         present  3      8,8;56,20;20,56  0x3eaaaaaa
+t4-m2p6-3         present  3      8,8;56,20;20,56  0x3eaaaaaa
+t4-m5p3-7         present  3      8,8;56,20;20,56  0x3e124924
+t4-m0p0027-0p003  present  3      8,8;56,20;20,56  0x43a6aaaa
+t4-m0p83-1p1      present  3      8,8;56,20;20,56  0x3f68ba2e
+t4-m6p1-7         present  3      8,8;56,20;20,56  0x3e124924
+
+stored depth word per pair (candidates giving it):
+  t4-m2p1-3: ['0x3e19999c'] <- ['D1', 'D2']
+  t4-m2p6-3: ['0x3d88888c'] <- ['D2', 'D3']
+  t4-m5p3-7: ['0x3df8af8c'] <- ['D1', 'D2']
+  t4-m0p0027-0p003: ['0x3d4cccd0'] <- ['D1', 'D2']
+  t4-m0p83-1p1: ['0x3dfb5874'] <- ['D1', 'D2', 'D5', 'D7']
+  t4-m6p1-7: ['0x3d83a840'] <- ['D1', 'D5']
+SUMMARY: controls pass; held out: consistent ['in band (x, y scaled by w): no clip (6)', 'in band (6)', 'RZ (1/w = RZ of 1/W: E754 in band 7 of 7) (6)'], refuted ['D1 (0.5 + 0.5 (Z * RZ(1/W)), the product rounded to nearest) (1 of 6)', 'D2 (0.5 + 0.5 RZ(Z/W)) (1 of 6)', 'D3 (0.5 + 0.5 RN(Z/W)) (5 of 6)', 'D5 (0.5 + 0.5 RZ(Z * RZ(1/W))) (4 of 6)', 'D6 (RN(RN(Z + W) / (2 W))) (6 of 6)', 'D7 (0.5 + 0.5 (Z * RN(1/W)), the product rounded to nearest) (5 of 6)', 'RN (1/w = RN of 1/W) (5 of 5)']; repeat only: consistent none, refuted none
