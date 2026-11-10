@@ -1,0 +1,42 @@
+#### d0 09:35:04
+## preflight ok: {"srcversion_loaded": "B21FDA82BD5E5CB5A627E3B", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+## arm std: ok True rate 964.5356757931173
+== d0-tri64: class ok 
+== d0-tri64-r2: class ok 
+== d1-partial: class ok 
+## end: reset ok True, gate ok True
+job: ok
+job time: 447 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  538.880614] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 147 us
+[  538.883474] gma500 0000:00:02.0: [drm] sgxfive: error state captured in /sys/class/devcoredump
+[  539.485207] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 199 us
+SUMMARY: d0: controls held (D0 and D1: E747 reproduced, dispatch 100%); rows: fit: 3 held, 0 FAILED, 0 cannot tell/void; control: 6 held, 0 FAILED, 0 cannot tell/void
+GATE d0 OPEN run=1794299708-1672
+stage d0 done, health ok
+#### d1 09:35:15
+== d2-0x320-r2: class ok 
+== d2-0x320-r3: class ok 
+== d3-0x3a0: class ok 
+== d3-0x3a0-r2: class ok 
+== d3-0x3a0-r3: class ok 
+== d4-0x422: class ok 
+== d4-0x422-r2: class ok 
+## end: reset ok True, gate ok True
+job: ok
+job time: 701 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  585.492316] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  585.495211] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 181 us
+[  586.108953] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 273 us
+SUMMARY: d1: H-NEVER (or the ring lost it): no bit-19 entry in any raise job; rows: held out: 12 held, 10 FAILED, 0 cannot tell/void; refuted ['D5 (reversed order, E155/E747)', 'H-RAISE (bit 19 only in raise jobs); H-THRESH (the TA reaches thr0 here too)']; control: 10 held, 0 FAILED, 0 cannot tell/void
+stage d1 done, health ok
+R1 done

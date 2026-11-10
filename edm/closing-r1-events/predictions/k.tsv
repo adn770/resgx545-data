@@ -1,0 +1,58 @@
+case	quantity	value	model	set
+k0	K_ticks	2	H-KW = H-HWC (the boot's GETMISCINFO + the arm's own)	fit: S2 run 1 (K = 2 after the arm)
+k0	ccbctl0	2	H-KW (the write offset advances with the kicker; zeroed at load: kernel source)	heldout
+k0	ident_after_arm	2	kernel source: sgxfive_boot's ident_ask + cmd_arm's miscinfo	heldout
+k0-r2	K_ticks	2	H-KW = H-HWC (the boot's GETMISCINFO + the arm's own)	replicate of k0
+k0-r2	ccbctl0	2	H-KW (the write offset advances with the kicker; zeroed at load: kernel source)	heldout
+k0-r2	ident_after_arm	2	kernel source: sgxfive_boot's ident_ask + cmd_arm's miscinfo	heldout
+k1	K_ticks	2	H-KW = H-HWC (K is zeroed at every boot; reset, then arm)	heldout
+k1	ccbctl0	2	H-KW	heldout
+k1	ident_after_arm	2	kernel source	heldout
+k2	K_ticks	1	H-KW = H-HWC (no runner miscinfo: only the boot's GETMISCINFO)	heldout
+k2	K_ticks_alt	2	H-FW (the firmware starts the byte at 2 itself)	alternative
+k2	ccbctl0	1	H-KW	heldout
+k2	ident_after_arm	1	kernel source	heldout
+k2-r2	K_ticks	1	H-KW = H-HWC (no runner miscinfo: only the boot's GETMISCINFO)	heldout
+k2-r2	K_ticks_alt	2	H-FW (the firmware starts the byte at 2 itself)	alternative
+k2-r2	ccbctl0	1	H-KW	heldout
+k2-r2	ident_after_arm	1	kernel source	heldout
+k3	K_ticks	4	H-KW = H-HWC (two extra GETMISCINFO after the arm)	heldout
+k3	K_ticks_alt	2	H-FW	alternative
+k3	ccbctl0	4	H-KW	heldout
+k3	ident_after_arm	4	kernel source	heldout
+k3-r2	K_ticks	4	H-KW = H-HWC (two extra GETMISCINFO after the arm)	heldout
+k3-r2	K_ticks_alt	2	H-FW	alternative
+k3-r2	ccbctl0	4	H-KW	heldout
+k3-r2	ident_after_arm	4	kernel source	heldout
+k4	nontick_entries	1	E746 (a kick is one entry: slot 0, pa0 0, pa1[23:0] 0x100)	fit: E746
+k4	K_kick	2	E746: the kick's own entry carries the value before its bump	fit: E746
+k4	K_ticks_after	3	E746: K + 1 after a kick	fit: E746
+k4	ccbctl0	3	H-KW	heldout
+k4	ident_after_arm	2	kernel source	heldout
+k4-r2	nontick_entries	1	E746 (a kick is one entry: slot 0, pa0 0, pa1[23:0] 0x100)	fit: E746
+k4-r2	K_kick	2	E746: the kick's own entry carries the value before its bump	fit: E746
+k4-r2	K_ticks_after	3	E746: K + 1 after a kick	fit: E746
+k4-r2	ccbctl0	3	H-KW	heldout
+k4-r2	ident_after_arm	2	kernel source	heldout
+k5	K_kicks	0,1,2,3	H-KW = H-HWC: 254 kicks after K = 2 wrap the byte to 0 (kernel: mod 256)	heldout
+k5	K_kicks_alt	255,255,255,255	H-SAT (the byte saturates)	alternative
+k5	K_ticks_after	4	H-KW	heldout
+k5	K_ticks_after_alt	255	H-SAT	alternative
+k5	ccbctl0	4	H-KW (the write offset is mod 256 too)	heldout
+k5	ident_total	260	kernel source: 2 at the arm + 254 + 4	heldout
+k5-r2	K_kicks	0,1,2,3	H-KW = H-HWC: 254 kicks after K = 2 wrap the byte to 0 (kernel: mod 256)	heldout
+k5-r2	K_kicks_alt	255,255,255,255	H-SAT (the byte saturates)	alternative
+k5-r2	K_ticks_after	4	H-KW	heldout
+k5-r2	K_ticks_after_alt	255	H-SAT	alternative
+k5-r2	ccbctl0	4	H-KW (the write offset is mod 256 too)	heldout
+k5-r2	ident_total	260	kernel source: 2 at the arm + 254 + 4	heldout
+k6-fill	K_step_rule	K(next) = K(prev) + 1 after each (pa0 0, pa1 bit 8) entry, + 0 after any other	fit: E747 (124 of 124 pairs); replicate	fit: E747
+k6-fill	entries_00_8_min	2	E747 (a client job logs one (0, 8) entry a command of the kernel's buffer)	fit: E747
+k6-copy	K_step_rule	K(next) = K(prev) + 1 after each (pa0 0, pa1 bit 8) entry, + 0 after any other	fit: E747 (124 of 124 pairs); replicate	fit: E747
+k6-copy	entries_00_8_min	2	E747 (a client job logs one (0, 8) entry a command of the kernel's buffer)	fit: E747
+k6-fill-r2	K_step_rule	K(next) = K(prev) + 1 after each (pa0 0, pa1 bit 8) entry, + 0 after any other	fit: E747 (124 of 124 pairs); replicate	replicate
+k6-fill-r2	entries_00_8_min	2	E747 (a client job logs one (0, 8) entry a command of the kernel's buffer)	fit: E747
+k6-copy-r2	K_step_rule	K(next) = K(prev) + 1 after each (pa0 0, pa1 bit 8) entry, + 0 after any other	fit: E747 (124 of 124 pairs); replicate	replicate
+k6-copy-r2	entries_00_8_min	2	E747 (a client job logs one (0, 8) entry a command of the kernel's buffer)	fit: E747
+k*	clock_control	window-2 ticks on the 25000 grid (+-500), one K per window without a kick	E746, S2 run 3	control
+k*	arm_variant_shown	ident_after_arm = the number of GETMISCINFO the arm path made (2, 2, 1, 4)	control (the dmesg 'SGX firmware: core' lines count them)	control

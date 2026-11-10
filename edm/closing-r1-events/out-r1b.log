@@ -1,0 +1,70 @@
+#### k 09:27:21
+== k4-r2: class ok 
+== k5: class ok 
+== k5-r2: class ok 
+== k6-fill: class ok 
+== k6-copy: class ok 
+== k6-fill-r2: class ok 
+== k6-copy-r2: class ok 
+## end: reset ok True, gate ok True
+job: ok
+job time: 974 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[   92.777267] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[   92.780237] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 184 us
+[   93.403617] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 233 us
+SUMMARY: k: controls held; Q290 rows: fit: 13 held, 0 FAILED, 0 cannot tell/void; held out: 31 held, 0 FAILED, 0 cannot tell/void; replicate: 3 held, 0 FAILED, 0 cannot tell/void
+stage k done, health ok
+#### t 09:28:11
+== t3-s256-56: class ok 
+== t3-s256-80: class ok 
+== t3-s256-130: class ok 
+== t3-s256-220: class ok 
+== t3-s256-440: class ok 
+== t6-vtx0: class ok 
+== t6-hang: class ok 
+## end: reset ok True, gate ok True
+job: ok
+job time: 376 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  193.325076] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  193.327851] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 146 us
+[  193.930334] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 218 us
+note: t's kernel.log has a fault/hung line after the held TA fault (expected)
+SUMMARY: t: T0 control held; 11 void jobs; hypotheses by ladder (H-TIME / H-INSTR-H-ITER): T1 False/False, T2 False/False, T3 None/None, T4 False/False; rows: held out: 47 held, 53 FAILED, 24 cannot tell/void; refuted ['H-INSTR (~440 instructions per instance)', 'H-INSTR = H-ITER (the body is 8 instructions)', 'H-ITER', 'H-ITER (54-55 iterations whatever the body)', "H-TIME (a load's latency is hidden on a fill, not on 8x8)", 'H-TIME (~121 us per instance; same occupancy, instruction-bound loop)', 'H-TIME = H-INSTR (440 / 16 = 27.5)', 'H-TIME = H-INSTR (440 / 4 = 110)']; cannot tell ['H-INSTR = H-ITER (a count, not a time)', 'H-TIME (fewer resident instances run faster: the loop must be longer to take ~121 us)']; replicate: 6 held, 0 FAILED, 0 cannot tell/void; control: 9 held, 0 FAILED, 0 cannot tell/void; a control failed or is void: the ladders are cannot tell
+stage t done, health ok
+#### d0 09:29:33
+## preflight ok: {"srcversion_loaded": "B21FDA82BD5E5CB5A627E3B", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+## arm std: ok True rate 968.8533832225232
+== d0-tri64: class ok 
+== d0-tri64-r2: class ok 
+== d1-partial: class ok 
+## end: reset ok True, gate ok True
+job: ok
+job time: 744 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  205.363645] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  205.366485] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 140 us
+[  205.978197] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 200 us
+SUMMARY: d0: controls held (D0 and D1: E747 reproduced, dispatch 100%); rows: fit: 3 held, 0 FAILED, 0 cannot tell/void; control: 6 held, 0 FAILED, 0 cannot tell/void
+GATE d0 OPEN run=1794299374-1402
+stage d0 done, health ok
+#### d1 09:29:41
+## preflight ok: {"srcversion_loaded": "B21FDA82BD5E5CB5A627E3B", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+## arm std: ok True rate 963.8166224034167
+== d2-0x320: class trigfail 
+## stop: reset ok True, gate ok True
+## STOP 4: d2-0x320: trigfail
+STOP: stage d1 exited 4 (see /Users/jtorra/src/scratch/resgx545/closing2/r1-events/out/d1.log; 255 or 142 = ssh lost or the alarm: a freeze, boot nothing)

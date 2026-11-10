@@ -1,0 +1,39 @@
+case	quantity	value	model	set
+d2-0x320	knob0624_first	0x2fe	knob (render_pb_pages 0x320: 0x0624 = P - 0x22, S1b)	control
+d2-0x320	raise	yes (dword 38 = 0x20)	S1 post hoc (x-1350/1500-0x320, HP1)	heldout
+d2-0x320	bit19_entries	>=1 in slot 0	H-RAISE (bit 19 only in raise jobs); H-THRESH (the TA reaches thr0 here too)	heldout
+d2-0x320	bit19_entries_alt	0	H-NEVER (or slot 0 full: cannot tell)	alternative
+d2-0x320	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d2-0x320-r2	knob0624_first	0x2fe	knob (render_pb_pages 0x320: 0x0624 = P - 0x22, S1b)	control
+d2-0x320-r2	raise	yes (dword 38 = 0x20)	S1 post hoc (x-1350/1500-0x320, HP1)	heldout
+d2-0x320-r2	bit19_entries	>=1 in slot 0	H-RAISE (bit 19 only in raise jobs); H-THRESH (the TA reaches thr0 here too)	heldout
+d2-0x320-r2	bit19_entries_alt	0	H-NEVER (or slot 0 full: cannot tell)	alternative
+d2-0x320-r2	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d2-0x320-r3	knob0624_first	0x2fe	knob (render_pb_pages 0x320: 0x0624 = P - 0x22, S1b)	control
+d2-0x320-r3	raise	yes (dword 38 = 0x20)	S1 post hoc (x-1350/1500-0x320, HP1)	heldout
+d2-0x320-r3	bit19_entries	>=1 in slot 0	H-RAISE (bit 19 only in raise jobs); H-THRESH (the TA reaches thr0 here too)	heldout
+d2-0x320-r3	bit19_entries_alt	0	H-NEVER (or slot 0 full: cannot tell)	alternative
+d2-0x320-r3	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d3-0x3a0	knob0624_first	0x37e	knob (0x3a0 - 0x22)	control
+d3-0x3a0	raise	no (dword 38 = 0)	proposal D3 (above S1's post-hoc step; S1b's HP1 limit 0x2fe <= C < 0x3de allows either)	heldout
+d3-0x3a0	bit19_entries	0	H-RAISE (no raise: no bit 19)	heldout
+d3-0x3a0	bit19_entries_alt	>=1 in slot 0	H-THRESH (whenever the TA reaches thr0)	alternative
+d3-0x3a0	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d3-0x3a0-r2	knob0624_first	0x37e	knob (0x3a0 - 0x22)	control
+d3-0x3a0-r2	raise	no (dword 38 = 0)	proposal D3 (above S1's post-hoc step; S1b's HP1 limit 0x2fe <= C < 0x3de allows either)	heldout
+d3-0x3a0-r2	bit19_entries	0	H-RAISE (no raise: no bit 19)	heldout
+d3-0x3a0-r2	bit19_entries_alt	>=1 in slot 0	H-THRESH (whenever the TA reaches thr0)	alternative
+d3-0x3a0-r2	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d3-0x3a0-r3	knob0624_first	0x37e	knob (0x3a0 - 0x22)	control
+d3-0x3a0-r3	raise	no (dword 38 = 0)	proposal D3 (above S1's post-hoc step; S1b's HP1 limit 0x2fe <= C < 0x3de allows either)	heldout
+d3-0x3a0-r3	bit19_entries	0	H-RAISE (no raise: no bit 19)	heldout
+d3-0x3a0-r3	bit19_entries_alt	>=1 in slot 0	H-THRESH (whenever the TA reaches thr0)	alternative
+d3-0x3a0-r3	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d4-0x422	knob0624_first	0x400	knob (default 0x422; E704 control c-1500-0x422)	control
+d4-0x422	raise	no (dword 38 = 0)	E704 (S1 frozen)	control
+d4-0x422	bit19_entries	0	H-RAISE; H-THRESH too if the TA does not reach thr0 here	heldout
+d4-0x422	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
+d4-0x422-r2	knob0624_first	0x400	knob (default 0x422; E704 control c-1500-0x422)	control
+d4-0x422-r2	raise	no (dword 38 = 0)	E704 (S1 frozen)	control
+d4-0x422-r2	bit19_entries	0	H-RAISE; H-THRESH too if the TA does not reach thr0 here	heldout
+d4-0x422-r2	D5_bit3_pulses	the EVENT_STATUS bit-3 rising pulses of the job's timeline = the ring's bit-19 entries, in the same order among the other mapped bits (pa1 bit = 22 - status bit)	D5 (reversed order, E155/E747)	heldout
