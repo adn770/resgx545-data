@@ -1,0 +1,9 @@
+name	stage	set	risk	P	knobs	rt	args	rc	class	hypo
+ix-c	g-e4w	control	safe	-	stophang	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels "$S/p1139-green.bin"	0	ok	-
+ix32-n-r1	g-e4w	heldout	safe	-	hypo:ix32-n:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x02000000 "$S/p1139-green.bin"	0	ok	ix32-n
+ix32-n-r2	g-e4w	replicate	safe	-	hypo:ix32-n:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x02000000 "$S/p1139-green.bin"	0	ok	ix32-n
+ix32-25-r1	g-e4w	heldout	safe	-	hypo:ix32-25:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 "$S/p1139-green.bin"	3	fault	ix32-25
+ix32-25-r2	g-e4w	replicate	safe	-	hypo:ix32-25:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 "$S/p1139-green.bin"	-	skipped	ix32-25
+ix32-2425-r1	g-e4w	heldout	safe	-	hypo:ix32-2425:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x01000000 "$S/p1139-green.bin"	3	fault	ix32-2425
+ix32-2425-r2	g-e4w	replicate	safe	-	hypo:ix32-2425:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x01000000 "$S/p1139-green.bin"	-	skipped	ix32-2425
+ix-25	g-e4w	control	safe	-	hypo:ix-25:1	-	probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x02000000 "$S/p1139-green.bin"	3	fault	ix-25

@@ -1,0 +1,92 @@
+## stage p-f
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71 /home/jtorra/sgxfive-test-s1b
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803  /home/jtorra/regtimeline
+## knobs at start
+render_pb_pages=0x00000422
+alias_skip=0x00000000
+## kmsg marker arrived
+## clock
+Tue Nov 10 00:24:51 CET 2026
+## S1b safety rules: see the header of lib_s1.sh (allow-listed knobs only)
+== f-dpm-0 set=control risk=safe P=0x23 knobs=[alias_skip=0x0 stophang] rt=-
+  render_pb_pages written 0x23, read back 0x00000023
+  alias_skip written 0x0, read back 0x00000000
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 tri: render context for targets up to 1024x768 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+tri 1024x768 #1: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #2: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+  kept f-dpm-0.txt: 758 bytes raw, raw sha256 409069bbc422e80bee44b3f705a4645388711928e536bd35fb20b63ed9c4ff47
+  kept f-dpm-0.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept f-dpm-0.after.buf09.bin: 236 bytes raw, raw sha256 74d2b77cf14593e36024154206df2dc16152f6e952ffe987127395305d7cea1c
+  kept f-dpm-0.after.regs.txt: 6474 bytes raw, raw sha256 8185a63388c6e740cf62056f4bb14d834ff69283ae99e97ffd2f4f836ef5f067
+  class ok
+== f-dpm-1e-r1 set=heldout risk=safe P=0x23 knobs=[alias_skip=0x1e hypo:f-dpm-1e:1] rt=-
+  render_pb_pages written 0x23, read back 0x00000023
+  alias_skip written 0x1e, read back 0x0000001e
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 tri: render context for targets up to 1024x768 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+tri 1024x768 #1: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #2: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+  kept f-dpm-1e-r1.txt: 758 bytes raw, raw sha256 409069bbc422e80bee44b3f705a4645388711928e536bd35fb20b63ed9c4ff47
+  kept f-dpm-1e-r1.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept f-dpm-1e-r1.after.buf09.bin: 236 bytes raw, raw sha256 74d2b77cf14593e36024154206df2dc16152f6e952ffe987127395305d7cea1c
+  kept f-dpm-1e-r1.after.regs.txt: 6474 bytes raw, raw sha256 9f977685282f25ed230daf52c1feb7cc7566d16cafadc50478de899e02b5bfda
+  class ok
+== f-dpm-1e-r2 set=replicate risk=safe P=0x23 knobs=[alias_skip=0x1e hypo:f-dpm-1e:1] rt=-
+  render_pb_pages written 0x23, read back 0x00000023
+  alias_skip written 0x1e, read back 0x0000001e
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 tri: render context for targets up to 1024x768 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+tri 1024x768 #1: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #2: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+  kept f-dpm-1e-r2.txt: 758 bytes raw, raw sha256 409069bbc422e80bee44b3f705a4645388711928e536bd35fb20b63ed9c4ff47
+  kept f-dpm-1e-r2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept f-dpm-1e-r2.after.buf09.bin: 236 bytes raw, raw sha256 7e129f9f88c78c57dbfcc41fee2d4f70d16fb7f47167584430121d5dc82240bd
+  kept f-dpm-1e-r2.after.regs.txt: 6474 bytes raw, raw sha256 789b4fd156f8af7fe533c1d9e402d98a9fc09edc4aea86fe26ce5e21d175117e
+  class ok
+== f-dpm-dc0-r1 set=repeat risk=safe P=0x23 knobs=[alias_skip=0xdc0 hypo:f-dpm-dc0:1] rt=-
+  render_pb_pages written 0x23, read back 0x00000023
+  alias_skip written 0xdc0, read back 0x00000dc0
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 tri: render context for targets up to 1024x768 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+tri 1024x768 #1: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #2: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+  kept f-dpm-dc0-r1.txt: 758 bytes raw, raw sha256 409069bbc422e80bee44b3f705a4645388711928e536bd35fb20b63ed9c4ff47
+  kept f-dpm-dc0-r1.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept f-dpm-dc0-r1.after.buf09.bin: 236 bytes raw, raw sha256 7e129f9f88c78c57dbfcc41fee2d4f70d16fb7f47167584430121d5dc82240bd
+  kept f-dpm-dc0-r1.after.regs.txt: 6474 bytes raw, raw sha256 927f7e3e139d4c188bf39abdf29e360d2f2545d63ae01a1ba2d4347dfe9ea7b4
+  class ok
+== f-dpm-dc0-r2 set=repeat risk=safe P=0x23 knobs=[alias_skip=0xdc0 hypo:f-dpm-dc0:1] rt=-
+  render_pb_pages written 0x23, read back 0x00000023
+  alias_skip written 0xdc0, read back 0x00000dc0
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 tri: render context for targets up to 1024x768 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) 
+tri 1024x768 #1: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #2: overflowed, 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+  kept f-dpm-dc0-r2.txt: 758 bytes raw, raw sha256 409069bbc422e80bee44b3f705a4645388711928e536bd35fb20b63ed9c4ff47
+  kept f-dpm-dc0-r2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept f-dpm-dc0-r2.after.buf09.bin: 236 bytes raw, raw sha256 7e129f9f88c78c57dbfcc41fee2d4f70d16fb7f47167584430121d5dc82240bd
+  kept f-dpm-dc0-r2.after.regs.txt: 6474 bytes raw, raw sha256 acd1dfb00aa3c371f3f9c621130b5758346e25e8aa870d30a61653fa92b617b8
+  class ok
+== f-ctl0 set=control risk=risky P=- knobs=[alias_skip=0x1 hypo:f-ctl0:1] rt=-
+  alias_skip written 0x1, read back 0x00000001
+  cmd: /home/jtorra/sgxfive-test-s1b tri -n 2 --keep-going --wait-ms 6000
+  rc 1 tri: render context for targets up to 64x64 job: failed: job faulted, context lost (Input/output error) 
+  kept f-ctl0.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept f-ctl0.dmesg: 3410 bytes raw, raw sha256 03c6757891f8c676e92c70e0eecd0ea2702ad4c25c92614231fe10195f627a5a
+  kept f-ctl0.after.buf09.bin: 236 bytes raw, raw sha256 035689af6477152456fb640907620cef66e2a9b20ef982a8803d2c8b88af6aac
+  kept f-ctl0.after.regs.txt: 6474 bytes raw, raw sha256 df721fb4e3158d95e7f7946684a015479fc5f358855d81b20fbbb1c8cc393420
+  class fault
+  fault 1 of at most 1 in group f-ctl0, 1 of at most 3 in the stage (a hypothesis: measured)
+## end: 6 jobs of p-f
+## kernel log: 6 case markers kept in /home/jtorra/s1b-out/p-f/kernel.log

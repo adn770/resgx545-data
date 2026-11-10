@@ -1,0 +1,25 @@
+#stage g-e1
+#need $S/p1139-green.bin
+# E1 (geometry, S1b item 7): Q273/Q210, where the raise stops below P = 0x3e0.  S1 (post hoc): raises
+# at thr0 <= 0x2de, none at thr0 >= 0x3be, for 1350 and 1500 alike.  Here 1350 and 1500 at P = 0x320 .. 0x3c0.  HP1:
+# one step P for both scenes (raise below a P*, none from P* on, the same P* for both; S1's post-hoc limit on the raised
+# threshold, 0x2fe <= C < 0x3de, says the same); HPS: the step differs by scene.  Controls ONLY from raises and
+# non-raises already measured under these exact words (S1's design used a held-out prediction as a control): the
+# negative c-1500-0x422 and the positive p-1350-0x300.  Knob proof per job: the job's own 0x0624 rows (not the first
+# sample, which is the previous job's).  s-1350/s-1380 at 0x3e0 repeat S1's dword-36 step (post hoc 2 -> 3).
+c-1500-0x422|control|safe|0x422|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+p-1350-0x300|control|safe|0x300|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x320|heldout|safe|0x320|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x320|heldout|safe|0x320|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x340|heldout|safe|0x340|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x340|heldout|safe|0x340|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x360|heldout|safe|0x360|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x360|heldout|safe|0x360|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x380|heldout|safe|0x380|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x380|heldout|safe|0x380|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x3a0|heldout|safe|0x3a0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x3a0|heldout|safe|0x3a0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1350-0x3c0|heldout|safe|0x3c0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+x-1500-0x3c0|heldout|safe|0x3c0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+s-1350-0x3e0|heldout|safe|0x3e0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+s-1380-0x3e0|heldout|safe|0x3e0|stophang|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1380 --dump-render "$W/dump" "$S/p1139-green.bin"

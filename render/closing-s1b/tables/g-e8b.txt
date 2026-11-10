@@ -1,0 +1,16 @@
+#stage g-e8b
+#need $S/p1139-green.bin
+#need $S/pix-red.bin
+# E8b (geometry, S1b item 6): Q073/Q241, a table where HD and HP differ.  S1's six jobs had HD and HP
+# predict the same winner everywhere, and the translucent images equal the opaque ones (post hoc).  Here the
+# translucent object's compare is ALWAYS (ISP0 bits 24:22 = 7, pass type 1: 0x03c00200) and it is the farther one:
+# t-2 (translucent second): HD green, HL/HP/HN red; t-1 (translucent first): HP green, HL/HD/HN red.  HN ('pass type
+# changes nothing', S1 post hoc) predicts as the opaque control o-2-alw-far (list order).  Controls: S1's two opaque
+# jobs and o-2-alw-far (an opaque ALWAYS second object draws although farther).
+t-opq-near|control|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-opq-far|control|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-2-alw-far|control|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x01c00200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-2-alw-far|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x03c00200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-2-alw-far-r2|replicate|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x03c00200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-1-alw-far|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x03c00200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-1-alw-far-r2|replicate|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x03c00200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"

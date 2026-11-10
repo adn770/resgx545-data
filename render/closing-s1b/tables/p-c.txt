@@ -1,0 +1,38 @@
+#stage p-c
+#need $S/pds_iter_xy.bin
+#need $S/vtx_coords.bin
+#need $S/s1c-e709-x.bin
+#need $S/s1c-e709-y.bin
+#need $S/s1c-u-x.bin
+#need $S/s1c-u-y.bin
+#need $S/s1c-k7-x.bin
+#need $S/s1c-k7-y.bin
+#need $S/s1c-k0-x.bin
+#need $S/s1c-k0-y.bin
+#need $S/s1c-k3-x.bin
+#need $S/s1c-k3-y.bin
+#need $S/s1c-g23-x.bin
+#need $S/s1c-g23-y.bin
+# C (pixel, S1b item 9): Q276.  The order control c-u runs three times and passes by a FROZEN criterion
+# (tag-2 fraction >= 0.98; S1 required exactly 1.0 and saw 0.990: five sources (16,25), (16,27), (17..19,27) kept the
+# first write; HCL names that cluster as a hypothesis).  The replicate c-k7-x-rep is compared with c-k7-x (S1's scorer
+# dropped it).  HQ (S1 post hoc): the predicate gates o1 per lane, g25 = the pixel's lane in its 2x2 quad: k7 no tag 2,
+# k0 a quarter all at (even, even) sources, k3 a quarter all at (odd, odd).  g23's HP value is refrozen from S1's
+# 0.253 (fit data; S1's 0.5 was the generator's guess).  HA, HN as in S1.
+c-e709-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-e709-x.bin"
+c-e709-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-e709-y.bin"
+c-u-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-x.bin"
+c-u-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-y.bin"
+c-u-r2-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-x.bin"
+c-u-r2-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-y.bin"
+c-u-r3-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-x.bin"
+c-u-r3-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-y.bin"
+c-k7-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-x.bin"
+c-k7-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-y.bin"
+c-k7-x-rep|replicate|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-x.bin"
+c-k0-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k0-x.bin"
+c-k0-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k0-y.bin"
+c-k3-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k3-x.bin"
+c-k3-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k3-y.bin"
+c-g23-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-g23-x.bin"
+c-g23-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-g23-y.bin"

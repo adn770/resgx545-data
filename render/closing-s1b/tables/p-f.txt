@@ -1,0 +1,13 @@
+#stage p-f
+# F (pixel, S1b item 1): Q076 under partial renders.  S1's f-dpm-1f (mask 0x1f) contained buffer 0, whose
+# own fault it reproduced: 0x1e is buffers 1 to 4.  f-dpm-dc0 repeats S1's job (scored 'split' by S1's regex; post hoc
+# exact 2 of 2: here a frozen repeat).  f-dpm-0 is the control that can fail (no mask: partial renders exact).  f-ctl0
+# (buffer 0, E573's fault) shows the knob bites; it faults by design: a hypothesis row, last.  The mask is written,
+# read back and marked in the kernel log before each job and put back to 0 after it.  Scorer: score_pix.score_f
+# (renders_exact accepts `tri: 0 of 2 renders ok, 2 overflowed` with every diff 0).
+f-dpm-0|control|safe|0x23|alias_skip=0x0 stophang|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-1e-r1|heldout|safe|0x23|alias_skip=0x1e hypo:f-dpm-1e:1|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-1e-r2|replicate|safe|0x23|alias_skip=0x1e hypo:f-dpm-1e:1|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-dc0-r1|repeat|safe|0x23|alias_skip=0xdc0 hypo:f-dpm-dc0:1|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-dc0-r2|repeat|safe|0x23|alias_skip=0xdc0 hypo:f-dpm-dc0:1|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-ctl0|control|risky|-|alias_skip=0x1 hypo:f-ctl0:1|-|tri -n 2 --keep-going --wait-ms 6000

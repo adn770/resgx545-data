@@ -1,0 +1,17 @@
+#stage p-b2
+# B2 (pixel, S1b item 5): Q200, where the lower-binade deviation region comes from.  Coverage fix
+# (b2model.py: the clear 1.0 is not covered).  Every job keeps its parameter buffer (--dump-render) so the stored
+# (clipped) polygon is read.  HT: the region is fixed in target coordinates (every job's map inside 256 x 128 equals
+# d-ctl's, d-shift's the d-ctl map on its coverage); HV: it moves with the triangle; HCLIP (S1 post hoc candidate,
+# frozen here): the plane is set up from the clipped polygon, so a job deviates iff its stored polygon is not the
+# original triangle, and two jobs with the same stored polygon deviate alike.  Target ladder 128/192/256/512 and a
+# smaller triangle (448, 384) carrying the same dyadic plane (A = 1/8192); d-shift and d-tall repeat S1's (post hoc: no
+# deviating pixel).
+d-ctl|control|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-ctl-r2|replicate|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-shift|repeat|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 16384,8192,147456,8192,16384,139264 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-t192|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 192 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 64 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-t256|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 256 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 80 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-tall|repeat|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 144 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-L448|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,114688,0,0,114688 --tri-z 0.125,0.1796875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"
+d-L384|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,98304,0,0,98304 --tri-z 0.125,0.171875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels --dump-render "$W/dump"

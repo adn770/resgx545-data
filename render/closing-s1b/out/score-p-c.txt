@@ -1,0 +1,16 @@
+C: o1 tag per source pixel from the x/y pairs: tag 2 = p1 true write, 2' = the !p1 write
+config  tag 2  tag 2'  frac 2  tag 5 pairs  tag 2 by (sx&1, sy&1)                               
+c-e709  499    0       1.000   26           {(0, 0): 127, (1, 0): 122, (0, 1): 124, (1, 1): 126}
+c-g23   115    370     0.237   19           {(0, 0): 30, (1, 0): 27, (0, 1): 28, (1, 1): 30}    
+c-k0    124    366     0.253   24           {(0, 0): 124}                                       
+c-k3    116    352     0.248   25           {(1, 1): 116}                                       
+c-k7    0      486     0.000   27           {}                                                  
+c-u     486    5       0.990   8            {(0, 0): 126, (1, 0): 120, (0, 1): 119, (1, 1): 121}
+c-u-r2  482    4       0.992   33           {(0, 0): 125, (1, 0): 119, (0, 1): 118, (1, 1): 120}
+c-u-r3  488    2       0.996   18           {(0, 0): 124, (1, 0): 121, (0, 1): 121, (1, 1): 122}
+
+replicate c-k7-x-rep: 61 dwords differ from c-k7-x; tag-2 fraction 0.000 vs 0.000 (same within 0.07)
+c-u: sources keeping the first write [(16, 25), (16, 27), (17, 27), (18, 27), (19, 27)]: the cluster of HCL (S1 post hoc: the 5-source cluster keeps the first write)
+c-u-r2: sources keeping the first write [(16, 27), (17, 27), (18, 27), (19, 27)]: NOT the cluster of HCL (S1 post hoc: the 5-source cluster keeps the first write)
+c-u-r3: sources keeping the first write [(16, 27), (17, 27)]: NOT the cluster of HCL (S1 post hoc: the 5-source cluster keeps the first write)
+SUMMARY: controls pass; held out: consistent none, refuted none; repeat only: consistent ["HP-g23 (refrozen from S1's 0.253: S1 post hoc) (1)", 'HQ (S1 post hoc: g25 = the lane in the 2x2 quad) (3)'], refuted ['HA (3 of 3)', 'HN (4 of 4)']; replicates c-k7-x-rep same

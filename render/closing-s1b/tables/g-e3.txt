@@ -1,0 +1,38 @@
+#stage g-e3
+#need $S/p1139-green.bin
+#need $S/e3i-ctl__0.bin
+#need $S/e3i-w3__0.bin
+#need $S/e3i-w7__0.bin
+#need $S/e3i-w0p003__0.bin
+#need $S/e3i-w3em5__0.bin
+#need $S/e3z-flat099__0.bin
+#need $S/pix_green.bin
+#need $S/e3z-cut-p__0.bin
+#need $S/e3z-cut-m__0.bin
+#need $S/e3k-ctl__0.bin
+#need $S/e3k-i-c1e5__0.bin
+#need $S/e3k-i-c3e5__0.bin
+#need $S/e3k-i-c1e4__0.bin
+#need $S/e3k-i-c3e4__0.bin
+#need $S/e3k-i-c1e3__0.bin
+# E3 subset (geometry, S1b item 8): Q230, gated PER GROUP (a group counts only if its own controls hold).
+# e3i: the w scan inside the guard band (x, y scaled by w, so no clip-made vertex; S1's w = 1e-3/1e-5 jobs were
+# clipped, which hid the reciprocal rule), with w where RZ32 and RN32 of 1/w differ.  e3z: the z cut scored by vertex
+# identity (S1 post hoc: both cuts are clipped polygons; HC-orig requires the ORIGINAL three).  e3k: the w clamp; the
+# control is S1's e3k-ctl predicted as S1 measured it ('replace': an object with 1/w = 1/clamp, inside 31.5..32.5);
+# a clamp ladder 1e-5 .. 1e-3 over w = 1e-5 in band: HREP (S1 post hoc) predicts 1/w = 1/clamp and x, y divided by the
+# clamp (the triangle shrinks by w/clamp about the centre); HREM the object removed.
+e3i-ctl|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3i-ctl__0.bin"
+e3z-flat099|control|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-flat099__0.bin"
+e3k-ctl|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/e3k-ctl__0.bin"
+e3i-w3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3i-w3__0.bin"
+e3i-w7|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3i-w7__0.bin"
+e3i-w0p003|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3i-w0p003__0.bin"
+e3i-w3em5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3i-w3em5__0.bin"
+e3z-cut-p|repeat|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-p__0.bin"
+e3z-cut-m|repeat|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-m__0.bin"
+e3k-i-c1e5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3727c5ac --dump-render "$W/dump" "$S/e3k-i-c1e5__0.bin"
+e3k-i-c3e5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x37fba882 --dump-render "$W/dump" "$S/e3k-i-c3e5__0.bin"
+e3k-i-c1e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x38d1b717 --dump-render "$W/dump" "$S/e3k-i-c1e4__0.bin"
+e3k-i-c3e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x399d4952 --dump-render "$W/dump" "$S/e3k-i-c3e4__0.bin"
+e3k-i-c1e3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/e3k-i-c1e3__0.bin"

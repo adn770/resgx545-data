@@ -1,0 +1,7 @@
+name	stage	set	risk	P	knobs	rt	args	rc	class	hypo
+f-dpm-0	p-f	control	safe	0x23	alias_skip=0x0 stophang	-	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	-
+f-dpm-1e-r1	p-f	heldout	safe	0x23	alias_skip=0x1e hypo:f-dpm-1e:1	-	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	f-dpm-1e
+f-dpm-1e-r2	p-f	replicate	safe	0x23	alias_skip=0x1e hypo:f-dpm-1e:1	-	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	f-dpm-1e
+f-dpm-dc0-r1	p-f	repeat	safe	0x23	alias_skip=0xdc0 hypo:f-dpm-dc0:1	-	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	f-dpm-dc0
+f-dpm-dc0-r2	p-f	repeat	safe	0x23	alias_skip=0xdc0 hypo:f-dpm-dc0:1	-	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	f-dpm-dc0
+f-ctl0	p-f	control	risky	-	alias_skip=0x1 hypo:f-ctl0:1	-	tri -n 2 --keep-going --wait-ms 6000	1	fault	f-ctl0

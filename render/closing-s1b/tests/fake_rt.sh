@@ -1,0 +1,3 @@
+#!/bin/sh
+# fake regtimeline TOTAL LEAD REGS -- COMMAND...
+shift 3; [ "$1" = "--" ] && shift; exec "$@"

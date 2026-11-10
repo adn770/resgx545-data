@@ -1,0 +1,22 @@
+#stage g-e5
+#need $S/pix_pa0.bin
+#need $S/vtx_c8.bin
+#need $S/vtx_c2.bin
+#need $S/p1131-fmt-8__0.bin
+#need $S/p1131-fmt-2__0.bin
+# E5 (geometry, S1b item 3): Q272/Q164, the a = 8 and a = 12 events.  HO is the base histogram (2288, no
+# vertex lost), as the proposal defined it (S1's scorer called any 0 of 3 'HO').  a8: S1 lost vertex 70 in 2 of 3 runs
+# (post hoc, q164_fate): HL70 is that reading frozen (count 2156, lost 70); three runs with the runner's reset before
+# each (as S1) and three with no reset before (noreset: the state of the previous a8 job carries).  HC (state carry):
+# the two triples differ.  a12: E702's 2028 (HD), the base (HO), S1's 2582 (HS1, post hoc).  The vertex fate is scored
+# with q164_fate's functions on the PB dump (lost ids).  Programs as S1 (probes/ta p1131-progs.toml).
+r-n8-a1|control|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n2-a9|control|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 7^=0x00000400 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c2.bin" "$S/p1131-fmt-2__0.bin"
+r-n8-a8-r1|repeat|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-r2|repeat|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-r3|repeat|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-nr-r1|heldout|risky|-|noreset stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-nr-r2|replicate|risky|-|noreset stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-nr-r3|replicate|risky|-|noreset stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a12-r1|repeat|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000680 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a12-r2|repeat|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000680 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"

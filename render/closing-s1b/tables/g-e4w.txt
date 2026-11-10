@@ -1,0 +1,18 @@
+#stage g-e4w
+#need $S/p1139-green.bin
+# E4w (geometry, S1b item 2): Q112, the positive test of the index width.  Tool change: probe --tri
+# --index-width 32 writes the index list 0..14 as 32-bit words and sets VDM word 2 bit 25 (the bit S1's g-e4 left
+# with a HW signature: over the 16-bit list it faulted 0xd0008, 2 of 2); --vdm 2^=V flips bits after it.
+# HW32 (bit 25 selects 32-bit indices): ix32-25 draws E414's object word for word 2 of 2, and ix32-n (bit 25 cleared
+# over the 32-bit list: read as 16-bit, indices 0,0,1,0,2,0,...) does not; ix32-2425 'same' or a hang (bit 24 alone hung
+# in S1).  HX (bit 25 is something else): ix32-25 faults as the 16-bit job.  Expected hangs and faults are hypotheses:
+# every row but ix-c is a hypo row (measured, at most its group's events); ix-25 (the S1 fault, a control) last.
+# Knob proof: the probe line's '32-bit indices' and tests/emit_checks.py (the words, with the tool's mock).
+ix-c|control|safe|-|stophang|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+ix32-n-r1|heldout|safe|-|hypo:ix32-n:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x02000000 "$S/p1139-green.bin"
+ix32-n-r2|replicate|safe|-|hypo:ix32-n:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x02000000 "$S/p1139-green.bin"
+ix32-25-r1|heldout|safe|-|hypo:ix32-25:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 "$S/p1139-green.bin"
+ix32-25-r2|replicate|safe|-|hypo:ix32-25:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 "$S/p1139-green.bin"
+ix32-2425-r1|heldout|safe|-|hypo:ix32-2425:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x01000000 "$S/p1139-green.bin"
+ix32-2425-r2|replicate|safe|-|hypo:ix32-2425:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --index-width 32 --vdm 2^=0x01000000 "$S/p1139-green.bin"
+ix-25|control|safe|-|hypo:ix-25:1|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x02000000 "$S/p1139-green.bin"
