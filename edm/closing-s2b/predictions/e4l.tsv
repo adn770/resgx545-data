@@ -1,0 +1,17 @@
+case	quantity	value	model	set
+m90	hold_units	2257858..2267008	knob (fit: S2 run 3, 1.5 n + 15 within 2)	control
+m90	held	90	design (exit mid-period: ((H + 0.5) * 25000 - 82) / 1.5)	control
+m90	q	4	cap min(H, 4) (fit: S2 run 3, 10 of 10 holds of 6, 18, 90 ticks)	heldout
+m90	q_alt	0	LOST	alternative
+m90	q_alt	1	ONE	alternative
+m90	q_alt	90	ALL	alternative
+m90	pa2_signature	the first 3 entries after the exit 0x01061a74; the 4th an EVENT_TIMER sample, (400000 - pa2[23:0]) / 16 = first entry - last held grid tick within 25	fit: S2 run 3 (12 clocks after a reload: queued, latched on arrival)	heldout
+m90	window_count	slot-0 logged + drops = open_ms * 0.99746 - H + min(H, 4) within 1.5	second instrument (fit: S2 run 3: 26, 32, 38, 74 within 0.5)	heldout
+m90-r2	hold_units	2257858..2267008	knob (fit: S2 run 3, 1.5 n + 15 within 2)	control
+m90-r2	held	90	design (exit mid-period: ((H + 0.5) * 25000 - 82) / 1.5)	control
+m90-r2	q	4	cap min(H, 4) (fit: S2 run 3, 10 of 10 holds of 6, 18, 90 ticks)	replicate
+m90-r2	q_alt	0	LOST	alternative
+m90-r2	q_alt	1	ONE	alternative
+m90-r2	q_alt	90	ALL	alternative
+m90-r2	pa2_signature	the first 3 entries after the exit 0x01061a74; the 4th an EVENT_TIMER sample, (400000 - pa2[23:0]) / 16 = first entry - last held grid tick within 25	fit: S2 run 3 (12 clocks after a reload: queued, latched on arrival)	replicate
+m90-r2	window_count	slot-0 logged + drops = open_ms * 0.99746 - H + min(H, 4) within 1.5	second instrument (fit: S2 run 3: 26, 32, 38, 74 within 0.5)	replicate
