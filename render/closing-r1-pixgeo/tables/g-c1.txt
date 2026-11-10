@@ -1,0 +1,32 @@
+#stage g-c1
+#need $S/p1139-green.bin
+# C1 (geometry, Q210/Q273): the fine ladder of the raise limit at 4096x4096, 1500 vertices (and 1350 at five
+# cells), P = 0x360 .. 0x380.  H-abs: the raise happens iff thr0 + 0x20 = P - 2 <= C, C a constant in [0x35e, 0x37e)
+# (E753's controls: raise at 0x360, none at 0x380): along P the outcome flips exactly once, raise to none.  Two flips or
+# a no-raise to raise flip refute the monotone form.  HP1: 1350 vertices flip at the same P as 1500 (each of its five
+# cells equals the 1500 cell at that P).  Knob proof: the job's own 0x0624 rows (P - 0x22).  Void: a cell whose second run
+# does not reach thr0.  D36 (side table, never gating): dword 36 = max(0x072c's page count at the first abort - 2, 0)
+# in every job, raised jobs held out; scored only where 0x072c was sampled (the gate, PREFLIGHT.md).  After the ladder
+# the step-1 cell (g-c1f, one job, ONLY=name) fixes C exactly.
+c-1500-0x360|control|safe|0x360|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+c-1500-0x380|control|safe|0x380|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x362|heldout|safe|0x362|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x364|heldout|safe|0x364|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x366|heldout|safe|0x366|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x368|heldout|safe|0x368|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x36a|heldout|safe|0x36a|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x36c|heldout|safe|0x36c|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x36e|heldout|safe|0x36e|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x370|heldout|safe|0x370|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x372|heldout|safe|0x372|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x374|heldout|safe|0x374|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x376|heldout|safe|0x376|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x378|heldout|safe|0x378|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x37a|heldout|safe|0x37a|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x37c|heldout|safe|0x37c|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1500-0x37e|heldout|safe|0x37e|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1350-0x366|heldout|safe|0x366|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1350-0x36e|heldout|safe|0x36e|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1350-0x372|heldout|safe|0x372|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1350-0x376|heldout|safe|0x376|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"
+f-1350-0x37a|heldout|safe|0x37a|stophang s072c|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x0724,0x0748|probe --tri pixel --width 4096 --height 4096 --vertices 1350 --dump-render "$W/dump" "$S/p1139-green.bin"

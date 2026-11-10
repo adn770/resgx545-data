@@ -1,0 +1,92 @@
+#stage p-c2
+#need $S/pds_iter_xy.bin
+#need $S/vtx_coords.bin
+#need $S/r1c-e709-x.bin
+#need $S/r1c-e709-y.bin
+#need $S/r1c-u-x.bin
+#need $S/r1c-u-y.bin
+#need $S/r1c-u-r2-x.bin
+#need $S/r1c-u-r2-y.bin
+#need $S/r1c-g23r4-x.bin
+#need $S/r1c-g23r4-y.bin
+#need $S/r1c-k7-x.bin
+#need $S/r1c-k7-y.bin
+#need $S/r1c-k0-x.bin
+#need $S/r1c-k0-y.bin
+#need $S/r1c-g23-x.bin
+#need $S/r1c-g23-y.bin
+#need $S/r1c-k1-x.bin
+#need $S/r1c-k1-y.bin
+#need $S/r1c-k2-x.bin
+#need $S/r1c-k2-y.bin
+#need $S/r1c-k5-x.bin
+#need $S/r1c-k5-y.bin
+#need $S/r1c-g23r5-x.bin
+#need $S/r1c-g23r5-y.bin
+#need $S/r1c-g23r3-x.bin
+#need $S/r1c-g23r3-y.bin
+#need $S/r1c-g23r0-x.bin
+#need $S/r1c-g23r0-y.bin
+#need $S/r1c-g23r20-x.bin
+#need $S/r1c-g23r20-y.bin
+#need $S/r1c-o4-k7-x.bin
+#need $S/r1c-o4-k7-y.bin
+#need $S/r1c-o4-k3-x.bin
+#need $S/r1c-o4-k3-y.bin
+#need $S/r1c-o4-k0-x.bin
+#need $S/r1c-o4-k0-y.bin
+#need $S/r1c-o4-u-x.bin
+#need $S/r1c-o4-u-y.bin
+#need $S/r1c-rd-pa-x.bin
+#need $S/r1c-rd-pa-y.bin
+#need $S/r1c-rd-g23.bin
+#need $S/r1c-rd-g25.bin
+# C2 (pixel): Q276 held out (R2-11).  S1b's p-c generator (s1pix.c_program) with new configurations; every
+# configuration is an x job and a y job (source pixel identity), predictions on the x job.
+# HQ-a/HQ-b: k = 1, 2 (which parity the tag-2 sources have); HQ-none: k = 5.  HG: g23 masks 0x20, 0x08, 0x01 (x bits 5,
+# 3, 0), 0x100000 (HG-xy y bit 4, HG-x never); masks go through a register (an immediate above 127 does not encode; the
+# register form is validated by c-g23r4, mask 0x10, against S1b's immediate form c-g23).  o4: complementary writes
+# under k = 7, 3, 0 and unpredicated.  Direct reads: o0 = g23 / g25 alone (c-rd-pa checks that o0 lands at the pixel's
+# own position).  Scoring per source: rule agreement (at most max(2, 2%) exceptions among >= 300 decoded o1 sources; the
+# proposal's '<= 2 of >= 400' would refute S1b's own fit, c-k0 having 6 exceptions of 490), not only fractions.
+c-e709-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-e709-x.bin"
+c-e709-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-e709-y.bin"
+c-u-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-u-x.bin"
+c-u-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-u-y.bin"
+c-u-r2-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-u-r2-x.bin"
+c-u-r2-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-u-r2-y.bin"
+c-g23r4-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r4-x.bin"
+c-g23r4-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r4-y.bin"
+c-o4-u-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-u-x.bin"
+c-o4-u-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-u-y.bin"
+c-rd-pa-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-rd-pa-x.bin"
+c-rd-pa-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-rd-pa-y.bin"
+c-k7-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k7-x.bin"
+c-k7-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k7-y.bin"
+c-k0-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k0-x.bin"
+c-k0-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k0-y.bin"
+c-g23-x|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23-x.bin"
+c-g23-y|repeat|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23-y.bin"
+c-k1-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k1-x.bin"
+c-k1-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k1-y.bin"
+c-k2-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k2-x.bin"
+c-k2-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k2-y.bin"
+c-k5-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k5-x.bin"
+c-k5-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k5-y.bin"
+c-g23r5-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r5-x.bin"
+c-g23r5-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r5-y.bin"
+c-g23r3-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r3-x.bin"
+c-g23r3-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r3-y.bin"
+c-g23r0-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r0-x.bin"
+c-g23r0-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r0-y.bin"
+c-g23r20-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r20-x.bin"
+c-g23r20-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-g23r20-y.bin"
+c-o4-k7-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k7-x.bin"
+c-o4-k7-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k7-y.bin"
+c-o4-k3-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k3-x.bin"
+c-o4-k3-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k3-y.bin"
+c-o4-k0-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k0-x.bin"
+c-o4-k0-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-o4-k0-y.bin"
+c-rd-g23|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-rd-g23.bin"
+c-rd-g25|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-rd-g25.bin"
+c-k1-x-rep|replicate|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r1c-k1-x.bin"

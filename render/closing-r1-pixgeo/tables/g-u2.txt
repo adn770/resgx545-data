@@ -1,0 +1,16 @@
+#stage g-u2
+# U2 (geometry, Q211): the count constant k.  E625's count formula 1 + floor((U + k - thr0) / (thr0 + s)) with U = 287
+# (HU1 = E625's measure at 4096x4096) and the default triangle: partial renders = 2 iff k >= 2 thr0 - 256 (s = 0x1f) or
+# 2 thr0 - 257 (s = 0x1e).  Ladder P = 0xa3 .. 0xa9 (thr0 129 .. 135: thresholds 2, 4, ... 14); controls P = 0xa0 (count 2)
+# and 0xb0 (count 1) from E625.  Every (k in 2..13, s in {0x1e, 0x1f}) pair is a frozen model: the scorer lists the pairs
+# the nine counts leave.  The first cell with count 1 fixes k to within 2, coupled to s by one.  Not in R1: the three
+# spacing cells at count 3 after a pause (they depend on the k found).
+k-0xa0|control|safe|0xa0|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xb0|control|safe|0xb0|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa3|heldout|safe|0xa3|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa4|heldout|safe|0xa4|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa5|heldout|safe|0xa5|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa6|heldout|safe|0xa6|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa7|heldout|safe|0xa7|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa8|heldout|safe|0xa8|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+k-0xa9|heldout|safe|0xa9|stophang expectdiff s072c|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c

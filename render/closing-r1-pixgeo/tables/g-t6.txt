@@ -1,0 +1,21 @@
+#stage g-t6
+#need $S/t6-ctl__0.bin
+#need $S/t6-c-6e5__0.bin
+#need $S/t6-c-1p5e4__0.bin
+#need $S/t6-c-2e4__0.bin
+#need $S/t6-c-6e4__0.bin
+#need $S/t6-c-7e4__0.bin
+#need $S/t6-c-1p2e3__0.bin
+# T6 (geometry, Q230): the clamp ladder.  vtx_wclip with x and y scaled by w (in band), block word 14 = the clamp,
+# chosen where RZ and RN of 1/clamp differ (6e-5 and 1.5e-4 over w 1e-5; 6e-4, 7e-4, 1.2e-3 over w 1e-4) and one cell where
+# they agree (2e-4 over 1e-5: a miss there is an error beyond 1 ulp).  Objects stay above T5's size (>= 2.4 px).  Frozen
+# per job: the RZ word, the RN word, the shrunk position x_in / clamp.  Control t6-ctl = S1b's e3k-i-c3e5 (0x47023555).
+# All five separating cells RZ or all RN closes the rounding clause; mixed closes it as 'within 1 ulp, not a rounding
+# rule' (the simulator accepts either neighbour).
+t6-ctl|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x37fba882 --dump-render "$W/dump" "$S/t6-ctl__0.bin"
+t6-c-6e5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x387ba882 --dump-render "$W/dump" "$S/t6-c-6e5__0.bin"
+t6-c-1p5e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x391d4952 --dump-render "$W/dump" "$S/t6-c-1p5e4__0.bin"
+t6-c-2e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3951b717 --dump-render "$W/dump" "$S/t6-c-2e4__0.bin"
+t6-c-6e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a1d4952 --dump-render "$W/dump" "$S/t6-c-6e4__0.bin"
+t6-c-7e4|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a378034 --dump-render "$W/dump" "$S/t6-c-7e4__0.bin"
+t6-c-1p2e3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a9d4952 --dump-render "$W/dump" "$S/t6-c-1p2e3__0.bin"

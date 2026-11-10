@@ -1,0 +1,19 @@
+#stage g-t5
+#need $S/t5-ctl-sq__0.bin
+#need $S/t5-ctl-none__0.bin
+#need $S/p1139-green.bin
+# T5 (geometry, Q230): the sub-pixel cull.  The default triangle scaled about the pixel corner (32,32) to a bounding box of
+# 0.3 .. 0.98 px (no pixel centre inside: centres are 0.5 from the corner), at 1/1024 px (--tri-unit 10).  HS-ext: an object
+# iff the extent >= T with T in (0.48, 0.96] (so 0.3 none, 0.98 present, one flip between); HS-area: iff the area >= A*.
+# The elongated 0.3 x 0.98 triangle separates them (HS-ext: the outcome of the 0.98 cell; HS-area: present iff its area
+# 0.147 exceeds the ladder's absent areas and none if below its present ones).  Controls: S1b's e3k-ctl (present) and
+# e3k-i-c1e3 (none), re-run; a failing control is cannot tell.
+t5-ctl-sq|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/t5-ctl-sq__0.bin"
+t5-ctl-none|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/t5-ctl-none__0.bin"
+s-e030|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32614,32614,32922,32691,32691,32922 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-e050|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32512,32512,33024,32640,32640,33024 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-e060|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32461,32461,33075,32614,32614,33075 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-e075|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32384,32384,33152,32576,32576,33152 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-e090|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32307,32307,33229,32538,32538,33229 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-e098|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32266,32266,33270,32517,32517,33270 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+s-elong|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 32614,32266,32922,32517,32691,33270 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"

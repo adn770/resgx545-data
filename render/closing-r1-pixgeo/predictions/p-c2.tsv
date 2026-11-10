@@ -1,0 +1,65 @@
+case	quantity	value	model	set
+c-e709-x	tag5_pairs	17-29	E709	control
+c-u-x	marker	0x303	frozen program marker (knob proof)	control
+c-u-x	ctl_min_frac	0.98	frozen criterion (S1b: 0.990)	control
+c-u-r2-x	marker	0x305	frozen program marker (knob proof)	control
+c-u-r2-x	ctl_min_frac	0.98	frozen criterion (S1b: 0.990)	control
+c-g23r4-x	marker	0x307	frozen program marker (knob proof)	control
+c-g23r4-x	rule	x:4	HG (S1b fit: x bit 4)	control
+c-k7-x	marker	0x309	frozen program marker (knob proof)	control
+c-k7-x	frac_tag2_of_o1	0.0	HQ (S1b fit)	repeat
+c-k7-x	rule	never	HQ (S1b fit)	repeat
+c-k0-x	marker	0x30b	frozen program marker (knob proof)	control
+c-k0-x	frac_tag2_of_o1	0.25	HQ (S1b fit)	repeat
+c-k0-x	rule	lane:0:A	HQ (S1b fit)	repeat
+c-k0-x	tag2_parity	0,0	HQ (S1b fit)	repeat
+c-g23-x	marker	0x30d	frozen program marker (knob proof)	control
+c-g23-x	rule	x:4	HG (S1b fit: x bit 4, 485 of 485)	repeat
+c-k1-x	marker	0x30f	frozen program marker (knob proof)	control
+c-k1-x	frac_tag2_of_o1	0.25	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k1-x	rule	lane:1:A	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k1-x	tag2_parity	1,0	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k1-x	frac_tag2_of_o1	0.25	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k1-x	rule	lane:1:B	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k1-x	tag2_parity	0,1	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k2-x	marker	0x311	frozen program marker (knob proof)	control
+c-k2-x	frac_tag2_of_o1	0.25	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k2-x	rule	lane:2:A	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k2-x	tag2_parity	0,1	HQ-a (g25 = x&1 | (y&1)<<1)	heldout
+c-k2-x	frac_tag2_of_o1	0.25	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k2-x	rule	lane:2:B	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k2-x	tag2_parity	1,0	HQ-b (g25 = (x&1)<<1 | y&1, the transpose)	heldout
+c-k5-x	marker	0x313	frozen program marker (knob proof)	control
+c-k5-x	frac_tag2_of_o1	0.0	HQ-none (a lane id is 0..3: g25 == 5 never)	heldout
+c-k5-x	rule	never	HQ-none (a lane id is 0..3: g25 == 5 never)	heldout
+c-g23r5-x	marker	0x315	frozen program marker (knob proof)	control
+c-g23r5-x	rule	x:5	HG (g23 low bits carry x: bit 5)	heldout
+c-g23r3-x	marker	0x317	frozen program marker (knob proof)	control
+c-g23r3-x	rule	x:3	HG (g23 low bits carry x: bit 3)	heldout
+c-g23r0-x	marker	0x319	frozen program marker (knob proof)	control
+c-g23r0-x	rule	x:0	HG (g23 low bits carry x: bit 0)	heldout
+c-g23r20-x	marker	0x31b	frozen program marker (knob proof)	control
+c-g23r20-x	rule	y:4	HG-xy (g23 = y<<16 | x: bit 20 is y bit 4)	heldout
+c-g23r20-x	rule	never	HG-x (g23 = x: bit 20 never)	heldout
+c-o4-k7-x	marker	0x31d	frozen program marker (knob proof)	control
+c-o4-k7-x	o4_class	5	HN-o4 (the o4 write is not gated)	heldout
+c-o4-k7-x	o4_class	5'	HG-o4 (o4 gated like o1 by g25 == k)	heldout
+c-o4-k7-x	o4_class	5	H-g25-7 (o4 landings are instances with g25 == 7)	heldout
+c-o4-k3-x	marker	0x31f	frozen program marker (knob proof)	control
+c-o4-k3-x	o4_class	5	HN-o4 (the o4 write is not gated)	heldout
+c-o4-k3-x	o4_class	5'	HG-o4 (o4 gated like o1 by g25 == k)	heldout
+c-o4-k3-x	o4_class	5'	H-g25-7 (o4 landings are instances with g25 == 7)	heldout
+c-o4-k0-x	marker	0x321	frozen program marker (knob proof)	control
+c-o4-k0-x	o4_class	5	HN-o4 (the o4 write is not gated)	heldout
+c-o4-k0-x	o4_class	5	HG-o4 (o4 gated like o1 by g25 == k)	heldout
+c-o4-k0-x	o4_class	5'	H-g25-7 (o4 landings are instances with g25 == 7)	heldout
+c-o4-u-x	marker	0x323	frozen program marker (knob proof)	control
+c-o4-u-x	o4_class	5	HN-o4 (the o4 write is not gated)	control
+c-o4-u-x	o4_class	5	HG-o4 (o4 gated like o1 by g25 == k)	control
+c-o4-u-x	o4_class	5	H-g25-7 (o4 landings are instances with g25 == 7)	control
+c-rd-pa-x	marker	0x325	frozen program marker (knob proof)	control
+c-rd-pa-x	rd_identity	0.9	o0 lands at the pixel's own position (>= 90% of written pixels)	control
+c-rd-g23	rd_value	g23:y<<16|x	HG-xy (g23 = y<<16 | x)	heldout
+c-rd-g25	rd_value	g25:A	HQ-a (g25 = (x&1) | (y&1)<<1)	heldout
+c-rd-g25	rd_value	g25:B	HQ-b (g25 = (x&1)<<1 | (y&1))	heldout
+c-k1-x-rep	frac_tag2_of_o1	same as c-k1-x	repeat	replicate

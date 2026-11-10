@@ -1,0 +1,24 @@
+#stage g-t2
+#need $S/z-flat099__0.bin
+#need $S/pix_green.bin
+#need $S/z-cut-p__0.bin
+#need $S/z-cut-p05__0.bin
+#need $S/z-slab__0.bin
+#need $S/z-cut-ym__0.bin
+#need $S/z-cut-m-slope__0.bin
+#need $S/p1139-green.bin
+# T2 (geometry, Q230): clipped polygons, vertex SET, ORDER, prim words and depth words scored separately.  Model: a
+# plane runs only when a vertex crosses it (one pass rotates the polygon by one: S1/S1b cut-p's stored order is the zigzag of
+# ONE pass); Sutherland-Hodgman over the input edges A->B, B->C, C->A (end vertex when inside, intersection when crossing);
+# stored order p1 p2 p0 p3 p(n-1) p4 ...; prim entries index | 16 for a boundary edge over the strip triangles (0,1,2),
+# (2,1,3), (2,3,4); depth = 0.5 + 0.5 z (clip-made vertices exactly 0 or 1).  z-slab and z-cut-m-slope (both planes cut): both orders of the
+# two planes are frozen (either is a finding).  The proposal's z-cut-m-slope prediction (B kept) contradicts its own program: B has
+# z = 2 > w, so it is clipped at x = 0.5 too; the generator's SH gives the frozen 4-vertex polygon.  Controls z-flat099
+# and z-cut-p; a group counts only if both hold.  z-cut-ym uses vtx_zab_pa1.s (templates/, one line changed).
+z-flat099|control|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-flat099__0.bin"
+z-cut-p|control|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-p__0.bin"
+z-cut-p05|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-p05__0.bin"
+z-slab|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-slab__0.bin"
+z-cut-ym|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-ym__0.bin"
+z-cut-m-slope|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-m-slope__0.bin"
+z-cut-p-r2|replicate|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/z-cut-p05__0.bin"

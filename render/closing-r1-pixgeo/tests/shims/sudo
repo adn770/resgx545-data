@@ -1,0 +1,8 @@
+#!/bin/sh
+[ "$1" = "-n" ] && shift
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+# the kernel prints a debugfs x32 as 0x%08x: the shim does the same for the two knobs
+if [ "$1" = cat ]; then
+	case "$2" in */alias_skip|*/render_pb_pages) printf '0x%08x\n' $(( $(cat "$2") )); exit 0 ;; esac
+fi
+exec "$@"

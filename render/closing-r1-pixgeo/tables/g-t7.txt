@@ -1,0 +1,9 @@
+#stage g-t7
+#need $S/p1139-green.bin
+# T7 (geometry, Q230): the fine grid.  Three triangles at 1/1024 pixel (--tri-unit 10) whose step indices are 1 or 3
+# mod 4 (no ties): HF-round predicts the packed 1/256 value rounded to nearest, HF-trunc truncated; a residue-3 coordinate
+# separates them (S1 post hoc: HF-round, r2 and r3).  Control e3f-ctl (unit 8, E651's packing).
+e3f-ctl|control|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 2048,2048,14336,5120,5120,14336 --tri-unit 8 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t7-a|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8239,8341,57367,20727,20573,57373 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t7-b|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8309,8207,57535,20533,20559,57559 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t7-c|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8359,8263,57469,20519,20717,57447 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"

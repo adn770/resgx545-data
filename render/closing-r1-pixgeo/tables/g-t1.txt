@@ -1,0 +1,19 @@
+#stage g-t1
+#need $S/p1139-green.bin
+# T1 (geometry, Q230): the off-target limit.  The viewport words 6 (x offset) and 8 (y offset) are ABSOLUTE
+# pixel offsets (default 32.0); the default triangle spans offset - 24 .. offset + 24.  HO-region (E542's tile rule on target
+# regions only, low side closed, high side open): an object iff the span reaches 0 .. 64, i.e. 87.5 present, 88.0 none,
+# -24.0 present, -24.5 none, y alike.  HO-band (B > 0): 88.0 present and the others up to 88 + B.  Controls: o-x64 (present,
+# E736) and o-x1000 (none, E650/E736); a control that fails makes the group cannot tell.  Object states: present, none,
+# written-unlisted (reported, never a hit).  ('?' = HO-band does not predict that cell.)
+o-x64|control|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x1000|control|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x447A0000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x87.5|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42AF0000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x88|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42B00000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x88.5|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42B10000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x96|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42C00000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-x104|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42D00000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-xm24|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0xC1C00000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-xm24.5|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0xC1C40000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-y87.5|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 8=0x42AF0000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+o-y88|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 8=0x42B00000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
