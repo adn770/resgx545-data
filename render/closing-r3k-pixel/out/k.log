@@ -1,0 +1,71 @@
+attempt 20261110-193547: /Users/jtorra/src/scratch/resgx545/closing3/r3k-pixel/out/20261110-193547; FROZEN.sha256 2ff760c33774cd3e7666a284ad0d986dbb7e71ec97b542c50d3bacfc8f6f9af5
+files verified
+#### k-f4 19:35:48
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  health: recovered on the retry
+## exit: hold_recovery=N render_rgn_arrays=0x00000001
+SUMMARY: k-f4: 8 of 8 held-out rows complete with 0 wrong pixels and four arrays in the four-array layout; controls {'c3-64x64-k1': 'PASS', 'c2-64x64-k4': 'PASS', 'c1-288x144-k1': 'PASS'}
+job: ok
+job time: 394 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 2955.779485] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 2955.782234] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2955.785139] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 146 us
+stage k-f4 done, health ok, render_rgn_arrays 0x00000001
+files verified
+#### k-pb0 19:37:30
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_rgn_arrays=0x00000001
+SUMMARY: k-pb0: controls {'pb-d0-te40': 'FAIL', 'pb-p0-te60': 'FAIL', 'pb-p1-te40': 'FAIL'}
+job: ok
+job time: 389 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 2990.034615] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 2990.037355] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2990.040285] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 183 us
+stage k-pb0 done, health ok, render_rgn_arrays 0x00000001
+files verified
+gate k-pb: closed: k-pb0 controls {'pb-d0-te40': 'FAIL', 'pb-p0-te60': 'FAIL', 'pb-p1-te40': 'FAIL'} (rerun: run/k.sh --only k-pb0)
+SKIPPED: k-pb (the gate is closed: the controls of k-pb0 failed; the poke rows are not run unpoked-controlled)
+files verified
+#### k-bif 19:38:04
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: 8, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 8, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  health: recovered on the retry
+  class fault (fault bits 15:0 at snap 1: 2, hold message: yes)
+## exit: hold_recovery=N render_rgn_arrays=0x00000001
+SUMMARY: k-bif: Q003: cannot tell: no held row could be read ({'f1-ta-read': 'OTHER', 'f1r-ta-read': 'OTHER', 'f2-ta-write': 'OTHER', 'f3-tex': 'OTHER'})
+job: ok
+job time: 446 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 3117.204474] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 3117.207944] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 3117.211319] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 156 us
+stage k-bif done, health ok, render_rgn_arrays 0x00000001
+R3K-pixel done (skipped: k-pb): /Users/jtorra/src/scratch/resgx545/closing/pixel-faults/.venv/bin/python /Users/jtorra/src/scratch/resgx545/closing3/r3k-pixel/score/score_k.py verdict /Users/jtorra/src/scratch/resgx545/closing3/r3k-pixel/out/20261110-193547

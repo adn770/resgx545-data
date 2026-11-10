@@ -1,0 +1,11 @@
+#stage k-bif
+#need $S/s1d-tw64x64-l2e2__0.bin
+# Q003 'what clears' (decision R3-K4).  n0: the four writes with nothing held (nothing changes).  f1, f1r: E444's TA read (0x90008);
+# f2: E788's a6 at knob 1 (0x90004 at page 0x20008); f3: S3's texture fetch (0x90002 at 0x3e017001), last.  Per held fault, in the hold:
+# 0x0c04=0x1 (an unset bit: nothing changes), 0x0c04=<the set bits without bit 19> (H-W1C), 0x0c00^=0x10 (H-CLR), 0x0c00^=0x10 back, a
+# 2.5 s watch, then the kernel's reset (its new log lines).  A laptop that does not answer within 10 s after a write ends the session.
+n0-idle|control|safe|idle bif|-|-
+f1-ta-read|heldout|risky|held bif hypo:bif:4 expectdiff|-|tri --fault --keep-going --wait-ms 20000
+f1r-ta-read|replicate|risky|held bif hypo:bif:4 expectdiff|-|tri --fault --keep-going --wait-ms 20000
+f2-ta-write|heldout|risky|held bif rgn:1 hypo:bif:4 expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+f3-tex|heldout|risky|held bif hypo:bif:4|-|probe --temps 32 --coords --pixels --scratch-pages 16 "$S/s1d-tw64x64-l2e2__0.bin"

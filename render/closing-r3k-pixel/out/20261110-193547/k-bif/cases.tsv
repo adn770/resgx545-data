@@ -1,0 +1,6 @@
+name	stage	set	risk	knobs	rt	args	rc	class	mode	fault_req	reset_rc	held_msg
+n0-idle	k-bif	control	safe	idle bif	-	-	0	ok	idle	-	-	no
+f1-ta-read	k-bif	heldout	risky	held bif hypo:bif:4 expectdiff	-	tri --fault --keep-going --wait-ms 20000	1	fault	held	8	0	yes
+f1r-ta-read	k-bif	replicate	risky	held bif hypo:bif:4 expectdiff	-	tri --fault --keep-going --wait-ms 20000	1	fault	held	8	0	yes
+f2-ta-write	k-bif	heldout	risky	held bif rgn:1 hypo:bif:4 expectdiff	-	tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"	1	fault	held	4	0	yes
+f3-tex	k-bif	heldout	risky	held bif hypo:bif:4	-	probe --temps 32 --coords --pixels --scratch-pages 16 "$S/s1d-tw64x64-l2e2__0.bin"	3	fault	held	2	0	yes

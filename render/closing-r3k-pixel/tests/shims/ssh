@@ -1,0 +1,13 @@
+#!/bin/bash
+# fake ssh for tests/run_mock.sh: "the laptop" is the directory $FAKE_HOME.  Options (-o X) are skipped, the host is
+# ignored, the command runs in bash with HOME=$FAKE_HOME (the sudo shim and the fake tool find the rest in the environment).
+# The alias_skip and render_rgn_arrays read of the driver (a `sudo -n sh -c "cat $(ls -d /sys/kernel/debug/dri/*/sgx ...)/alias_skip"`) answers
+# from the fake debugfs.
+while [ "${1:-}" = "-o" ]; do shift 2; done
+shift
+cmd=$1
+case "$cmd" in
+*render_rgn_arrays*) [ -n "${FAKE_KNOB_UNREADABLE:-}" ] && exit 1
+	cat "${FAKE_DBGREAL:?}/alias_skip" | sed 's/^/0x0000000/'; if [ -n "${FAKE_KNOB_LEAK:-}" ]; then echo 0x00000004; else printf '0x%08x\n' $(( $(cat "${FAKE_DBGREAL:?}/render_rgn_arrays") )); fi; exit 0 ;;
+esac
+cd "${FAKE_HOME:?}" && HOME=$FAKE_HOME exec bash -c "$cmd"

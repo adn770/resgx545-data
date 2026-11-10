@@ -1,0 +1,149 @@
+#### f 19:29:52
+GATE f OPEN: k0h finished (exit 0, run 1794334355-1828)
+== fb-r2: class ok 
+## STOP SIGNATURE fcf (after-window): [{"t": 0.3302, "regs": {"0x8": 839584, "0xb14": 4425, "0xacc": 16933023, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 4416, "hc14": 0, "ccb": [2, 2], "pass": [201, 201]}, {"t": 0.37, "regs": {"0x8": 839584, "0xb14": 4425, "0xacc": 17053851, "0x12c": 536870
+== fcf: class stop 
+## stop1-fcf: reset ok True, gate ok True, health ok True
+== fcf-r2: skipped (row FCF stopped: a stopped row is never replicated)
+== fph: class ok 
+== fph-r2: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 370 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2515.767981] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2515.771343] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 164 us
+[ 2516.381272] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 200 us
+SUMMARY: f: E0 held; FC4 and FB kept; H-PHAS (the phase end is what the EDM needs); stops 1 [fcf: busy (E537), read-write 0, dword 14 0x0]; P3 answered in 0 of 1 stops; Q152 rows: held out: 18 held, 5 FAILED, 0 cannot tell/void; refuted ['H-ANY', 'H-BOTH', 'H-CFI', 'H-PLACE']; replicate: 12 held, 3 FAILED, 0 cannot tell/void; refuted ['H-BOTH', 'H-CFI', 'H-PLACE']; control: 11 held, 2 FAILED, 0 cannot tell/void; refuted ['H-BEFORE (the need is before the exit)']
+stage f done, health ok
+#### t 19:30:07
+GATE t OPEN: f finished (exit 0, run 1794335393-2512)
+== e0: class ok 
+== t1: class ok 
+== t1-r2: class ok 
+## STOP SIGNATURE t2 (after-window): [{"t": 0.3334, "regs": {"0x8": 839584, "0xb14": 3088, "0xacc": 16997000, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 3083, "hc14": 0, "ccb": [2, 2], "pass": [204, 204]}, {"t": 0.3731, "regs": {"0x8": 839584, "0xb14": 3088, "0xacc": 17143692, "0x12c": 5368
+== t2: class stop 
+## stop1-t2: reset ok True, gate ok True, health ok True
+== t2-r2: skipped (row T2 stopped: a stopped row is never replicated)
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 375 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2528.866678] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2528.869480] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 143 us
+[ 2529.493891] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 203 us
+SUMMARY: t: E0 held; T1 kept; T2 stopped: H-NOTIMER (the timer write does not make our own end enough); stops 1 [t2: busy (E537), read-write 0, dword 14 0x0]; P3 answered in 0 of 1 stops; Q152 rows: held out: 5 held, 1 FAILED, 0 cannot tell/void; refuted ['H-TIMER (the timer write is what an ended tick pass needs)']; control: 9 held, 4 FAILED, 0 cannot tell/void; refuted ['H-TIMERW-HARMLESS (the closed handler stores the same word)', 'H-TIMERW-STOPS (a str of the timer by our pass stops the tick)']
+stage t done, health ok
+#### kb 19:30:19
+GATE kb OPEN: t finished (exit 0, run 1794335409-2605)
+== q1-r3: class ok 
+== q2: class ok 
+== q2-r2: class ok 
+== q2-r3: class ok 
+== q3: class kick-timeout 
+== q3-r2: class kick-timeout 
+== q3-r3: class kick-timeout 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 590 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2565.268178] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2565.271081] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 140 us
+[ 2565.884455] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 224 us
+SUMMARY: kb: Q0 held (ticks K = 2); consistent with ['H-LATCH', 'H-HWC'], refuted ['H-KW']; stops 0 []; Q290 rows: fit: 9 held, 0 FAILED, 0 cannot tell/void; held out: 2 held, 1 FAILED, 9 cannot tell/void; refuted ['H-KW']; cannot tell ['H-HWC', 'H-LATCH']; replicate: 4 held, 2 FAILED, 18 cannot tell/void; refuted ['H-KW']; cannot tell ['H-HWC', 'H-LATCH']; control: 39 held, 3 FAILED, 0 cannot tell/void; refuted ['control']
+stage kb done, health ok
+#### e2b 19:30:56
+GATE e2b OPEN: kb finished (exit 0, run 1794335421-2693)
+== c5-r2: class ok 
+== c5-r3: class ok 
+== c6: class ok 
+== c6-r2: class ok 
+== c6-r3: class ok 
+== z67: class ok 
+== z68: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 514 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2578.774879] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2578.777754] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 139 us
+[ 2579.379037] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 199 us
+SUMMARY: e2b: R/S/Z controls held; write direction: consistent with none, refuted ['H-D alias', 'H-B lost', 'H-P private']; stops 0 []; Q098 rows: fit: 6 held, 0 FAILED, 0 cannot tell/void; held out: 18 held, 15 FAILED, 0 cannot tell/void; refuted ['H-B lost', 'H-D alias', 'H-P private']; replicate: 36 held, 30 FAILED, 0 cannot tell/void; refuted ['H-B lost', 'H-D alias', 'H-P private']; control: 9 held, 0 FAILED, 0 cannot tell/void
+stage e2b done, health ok
+#### e3h 19:31:10
+GATE e3h OPEN: e2b finished (exit 0, run 1794335458-2844)
+## preflight ok: {"srcversion_loaded": "230E0EF50FFFD606C53AE3C", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== hr: class ok 
+== hr-r2: class ok 
+== hr-r3: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 884 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2592.443434] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2592.446854] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 153 us
+[ 2593.069445] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 203 us
+SUMMARY: e3h: CLEAR2 reads ['H-W'] in 3 rounds; Q166 rows: fit: 18 held, 0 FAILED, 0 cannot tell/void; held out: 7 held, 2 FAILED, 0 cannot tell/void; refuted ['H-ALL', 'H-NONE']; replicate: 14 held, 4 FAILED, 0 cannot tell/void; refuted ['H-ALL', 'H-NONE']; control: 6 held, 0 FAILED, 0 cannot tell/void
+stage e3h done, health ok
+#### e3a 19:31:23
+GATE e3a OPEN: e3h finished (exit 0, run 1794335471-2928)
+## preflight ok: {"srcversion_loaded": "230E0EF50FFFD606C53AE3C", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== fr: class ok 
+== fr-r2: class ok 
+== fr-r3: class ok 
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 508 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2608.711713] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2608.714653] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 191 us
+[ 2609.318530] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 151 us
+SUMMARY: e3a: CLEAR2 reads ['H-W'] in 3 rounds; the host route (e3h) ran: exit 0; Q166 rows: fit: 18 held, 0 FAILED, 0 cannot tell/void; held out: 7 held, 2 FAILED, 0 cannot tell/void; refuted ['H-ALL', 'H-NONE']; replicate: 14 held, 4 FAILED, 0 cannot tell/void; refuted ['H-ALL', 'H-NONE']; control: 9 held, 0 FAILED, 0 cannot tell/void
+stage e3a done, health ok
+#### e3b 19:31:39
+GATE e3b OPEN: e3a finished (exit 0, run 1794335484-3006)
+== b0: class ok 
+== b0-r2: class ok 
+== b0-r3: class ok 
+## STOP SIGNATURE b1 (after-skip): [{"t": 2.2385, "regs": {"0x8": 839584, "0xb14": 1016, "0xacc": 16950190, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1009, "hc14": 0, "ccb": [3, 3], "pass": [97, 97]}, {"t": 2.2878, "regs": {"0x8": 839584, "0xb14": 1016, "0xacc": 16954263, "0x12c": 537133
+== b1: class stop 
+## stop1-b1: reset ok True, gate ok True, health ok True
+== b2: skipped (all_kept:B1:1 not met: B2 is not run)
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 356 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000001 
+[ 2626.693811] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 2626.696578] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 142 us
+[ 2627.321783] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 218 us
+SUMMARY: e3b: H-STOP3 (a skipped end-of-render handler stops the tick); stops 1 ['b1']; Q111 rows: held out: 3 held, 5 FAILED, 6 cannot tell/void; refuted ['H-FREE3', "H-LEVEL (bit 18 holds until acknowledged: E547's inference)", 'H-PULSE', 'H-REFIRE', 'H-W (stop only: the one unacknowledged bit of a stop clears and returns within 1 ms)']; cannot tell ['H-ALL', 'H-NONE', 'H-W']; control: 12 held, 0 FAILED, 0 cannot tell/void
+stage e3b done, health ok
+R3k kev done

@@ -1,0 +1,6 @@
+#stage k-pb0
+# Q285 (decision R3-K7), the controls of the split flow (-n 2 --geometry 1): the dump run (TE 0x40, the parameter buffer from dword 0),
+# p0 (TE 0x60, the twin: its full image) and p1 (TE 0x40: E728's empty image).  k-pb runs only if all three pass (the gate).
+pb-d0-te40|control|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+pb-p0-te60|control|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+pb-p1-te40|control|safe|expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

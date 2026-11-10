@@ -1,0 +1,103 @@
+#!/bin/bash
+# fake sudo for tests/run_mock.sh.  The mock debugfs directory $SGXFIVE_DEBUGFS is mode 000: only through
+# this shim (as on the laptop, where debugfs is root only) does a path in it reach the real files in
+# $FAKE_DBGREAL.  regs, hold_recovery, reset, render_rgn_arrays and kregnow act on the fake GPU state in $FAKE_DIR:
+#   state     "idle" or "WORD ADDR STATUS2 STATUS" (a latched fault)
+#   hold      Y or N
+#   ctrl      the fake CR_BIF_CTRL value (hex)
+# A leading `timeout [-k K] N` of the runner is stripped (the fake tool and the writes are not slow).
+# Knobs: FAKE_HOLD_STUCK (writes of N ignored), FAKE_HOLD_NOY (writes of Y ignored), FAKE_STUCK (a reset leaves the fault
+# latched), FAKE_SNAP_FAIL (regs unreadable), FAKE_BIF (what clears: w1c | clr | rst | other; default rst), FAKE_KW_EBUSY
+# (kregnow refused), FAKE_KW_STALL (a kregnow write does not answer: exit 124), FAKE_RGN_STUCK (render_rgn_arrays writes ignored),
+# FAKE_REGS_STALL (regs after a BIF write do not answer).
+[ "$1" = "-n" ] && shift
+DB=${SGXFIVE_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+if [ "$1" = timeout ]; then shift; [ "$1" = "-k" ] && shift 2; shift; fi
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+regs() {
+	read -r w a s2 s < "$F/state"
+	if [ "$w" = idle ]; then w=0; a=0; s2=0x400; s=0x20000000; fi
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0114 skip\nreg 0x0118 0x%08x\nreg 0x012c 0x%08x\n' $((s2)) $((s))
+	printf 'reg 0x0c00 0x%08x\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\n' $(( 0x$(cat "$F/ctrl") )) $(( w | 0x80000 )) $((a))
+}
+bifnow() { read -r w a s2 s < "$F/state"; if [ "$w" = idle ]; then echo "0 0"; else echo "$(( w | 0x80000 )) $((a))"; fi; }
+kwlog() { # OFF OLD NEW
+	read -r i f <<EOF
+$(bifnow)
+EOF
+	printf 'gma500 0000:00:02.0: [drm] sgxfive: kregnow 0x%04x: 0x%08x -> 0x%08x, reads 0x%08x, BIF_INT_STAT 0x%08x BIF_FAULT 0x%08x\n' \
+		$1 $2 $3 $3 $(( i == 0 ? 0x80000 : i )) $f >> "$KMSG"
+}
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }
+		[ -n "${FAKE_REGS_STALL:-}" ] && [ -f "$F/bifwritten" ] && exit 124
+		regs; exit 0 ;;
+	"$DB/hold_recovery") cat "$F/hold"; exit 0 ;;
+	"$DB/kregnow") [ -n "${FAKE_KREGNOW_OLD:-}" ] && { printf '0x0740 0x00000000\nhost_irqs 0\n'; exit 0; }
+		printf '0x0740 0x00000000\n0x0c00 0x%08x\n0x0c04 0x00080000\nhost_irqs 0 extra 0 last 0x00000000 0x00000000 armed 0 saved 0x00000000 0x00000000\n' $(( 0x$(cat "$F/ctrl") )); exit 0 ;;
+	"$DB/alias_skip"|"$DB/render_pb_pages"|"$DB/render_rgn_arrays") printf '0x%08x\n' $(( $(cat "$R/${2##*/}") )); exit 0 ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/hold_recovery")
+		read -r v; case "$v" in 1|Y|y) v=Y ;; *) v=N ;; esac
+		[ "$v" = N ] && [ -n "${FAKE_HOLD_STUCK:-}" ] && exit 0
+		[ "$v" = Y ] && [ -n "${FAKE_HOLD_NOY:-}" ] && exit 0
+		echo "$v" > "$F/hold"
+		# the kernel's watchdog (50 ms) recovers a latched render fault on its own once the hold is off
+		read -r w a s2 s < "$F/state"
+		if [ "$v" = N ] && [ "$w" != idle ]; then
+			echo "gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault $w at $a (PD 0x0) stalls job 7, recovering" >> "$KMSG"
+			echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0 BIF_INT_STAT 0x80000 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+			[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		fi
+		exit 0 ;;
+	"$DB/render_rgn_arrays")
+		read -r v
+		[ -n "${FAKE_RGN_STUCK:-}" ] && exit 0
+		echo "$v" >> "$F/rgn-writes"
+		echo "$v" > "$R/render_rgn_arrays"; exit 0 ;;
+	"$DB/kregnow")
+		read -r spec
+		echo "$spec" >> "$F/kregnow-writes"
+		[ -n "${FAKE_KW_STALL:-}" ] && exit 124
+		touch "$F/bifwritten"
+		read -r w a s2 s < "$F/state"
+		hold=$(cat "$F/hold")
+		# the kernel's rule: only while no job is unfinished or a recovery is held
+		if [ -n "${FAKE_KW_EBUSY:-}" ] || { [ "$w" = idle ] && [ -f "$F/jobrunning" ]; }; then echo "tee: kregnow: Device or resource busy" >&2; exit 1; fi
+		case "$spec" in
+		0x0c04=*)
+			v=${spec#*=}; read -r i f <<EOF
+$(bifnow)
+EOF
+			if [ "${FAKE_BIF:-rst}" = w1c ] && [ "$w" != idle ] && [ $(( v & 0xffff )) -ne 0 ] && [ $(( v )) -ne 1 ]; then echo idle > "$F/state"; fi
+			if [ "${FAKE_BIF:-rst}" = other ] && [ "$w" != idle ] && [ $(( v & 0xffff )) -ne 0 ] && [ $(( v )) -ne 1 ]; then echo "$(( w ^ 1 )) $a $s2 $s" > "$F/state"; fi
+			kwlog 0xc04 $i $(( v )) ;;
+		0x0c00^=*)
+			v=${spec#*=}; old=$(( 0x$(cat "$F/ctrl") )); new=$(( old ^ v )); printf '%x\n' $new > "$F/ctrl"
+			if [ "${FAKE_BIF:-rst}" = clr ] && [ "$w" != idle ] && [ $(( new & 0x10 )) -ne 0 ]; then echo idle > "$F/state"; fi
+			kwlog 0xc00 $old $new ;;
+		esac
+		exit 0 ;;
+	"$DB/reset")
+		cat > /dev/null
+		echo "x" >> "$F/reset-tries"
+		if [ -n "${FAKE_RESET_FAIL_FROM:-}" ] && [ "$(grep -c . "$F/reset-tries")" -ge "$FAKE_RESET_FAIL_FROM" ]; then
+			echo "tee: reset: Connection timed out" >&2; exit 1
+		fi
+		regs > "$F/last-reset"
+		read -r w a s2 s < "$F/state"; [ "$w" = idle ] && s2=0x400
+		echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0 BIF_INT_STAT 0x80000 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+		echo "gma500 0000:00:02.0: [drm] SGX reset: after the fault clear BIF_FAULT 0 BIF_INT_STAT 0x80000" >> "$KMSG"
+		echo "x" >> "$F/resets"
+		echo 0 > "$F/ctrl"; rm -f "$F/bifwritten"
+		[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		exit 0 ;;
+	esac
+fi
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"

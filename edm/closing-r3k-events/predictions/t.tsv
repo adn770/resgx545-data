@@ -1,0 +1,30 @@
+case	quantity	value	model	set
+e0	entries	14+-2	control (L3 e E0)	control
+e0	grid	yes	control (L3 e E0)	control
+e0	acted	0	control (L3 e E0)	control
+t1	acted	1	design	control
+t1	kept	yes	H-TIMERW-HARMLESS (the closed handler stores the same word)	control
+t1	next_gap	25000+-50	H-TIMERW-HARMLESS (the closed handler stores the same word)	control
+t1	flag_logged	4	design	control
+t1	kept	no	H-TIMERW-STOPS (a str of the timer by our pass stops the tick)	control
+t1	p3_answered	no	L3 d (P3 answered 0 of 2 stops)	control
+t1-r2	acted	1	design	control
+t1-r2	kept	yes	H-TIMERW-HARMLESS (the closed handler stores the same word)	control
+t1-r2	next_gap	25000+-50	H-TIMERW-HARMLESS (the closed handler stores the same word)	control
+t1-r2	flag_logged	4	design	control
+t1-r2	kept	no	H-TIMERW-STOPS (a str of the timer by our pass stops the tick)	control
+t1-r2	p3_answered	no	L3 d (P3 answered 0 of 2 stops)	control
+t2	acted	1	design	heldout
+t2	kept	yes	H-TIMER (the timer write is what an ended tick pass needs)	heldout
+t2	kept	no	H-NOTIMER (our own end stops the tick whatever it stores: E793)	heldout
+t2	flag_logged	3	design	heldout
+t2	sig_busy	yes	E793 (a stop looks busy)	heldout
+t2	next_gap	25000+-50	H-TIMER (the timer write is what an ended tick pass needs)	heldout
+t2	p3_answered	no	L3 d (P3 answered 0 of 2 stops)	heldout
+t2-r2	acted	1	design	replicate
+t2-r2	kept	yes	H-TIMER (the timer write is what an ended tick pass needs)	replicate
+t2-r2	kept	no	H-NOTIMER (our own end stops the tick whatever it stores: E793)	replicate
+t2-r2	flag_logged	3	design	replicate
+t2-r2	sig_busy	yes	E793 (a stop looks busy)	replicate
+t2-r2	next_gap	25000+-50	H-TIMER (the timer write is what an ended tick pass needs)	replicate
+t2-r2	p3_answered	no	L3 d (P3 answered 0 of 2 stops)	replicate
