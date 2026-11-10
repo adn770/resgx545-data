@@ -1,0 +1,16 @@
+case	quantity	value	model	set
+d-ctl	dev_counts	-2:1536;-1:7680	E731	control
+d-ctl	dev_per_tile_row	0:0;1:0;2:256;3:768;4:1280;5:1792;6:2304;7:2816	E731	control
+d-ctl	xmin_line_c0_c1	319.000,-2.0000	fit on E731 dp-ax-b2 (FIT)	control
+d-shift	dev_pixels	9216	HT (region fixed in target coordinates)	heldout
+d-shift	dev_pixels	1024	HV (region moves (64, 32))	heldout
+d-shift	set_sha256	9d74af718f7aec36a18d2f65cd013f523213d5e9deb5fee55b12f678ecc227ba	HT	heldout
+d-shift	set_sha256	479366df77bca8923212a16ca1a9208f72af973ce98c3990fc44176db47a838c	HV	heldout
+d-shift	xmin_line_c0_c1	319.000,-2.0000	HT	heldout
+d-shift	xmin_line_c0_c1	447.000,-2.0000	HV	heldout
+d-tall	dev_per_tile_row	t>=2: min(4096, 256+512*(t-2))	HT: grows per tile row	heldout
+d-tall	dev_per_tile_row	bounded by the triangle	HV	heldout
+d-tall	dev_per_tile_row	binade only	HS	heldout
+d-b3	dev_pixels	>= 9216 and max |ulps| >= 2	HT/HS: more, larger	heldout
+d-ygrad	boundary	x-growth stays (xmin falls with y)	HT	heldout
+d-ygrad	boundary	rotated with the gradient (y-growth)	HV	heldout

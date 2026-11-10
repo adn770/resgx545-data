@@ -1,0 +1,13 @@
+#stage p-b2
+# B2 (pixel): Q200 second term, the lower-binade deviation of a dyadic plane.  d-ctl reproduces dp-ax-b2
+# (E731) first.  Scorer: stored - trunc32(exact) in ulps per pixel; the map of non-zero pixels; frozen
+# predictions are the region under HT (target-tied: the d-ctl map, in target coordinates) and under HV
+# (vertex-tied: the d-ctl map translated by (64, 32)), the boundary line fitted on d-ctl's data, written
+# before the run (predictions/p-b2.tsv + p-b2-set-*.bits).  d-tall / d-ygrad / d-b3 carry qualitative
+# frozen predictions only (counts per tile row, orientation).  The rule for the term is not expected
+# to close here (the proposal says so): this maps the region.
+d-ctl|control|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+d-shift|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 16384,8192,147456,8192,16384,139264 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+d-tall|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 144 --poke blk:1=0x00400200 --pixels
+d-b3|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.0625,0.125,0.0625 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+d-ygrad|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.125,0.1875 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 144 --poke blk:1=0x00400200 --pixels

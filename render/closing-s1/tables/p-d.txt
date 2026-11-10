@@ -1,0 +1,18 @@
+#stage p-d
+#need $S/s1d-tw128x32-l0e2__0.bin
+#need $S/s1d-tw64x64-l2e2__0.bin
+#need $S/s1d-tw64x64-l3e3__0.bin
+#need $S/s1d-st128x32-l3e2__0.bin
+# D (pixel): Q281, the 64 KiB scratch.  Texture base = the scratch buffer; probe --scratch-pages N
+# (16 to 64) enlarges it.  The three extents that faulted at 16 pages (84, 85, 170 KiB) fit in 64.
+# The probe fills the scratch with 0xD0000000 | i, so a read past the texture's own bytes returns the
+# dword index: the A4 image hash of E722's frozen cases.json is the prediction under HB.  Knob proof:
+# the probe's 'scratch at ... (N KiB)' line must say N = pages x 4.  Fit: none (E722's 13 of 16 fit
+# cases are the model; these are held out).  The two faulting jobs run last.
+d-ok-64|control|safe|-|stophang|-|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/s1d-tw128x32-l0e2__0.bin"
+d-L2e2-64|heldout|safe|-|hypo:hx:4|-|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/s1d-tw64x64-l2e2__0.bin"
+d-L3e3-64|heldout|safe|-|hypo:hx:4|-|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/s1d-tw64x64-l3e3__0.bin"
+d-st-L3e2-64|heldout|safe|-|hypo:hx:4|-|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/s1d-st128x32-l3e2__0.bin"
+d-L2e2-21|heldout|safe|-|hypo:hx:4|-|probe --temps 32 --coords --pixels --scratch-pages 21 "$S/s1d-tw64x64-l2e2__0.bin"
+d-L2e2-20|heldout|risky|-|expectfault|-|probe --temps 32 --coords --pixels --scratch-pages 20 "$S/s1d-tw64x64-l2e2__0.bin"
+d-L2e2-16|control|risky|-|expectfault|-|probe --temps 32 --coords --pixels "$S/s1d-tw64x64-l2e2__0.bin"

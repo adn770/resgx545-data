@@ -1,0 +1,36 @@
+#stage p-c
+#need $S/pds_iter_xy.bin
+#need $S/vtx_coords.bin
+#need $S/s1c-e709-x.bin
+#need $S/s1c-e709-y.bin
+#need $S/s1c-u-x.bin
+#need $S/s1c-u-y.bin
+#need $S/s1c-k7-x.bin
+#need $S/s1c-k7-y.bin
+#need $S/s1c-k0-x.bin
+#need $S/s1c-k0-y.bin
+#need $S/s1c-k3-x.bin
+#need $S/s1c-k3-y.bin
+#need $S/s1c-g23-x.bin
+#need $S/s1c-g23-y.bin
+# C (pixel): Q276, a guard that cannot hold.  E709's o4 guard is replaced by complementary
+# predicated writes of o1: tag 2 (marker*16 + 2) under p1, tag 2' (+0xc) under !p1.  The `!p1` write
+# is placed FIRST and the `p1` write second, so that if no gating exists (HN) both land and tag 2 wins
+# (the proposal listed the p1 write first, which makes HN predict tag 2' and indistinguishable from
+# HP/HA at K = 7: PREFLIGHT.md).  Every configuration runs as an x job and a y job (source pixel
+# identity needs the pair, as E709; the proposal's job list had x/y only for k7: 13 jobs, not 9).
+# o1 lands in the previous tile's region (E570): the scorer maps destination to source through the
+# pair.  Premise to confirm from E570 before reading: o1 lands for every source pixel.
+c-e709-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-e709-x.bin"
+c-e709-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-e709-y.bin"
+c-u-x|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-x.bin"
+c-u-y|control|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-u-y.bin"
+c-k7-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-x.bin"
+c-k7-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-y.bin"
+c-k7-x-rep|replicate|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k7-x.bin"
+c-k0-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k0-x.bin"
+c-k0-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k0-y.bin"
+c-k3-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k3-x.bin"
+c-k3-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-k3-y.bin"
+c-g23-x|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-g23-x.bin"
+c-g23-y|heldout|safe|-|stophang|-|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/s1c-g23-y.bin"

@@ -1,0 +1,27 @@
+#stage p-g
+#need $S/s1g-ctl-lf-r8__0.bin
+#need $S/s1g-s13__0.bin
+#need $S/s1g-s13-r2__0.bin
+#need $S/s1g-s22__0.bin
+#need $S/s1g-s22-r2__0.bin
+#need $S/s1g-s56__0.bin
+#need $S/s1g-s56-r2__0.bin
+#need $S/s1g-s2__0.bin
+#need $S/s1g-s2-r2__0.bin
+# G (pixel): Q280, the footprint's precision.  One operand ramps so that LOD*64 crosses the integer
+# n (13, 22, 56, 2: the steps of the misses) at column 32, with a pitch of 1/2048 of a 1/64 step per
+# column.  The proposal's 1/4096 pitch spans only +-32 columns = +-0.0078 of a step, narrower than the
+# +-0.01 noise it wants to detect (+-40 columns), so the pitch is 1/2048 (+-0.0156 step).  u and v are
+# constants (so that only the LOD varies along the row; E721's lf-r ladders also ramped u).  Whether a
+# raw-dword point-sampled output changes at all with the LOD fraction is not shown by any record:
+# the control (E721's lf-r8, unchanged) and 'at least one transition per ladder' are the first checks.
+# Cases are rebuilt from the p1141 lodg SETUP text with K, C replaced; nothing here reads a result.
+g-ctl-lf-r8|control|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-ctl-lf-r8__0.bin"
+g-s13|heldout|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s13__0.bin"
+g-s13-r2|replicate|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s13-r2__0.bin"
+g-s22|heldout|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s22__0.bin"
+g-s22-r2|replicate|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s22-r2__0.bin"
+g-s56|heldout|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s56__0.bin"
+g-s56-r2|replicate|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s56-r2__0.bin"
+g-s2|heldout|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s2__0.bin"
+g-s2-r2|replicate|safe|-|stophang|-|probe --temps 32 --coords --pixels "$S/s1g-s2-r2__0.bin"

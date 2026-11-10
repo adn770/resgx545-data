@@ -1,0 +1,16 @@
+#stage g-e8b
+#need $S/p1139-green.bin
+#need $S/pix-red.bin
+# E8b (geometry): translucent order, 6 jobs (the proposal's 14 = 8 + 6 jobs; 'on both' dropped).
+# Object 1 green at depth 0.5 (the default z offset), object 2 red (--obj2-pixel) as the copy from
+# vertex 3 (--obj2 3), its state block word 10 (viewport z offset) 0.25 = nearer or 0.75 = farther
+# (the proposal's --copy-depth would only ever make the copy farther).  ISP word 0 (block word 1,
+# read from the library's tri_block): less + depth write 0x00400200; translucent = pass type 1
+# (bits 27:25) 0x02400200.  Both-opaque controls first: they must show the nearer object's colour.
+# Hypotheses: HL second object wins whatever the depth, HD nearer wins, HP translucent after opaque.
+t-opq-near|control|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-opq-far|control|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-2-near|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x02400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-2-far|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x00400200 --obj2-blk 1=0x02400200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-1-near|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x02400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3e800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+t-1-far|heldout|safe|-|stophang|-|probe --tri pixel --vertices 6 --obj2 3 --obj2-pixel "$S/pix-red.bin" --blk 1=0x02400200 --obj2-blk 1=0x00400200 --obj2-blk 10=0x3f400000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"

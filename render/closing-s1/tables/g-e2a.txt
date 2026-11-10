@@ -1,0 +1,23 @@
+#stage g-e2a
+#need $S/p1139-green.bin
+# E2 first part (geometry): Q211, the page need U of K-triangle scenes at P = 0x422.
+# -n K with --geometry 1..K-1 submits kicks 1..K-1 TA-only and kick K closes the scene; the tool
+# prints 'tri 1024x768 #k: geometry only, the scene left open' for each open kick (the option proof).
+# U = peak of the page status 0x0724 low half; cross-check by the PB free-list walk (head - 1).
+# Prediction 'coverage-proxy' (NOT the proposal's HU1, which needs sgx-pipe's stream bytes): U =
+# 2.2090 + 0.3469 m + 0.03189 t (m macrotiles, t tiles covered, 4x4 sampling),
+# least squares on the 10 known points (FIT; max residual 1.08 pages).  The six
+# scenes are an extrapolation of that proxy to multi-triangle unions: a match neither confirms nor
+# refutes HU1, a miss refutes only the proxy.  The scorer reports U - proxy, no pass/fail.
+# HU2 (U = m + c) fails ON THE FIT DATA (the ten known points), not on new data (PREFLIGHT.md).
+# The boundary and count jobs (g-e2b) are generated after this table by gen/gen_e2_boundary.py.
+u-1-0x422|control|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 1  --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-2f-0x38|control|safe|0x38|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:-96,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-2a-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:0,288 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-3a-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:0,288 --move 3:-64,-240 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-4a-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:0,288 --move 3:-64,-240 --move 4:-768,-96 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-4a-0x422-r2|replicate|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:0,288 --move 3:-64,-240 --move 4:-768,-96 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-2s-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:16,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-3s-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:16,0 --move 3:32,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-4s-0x422|heldout|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:16,0 --move 3:32,0 --move 4:48,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c
+u-4s-0x422-r2|replicate|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0720-0x0724|tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:16,0 --move 3:32,0 --move 4:48,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --dump-each --words "$W/words" --regs 0x0700-0x074c

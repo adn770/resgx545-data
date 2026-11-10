@@ -1,0 +1,73 @@
+#stage g-e3
+#need $S/p1139-green.bin
+#need $S/e3w-w1__0.bin
+#need $S/e3w-w2__0.bin
+#need $S/e3w-w2-r2__0.bin
+#need $S/e3w-w05__0.bin
+#need $S/e3w-w1e3__0.bin
+#need $S/e3w-w1e5__0.bin
+#need $S/e3z-flat099__0.bin
+#need $S/pix_green.bin
+#need $S/e3z-flat101__0.bin
+#need $S/e3z-flatm101__0.bin
+#need $S/e3z-cut-p__0.bin
+#need $S/e3z-cut-p-r2__0.bin
+#need $S/e3z-cut-m__0.bin
+#need $S/e3z-cut-m-r2__0.bin
+#need $S/e3c-w1__0.bin
+#need $S/e3c-w01__0.bin
+#need $S/e3c-w0__0.bin
+#need $S/e3c-wm005__0.bin
+#need $S/e3c-wm05__0.bin
+#need $S/e3k-ctl__0.bin
+#need $S/e3k-eq__0.bin
+#need $S/e3k-above__0.bin
+#need $S/e3k-below__0.bin
+#need $S/e3g-8x__0.bin
+#need $S/e3g-64x__0.bin
+#need $S/e3g-1024x__0.bin
+# E3 (geometry): Q230, what the TA writes for clipped, perspective and off-target triangles.
+# Offline first (done here): the three mte/rhw dumps (w = x + 2 per vertex) give the stored 1/w =
+# round-toward-zero float32 of the exact reciprocal (0x3f4ccccc, 0x3eba2e8b, 0x3f1d89d8 against the
+# nearest 0x...cd, 0x...8c, 0x...d9) in 9 of 9 vertices; those 9 are the FIT.  The packed x, y of
+# those jobs are unchanged (8, 56, 20): that vertex program does not divide x, y, so the division is
+# untested.  Every group's control comes first in its group and must reproduce a landed object (E651)
+# or image (E194, E287, E650) before the group's cells count.  Offsets are the state block's
+# viewport x offset (word 6, absolute pixels, E061/E182), not distances.  Programs are the landed mte
+# templates; the commands come from probe.tool_args, and --tri-v/--tri-unit are appended by hand
+# (probe.py does not model them).  35 jobs; the *-r2 jobs are replicates of one condition.
+e3w-w1|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w1__0.bin"
+e3z-flat099|control|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-flat099__0.bin"
+e3c-w1|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3c-w1__0.bin"
+e3o-x1000|control|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x447A0000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3f-ctl|control|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 2048,2048,14336,5120,5120,14336 --tri-unit 8 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3k-ctl|control|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/e3k-ctl__0.bin"
+e3w-w2|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w2__0.bin"
+e3w-w2-r2|replicate|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w2-r2__0.bin"
+e3w-w05|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w05__0.bin"
+e3w-w1e3|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w1e3__0.bin"
+e3w-w1e5|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3w-w1e5__0.bin"
+e3z-flat101|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-flat101__0.bin"
+e3z-flatm101|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-flatm101__0.bin"
+e3z-cut-p|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-p__0.bin"
+e3z-cut-p-r2|replicate|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-p-r2__0.bin"
+e3z-cut-m|heldout|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-m__0.bin"
+e3z-cut-m-r2|replicate|safe|-|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/e3z-cut-m-r2__0.bin"
+e3c-w01|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3c-w01__0.bin"
+e3c-w0|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3c-w0__0.bin"
+e3c-wm005|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3c-wm005__0.bin"
+e3c-wm05|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3c-wm05__0.bin"
+e3o-x8|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x41000000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3o-x64|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x42800000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3o-x128|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x43000000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3o-x128-r2|replicate|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x43000000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3o-x512|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --blk 6=0x44000000 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3f-r1|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8193,8197,57345,20485,20481,57349 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3f-r3|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8195,8199,57347,20487,20483,57351 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3f-r2|heldout|safe|-|stophang|-|probe --tri pixel --width 64 --height 64 --tri-v 8194,8198,57346,20486,20482,57350 --tri-unit 10 --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+e3k-eq|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126f --dump-render "$W/dump" "$S/e3k-eq__0.bin"
+e3k-above|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a831270 --dump-render "$W/dump" "$S/e3k-above__0.bin"
+e3k-below|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --blk 14=0x3a83126e --dump-render "$W/dump" "$S/e3k-below__0.bin"
+e3g-8x|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3g-8x__0.bin"
+e3g-64x|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3g-64x__0.bin"
+e3g-1024x|heldout|safe|-|stophang|-|probe --temps 32 --pixels --tri vtxuse --width 64 --height 64 --dump-render "$W/dump" "$S/e3g-1024x__0.bin"

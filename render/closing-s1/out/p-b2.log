@@ -1,0 +1,76 @@
+## stage p-b2
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+d776afbcb9f26a3fccc8dc6be5fa513f8843a0b2185e78c66d2c4737ade0714e  /home/jtorra/sgxfive-test-s1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803  /home/jtorra/regtimeline
+## knobs at start
+render_pb_pages=0x00000422
+alias_skip=0x00000000
+## clock
+Mon Nov  9 22:50:44 CET 2026
+## S1 safety rules: see the header of lib_s1.sh (allow-listed knobs only)
+== d-ctl set=control risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump /tmp/tmp.ovfXVqnogi/depth --depth-pages 48 --poke blk:1=0x00400200 --pixels
+  rc 0 tri: render context for targets up to 256x128 tri: vertices256 0 0 131072 0 0 131072, depth 0.125 0.1875 0.125 
+tri 256x128 #1: 32768 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0
+tri 256x128 #1: 104477 us
+  kept d-ctl.txt: 362080 bytes raw, raw sha256 bb72ba38fda83908c85da0900b84653b34c2e88986a0b38c9bff22ca12afa213
+  kept d-ctl.dmesg: 414 bytes raw, raw sha256 4acf0e14eb7f33b1eeaad9fc32927e5029a6feb9477d57d97eeb16f18f25c03e
+  kept d-ctl.after.buf09.bin: 236 bytes raw, raw sha256 d10f112c5c1d07d069eb01068c99532e5c2db46448a49f904aea27b098c04ca0
+  kept d-ctl.after.regs.txt: 6474 bytes raw, raw sha256 e9ade55985ea2f6c5d14b435eee069afbd85639a3216f87d25263e9fb212628c
+  kept d-ctl.depth.1.bin: 196608 bytes raw, raw sha256 60f80a4d8bb44173ccdc0e75ea716456494cd05fa45d2934681bbd399466c406
+  class ok
+== d-shift set=heldout risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 16384,8192,147456,8192,16384,139264 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump /tmp/tmp.ovfXVqnogi/depth --depth-pages 48 --poke blk:1=0x00400200 --pixels
+  rc 0 tri: render context for targets up to 256x128 tri: vertices256 16384 8192 147456 8192 16384 139264, depth 0.125 0.1875 0.125 
+tri 256x128 #1: 18432 triangle, 14336 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 12064 if flipped; guard 0
+tri 256x128 #1: 101411 us
+  kept d-shift.txt: 362102 bytes raw, raw sha256 3865aadd37897147b40dd4c4a53b414d35c01768f02517c3af86fe009a52cc69
+  kept d-shift.dmesg: 414 bytes raw, raw sha256 e61c51e9569dd041ca476bd52908251de2e5defa82b8075bebc8ba1ad4a9e456
+  kept d-shift.after.buf09.bin: 236 bytes raw, raw sha256 d10f112c5c1d07d069eb01068c99532e5c2db46448a49f904aea27b098c04ca0
+  kept d-shift.after.regs.txt: 6474 bytes raw, raw sha256 b5a197d77c59b82dfa77fcea7ee0acc601dbeba0cc9718d1d08f7d675874190d
+  kept d-shift.depth.1.bin: 196608 bytes raw, raw sha256 22c65426ab2e5338d0a8ca143ea6b5bbbb0ede59571daa325c0c8e9bb5018387
+  class ok
+== d-tall set=heldout risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.1875,0.125 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump /tmp/tmp.ovfXVqnogi/depth --depth-pages 144 --poke blk:1=0x00400200 --pixels
+  rc 0 tri: render context for targets up to 256x512 tri: vertices256 0 0 131072 0 0 131072, depth 0.125 0.1875 0.125 
+tri 256x512 #1: 98176 triangle, 32896 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 65024 if flipped; guard 0
+tri 256x512 #1: 319748 us
+  kept d-tall.txt: 1446894 bytes raw, raw sha256 27de046314edd019f9f01dff1d377f9dfc4e51f51c0486b074dfe7e4cf8dd802
+  kept d-tall.dmesg: 414 bytes raw, raw sha256 5150ebe5590f733a73aa0b2667601b43b68afd92c1fbf3f7331293e878a99331
+  kept d-tall.after.buf09.bin: 236 bytes raw, raw sha256 d10f112c5c1d07d069eb01068c99532e5c2db46448a49f904aea27b098c04ca0
+  kept d-tall.after.regs.txt: 6474 bytes raw, raw sha256 c6c5929d7e4e5fa4ad29185877c01fe50208edf89b7fbfa07d30e7d66c8a1e2b
+  kept d-tall.depth.1.bin: 589824 bytes raw, raw sha256 1449adc8235e40628e632cec3aef2c683d526b65aa2b987bcffd04a3654e4a80
+  class ok
+== d-b3 set=heldout risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 tri --keep-overflow --wait-ms 20000 --width 256 --height 128 --tri-v 0,0,131072,0,0,131072 --tri-z 0.0625,0.125,0.0625 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump /tmp/tmp.ovfXVqnogi/depth --depth-pages 48 --poke blk:1=0x00400200 --pixels
+  rc 0 tri: render context for targets up to 256x128 tri: vertices256 0 0 131072 0 0 131072, depth 0.0625 0.125 0.0625 
+tri 256x128 #1: 32768 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0
+tri 256x128 #1: 104926 us
+  kept d-b3.txt: 362081 bytes raw, raw sha256 901499b39b0eebf048cdb11fb162e6949e013f0b8050b78ec7670305f608495c
+  kept d-b3.dmesg: 414 bytes raw, raw sha256 90c6b30b9baa3bd4ebb01d4ab96dee5f9f80e1084f151a982284eab3e9edac4c
+  kept d-b3.after.buf09.bin: 236 bytes raw, raw sha256 d10f112c5c1d07d069eb01068c99532e5c2db46448a49f904aea27b098c04ca0
+  kept d-b3.after.regs.txt: 6474 bytes raw, raw sha256 4ee4c841bd372aedafd73edd6d4ab616916ea4e5a6926ba3f023625a5fd3f308
+  kept d-b3.depth.1.bin: 196608 bytes raw, raw sha256 4170b71b0f84606643691d1126f374fe3b78be3c76143ac644f19f4934094933
+  class ok
+== d-ygrad set=heldout risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-v 0,0,131072,0,0,131072 --tri-z 0.125,0.125,0.1875 --depth --depth-ctl 0x17103c --depth-fill 0xdeadbeef --depth-dump /tmp/tmp.ovfXVqnogi/depth --depth-pages 144 --poke blk:1=0x00400200 --pixels
+  rc 0 tri: render context for targets up to 256x512 tri: vertices256 0 0 131072 0 0 131072, depth 0.125 0.125 0.1875 
+tri 256x512 #1: 98176 triangle, 32896 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 65024 if flipped; guard 0
+tri 256x512 #1: 325786 us
+  kept d-ygrad.txt: 1446894 bytes raw, raw sha256 05e88848f01bb82fbe169aedef069490494529b243076196572d8157028e4170
+  kept d-ygrad.dmesg: 414 bytes raw, raw sha256 a8aa3b3d42d837d8f6386ffccd535bb2404151d339d562da687885240e5298f5
+  kept d-ygrad.after.buf09.bin: 236 bytes raw, raw sha256 951a7a70e2d34914885f7699531a865459c49f31b8057838eed64cfacab1bdc9
+  kept d-ygrad.after.regs.txt: 6474 bytes raw, raw sha256 bcb0d39e475b2333ca8d636e3ae6363deb887527896c1a290b6f1fc42c557565
+  kept d-ygrad.depth.1.bin: 589824 bytes raw, raw sha256 fbf63b27c308a8c90ec3cadde6caf5d1e0036b62dbb218a3d3352e4605dfa03f
+  class ok
+## end: 5 jobs of p-b2
+## kernel log: 5 case markers kept in /home/jtorra/s1-out/p-b2/kernel.log

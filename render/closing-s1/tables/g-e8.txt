@@ -1,0 +1,16 @@
+#stage g-e8
+# E8a (geometry): several objects over a loaded depth, data for the deferred 12.4 (a).
+# Depth buffer filled with 0.25f and loaded (control 0x0017100e as depth-load); ISP word 0 compare
+# 'less' (0x00400200) or 'never' (0x00000200) (E282); vertex depths 0.2, 0.5, 0.8; object 2 moved.
+# The single-object controls come first and must equal E664/E665's pattern.  The tool's own
+# reference check cannot match a two-object scene (rc 1, 'diff:' lines): knob expectdiff.
+# NOTE: no earlier run combined --depth with --geometry (PREFLIGHT.md).  The compare 'greater'
+# is not in the proposal.  E8b (translucent order) is in table g-e8b.
+o1-less-ctl|control|safe|-|stophang|-|tri --width 128 --height 128 -n 1 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00400200 --pixels
+o1-never-ctl|control|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 1 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00000200 --pixels
+o2-less-mA|heldout|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:32,16 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00400200 --pixels
+o2-less-mB|heldout|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:-16,24 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00400200 --pixels
+o2-never-mA|heldout|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:32,16 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00000200 --pixels
+o2-never-mB|heldout|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:-16,24 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00000200 --pixels
+o2-less-mA-r2|replicate|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:32,16 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00400200 --pixels
+o2-never-mA-r2|replicate|safe|-|stophang expectdiff|-|tri --width 128 --height 128 -n 2 --geometry 1 --move 2:32,16 --tri-z 0.2,0.5,0.8 --depth --depth-ctl 0x0017100e --depth-fill 0x3e800000 --depth-dump "$W/depth" --dump-render "$W/dump" --keep-going --poke blk:1=0x00000200 --pixels

@@ -1,0 +1,247 @@
+## stage g-e2a
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+d776afbcb9f26a3fccc8dc6be5fa513f8843a0b2185e78c66d2c4737ade0714e  /home/jtorra/sgxfive-test-s1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803  /home/jtorra/regtimeline
+## knobs at start
+render_pb_pages=0x00000422
+alias_skip=0x00000000
+## clock
+Mon Nov  9 22:34:41 CET 2026
+## S1 safety rules: see the header of lib_s1.sh (allow-listed knobs only)
+== u-1-0x422 set=control risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 0 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: 207456 triangle, 578976 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 141525 if flipped; guard 0
+tri 1024x768 #1: 812481 us
+  kept u-1-0x422.txt: 3651 bytes raw, raw sha256 9415c1802923b0eb69c8802f5ae0970b225cadf71f800cc92f0c55f571f75415
+  kept u-1-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-1-0x422.after.buf09.bin: 236 bytes raw, raw sha256 18c9101587123bf41c6d3996930de11192f793c414b8993d9727af3966d27c00
+  kept u-1-0x422.after.regs.txt: 6474 bytes raw, raw sha256 b605858b674f08a32b7c885b6ed8fdfe3e27db5b0f8ee74f3c8791ad48e4ce72
+  kept u-1-0x422.tri.1.param.bin: 4603904 bytes raw, raw sha256 1e11a48fc31f5adb71ff75562ec1dddbe0a07f195e8b0403dab3210c8394f8f0
+  kept u-1-0x422.tri.1.tadata.bin: 69632 bytes raw, raw sha256 eeb861261881f8bcf3b4b0317f478deb7fd4d7cc2678b68c90165432934f7ae8
+  kept u-1-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 1e11a48fc31f5adb71ff75562ec1dddbe0a07f195e8b0403dab3210c8394f8f0
+  kept u-1-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 eeb861261881f8bcf3b4b0317f478deb7fd4d7cc2678b68c90165432934f7ae8
+  kept u-1-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-1-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 6b2a9125aea240c04997beb6e01dbaa18b6dcb8d67099b2049803cb307f4e6f4
+  kept u-1-0x422.words.0.txt: 3079 bytes raw, raw sha256 6fc24bd1917a22530acf172e5cb4f00281e9318d189244f0ad5715d279fbd84a
+  kept u-1-0x422.words.1.txt: 3079 bytes raw, raw sha256 05c928872c477a4bd08d0c6dee0c1dcc383b31b67d2c094bfd56c099793d8acc
+  class ok
+== u-2f-0x38 set=control risk=safe P=0x38 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x38, read back 0x00000038
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:-96,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 0 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: overflowed, 21360 triangle, 765072 background, 0 other; wrong 184323 inside, 0 outside, 0 at edges; 186571 if flipped; guard 0
+  kept u-2f-0x38.txt: 5882 bytes raw, raw sha256 b97af037dc74a6ff7e395606ea4da58b267066a9a20114223ade8203df32243e
+  kept u-2f-0x38.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-2f-0x38.after.buf09.bin: 236 bytes raw, raw sha256 52a8d4524958a7e107719af9d7332c24abb6f0403574aa5bacb4dd8356a17e2b
+  kept u-2f-0x38.after.regs.txt: 6474 bytes raw, raw sha256 5f225c5ad34e8631015025680c78dd8795d6943f5218b09e188a621198d10676
+  kept u-2f-0x38.tri.2.param.bin: 4603904 bytes raw, raw sha256 9f7e6c0f7fd7264c49b7aedc9a6b88f4c1da087d8289ab2df9007361514f02b0
+  kept u-2f-0x38.tri.2.tadata.bin: 69632 bytes raw, raw sha256 031f7b3bb2a7a9e9942e4d321cec4de67ae9c80adb228414b9c154cb6420ab61
+  kept u-2f-0x38.tri.param.bin: 4603904 bytes raw, raw sha256 9f7e6c0f7fd7264c49b7aedc9a6b88f4c1da087d8289ab2df9007361514f02b0
+  kept u-2f-0x38.tri.tadata.bin: 69632 bytes raw, raw sha256 031f7b3bb2a7a9e9942e4d321cec4de67ae9c80adb228414b9c154cb6420ab61
+  kept u-2f-0x38.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-2f-0x38.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-2f-0x38.ta3d.2.bin: 236 bytes raw, raw sha256 09106ee6047167affea59c7afdce19322ac7147f0707f866b2fca4e9c865e873
+  kept u-2f-0x38.words.0.txt: 3079 bytes raw, raw sha256 8e90d2431589945541604d5827be65bcba402aadaa4820dec5b520625c48b216
+  kept u-2f-0x38.words.1.txt: 3079 bytes raw, raw sha256 85dcbdb96369b00e77ccf8ab09c6ceb61f4b9332d6d073cd7ecefa2d9cfcb841
+  kept u-2f-0x38.words.2.txt: 3079 bytes raw, raw sha256 4d6a990e8f6a7605f12a1c975e296cad6b30ded665a70d928aca0dd4265d2b55
+  class ok
+== u-2a-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:0,288 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: 338956 triangle, 447476 background, 0 other; wrong 0 inside, 161893 outside, 0 at edges; 330975 if flipped; guard 0
+tri 1024x768 #2: 696102 us
+  kept u-2a-0x422.txt: 21428 bytes raw, raw sha256 1be5be47c1e476242280c5c363448da5023bbcf1a8fa22a19f0cc3f4d9ab53ba
+  kept u-2a-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-2a-0x422.after.buf09.bin: 236 bytes raw, raw sha256 2ab43ad55a33c82ff054f725c3041ae25cf6afa33f192378dbb10137a7c75a0f
+  kept u-2a-0x422.after.regs.txt: 6474 bytes raw, raw sha256 217bb3ed574276c57f6053dcb8274b895775425b2a1809db8427e54a7ea1fe6d
+  kept u-2a-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 288a8949179d62c3e6588a0a7a5d910b2bd243cb369f081e52dfe350a2e58041
+  kept u-2a-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 b7711d5147633b472ca9141ea6066cc399a48ac7e039444eee3afbec17b010d3
+  kept u-2a-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-2a-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-2a-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 f73fa364d3239732bb7a14c9828a9c2ca2380905b3f0ad34b2c6b47aad4b1dc3
+  kept u-2a-0x422.words.0.txt: 3079 bytes raw, raw sha256 7f12ea67f27a9d2cf93021ac5a3e6a4aa384cc33f8054f5f40d9887761f455d4
+  kept u-2a-0x422.words.1.txt: 3079 bytes raw, raw sha256 2c020a8b104a410cbfa17ba389e0efcb1a8fef8d89484c6936c60cbe8ed63d15
+  kept u-2a-0x422.words.2.txt: 3079 bytes raw, raw sha256 7ff05004d605f1a5e8a2e4c2c6dd9b5e66c88e9c6738002961bd002ab688f610
+  class ok
+== u-3a-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:0,288 --move 3:-64,-240 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: 425269 triangle, 361163 background, 0 other; wrong 0 inside, 268926 outside, 0 at edges; 324132 if flipped; guard 0
+tri 1024x768 #3: 805797 us
+  kept u-3a-0x422.txt: 22395 bytes raw, raw sha256 45c975302b26956adb1694d9490a68aea2e87ee182dac54b45646d6c74132e72
+  kept u-3a-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-3a-0x422.after.buf09.bin: 236 bytes raw, raw sha256 c861d4cc5e045a425434397745d3c9a8579e3cbb5965b9c09bef503d51b30fb7
+  kept u-3a-0x422.after.regs.txt: 6474 bytes raw, raw sha256 0540fd2b6f3c4f3b86955d471610d27336cb728fd34c5e7967a734787c2a8cc4
+  kept u-3a-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 fa8f5e18716b89dc1be4ff54a662f0bbf21b2941a1c94ccf9d92f0ff7e63bd4c
+  kept u-3a-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 44a3d6ea6959b2bef2c8216fdd8951d27aae73a97a845fb29cbb73bc72b8fcd7
+  kept u-3a-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-3a-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 8825721811dc890c86f60535ae7248e5692960b32357d42a847e77bcd3a11b9a
+  kept u-3a-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-3a-0x422.ta3d.3.bin: 236 bytes raw, raw sha256 99d527b9a04b8347874f25595054bd9cb94de88077159214dcc13c11090a1253
+  kept u-3a-0x422.words.0.txt: 3079 bytes raw, raw sha256 013a08200e335646a78e5f97315ce931e19fa579d936144a251f1f3fe3e75172
+  kept u-3a-0x422.words.1.txt: 3079 bytes raw, raw sha256 716325b05d5d527b921b1dfa520f708a27835a239fa87c35d4a55eaf60654acf
+  kept u-3a-0x422.words.2.txt: 3079 bytes raw, raw sha256 1bfe9345a6ab0a211506862ad8712dc99351ed7655bc1dc3f5d2d0961e09bcdf
+  kept u-3a-0x422.words.3.txt: 3079 bytes raw, raw sha256 bcee8427849264331ddb3e5d7d18a973b48e157a52a9f5f1becf89fe49579ecb
+  class ok
+== u-4a-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:0,288 --move 3:-64,-240 --move 4:-768,-96 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: geometry only, the scene left open
+tri 1024x768 #4: 432949 triangle, 353483 background, 0 other; wrong 0 inside, 425269 outside, 0 at edges; 440344 if flipped; guard 0
+  kept u-4a-0x422.txt: 23191 bytes raw, raw sha256 2061c11211c22f89016d8492e3a59048e40710c387897779c66578942826d047
+  kept u-4a-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-4a-0x422.after.buf09.bin: 236 bytes raw, raw sha256 204fe72b20bc3be95226309665784d5f267fadfc6ba3bf7467e8e3ba519d30ac
+  kept u-4a-0x422.after.regs.txt: 6474 bytes raw, raw sha256 231348e2b6745e09bb452e192455285135df6c4ff1e664f4ee669b676a0467cf
+  kept u-4a-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 dde0a5d2a84552baa1eb1fecc273c470c52f84e6ab9bf5a58cb6c7aa55d48f31
+  kept u-4a-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 9771bc0a1552b2052a468e1f99d8d7ea46216a7102182ca169c6ebbcb606240c
+  kept u-4a-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-4a-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-4a-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-4a-0x422.ta3d.3.bin: 236 bytes raw, raw sha256 7a089c0ca7ad5f1e1b66771ddf628e68449af2471407e717a28a9a146627ce1a
+  kept u-4a-0x422.ta3d.4.bin: 236 bytes raw, raw sha256 b1668c9e4bece7381583164c682175f457161220dbab6df0b66179ff36d25cd7
+  kept u-4a-0x422.words.0.txt: 3079 bytes raw, raw sha256 6e826d01c0d54d0767b79dd79241314c3cbb076779989b37e7b8e3e277ba2701
+  kept u-4a-0x422.words.1.txt: 3079 bytes raw, raw sha256 65758186443a1b3ecab82a86b5ac11d76952b16a2c89f4cf8c0fc37603bba136
+  kept u-4a-0x422.words.2.txt: 3079 bytes raw, raw sha256 8fb62f8a209b2ba9f8c11444bc6aa019a95653a8dc392621f75dca5676f52bf8
+  kept u-4a-0x422.words.3.txt: 3079 bytes raw, raw sha256 20530bba5b9a3e52a02a6381f26db064eb5a14348ae657ac1455316cf2f4e078
+  kept u-4a-0x422.words.4.txt: 3079 bytes raw, raw sha256 86334a7ccb5115c0ea1f17fd353f1cde1354790efbb65c0964b8fbcdbbcc9ffa
+  class ok
+== u-4a-0x422-r2 set=replicate risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:0,288 --move 3:-64,-240 --move 4:-768,-96 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: geometry only, the scene left open
+tri 1024x768 #4: 432949 triangle, 353483 background, 0 other; wrong 0 inside, 425269 outside, 0 at edges; 440344 if flipped; guard 0
+  kept u-4a-0x422-r2.txt: 23106 bytes raw, raw sha256 96808b20ead787528909de7eb8bdd68ba72fd7e12e80b45ed45d4b49cf965ad7
+  kept u-4a-0x422-r2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-4a-0x422-r2.after.buf09.bin: 236 bytes raw, raw sha256 bb680fa478b0e238cdcca08b3cd02796a270f2d2f62ad32b7d2054bf0032c667
+  kept u-4a-0x422-r2.after.regs.txt: 6474 bytes raw, raw sha256 ee00d54a983ac287c4d73e8119ac2bc6be01b73a01c1b8c7d5bf287576a35446
+  kept u-4a-0x422-r2.tri.param.bin: 4603904 bytes raw, raw sha256 6f65619b98b978c76e49bfa8273636829b0819241705485f072afe914c41e2b0
+  kept u-4a-0x422-r2.tri.tadata.bin: 69632 bytes raw, raw sha256 9771bc0a1552b2052a468e1f99d8d7ea46216a7102182ca169c6ebbcb606240c
+  kept u-4a-0x422-r2.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-4a-0x422-r2.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-4a-0x422-r2.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-4a-0x422-r2.ta3d.3.bin: 236 bytes raw, raw sha256 7a089c0ca7ad5f1e1b66771ddf628e68449af2471407e717a28a9a146627ce1a
+  kept u-4a-0x422-r2.ta3d.4.bin: 236 bytes raw, raw sha256 937eb7b4fa1d45fd6711305d4512ffbcf6b535853015eda5b680ab5700163bba
+  kept u-4a-0x422-r2.words.0.txt: 3079 bytes raw, raw sha256 4d30368f397d67c19bd5aca763a58861c72c78fb87ef328a68494b515c3f6e5b
+  kept u-4a-0x422-r2.words.1.txt: 3079 bytes raw, raw sha256 eb058bab8bd21a9d71f70c7e763b313def40831ee33f839d6b314d21efb9f861
+  kept u-4a-0x422-r2.words.2.txt: 3079 bytes raw, raw sha256 9ac688c1766729d325abba69f7ea867554c4e3d31f51462c18da5c3a4c4e5d77
+  kept u-4a-0x422-r2.words.3.txt: 3079 bytes raw, raw sha256 06eb2980ee99207a1d682c954b041f1ab161b83ea5249ed7b03bc73152c0eebf
+  kept u-4a-0x422-r2.words.4.txt: 3079 bytes raw, raw sha256 57e19f60375f7a64524d2ad60e57f6a357b370e43f377763e7b3da53de4a58be
+  class ok
+== u-2s-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 2 --geometry 1 --move 2:16,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: 216572 triangle, 569860 background, 0 other; wrong 0 inside, 8552 outside, 0 at edges; 142855 if flipped; guard 0
+tri 1024x768 #2: 825405 us
+  kept u-2s-0x422.txt: 20912 bytes raw, raw sha256 2409c02a16d5289f4d3f78127f22e1d597bb8256712eb10662b19625667c662d
+  kept u-2s-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-2s-0x422.after.buf09.bin: 236 bytes raw, raw sha256 2ab43ad55a33c82ff054f725c3041ae25cf6afa33f192378dbb10137a7c75a0f
+  kept u-2s-0x422.after.regs.txt: 6474 bytes raw, raw sha256 1aa131ecfec5a34f43e7c8965dad4c7e8fd5aa5f0b5f51a0939152cd447fa63c
+  kept u-2s-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 14d75b961fe7ec99f16f23b187cf97122421caddd4dc799a0a3e6b099744cf0a
+  kept u-2s-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 beb1dea10b8ed1e86c226c67a410f3293cdae21f873c1445c90c82ee04d34180
+  kept u-2s-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-2s-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-2s-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 f73fa364d3239732bb7a14c9828a9c2ca2380905b3f0ad34b2c6b47aad4b1dc3
+  kept u-2s-0x422.words.0.txt: 3079 bytes raw, raw sha256 fade788333df9e76fa9f62a31c5ef54a28b8db23ef26ac09ee087fd9f705a741
+  kept u-2s-0x422.words.1.txt: 3079 bytes raw, raw sha256 e519a59e1ae6a82679cd0abe903e9b053a23f3aca740d555fe7334ea57266502
+  kept u-2s-0x422.words.2.txt: 3079 bytes raw, raw sha256 b3676c8cd1f439cfbb9be02d4f95cf375dc787a51e459af82aa15a35429f1e52
+  class ok
+== u-3s-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 3 --geometry 1 --geometry 2 --move 2:16,0 --move 3:32,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: 225688 triangle, 560744 background, 0 other; wrong 0 inside, 17668 outside, 0 at edges; 144863 if flipped; guard 0
+tri 1024x768 #3: 807269 us
+  kept u-3s-0x422.txt: 21878 bytes raw, raw sha256 5c0a2b2fd12a0226fda21675300bd3abfaaff09a3d5760444c0ce4e7b2161adf
+  kept u-3s-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-3s-0x422.after.buf09.bin: 236 bytes raw, raw sha256 c861d4cc5e045a425434397745d3c9a8579e3cbb5965b9c09bef503d51b30fb7
+  kept u-3s-0x422.after.regs.txt: 6474 bytes raw, raw sha256 db22cee797b068b64f64ced814a029279b77448177ecca7219c46c832f97d456
+  kept u-3s-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 f5f9783244f491d88cdb69cd724d189d723f077bd240d234f204d4fa4331214f
+  kept u-3s-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 e8331fbecb614e2df74d27a44e38fb4aeb1f9fed1a6da8a893149b48e90de3ff
+  kept u-3s-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-3s-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-3s-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-3s-0x422.ta3d.3.bin: 236 bytes raw, raw sha256 99d527b9a04b8347874f25595054bd9cb94de88077159214dcc13c11090a1253
+  kept u-3s-0x422.words.0.txt: 3079 bytes raw, raw sha256 3498fa458e834c3bd326c75f846d0916a33b48a68678d67185e2a8764e836a05
+  kept u-3s-0x422.words.1.txt: 3079 bytes raw, raw sha256 59c251023f1d2e7a93fd314f0d9958dbd6fcf1e4397cb78ca289a6623fb55b31
+  kept u-3s-0x422.words.2.txt: 3079 bytes raw, raw sha256 03b6b393bcf2bed840141ff280fd65c6ffc797a5faef85b5d8fcfb44b31902cf
+  kept u-3s-0x422.words.3.txt: 3079 bytes raw, raw sha256 9a4b08c7f5cfb4742989ce6d78904edc28bcde07dd3e1a8d98b7eb1c32da50ca
+  class ok
+== u-4s-0x422 set=heldout risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:16,0 --move 3:32,0 --move 4:48,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: geometry only, the scene left open
+tri 1024x768 #4: 234804 triangle, 551628 background, 0 other; wrong 0 inside, 26784 outside, 0 at edges; 147549 if flipped; guard 0
+  kept u-4s-0x422.txt: 22500 bytes raw, raw sha256 84b63490b8f4993bb5e0c32de3ce6e4e53c1163aca3eb58166caae1ed612e253
+  kept u-4s-0x422.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-4s-0x422.after.buf09.bin: 236 bytes raw, raw sha256 204fe72b20bc3be95226309665784d5f267fadfc6ba3bf7467e8e3ba519d30ac
+  kept u-4s-0x422.after.regs.txt: 6474 bytes raw, raw sha256 ee8a379086d57daf8bebd21cfe6090d83e03fe93d0d0eb30693942ba8a4cb17c
+  kept u-4s-0x422.tri.param.bin: 4603904 bytes raw, raw sha256 ac6da36821656ee7b2ff6439d6bea4e9470ed87eb7bdfde87dee3cbf7e5e4b70
+  kept u-4s-0x422.tri.tadata.bin: 69632 bytes raw, raw sha256 ec4d13c0e9fad8333b06fb4ddb42792ac4bb884135c4919be46a87bd814eac29
+  kept u-4s-0x422.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-4s-0x422.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-4s-0x422.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-4s-0x422.ta3d.3.bin: 236 bytes raw, raw sha256 7a089c0ca7ad5f1e1b66771ddf628e68449af2471407e717a28a9a146627ce1a
+  kept u-4s-0x422.ta3d.4.bin: 236 bytes raw, raw sha256 b1668c9e4bece7381583164c682175f457161220dbab6df0b66179ff36d25cd7
+  kept u-4s-0x422.words.0.txt: 3079 bytes raw, raw sha256 1758158cfcea30bb64edbe2d26a0654d1e3d08fa31fefa875de9580c6367b099
+  kept u-4s-0x422.words.1.txt: 3079 bytes raw, raw sha256 634d73bbd514f2e29a1dec8ded3be051c9b22aa858603bbb399b619115f7b126
+  kept u-4s-0x422.words.2.txt: 3079 bytes raw, raw sha256 38f3041d6fc94dc1f9707bef47155f30d57a512a12f255920ed19c0e7bc753f5
+  kept u-4s-0x422.words.3.txt: 3079 bytes raw, raw sha256 de0e4f890405faa9d545d78a359fe7b9169d5e66c49c0a56513ed570f3812a52
+  kept u-4s-0x422.words.4.txt: 3079 bytes raw, raw sha256 74cde2cde08682de36b8bf9d02eb402a12fe5d486a130a8a378282223b42bf50
+  class ok
+== u-4s-0x422-r2 set=replicate risk=safe P=0x422 knobs=[stophang expectdiff] rt=0x0624-0x0628,0x0654-0x0660,0x0720-0x0724
+  render_pb_pages written 0x422, read back 0x00000422
+  cmd: /home/jtorra/sgxfive-test-s1 tri --width 1024 --height 768 -n 4 --geometry 1 --geometry 2 --geometry 3 --move 2:16,0 --move 3:32,0 --move 4:48,0 --keep-going --keep-overflow --wait-ms 20000 --dump-render /tmp/tmp.qdWQBAzqad/dump --dump-each --words /tmp/tmp.qdWQBAzqad/words --regs 0x0700-0x074c
+  rc 1 tri: render context for targets up to 1024x768 tri: words 0 to /tmp/tmp.qdWQBAzqad/words/words.0.txt (3079 bytes), /tmp/tmp.qdWQBAzqad/words/ta3d.0.bi
+tri 1024x768 #1: geometry only, the scene left open
+tri 1024x768 #2: geometry only, the scene left open
+tri 1024x768 #3: geometry only, the scene left open
+tri 1024x768 #4: 234804 triangle, 551628 background, 0 other; wrong 0 inside, 26784 outside, 0 at edges; 147549 if flipped; guard 0
+  kept u-4s-0x422-r2.txt: 22501 bytes raw, raw sha256 5528029417bc535e11880f9a6007f4f4e028ac9c132c5d38c4caa33d7f2c8740
+  kept u-4s-0x422-r2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept u-4s-0x422-r2.after.buf09.bin: 236 bytes raw, raw sha256 204fe72b20bc3be95226309665784d5f267fadfc6ba3bf7467e8e3ba519d30ac
+  kept u-4s-0x422-r2.after.regs.txt: 6474 bytes raw, raw sha256 a5af7e87ec7b7e0565d51d7f17c403809184b8cf61dcdce0f770afbff397eb31
+  kept u-4s-0x422-r2.tri.param.bin: 4603904 bytes raw, raw sha256 ac6da36821656ee7b2ff6439d6bea4e9470ed87eb7bdfde87dee3cbf7e5e4b70
+  kept u-4s-0x422-r2.tri.tadata.bin: 69632 bytes raw, raw sha256 ec4d13c0e9fad8333b06fb4ddb42792ac4bb884135c4919be46a87bd814eac29
+  kept u-4s-0x422-r2.ta3d.0.bin: 236 bytes raw, raw sha256 43fda9199cbcbca178bc046a7d32769b9109e497fe8e2f85431d32a0ace29703
+  kept u-4s-0x422-r2.ta3d.1.bin: 236 bytes raw, raw sha256 05126b77c0e92f692018f7e1e109ad191909209ba2fd88613778e9eb11115ce7
+  kept u-4s-0x422-r2.ta3d.2.bin: 236 bytes raw, raw sha256 b341e841bf542967254bf1f670fd7a1d51cb261cf94c23ecb1c0805127925422
+  kept u-4s-0x422-r2.ta3d.3.bin: 236 bytes raw, raw sha256 7a089c0ca7ad5f1e1b66771ddf628e68449af2471407e717a28a9a146627ce1a
+  kept u-4s-0x422-r2.ta3d.4.bin: 236 bytes raw, raw sha256 b1668c9e4bece7381583164c682175f457161220dbab6df0b66179ff36d25cd7
+  kept u-4s-0x422-r2.words.0.txt: 3079 bytes raw, raw sha256 72002e199153fb61b0fa7d2394a626702ae73f15525db58c073d99802bcf6713
+  kept u-4s-0x422-r2.words.1.txt: 3079 bytes raw, raw sha256 8bae8de3f5c299eda47bce2451d6629fa7ff2e6bc0034a0a411d13ee680c8101
+  kept u-4s-0x422-r2.words.2.txt: 3079 bytes raw, raw sha256 58dccf7cbacd94aa242c0041a8eecbe4ae12749378fda5d6df95d2ba526a581e
+  kept u-4s-0x422-r2.words.3.txt: 3079 bytes raw, raw sha256 3ec808e7b953fb421646bc91d890e99b9b38c21b3c54e94507847f3b8f86f648
+  kept u-4s-0x422-r2.words.4.txt: 3079 bytes raw, raw sha256 0af0701c037599fbafb1361d409e461ccdcb7216006d6e07c543ffb72650d034
+  class ok
+## end: 10 jobs of g-e2a
+## kernel log: 10 case markers kept in /home/jtorra/s1-out/g-e2a/kernel.log

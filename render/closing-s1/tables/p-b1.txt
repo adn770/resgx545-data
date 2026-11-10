@@ -1,0 +1,20 @@
+#stage p-b1
+# B1 (pixel): Q288, which rule gives the effective depth gradient (binade 0, B = 0).
+# Jobs: tri --tri-v --tri-z --depth --depth-dump on 1024 x 32 (two tile rows, 32 tile columns), z0 = 0.5.
+# The depth control word's pitch field g = 31 and the buffer pages (48) follow tri1141.py's depth_args
+# for this width (the proposal says --depth-pages 40, fine too).  Frozen: the float32 word of the
+# gradient under each rule per ramp; scorer score/score_s1.py p-b1 (row fit as depth_drift.py grad_bounds).
+# FIT: E731's dp-bx-b0 (A = 1/6400 -> 0x3923d700), which nine rules agree with.  HELD OUT: g-r2..g-r13.
+# g-dyadic is the control that can fail.  The proposal's 'dx > 1024' does not hold for its own ramps
+# (dx 400..900): the triangle covers about dx pixels of a 1024-pixel row (PREFLIGHT.md).
+g-ctl|control|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,102400,0,0,102400 --tri-z 0.5,0.5625,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-dyadic|control|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,131072,0,0,131072 --tri-z 0.5,0.5625,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r2|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,179200,0,0,179200 --tri-z 0.5,0.5625,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r2-rep|replicate|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,179200,0,0,179200 --tri-z 0.5,0.5625,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r4|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,102400,0,0,102400 --tri-z 0.5,1.0,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r6|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,102400,0,0,102400 --tri-z 0.5,0.5078125,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r7|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,179200,0,0,179200 --tri-z 0.5,0.5078125,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r9|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,230400,0,0,230400 --tri-z 0.5,0.75,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r11|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,435200,0,0,435200 --tri-z 0.5,0.625,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r12|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,102400,0,0,102400 --tri-z 0.5,0.5703125,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels
+g-r13|heldout|safe|-|stophang|-|tri --keep-overflow --wait-ms 20000 --width 1024 --height 32 --tri-v 0,0,179200,0,0,179200 --tri-z 0.5,0.5299999713897705,0.5 --depth --depth-ctl 0x1710fc --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 48 --poke blk:1=0x00400200 --pixels

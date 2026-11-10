@@ -1,0 +1,29 @@
+#stage p-f
+# F (pixel): Q076, the remaining pages, with debugfs alias_skip (a mask of firmware buffer ids,
+# bits 16 to 31 refused; applies to render VMs created after the write; a reset leaves it alone).
+# tri -n 2 --keep-going as E573/E592 ran it; each condition twice (the proposal's '11 jobs (2 repeats
+# each)' is 9 conditions = 20 jobs with f-dpm's two masks).  A fault in a pair job is HJ, a stated
+# hypothesis: measured (knob hypo:COND:2), not a stop.  f-ctl0 reproduces E573 and faults by design
+# (reset + health after); it is last: nothing depends on it, the knob proof is the read-back marker.  The mask is written, read back and marked in the kernel log
+# before each job and put back to 0 after it.  Buffer 9 is the TA3D control block (never masked here).
+# f-dpm uses --keep-overflow (a partial render's ENOSPC is not a failure); P = 0x23.
+f-12-r1|heldout|safe|-|alias_skip=0x6 hypo:f-12:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-12-r2|replicate|safe|-|alias_skip=0x6 hypo:f-12:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-13-r1|heldout|safe|-|alias_skip=0xa hypo:f-13:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-13-r2|replicate|safe|-|alias_skip=0xa hypo:f-13:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-23-r1|heldout|safe|-|alias_skip=0xc hypo:f-23:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-23-r2|replicate|safe|-|alias_skip=0xc hypo:f-23:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-45-r1|heldout|safe|-|alias_skip=0x30 hypo:f-45:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-45-r2|replicate|safe|-|alias_skip=0x30 hypo:f-45:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-15-r1|heldout|safe|-|alias_skip=0x22 hypo:f-15:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-15-r2|replicate|safe|-|alias_skip=0x22 hypo:f-15:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-all15-r1|heldout|safe|-|alias_skip=0x3e hypo:f-all15:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-all15-r2|replicate|safe|-|alias_skip=0x3e hypo:f-all15:2|-|tri -n 2 --keep-going --wait-ms 6000
+f-3r-r1|heldout|safe|-|alias_skip=0xdc0 hypo:f-3r:2|-|tri -n 3 --keep-going --wait-ms 6000
+f-3r-r2|replicate|safe|-|alias_skip=0xdc0 hypo:f-3r:2|-|tri -n 3 --keep-going --wait-ms 6000
+f-dpm-dc0-r1|heldout|safe|0x23|alias_skip=0xdc0 hypo:f-dpm-dc0:2|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-dc0-r2|replicate|safe|0x23|alias_skip=0xdc0 hypo:f-dpm-dc0:2|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-1f-r1|heldout|safe|0x23|alias_skip=0x1f hypo:f-dpm-1f:2|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-dpm-1f-r2|replicate|safe|0x23|alias_skip=0x1f hypo:f-dpm-1f:2|-|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+f-ctl0-r2|replicate|risky|-|alias_skip=0x1 expectfault|-|tri -n 2 --keep-going --wait-ms 6000
+f-ctl0-r1|control|risky|-|alias_skip=0x1 expectfault|-|tri -n 2 --keep-going --wait-ms 6000

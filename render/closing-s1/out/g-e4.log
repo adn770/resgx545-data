@@ -1,0 +1,97 @@
+## stage g-e4
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+d776afbcb9f26a3fccc8dc6be5fa513f8843a0b2185e78c66d2c4737ade0714e  /home/jtorra/sgxfive-test-s1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803  /home/jtorra/regtimeline
+## knobs at start
+render_pb_pages=0x00000422
+alias_skip=0x00000000
+## clock
+Mon Nov  9 22:41:25 CET 2026
+## S1 safety rules: see the header of lib_s1.sh (allow-listed knobs only)
+== ix-c set=control risk=safe P=- knobs=[stophang] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels /home/jtorra/s1-stage/p1139-green.bin
+  rc 0 
+  kept ix-c.txt: 38892 bytes raw, raw sha256 16f28781786db39e29bf482f5cb4f3f00620b80322f5e11f3943abc65f702f97
+  kept ix-c.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept ix-c.after.buf09.bin: 236 bytes raw, raw sha256 d10f112c5c1d07d069eb01068c99532e5c2db46448a49f904aea27b098c04ca0
+  kept ix-c.after.regs.txt: 6474 bytes raw, raw sha256 e2c6f40405c60c312e1171c593353062f13f8016d18664e3a85a23a0a37c8194
+  kept ix-c.p1139-green.param.bin: 4603904 bytes raw, raw sha256 122bc4d98eba01f1c61dcafb5669f0516508f6f256b49edcece308ffe4749e1e
+  kept ix-c.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  class ok
+== ix-24-r1 set=heldout risk=safe P=- knobs=[hypo:ix-24:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x01000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job hung, context lost (Connection timed out) 
+  kept ix-24-r1.txt: 391 bytes raw, raw sha256 714ef7d378c7c07fec1bfdb4148215acd68ec11712d7aed48aaf5c99398ab998
+  kept ix-24-r1.dmesg: 3361 bytes raw, raw sha256 aa07a4fd3134ce6a8e7798f1ef259f0758575a5fcab7702ba916e4db12b06d6d
+  kept ix-24-r1.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-24-r1.after.regs.txt: 6474 bytes raw, raw sha256 9be4459fb05352b5f63b444bac108a369679e0b7823ee6cb177e680cda4d1112
+  kept ix-24-r1.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-24-r1.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class hang
+  hang 1 of at most 2 in group ix-24 (a hypothesis: measured)
+== ix-24-r2 set=replicate risk=safe P=- knobs=[hypo:ix-24:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x01000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job hung, context lost (Connection timed out) 
+  kept ix-24-r2.txt: 391 bytes raw, raw sha256 714ef7d378c7c07fec1bfdb4148215acd68ec11712d7aed48aaf5c99398ab998
+  kept ix-24-r2.dmesg: 3361 bytes raw, raw sha256 b5aed9f20f9d775b639c694dbe79e31cac570ac19bb7cacdd7d35c2ec42346ab
+  kept ix-24-r2.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-24-r2.after.regs.txt: 6474 bytes raw, raw sha256 9095d9607fe67d9c7e3e2191c415c9bb5260cbbfaaa626a10b87310cb25af8d5
+  kept ix-24-r2.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-24-r2.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class hang
+  hang 2 of at most 2 in group ix-24 (a hypothesis: measured)
+== ix-25-r1 set=heldout risk=safe P=- knobs=[hypo:ix-25:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x02000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job faulted, context lost (Input/output error) 
+  kept ix-25-r1.txt: 392 bytes raw, raw sha256 d5100cc44e30d3e54d77bd9f31d9d7d30e22d2162d93a921ac601e576b0ad78c
+  kept ix-25-r1.dmesg: 3403 bytes raw, raw sha256 d242ccb0876acc20284802530776b188551b3f0f1a33a59a6cbd807bec961c78
+  kept ix-25-r1.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-25-r1.after.regs.txt: 6474 bytes raw, raw sha256 afe8d127e93a0f305bd2e1121a27e858727188289428dd72fcece4fe46c32949
+  kept ix-25-r1.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-25-r1.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class fault
+  fault 1 of at most 2 in group ix-25 (a hypothesis: measured)
+== ix-25-r2 set=replicate risk=safe P=- knobs=[hypo:ix-25:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x02000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job faulted, context lost (Input/output error) 
+  kept ix-25-r2.txt: 392 bytes raw, raw sha256 d5100cc44e30d3e54d77bd9f31d9d7d30e22d2162d93a921ac601e576b0ad78c
+  kept ix-25-r2.dmesg: 3404 bytes raw, raw sha256 5c4c211590bc0ef4bed6c3372a520cc9ff570c1c97ef1d7fc4fb3cbe58840b98
+  kept ix-25-r2.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-25-r2.after.regs.txt: 6474 bytes raw, raw sha256 eba620fa7deae87108965801c7e70ea7e7f9115a50daa77e6a11c87b17d2bddc
+  kept ix-25-r2.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-25-r2.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class fault
+  fault 2 of at most 2 in group ix-25 (a hypothesis: measured)
+== ix-2425-r1 set=heldout risk=safe P=- knobs=[hypo:ix-2425:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x03000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job faulted, context lost (Input/output error) 
+  kept ix-2425-r1.txt: 392 bytes raw, raw sha256 d5100cc44e30d3e54d77bd9f31d9d7d30e22d2162d93a921ac601e576b0ad78c
+  kept ix-2425-r1.dmesg: 3405 bytes raw, raw sha256 290576973aa82e4249b32cdf15fd5270eb2add6cb1c9073cc47d3ab97fa74752
+  kept ix-2425-r1.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-2425-r1.after.regs.txt: 6474 bytes raw, raw sha256 415458f3473618f6dbf570659ee8273d0c8035beeb64fefe120d45ab9867b967
+  kept ix-2425-r1.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-2425-r1.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class fault
+  fault 1 of at most 2 in group ix-2425 (a hypothesis: measured)
+== ix-2425-r2 set=replicate risk=safe P=- knobs=[hypo:ix-2425:2] rt=-
+  cmd: /home/jtorra/sgxfive-test-s1 probe --tri pixel --vertices 15 --copy-depth --dump-render /tmp/tmp.jDXBtbpBTz/dump --pixels --vdm 2^=0x03000000 /home/jtorra/s1-stage/p1139-green.bin
+  rc 3 probe p1139-green: failed: job faulted, context lost (Input/output error) 
+  kept ix-2425-r2.txt: 392 bytes raw, raw sha256 d5100cc44e30d3e54d77bd9f31d9d7d30e22d2162d93a921ac601e576b0ad78c
+  kept ix-2425-r2.dmesg: 3404 bytes raw, raw sha256 7937e1e1cfaa3108510b866264f1c785ee444d9b2de9a0da1677ec48aa96f576
+  kept ix-2425-r2.after.buf09.bin: 236 bytes raw, raw sha256 5265c71f1a6caab162f36aa00a6cf2734d052fed8a19d75c110756caa7dcbee9
+  kept ix-2425-r2.after.regs.txt: 6474 bytes raw, raw sha256 30c713e95d947956b88209de90b7293134b91a4ccb7efb75871d4817a9de222f
+  kept ix-2425-r2.p1139-green.param.bin: 4603904 bytes raw, raw sha256 0f9c7626d48964198ede18c252f0ba23e0b26904c292209451c5939ebd9e3598
+  kept ix-2425-r2.p1139-green.tadata.bin: 24576 bytes raw, raw sha256 de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3
+  class fault
+  fault 2 of at most 2 in group ix-2425 (a hypothesis: measured)
+## end: 7 jobs of g-e4
+## kernel log: 7 case markers kept in /home/jtorra/s1-out/g-e4/kernel.log

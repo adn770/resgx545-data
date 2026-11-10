@@ -1,0 +1,24 @@
+F: alias_skip masks (HI: a buffer is needed only if leaving it out alone faults; HJ: a pair is needed together)
+job           class  result       
+f-12-r1       ok     exact        
+f-12-r2       ok     exact        
+f-13-r1       ok     exact        
+f-13-r2       ok     exact        
+f-23-r1       ok     exact        
+f-23-r2       ok     exact        
+f-45-r1       ok     exact        
+f-45-r2       ok     exact        
+f-15-r1       ok     exact        
+f-15-r2       ok     exact        
+f-all15-r1    ok     exact        
+f-all15-r2    ok     exact        
+f-3r-r1       ok     exact        
+f-3r-r2       ok     exact        
+f-dpm-dc0-r1  ok     ok           
+f-dpm-dc0-r2  ok     ok           
+f-dpm-1f-r1   fault  fault 0x91000
+f-dpm-1f-r2   fault  fault 0x91000
+f-ctl0-r2     fault  fault 0x91000
+f-ctl0-r1     fault  fault 0x91000
+
+SUMMARY: control reproduces E573; f-12: exact 2 of 2; f-13: exact 2 of 2; f-23: exact 2 of 2; f-45: exact 2 of 2; f-15: exact 2 of 2; f-all15: exact 2 of 2; f-3r: exact 2 of 2; f-dpm-dc0: split ['ok', 'ok'] (third run); f-dpm-1f: fault 0x91000 2 of 2 (needed: HJ)

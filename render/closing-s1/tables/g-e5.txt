@@ -1,0 +1,26 @@
+#stage g-e5
+#need $S/pix_pa0.bin
+#need $S/vtx_c8.bin
+#need $S/vtx_c2.bin
+#need $S/p1131-fmt-8__0.bin
+#need $S/p1131-fmt-2__0.bin
+# E5 (geometry): Q272, do the three events repeat (E702's commands, cap(n, f, a)).
+# The two bases come first and must reproduce E702 (o0 mixed counts) before the cells count.
+# r-n2-a32 hangs each time if HD holds (about 1 s recovery each): last; stop after a recovery whose
+# health triangle does not draw.  HD/HO/HI as in the proposal: 3 of 3 or 0 of 3 per condition.
+# The programs are rebuilt from probes/ta (p1131-progs.toml); their sha256 against the laptop's
+# ~/sgxprobes-stage copies is not checkable offline (PREFLIGHT.md).
+r-n8-a1|control|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n2-a9|control|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 7^=0x00000400 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c2.bin" "$S/p1131-fmt-2__0.bin"
+r-n8-a7-r1|heldout|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000300 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a7-r2|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000300 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a7-r3|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000300 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a12-r1|heldout|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000680 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a12-r2|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000680 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a12-r3|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000680 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-r1|heldout|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-r2|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n8-a8-r3|replicate|risky|-|stophang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x50000000 --vdm 7^=0x00000480 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c8.bin" "$S/p1131-fmt-8__0.bin"
+r-n2-a32-r1|heldout|risky|-|expecthang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 7^=0x00001080 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c2.bin" "$S/p1131-fmt-2__0.bin"
+r-n2-a32-r2|replicate|risky|-|expecthang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 7^=0x00001080 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c2.bin" "$S/p1131-fmt-2__0.bin"
+r-n2-a32-r3|replicate|risky|-|expecthang|-|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 7^=0x00001080 --dump-render "$W/dump" --slot "pixel=$S/pix_pa0.bin" --slot "vtxuse=$S/vtx_c2.bin" "$S/p1131-fmt-2__0.bin"

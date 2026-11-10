@@ -1,0 +1,14 @@
+#stage g-e4
+#need $S/p1139-green.bin
+# E4 (geometry): Q112, index header (VDM word 2) bits 25:24 and the index width.
+# Control: unflipped five-copy job (--vertices 15 --copy-depth as E414 ran it; the proposal omitted
+# --copy-depth).  Two runs per flip.  A hang or fault is a hypothesis (HH, HW): knob hypo:GROUP:2
+# measures up to two events per flip word (the group's remaining jobs are then skipped); any hang or
+# fault elsewhere stops the stage.  Nothing here forces a field value the records never touched except the flips.
+ix-c|control|safe|-|stophang|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels "$S/p1139-green.bin"
+ix-24-r1|heldout|safe|-|hypo:ix-24:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x01000000 "$S/p1139-green.bin"
+ix-24-r2|replicate|safe|-|hypo:ix-24:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x01000000 "$S/p1139-green.bin"
+ix-25-r1|heldout|safe|-|hypo:ix-25:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x02000000 "$S/p1139-green.bin"
+ix-25-r2|replicate|safe|-|hypo:ix-25:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x02000000 "$S/p1139-green.bin"
+ix-2425-r1|heldout|safe|-|hypo:ix-2425:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x03000000 "$S/p1139-green.bin"
+ix-2425-r2|replicate|safe|-|hypo:ix-2425:2|-|probe --tri pixel --vertices 15 --copy-depth --dump-render "$W/dump" --pixels --vdm 2^=0x03000000 "$S/p1139-green.bin"
