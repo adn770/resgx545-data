@@ -1,0 +1,37 @@
+case	quantity	value	model	set
+q50	entries_all	0	E538-quiet	control
+q50-r2	entries_all	0	E538-quiet	replicate
+q50-r3	entries_all	0	E538-quiet	replicate
+q8	slot0_entries	open_ms*0.99746+-1.5 and >= 4	tick-1kHz(E009)	control
+q8	other_entries	0	E605	control
+q8	pa0_all	0x2	E532	control
+q8	pa1_all	0x02000000	Q153-bit25-every-tick	heldout
+q8	pa2_all	0x01061a70	Q157-constant	heldout
+q8	stamp_diff	25000+-500	E009-clock	heldout
+q8-r2	slot0_entries	open_ms*0.99746+-1.5 and >= 4	tick-1kHz(E009)	replicate
+q8-r2	other_entries	0	E605	replicate
+q8-r2	pa0_all	0x2	E532	replicate
+q8-r2	pa1_all	0x02000000	Q153-bit25-every-tick	heldout
+q8-r2	pa2_all	0x01061a70	Q157-constant	heldout
+q8-r2	stamp_diff	25000+-500	E009-clock	heldout
+kick	nontick_entries	1	fit: S2 run 1	control
+kick	kick_words	slot 0, pa0 0x0, pa1[23:0] 0x100	fit: S2 run 1	control
+kick	kick_pa2	pa2[31:24] 0x01, pa2[23:0] in 1..399999 (not 0x061a70)	EVENT_TIMER range (E009); fit: S2 run 1	heldout
+kick	kick_pa2_phase	(400000 - pa2[23:0]) / 16 = stamp - previous tick (or 25000 - it = next tick - stamp) within 50	fit: S2 run 1 (residuals -1.6, -1.9, -2.8)	heldout
+kick	count_step	ticks before: pa1[31:24] = K of the kick; ticks after: K + 1	fit: S2 run 1	heldout
+kick	ticks	pa0 0x2, pa1[23:0] 0, pa2 0x01061a70, diffs 25000+-500	E532, E009	heldout
+kick-r2	nontick_entries	1	fit: S2 run 1	replicate
+kick-r2	kick_words	slot 0, pa0 0x0, pa1[23:0] 0x100	fit: S2 run 1	replicate
+kick-r2	kick_pa2	pa2[31:24] 0x01, pa2[23:0] in 1..399999 (not 0x061a70)	EVENT_TIMER range (E009); fit: S2 run 1	heldout
+kick-r2	kick_pa2_phase	(400000 - pa2[23:0]) / 16 = stamp - previous tick (or 25000 - it = next tick - stamp) within 50	fit: S2 run 1 (residuals -1.6, -1.9, -2.8)	heldout
+kick-r2	count_step	ticks before: pa1[31:24] = K of the kick; ticks after: K + 1	fit: S2 run 1	heldout
+kick-r2	ticks	pa0 0x2, pa1[23:0] 0, pa2 0x01061a70, diffs 25000+-500	E532, E009	heldout
+kick-r3	nontick_entries	1	fit: S2 run 1	replicate
+kick-r3	kick_words	slot 0, pa0 0x0, pa1[23:0] 0x100	fit: S2 run 1	replicate
+kick-r3	kick_pa2	pa2[31:24] 0x01, pa2[23:0] in 1..399999 (not 0x061a70)	EVENT_TIMER range (E009); fit: S2 run 1	heldout
+kick-r3	kick_pa2_phase	(400000 - pa2[23:0]) / 16 = stamp - previous tick (or 25000 - it = next tick - stamp) within 50	fit: S2 run 1 (residuals -1.6, -1.9, -2.8)	heldout
+kick-r3	count_step	ticks before: pa1[31:24] = K of the kick; ticks after: K + 1	fit: S2 run 1	heldout
+kick-r3	ticks	pa0 0x2, pa1[23:0] 0, pa2 0x01061a70, diffs 25000+-500	E532, E009	heldout
+q50k	entries_all	0	the window-1 filter at count 5 (after S2 run 1)	control
+q50k-r2	entries_all	0	the window-1 filter at count 5 (after S2 run 1)	replicate
+kick*	kick_count	2, 3, 4 in job order (K after the arm is 2; +1 a kick)	fit: S2 run 1	heldout
