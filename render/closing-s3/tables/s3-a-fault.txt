@@ -1,0 +1,13 @@
+#stage s3-a-fault
+# Pixel A (Q286), sufficiency, and E1's TA region-header write fault.  LAST of S3: 4x faults leave
+# state (E729: the next health triangles faulted 5 times, 3 recoveries -110).  Both jobs held.
+# a5: the decisive job: 320x400 4x in a context made for 544x400.  The target's arrays (rgn_size 0x1800
+#     from rgn 0x4000) end at 0xa000 = the TA data size for f = 4; f = 5 needs page 0xa.  H4: completes,
+#     dump 0xa000 bytes, slots 0-3 written.  H5: held fault 0x90004 at page 0x2000a.  expectdiff: a
+#     completion with a wrong image is recorded (the scorer says cannot tell), not a stop.
+# a6: the control that can fail: the same target in a context made for 320x400 (TA data 0x8000): must
+#     fault 0x90004 at page 0x20008; if it completes the layout model is wrong and a5 says nothing.
+#     Its held reading is E1's TA-write row (HE: CR_EVENT_STATUS2 0x480).  expectdiff: an a6 that completes
+#     with a wrong image is recorded and scored (the control fails), not a stop before the scoring.
+a5-320x400-max544|heldout|risky|held hypo:fx:2 expectdiff|0x0118,0x012c,0x0c00-0x0c08|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+a6-320x400-max320|control|risky|held hypo:fx:2 expectdiff|0x0118,0x012c,0x0c00-0x0c08|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

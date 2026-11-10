@@ -1,0 +1,9 @@
+#stage s3-e1-ctl
+# Pixel E1 (Q003), the controls: E444's held faults repeated with E444's commands, held with debugfs
+# hold_recovery, the registers read 2.5 s after the tool's start (snap 1) and 1 s later (snap 2), under
+# regtimeline (CR_EVENT_STATUS2 0x0118, CR_EVENT_STATUS 0x012c, CR_BIF_CTRL/INT_STAT/FAULT 0x0c00-0x0c08,
+# read-only) to see the status bits at the moment of the fault, which E444 did not cover.  Both must
+# reproduce E444's held readings or the method is broken and s3-e1 is not run (the gate in s3.sh).
+# No host-enable write (E444's kregnow step is not part of S3; see PREFLIGHT.md).
+e1-ta-read|control|risky|held hypo:e1c:2|0x0118,0x012c,0x0c00-0x0c08|tri --fault --wait-ms 20000
+e1-bg-fetch|control|risky|held hypo:e1c:2|0x0118,0x012c,0x0c00-0x0c08|tri --pixels --poke cmd:23^=0x08000000 --wait-ms 20000

@@ -1,0 +1,43 @@
+## stage s3-e1
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+B21FDA82BD5E5CB5A627E3B
+## loaded module
+B21FDA82BD5E5CB5A627E3B
+## tool
+d776afbcb9f26a3fccc8dc6be5fa513f8843a0b2185e78c66d2c4737ade0714e /home/jtorra/sgxfive-test-s1
+## regtimeline
+079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000
+## clock
+Tue Nov 10 00:34:08 CET 2026
+## S3 safety rules: see the header of lib_s3.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 69e0f125a5dd18d6df29ba74a5c8e672bc7f70cb9b964912d142a5bc30c4a5a8
+== e1-tex set=heldout risk=risky mode=held knobs=[held hypo:e1:1] rt=0x0118,0x012c,0x0c00-0x0c08
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-s1 probe --temps 32 --coords --pixels /home/jtorra/s3-stage/s1d-tw64x64-l2e2__0.bin
+  snap 1: status 0x20000000 status2 0x00000440 bif_int 0x00090002 bif_fault 0x3e017001
+  snap 2: status 0x20000000 status2 0x00000440 bif_int 0x00090002 bif_fault 0x3e017001
+  debugfs reset: status 0
+  hold_recovery written N, read back N
+  snap 3: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 3 probe s1d-tw64x64-l2e2__0: failed: job faulted, context lost (Input/output error) 
+  kept e1-tex.txt: 715 bytes raw, raw sha256 6d67d35bb7a2e383f81cffd1a69226e06d26a0a8b617ba991c481c380adbd8e5
+  kept e1-tex.dmesg: 3950 bytes raw, raw sha256 be6105ecc9a84164a4977c884e85c07bd66934e33f74e9bde9188689ae55a3c2
+  kept e1-tex.snap0.regs: 6474 bytes raw, raw sha256 39f79b302d8c237359e59671f2e3793c86bca5e41658cbebcb77bd796e37182c
+  kept e1-tex.snap1.regs: 6474 bytes raw, raw sha256 0251a371f7e26fb06ad9846ae247c07b23588b13e14b9b36c2155966284e0a6d
+  kept e1-tex.snap2.regs: 6474 bytes raw, raw sha256 0f922ff982cfdaac584ddae9696e6f6c2aa29dd7d9de282c11a8754d36b75118
+  kept e1-tex.snap3.regs: 6474 bytes raw, raw sha256 81a822b05bf1abb4e94c97ae1837ea2f4495f97a3c9778cf56d3aceb9e24d9d4
+  class fault (fault bits 15:0 at snap 1: 2, hold message: yes)
+  fault 1 of at most 1 in group e1 (a hypothesis: measured)
+  kept e1-tex.health2.txt: 311 bytes raw, raw sha256 5a2faf4d95ce3528b31fd7b40725947b085acdafb20eb87a815b13187412b45d
+  kept end.health3.txt: 311 bytes raw, raw sha256 39cb9634c18e460e357785a0ead6e42e7bd83229a6cd114551cde9c9a4357092
+## end: 1 jobs of s3-e1
+## exit: hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 1 case markers kept in /home/jtorra/s3-out/20261110-003406/s3-e1/kernel.log

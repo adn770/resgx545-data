@@ -1,0 +1,13 @@
+#stage s3-a-safe
+# Pixel A (Q286), the part that completes: no held fault here.  E729's q140 command form (CR_TE_AA in
+# cmd:1, E507's sample words cmd:10/13/16, mode 2), each job in its own process, --keep-going so the
+# dump is taken whatever the reference check says, --dump-render into the job's own directory.
+# a4: the control that can fail: TE 0x20 (bit 29 only, one region-header array) at 320x400 in a context
+#     made for 544x400; the knob proof is its TA data dump of 0xa000 bytes (the kernel lays the TA data
+#     out for the maximum: sgx_render_tadata_layout) and the tool's "targets up to 544x400" echo.
+# a1, a2: E729's two completing 4x sizes, now with the dump: slot 4 (the fifth array, 0x5800..0x5e00)
+#     zero under H4, written under H5; a3 repeats a1 (identical dump sha256).
+a4-ctl-320x400-te20|control|safe|stophang|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 544 --max-height 400 --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+a1-256x160-dump|heldout|risky|stophang|-|tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+a2-320x128-dump|heldout|risky|stophang|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 128 --max-width 320 --max-height 128 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+a3-256x160-rep|replicate|risky|stophang|-|tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 160 --max-width 256 --max-height 160 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

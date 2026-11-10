@@ -1,0 +1,6 @@
+#stage s3-xfer
+# Pixel E1 (Q003), held out, LAST of S3 and alone: debugfs xfer_ro, E021's fill into a read-only alias of a
+# kernel buffer (0x80020); the kernel's own EDM transfer path, not a render-node job, so no watchdog
+# recovers it and no hold is needed; its output prints BIF_INT_STAT and BIF_FAULT.  Its path last ran on
+# the phase-4 kernel (E021): a failure of the read (rc 1, no fault) stops this stage only.
+e1-xfer-ro|heldout|risky|xferro hypo:xf:1|0x0118,0x012c,0x0c00-0x0c08|-
