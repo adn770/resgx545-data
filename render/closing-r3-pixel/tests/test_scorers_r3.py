@@ -445,5 +445,35 @@ check(F.f1_verdict(a_, b_)[2] is False,
       "C11: q-f1 world NEVER with b2's last point void in both orders: not the unexplained case (b2's last point not read)")
 check(f1_verdict("NEVER")[2] is True, "C11: ... and with it read clear the unexplained case stands")
 
+# A1 (audit-scorers, decision R4-6 a): score_v.consistent tested the predicted window against the bracket widened by a ladder step
+# (the bracket's own width, or the largest gap when an end is open); the rule is strict overlap of the window with (last clear, first
+# set], an open end None and no slack.  The one kept verdict it changes: b4v HV-INSTR, window 2090..2200 against (None, 1760].
+import importlib.util  # noqa: E402
+spec = importlib.util.spec_from_file_location("score_v_asrun", R3 / "score/score_v.as-run.py")
+VA = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(VA)
+b4v_ns = [1760, 1978, 2222, 2497, 2805, 3152, 3542, 3980, 4472, 5025, 5646, 6344, 7128, 8010, 9000]
+check(V.consistent((2090, 2200), (None, 1760), b4v_ns) is False,
+      "A1: consistent(): window 2090..2200 against the open-below bracket (None, 1760] is REFUTED (no slack of a step)")
+check(VA.consistent((2090, 2200), (None, 1760), b4v_ns) is True,
+      "A1: the as-run copy still says consistent there (the frozen scorer, kept byte for byte)")
+check(V.consistent((1500, 1760), (None, 1760), b4v_ns) is True and V.consistent((1700, 1900), (1760, None), b4v_ns) is True
+      and V.consistent((1760, 1800), (1760, 1900), b4v_ns) is True and V.consistent((1700, 1760), (1760, 1900), b4v_ns) is False
+      and V.consistent((1901, 2000), (1760, 1900), b4v_ns) is False and V.consistent((1900, 2000), (1760, 1900), b4v_ns) is True,
+      "A1: consistent(): strict overlap with (lo, hi]: the first set point may equal hi, may not equal lo; an open end is open")
+kept_v = R3 / "out/20261110-160415"
+tv = V.score_v(S.L.Kept(kept_v / "q-v"), S.preds_of("q-v"))[0]
+tva = VA.score_v(S.L.Kept(kept_v / "q-v"), S.preds_of("q-v"))[0]
+check(tva + "\n" == (kept_v / "score-q-v.txt").read_text(),
+      "A1: the as-run scorer on the kept q-v records prints the kept out/score-q-v.txt byte for byte")
+check(tv + "\n" == (kept_v / "score-q-v.fixed.txt").read_text(),
+      "A1: the fixed scorer on the kept q-v records prints out/score-q-v.fixed.txt byte for byte")
+ta, tb = tva.split(), tv.split()
+dif = [(x, y) for x, y in zip(ta, tb) if x != y]
+check(len(ta) == len(tb) and dif == [("ok;", "MISS;"), ("consistent;", "REFUTED;")]
+      and "HV-INSTR 2090..2200 MISS;" in tv and "b4v HV-INSTR REFUTED" in tv and "b4v HV-INSTR consistent" in tva,
+      "A1: the fixed and as-run outputs differ only in the one verdict, b4v HV-INSTR (once in the ladder's line ok -> MISS, once in "
+      "the SUMMARY line consistent -> REFUTED): " + str(dif))
+
 print(f"\n{nok} ok, {len(failed)} FAIL")
 sys.exit(1 if failed else 0)

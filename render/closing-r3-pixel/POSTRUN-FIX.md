@@ -64,3 +64,59 @@ Changed files (sha256, first 16 hex digits):
 | `tests/test_scorers_r3.py` | 6a87d11131e5f6bc | 86abdd439ced4a76 | no |
 | `tests/test_scorers_c3.py` | 3bc7b2e6b47ce204 | 90faf8a27d6b2957 | no |
 | `FROZEN.sha256` | 8a0fa9aa17bad7f1 | 2e3ea7b93b75dfae | (the freeze) |
+
+## A second fix: `score_v.consistent` (A1, 2026-11-11, decision R4-6 a)
+
+The audit's A1 was left out of the fix above because, unlike C1 and C11, it changes a verdict on
+the kept data. It is fixed now, as a second disclosed post-run fix, the same way.
+
+- **A1, a prediction was tested against the bracket widened by a ladder step
+  (`score_v.consistent`, q-v).** The window predicted for a ladder's first set point was
+  compared with the observed bracket (last clear, first set] widened on both sides by a slack
+  of the bracket's width (the largest gap between the ladder's points when an end is open), an
+  open end counting as 0 or infinity. Strict overlap is the rule (`tools/closing/scorekit.py`):
+  a first set point in (lo, hi] can lie in the window [flo, fhi] when flo <= hi and fhi > lo,
+  an open end is None, and there is no slack. Repro (the audit's `qv_strict.py`): the b4v
+  ladder, bracket (None, 1760], window 2090..2200 of HV-INSTR (N8* 1045 to 1100 doubled): the
+  window lies wholly above the bracket and the frozen scorer printed `consistent`; the other
+  nine windows scored the same either way.
+- **Fix.** `consistent` is the two-line strict overlap; its signature is unchanged (`ns` is
+  no longer used).
+- **One verdict changes.** The verdict of b4v HV-INSTR goes from consistent to REFUTED. It is
+  printed twice in `score-q-v.txt`, so the fixed output differs from the as-run output in two
+  places and in nothing else: in the b4v ladder line `HV-INSTR 2090..2200 ok` becomes `... MISS`,
+  and in the `SUMMARY:` line (and so in `verdict.txt` line 17, the Q082-V line)
+  `b4v HV-INSTR consistent` becomes `b4v HV-INSTR REFUTED`. E807's claim line (corrected
+  2026-11-11) already records the reading with the b4v window above its bracket: the as-run
+  line was the scorer's error and not a measurement. The other nine rows, the ladders' brackets,
+  the controls and the other five stages are unchanged.
+
+Test (written first: `tests/test_scorers_r3.py`, section "A1"): `consistent` on the b4v case and
+on the strict-overlap edges (the first set point may equal hi, may not equal lo; an open end is
+open); the as-run copy still says consistent there; the as-run scorer on the kept q-v records
+prints the kept `out/score-q-v.txt` byte for byte, the fixed scorer prints
+`out/score-q-v.fixed.txt` byte for byte, and the two outputs differ in exactly those two tokens.
+Before the fix three of the checks failed (the b4v case, the strict edges and the one-verdict
+difference; test_scorers_r3.py 67 ok and 3 FAIL), as they should.
+
+- `predictions/`, `PREDICTIONS.sha256`, `TOOL.sha256`, `TOOLSRC.sha256`, every file the run wrote
+  and `FROZEN.pre-fix.sha256` are unchanged; `out/20261110-160415/score-q-v.txt` and
+  `out/verdict.txt` stay as printed after the run, kept.
+- `score/score_v.as-run.py` is the frozen scorer byte for byte (its hash is the `score/score_v.py`
+  line of `FROZEN.pre-fix.sha256`). `out/20261110-160415/score-q-v.fixed.txt` and
+  `out/verdict.fixed.txt` are the fixed scorer's output on the kept q-v records (the verdict
+  fixed file now differs from `out/verdict.txt` in that one token; the other five stage files
+  stay byte-identical to the kept ones).
+- `FROZEN.sha256` differs from the earlier fixed freeze only in the `score/score_v.py` line and
+  the new `score/score_v.as-run.py` line.
+
+Changed files (sha256, first 16 hex digits):
+
+| file | before | after | in the freeze |
+|---|---|---|---|
+| `score/score_v.py` | 621336de2daf8283 | 98ef7fcfef25e47b | yes |
+| `score/score_v.as-run.py` | (new) | 621336de2daf8283 | yes |
+| `tests/test_scorers_r3.py` | 86abdd439ced4a76 | 931dc472f5437cec | no |
+| `out/20261110-160415/score-q-v.fixed.txt` | 270c2fc5c08bdd4b | 4cb762f324806435 | no |
+| `out/verdict.fixed.txt` | a6e22ca540177e30 | 8952678c8b943685 | no |
+| `FROZEN.sha256` | 2e3ea7b93b75dfae | 087a1dc9624a26b0 | (the freeze) |
