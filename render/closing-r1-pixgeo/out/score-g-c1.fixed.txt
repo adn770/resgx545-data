@@ -1,0 +1,53 @@
+C1: per job (the 0x0624 of the job itself is the knob proof)
+job           0x0624  parts  peaks                        control block                  raise
+c-1500-0x360  0x33e   2      ['0x33e', '0x35e', '0x23e']  dw36=3 dw37=0x1033e dw38=0x20  raise
+c-1500-0x380  0x35e   2      ['0x35e', '0x35e', '0x124']  dw36=2 dw37=0x0 dw38=0x0       none 
+f-1500-0x362  0x340   2      ['0x340', '0x360', '0x23e']  dw36=3 dw37=0x10340 dw38=0x20  raise
+f-1500-0x364  0x342   2      ['0x342', '0x362', '0x23e']  dw36=3 dw37=0x10342 dw38=0x20  raise
+f-1500-0x366  0x344   2      ['0x344', '0x364', '0x23e']  dw36=3 dw37=0x10344 dw38=0x20  raise
+f-1500-0x368  0x346   2      ['0x346', '0x366', '0x23e']  dw36=3 dw37=0x10346 dw38=0x20  raise
+f-1500-0x36a  0x348   2      ['0x348', '0x368', '0x23d']  dw36=3 dw37=0x10348 dw38=0x20  raise
+f-1500-0x36c  0x34a   2      ['0x34a', '0x36a', '0x23d']  dw36=3 dw37=0x1034a dw38=0x20  raise
+f-1500-0x36e  0x34c   2      ['0x34c', '0x36c', '0x23d']  dw36=3 dw37=0x1034c dw38=0x20  raise
+f-1500-0x370  0x34e   2      ['0x34e', '0x36e', '0x23d']  dw36=3 dw37=0x1034e dw38=0x20  raise
+f-1500-0x372  0x350   2      ['0x350', '0x370', '0x23d']  dw36=3 dw37=0x10350 dw38=0x20  raise
+f-1500-0x374  0x352   2      ['0x352', '0x352', '0x352']  dw36=1 dw37=0x0 dw38=0x0       none 
+f-1500-0x376  0x354   2      ['0x354', '0x354', '0x240']  dw36=1 dw37=0x0 dw38=0x0       none 
+f-1500-0x378  0x356   2      ['0x356', '0x356', '0x240']  dw36=1 dw37=0x0 dw38=0x0       none 
+f-1500-0x37a  0x358   2      ['0x358', '0x358', '0x236']  dw36=2 dw37=0x0 dw38=0x0       none 
+f-1500-0x37c  0x35a   2      ['0x35a', '0x35a', '0x234']  dw36=2 dw37=0x0 dw38=0x0       none 
+f-1500-0x37e  0x35c   2      ['0x35c', '0x35c', '0x124']  dw36=2 dw37=0x0 dw38=0x0       none 
+f-1350-0x366  0x344   2      ['0x344', '0x364', '0x12c']  dw36=3 dw37=0x10344 dw38=0x20  raise
+f-1350-0x36e  0x34c   2      ['0x34c', '0x36c', '0x124']  dw36=3 dw37=0x1034c dw38=0x20  raise
+f-1350-0x372  0x350   2      ['0x350', '0x370', '0x124']  dw36=3 dw37=0x10350 dw38=0x20  raise
+f-1350-0x376  0x354   2      ['0x354', '0x354', '0x235']  dw36=1 dw37=0x0 dw38=0x0       none 
+f-1350-0x37a  0x358   2      ['0x358', '0x358', '0x11d']  dw36=2 dw37=0x0 dw38=0x0       none 
+
+D36 side table (never gating): dword 36 = max(0x072c count at the first abort - 2, 0)
+job           0x072c count  predicted  dword 36  job           
+c-1500-0x360  3             1          3         raised    MISS
+c-1500-0x380  4             2          2         unraised  ok  
+f-1500-0x362  3             1          3         raised    MISS
+f-1500-0x364  3             1          3         raised    MISS
+f-1500-0x366  3             1          3         raised    MISS
+f-1500-0x368  3             1          3         raised    MISS
+f-1500-0x36a  3             1          3         raised    MISS
+f-1500-0x36c  3             1          3         raised    MISS
+f-1500-0x36e  3             1          3         raised    MISS
+f-1500-0x370  3             1          3         raised    MISS
+f-1500-0x372  3             1          3         raised    MISS
+f-1500-0x374  3             1          1         unraised  ok  
+f-1500-0x376  3             1          1         unraised  ok  
+f-1500-0x378  3             1          1         unraised  ok  
+f-1500-0x37a  3             1          2         unraised  MISS
+f-1500-0x37c  3             1          2         unraised  MISS
+f-1500-0x37e  4             2          2         unraised  ok  
+f-1350-0x366  3             1          3         raised    MISS
+f-1350-0x36e  3             1          3         raised    MISS
+f-1350-0x372  3             1          3         raised    MISS
+f-1350-0x376  3             1          1         unraised  ok  
+f-1350-0x37a  3             1          2         unraised  MISS
+D36: unraised jobs 6 of 9; raised jobs (held out) 0 of 13
+1500: 0x360:R 0x362:R 0x364:R 0x366:R 0x368:R 0x36a:R 0x36c:R 0x36e:R 0x370:R 0x372:R 0x374:- 0x376:- 0x378:- 0x37a:- 0x37c:- 0x37e:- 0x380:-
+1350: 0x366:R 0x36e:R 0x372:R 0x376:- 0x37a:-
+SUMMARY: H-abs holds: one flip, last raise 0x372, first silent 0x374: C in [0x370, 0x372) (inside [0x35e, 0x37e)); the step-1 cell 0x373 (g-c1f f-1500-0x373) fixes C exactly; HP1: 5 of 5 1350 cells equal the 1500 cell at that P; D36 unraised 6/9, raised 0/13

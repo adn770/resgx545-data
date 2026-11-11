@@ -413,4 +413,23 @@ check("g-t6: S1b's measured 1e-4 clamp word 0x461c4000 is the RZ and RN word of 
 kv = synth.Dir(TMP / "void", "g-u1").job("u-ctl-1", "", 0, "ok").job("u-ctl-2a", "x" * 30, 124, "ok")
 tv = G.score_u1(Kept(kv.d), GP)[0]
 check("an empty output and an rc 124 are NODATA (never read), and the verdict is cannot tell", tv.count("NODATA") >= 2 and "cannot tell" in summary(tv), summary(tv)[:120])
+# ===================================================================================================== post-run fixes (POSTRUN-FIX.md, 2026-11-11)
+# C8: a hang or a fault is no outcome: never "completed as predicted" (the audit's synth/g-u1 repro: b-2-m96-hi hung)
+kh = u1_world("u1hang")
+for n in ("b-2-m96-hi", "u-m32"):
+    p = kh.d / f"{n}.txt.gz"
+    p.write_bytes(gzip.compress(gzip.decompress(p.read_bytes()) + b"\ntri 64x64: job hung, recovering\n"))
+th = G.score_u1(Kept(kh.d), GP)[0]
+rowh = next(ln for ln in th.splitlines() if ln.startswith("b-2-m96-hi"))
+check("C8: g-u1 boundary job that hung is void, not 'want complete: yes'", "hang" in rowh and "yes" not in rowh, rowh)
+check("C8: ... the hung boundary job and U job are listed void and not counted",
+      "void runs for [\"E625 rule (HU1's U)\"]" in summary(th) and "HU1 (14)" in summary(th) and "b-2-m96-hi" in summary(th) and "u-m32" in summary(th),
+      summary(th)[:500])
+# C8: c1_verdict tests overlap, not containment (the audit's repro_overlap.py)
+hv = lambda cells: G.c1_verdict(cells, [])[0]
+check("C8: c1 bracket disjoint from E753's range: REFUTED", "REFUTED by its range" in hv([(0x340, True), (0x350, True), (0x360, False)]))
+check("C8: c1 bracket inside E753's range: holds, wording unchanged", hv([(0x340, True), (0x360, True), (0x380, False)]).startswith("H-abs holds: one flip")
+      and "(inside [0x35e, 0x37e))" in hv([(0x340, True), (0x360, True), (0x380, False)]))
+v3 = hv([(0x340, True), (0x358, True), (0x370, False)])
+check("C8: c1 bracket overlapping E753's range but not inside it: consistent, not REFUTED", "REFUTED" not in v3 and "overlaps" in v3, v3)
 sys.exit(0 if ok else 1)

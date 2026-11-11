@@ -1,0 +1,36 @@
+U1: page need U (peak of 0x0724 low half; cross-check: free-list head - 1) against HU1 (exact) and HU2
+job           outcome   U peak  U walk  peak vs walk  residual vs HU1  note              
+u-ctl-1       ok        19      19      agree         +0               HU2 19            
+u-ctl-2a      ok        29      29      agree         +0               HU2 23            
+u-m32         ok        21      21      agree         +0               HU2 19            
+u-m0-96       ok        22      22      agree         +0               HU2 19            
+u-m-128-96    ok        22      22      agree         +0               HU2 17            
+u-m384-288    ok        13      13      agree         +0               HU2 12            
+u-2-m96       ok        24      24      agree         +0               HU2 20            
+u-2-256-192   ok        30      30      agree         +0               HU2 22            
+u-3-stk       ok        21      21      agree         +0               HU2 19            
+u-4-corners   ok        35      35      agree         +0               HU2 24            
+u-640         ok        11      11      agree         +0                                 
+u-1280        ok        31      31      agree         +0                                 
+u-2048        ok        79      79      agree         +0                                 
+u-2048-1536   ok        60      60      agree         +0                                 
+u-512-m128    ok        7       7       agree         +0                                 
+u-4096-m1024  ok        275     275     agree         +0                                 
+u-4096-2      ok        438     438     agree         +0                                 
+b-2-m96-lo    overflow                                                 want overflow: yes
+b-2-m96-hi    ok                                                       want complete: yes
+b-m32-lo      overflow                                                 want overflow: yes
+b-m32-hi      ok                                                       want complete: yes
+
+D36 side table (never gating): dword 36 = max(0x072c count at the first abort - 2, 0)
+job         0x072c count  predicted  dword 36  job         
+b-2-m96-lo  1             0          0         unraised  ok
+b-m32-lo    1             0          0         unraised  ok
+D36: unraised jobs 2 of 2; raised jobs (held out) 0 of 0
+SUMMARY: controls pass (u-ctl-1 = 19, u-ctl-2a = 29); held out: consistent ['HU1 (15)', "E625 rule (HU1's U) (4)"], refuted ['HU2 (8 of 8)']; repeat only: consistent ['HU1 (2)'], refuted ['HU2 (1 of 2)']
+gate trial u-ctl-1: CLEAN
+gate trial u-ctl-2a: CLEAN
+gate (offline, G1-G5; G6 is the runner's): pass; the runner recorded: gate state at stage start: untested
+u-ctl-1 CLEAN -> pass1
+u-ctl-2a CLEAN -> pass
+gate state at stage end: pass

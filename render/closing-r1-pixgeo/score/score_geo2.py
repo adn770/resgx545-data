@@ -138,18 +138,19 @@ def score_u1(k: Kept, preds):
         whole = m["geo"] == m["K"] - 1 and not m["early"]
         if pred1(preds, n, "outcome") is not None:                         # a boundary job
             want = pred1(preds, n, "outcome")
-            hit = (oc == "overflow") == (want == "overflow") if whole else None
+            # a hang or a fault is no outcome: void, never "completed as predicted" (post-run fix C8, POSTRUN-FIX.md)
+            hit = (oc == "overflow") == (want == "overflow") if whole and oc in ("ok", "overflow") else None
             res[n] = dict(void=None, outcome=oc, whole=whole)
             if hit is None:
                 void.append(n)
             bounds.append((n, hit))
             for v, mdl, st in preds[n]["outcome"]:
                 entries.append((norm_model(mdl), st, hit))
-            rows.append((n, oc, "", "", "", "", f"want {want}: {'yes' if hit else 'NO' if hit is False else 'void (kick lines)'}"))
+            rows.append((n, oc, "", "", "", "", f"want {want}: {'yes' if hit else 'NO' if hit is False else 'void (kick lines)' if oc in ('ok', 'overflow') else f'void ({oc})'}"))
             continue
         u, wk = m["peak"], m["walk"]
         agree = wk is None or wk == u
-        usable = whole and agree and bool(u) and oc != "overflow"
+        usable = whole and agree and bool(u) and oc == "ok"            # not a hang or a fault either (post-run fix C8)
         res[n] = dict(void=None if usable else "unusable", U=u, walk=wk, agree=agree, whole=whole, oc=oc)
         ms = {mm: v for v, mm, s in preds.get(n, {}).get("U", [])}
         h1 = [v for mm, v in ms.items() if mm.startswith("HU1")]
@@ -274,9 +275,15 @@ def c1_verdict(c1500, c1350):
         Pa, Pb = info
         lo, hi = Pa - 2, Pb - 2
         inside = C_RANGE[0] <= lo and hi <= C_RANGE[1]
-        habs = (f"H-abs {'holds' if inside else 'REFUTED by its range'}: one flip, last raise {Pa:#x}, first silent {Pb:#x}: "
-                f"C in [{lo:#x}, {hi:#x}) ({'inside' if inside else 'NOT inside'} [{C_RANGE[0]:#x}, {C_RANGE[1]:#x}))"
-                + (f"; the step-1 cell {Pa + 1:#x} (g-c1f f-1500-{Pa + 1:#x}) fixes C exactly" if inside else ""))
+        # refuted only when the bracket and the range are disjoint, not when the bracket is not inside it (post-run fix C8)
+        overlap = lo < C_RANGE[1] and C_RANGE[0] < hi
+        if inside or not overlap:
+            habs = (f"H-abs {'holds' if inside else 'REFUTED by its range'}: one flip, last raise {Pa:#x}, first silent {Pb:#x}: "
+                    f"C in [{lo:#x}, {hi:#x}) ({'inside' if inside else 'NOT inside'} [{C_RANGE[0]:#x}, {C_RANGE[1]:#x}))"
+                    + (f"; the step-1 cell {Pa + 1:#x} (g-c1f f-1500-{Pa + 1:#x}) fixes C exactly" if inside else ""))
+        else:
+            habs = (f"H-abs consistent (not decided): one flip, last raise {Pa:#x}, first silent {Pb:#x}: C in [{lo:#x}, {hi:#x}) "
+                    f"overlaps [{C_RANGE[0]:#x}, {C_RANGE[1]:#x}) without lying inside it")
     by1500 = dict(c1500)
     pairs = [(P, r, by1500.get(P)) for P, r in c1350 if r is not None and by1500.get(P) is not None]
     diff = [f"{P:#x}" for P, a, b in pairs if a != b]
