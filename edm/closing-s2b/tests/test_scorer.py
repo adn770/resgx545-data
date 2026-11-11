@@ -52,8 +52,8 @@ grid_after = [tick(base + k * T) for k in range(5, 9)]
 check(shape(pre + grid_after, E, X) == "LOST", "LOST: nothing at the exit, the grid resumes (across a 2^32 wrap)")
 check(shape(pre + [tick(X + 40)] + grid_after, E, X) == "ONE", "ONE: one entry at the exit, then the grid")
 check(shape(pre + [tick(X + 40 + 300 * i) for i in range(4)] + grid_after, E, X) == "ALL", "ALL: floor(H) back to back")
-check(shape(pre + [tick(X + 40 + 300 * i) for i in range(3)] + grid_after, E, X) == "ALL",
-      "three of four at the exit: ALL by the frozen rule (|q - floorH| <= 1)")
+check(shape(pre + [tick(X + 40 + 300 * i) for i in range(3)] + grid_after, E, X) == "ALL-or-PARTIAL(3)",
+      "three of four at the exit: ALL within one tick or PARTIAL(3), not ALL (post-run fix C8)")
 Xg = base + 5 * T - 600                   # S2b: only a grid tick just AFTER the exit is ambiguous (one-sided guard)
 check(shape(pre + [tick(Xg + 40)] + grid_after, E, Xg).startswith("cannot tell"),
       "cannot tell: a grid tick 600 units after the exit (a pending tick and a natural one look alike)")
@@ -197,7 +197,8 @@ check(shape(pre2 + [tick(X_before + 100)] + [tick(b2 + k * T) for k in range(3, 
 X_after = b2 + 3 * T + 500                  # the last held tick 500 units before the exit: not ambiguous
 s_after = shape(pre2 + [tick(X_after + 100), tick(X_after + 240)] + [tick(b2 + k * T) for k in range(4, 8)],
                 E2, X_after)
-check(s_after == "ALL", f"S2b: an exit 500 units after a grid tick is told (3 held, 2 after the exit: {s_after})")
+check(s_after == "ALL-or-PARTIAL(2)",
+      f"S2b: an exit 500 units after a grid tick is told (3 held, 2 after the exit: ALL-or-PARTIAL(2), C8: {s_after})")
 X0 = b2 + 66 + 15015                        # n = 10000: no grid tick inside the hold
 check(shape(pre2 + [tick(b2 + k * T) for k in range(1, 6)], E2, X0).startswith("no tick held"),
       "S2b: a hold with no grid tick inside reads 'no tick held' (LOST there is vacuous)")
@@ -208,5 +209,45 @@ burst90 = [tick(X90 + d) for d in (103, 240, 380, 530)]
 after90 = [tick(drift(k)) for k in range(91, 95)]
 s90 = shape(pre2 + burst90 + after90, E2, X90)
 check(s90 == "PARTIAL(4)", f"S2b: a 90-tick hold with drift, four after the exit: PARTIAL(4) ({s90})")
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11) --------------------------------------------------------------
+# C8: at H = 5 a burst of 4 is what the cap min(H, 4) predicts (PARTIAL(4)) and within one of ALL: not ALL
+X5 = b2 + 66 + round(1.5 * L.n_for_ticks(5) + 15)      # n for H = 5 at mid-phase
+s5 = shape(pre2 + [tick(X5 + d) for d in (103, 240, 380, 530)] + [tick(b2 + k * T) for k in range(6, 10)], E2, X5)
+check(s5 == "ALL-or-PARTIAL(4)", f"C8: H = 5, four after the exit: ALL-or-PARTIAL(4), not ALL ({s5})")
+s5a = shape(pre2 + [tick(X5 + d) for d in (103, 240, 380, 530, 670)] + [tick(b2 + k * T) for k in range(6, 10)], E2, X5)
+check(s5a == "ALL", f"C8: H = 5, five after the exit: ALL ({s5a})")
+# C4: e5t, the audit's repro (synth_e5t.py) on a copy of the kept stage: slots 1 and 3 (the job's events) erased,
+# only the host's kick entries (slot 0) left; the frozen scorer still printed QUEUED and passed its control
+import shutil  # noqa: E402
+import tempfile  # noqa: E402
+KEPT = S2 / "out" / "e5t"
+if KEPT.is_dir():
+    td = pathlib.Path(tempfile.mkdtemp(prefix="s2b-e5t-")) / "e5t"
+    shutil.copytree(KEPT, td)
+    _, _, txt = S.score("e5t", str(td))
+    check("QUEUED" in txt.splitlines()[-1] and "tri-nohold: 3 job event entries" in txt,
+          f"C4: the kept e5t still reads QUEUED, the control counts the job's 3 entries ({txt.splitlines()[-1][:120]})")
+    for n in ("tri90", "tri90-r2", "tri90-r3", "tri-nohold", "tri-nohold-r2"):
+        f = td / f"{n}.json"
+        rec = json.loads(f.read_text())
+        for pg in (rec["page"], rec["page2"]):
+            for k in (1, 3):
+                for j in range(L.RUNGS[k]):
+                    pg[L.RING_BASE[k] + L.RUNG * j] = 0
+        f.write_text(json.dumps(rec))
+    _, _, txt = S.score("e5t", str(td))
+    summ = txt.splitlines()[-1]
+    check("QUEUED" not in summ and "cannot tell (instrument control failed" in summ,
+          f"C4: only kick entries left: no QUEUED, the control fails ({summ[:160]})")
+else:
+    check(False, "C4: the kept out/e5t is there")
+# C4: the window is two-sided: a job event far after the exit is not QUEUED
+X4 = 10_000_000
+ev = [(1, 0, 0x0F000200, 0x01027D62, X4 + 2338), (3, 0, 0x0F000010, 0x01021776, X4 + 90000)]
+check(S.e5t_reading(ev, 1, X4).startswith("OTHER"), "C4: one job event 90000 units after the exit: OTHER, not QUEUED")
+check(S.e5t_reading(ev[:1], 1, X4).startswith("QUEUED"), "C4: the job's events within 5000 units after the exit: QUEUED")
+check(S.e5t_reading([], 1, X4).startswith("LOST?"), "C4: no job event: LOST?")
+kick = (0, 0, 0x0E000100, 0x0103008F, X4 + 552)
+check(S.job_events([kick] + ev) == ev, "C4: the host's kick entries are not job events")
 print(f"{len(FAIL)} failed" if FAIL else "all scorer checks passed")
 sys.exit(1 if FAIL else 0)

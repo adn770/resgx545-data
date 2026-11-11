@@ -564,11 +564,14 @@ def hold_shape(rec):
     if not post:
         return ("cannot tell (ring full before the exit)" if len(e0) == L.RUNGS[0] else
                 "cannot tell (no pass after the hold)"), det
+    # post-run fix C8 (POSTRUN-FIX.md): one short of floorH is ALL within one tick and PARTIAL alike (at H = 5 a burst
+    # of 4 is what the cap min(H, 4) predicts), so it is ALL-or-PARTIAL, never ALL
     if truncated and qmin >= 2:
-        return (f"ALL-or-PARTIAL(>={qmin}, ring full)" if qmin < floorH - 1 else "ALL"), det
+        return (f"ALL-or-PARTIAL(>={qmin}, ring full)" if qmin < floorH else "ALL"), det
 
     def cls(k):
-        return "LOST" if k == 0 else "ONE" if k == 1 else "ALL" if abs(k - floorH) <= 1 else f"PARTIAL({k})"
+        return ("LOST" if k == 0 else "ONE" if k == 1 else "ALL" if floorH <= k <= floorH + 1
+                else f"ALL-or-PARTIAL({k})" if k == floorH - 1 else f"PARTIAL({k})")
 
     if cls(q) != cls(qmin):
         return f"cannot tell (the drain ran past the next grid tick: {q} or {qmin})", det
@@ -755,6 +758,26 @@ def tool_us(rec):
     return int(m.group(1)) if m else None
 
 
+def job_events(ev):
+    """The job's own event entries of (slot, pa0, pa1, pa2, CR_TIMER) entries: not the host's GETMISCINFO kicks (slot 0,
+    pa0 0, pa1 low 24 bits 0x100) and not plain ticks (post-run fix C4, POSTRUN-FIX.md)."""
+    return [e for e in ev if not L.is_kick(e[1], e[2]) and not L.is_plain_tick(e[1], e[2])]
+
+
+QUEUE_WINDOW = 5000                 # CR_TIMER units after the exit: the job's events at the exit (QUEUED)
+
+
+def e5t_reading(jev, sg, X):
+    """A completed, waited held job read from its job events: QUEUED only when every one lies in [0, QUEUE_WINDOW]
+    units after the exit (two-sided; post-run fix C4)."""
+    if not jev:
+        return "LOST? (no job event entry, the job completed)"
+    t = [sg * rel(e[4], X) for e in jev]
+    if all(0 <= x <= QUEUE_WINDOW for x in t):
+        return "QUEUED (the job's events at the exit)"
+    return f"OTHER (job entries at {t} from the exit)"
+
+
 def score_e5t(S):
     base, rows, ctl_bad = [], [], []
     for j in S.table["jobs"]:
@@ -766,14 +789,16 @@ def score_e5t(S):
                 ctl_bad.append(f"{j['name']} void")
                 continue
             ev = [(k,) + e for k in range(4) for e in ring(rec["page"])[k]]
+            jev = job_events(ev)
             us = tool_us(rec)
             if us is not None:
                 base.append(us)
             else:
                 ctl_bad.append(f"{j['name']} no render time")
-            if not ev:
-                ctl_bad.append(f"{j['name']} no event entry")
-            S.p(f"{j['name']}: {len(ev)} event entries (control: >= 1), tri {us} us")
+            if not jev:
+                ctl_bad.append(f"{j['name']} no job event entry")
+            S.p(f"{j['name']}: {len(jev)} job event entries (control: >= 1; {len(ev) - len(jev)} host kick entries not "
+                f"counted), tri {us} us")
             continue
         shape, v, det = hold_job(S, j, rec)
         stuck = bool(rec) and rec.get("class") == "stuck" and rec.get("state_at_trigger") == L.STATE_BUSY \
@@ -786,19 +811,17 @@ def score_e5t(S):
         X = pg[L.HOLD_EXIT]
         sg = timer_sign(rec) if X != L.INITFILL and pg[L.HOLD_ENTRY] != L.INITFILL else 1
         ev = [(k,) + e for k in range(4) for e in ring(pg)[k]]
+        jev = job_events(ev)
         us = tool_us(rec)
         waited = us is not None and base and us > median(base) + 5000
         if stuck:
             r = "LOST (the job did not complete while held; page read before the release)"
         elif not waited:
             r = "no overlap shown (the job's time is not longer than without the hold): does not count"
-        elif ev and all(sg * rel(e[4], X) >= 0 for e in ev) and min(sg * rel(e[4], X) for e in ev) <= 5000:
-            r = "QUEUED (the job's events at the exit)"
-        elif not ev:
-            r = "LOST? (no event entry, the job completed)"
         else:
-            r = f"OTHER (entries at {[sg * rel(e[4], X) for e in ev]} from the exit)"
-        S.p(f"{j['name']}: tri {us} us (no-hold median {median(base)}), {len(ev)} entries: {r}")
+            r = e5t_reading(jev, sg, X)
+        S.p(f"{j['name']}: tri {us} us (no-hold median {median(base)}), {len(jev)} job entries ({len(ev) - len(jev)} "
+            f"host kick entries not counted): {r}")
         rows.append(r)
     note = S.stage_note() if not any(r and r.startswith("LOST (") for r in rows) else None
     if ctl_bad:
