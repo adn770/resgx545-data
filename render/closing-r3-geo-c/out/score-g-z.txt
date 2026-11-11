@@ -1,0 +1,26 @@
+Z: stored (not 1.0f) tile-area dwords per job; stored extent (max x + 1, max y + 1) and each rule's extent
+job            size   stored  extent  rule extents (A FLOOR ROUND CEIL RSTRICT)                 note
+z-ctl-34x18-x  34x18  924     42,22   A=42,22 FLOOR=42,22 ROUND=43,23 CEIL=43,23 RSTRICT=42,22  ok  
+z-ctl-34x18-y  34x18  924     42,22   A=42,22 FLOOR=42,22 ROUND=43,23 CEIL=43,23 RSTRICT=42,22  ok  
+z-ctl-66x34-x  66x34  3444    82,42   A=82,42 FLOOR=82,42 ROUND=83,43 CEIL=83,43 RSTRICT=82,42  ok  
+z-w20          20x18  550     25,22   A=25,22 FLOOR=25,22 ROUND=25,23 CEIL=25,23 RSTRICT=24,22  ok  
+z-w36          36x18  990     45,22   A=45,22 FLOOR=45,22 ROUND=45,23 CEIL=45,23 RSTRICT=44,22  ok  
+z-w44          44x18  1210    55,22   A=55,22 FLOOR=55,22 ROUND=55,23 CEIL=55,23 RSTRICT=54,22  ok  
+z-w76          76x18  2090    95,22   A=95,22 FLOOR=95,22 ROUND=95,23 CEIL=95,23 RSTRICT=94,22  ok  
+z-h20          34x20  1050    42,25   A=42,25 FLOOR=42,25 ROUND=43,25 CEIL=43,25 RSTRICT=42,24  ok  
+z-h28          34x28  1344    42,32   A=42,35 FLOOR=42,35 ROUND=43,35 CEIL=43,35 RSTRICT=42,34  ok  
+z-h36          34x36  1890    42,45   A=42,45 FLOOR=42,45 ROUND=43,45 CEIL=43,45 RSTRICT=42,44  ok  
+z-w32          32x18  704     32,22   A=40,22 FLOOR=40,22 ROUND=40,23 CEIL=40,23 RSTRICT=39,22  ok  
+z-w64          64x18  1408    64,22   A=80,22 FLOOR=80,22 ROUND=80,23 CEIL=80,23 RSTRICT=79,22  ok  
+z-h32          34x32  1344    42,32   A=42,40 FLOOR=42,40 ROUND=43,40 CEIL=43,40 RSTRICT=42,39  ok  
+z-tri-in       34x18  96      39,20   A=42,22 FLOOR=42,22 ROUND=43,23 CEIL=43,23 RSTRICT=42,22  ok  
+z-tri-cross    36x20  357     45,25   A=45,25 FLOOR=45,25 ROUND=45,25 CEIL=45,25 RSTRICT=44,24  ok  
+
+z-tri-in: A raster (definite 96, ambiguous 0): stored 96, inside (missing definite 0, beyond 0)
+z-tri-cross: A raster (definite 357, ambiguous 0): stored 357, inside (missing definite 0, beyond 0)
+z-tri-cross: FLOOR raster (definite 357, ambiguous 0): stored 357, inside (missing definite 0, beyond 0)
+z-tri-cross: ROUND raster (definite 357, ambiguous 0): stored 357, inside (missing definite 0, beyond 0)
+z-tri-cross: CEIL raster (definite 357, ambiguous 0): stored 357, inside (missing definite 0, beyond 0)
+z-tri-cross: RSTRICT raster (definite 320, ambiguous 0): stored 357, OUTSIDE (missing definite 0, beyond 37)
+rule A on the held-out full-screen cells: 10 of 10 sets equal
+SUMMARY: controls pass (E730's 924, 924, 3444 and rule A's sets); held out: consistent ['A (10)', 'FLOOR (10)', 'A raster (2)', 'FLOOR raster (1)', 'ROUND raster (1)', 'CEIL raster (1)'], refuted ['ROUND (10 of 10)', 'CEIL (10 of 10)', 'RSTRICT (6 of 10)', 'RSTRICT raster (1 of 1)']; repeat only: consistent none, refuted ['ROUND (3 of 3)', 'CEIL (3 of 3)']; rule A 10 of 10 held-out full-screen cells
