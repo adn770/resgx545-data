@@ -1,0 +1,8 @@
+#stage h
+#limit 5
+# h: Q140, health triangles after a TA write fault.  LAST.  Each cell: the c1-shaped job held (hold_recovery Y), the fault read, a debugfs
+# reset, the follow-up, then health triangles one by one until one draws (four at most).  The cell's job faults are the stage's events.
+h1-288x144-health|heldout|risky|held rgn:1 expectdiff hypo:h:4 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+h2-640x480-health|heldout|risky|held rgn:1 expectdiff hypo:h:4 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+h3-288x144-ctx|heldout|risky|held rgn:1 expectdiff hypo:h:4 cell:ctx|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+h4-288x144-fill|heldout|risky|held rgn:1 expectdiff hypo:h:4 cell:fill|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26

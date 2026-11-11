@@ -1,0 +1,77 @@
+#!/bin/bash
+# fake sudo for tests/run_mock.sh.  The mock debugfs directory $SGXFIVE_DEBUGFS is mode 000: only through this shim (as on the laptop,
+# where debugfs is root only) does a path in it reach the real files in $FAKE_DBGREAL.  regs, hold_recovery, reset, render_rgn_arrays,
+# render_pb_pages, render_param, render_tadata and kpoke act on the fake GPU state in $FAKE_DIR:
+#   state     "idle" or "STAT WORD STATUS2 STATUS" (a latched fault: BIF_INT_STAT bits, BIF_FAULT, the two status registers)
+#   hold      Y or N
+#   reg0724   the value the last job left in register 0x0724
+# A leading `timeout [-k K] N` of the runner is stripped (the fake tool and the writes are not slow).  Every debugfs write is logged in
+# $FAKE_DIR/writes ("NAME VALUE"), so a test can say which files the session wrote.
+# Knobs: FAKE_STUCK (a reset leaves the fault latched), FAKE_SNAP_FAIL (regs unreadable), FAKE_RGN_STUCK (render_rgn_arrays writes
+# ignored), FAKE_RGN_STUCK_AT0 (writes of 0 ignored), FAKE_PB_STUCK (render_pb_pages writes ignored), FAKE_PB_STUCK_BACK (a write of
+# 0x422 ignored), FAKE_HOLD_NOY (hold_recovery writes of Y ignored), FAKE_RESET_FAIL_FROM (the Nth reset and later fail).
+# The reset logs the kernel's two reset lines (the second, "after the fault clear", is information) and disarms the kpokes, as
+# sgxfive_debug_reset() does in the fork.
+[ "$1" = "-n" ] && shift
+DB=${SGXFIVE_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+if [ "$1" = timeout ]; then shift; [ "$1" = "-k" ] && shift 2; shift; fi
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+regs() {
+	read -r w a s2 s < "$F/state"
+	cg=0x00000020
+	if [ "$w" = idle ]; then w=0; a=0; s2=0x400; s=0x20000000; else cg=0x000ccff8; fi
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0008 %s\nreg 0x0114 skip\nreg 0x0118 0x%08x\nreg 0x012c 0x%08x\n' "$cg" $((s2)) $((s))
+	printf 'reg 0x0c00 0x00000000\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\nreg 0x0724 %s\n' $(( w | 0x80000 )) $((a)) "$(cat "$F/reg0724" 2>/dev/null || echo 0x00000000)"
+}
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }
+		regs; exit 0 ;;
+	"$DB/hold_recovery") cat "$F/hold"; exit 0 ;;
+	"$DB/kpoke") cat "$R/kpoke"; exit 0 ;;
+	"$DB/render_param") cat "$F/heldparam" 2>/dev/null; exit 0 ;;
+	"$DB/render_tadata") cat "$F/heldtadata" 2>/dev/null; exit 0 ;;
+	"$DB/alias_skip"|"$DB/render_pb_pages"|"$DB/render_rgn_arrays") printf '0x%08x\n' $(( $(cat "$R/${2##*/}") )); exit 0 ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/render_rgn_arrays")
+		read -r v
+		echo "rgn $v" >> "$F/writes"; echo "$v" >> "$F/rgn-writes"
+		[ -n "${FAKE_RGN_STUCK:-}" ] && exit 0
+		[ -n "${FAKE_RGN_STUCK_AT0:-}" ] && [ "$v" = 0 ] && exit 0
+		case "$v" in 1|2|4) ;; *) v=0 ;; esac
+		echo "$v" > "$R/render_rgn_arrays"; exit 0 ;;
+	"$DB/render_pb_pages")
+		read -r v
+		echo "pb $v" >> "$F/writes"; echo "$v" >> "$F/pb-writes"
+		[ -n "${FAKE_PB_STUCK:-}" ] && exit 0
+		[ -n "${FAKE_PB_STUCK_BACK:-}" ] && [ $((v)) -eq $((0x422)) ] && exit 0
+		echo "$v" > "$R/render_pb_pages"; exit 0 ;;
+	"$DB/hold_recovery")
+		read -r v
+		echo "hold $v" >> "$F/writes"
+		[ "$v" = Y ] && [ -n "${FAKE_HOLD_NOY:-}" ] && exit 0
+		case "$v" in Y|N) ;; *) v=N ;; esac
+		echo "$v" > "$F/hold"; exit 0 ;;
+	"$DB/reset")
+		cat > /dev/null
+		echo "reset 1" >> "$F/writes"
+		echo "x" >> "$F/reset-tries"
+		if [ -n "${FAKE_RESET_FAIL_FROM:-}" ] && [ "$(grep -c . "$F/reset-tries")" -ge "$FAKE_RESET_FAIL_FROM" ]; then
+			echo "tee: reset: Connection timed out" >&2; exit 1
+		fi
+		read -r w a s2 s < "$F/state"; [ "$w" = idle ] && s2=0x400
+		echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 BIF_INT_STAT 0x80000 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+		echo "gma500 0000:00:02.0: [drm] SGX reset: after the fault clear BIF_FAULT 0x0 BIF_INT_STAT 0x80000" >> "$KMSG"
+		echo "x" >> "$F/resets"
+		: > "$R/kpoke"
+		[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		exit 0 ;;
+	"$DB/"*) echo "${2##*/} ?" >> "$F/writes"; echo "${2##*/}" >> "$F/other-writes"; cat > /dev/null; exit 0 ;;
+	esac
+fi
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"

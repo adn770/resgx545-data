@@ -1,0 +1,48 @@
+attempt 20261111-211315: /Users/jtorra/src/scratch/resgx545/closing4/r4-render4x/out/20261111-211315; FROZEN.sha256 80a16d2b2e34b11fd9af8ac19c701621feda7b20c6a1e20b96532ff23a8bfb42
+files verified
+#### s0 21:13:15
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+SUMMARY: s0: controls {'s0-1x-1024x768': 'PASS', 's0-4x-288x144': 'PASS', 's0-4x-1024x768': 'PASS'}; later stages open; reg 0x0724 as a reported check not usable
+job: ok
+job time: 401 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 4102.635800] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 4102.638681] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 4102.641483] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 142 us
+stage s0 done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified
+gate c: open (s0's three controls passed)
+#### c 21:13:59
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+SUMMARY: c: control PASS, held-out [True, True]; Q113: TEXTYPE 2 with smp3d reads the face of the coordinate of largest magnitude and its sign on 2 held-out off-axis jobs (4096 pixels), the cu-xn control again as in E726: the face mapping is no longer post hoc [infer]; Q113 may be retired as answered (R4-3), its edges and (s, t) are Q284's (2 of 2 rows decided)
+job: ok
+job time: 381 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[ 4142.824985] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[ 4142.828128] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[ 4142.831469] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 165 us
+stage c done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified
+gate p: open (s0's three controls passed)
+#### p 21:14:39
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+## STOP: the 2-th fault-class event of the stage (2 is the limit): stop after p-2048x1536 (PREFLIGHT.md section 6)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+STOP: stage p exited 15 (see /Users/jtorra/src/scratch/resgx545/closing4/r4-render4x/out/20261111-211315/p.log and p/runner.log; 255 = ssh lost, 142 = the alarm: a freeze)
+knobs after the stop (alias_skip, render_rgn_arrays; read only): 0x00000000 0x00000000 0x00000422 
+to continue after the lead's decision: run/k.sh --from p (a new attempt directory)
