@@ -280,8 +280,13 @@ def f1_verdict(a, b):
         N = C.F_LADDERS[kind][-1]
         ja, jb = a.get((kind, N)), b.get((kind, N))
         return any(usable(j) and j["bit6"] for j in (ja, jb))
+    def last_clear(kind):
+        # read clear at the last point: a void last point is not "not set" (post-run fix C11, POSTRUN-FIX.md)
+        N = C.F_LADDERS[kind][-1]
+        js = [j for j in (a.get((kind, N)), b.get((kind, N))) if usable(j)]
+        return bool(js) and not any(j["bit6"] for j in js)
     b4_never = not any(usable(j) and j["bit6"] for kk, j in list(a.items()) + list(b.items()) if kk[0] == "b4")
-    unexpl = (not last_set("b2")) and (not last_set("b8n")) and b4_never and any(usable(j) for j in list(a.values()) + list(b.values()))
+    unexpl = last_clear("b2") and last_clear("b8n") and b4_never and any(usable(j) for j in list(a.values()) + list(b.values()))
     if unexpl:
         lines.append("NEITHER b2 nor b8n sets by its last point and b4 never sets: H-MA and H-WD are both refuted; E769's fit stays unexplained")
     ld = [r for r in ladder_eval("ld8", a, b)[0]]

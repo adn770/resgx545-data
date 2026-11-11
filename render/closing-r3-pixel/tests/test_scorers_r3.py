@@ -430,5 +430,20 @@ rc, txt = gate([str(empty), mkroot(f0_world())])
 check(rc == 0, "gate: an earlier attempt's kept q-f0 opens it (gates come from kept output, newest first)")
 check(S.main(["nonsense", "x"]) == 2, "score_r3.py: a bad stage name is a usage error")
 
+# ---------------------------------------------------------------------------------------------------- post-run fixes (POSTRUN-FIX.md, 2026-11-11)
+# C1 (the audit's qt_void.py): a void row inside (last clear, first set] must not refute an exact-point hypothesis
+fs256 = [a for a in C.t_allowed("H-INST", (256, 256), 56, ladder=C.t_ladder(256, 256)) if a is not None][0]
+s = summ(run("q-t", W.stage("q-t", t_world("H-INST", pre_bad=f"t-256x256-n{fs256}"))))
+inst = s.split("H-INST ")[1].split(";")[0]
+check("256x256" not in inst and "undecided" in inst,
+      f"C1: q-t world H-INST with the 256x256 row at N = {fs256} void: H-INST is undecided there, not REFUTED; " + inst)
+# C11 (q-f1): a void last point of b2 and b8n is not "not set": the unexplained case needs a usable clear last point
+lastb2 = C.F_LADDERS["b2"][-1]
+a_ = F.f1_collect(S.L.Kept(W.stage("q-f1a", f1_world("NEVER", "a", voidproof=("b2", lastb2, "a")))))
+b_ = F.f1_collect(S.L.Kept(W.stage("q-f1b", f1_world("NEVER", "b", voidproof=("b2", lastb2, "b")))))
+check(F.f1_verdict(a_, b_)[2] is False,
+      "C11: q-f1 world NEVER with b2's last point void in both orders: not the unexplained case (b2's last point not read)")
+check(f1_verdict("NEVER")[2] is True, "C11: ... and with it read clear the unexplained case stands")
+
 print(f"\n{nok} ok, {len(failed)} FAIL")
 sys.exit(1 if failed else 0)

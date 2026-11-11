@@ -107,8 +107,10 @@ def evaluate(d):
         for h in ("H-INST", "H-TILE", "H-JOB"):
             allowed = C.t_allowed(h, size, ref, ladder=sorted(lad))
             good = (fs in allowed) or (fs is None and None in allowed)
-            # a size whose allowed point is not on the usable ladder (a row void) cannot be decided
-            decided = fs is not None or (None in allowed) or all(a in usable_n for a in allowed if a is not None)
+            # a size whose allowed point is not on the usable ladder (a row void) cannot be decided: decided only if every
+            # allowed point lies outside (last clear, first set] or is a usable row (post-run fix C1, POSTRUN-FIX.md)
+            decided = (None in allowed) or all((lc is not None and a <= lc) or (fs is not None and a > fs) or a in usable_n
+                                               for a in allowed if a is not None)
             verdict[h].append((size, fs, allowed, good, decided, mono))
             cells.append(("ok" if good else "MISS") + ("" if decided else "?"))
         tab.append((f"{size[0]}x{size[1]}", "never set" if fs is None else fs, lc if lc is not None else "-", "yes" if mono else "NO", *cells))

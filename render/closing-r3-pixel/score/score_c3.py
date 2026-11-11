@@ -320,7 +320,7 @@ def score_p_c3(k: Kept, preds):
     g23_reg = False
     if "c-g23r4" in got:
         g23_reg = all(ok for m, s, ok in model_entries(preds, "c-g23r4-x", got["c-g23r4"]["src"], got["c-g23r4"]["meas"], got["c-g23r4"]["ow"]))
-    o4s_ctl = "c-o4s-u" in got and o4_class_words(got["c-o4s-u"]["ow"]) == "5'" and ctl.get("c-e709", (False,))[0] is not None
+    o4s_ctl = "c-o4s-u" in got and o4_class_words(got["c-o4s-u"]["ow"]) == "5'" and ctl.get("c-e709", (False,))[0] is True  # post-run fix C11
     for c, (ok_, why) in ctl.items():
         out.append(f"G-o4 control {c}: {'PASS' if ok_ else 'FAIL ' + str(why)}")
     out.append(f"G-o1 control (c-u, c-u-r2 tag-2 fraction >= {max(crit.values()) if crit else '?'}): "

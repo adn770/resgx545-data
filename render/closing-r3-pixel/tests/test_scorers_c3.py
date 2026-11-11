@@ -257,5 +257,11 @@ check("NOT ANSWERED" in s and "M (g24 = y mod 16" in s, "world g24 = y: c-rd-g24
 text, res, s = score(p_c3_world(Truth(rd128="x")))
 check("NOT ANSWERED" in s, "world g23 = x at 128x128 (no wrap): the 128x128 read refutes M (x mod 32)")
 
+# post-run fix C11 (POSTRUN-FIX.md, 2026-11-11): the swapped-order control needs c-e709 to PASS, not only to have been read
+text, res, s = score(p_c3_world(Truth(), fail_o4=True))
+check("swapped-order control c-o4s-u: FAIL or void" in text, "C11: c-e709 failing: the swapped-order control c-o4s-u is not printed PASS")
+text, res, s = score(p_c3_world(Truth()))
+check("swapped-order control c-o4s-u: PASS" in text, "C11: ... and with c-e709 passing it is PASS")
+
 print(f"\n{nok} ok, {len(failed)} FAIL")
 sys.exit(1 if failed else 0)
