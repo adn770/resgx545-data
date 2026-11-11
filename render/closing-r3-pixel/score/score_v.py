@@ -106,15 +106,11 @@ def ladder_bracket(g):
 
 def consistent(pred, br, ns):
     """The frozen prediction pred (a point N* from the narrowing bracket: (flo, fhi) interval) against a ladder's observed bracket
-    (lo, hi]: the intervals meet within one ladder step (the gap to the neighbouring point)."""
+    (lo, hi]: strict overlap (post-run fix A1, POSTRUN-FIX.md): a first set point in (lo, hi] can lie in [flo, fhi].  An open end is
+    None; there is no slack of a step.  ns (the ladder's points) is kept for the callers and no longer used."""
     flo, fhi = pred
     lo, hi = br
-    pts = sorted(ns)
-    step = max((b - a for a, b in zip(pts, pts[1:])), default=0)
-    s = step if hi is None or lo is None else max(hi - lo, 0)
-    olo = (lo if lo is not None else 0) - s
-    ohi = (hi if hi is not None else float("inf")) + s
-    return not (fhi < olo or flo > ohi)
+    return (hi is None or flo <= hi) and (lo is None or fhi > lo)
 
 
 def evaluate(d):
