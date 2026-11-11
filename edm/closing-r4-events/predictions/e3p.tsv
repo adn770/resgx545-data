@@ -1,0 +1,53 @@
+case	quantity	value	model	set
+b0	skipped	0	control (the design: the host's flag, the task's count)	control
+b0	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b0	hold_recovery_after	N	control (put back and read back)	control
+b0	tool_ok	yes	control (E823 B0, 3 of 3: the fill without the skip)	control
+b0	tick_alive	yes	control (E823 B0, 3 of 3: the fill without the skip)	control
+b0	end_render_entries	1	control (E823 B0, 3 of 3: the fill without the skip)	control
+b0	bit18_in_watch	never	control (E823 B0, 3 of 3: the fill without the skip)	control
+b1p	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p	hold_recovery_after	N	control (put back and read back)	control
+b1p	tick_alive	yes	H-PHAS-ANY (the slot 3 pass ended with the phase end is finished for the EDM)	heldout
+b1p	tick_alive	no	H-SLOT3-MORE (the slot 3 pass needs more than the phase end: E823's stop)	heldout
+b1p	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held)	heldout
+b1p	end_render_entries	1	H-ONCE (the event is not re-fired)	heldout
+b1p	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E823 held it 48 ms)	heldout
+b1p	bit18_in_watch	never	H-PULSE	heldout
+b1p	bit18_after_bit15	1	H-W (the bits written are the bits cleared)	fit
+b1p	bit18_after_bit15	0	H-ALL	fit
+b1p	bit18_after_bit15	1	H-NONE	fit
+b1p	bit18_after_bit18	0	H-W (the bits written are the bits cleared)	fit
+b1p	bit18_after_bit18	0	H-ALL	fit
+b1p	bit18_after_bit18	1	H-NONE	fit
+b1p-r2	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p-r2	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p-r2	hold_recovery_after	N	control (put back and read back)	control
+b1p-r2	tick_alive	yes	H-PHAS-ANY (the slot 3 pass ended with the phase end is finished for the EDM)	replicate
+b1p-r2	tick_alive	no	H-SLOT3-MORE (the slot 3 pass needs more than the phase end: E823's stop)	replicate
+b1p-r2	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held)	replicate
+b1p-r2	end_render_entries	1	H-ONCE (the event is not re-fired)	replicate
+b1p-r2	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E823 held it 48 ms)	replicate
+b1p-r2	bit18_in_watch	never	H-PULSE	replicate
+b1p-r2	bit18_after_bit15	1	H-W (the bits written are the bits cleared)	replicate
+b1p-r2	bit18_after_bit15	0	H-ALL	replicate
+b1p-r2	bit18_after_bit15	1	H-NONE	replicate
+b1p-r2	bit18_after_bit18	0	H-W (the bits written are the bits cleared)	replicate
+b1p-r2	bit18_after_bit18	0	H-ALL	replicate
+b1p-r2	bit18_after_bit18	1	H-NONE	replicate
+b1p-r3	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p-r3	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p-r3	hold_recovery_after	N	control (put back and read back)	control
+b1p-r3	tick_alive	yes	H-PHAS-ANY (the slot 3 pass ended with the phase end is finished for the EDM)	replicate
+b1p-r3	tick_alive	no	H-SLOT3-MORE (the slot 3 pass needs more than the phase end: E823's stop)	replicate
+b1p-r3	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held)	replicate
+b1p-r3	end_render_entries	1	H-ONCE (the event is not re-fired)	replicate
+b1p-r3	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E823 held it 48 ms)	replicate
+b1p-r3	bit18_in_watch	never	H-PULSE	replicate
+b1p-r3	bit18_after_bit15	1	H-W (the bits written are the bits cleared)	replicate
+b1p-r3	bit18_after_bit15	0	H-ALL	replicate
+b1p-r3	bit18_after_bit15	1	H-NONE	replicate
+b1p-r3	bit18_after_bit18	0	H-W (the bits written are the bits cleared)	replicate
+b1p-r3	bit18_after_bit18	0	H-ALL	replicate
+b1p-r3	bit18_after_bit18	1	H-NONE	replicate

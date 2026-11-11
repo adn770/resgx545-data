@@ -1,0 +1,15 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# mock sudo: record the call, map the laptop's literal paths into the mock (/sys/kernel/debug ->
+# $MOCK_DIR/sysdebug, /home/jtorra/ -> $MOCK_HOME/), run the command as the same user (the runner is
+# told S2_MOCK_ROOT=1 by the test)
+[ "$1" = "-n" ] && shift
+echo "sudo $*" >> "$MOCK_DIR/sudo.log"
+args=()
+for a in "$@"; do
+	a=${a//\/sys\/kernel\/debug/$MOCK_DIR/sysdebug}
+	a=${a//\/home\/jtorra\//$MOCK_HOME/}
+	a=${a//\/sys\/module\/gma500_gfx\/srcversion/$MOCK_DIR/srcv}
+	args+=("$a")
+done
+exec "${args[@]}"

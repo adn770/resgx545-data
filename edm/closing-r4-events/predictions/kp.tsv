@@ -1,0 +1,35 @@
+case	quantity	value	model	set
+e0	entries	12..16	control (E817 e0, E830: 14 +-2 entries on the grid)	control
+e0	grid	yes	control (E817 e0, E830: 14 +-2 entries on the grid)	control
+e0	acted	0	control (E817 e0, E830: 14 +-2 entries on the grid)	control
+fk	acted	1	control (the task's own record: ACTED 1 and ACT_SEEN 4 in the page)	control
+fk	kept	yes	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	control
+fk	flag_logged	3	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	control
+fk	next_gap	24950..25050	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	control
+fk	next_gap_exact	24994..24995	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	fit
+fk	read_minus_write	0	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	control
+fk	dword14	0	control (E830 fk 3 of 3, E817 fph 2 of 2: a plain tick pass ended with the phase end keeps the tick)	control
+kp	acted	1	control (the task's own record: ACTED 1 and ACT_SEEN 4 in the page)	control
+kp	flag_logged	3	control (the kick pass is logged first with flag 3)	control
+kp	kept	yes	H-PHAS-ANY (any pass ended with the phase end is finished for the EDM)	heldout
+kp	kept	no	H-KICK-MORE (a kick pass needs more than the phase end: E813 B3's stop)	heldout
+kp	ticks_after_kick	>=4	H-PHAS-ANY (at least 4 ticks on the grid after the kick entry)	heldout
+kp	ticks_after_kick	0	H-KICK-MORE (nothing after the kick entry)	heldout
+kp	sig_class	idle	H-PHAS-ANY (an idle EDM after the pass)	heldout
+kp	sig_class	busy	H-KICK-MORE (a stop: E537's busy signature)	heldout
+kp	miscinfo_answered	no	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp	read_minus_write	-1	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp	dword14	0	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp	p3_answered	no	H-KICK-MORE (stop only: P3 not answered, 0 of 8 in the records)	heldout
+kp-r2	acted	1	control (the task's own record: ACTED 1 and ACT_SEEN 4 in the page)	control
+kp-r2	flag_logged	3	control (the kick pass is logged first with flag 3)	control
+kp-r2	kept	yes	H-PHAS-ANY (any pass ended with the phase end is finished for the EDM)	replicate
+kp-r2	kept	no	H-KICK-MORE (a kick pass needs more than the phase end: E813 B3's stop)	replicate
+kp-r2	ticks_after_kick	>=4	H-PHAS-ANY (at least 4 ticks on the grid after the kick entry)	replicate
+kp-r2	ticks_after_kick	0	H-KICK-MORE (nothing after the kick entry)	replicate
+kp-r2	sig_class	idle	H-PHAS-ANY (an idle EDM after the pass)	replicate
+kp-r2	sig_class	busy	H-KICK-MORE (a stop: E537's busy signature)	replicate
+kp-r2	miscinfo_answered	no	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp-r2	read_minus_write	-1	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp-r2	dword14	0	E813 B3 (the closed reader never ran: the command stays unread)	fit
+kp-r2	p3_answered	no	H-KICK-MORE (stop only: P3 not answered, 0 of 8 in the records)	replicate
