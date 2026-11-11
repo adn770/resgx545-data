@@ -1,0 +1,32 @@
+#stage g-z
+# C1 (zls, Q287 closes Q122 with it): the ZLS store's band at other alignments.  E730 (post hoc, 12 of 12 jobs; every width 2 mod 4,
+# every height 2 mod 8) found the stored (not 1.0f) dwords of a full-screen triangle's depth store at x < 1.25 W and y < 1.25 H
+# of the tile area.  Frozen rule A: the pixel centre test x + 0.5 < 1.25 W, i.e. x < ceil(1.25 W - 0.5), and the same for y
+# with H, against FLOOR (x < floor(1.25 W)), ROUND (x < floor(1.25 W + 0.5)), CEIL (x < ceil(1.25 W)) and RSTRICT (x + 1 < 1.25 W).
+# DEVIATION from the proposal: the tool refuses odd sizes (render.c: width % 2, height % 2 -> EINVAL; the Mac mock says `render:
+# Invalid argument` for 17, 19, 33, 35 and heights 17, 19, 21), so the fractions .25 and .75 of 1.25 W (where A differs from
+# FLOOR) cannot be run: the nearest accepted shape is the integer fraction (W = 0 mod 4: 20, 36, 44, 76; H = 0 mod 4: 20, 28, 36),
+# where A = FLOOR = ROUND = CEIL and only RSTRICT differs (RSTRICT agrees with A at E730's .5 and so was not refuted); the new
+# alignments also put the band's edge at other places of the 32 x 16 tile (W = 76: 95 of the 96 pixels of three tiles).  The
+# controls (34 x 18 x and y, 66 x 34: E730's .5 sizes) separate A from ROUND and CEIL.  Rows: E730's isp-a-guard rows
+# (p1141/isp-a-guard.sh) with the sizes changed: the same option string, the depth pitch per width as E730 chose it (0x17100c up to
+# 64, 0x171014 at 66 and 76), the buffer pre-filled with 0xdeadbeef, a depth dump.  Observable: a tile-area dword is stored iff
+# it is not 1.0f (E465's, as E730's post hoc reader).  Gates, from the kept dump: no dword of the tile area still 0xdeadbeef (the
+# store writes whole tiles), the tool's own `diff: 0 of W*H pixels`.  A control miss voids the stage.  The pa0 iterated-attribute
+# clause of Q287 is not run (user decision R3-R5 c).  z-tri-in / z-tri-cross: one triangle by --tri-v; the model is the
+# pixel-centre raster clipped by the band (edge pixels within 1/16 pixel are ambiguous).
+z-ctl-34x18-x|control|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-34x18-y|control|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-66x34-x|control|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 66 --height 34 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x171014 --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 20 --poke blk:1=0x00400200
+z-w20|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 20 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+z-w36|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 36 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-w44|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 44 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-w76|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 76 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x171014 --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 19 --poke blk:1=0x00400200
+z-h20|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 20 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-h28|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 28 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-h36|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 36 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 19 --poke blk:1=0x00400200
+z-w32|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 32 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+z-w64|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 64 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-h32|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 32 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-tri-in|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-v 6144,2048,10240,2048,6144,5120 --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-tri-cross|heldout|safe|-|stophang expectdiff|-|tri --keep-overflow --wait-ms 20000 --width 36 --height 20 --tri-v 6144,2048,20480,2048,6144,14336 --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200

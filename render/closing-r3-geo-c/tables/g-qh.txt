@@ -1,0 +1,22 @@
+#stage g-qh
+# C2 held-out stage (Q211): the scenes of E773 with U = 275 (-n 1 --move 1:1024,0) and U = 438 (-n 2 --geometry 1 --move
+# 2:0,1024) at 4096x4096.  Two scene-gate jobs at the default P = 0x422 read each scene's U (the peak of 0x0724) as E773 did; a
+# scene whose U differs voids its cells.  Six cells a scene, chosen offline (gen/r3_geo.py pick_heldout): greedily the cells that
+# split the 13 classes the fit leaves until every one of the 20 pairs is its own class, then the most divisive, and one cell where
+# all 20 pairs agree (a plain test of the family at the new U).  The frozen table holds the predicted count of every pair at every
+# cell; the scorer keeps the pairs the fit stage left (g-qf's kept data) and scores the held-out cells against them.  A job with a
+# kick lost (`#N: overflowed` for a render before the last) is void (E773's rule).  Run after g-qf.
+qc-s275|control|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qc-s438|control|safe|0x422|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x26|heldout|safe|0x26|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x27|heldout|safe|0x27|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x2a|heldout|safe|0x2a|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x2b|heldout|safe|0x2b|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x31|heldout|safe|0x31|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s275-0x52|heldout|safe|0x52|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 1 --move 1:1024,0 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0x38|heldout|safe|0x38|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0x39|heldout|safe|0x39|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0x48|heldout|safe|0x48|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0x79|heldout|safe|0x79|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0x7b|heldout|safe|0x7b|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
+qh-s438-0xec|heldout|safe|0xec|stophang expectdiff|0x0624-0x0628,0x0654-0x0660,0x0700-0x0710,0x0720-0x072c,0x0748|tri --width 4096 --height 4096 -n 2 --geometry 1 --move 2:0,1024 --keep-going --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
