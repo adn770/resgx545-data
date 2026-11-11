@@ -1,0 +1,28 @@
+g-c4: per job (the 0x0624 of the job itself is the knob proof)
+job            set      P      thr0   parts  peaks                        raise
+c3-4096-0x372  control  0x372  0x350  2      ['0x350', '0x370', '0x23d']  raise
+c3-4096-0x374  control  0x374  0x352  2      ['0x352', '0x352', '0x352']  none 
+c3-2048-0xe2   control  0xe2   0xc0   3      ['0xc0', '0xe0', '0xe0']     raise
+c3-2048-0x122  control  0x122  0x100  2      ['0x100', '0x100', '0x4f']   none 
+c4-b1          heldout  0x102  0xe0   2      ['0xe0', '0x100', '0x9b']    raise
+c4-b2          heldout  0x112  0xf0   2      ['0xf0', '0xf0', '0x51']     none 
+c4-b3          heldout  0x10a  0xe8   2      ['0xe8', '0xe8', '0x52']     none 
+c4-b4          heldout  0x106  0xe4   2      ['0xe4', '0xe4', '0x9c']     none 
+c4-b5          heldout  0x104  0xe2   2      ['0xe2', '0x102', '0x9b']    raise
+c4-b6          heldout  0x105  0xe3   2      ['0xe3', '0xe3', '0xe3']     none 
+
+H-last side table: dword 36 = max(count before the LAST abort - 2, 0); SEP = H-last's value differs from the peak reading's or the second-abort reading's (the jobs that separate H-last from them)
+job            counts before aborts  peak  H-last  dword 36         
+c3-4096-0x372  [3, 5]                5     3       3              ok
+c3-4096-0x374  [3, 3]                3     1       1              ok
+c3-2048-0xe2   [3, 4, 3]             4     1       1         SEP  ok
+c3-2048-0x122  [4, 5]                5     3       3              ok
+c4-b1          [3, 5]                5     3       3              ok
+c4-b2          [4, 5]                5     3       3              ok
+c4-b3          [3, 4]                4     2       2              ok
+c4-b4          [3, 3]                3     1       1              ok
+c4-b5          [3, 5]                5     3       3              ok
+c4-b6          [3, 3]                3     1       1              ok
+H-last: 10 of 10 jobs fit; separating jobs 1 of 1; jobs whose count changed in the two samples before the last edge: 0
+c4 observations: 0xc0:R 0xe0:R 0xe2:R 0xe3:N 0xe4:N 0xe8:N 0xf0:N 0x100:N
+SUMMARY: controls pass (4 of 4); LT REFUTED: exact flip, last raise thr0 0xe2 (C = 0x102), first silent 0xe3; LT said 0xd4; the measured C replaces it

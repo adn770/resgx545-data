@@ -379,4 +379,25 @@ t = S.run_stage("g-c7", d, ctl_dir=str(c))
 cs = (d / "cases.tsv").read_text().splitlines()[1:]
 check("g-c7 gate: more than 3 partial renders at P 0x422 end the stage after one job (10 rows skipped); the scorer says the gate closed",
       "gate closed" in summary(t) and sum(1 for r in cs if r.split("\t")[9] == "skipped") == 10 and len(cs) == 11, summary(t)[:300])
+
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11)
+# C8 (g-c4): "no raise in any valid cell" refutes LT only when a silent cell lies at or below LT's last raise 0xd4
+v = S.c4_verdict(None, None, "no raise", {0xe0: "N", 0xf0: "N"})
+check("C8: g-c4 no raise, every silent cell above 0xd4: cannot tell, not LT REFUTED", "REFUTED" not in v and "cannot tell" in v, v)
+v = S.c4_verdict(None, None, "no raise", {0xd0: "N", 0xe0: "N"})
+check("C8: g-c4 no raise with a silent cell at or below 0xd4: LT REFUTED", "LT REFUTED" in v, v)
+v = S.c4_verdict(None, None, "no raise", {0xd0: "V"})
+check("C8: g-c4 no valid cell at all: cannot tell", "REFUTED" not in v and "cannot tell" in v, v)
+v = S.c4_verdict(0xe2, 0xe3, "exact", {0xe2: "R", 0xe3: "N"})
+check("C8: g-c4 exact flip: wording unchanged", v.startswith("LT REFUTED: exact flip, last raise thr0 0xe2 (C = 0x102), first silent 0xe3"), v)
+# C8 (g-c6): with a g-c4 bracket (not exact) a cell inside it is not predicted by H-target: not taken as g-c4's lo exactly
+v = S.c6_verdict([("a", "R", 0xc0), ("b", "R", 0xd8), ("c", "N", 0xf0)], 0xd0, 0xe0)
+check("C8: g-c6 cell inside g-c4's bracket is not decided for H-target: H-target HOLDS on the others, not 'neither'",
+      v.startswith("H-target HOLDS (2 of 2 decided cells") and "H-context REFUTED" in v and "b" in v.split("H-context")[0], v)
+v = S.c6_verdict([("a", "R", 0xc0), ("b", "N", 0xd8)], 0xd0, 0xe0)
+check("C8: g-c6 only one decided cell outside the bracket: still decided on it", "H-target" in v, v)
+v = S.c6_verdict([("b", "R", 0xd8)], 0xd0, 0xe0)
+check("C8: g-c6 every valid cell inside g-c4's bracket: H-target cannot tell", v.startswith("cannot tell") and "bracket" in v, v)
+v = S.c6_verdict([("a", "R", 0xe0), ("b", "N", 0xe8), ("c", "N", 0xf0)], 0xe2, 0xe3)
+check("C8: g-c6 with an exact g-c4 flip: wording unchanged", v == "H-target HOLDS (3 of 3 cells as g-c4's flip at 0xe2); H-context REFUTED", v)
 sys.exit(0 if ok else 1)

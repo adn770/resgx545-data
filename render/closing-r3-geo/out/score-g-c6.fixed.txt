@@ -1,0 +1,16 @@
+g-c6: per job
+job       set      P      thr0   parts  peaks                       raise                                                           
+c6-cal    heldout  0x422  0x400  0      ['0x213']                   none  (void: second run does not reach thr0 or one abort)       
+c6-L      heldout  0x104  0xe2   2      ['0xe2', '0x102', '0x9b']   raise                                                           
+c6-F      heldout  0x105  0xe3   2      ['0xe3', '0xe3', '0xe3']    none                                                            
+c6-0x100  heldout  0x122  0x100  2      ['0x100', '0x100', '0x4f']  none                                                            
+c6-0x120  heldout  0x142  -      -      -                           NODATA: skipped: 2 thr0 576 is not below the page need 531 of c6
+
+H-last side table: dword 36 = max(count before the LAST abort - 2, 0); SEP = H-last's value differs from the peak reading's or the second-abort reading's (the jobs that separate H-last from them)
+job       counts before aborts  peak  H-last  dword 36      
+c6-cal    []                    7     0       0           ok
+c6-L      [3, 5]                5     3       3           ok
+c6-F      [3, 3]                3     1       1           ok
+c6-0x100  [4, 5]                5     3       3           ok
+H-last: 4 of 4 jobs fit; separating jobs 0 of 0; jobs whose count changed in the two samples before the last edge: 0
+SUMMARY: controls pass (g-c4's); H-target HOLDS (3 of 3 cells as g-c4's flip at 0xe2); H-context REFUTED; page need 0x213 at P 0x422 (0 partial renders)

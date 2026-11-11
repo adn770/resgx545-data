@@ -1,0 +1,19 @@
+g-d36: per job
+job             set      P      thr0   parts  peaks                        raise
+d36-2048-0x60   heldout  0x82   0x60   6      ['0x60', '0x80', '0x80']     raise
+d36-2048-0x70   heldout  0x92   0x70   6      ['0x70', '0x90', '0x90']     raise
+d36-2048-0x90   heldout  0xb2   0x90   3      ['0x90', '0xb0', '0xb0']     raise
+d36-2048-0xb0   heldout  0xd2   0xb0   3      ['0xb0', '0xd0', '0xd0']     raise
+d36-4096-0x2c0  heldout  0x2e2  0x2c0  3      ['0x2c0', '0x2e0', '0x2e0']  raise
+d36-4096-0x300  heldout  0x322  0x300  3      ['0x300', '0x320', '0x320']  raise
+
+H-last side table: dword 36 = max(count before the LAST abort - 2, 0); SEP = H-last's value differs from the peak reading's or the second-abort reading's (the jobs that separate H-last from them)
+job             counts before aborts  peak  H-last  dword 36         
+d36-2048-0x60   [2, 3, 3, 3, 3, 3]    3     1       1              ok
+d36-2048-0x70   [2, 3, 3, 2, 2, 3]    3     1       1              ok
+d36-2048-0x90   [2, 4, 3]             4     1       1         SEP  ok
+d36-2048-0xb0   [3, 4, 4]             4     2       2              ok
+d36-4096-0x2c0  [3, 4, 3]             4     1       1         SEP  ok
+d36-4096-0x300  [3, 4, 3]             4     1       1         SEP  ok
+H-last: 6 of 6 jobs fit; separating jobs 3 of 3; jobs whose count changed in the two samples before the last edge: 0
+SUMMARY: controls pass (g-c4's); H-last HOLDS: all 3 separating jobs fit (6 of 6 jobs); usable jobs 6 of 6

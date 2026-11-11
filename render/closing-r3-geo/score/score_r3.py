@@ -367,6 +367,13 @@ def score_c4(k: Kept, preds, tables=None):
     lo, hi, kind = dpm3.flip_of(obs)
     skipped = [r["name"] for r in rows if rd[r["name"]].get("skipped")]
     tail = (f"; bisect ended early (skipped {skipped}: {rd[skipped[0]]['void']})" if skipped else "") + (f"; PICK OFF THE RULE {off}" if off else "")
+    v = c4_verdict(lo, hi, kind, obs)
+    out.append(f"SUMMARY: controls pass ({len(good)} of {len(good)}); {v}{tail}")
+    return "\n".join(out), {}
+
+
+def c4_verdict(lo, hi, kind, obs):
+    """g-c4's verdict on LT from the flip of the kept observations {thr0: 'R'|'N'|'V'}."""
     if kind == "exact":
         if lo == LT_C2048:
             v = f"LT HOLDS: last raise thr0 {lo:#x} (C {lo + 0x20:#x}), first silent {hi:#x}, exactly the frozen prediction (0xd4)"
@@ -381,10 +388,19 @@ def score_c4(k: Kept, preds, tables=None):
         v = "the monotone form is REFUTED at this target: a silent cell below a raise (two flips)"
     elif kind == "no silent cell above":
         v = f"no silent cell above the last raise {lo:#x}: the flip is above the bracket (LT REFUTED: 0xd4 < {lo:#x})" if lo > LT_C2048 else "no flip seen: cannot tell"
+    elif kind == "no raise":
+        # LT is refuted only by a silent cell at or below its last raise 0xd4, not by silent cells above it (post-run fix C8,
+        # POSTRUN-FIX.md)
+        sil = [t for t, c in obs.items() if c == "N"]
+        if sil and min(sil) <= LT_C2048:
+            v = "no raise in any valid cell: the flip is below the bracket (LT REFUTED)"
+        elif sil:
+            v = f"no raise in any valid cell, the lowest silent cell {min(sil):#x} is above LT's 0xd4: cannot tell"
+        else:
+            v = "no valid cell: cannot tell"
     else:
-        v = "no raise in any valid cell: the flip is below the bracket (LT REFUTED)" if kind == "no raise" else f"cannot tell ({kind})"
-    out.append(f"SUMMARY: controls pass ({len(good)} of {len(good)}); {v}{tail}")
-    return "\n".join(out), {}
+        v = f"cannot tell ({kind})"
+    return v
 
 
 def _ctl_gate(ctl_dir, tables=None):
@@ -439,21 +455,35 @@ def score_c6(k: Kept, preds, ctl_dir=None, tables=None):
     if kind != "exact" and kind != "bracket" or lo is None:
         out.append(f"SUMMARY: controls pass; cannot tell: g-c4 gave no flip ({kind}); {note}")
         return "\n".join(out), {}
-    tgt = lambda t: "R" if t <= lo else "N"
-    h_t = [c == tgt(t) for n, c, t in use]
-    h_c = [c == "R" for n, c, t in use]
-    if not use:
-        v = "cannot tell: no valid cell"
-    elif all(h_t) and not all(h_c):
-        v = f"H-target HOLDS ({len(use)} of {len(use)} cells as g-c4's flip at {lo:#x}); H-context REFUTED"
-    elif all(h_c) and not all(h_t):
-        v = f"H-context HOLDS (raise at every valid cell: the 4096 limit); H-target REFUTED"
-    elif all(h_t) and all(h_c):
-        v = "cannot tell: every cell is on the same side for both"
-    else:
-        v = f"neither: cells {[(n, c) for n, c, t in use]}"
+    v = c6_verdict(use, lo, hi)
     out.append(f"SUMMARY: controls pass (g-c4's); {v}; {note}")
     return "\n".join(out), {}
+
+
+def c6_verdict(use, lo, hi):
+    """H-target and H-context on g-c6's valid cells [(name, 'R'|'N', thr0)], against g-c4's last raise lo and first silent hi.
+    H-target predicts R at or below lo and N at or above hi; a cell between them (g-c4 gave a bracket, not an exact flip) is not
+    predicted, so it is not decided for H-target (post-run fix C8, POSTRUN-FIX.md: lo was taken as the exact flip)."""
+    tgt = lambda t: "R" if t <= lo else "N" if t >= hi else None
+    dec = [(n, c, t) for n, c, t in use if tgt(t) is not None]
+    inside = [n for n, c, t in use if tgt(t) is None]
+    h_t = [c == tgt(t) for n, c, t in dec]
+    h_c = [c == "R" for n, c, t in use]
+    if not use:
+        return "cannot tell: no valid cell"
+    if not dec:
+        return f"cannot tell: every valid cell lies inside g-c4's bracket ({lo:#x}, {hi:#x}) ({inside})"
+    if inside:
+        held = f"{len(dec)} of {len(dec)} decided cells as g-c4's bracket ({lo:#x}, {hi:#x}); {inside} inside it not decided"
+    else:
+        held = f"{len(use)} of {len(use)} cells as g-c4's flip at {lo:#x}"
+    if all(h_t) and not all(h_c):
+        return f"H-target HOLDS ({held}); H-context REFUTED"
+    if all(h_c) and not all(h_t):
+        return "H-context HOLDS (raise at every valid cell: the 4096 limit); H-target REFUTED"
+    if all(h_t) and all(h_c):
+        return "cannot tell: every cell is on the same side for both"
+    return f"neither: cells {[(n, c) for n, c, t in use]}"
 
 
 def _interval(obs):

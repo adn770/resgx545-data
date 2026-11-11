@@ -1,0 +1,55 @@
+g-da: object decode per job
+job             object   nvert  x,y (pixels)     1/w words 
+da-ctl-z0-w3    present  3      8,8;56,20;20,56  0x3eaaaaaa
+da-ctl-zm05-w1  present  3      8,8;56,20;20,56  0x3f800000
+da-rep-m2p6-3   present  3      8,8;56,20;20,56  0x3eaaaaaa
+da-rep-m6p1-7   present  3      8,8;56,20;20,56  0x3e124924
+da-p2-w2        present  3      8,8;56,20;20,56  0x3f000000
+da-p2-w05       present  3      8,8;56,20;20,56  0x40000000
+da-lo1          present  3      8,8;56,20;20,56  0x3de38e39
+da-lo2          present  3      8,8;56,20;20,56  0x3e4ccccc
+da-mid1         present  3      8,8;56,20;20,56  0x3dba2e8b
+da-mid2         present  3      8,8;56,20;20,56  0x3d321642
+da-mid3         present  3      8,8;56,20;20,56  0x3fb6db6e
+da-in1          present  3      8,8;56,20;20,56  0x3d579435
+da-in2          present  3      8,8;56,20;20,56  0x3e2aaaaa
+da-in3          present  3      8,8;56,20;20,56  0x3f44ec4f
+da-in4          present  3      8,8;56,20;20,56  0x3fb6db6e
+da-in5          present  3      8,8;56,20;20,56  0x40555554
+da-in6          present  3      8,8;56,20;20,56  0x3f44ec4f
+da-in7          present  3      8,8;56,20;20,56  0x3dba2e8b
+da-in8          present  3      8,8;56,20;20,56  0x40555554
+da-in9          present  3      8,8;56,20;20,56  0x3d579435
+da-in10         present  3      8,8;56,20;20,56  0x3e4ccccc
+da-hi1          present  3      8,8;56,20;20,56  0x3e4ccccc
+da-hi2          present  3      8,8;56,20;20,56  0x40555554
+da-hi3          present  3      8,8;56,20;20,56  0x3f44ec4f
+da-hi4          present  3      8,8;56,20;20,56  0x3d579435
+da-up1          present  3      8,8;56,20;20,56  0x3de38e39
+da-up2          present  3      8,8;56,20;20,56  0x3de38e39
+
+g-da: direction of the stored word per cell (down = RZ of the product, up = one ulp above it)
+job      cell         frac    word        direction
+da-lo1   outside-lo   0.0400  0x3ca3d700  up       
+da-lo2   outside-lo   0.0790  0x3d21cac8  down     
+da-mid1  outside-mid  0.3088  0x3dd70a44  down     
+da-mid2  outside-mid  0.3300  0x3c1374c0  up       
+da-mid3  outside-mid  0.3479  0x3dd1eb80  other    
+da-in1   inside       0.3710  0x3e50e562  down     
+da-in2   inside       0.3800  0x3e428f5e  down     
+da-in3   inside       0.3989  0x3dbb6458  down     
+da-in4   inside       0.4037  0x3d71a9f8  other    
+da-in5   inside       0.4112  0x3b656100  up       
+da-in6   inside       0.4247  0x3d46a7e8  up       
+da-in7   inside       0.4425  0x3e049ba6  up       
+da-in8   inside       0.4512  0x3c831280  up       
+da-in9   inside       0.4568  0x3d916874  up       
+da-in10  inside       0.4610  0x3cf9db20  up       
+da-hi1   outside-hi   0.4800  0x3d23d710  up       
+da-hi2   outside-hi   0.4800  0x3ccccce0  up       
+da-hi3   outside-hi   0.4885  0x3d906248  up       
+da-hi4   outside-hi   0.4977  0x3d8624e0  up       
+da-up1   above-half   0.5334  0x3d364598  other    
+da-up2   above-half   0.5916  0x3c9374c0  other    
+H-thr REFUTED: 5 of 11 outside cells off the frozen direction (low and mid down, high and above half up)
+SUMMARY: controls pass; H-thr REFUTED: 5 of 11 outside cells off the frozen direction (low and mid down, high and above half up); held out: consistent ['in band (x, y scaled by w): no clip (21)'], refuted ['D1 (RN(z RZ(1/w)), the product to nearest) (16 of 21)', 'D2 (RZ(z/w)) (10 of 21)', 'D5 (RZ(z RZ(1/w)), the product toward zero) (16 of 21)', 'T26 (|z RZ(1/w)| rounded away from zero iff its fraction exceeds 3/8 (rounding at 26 bits then half up)) (8 of 21)', 'T27 (the same with 7/16 (27 bits then half up)) (8 of 21)', 'K23 (z cut to 23 bits, the product rounded away from zero) (19 of 21)'], void runs for ['geometry of the cell', 'frame: RZ of the product', 'frame: one ulp above it, away from zero', 'H-thr (up iff the fraction exceeds one t in (0.3655, 0.4667))']; repeat only: consistent none, refuted none
