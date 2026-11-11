@@ -1,0 +1,20 @@
+case	quantity	value	model	set	source
+h1-288x144-health	job_class	fault	E729, E828 j2, E824 c1: the c1 shape faults	heldout	c1 (K2 E824), E828 j2, E729: page 0x20006
+h1-288x144-health	job_int	0x90004	BIF_INT_STAT of a TA write fault	heldout	c1 (K2 E824), E828 j2, E729: page 0x20006
+h1-288x144-health	job_word	0x20006061	the TA data ends at the page the fault names (layout formula)	heldout	c1 (K2 E824), E828 j2, E729: page 0x20006
+h1-288x144-health	replay_word	0x20006061	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: every failing health triangle reads the failed job's own word (4 of 4 in K2)	heldout	closing3/netconsole-r3k.log
+h1-288x144-health	health_own_word	0x20006	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: a health fault at the health context's own first unmapped page 0x20006 REFUTES the replay (control that can fail)	model	layout formula
+h2-640x480-health	job_class	fault	E729, E828 j2, E824 c1: the c1 shape faults	heldout	E507: page 0x2000a (the low 12 bits 0x061 as c1 and f2); never seen in a health fault
+h2-640x480-health	job_int	0x90004	BIF_INT_STAT of a TA write fault	heldout	E507: page 0x2000a (the low 12 bits 0x061 as c1 and f2); never seen in a health fault
+h2-640x480-health	job_word	0x2000a061	the TA data ends at the page the fault names (layout formula)	heldout	E507: page 0x2000a (the low 12 bits 0x061 as c1 and f2); never seen in a health fault
+h2-640x480-health	replay_word	0x2000a061	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: every failing health triangle reads the failed job's own word (4 of 4 in K2)	heldout	closing3/netconsole-r3k.log
+h2-640x480-health	health_own_word	0x20006	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: a health fault at the health context's own first unmapped page 0x20006 REFUTES the replay (control that can fail)	ctl	layout formula
+h3-288x144-ctx	job_class	fault	E729, E828 j2, E824 c1: the c1 shape faults	heldout	c1 (K2 E824), E828 j2
+h3-288x144-ctx	job_int	0x90004	BIF_INT_STAT of a TA write fault	heldout	c1 (K2 E824), E828 j2
+h3-288x144-ctx	job_word	0x20006061	the TA data ends at the page the fault names (layout formula)	heldout	c1 (K2 E824), E828 j2
+h3-288x144-ctx	ctx_step	ok	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: a 64 x 64 triangle on a context for 1024 x 768 maps the page: no fault	heldout	layout formula
+h4-288x144-fill	job_class	fault	E729, E828 j2, E824 c1: the c1 shape faults	heldout	c1 (K2 E824), E828 j2
+h4-288x144-fill	job_int	0x90004	BIF_INT_STAT of a TA write fault	heldout	c1 (K2 E824), E828 j2
+h4-288x144-fill	job_word	0x20006061	the TA data ends at the page the fault names (layout formula)	heldout	c1 (K2 E824), E828 j2
+h4-288x144-fill	fill_step	ok	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: a fill runs no TA and draws	heldout	-
+h4-288x144-fill	replay_word	0x20006061	H-REPLAY [infer]: the TA's pending region-header write survives the soft reset and is issued again when the TA next runs: the first health triangle after the fill still faults at the job's word	heldout	c1 (K2 E824), E828 j2

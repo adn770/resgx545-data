@@ -1,0 +1,160 @@
+## stage h
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## clock
+Wed Nov 11 21:19:45 CET 2026
+## R4-G safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 a15197ca019e90f80a2a2f583bbee94dec2d8c8a717fc7b29f5c96cf2b49ecea
+  kept begin.health1.txt: 311 bytes raw, raw sha256 f0ceebf71a4e96fc7b9d6d2d97dd861feb02a3bfbbf05f3d17ac1058f1c1e120
+== h1-288x144-health set=heldout risk=risky mode=held knobs=[held rgn:1 expectdiff hypo:h:4 cell:health]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+  snap 2: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+tee: /sys/kernel/debug/dri/0/sgx/reset: Connection timed out
+  debugfs reset: status 1
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 288x144 tri: triangle (0,0) (864,0) (0,432), depth 0.5 0.5 0.5 job: failed: job faulted, context lost (Input/output error) 
+  kept h1-288x144-health.txt: 411 bytes raw, raw sha256 f7e9712ef13a1bc3d835fb10478a37f029e6591d21012168adcf53473a64c170
+  kept h1-288x144-health.dmesg: 7530 bytes raw, raw sha256 6b29a1a97f77548bb6084a6e9aea6a2a4ef4fb0efea12bf8ccfee5b5938f2880
+  kept h1-288x144-health.snap0.regs: 6474 bytes raw, raw sha256 1e0f7c632a9ecca9b827a81c3fba162161bc630caa2123c9df44a39673dccb1a
+  kept h1-288x144-health.snap1.regs: 6474 bytes raw, raw sha256 9e027a932978a3874f31d034fda7055010cbf87081b36204b17fc4485de3f6fb
+  kept h1-288x144-health.snap2.regs: 6474 bytes raw, raw sha256 5490161b726d139098726e9e07b849888eb66d668fcc2d029cf9d4f5712c410a
+  kept h1-288x144-health.snap3.regs: 6474 bytes raw, raw sha256 9fed8ed5af797d7f72d26c86b1d8aee1b97bddb2c3706acea0eb1a3a5ee75bee
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  fault 1 of at most 4 in group h (a hypothesis: measured); fault-class events of the stage: 1 of 5
+  step h1: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h1: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h1-288x144-health.h1.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept h1-288x144-health.h1.dmesg: 6928 bytes raw, raw sha256 1f5a626aa617e9958dbb479ec1eb94de5c3c2dc564dd4aad5111b9a583589fab
+  step h1: rc 1 class fault
+  step h2: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h2: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h1-288x144-health.h2.txt: 311 bytes raw, raw sha256 2b5b4e19ca77ea88a23ae9fe67c73a93c5da47cf607c1d9843df63c59452fd86
+  kept h1-288x144-health.h2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step h2: rc 0 class ok
+  kept h1-288x144-health.snaph1.regs: 6474 bytes raw, raw sha256 39eca1db4499ea019027e6ad930d54f0de7a1461830c13b59e142597df29bd28
+  kept h1-288x144-health.snaph2.regs: 6474 bytes raw, raw sha256 ebc0ca38469cff27237d613f28c7367038c988251d7fa018c9146a80673c9091
+== h2-640x480-health set=heldout risk=risky mode=held knobs=[held rgn:1 expectdiff hypo:h:4 cell:health]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x2000a061 pb 0x00060006
+  snap 2: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x2000a061 pb 0x00060006
+  debugfs reset: status 0
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 640x480 tri: triangle (0,0) (1920,0) (0,1440), depth 0.5 0.5 0.5 job: failed: job faulted, context lost (Input/output error) 
+  kept h2-640x480-health.txt: 415 bytes raw, raw sha256 c3d8dc72735903537de5faf4b200b8625fe74ead16ab3cc253b16eb24884fab0
+  kept h2-640x480-health.dmesg: 4105 bytes raw, raw sha256 f8ed1b67a1f1608c4eea7264172cea2dcf650936068d40015891e7f42eabcc77
+  kept h2-640x480-health.snap0.regs: 6474 bytes raw, raw sha256 28bf44ad6792801ecc2a675b6d957ff566f238947322d48d5a3bc3312dfe3264
+  kept h2-640x480-health.snap1.regs: 6474 bytes raw, raw sha256 23dfba41dd5c2a45c3dbd797c5e74e1835dfa709c4ddbc6c14f3c299df4d5215
+  kept h2-640x480-health.snap2.regs: 6474 bytes raw, raw sha256 3dc93088e4b980cae02e705f176faeff346ce3d01e5a80dd510cab885cb023b8
+  kept h2-640x480-health.snap3.regs: 6474 bytes raw, raw sha256 bdc6f4729967576dd4cc396be5bf4ab80f429ec65a0f624de6dc3ad71e3b4f7b
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  fault 2 of at most 4 in group h (a hypothesis: measured); fault-class events of the stage: 2 of 5
+  step h1: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h1: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h2-640x480-health.h1.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept h2-640x480-health.h1.dmesg: 3503 bytes raw, raw sha256 3897528d0f8255842c4515d31f6f96ff005c06b268d4d9414ad3140b78b37edd
+  step h1: rc 1 class fault
+  step h2: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h2: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h2-640x480-health.h2.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept h2-640x480-health.h2.dmesg: 3504 bytes raw, raw sha256 707066c670bc2636fbb2aea5af6adafaa7323d41088610aadb281f305403dd2e
+  step h2: rc 1 class fault
+  step h3: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h3: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h2-640x480-health.h3.txt: 311 bytes raw, raw sha256 8f11e8ad852a42c902b7b7018e21b1b6540f3b92b239338b5aeeffd05ee127e7
+  kept h2-640x480-health.h3.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step h3: rc 0 class ok
+  kept h2-640x480-health.snaph1.regs: 6474 bytes raw, raw sha256 776ca5c1911c9cde3100be992e19255b511387a0fad52c99289e955fc5895f3f
+  kept h2-640x480-health.snaph2.regs: 6474 bytes raw, raw sha256 b4aa0d058383cdce0a781d4fa48d006e5a08a83bde4656b1f9d8a80d3449ffac
+  kept h2-640x480-health.snaph3.regs: 6474 bytes raw, raw sha256 f55d1ac1b47e724001e9a70a8a40161ca1491888ce7d660ca0d47a1e1c4fdc33
+== h3-288x144-ctx set=heldout risk=risky mode=held knobs=[held rgn:1 expectdiff hypo:h:4 cell:ctx]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+  snap 2: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+tee: /sys/kernel/debug/dri/0/sgx/reset: Connection timed out
+  debugfs reset: status 1
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 288x144 tri: triangle (0,0) (864,0) (0,432), depth 0.5 0.5 0.5 job: failed: job faulted, context lost (Input/output error) 
+  kept h3-288x144-ctx.txt: 411 bytes raw, raw sha256 f7e9712ef13a1bc3d835fb10478a37f029e6591d21012168adcf53473a64c170
+  kept h3-288x144-ctx.dmesg: 7514 bytes raw, raw sha256 bfdb9af6130be2bdca817174281fc72b8372da8db7330ca7a6333d57b830c4c3
+  kept h3-288x144-ctx.snap0.regs: 6474 bytes raw, raw sha256 2a42d496a36800fa48657bfa0b93e29a342e7b0c527f36f044c0dc5f4dda2e8a
+  kept h3-288x144-ctx.snap1.regs: 6474 bytes raw, raw sha256 eaf9418f235f3efcd9de09a050dbd30085ad5a730e4519633802383dd7416157
+  kept h3-288x144-ctx.snap2.regs: 6474 bytes raw, raw sha256 dc401a3d097e5e693ef9515229c28ce4d32fa1be864cea6fdaca6cb4f44ca3a9
+  kept h3-288x144-ctx.snap3.regs: 6474 bytes raw, raw sha256 e7379f1f16a4dae812e616d8be2ce73a85f96dc671f5ecbc2d100eb419d4ac85
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  fault 3 of at most 4 in group h (a hypothesis: measured); fault-class events of the stage: 3 of 5
+  step ctx: /home/jtorra/sgxfive-test-rgn4 tri --width 64 --height 64 --max-width 1024 --max-height 768 --keep-going
+  snap ctx: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h3-288x144-ctx.ctx.txt: 314 bytes raw, raw sha256 efb6b4dc767f3c4598936fbd450897a68ed34965ba29f04ed9fe17d828f272f2
+  kept h3-288x144-ctx.ctx.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step ctx: rc 0 class ok
+  step h1: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h1: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h3-288x144-ctx.h1.txt: 311 bytes raw, raw sha256 69d69459d5d178beb1f08a9ecf6d0aae6cefdfda6c590dc9a1a10f2916eb35f7
+  kept h3-288x144-ctx.h1.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step h1: rc 0 class ok
+  kept h3-288x144-ctx.snapctx.regs: 6474 bytes raw, raw sha256 9bf60b7a458a4757a5eb9a96c9cf38915d76c58e0263c2269094470acfb117f4
+  kept h3-288x144-ctx.snaph1.regs: 6474 bytes raw, raw sha256 c1dc1bab907514ed1320ec9bf6ae02dfc590f0adfee43d8f7d41dd2f8cc8f687
+== h4-288x144-fill set=heldout risk=risky mode=held knobs=[held rgn:1 expectdiff hypo:h:4 cell:fill]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+  snap 2: clock-status 0x000ccff8 status 0x20000000 status2 0x00000480 bif_int 0x00090004 bif_fault 0x20006061 pb 0x000b000b
+tee: /sys/kernel/debug/dri/0/sgx/reset: Connection timed out
+  debugfs reset: status 1
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 288x144 tri: triangle (0,0) (864,0) (0,432), depth 0.5 0.5 0.5 job: failed: job faulted, context lost (Input/output error) 
+  kept h4-288x144-fill.txt: 411 bytes raw, raw sha256 f7e9712ef13a1bc3d835fb10478a37f029e6591d21012168adcf53473a64c170
+  kept h4-288x144-fill.dmesg: 7519 bytes raw, raw sha256 3251297638c8ffaf87ad4b8e424078b423f8f684e46d47762e6ff0effde98241
+  kept h4-288x144-fill.snap0.regs: 6474 bytes raw, raw sha256 45e9abe3c6c04d899c83e4ff450646f32b96c8a2d102bc763ba10fc27906e48b
+  kept h4-288x144-fill.snap1.regs: 6474 bytes raw, raw sha256 2c6cff3a9f7e62ff8254440901ce5023d5781afc6ee968d0e9b961eb9383d346
+  kept h4-288x144-fill.snap2.regs: 6474 bytes raw, raw sha256 b0bcb43f26a957c1bc058d174af09d62be3bcebe0bf733255ed76bfe6d2059e2
+  kept h4-288x144-fill.snap3.regs: 6474 bytes raw, raw sha256 14a1af425aec381f68f108cc0ef2f84d086a3419691c0b81ffb6fa04524c4b6d
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  fault 4 of at most 4 in group h (a hypothesis: measured); fault-class events of the stage: 4 of 5
+  step fill: /home/jtorra/sgxfive-test-rgn4 fill
+  snap fill: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h4-288x144-fill.fill.txt: 174 bytes raw, raw sha256 affeb5fe562af290039a0d7d584ecea8b5d8f52ac994b3f789edb3a13d2f5b5d
+  kept h4-288x144-fill.fill.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step fill: rc 0 class ok
+  step h1: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h1: clock-status 0x00000078 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h4-288x144-fill.h1.txt: 350 bytes raw, raw sha256 05c18f40eb66328b2274830394bb20cf38a130b4c8fa6051b852c05af9172d00
+  kept h4-288x144-fill.h1.dmesg: 6927 bytes raw, raw sha256 ce733330d6e0676c27de8244e297735a9b1134d2b937df1cc3fdb1366c0873de
+  step h1: rc 1 class fault
+  step h2: /home/jtorra/sgxfive-test-rgn4 tri
+  snap h2: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  kept h4-288x144-fill.h2.txt: 311 bytes raw, raw sha256 50a38e704adea30d8fec67f9ec556ff4798f03b8e0861b307c46654c064016e0
+  kept h4-288x144-fill.h2.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  step h2: rc 0 class ok
+  kept h4-288x144-fill.snapfill.regs: 6474 bytes raw, raw sha256 9e64dbad7b8277b9c52ae73bd03a53eb2abc182032f6a5c73d886d72e9893b1c
+  kept h4-288x144-fill.snaph1.regs: 6474 bytes raw, raw sha256 8d4b3eefc9c77b78342b7fe7e3fd94bd3d485cfb3e78a1bf25203575a335b079
+  kept h4-288x144-fill.snaph2.regs: 6474 bytes raw, raw sha256 49ca09c9ffbf1e321b9d8fb8cb8a0cbd222334169d080351dd8f22f4e2fe1aad
+  kept end.fill2.txt: 174 bytes raw, raw sha256 41760ac9b0b361c69ce376803bf29419b45947dd1cb53e4b44c7625a06104b9e
+  kept end.health2.txt: 311 bytes raw, raw sha256 07d130203a2897f6dc2f8f5777cfd8479a3b7880b485ad1188498757427796ab
+## end: 4 jobs of h
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 14 case markers kept in /home/jtorra/r4g-out/20261111-211649/h/kernel.log

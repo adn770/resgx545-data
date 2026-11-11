@@ -1,0 +1,21 @@
+case	quantity	value	model	set	source
+o1-1x-1024x768-p83	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773); need U1 97 [model] / U4 193 [fit]	ctl	E735, E773, E824 h8
+o1-1x-1024x768-p83	diff	0 of 786432 pixels	page rule: completes when P - 0x22 >= need (E625, E735, E773); need U1 97 [model] / U4 193 [fit]	ctl	E827 / E824
+o3-4x-1024x768-pe3	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773); need U1 97 [model] / U4 193 [fit]	ctl	E735, E773, E824 h8
+o3-4x-1024x768-pe3	diff	0 of 786432 pixels	page rule: completes when P - 0x22 >= need (E625, E735, E773); need U1 97 [model] / U4 193 [fit]	ctl	E827 / E824
+o2-1x-1024x768-p82	outcome	overflow	the same rule: 0x82 - 0x22 = 96 < 97 (-ENOSPC, no fault at 1x: E311, E438, E412)	ctl	E735
+o4-4x-1024x768-pe2	outcome	fault	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0xe2 - 0x22 = 192 < 193); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o4-4x-1024x768-pe2	fault_int	0x0100	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0xe2 - 0x22 = 192 < 193); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_INT_STAT 0x90100, bits 15:0)
+o4-4x-1024x768-pe2	fault_page	0x10000	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0xe2 - 0x22 = 192 < 193); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_FAULT 0x1000001x), hw_spec 5.5
+o4-4x-1024x768-pe2	fault_sb	1	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0xe2 - 0x22 = 192 < 193); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o5-4x-288x144-p23-held	outcome	fault	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0x23 - 0x22 = 1 < 12); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o5-4x-288x144-p23-held	fault_int	0x0100	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0x23 - 0x22 = 1 < 12); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_INT_STAT 0x90100, bits 15:0)
+o5-4x-288x144-p23-held	fault_page	0x10000	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0x23 - 0x22 = 1 < 12); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_FAULT 0x1000001x), hw_spec 5.5
+o5-4x-288x144-p23-held	fault_sb	1	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (0x23 - 0x22 = 1 < 12); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o7-4x-4096x1152-p422	outcome	fault	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (1024 < 1153); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o7-4x-4096x1152-p422	fault_int	0x0100	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (1024 < 1153); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_INT_STAT 0x90100, bits 15:0)
+o7-4x-4096x1152-p422	fault_page	0x10000	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (1024 < 1153); the word is E828 j4's and E511's HS family	heldout	E828 j4 (BIF_FAULT 0x1000001x), hw_spec 5.5
+o7-4x-4096x1152-p422	fault_sb	1	H-SPM4 [infer]: an overflowing 4x scene faults on the 3D side (1024 < 1153); the word is E828 j4's and E511's HS family	heldout	E828 j4, E511
+o4-4x-1024x768-pe2	other_outcome	-ENOSPC, no fault	the refuting reading: 4x gives -ENOSPC like 1x (the fault is about the size)	alt	-
+o6-4x-288x144-p23-fill7	frozen_either_or	page leaves 0x10000 | stays 0x10000	exploratory: page 7 is the ext-Z region-header page of a 288 x 144 four-array context; leaves = the 3D read a header from that buffer	explore	-
+o8-1x-4096x4096-p422	outcome	overflow	U1(4096 x 4096) = 2049 > 1024 [model]: -ENOSPC, no fault, as at 1x everywhere (E311, E438, E412); a fault would say j4 is not about 4x	heldout	E828 j4
