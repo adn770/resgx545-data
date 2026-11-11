@@ -28,3 +28,11 @@ Data that derives from the closed driver (its captures, its firmware) is not her
 ## Licence
 
 MIT (LICENSE).
+
+## cited/
+
+Files of resgx545's scratch area (`~/src/scratch/resgx545`, disposable) that its records,
+questions, specs or tools cite: notes, scorers and outputs of the closing pass, at the path the
+citation names (`closing4/rank/faultseq.out` is `cited/closing4/rank/faultseq.out`), byte for
+byte. `tools/records/scratch_cites.py --publish` of resgx545 copies them and refreshes the
+manifest `datasets/cited-scratch.toml`; `--check` fails on a cite that is published nowhere.

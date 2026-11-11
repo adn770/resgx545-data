@@ -1,0 +1,10 @@
+Rule TA-125 (written 2026-11-11 after reading the burst dumps of 8 q-v jobs: v-ctl0, v-up-n1045,
+v-dn-n1045, v-up-n1100, v-i1760, v-v48-n329, v-v48-n538, v-v12-n554; before computing L for any
+other job; B and t7 of every q-v job had been seen in score-q-v.txt).
+L = the longest contiguous run of regtimeline samples with 0x0008 == 0x000ccff8 inside the job
+(us; a change of 0x0118 or 0x012c does not end the run).
+Prediction: bit 7 of 0x0118 after the job is set iff L >= 125 us; L in [120, 131] is an edge
+(either; two sample periods of about 4.6 us); in every set job t7 - (start of that run) is in
+[118, 132] us.
+Refuted by: a clear job with L > 131, a set job with L < 120, or a set job with t7 - start
+outside [118, 132].

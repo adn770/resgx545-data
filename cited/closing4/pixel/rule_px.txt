@@ -1,0 +1,17 @@
+Model SEG-125 for bit 6 in a 64x32 fill (written 2026-11-11 after reading fill_d6.out, the 106
+non-load fills of R3-pixel q-f0, q-f1a and q-f1b: FIT, post hoc on those; written before
+computing the anchor or d6 of any job of platform/event-fine, event-steps, event-trigger, whose
+summary in closing3/pixel/exp-pixel-r3.md section 0.2 had been read).
+Quantities of a job: B = the burst (us); A = the first sample of the burst with 0x0008 equal to
+0xfffa7 or 0xfffa4 (the 3D's clocks); tau = (B - 60.2) / 4, a tile's time; d6 = t6 - A.
+Constants: T = 125 us, f = 3/16.
+The fill's work runs as segments: tile 1 as two (f tau, then (1 - f) tau), tiles 2 to 4 as one
+each (tau). Bit 6 sets iff some segment lasts T or more, and shows T after that segment begins:
+  tau < T                      clear
+  T <= tau < T / (1 - f)       set, d6 = tau + T           (the first whole tile: tile 2)
+  T / (1 - f) <= tau < T / f   set, d6 = f tau + T         (tile 1's second segment)
+  tau >= T / f                 set, d6 = T                 (tile 1's first segment)
+Tolerances: the bit is an edge (either) for tau in [118, 132]; d6 within 15 us of the regime's
+value, or of the neighbouring regime's when tau is within 6% of a regime boundary.
+Refuted by: a set job with tau < 118, a clear job with tau > 132, or more than 1 in 10 set jobs
+with d6 outside the tolerance. Jobs with a load are outside the model.
