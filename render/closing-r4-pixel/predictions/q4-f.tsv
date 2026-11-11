@@ -1,0 +1,87 @@
+case	quantity	value	model	set
+f-rel-b8-16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+f-rel-b8-16	proof	0xc0de0010 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	control
+f-rel-b8-16	bit6	clear	E804 (53 clear, 56 set: 2 of 2 each with a relative br; E431) and sgx-pipe status2_bit6: it agrees (tile time 36.1 us: clear)	control
+f-rel-b8-16	pipe_rule	clear	sgx-pipe events::status2_bit6 on the modelled tile time (B = 60.2 + 9.02 N; clear < 118, set > 132 us)	control
+f-rel-b8-53	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+f-rel-b8-53	proof	0xc0de0035 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	control
+f-rel-b8-53	bit6	clear	E804 (53 clear, 56 set: 2 of 2 each with a relative br; E431) and sgx-pipe status2_bit6: it refuses (tile time 119.5 us is inside its edge 118..132), so this prediction is E804's measured bracket, not the rule's	control
+f-rel-b8-53	pipe_rule	edge	sgx-pipe events::status2_bit6 on the modelled tile time (B = 60.2 + 9.02 N; clear < 118, set > 132 us)	control
+f-rel-b8-56	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+f-rel-b8-56	proof	0xc0de0038 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	control
+f-rel-b8-56	bit6	set	E804 (53 clear, 56 set: 2 of 2 each with a relative br; E431) and sgx-pipe status2_bit6: it refuses (tile time 126.3 us is inside its edge 118..132), so this prediction is E804's measured bracket, not the rule's	control
+f-rel-b8-56	pipe_rule	edge	sgx-pipe events::status2_bit6 on the modelled tile time (B = 60.2 + 9.02 N; clear < 118, set > 132 us)	control
+f-rel-b8-136	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+f-rel-b8-136	proof	0xc0de0088 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	control
+f-rel-b8-136	bit6	set	E804 (53 clear, 56 set: 2 of 2 each with a relative br; E431) and sgx-pipe status2_bit6: it agrees (tile time 306.7 us: set)	control
+f-rel-b8-136	pipe_rule	set	sgx-pipe events::status2_bit6 on the modelled tile time (B = 60.2 + 9.02 N; clear < 118, set > 132 us)	control
+f-rel-b8-136	t6_us	120..340	E805 (bit 6 shows 120..340 us after the burst starts: 48 of 48 set jobs)	control
+f-ld8-70	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+f-ld8-70	proof	0xc0de0046 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	control
+f-ld8-70	bit6	clear	E805 (ld8 clear at every point of its ladder, to 320 iterations; sgx-pipe refuses a fill with a load)	control
+f-ld0-k28	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ld0-k28	proof	0xc0de801c 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ld0-k28	bit6	clear	H-YIELD (a wait restarts the timer)	heldout
+f-ld0-k28	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ld0-k28	bit6	clear	H-SUM (the busy time of the tile is summed)	heldout
+f-ld0-k28	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ld0-k53	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ld0-k53	proof	0xc0de8035 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ld0-k53	bit6	either	H-YIELD (a wait restarts the timer)	heldout
+f-ld0-k53	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ld0-k53	bit6	either	H-SUM (the busy time of the tile is summed)	heldout
+f-ld0-k53	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ld0-k70	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ld0-k70	proof	0xc0de8046 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ld0-k70	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ld0-k70	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ld0-k70	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ld0-k70	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ld0-k110	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ld0-k110	proof	0xc0de806e 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ld0-k110	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ld0-k110	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ld0-k110	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ld0-k110	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k28-m4	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k28-m4	proof	0xc0de041c 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k28-m4	bit6	clear	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k28-m4	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k28-m4	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k28-m4	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k28-m16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k28-m16	proof	0xc0de101c 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k28-m16	bit6	clear	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k28-m16	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k28-m16	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k28-m16	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k40-m8	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k40-m8	proof	0xc0de0828 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k40-m8	bit6	clear	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k40-m8	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k40-m8	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k40-m8	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k70-m1	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k70-m1	proof	0xc0de0146 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k70-m1	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k70-m1	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k70-m1	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k70-m1	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k70-m4	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k70-m4	proof	0xc0de0446 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k70-m4	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k70-m4	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k70-m4	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k70-m4	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k110-m2	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k110-m2	proof	0xc0de026e 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k110-m2	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k110-m2	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k110-m2	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k110-m2	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout
+f-ldo-k220-m1	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+f-ldo-k220-m1	proof	0xc0de01dc 2048	the MARK loop proof: o0 = MARK on 2048 of 2048 (both counters ended)	heldout
+f-ldo-k220-m1	bit6	set	H-YIELD (a wait restarts the timer)	heldout
+f-ldo-k220-m1	bit6	clear	H-LOADOFF (a waiting program never latches)	heldout
+f-ldo-k220-m1	bit6	set	H-SUM (the busy time of the tile is summed)	heldout
+f-ldo-k220-m1	d6	record	recorded, no prediction (the latch time model was refuted on the older data)	heldout

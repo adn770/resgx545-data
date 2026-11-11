@@ -1,0 +1,57 @@
+#stage g4-rw
+#need $S/pix_green.bin
+#need $S/rw-k0.bin
+#need $S/rw-k1.bin
+#need $S/rw-k2.bin
+#need $S/rw-k3.bin
+#need $S/rw-01.bin
+#need $S/rw-02.bin
+#need $S/rw-03.bin
+#need $S/rw-04.bin
+#need $S/rw-05.bin
+#need $S/rw-06.bin
+#need $S/rw-07.bin
+#need $S/rw-08.bin
+#need $S/rw-09.bin
+#need $S/rw-10.bin
+#need $S/rw-11.bin
+#need $S/rw-12.bin
+#need $S/rw-13.bin
+#need $S/rw-14.bin
+#need $S/rw-15.bin
+#need $S/rw-16.bin
+#need $S/rw-17.bin
+#need $S/rw-18.bin
+#need $S/rw-19.bin
+#need $S/rw-20.bin
+# Q230 (geometry), g4-rw: a table of 60 w, three a job (w3 = 0.75 w1 + 0.25 w2 on the tool's triangle: two free, one derived),
+# in R2's t3-nocut shape (vtx_zw.s: z = 0, w = C x + D, no clip, window 32 + 32 x / w, vertices in input order).  C and D are chosen so
+# that every w is computed exactly in float32 (fused or not).  40 designed w: the 31 grid mantissas 1 + k/32 and 9 others with fine
+# low bits; a third of the jobs at scale 1, a third at 4, a third at 1/4.  Controls (4, first): w = 1; (3, 9, 4.5); (7, 10, 7.75);
+# (1.40625, 1.78125, 1.5): the known words exact.  Frozen: every word is RZ or RZ + 1 of 1/w; the 60 w split 30 FIT / 30 HELD OUT by the
+# sha256 of their bits.  After the run: the families of score/rwfam.py fitted on FIT, scored on HELD OUT; more than one family at 30 of
+# 30 held out, or none: the words are recorded and no rule is adopted.
+rw-k0|control|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-k0.bin"
+rw-k1|control|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-k1.bin"
+rw-k2|control|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-k2.bin"
+rw-k3|control|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-k3.bin"
+rw-01|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-01.bin"
+rw-02|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-02.bin"
+rw-03|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-03.bin"
+rw-04|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-04.bin"
+rw-05|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-05.bin"
+rw-06|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-06.bin"
+rw-07|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-07.bin"
+rw-08|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-08.bin"
+rw-09|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-09.bin"
+rw-10|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-10.bin"
+rw-11|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-11.bin"
+rw-12|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-12.bin"
+rw-13|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-13.bin"
+rw-14|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-14.bin"
+rw-15|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-15.bin"
+rw-16|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-16.bin"
+rw-17|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-17.bin"
+rw-18|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-18.bin"
+rw-19|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-19.bin"
+rw-20|heldout|safe|stophang|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-20.bin"

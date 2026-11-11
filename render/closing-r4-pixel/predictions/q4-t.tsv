@@ -1,0 +1,227 @@
+case	quantity	value	model	set
+t4-ctl-green-4x4	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-green-4x4	green	0xff00ff00 16	the full triangle covers the target: o0 green on W x H of W x H	control
+t4-ctl-green-4x4	bit6	clear	R1-events / E784 (no loop: STATUS2 stays 0x400)	control
+t4-ctl-green-8x8	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-green-8x8	green	0xff00ff00 64	the full triangle covers the target: o0 green on W x H of W x H	control
+t4-ctl-green-8x8	bit6	clear	R1-events / E784 (no loop: STATUS2 stays 0x400)	control
+t4-ctl-green-16x16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-green-16x16	green	0xff00ff00 256	the full triangle covers the target: o0 green on W x H of W x H	control
+t4-ctl-green-16x16	bit6	clear	R1-events / E784 (no loop: STATUS2 stays 0x400)	control
+t4-ctl-green-32x16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-green-32x16	green	0xff00ff00 512	the full triangle covers the target: o0 green on W x H of W x H	control
+t4-ctl-green-32x16	bit6	clear	R1-events / E784 (no loop: STATUS2 stays 0x400)	control
+t4-ctl-green-64x32	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-green-64x32	green	0xff00ff00 2048	the full triangle covers the target: o0 green on W x H of W x H	control
+t4-ctl-green-64x32	bit6	clear	R1-events / E784 (no loop: STATUS2 stays 0x400)	control
+t4-ctl-n1-4x4	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-n1-4x4	proof	0xc0de0001 16	the MARK loop proof: o0 = MARK on every pixel of the target	control
+t4-ctl-n1-4x4	bit6	clear	far below any threshold (one iteration)	control
+t4-ctl-n1-8x8	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-n1-8x8	proof	0xc0de0001 64	the MARK loop proof: o0 = MARK on every pixel of the target	control
+t4-ctl-n1-8x8	bit6	clear	far below any threshold (one iteration)	control
+t4-ctl-n1-16x16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-n1-16x16	proof	0xc0de0001 256	the MARK loop proof: o0 = MARK on every pixel of the target	control
+t4-ctl-n1-16x16	bit6	clear	far below any threshold (one iteration)	control
+t4-ctl-n1-32x16	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-n1-32x16	proof	0xc0de0001 512	the MARK loop proof: o0 = MARK on every pixel of the target	control
+t4-ctl-n1-32x16	bit6	clear	far below any threshold (one iteration)	control
+t4-ctl-n1-64x32	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-ctl-n1-64x32	proof	0xc0de0001 2048	the MARK loop proof: o0 = MARK on every pixel of the target	control
+t4-ctl-n1-64x32	bit6	clear	far below any threshold (one iteration)	control
+t4-fill-n53	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-fill-n53	proof	0xc0de0035 2048	the MARK loop proof: o0 = MARK on 2048 of 2048	control
+t4-fill-n53	bit6	clear	E804 (53 clear, 56 set: 2 of 2 each) and E431; sgx-pipe status2_bit6 refuses both (tile time 119.5 / 126.5 us inside its edge)	control
+t4-fill-n56	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+t4-fill-n56	proof	0xc0de0038 2048	the MARK loop proof: o0 = MARK on 2048 of 2048	control
+t4-fill-n56	bit6	set	E804 (53 clear, 56 set: 2 of 2 each) and E431; sgx-pipe status2_bit6 refuses both (tile time 119.5 / 126.5 us inside its edge)	control
+t4-8x8-n60	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n60	proof	0xc0de003c 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n60	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n60	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n60	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n66	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n66	proof	0xc0de0042 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n66	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n66	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n66	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n72	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n72	proof	0xc0de0048 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n72	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n72	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n72	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n80	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n80	proof	0xc0de0050 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n80	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n80	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n80	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n88	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n88	proof	0xc0de0058 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n88	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n88	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n88	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n96	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n96	proof	0xc0de0060 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n96	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n96	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n96	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n104	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n104	proof	0xc0de0068 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n104	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n104	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-8x8-n104	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n80	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-4x4-n80	proof	0xc0de0050 16	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-4x4-n80	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n80	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n80	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n110	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-4x4-n110	proof	0xc0de006e 16	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-4x4-n110	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n110	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n110	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n140	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-4x4-n140	proof	0xc0de008c 16	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-4x4-n140	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n140	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n140	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n170	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-4x4-n170	proof	0xc0de00aa 16	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-4x4-n170	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n170	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n170	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n200	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-4x4-n200	proof	0xc0de00c8 16	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-4x4-n200	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n200	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-4x4-n200	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n46	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n46	proof	0xc0de002e 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n46	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n46	bit6	clear	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n46	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n56	proof	0xc0de0038 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n56	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56b	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n56b	proof	0xc0de0038 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n56b	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56b	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n56b	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n60	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n60	proof	0xc0de003c 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n60	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n60	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n60	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n66	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n66	proof	0xc0de0042 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n66	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n66	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n66	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n72	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-16x16-n72	proof	0xc0de0048 256	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-16x16-n72	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n72	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-16x16-n72	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n46	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n46	proof	0xc0de002e 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n46	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n46	bit6	clear	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n46	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n56	proof	0xc0de0038 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n56	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56	bit6	set	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56b	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n56b	proof	0xc0de0038 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n56b	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56b	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n56b	bit6	set	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n60	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n60	proof	0xc0de003c 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n60	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n60	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n60	bit6	set	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n66	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n66	proof	0xc0de0042 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n66	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n66	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n66	bit6	set	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n72	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-32x16-n72	proof	0xc0de0048 512	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-32x16-n72	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n72	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-32x16-n72	bit6	set	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n46	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n46	proof	0xc0de002e 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n46	bit6	clear	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n46	bit6	clear	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n46	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n56	proof	0xc0de0038 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n56	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56b	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n56b	proof	0xc0de0038 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n56b	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56b	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n56b	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n60	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n60	proof	0xc0de003c 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n60	bit6	either	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n60	bit6	either	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n60	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n66	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n66	proof	0xc0de0042 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n66	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n66	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n66	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n72	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n72	proof	0xc0de0048 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n72	bit6	set	H-SEG (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n72	bit6	set	H-N (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n72	bit6	clear	E806-DISC (frozen table, score/r4const.py t_pred)	heldout
+t4-64x32-n150	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n150	proof	0xc0de0096 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n150	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-64x32-n150	t6_us	314.5+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-64x32-n180	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n180	proof	0xc0de00b4 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n180	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-64x32-n180	t6_us	327.4+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-64x32-n250	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n250	proof	0xc0de00fa 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n250	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-64x32-n250	t6_us	357.5+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-64x32-n330	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-64x32-n330	proof	0xc0de014a 2048	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-64x32-n330	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-64x32-n330	t6_us	250.0+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-8x8-n150	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n150	proof	0xc0de0096 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n150	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-8x8-n150	t6_us	314.5+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-8x8-n180	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n180	proof	0xc0de00b4 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n180	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-8x8-n180	t6_us	327.4+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-8x8-n250	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n250	proof	0xc0de00fa 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n250	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-8x8-n250	t6_us	357.5+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-8x8-n330	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-8x8-n330	proof	0xc0de014a 64	the MARK loop proof: o0 = MARK on every pixel of the target	heldout
+t4-8x8-n330	bit6	set	H-SEG, H-N (a tile time of 250 us and more: set at every size)	heldout
+t4-8x8-n330	t6_us	250.0+-15	first-piece reading (t6 = 250 + 0.43 N to N = 290, then 250 us after the burst starts; E806, FIT)	heldout
+t4-par-64x64-n150	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-par-64x64-n150	bit6	none	exploratory: no frozen prediction (the covered pixels are fewer than the target)	heldout
+t4-par-64x64-n200	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-par-64x64-n200	bit6	none	exploratory: no frozen prediction (the covered pixels are fewer than the target)	heldout
+t4-par-64x64-n280	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-par-64x64-n280	bit6	none	exploratory: no frozen prediction (the covered pixels are fewer than the target)	heldout
+t4-par-64x64-n400	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+t4-par-64x64-n400	bit6	none	exploratory: no frozen prediction (the covered pixels are fewer than the target)	heldout

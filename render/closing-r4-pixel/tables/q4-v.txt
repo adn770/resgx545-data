@@ -1,0 +1,72 @@
+#stage q4-v
+#need $S/pix_green.bin
+#need $S/vctl0.bin
+#need $S/p1139-green.bin
+#need $S/vloop-b8v-i1.bin
+#need $S/vloop-b8v-i880.bin
+#need $S/vloop-b8v-i1760.bin
+#need $S/vloop-b12v-i340.bin
+#need $S/vloop-b12v-i525.bin
+#need $S/vloop-b12v-i605.bin
+#need $S/vloop-b12v-i695.bin
+#need $S/vloop-b12v-i815.bin
+#need $S/vloop-b12v-i905.bin
+#need $S/vloop-b12v-i1205.bin
+#need $S/vloop-b2v-i960.bin
+#need $S/vloop-b2v-i1495.bin
+#need $S/vloop-b2v-i1710.bin
+#need $S/vloop-b2v-i1965.bin
+#need $S/vloop-b2v-i2310.bin
+#need $S/vloop-b2v-i2565.bin
+#need $S/vloop-b2v-i3420.bin
+#need $S/vloop-b8v-i225.bin
+#need $S/vloop-b8v-i350.bin
+#need $S/vloop-b8v-i400.bin
+#need $S/vloop-b8v-i460.bin
+#need $S/vloop-b8v-i540.bin
+#need $S/vloop-b8v-i600.bin
+#need $S/vloop-b8v-i800.bin
+# Stage q4-v (Q082, TA side): bit 7 held out against the TA-clock rule (28 jobs; plan section 3.1, decisions R4-9 a and the user's
+# bit-7 scope a: q4-v as written, the 1500-vertex rows included).
+#
+# The rule (round 4's offline reading, E807's corrections, hw_spec EVENT_STATUS2: SEMI on E807's 74 jobs): with L the longest run of
+# regtimeline samples with CR_CLKGATESTATUS (0x0008) == 0x000ccff8 (the TA's clocks while it works on the vertices), bit 7 of STATUS2 is
+# set after the job iff L >= 129.5 us (clear below 122 us, set above 136 us, the edge between is not scored), and it shows 118 to 138 us
+# after that run began.  [infer] the latch means: the TA made no progress for about 125 to 130 us.  Rows: controls v-ctl0, v-n1, v-i880,
+# v-i1760 (the bridge to E807 on the rgn4 module: 0x400 / clear / clear with L 95 to 112 / set); three ladders of bodies and vertex
+# counts E807 never ran, b12v (10 multiply-adds, 13 instructions an iteration, 3 vertices), b2v (counter and branch only, 2
+# instructions, 3 vertices) and b8v on 24 vertices, each two FIT points (clear by the model, run first) and five HELD OUT points at
+# 0.80, 0.92, 1.08, 1.20 and 1.60 x N* (N* from the frozen offline model of L, score/r4const.py); and the stock program with 1500
+# vertices at 2048x2048 (twice) and 4096x4096: H-STALL (no progress is what latches: clear, as the ten 1500-vertex jobs of R3-geo's
+# g-c4) against H-PHASE (the TA phase's length latches: set); a job whose L is below 125 us is void for that.  Every job runs under
+# regtimeline 0x0008, 0x0118, 0x012c and reads STATUS2 after the reset (0x400 else the stage stops) and after the job.  The loop
+# proof of a vertex loop is the stored depth word 0x3f200000 + N at every decoded vertex.  A bridge control that reads otherwise
+# stops the session (runner knob want2).
+v-ctl0|control|safe|stophang s2 want2:0xc0:0x00|0x0008,0x0118,0x012c|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vctl0.bin"
+v-n1|control|safe|stophang s2 want2:0xc0:0x00|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i1.bin"
+v-i880|control|safe|stophang s2 want2:0xc0:0x00|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i880.bin"
+v-i1760|control|safe|stophang s2 want2:0x80:0x80|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i1760.bin"
+v-b12v-n340|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i340.bin"
+v-b12v-n525|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i525.bin"
+v-b12v-n605|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i605.bin"
+v-b12v-n695|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i695.bin"
+v-b12v-n815|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i815.bin"
+v-b12v-n905|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i905.bin"
+v-b12v-n1205|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b12v-i1205.bin"
+v-b2v-n960|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i960.bin"
+v-b2v-n1495|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i1495.bin"
+v-b2v-n1710|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i1710.bin"
+v-b2v-n1965|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i1965.bin"
+v-b2v-n2310|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i2310.bin"
+v-b2v-n2565|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i2565.bin"
+v-b2v-n3420|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b2v-i3420.bin"
+v-v24-n225|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i225.bin"
+v-v24-n350|control|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i350.bin"
+v-v24-n400|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i400.bin"
+v-v24-n460|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i460.bin"
+v-v24-n540|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i540.bin"
+v-v24-n600|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i600.bin"
+v-v24-n800|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --temps 16 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --vertices 24 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/vloop-b8v-i800.bin"
+v-stock-2048-a|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-stock-2048-b|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-stock-4096|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe --tri pixel --width 4096 --height 4096 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"

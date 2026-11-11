@@ -1,0 +1,52 @@
+#stage q4-f
+#need $S/loop-rel-b8-i16.bin
+#need $S/loop-rel-b8-i53.bin
+#need $S/loop-rel-b8-i56.bin
+#need $S/loop-rel-b8-i136.bin
+#need $S/loop-rel-ld8-i70.bin
+#need $S/loop-rel-ld0-k28.bin
+#need $S/loop-rel-ld0-k53.bin
+#need $S/loop-rel-ld0-k70.bin
+#need $S/loop-rel-ld0-k110.bin
+#need $S/loop-rel-ldo-k28-m4.bin
+#need $S/loop-rel-ldo-k28-m16.bin
+#need $S/loop-rel-ldo-k40-m8.bin
+#need $S/loop-rel-ldo-k70-m1.bin
+#need $S/loop-rel-ldo-k70-m4.bin
+#need $S/loop-rel-ldo-k110-m2.bin
+#need $S/loop-rel-ldo-k220-m1.bin
+# Stage q4-f (Q082, pixel side, the load; 16 jobs, plan section 3.2): what a load does to the latch of bit 6 in a fill.
+#
+# Round 3 (E805): every ALU body set bit 6 in a fill when its tile time (B - 60.2) / 4 passed about 125 us and the body with a load and
+# a wait (ld8: a load, a wait, 4 multiply-adds, counter, branch) never did, to 320 iterations and 13.4 ms bursts.  Three readings:
+# H-YIELD (a wait ends a piece of work: the timer restarts at every load), H-LOADOFF (a program that waits on a load never latches) and
+# H-SUM (the busy time of the tile, waits not counted, is summed: a long sum sets it, which ld8's data already make unlikely).  Rows:
+# the bridge to E804 / E805 on the rgn4 module (the relative b8 loop at 16, 53, 56, 136 iterations and ld8 at 70: c, c, S, S; c);
+# ld0-K: ONE load and wait, then the b8 loop K times (K = 28, 53, 70, 110); ldo-K-M: M times (load, wait, the b8 loop K times) for
+# (K, M) = (28, 4) (28, 16) (40, 8) (70, 1) (70, 4) (110, 2) (220, 1).  The frozen table (plan 3.2):
+#   H-YIELD    ld0 28, 53, 70, 110: c, either, S, S   ldo (28,4) (28,16) (40,8): c, c, c   ldo (70,1) (70,4) (110,2) (220,1): S, S, S, S
+#   H-LOADOFF  ld0: c, c, c, c                        ldo (first three): c, c, c           ldo (last four): c, c, c, c
+#   H-SUM      ld0: c, either, S, S                   ldo (first three): S, S, S           ldo (last four): S, S, S, S
+# sgx-pipe's `events::status2_bit6` (the rule over a tile's time, a 64 x 32 fill WITHOUT a load, clear below 118 us, set above 132 us,
+# refused between) agrees with the bridge rows where it speaks: at 16 iterations (tile time 36 us) clear, at 136 (307 us) set, and it
+# REFUSES 53 and 56 (119.5 and 126.5 us, inside its edge): those two predictions are E804's measured bracket (2 of 2 each), not the rule's.
+# Every load row is outside the rule (a fill with a load is refused by status2_bit6, E805's ld8): the three readings are what is tested.
+# The time of the latch d6 is recorded with no prediction (round 4's timing model of the latch was refuted on the older data).  Two-level
+# counters; MARK only when both counters end (o0 = MARK on 2048 of 2048), every program checked in sgx-sim at code index 0.  A bridge
+# control that reads otherwise stops the session (runner knob want2).
+f-rel-b8-16|control|safe|stophang s2 proofstop:0xc0de0010:2048 want2:0x40:0x00|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i16.bin"
+f-rel-b8-53|control|safe|stophang s2 proofstop:0xc0de0035:2048 want2:0x40:0x00|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i53.bin"
+f-rel-b8-56|control|safe|stophang s2 proofstop:0xc0de0038:2048 want2:0x40:0x40|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i56.bin"
+f-rel-b8-136|control|safe|stophang s2 proofstop:0xc0de0088:2048 want2:0x40:0x40|0x0008,0x0118,0x012c|probe "$S/loop-rel-b8-i136.bin"
+f-ld8-70|control|safe|stophang s2 proofstop:0xc0de0046:2048 want2:0x40:0x00|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld8-i70.bin"
+f-ld0-k28|heldout|safe|stophang s2 proofstop:0xc0de801c:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld0-k28.bin"
+f-ld0-k53|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld0-k53.bin"
+f-ld0-k70|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld0-k70.bin"
+f-ld0-k110|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ld0-k110.bin"
+f-ldo-k28-m4|heldout|safe|stophang s2 proofstop:0xc0de041c:2048|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k28-m4.bin"
+f-ldo-k28-m16|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k28-m16.bin"
+f-ldo-k40-m8|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k40-m8.bin"
+f-ldo-k70-m1|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k70-m1.bin"
+f-ldo-k70-m4|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k70-m4.bin"
+f-ldo-k110-m2|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k110-m2.bin"
+f-ldo-k220-m1|heldout|safe|stophang s2|0x0008,0x0118,0x012c|probe "$S/loop-rel-ldo-k220-m1.bin"
