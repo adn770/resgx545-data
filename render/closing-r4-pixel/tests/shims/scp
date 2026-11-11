@@ -1,0 +1,17 @@
+#!/bin/bash
+# fake scp for tests/run_mock.sh: HOST:PATH is $FAKE_HOME/PATH.  Options (-q, -r, -o X) are skipped; the last argument is the
+# destination, the others sources; a copy FROM the laptop lands where the Mac side asked (a directory that does not exist
+# yet becomes the copy).
+args=()
+while [ $# -gt 0 ]; do
+	case "$1" in -o) shift 2 ;; -q|-r) shift ;; *) args+=("$1"); shift ;; esac
+done
+n=${#args[@]}
+dest=${args[$((n - 1))]}
+srcs=("${args[@]:0:$((n - 1))}")
+fix() { case "$1" in *:*) echo "${FAKE_HOME:?}/${1#*:}" ;; *) echo "$1" ;; esac; }
+d=$(fix "$dest")
+for s in "${srcs[@]}"; do
+	s=$(fix "$s")
+	if [ -d "$d" ] || [ "${dest%/}" != "$dest" ]; then mkdir -p "$d"; cp -R "$s" "$d/"; else cp -R "$s" "$d"; fi || exit 1
+done

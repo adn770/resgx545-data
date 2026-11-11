@@ -1,0 +1,63 @@
+#!/bin/bash
+# fake sudo for tests/run_mock.sh.  The mock debugfs directory $SGXFIVE_DEBUGFS is mode 000: only through
+# this shim (as on the laptop, where debugfs is root only) does a path in it reach the real files in
+# $FAKE_DBGREAL.  regs, hold_recovery, reset and xfer_ro act on the fake GPU state in $FAKE_DIR:
+#   state     "idle" or "WORD ADDR STATUS2 STATUS" (a latched fault)
+#   hold      Y or N
+# Knobs: FAKE_STUCK (a reset leaves the fault latched), FAKE_SNAP_FAIL (regs unreadable), FAKE_PRE_S2 (STATUS2 after a reset),
+# FAKE_RESET_FAIL_FROM (the n-th reset fails).  $F/s2 is the fake STATUS2 (the fake tool writes it after a job).
+[ "$1" = "-n" ] && shift
+DB=${SGXFIVE_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+regs() {
+	read -r w a s2 s < "$F/state"
+	if [ "$w" = idle ]; then w=0; a=0; s2=$(cat "$F/s2" 2>/dev/null || echo 0x400); s=0x20000000; fi
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0114 skip\nreg 0x0118 0x%08x\nreg 0x012c 0x%08x\n' $((s2)) $((s))
+	printf 'reg 0x0c00 0x00000000\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\n' $(( w | 0x80000 )) $((a))
+}
+xfer() { [ -n "${FAKE_XFER_FAIL:-}" ] || echo "0x80020 0x32200001 ${FAKE_XFER_ST2:-0x440} 0x20000000" > "$F/state"; }
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }; regs; exit 0 ;;
+	"$DB/hold_recovery") cat "$F/hold"; exit 0 ;;
+	"$DB/xfer_ro") [ -n "${FAKE_XFER_FAIL:-}" ] && { echo "cat: xfer_ro: No such device" >&2; exit 1; }; xfer; cat "$R/xfer_ro"; exit 0 ;;
+	"$DB/alias_skip"|"$DB/render_pb_pages") printf '0x%08x\n' $(( $(cat "$R/${2##*/}") )); exit 0 ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/hold_recovery")
+		read -r v; case "$v" in 1|Y|y) v=Y ;; *) v=N ;; esac
+		[ "$v" = N ] && [ -n "${FAKE_HOLD_STUCK:-}" ] && exit 0
+		[ "$v" = Y ] && [ -n "${FAKE_HOLD_NOY:-}" ] && exit 0
+		echo "$v" > "$F/hold"
+		# the kernel's watchdog (50 ms) recovers a latched render fault on its own once the hold is off
+		read -r w a s2 s < "$F/state"
+		if [ "$v" = N ] && [ "$w" != idle ]; then
+			echo "gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault $w at $a (PD 0x0) stalls job 7, recovering" >> "$KMSG"
+			echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+			[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		fi
+		exit 0 ;;
+	"$DB/reset")
+		cat > /dev/null
+		echo "x" >> "$F/reset-tries"
+		if [ -n "${FAKE_RESET_FAIL_FROM:-}" ] && [ "$(grep -c . "$F/reset-tries")" -ge "$FAKE_RESET_FAIL_FROM" ]; then
+			echo "tee: reset: Connection timed out" >&2; exit 1
+		fi
+		regs > "$F/last-reset"
+		read -r w a s2 s < "$F/state"; [ "$w" = idle ] && s2=0x400
+		echo "${FAKE_PRE_S2:-0x400}" > "$F/s2"                      # a reset leaves STATUS2 at 0x400 (FAKE_PRE_S2 plays a kernel that does not)
+		echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+		echo "x" >> "$F/resets"
+		[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		exit 0 ;;
+	esac
+fi
+# the xfer_ro read under regtimeline (sudo timeout RT ... -- cat $DB/xfer_ro)
+if [ "$1" = timeout ]; then
+	case " $* " in *" cat $DB/xfer_ro "*) xfer; [ -n "${FAKE_XFER_FAIL:-}" ] && set -- "${@//$DB\/xfer_ro/$R/no-such-file}" ;; esac
+fi
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"

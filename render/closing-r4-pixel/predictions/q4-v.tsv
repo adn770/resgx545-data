@@ -1,0 +1,161 @@
+case	quantity	value	model	set
+v-ctl0	depth_words	0x3f200000,0x3f200000,0x3f200000	E651 / E784 (z = 0.25 flat: depth word 0x3f200000)	control
+v-ctl0	status2_pre	0x400	R1-events / E784	control
+v-ctl0	bit7	clear	E784 / E807 (ctl0: STATUS2 0x400 after)	control
+v-ctl0	L_us	0	E807 (no vertex loop: no run of 0x000ccff8)	control
+v-n1	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-n1	depth_words	0x3f200001,0x3f200001,0x3f200001	HLOOP (the loop ran 1 times on every vertex: depth word 0x3f200000 + N)	control
+v-n1	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-n1	bit7	clear	E784 / E807 (n1: clear)	control
+v-n1	L_us	0..30	E807 (v-n1 L 4.7 us)	control
+v-i880	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-i880	depth_words	0x3f200370,0x3f200370,0x3f200370	HLOOP (the loop ran 880 times on every vertex: depth word 0x3f200000 + N)	control
+v-i880	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-i880	bit7	clear	E784 / E807 (i880 clear)	control
+v-i880	L_us	95..112	E807 (v-i880 L 103.3 us; the model's 106)	control
+v-i1760	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-i1760	depth_words	0x3f2006e0,0x3f2006e0,0x3f2006e0	HLOOP (the loop ran 1760 times on every vertex: depth word 0x3f200000 + N)	control
+v-i1760	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-i1760	bit7	set	E784 / E807 (i1760 set: STATUS2 0x480)	control
+v-i1760	L_us	160..260	E807 (v-i1760 L 206.9 us; the model's 209)	control
+v-b12v-n340	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-b12v-n340	depth_words	0x3f200154,0x3f200154,0x3f200154	HLOOP (the loop ran 340 times on every vertex: depth word 0x3f200000 + N)	control
+v-b12v-n340	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-b12v-n340	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-b12v-n340	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-b12v-n340	L_model_us	61	layout check only (the frozen offline model of L, N = 340; not a hypothesis)	control
+v-b12v-n525	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-b12v-n525	depth_words	0x3f20020d,0x3f20020d,0x3f20020d	HLOOP (the loop ran 525 times on every vertex: depth word 0x3f200000 + N)	control
+v-b12v-n525	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-b12v-n525	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-b12v-n525	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-b12v-n525	L_model_us	92	layout check only (the frozen offline model of L, N = 525; not a hypothesis)	control
+v-b12v-n605	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b12v-n605	depth_words	0x3f20025d,0x3f20025d,0x3f20025d	HLOOP (the loop ran 605 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b12v-n605	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b12v-n605	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b12v-n605	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b12v-n605	L_model_us	105	layout check only (the frozen offline model of L, N = 605; not a hypothesis)	heldout
+v-b12v-n695	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b12v-n695	depth_words	0x3f2002b7,0x3f2002b7,0x3f2002b7	HLOOP (the loop ran 695 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b12v-n695	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b12v-n695	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b12v-n695	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b12v-n695	L_model_us	120	layout check only (the frozen offline model of L, N = 695; not a hypothesis)	heldout
+v-b12v-n815	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b12v-n815	depth_words	0x3f20032f,0x3f20032f,0x3f20032f	HLOOP (the loop ran 815 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b12v-n815	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b12v-n815	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b12v-n815	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b12v-n815	L_model_us	140	layout check only (the frozen offline model of L, N = 815; not a hypothesis)	heldout
+v-b12v-n905	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b12v-n905	depth_words	0x3f200389,0x3f200389,0x3f200389	HLOOP (the loop ran 905 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b12v-n905	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b12v-n905	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b12v-n905	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b12v-n905	L_model_us	155	layout check only (the frozen offline model of L, N = 905; not a hypothesis)	heldout
+v-b12v-n1205	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b12v-n1205	depth_words	0x3f2004b5,0x3f2004b5,0x3f2004b5	HLOOP (the loop ran 1205 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b12v-n1205	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b12v-n1205	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b12v-n1205	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b12v-n1205	L_model_us	204	layout check only (the frozen offline model of L, N = 1205; not a hypothesis)	heldout
+@ladder-b12v	nstar_model	754	layout check only (N* = (129.5 - a) / s of the frozen offline model; points at (0.8, 0.92, 1.08, 1.2, 1.6) x N*, FIT at (0.45, 0.7))	heldout
+v-b2v-n960	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-b2v-n960	depth_words	0x3f2003c0,0x3f2003c0,0x3f2003c0	HLOOP (the loop ran 960 times on every vertex: depth word 0x3f200000 + N)	control
+v-b2v-n960	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-b2v-n960	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-b2v-n960	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-b2v-n960	L_model_us	61	layout check only (the frozen offline model of L, N = 960; not a hypothesis)	control
+v-b2v-n1495	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-b2v-n1495	depth_words	0x3f2005d7,0x3f2005d7,0x3f2005d7	HLOOP (the loop ran 1495 times on every vertex: depth word 0x3f200000 + N)	control
+v-b2v-n1495	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-b2v-n1495	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-b2v-n1495	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-b2v-n1495	L_model_us	92	layout check only (the frozen offline model of L, N = 1495; not a hypothesis)	control
+v-b2v-n1710	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b2v-n1710	depth_words	0x3f2006ae,0x3f2006ae,0x3f2006ae	HLOOP (the loop ran 1710 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b2v-n1710	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b2v-n1710	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b2v-n1710	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b2v-n1710	L_model_us	105	layout check only (the frozen offline model of L, N = 1710; not a hypothesis)	heldout
+v-b2v-n1965	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b2v-n1965	depth_words	0x3f2007ad,0x3f2007ad,0x3f2007ad	HLOOP (the loop ran 1965 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b2v-n1965	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b2v-n1965	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b2v-n1965	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b2v-n1965	L_model_us	119	layout check only (the frozen offline model of L, N = 1965; not a hypothesis)	heldout
+v-b2v-n2310	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b2v-n2310	depth_words	0x3f200906,0x3f200906,0x3f200906	HLOOP (the loop ran 2310 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b2v-n2310	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b2v-n2310	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b2v-n2310	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b2v-n2310	L_model_us	140	layout check only (the frozen offline model of L, N = 2310; not a hypothesis)	heldout
+v-b2v-n2565	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b2v-n2565	depth_words	0x3f200a05,0x3f200a05,0x3f200a05	HLOOP (the loop ran 2565 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b2v-n2565	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b2v-n2565	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b2v-n2565	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b2v-n2565	L_model_us	154	layout check only (the frozen offline model of L, N = 2565; not a hypothesis)	heldout
+v-b2v-n3420	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-b2v-n3420	depth_words	0x3f200d5c,0x3f200d5c,0x3f200d5c	HLOOP (the loop ran 3420 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-b2v-n3420	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-b2v-n3420	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-b2v-n3420	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-b2v-n3420	L_model_us	204	layout check only (the frozen offline model of L, N = 3420; not a hypothesis)	heldout
+@ladder-b2v	nstar_model	2137	layout check only (N* = (129.5 - a) / s of the frozen offline model; points at (0.8, 0.92, 1.08, 1.2, 1.6) x N*, FIT at (0.45, 0.7))	heldout
+v-v24-n225	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-v24-n225	depth_words	0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1,0x3f2000e1	HLOOP (the loop ran 225 times on every vertex: depth word 0x3f200000 + N)	control
+v-v24-n225	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-v24-n225	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-v24-n225	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-v24-n225	L_model_us	63	layout check only (the frozen offline model of L, N = 225; not a hypothesis)	control
+v-v24-n350	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	control
+v-v24-n350	depth_words	0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e,0x3f20015e	HLOOP (the loop ran 350 times on every vertex: depth word 0x3f200000 + N)	control
+v-v24-n350	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	control
+v-v24-n350	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	control
+v-v24-n350	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	control
+v-v24-n350	L_model_us	93	layout check only (the frozen offline model of L, N = 350; not a hypothesis)	control
+v-v24-n400	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-v24-n400	depth_words	0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190,0x3f200190	HLOOP (the loop ran 400 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-v24-n400	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-v24-n400	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-v24-n400	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-v24-n400	L_model_us	105	layout check only (the frozen offline model of L, N = 400; not a hypothesis)	heldout
+v-v24-n460	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-v24-n460	depth_words	0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc,0x3f2001cc	HLOOP (the loop ran 460 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-v24-n460	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-v24-n460	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-v24-n460	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-v24-n460	L_model_us	120	layout check only (the frozen offline model of L, N = 460; not a hypothesis)	heldout
+v-v24-n540	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-v24-n540	depth_words	0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c,0x3f20021c	HLOOP (the loop ran 540 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-v24-n540	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-v24-n540	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-v24-n540	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-v24-n540	L_model_us	139	layout check only (the frozen offline model of L, N = 540; not a hypothesis)	heldout
+v-v24-n600	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-v24-n600	depth_words	0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258,0x3f200258	HLOOP (the loop ran 600 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-v24-n600	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-v24-n600	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-v24-n600	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-v24-n600	L_model_us	154	layout check only (the frozen offline model of L, N = 600; not a hypothesis)	heldout
+v-v24-n800	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-v24-n800	depth_words	0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320,0x3f200320	HLOOP (the loop ran 800 times on every vertex: depth word 0x3f200000 + N)	heldout
+v-v24-n800	bit6	clear	E807 (a vertex loop sets bit 7 only: STATUS2 0x480 at i1760)	heldout
+v-v24-n800	bit7	rule	TA-125 (bit 7 set iff L >= 129.5 us, L the longest run of 0x0008 == 0x000ccff8; clear below 122, set above 136 us, the edge between is not scored)	heldout
+v-v24-n800	t7_after_run_us	118..138	TA-125 (bit 7 shows 118 to 138 us after the run began, in every set job)	heldout
+v-v24-n800	L_model_us	202	layout check only (the frozen offline model of L, N = 800; not a hypothesis)	heldout
+@ladder-v24	nstar_model	500	layout check only (N* = (129.5 - a) / s of the frozen offline model; points at (0.8, 0.92, 1.08, 1.2, 1.6) x N*, FIT at (0.45, 0.7))	heldout
+v-stock-2048-a	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-stock-2048-a	bit7	clear	H-STALL (no progress latches: the stock vertex program makes progress through milliseconds of TA, as the ten 1500-vertex jobs of R3-geo g-c4, STATUS2 0x400)	heldout
+v-stock-2048-a	bit7	set	H-PHASE (the TA phase's length latches)	heldout
+v-stock-2048-a	L_us	record	recorded; the row is void for H-STALL / H-PHASE if L is below 125 us	heldout
+v-stock-2048-b	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-stock-2048-b	bit7	clear	H-STALL (no progress latches: the stock vertex program makes progress through milliseconds of TA, as the ten 1500-vertex jobs of R3-geo g-c4, STATUS2 0x400)	heldout
+v-stock-2048-b	bit7	set	H-PHASE (the TA phase's length latches)	heldout
+v-stock-2048-b	L_us	record	recorded; the row is void for H-STALL / H-PHASE if L is below 125 us	heldout
+v-stock-4096	status2_pre	0x400	R1-events / E784 (a debugfs reset leaves CR_EVENT_STATUS2 at 0x400)	heldout
+v-stock-4096	bit7	clear	H-STALL (no progress latches: the stock vertex program makes progress through milliseconds of TA, as the ten 1500-vertex jobs of R3-geo g-c4, STATUS2 0x400)	heldout
+v-stock-4096	bit7	set	H-PHASE (the TA phase's length latches)	heldout
+v-stock-4096	L_us	record	recorded; the row is void for H-STALL / H-PHASE if L is below 125 us	heldout

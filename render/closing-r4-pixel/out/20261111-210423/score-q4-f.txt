@@ -1,0 +1,25 @@
+Q082 pixel side (q4-f): what a load does to bit 6 of a fill (H-YIELD, H-LOADOFF, H-SUM)
+
+control f-rel-b8-16: PASS: bit 6 clear (want clear), B 198 us; tile time 34.5 us: rule clear
+control f-rel-b8-53: PASS: bit 6 clear (want clear), B 531 us
+control f-rel-b8-56: PASS: bit 6 set (want set), B 558 us
+control f-rel-b8-136: PASS: bit 6 set (want set), B 1309 us; tile time 312.2 us: rule set
+control f-ld8-70: PASS: bit 6 clear (want clear), B 2973 us
+
+job            bit6  B us  t6 us (d6 from the burst start)  read 
+f-ld0-k28      c     311   -                                clear
+f-ld0-k53      c     534   -                                clear
+f-ld0-k70      c     689   -                                clear
+f-ld0-k110     c     1077  -                                clear
+f-ldo-k28-m4   c     1097  -                                clear
+f-ldo-k28-m16  c     4198  -                                clear
+f-ldo-k40-m8   c     2996  -                                clear
+f-ldo-k70-m1   c     700   -                                clear
+f-ldo-k70-m4   c     2653  -                                clear
+f-ldo-k110-m2  c     2052  -                                clear
+f-ldo-k220-m1  c     2039  -                                clear
+
+H-YIELD: REFUTED (4 held, 6 FAILED, 1 cannot tell of 11)
+H-LOADOFF: consistent (11 held, 0 FAILED, 0 cannot tell of 11)
+H-SUM: REFUTED (1 held, 9 FAILED, 1 cannot tell of 11)
+SUMMARY: q4-f H-LOADOFF alone is consistent (H-YIELD, H-SUM refuted)

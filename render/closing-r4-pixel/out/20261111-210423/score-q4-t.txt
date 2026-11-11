@@ -1,0 +1,64 @@
+Q082 pixel side (q4-t): bit 6 in fully covered triangles, H-SEG / H-N / E806-DISC, and the time of the latch
+
+control t4-fill-n53: PASS: bit 6 clear (want clear)
+control t4-fill-n56: PASS: bit 6 set (want set)
+control t4-ctl-green-4x4: PASS: bit 6 clear, green on 16
+control t4-ctl-green-8x8: PASS: bit 6 clear, green on 64
+control t4-ctl-green-16x16: PASS: bit 6 clear, green on 256
+control t4-ctl-green-32x16: PASS: bit 6 clear, green on 512
+control t4-ctl-green-64x32: PASS: bit 6 clear, green on 2048
+size 4x4 (N = 1 control): usable
+size 8x8 (N = 1 control): usable
+size 16x16 (N = 1 control): usable
+size 32x16 (N = 1 control): usable
+size 64x32 (N = 1 control): usable
+
+job            N    bit6  B us  t6 us  note
+t4-8x8-n60     60   c     247   -          
+t4-8x8-n66     66   c     265   -          
+t4-8x8-n72     72   c     269   -          
+t4-8x8-n80     80   c     286   -          
+t4-8x8-n88     88   c     293   -          
+t4-8x8-n96     96   c     313   -          
+t4-8x8-n104    104  S     322   295        
+t4-4x4-n80     80   c     199   -          
+t4-4x4-n110    110  c     227   -          
+t4-4x4-n140    140  c     255   -          
+t4-4x4-n170    170  S     267   253        
+t4-4x4-n200    200  S     292   251        
+t4-16x16-n46   46   c     265   -          
+t4-16x16-n56   56   c     284   -          
+t4-16x16-n56b  56   c     281   -          
+t4-16x16-n60   60   c     297   -          
+t4-16x16-n66   66   c     312   -          
+t4-16x16-n72   72   c     323   -          
+t4-32x16-n46   46   c     267   -          
+t4-32x16-n56   56   c     291   -          
+t4-32x16-n56b  56   c     288   -          
+t4-32x16-n60   60   S     294   246        
+t4-32x16-n66   66   S     321   250        
+t4-32x16-n72   72   S     335   256        
+t4-64x32-n46   46   c     617   -          
+t4-64x32-n56   56   c     722   -          
+t4-64x32-n56b  56   c     752   -          
+t4-64x32-n60   60   c     757   -          
+t4-64x32-n66   66   S     822   438        
+t4-64x32-n72   72   S     878   285        
+t4-64x32-n150  150  S     1666  317        
+t4-64x32-n180  180  S     1957  329        
+t4-64x32-n250  250  S     2666  357        
+t4-64x32-n330  330  S     3470  255        
+t4-8x8-n150    150  S     400   317        
+t4-8x8-n180    180  S     446   325        
+t4-8x8-n250    250  S     566   347        
+t4-8x8-n330    330  S     702   252        
+
+H-SEG: REFUTED (21 held, 2 FAILED, 15 cannot tell of 38)
+H-N: REFUTED (18 held, 10 FAILED, 10 cannot tell of 38)
+E806-DISC: REFUTED (31 held, 7 FAILED, 0 cannot tell of 38)
+first-piece reading of the latch time (t6 = 250 + 0.43 N to N = 290, then 250 us, +- 15): 8 held, 0 FAILED, 0 cannot tell of 8
+t4-par-64x64-n150: bit 6 set, B 1197 us, t6 567.304
+t4-par-64x64-n200: bit 6 set, B 1518 us, t6 681.008
+t4-par-64x64-n280: bit 6 set, B 2105 us, t6 845.168
+t4-par-64x64-n400: bit 6 set, B 2940 us, t6 250.291
+SUMMARY: q4-t consistent none, refuted ['H-SEG', 'H-N', 'E806-DISC']; latch time 8 held, 0 FAILED, 0 cannot tell of 8

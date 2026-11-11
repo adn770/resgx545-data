@@ -1,0 +1,49 @@
+Q082 TA side (q4-v): bit 7 against the TA-clock rule; L = the longest run of CLKGATESTATUS 0x000ccff8 (us)
+
+job             N     L us     bit7  t7 - run start us  rule says       
+v-b12v-n340     340   60.7     c     -                  clear           
+v-b12v-n525     525   92.7     c     -                  clear           
+v-b12v-n605     605   105.2    c     -                  clear           
+v-b12v-n695     695   119.5    c     -                  clear           
+v-b12v-n815     815   139.4    S     121.9              set             
+v-b12v-n905     905   153.4    S     126.9              set             
+v-b12v-n1205    1205  205.1    S     126.6              set             
+v-b2v-n960      960   56.2     c     -                  clear           
+v-b2v-n1495     1495  89.6     c     -                  clear           
+v-b2v-n1710     1710  99.9     c     -                  clear           
+v-b2v-n1965     1965  113.7    c     -                  clear           
+v-b2v-n2310     2310  133.2    S     128.7              edge            
+v-b2v-n2565     2565  145.2    S     123.3              set             
+v-b2v-n3420     3420  194.2    S     124.7              set             
+v-n1            1     4.6      c     -                  clear           
+v-i880          880   105.1    c     -                  clear           
+v-i1760         1760  207.3    S     124.8              set             
+v-ctl0          -     9.4      c     -                  clear           
+v-stock-2048-a  -     11189.2  c     -                  set             
+v-stock-2048-b  -     11209.7  c     -                  set             
+v-stock-4096    -     -        -     -                  VOID: class fail
+v-v24-n225      225   69.7     c     -                  clear           
+v-v24-n350      350   103.4    c     -                  clear           
+v-v24-n400      400   118.2    c     -                  clear           
+v-v24-n460      460   138.6    S     125.4              set             
+v-v24-n540      540   163.3    S     128.3              set             
+v-v24-n600      600   177.3    S     129.7              set             
+v-v24-n800      800   231.1    S     126.5              set             
+
+control v-ctl0: PASS: bit 7 clear, bit 6 clear, L 9.4 us (want bit 7 clear, L 0..30)
+control v-n1: PASS: bit 7 clear, bit 6 clear, L 4.6 us (want bit 7 clear, L 0..30)
+control v-i880: PASS: bit 7 clear, bit 6 clear, L 105.1 us (want bit 7 clear, L 95..112)
+control v-i1760: PASS: bit 7 set, bit 6 clear, L 207.3 us (want bit 7 set, L 160..260)
+
+ladder b12v: 7 jobs, by the rule on their own L: 4 clear, 0 edge, 3 set
+ladder b2v: 7 jobs, by the rule on their own L: 4 clear, 1 edge, 2 set
+ladder v24: 7 jobs, by the rule on their own L: 3 clear, 0 edge, 4 set
+FIT points (clear by the model; not gating): 6 held, 0 FAILED, 0 cannot tell of 6
+HELD OUT ladder rows, bit 7 follows L (the edge band 122..136 us is not scored): 14 held, 0 FAILED, 1 cannot tell of 15
+latch time (bit 7 shows 118..138 us after the run began) in the set jobs: 10 held, 0 FAILED, 0 cannot tell of 10
+
+v-stock-2048-a: L 11189.2 us, bit 7 clear: H-STALL
+v-stock-2048-b: L 11209.7 us, bit 7 clear: H-STALL
+v-stock-4096: VOID (class fail)
+stock rows: H-STALL in 2 of 3 rows (the others void)
+SUMMARY: bit 7 follows the TA clock run L (set iff L >= 129.5 us, edge 122..136) (14 of 15 rows decided); FIT 6 held, 0 FAILED, 0 cannot tell of 6; latch window 10 held, 0 FAILED, 0 cannot tell of 10; stock: H-STALL in 2 of 3 rows (the others void)
