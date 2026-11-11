@@ -1,0 +1,80 @@
+## stage a-pb
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## clock
+Wed Nov 11 08:13:13 CET 2026
+## R4-A safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 467e0c141836b840d32c5e16e3260d2ad848be42c3a015adafe559d5a7b59227
+  kept begin.health1.txt: 311 bytes raw, raw sha256 23aafd6dfc3c750e7ea4958efc7d9424412456feb98ee53647e928da2161c2e2
+== pb-p2-own11 set=control risk=risky knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 2:par:11=0x00000000 --dump-render /tmp/tmp.UnmKv9Ztdu/1-pb-p2-own11/dump
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p2-own11.txt: 691 bytes raw, raw sha256 a5a92e20d9753ba2ee76b9708d1588f01271f08446025668a20ebfb598e9ffbb
+  kept pb-p2-own11.dmesg: 83 bytes raw, raw sha256 fe9db94e8aaf8b771a941572a4ac6db77ea21559b35bcb6b65931af08b74eb32
+  kept pb-p2-own11.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p2-own11.snap0.regs: 6474 bytes raw, raw sha256 cc7f955430edbb03de654cd32548a66f878a38588976999f10b23af378c753a2
+  kept pb-p2-own11.tri.param.bin: 4603904 bytes raw, raw sha256 b8ada4275f05af6320e768c300e991751962e4bdc7ac477b8557c50d26b309e5
+  kept pb-p2-own11.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p3a-twin set=heldout risk=risky knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 2:par:11=0x00040101 --kpoke-render 2:par:12=0x00000000 --kpoke-render 2:par:13=0x00000000 --kpoke-render 2:par:14=0x00000000 --kpoke-render 2:par:15=0x00000000 --kpoke-render 2:par:16=0x00100000 --kpoke-render 2:par:17=0x00001000 --kpoke-render 2:par:18=0x00003f00 --kpoke-render 2:par:19=0x10500010 --kpoke-render 2:par:20=0x3f000000 --kpoke-render 2:par:21=0x00105000 --kpoke-render 2:par:22=0x00001000 --kpoke-render 2:par:23=0x50003f00 --kpoke-render 2:par:24=0x10500010 --kpoke-render 2:par:25=0x3f000000 --kpoke-render 2:par:26=0x00000000 --dump-render /tmp/tmp.UnmKv9Ztdu/2-pb-p3a-twin/dump
+  rc 0 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p3a-twin.txt: 1323 bytes raw, raw sha256 33c570e7f98599e91cdcc77f874eb2174d74c25f32396e54ff646ff6cf6a3946
+  kept pb-p3a-twin.dmesg: 1328 bytes raw, raw sha256 ac0c9a127cc0f8e56c257fd868b07c385950f245923aa1414ff9fb2f2cc2650c
+  kept pb-p3a-twin.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p3a-twin.snap0.regs: 6474 bytes raw, raw sha256 9e81164cebfbe98a9ebc6af2334b74e80834fad3136f53ba13281ffe71b288e9
+  kept pb-p3a-twin.tri.param.bin: 4603904 bytes raw, raw sha256 496ace19601378f4f2f68137e543475af2d9e681e16dc6cf6232c01db372af33
+  kept pb-p3a-twin.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p3b-twin set=replicate risk=risky knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 2:par:11=0x00040101 --kpoke-render 2:par:12=0x00000000 --kpoke-render 2:par:13=0x00000000 --kpoke-render 2:par:14=0x00000000 --kpoke-render 2:par:15=0x00000000 --kpoke-render 2:par:16=0x00100000 --kpoke-render 2:par:17=0x00001000 --kpoke-render 2:par:18=0x00003f00 --kpoke-render 2:par:19=0x10500010 --kpoke-render 2:par:20=0x3f000000 --kpoke-render 2:par:21=0x00105000 --kpoke-render 2:par:22=0x00001000 --kpoke-render 2:par:23=0x50003f00 --kpoke-render 2:par:24=0x10500010 --kpoke-render 2:par:25=0x3f000000 --kpoke-render 2:par:26=0x00000000 --dump-render /tmp/tmp.UnmKv9Ztdu/3-pb-p3b-twin/dump
+  rc 0 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p3b-twin.txt: 1323 bytes raw, raw sha256 2a1032344e472681b76e1cbc58540902bdc072ec5b7cb3381d3a7d854efe953e
+  kept pb-p3b-twin.dmesg: 1328 bytes raw, raw sha256 c89c8931dbbd4b31aa89c5b35d949e50738dbf1e8cd8f8a34ab12cdb48aa9fff
+  kept pb-p3b-twin.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p3b-twin.snap0.regs: 6474 bytes raw, raw sha256 78e126e7d200ca2a3bfe316f1fe4e7755241d13b4919d3a188eb8179e85c1668
+  kept pb-p3b-twin.tri.param.bin: 4603904 bytes raw, raw sha256 496ace19601378f4f2f68137e543475af2d9e681e16dc6cf6232c01db372af33
+  kept pb-p3b-twin.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p4a-ffff set=heldout risk=risky knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 2:par:11=0xffffffff --dump-render /tmp/tmp.UnmKv9Ztdu/4-pb-p4a-ffff/dump
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p4a-ffff.txt: 691 bytes raw, raw sha256 cc0147e6c4ae98472e3b2ce0a0b1fc7b74ee013073e7e3398d20d8574099221a
+  kept pb-p4a-ffff.dmesg: 83 bytes raw, raw sha256 c3a56fd6360bd7ccb890f987bae14fba256484baa51a1a2b6e5f0bae69af71ea
+  kept pb-p4a-ffff.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p4a-ffff.snap0.regs: 6474 bytes raw, raw sha256 6acb3d1269652d60aa445b62c2ea7f6e71262b68344021094e205e5b6ea71bad
+  kept pb-p4a-ffff.tri.param.bin: 4603904 bytes raw, raw sha256 a3563ff50ec05644fdd412ed102e5794adbb4f2db0d9fe0631af7fb53d70a5e8
+  kept pb-p4a-ffff.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p4b-ffff set=replicate risk=risky knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 2:par:11=0xffffffff --dump-render /tmp/tmp.UnmKv9Ztdu/5-pb-p4b-ffff/dump
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p4b-ffff.txt: 692 bytes raw, raw sha256 be2314e6d741707e36d876cc4b195846498d64dca89d8350e8e5f497317d2922
+  kept pb-p4b-ffff.dmesg: 83 bytes raw, raw sha256 cc485d1ba1d58d975cbabb656be31dd7146e3a0594d0b522c0d897f827f6bb82
+  kept pb-p4b-ffff.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p4b-ffff.snap0.regs: 6474 bytes raw, raw sha256 da07067e2e6f31b4a1e5f06b80999bcde5d439b57b36c6caae1f586f8e8feda5
+  kept pb-p4b-ffff.tri.param.bin: 4603904 bytes raw, raw sha256 a3563ff50ec05644fdd412ed102e5794adbb4f2db0d9fe0631af7fb53d70a5e8
+  kept pb-p4b-ffff.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+  kept end.fill2.txt: 174 bytes raw, raw sha256 adeb6574b05888cfde7d156c69dc1b20451803fbb82bb61d23699ac2e6be07da
+  kept end.health2.txt: 311 bytes raw, raw sha256 bc7c0ce39e92237e72c822fbe793064ecd078329a44dc7eb23dca6896eaf77b6
+## end: 5 jobs of a-pb
+## exit: render_rgn_arrays=0x00000000 hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 5 case markers kept in /home/jtorra/r4a-out/20261111-081210/a-pb/kernel.log

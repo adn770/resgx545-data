@@ -1,0 +1,8 @@
+#stage a-pb0
+# R4-A, Q285 (decision 10, reruns): the controls of the split flow (-n 2 --geometry 1), K2's k-pb0 commands byte for byte, every row at
+# render_rgn_arrays 1 (rgn:1: fork a2788bd8 refuses TE_AA bit 30 or 31 on a context without the 4x flag at the default 0; a forced 1 is
+# the one-array layout R3K-regress measured).  Frozen from R3K-regress's kept two-render rows (pb-n40-a/b/c, pb-n60), not from E728's
+# one-render jobs (K2's k-pb0 lesson, E825).  a-pb runs only if all three pass (the gate, computed from the kept a-pb0).
+pb-d0-te40|control|safe|rgn:1 expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+pb-p0-te60|control|safe|rgn:1 expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+pb-p1-te40|control|safe|rgn:1 expectdiff|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"

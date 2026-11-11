@@ -1,0 +1,58 @@
+## stage a-pb0
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## clock
+Wed Nov 11 08:12:12 CET 2026
+## R4-A safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 55cf4de4c672717765f755eef21686358fcc8a74d491446190d90d5563d6db6c
+  kept begin.health1.txt: 311 bytes raw, raw sha256 05746732ecc0a6bb1ce1298c16f644b47b850a625c3474a50a81c8773d7ea27a
+== pb-d0-te40 set=control risk=safe knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.H2S2cWgEtR/1-pb-d0-te40/dump
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-d0-te40.txt: 644 bytes raw, raw sha256 0ac9f02461cffe7375625bfc47a5b729a015251c3006c8f92ad64458a0ddaac2
+  kept pb-d0-te40.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-d0-te40.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-d0-te40.snap0.regs: 6474 bytes raw, raw sha256 cda7c8851e4a714a0c01226e7a1bbb94ac99f5878628077654b677635a7a9943
+  kept pb-d0-te40.tri.param.bin: 4603904 bytes raw, raw sha256 b8ada4275f05af6320e768c300e991751962e4bdc7ac477b8557c50d26b309e5
+  kept pb-d0-te40.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p0-te60 set=control risk=safe knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.H2S2cWgEtR/2-pb-p0-te60/dump
+  rc 0 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p0-te60.txt: 585 bytes raw, raw sha256 af988aefdd90a5958e59e020498ad46dc286deb9e9d171fd1acc15e1d0b63b76
+  kept pb-p0-te60.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p0-te60.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p0-te60.snap0.regs: 6474 bytes raw, raw sha256 d93755504fb97f60d3ff10f7c31b81293d389c109cf6e184ef9e85783a04a802
+  kept pb-p0-te60.tri.param.bin: 4603904 bytes raw, raw sha256 1f00f101d55aac247b5d9eadcd82a59d101c07b962083862aee4527ce60aaf86
+  kept pb-p0-te60.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+== pb-p1-te40 set=control risk=safe knobs=[rgn:1 expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 -n 2 --geometry 1 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.H2S2cWgEtR/3-pb-p1-te40/dump
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept pb-p1-te40.txt: 644 bytes raw, raw sha256 b17b5c002ce8da522e3892f2323889a511c0de7708f34416718850f20ec760f8
+  kept pb-p1-te40.dmesg: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p1-te40.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept pb-p1-te40.snap0.regs: 6474 bytes raw, raw sha256 cea9c18d0808c4bddf38b38928ab136e72be689cf650595a11b26b500ca9a626
+  kept pb-p1-te40.tri.param.bin: 4603904 bytes raw, raw sha256 b8ada4275f05af6320e768c300e991751962e4bdc7ac477b8557c50d26b309e5
+  kept pb-p1-te40.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok
+  kept end.fill2.txt: 174 bytes raw, raw sha256 4af2353efaf849a5b40a5c5d5740b3d39ce3dbb9d7a5b6f5bd2f66d80f334fa5
+  kept end.health2.txt: 311 bytes raw, raw sha256 7cdeb7283c90906fa30d966c6853ddea5a34cf808668990e23aa2d0484f91408
+## end: 3 jobs of a-pb0
+## exit: render_rgn_arrays=0x00000000 hold_recovery=N
+## kernel log (journalctl)
+## kernel log: 3 case markers kept in /home/jtorra/r4a-out/20261111-081210/a-pb0/kernel.log

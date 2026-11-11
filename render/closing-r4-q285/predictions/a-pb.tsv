@@ -1,0 +1,29 @@
+case	quantity	value	model	set	source
+pb-p2-own11	rc	1	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	target_hash	0x8ea26cdfee74a325	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	diff	3969 of 4096 pixels, first (1, 1) 0xff000080 expected 0xffff0000	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	tri2	0 triangle, 4096 background, 0 other; wrong 3969 inside, 0 outside, 0 at edges; 3969 if flipped; guard 0	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	renders	1 of 2 renders ok	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	param_sha256	b8ada4275f05af6320e768c300e991751962e4bdc7ac477b8557c50d26b309e5	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	tadata_sha256	8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	par_0_64	04000004,00030001,04000000,3f800000,3f800001,3f800001,3f800000,01d00200,000010f0,4e224830,000e1010,00000000,00040101,00000000,00000000,00000000,00000000,00100000,00001000,00003f00,10500010,3f000000,00105000,00001000,50003f00,10500010,3f000000,04000004,00030001,04000000,3f800000,3f800001,3f800001,3f800000,01d00200,000010f0,4e224830,000e1010,00000000,00040101,00000000,00000000,00000000,00000000,00100000,00001000,00003f00,10500010,3f000000,00105000,00001000,50003f00,10500010,3f000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000	SAME-SHAPE	control	R3K-regress (E827) kept render/closing-r3k-regress/out/20261110-222647/rg-pb/pb-n40-a (the poke writes the word's own value: the job is d0's)
+pb-p2-own11	applied	par:11=0x00000000	SAME-SHAPE	control	the kernel's `kpoke ... applied` lines in the job's kmsg slice
+pb-p2-own11	armed_after		SAME-SHAPE	control	debugfs kpoke read after the job: empty
+pb-p3a-twin	applied	par:11=0x00040101;par:12=0x00000000;par:13=0x00000000;par:14=0x00000000;par:15=0x00000000;par:16=0x00100000;par:17=0x00001000;par:18=0x00003f00;par:19=0x10500010;par:20=0x3f000000;par:21=0x00105000;par:22=0x00001000;par:23=0x50003f00;par:24=0x10500010;par:25=0x3f000000;par:26=0x00000000	gate	heldout	16 pokes, all applied, else NODATA
+pb-p3a-twin	reading	twin	H-OLD	heldout	diff 0 of 4096 and render 2: 4096 triangle, 0 background, 0 other
+pb-p3a-twin	reading	not twin	H-FIELD	heldout	any other completed reading with the pokes applied
+pb-p3a-twin	target_hash	0xd2bfb75560f4c325	report	heldout	reported, never deciding: the twin's two-render hash (E825 p0, E827 pb-n60); E825: the hash is not the picture alone, and render 2's object keeps the TE 0x40 layout
+pb-p3a-twin	par_11_26_in_dump	00040101,00000000,00000000,00000000,00000000,00100000,00001000,00003f00,10500010,3f000000,00105000,00001000,50003f00,10500010,3f000000,00000000	landed	heldout	reported: the poked words read back in the dump
+pb-p3b-twin	applied	par:11=0x00040101;par:12=0x00000000;par:13=0x00000000;par:14=0x00000000;par:15=0x00000000;par:16=0x00100000;par:17=0x00001000;par:18=0x00003f00;par:19=0x10500010;par:20=0x3f000000;par:21=0x00105000;par:22=0x00001000;par:23=0x50003f00;par:24=0x10500010;par:25=0x3f000000;par:26=0x00000000	gate	replicate	16 pokes, all applied, else NODATA
+pb-p3b-twin	reading	twin	H-OLD	replicate	diff 0 of 4096 and render 2: 4096 triangle, 0 background, 0 other
+pb-p3b-twin	reading	not twin	H-FIELD	replicate	any other completed reading with the pokes applied
+pb-p3b-twin	target_hash	0xd2bfb75560f4c325	report	replicate	reported, never deciding: the twin's two-render hash (E825 p0, E827 pb-n60); E825: the hash is not the picture alone, and render 2's object keeps the TE 0x40 layout
+pb-p3b-twin	par_11_26_in_dump	00040101,00000000,00000000,00000000,00000000,00100000,00001000,00003f00,10500010,3f000000,00105000,00001000,50003f00,10500010,3f000000,00000000	landed	replicate	reported: the poked words read back in the dump
+pb-p4a-ffff	applied	par:11=0xffffffff	gate	heldout	1 poke applied, else NODATA
+pb-p4a-ffff	reading	drawn	H-FIELD	heldout	render 2: triangle pixels above 0
+pb-p4a-ffff	reading	empty	H-OLD	heldout	render 2: 0 triangle and 0 other pixels
+pb-p4a-ffff	par_11_in_dump	ffffffff	landed	heldout	reported
+pb-p4b-ffff	applied	par:11=0xffffffff	gate	replicate	1 poke applied, else NODATA
+pb-p4b-ffff	reading	drawn	H-FIELD	replicate	render 2: triangle pixels above 0
+pb-p4b-ffff	reading	empty	H-OLD	replicate	render 2: 0 triangle and 0 other pixels
+pb-p4b-ffff	par_11_in_dump	ffffffff	landed	replicate	reported
