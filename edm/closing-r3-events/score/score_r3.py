@@ -398,10 +398,13 @@ def score_a(S):
         ks = kept.get(row, [])
         if not ks:
             S.p(f"{h}: row {row} not read")
-        elif False in ks:
+        elif all(k is False for k in ks):
             S.p(f"{h} ({text}): {row} stopped the tick in {ks.count(False)} of {len(ks)} reps: supported")
         elif all(k is True for k in ks):
             S.p(f"{h} ({text}): {row} kept the tick {len(ks)} of {len(ks)}: refuted")
+        elif None not in ks:
+            # reps that disagree are mixed, never supported (post-run fix C6, POSTRUN-FIX.md)
+            S.p(f"{h} ({text}): {row} stopped the tick in {ks.count(False)} of {len(ks)} reps, kept it in {ks.count(True)}: mixed")
         else:
             S.p(f"{h} ({text}): {row} cannot tell ({ks})")
     a4 = [results[x] for x in results if x.startswith("a4")]
@@ -456,10 +459,10 @@ def score_b(S):
         skipped = [e for e in s0 if e[1] == L.SKIP_FLAG]
         norm = [e for e in s0 if e[1] == 1]
         kept_obs = rec["class"] == "ok"
-        kept_by_row.setdefault(row, []).append(kept_obs)
         g = gaps(s0)
         info = f"{n}: class {rec['class']}, {len(s0)} entries (skipped {len(skipped)}, logged {len(norm)}), SKIPPED {pg[L.SKIPPED]}, drops {drops}"
         if rec["class"] == "stop":
+            kept_by_row.setdefault(row, []).append(kept_obs)
             sg = rec_sig(rec)
             stops.append((n, sg))
             for pr in S.preds:
@@ -472,6 +475,7 @@ def score_b(S):
             if pr["case"] == n and pr["quantity"] == "kept":
                 S.t.add(n, "kept", pr["model"], pr["set"], pr["value"] == "yes")
         if row == "B0":
+            kept_by_row.setdefault(row, []).append(kept_obs)
             grid = len(s0) >= 4 and all(on_grid(x) for x in g)
             ctl_ok.append(grid and not skipped)
             S.tally_preds(n, "skipped", {"control": len(skipped) == 0})
@@ -481,6 +485,8 @@ def score_b(S):
         if not skipped:
             S.p(info + "; no skipped entry in the ring (the window did not hold it): cannot tell")
             continue
+        # a job the rows call cannot tell is not counted for the stage line (post-run fix C5, POSTRUN-FIX.md)
+        kept_by_row.setdefault(row, []).append(kept_obs)
         last = skipped[-1]
         after = [e for e in s0 if rel(e[5], last[5]) > 0]
         nxt = rel(after[0][5], last[5]) if after else None

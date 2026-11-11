@@ -163,19 +163,19 @@ def test_stage_a():
         mods = {"a1": lambda t, r: dict(r, **{"class": "stop", "sig": sig_pair(), "reader": {"ran": False, "ms": None, "rd": None}})}
         st, summ = run_a(tmp, mods)
         txt = "\n".join(st.lines)
-        check("a1: class stop" in txt and "signature busy, matches E537" in txt and "A1 stopped the tick in 1 of 3 reps: supported" in txt,
-              "A1 stops: the row is a stop, the signature is scored against E537's, H-63 supported")
+        check("a1: class stop" in txt and "signature busy, matches E537" in txt and "A1 stopped the tick in 1 of 3 reps, kept it in 2: mixed" in txt,
+              "A1 stops in 1 of 3 reps: the row is a stop, the signature is scored against E537's, H-63 mixed (post-run fix C6)")
         kept = [r for r in st.t.rows if r[0] == "a1" and r[1] == "kept"]
         check({r[2]: r[4] for r in kept} == {"H-ALIAS": False, "H-63": True, "H-P11": False}, "A1 stop: H-63's row holds, H-ALIAS's and H-P11's fail")
         check("stops 1 ['a1']" in summ and "[a1: busy (E537)]" in summ, "the SUMMARY names the stop and its signature class")
     # H-P11: A6 stops (idle-pending signature)
     with tempfile.TemporaryDirectory() as tmp:
         mods = {n: (lambda t, r: dict(r, **{"class": "stop", "sig": sig_pair("pending"), "reader": {"ran": False, "ms": None, "rd": None}}))
-                for n in ("a6",)}
+                for n in ("a6", "a6-r2")}
         st, summ = run_a(tmp, mods)
         txt = "\n".join(st.lines)
-        check("signature idle-pending, differs from E537 in busy" in txt and "A6 stopped the tick in 1 of 2 reps: supported" in txt,
-              "A6 stops idle-pending: H-P11 supported, the signature differs from E537's in 'busy'")
+        check("signature idle-pending, differs from E537 in busy" in txt and "A6 stopped the tick in 2 of 2 reps: supported" in txt,
+              "A6 stops idle-pending in both reps: H-P11 supported, the signature differs from E537's in 'busy' (post-run fix C6: both reps)")
     # idle-empty
     with tempfile.TemporaryDirectory() as tmp:
         mods = {"a6": lambda t, r: dict(r, **{"class": "stop", "sig": sig_pair("empty"), "reader": {"ran": False, "ms": None, "rd": None}})}
@@ -577,6 +577,35 @@ def test_tables():
         check(all(p["set"] in ("fit", "heldout", "replicate", "control") for p in S.load_preds(st)), f"stage {st}: every row has a label")
 
 
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11) ---------------------------------------------------------------------------
+def test_postrun_fixes():
+    # C6: H-63 / H-P11 are supported only when every rep stopped; reps that disagree are mixed
+    with tempfile.TemporaryDirectory() as tmp:
+        stop = lambda t, r: dict(r, **{"class": "stop", "sig": sig_pair(), "reader": {"ran": False, "ms": None, "rd": None}})
+        st, summ = run_a(tmp, {"a1": stop, "a1-r2": stop, "a1-r3": stop})
+        check("H-63 (sa63 stops it): A1 stopped the tick in 3 of 3 reps: supported" in "\n".join(st.lines),
+              "C6: A1 stopped in 3 of 3 reps: H-63 supported")
+    with tempfile.TemporaryDirectory() as tmp:
+        stop = lambda t, r: dict(r, **{"class": "stop", "sig": sig_pair(), "reader": {"ran": False, "ms": None, "rd": None}})
+        st, summ = run_a(tmp, {"a6": stop})
+        txt = "\n".join(st.lines)
+        check("H-P11 (p0 = p1 = 1 with r and i written stops it): A6 stopped the tick in 1 of 2 reps, kept it in 1: mixed" in txt
+              and "supported" not in [ln for ln in st.lines if ln.startswith("H-P11")][0],
+              "C6: A6 stopped in 1 of 2 reps: H-P11 mixed, not supported (the audit's repro, on A6)")
+    # C5: a B1 job kept the tick but its ring holds no skipped entry: the row is cannot tell and the stage line does not count it
+    with tempfile.TemporaryDirectory() as tmp:
+        nos = lambda t, r: b_rec(r["job"], flags=[])
+        t, d = b_world(tmp, {n: nos for n in ("b1", "b1-r2", "b1-r3")})
+        st, summ = S.score("b", d)
+        txt = "\n".join(st.lines)
+        check("no skipped entry in the ring" in txt and "B1 reads H-FREE" not in summ and "B1 reads B1 not read" in summ,
+              f"C5: B1 kept but no skipped entry in the ring (cannot tell): not counted for H-FREE ({summ[:80]})")
+    with tempfile.TemporaryDirectory() as tmp:
+        t, d = b_world(tmp, {"b1-r3": lambda t, r: b_rec(r["job"], flags=[])})
+        st, summ = S.score("b", d)
+        check("B1 reads H-FREE" in summ, "C5: the two B1 reps that decided still read H-FREE")
+
+
 def main():
     test_signature()
     test_stage_a()
@@ -587,6 +616,7 @@ def main():
     test_s2b_fixture()
     test_gate()
     test_tables()
+    test_postrun_fixes()
     print(f"{len(FAIL)} failed" if FAIL else "all scorer checks passed")
     return 1 if FAIL else 0
 

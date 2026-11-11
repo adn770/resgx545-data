@@ -308,8 +308,8 @@ def t_a_one_stop():
     ok(first_dump < stop_reset, "the signature dump was taken BEFORE the reset that follows the stop")
     ok(resets(w) >= r0 + 2, "the stop's reset and the end reset were both done")
     ok((w / "home/r3ev-out/a/baseline-1.json").exists(), "after the stop's reset and re-arm the baseline reader ran")
-    ok("stops 1 ['a6']" in score_txt(w, "a") and "[a6: busy (E537)]" in score_txt(w, "a") and "H-P11 (p0 = p1 = 1 with r and i written stops it): A6 stopped the tick in 1 of 2 reps: supported" in score_txt(w, "a"),
-       "the scorer reports the stop, its E537 match, and H-P11's row")
+    ok("stops 1 ['a6']" in score_txt(w, "a") and "[a6: busy (E537)]" in score_txt(w, "a") and "H-P11 (p0 = p1 = 1 with r and i written stops it): A6 stopped the tick in 1 of 2 reps, kept it in 1: mixed" in score_txt(w, "a"),
+       "the scorer reports the stop, its E537 match, and H-P11's row (mixed: one of two reps stopped; post-run fix C6)")
     ok("signature" in o or "SUMMARY" in o, "the driver printed the summary")
 
 
@@ -343,7 +343,8 @@ def t_a_stop_a1_signatures():
     rc, o = session(e, c, "--only", "a")
     ok(rc == 0 and "signature" not in o or True, f"a stop in A1 (rc {rc})")
     sc = score_txt(w, "a")
-    ok("[a1: idle-pending]" in sc and "H-63 (sa63 stops it): A1 stopped the tick in 1 of 3 reps: supported" in sc, "an idle-pending stop is classed idle-pending, H-63 supported")
+    ok("[a1: idle-pending]" in sc and "H-63 (sa63 stops it): A1 stopped the tick in 1 of 3 reps, kept it in 2: mixed" in sc,
+       "an idle-pending stop is classed idle-pending, H-63 mixed (one of three reps stopped; post-run fix C6)")
     w, e, c = staged("a_empty", "a_stop_a4,sig_empty")
     rc, o = session(e, c, "--only", "a")
     ok("[a4: idle-empty]" in score_txt(w, "a"), "an idle-empty stop is classed idle-empty")
