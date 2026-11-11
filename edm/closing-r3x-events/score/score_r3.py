@@ -725,7 +725,6 @@ def score_e(S):
         acted = [e for e in s0 if e[1] in (L.SKIP_FLAG, L.TAIL_FLAG)]
         cls = rec["class"]
         kept_obs = cls in ("ok", "kick-timeout")
-        kept_by_row.setdefault(row, []).append(kept_obs)
         info = (f"{n}: class {cls}, {len(s0)} entries (acted {len(acted)}, flags {sorted({e[1] for e in s0})}), ACTED {pg[L.ACTED]} of "
                 f"{j['count']}, drops {drops}")
         if j["count"] and pg[L.ACTED] == 0:
@@ -746,6 +745,8 @@ def score_e(S):
                 if pr["case"] == n and pr["quantity"] != "p3_answered":
                     S.t.add(n, pr["quantity"], pr["model"], pr["set"], None, "ring full")
             continue
+        # a job the rows call cannot tell is not counted for the stage line (post-run fix C5, POSTRUN-FIX.md)
+        kept_by_row.setdefault(row, []).append(kept_obs)
         S.tally_preds(n, "acted", {"design": pg[L.ACTED] == j["count"], "control": pg[L.ACTED] == 0})
         for pr in S.preds:
             if pr["case"] == n and pr["quantity"] == "kept":

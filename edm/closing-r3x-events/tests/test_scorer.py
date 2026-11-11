@@ -893,6 +893,36 @@ def test_tables():
               "E537's seven words in r3layout are the first writer's markers of b2-markers.json (state3.s: sa64 m0, r20 m5, r21 m6, i0 m7, i1 m8, sa65 m9, sa63 m10)")
 
 
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11) ---------------------------------------------------------------------------
+def test_postrun_fixes():
+    # C5 (the audit's repro): X1 jobs whose acted pass never came (ACTED 0, class ok) are cannot tell; the stage's hypothesis line
+    # must not count them as X1 keeping the tick
+    with tempfile.TemporaryDirectory() as tmp:
+        t = S.load_table("e")
+        recs = e_world_recs(t, "EXIT")
+        for n in ("x1", "x1-r2"):
+            r = recs[n]
+            for k in ("page", "page2"):
+                pg = list(r[k])
+                pg[L.ACTED] = 0
+                r[k] = pg
+        d = write_stage(tmp, "e", recs, exit_code=8)
+        st, summ = S.score("e", d)
+        check("the KIND of pass never came in the window (ACTED 0): cannot tell" in txt(st) and "H-EXIT (a tick pass" not in summ
+              and "B3 stopped, X1 not read" in summ, f"C5: X1 with ACTED 0 is cannot tell and not counted for the stage line ({summ[:120]})")
+    with tempfile.TemporaryDirectory() as tmp:
+        t = S.load_table("e")
+        recs = e_world_recs(t, "EXIT")
+        r = recs["x1-r2"]
+        for k in ("page", "page2"):
+            pg = list(r[k])
+            pg[L.ACTED] = 0
+            r[k] = pg
+        d = write_stage(tmp, "e", recs, exit_code=8)
+        st, summ = S.score("e", d)
+        check("E0 held; H-EXIT (a tick pass" in summ, "C5: the X1 rep that decided still reads H-EXIT")
+
+
 def main():
     test_signature_and_marks()
     test_d_instrument()
@@ -903,6 +933,7 @@ def main():
     test_stage_e()
     test_gate()
     test_tables()
+    test_postrun_fixes()
     print(f"{len(FAIL)} failed" if FAIL else "all scorer checks passed" + (f" ({len(SKIPS)} fixtures absent)" if SKIPS else ""))
     return 1 if FAIL else 0
 

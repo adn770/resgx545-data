@@ -1,0 +1,8 @@
+d0: class ok; reader pclink 0x98 p1 1 sa64 0x2 sa65 0x2000000 sa63 0x0; CCB write 2 read 2 (read - write +0), HostCtl dword 14 0x0
+d1: class stop (tick stopped after the writer's pass); signature busy, matches E537 (clk 0xccfa0, serv_event 0x3f3, timer 0x105d016, status 0x20000000 recorded); CCB write 2 read 2 (read - write +0), HostCtl dword 14 0x0; P3 NOT answered (504 ms); D0 None
+d1-r2: not run (row D1 stopped: a stopped row is never replicated)
+d1-r3: not run (row D1 stopped: a stopped row is never replicated)
+d2: class stop (tick stopped after the writer's pass); signature busy, matches E537 (clk 0xccfa0, serv_event 0x3ee, timer 0x10326b9, status 0x20000000 recorded); CCB write 2 read 3 (read - write +1), HostCtl dword 14 0xad002600; P3 NOT answered (3 ms); D0 None
+d3: NODATA (no record kept)
+d4: NODATA (no record kept)
+SUMMARY: d: D0 held; D1 and D2 both stop it: neither H-CCB nor H-HANDLER alone (the stage ended before D3); kept 1 of 3 read jobs, stops 2 ['d1', 'd2'] [d1: busy (E537), read-write 0, dword 14 0x0; d2: busy (E537), read-write 1, dword 14 0xad002600]; P3 answered in 0 of 2 stops; Q152 rows: fit: 0 held, 0 FAILED, 7 cannot tell/void; cannot tell ['H-CCB', 'H-HANDLER', 'H-ONCE']; held out: 9 held, 6 FAILED, 1 cannot tell/void; refuted ['H-CCB', 'H-HANDLER', 'H-ONCE', 'H-REARM']; control: 6 held, 0 FAILED, 0 cannot tell/void; stage exit 8: d2: tick stop number 2 ends the stage (reset and gate exact)
