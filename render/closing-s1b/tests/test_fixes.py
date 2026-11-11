@@ -152,6 +152,34 @@ def _():
     assert got == pixel_sha(rows_of(k.out("d-L2e2-64"))), "not the image S1 measured (post hoc A4 fit)"
 
 
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11): these FAIL on S1b's frozen code (score/score_geo.as-run.py) ----------
+@fix("post-run C8, score_geo e2b: a hung job is void, never 'completed as predicted' (b-3a-hi hung, in a copy of S1's g-e2b)")
+def _():
+    import shutil
+    with tempfile.TemporaryDirectory() as t:
+        d = pathlib.Path(t) / "g-e2b"
+        shutil.copytree(OUT / "g-e2b", d)
+        p = d / "b-3a-hi.txt.gz"
+        p.write_bytes(gzip.compress(gzip.decompress(p.read_bytes()) + b"\ntri 64x64: job hung, recovering\n"))
+        text = G.score_e2b(Kept(d), load_preds(PRED / "g-e2b.tsv"))[0]
+    row = next(ln for ln in text.splitlines() if ln.startswith("b-3a-hi"))
+    s = summary(text)
+    assert "hang" in row and "yes" not in row, row
+    assert "holds on" not in s and "cannot tell" in s and "b-3a-hi" in s, s
+
+
+@fix("post-run C8, score_geo ladder_verdict: HP1 is refuted only when its C interval and the limit are disjoint")
+def _():
+    lad = lambda Pa, Pb: {V: [(Pa - 0x20, True), (Pa, True), (Pb, False)] for V in (1350, 1500)}
+    v = G.ladder_verdict(lad(0x2d0, 0x2f0))           # C in [0x2ce, 0x2ee): disjoint from [0x2fe, 0x3de)
+    assert "REFUTED by its limit" in v, v
+    v = G.ladder_verdict(lad(0x2f0, 0x310))           # C in [0x2ee, 0x30e): overlaps the limit, not inside it
+    assert "REFUTED" not in v and "overlaps" in v, v
+    v = G.ladder_verdict(lad(0x320, 0x340))           # inside: the wording is unchanged
+    assert v == ("HP1: one step for both scenes, last raise 0x320, first silent 0x340: C in [0x31e, 0x33e) inside "
+                 "[0x2fe, 0x3de)"), v
+
+
 for name, ok, why in results:
     print(("ok   " if ok else "FAIL ") + name + (f"\n       {why}" if why else ""))
 print(f"code: {CODE}; {sum(ok for _, ok, _ in results)} of {len(results)} fixes ok")

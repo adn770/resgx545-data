@@ -185,6 +185,12 @@ def ladder_verdict(cells):
         Pa, Pb = next(iter(steps.values()))
         lo, hi = Pa - 2, Pb - 2
         inside = C_LIMIT[0] <= lo and hi <= C_LIMIT[1]
+        # refuted only when the interval and the limit are disjoint, not when the interval is not inside it (post-run fix
+        # C8, POSTRUN-FIX.md)
+        overlap = lo < C_LIMIT[1] and C_LIMIT[0] < hi
+        if not inside and overlap:
+            return (f"HP1 consistent (not decided): one step for both scenes, last raise {Pa:#x}, first silent {Pb:#x}: "
+                    f"C in [{lo:#x}, {hi:#x}) overlaps [{C_LIMIT[0]:#x}, {C_LIMIT[1]:#x}) without lying inside it")
         return (f"HP1{'' if inside else ' REFUTED by its limit'}: one step for both scenes, last raise {Pa:#x}, first "
                 f"silent {Pb:#x}: C in [{lo:#x}, {hi:#x}) {'inside' if inside else 'NOT inside'} "
                 f"[{C_LIMIT[0]:#x}, {C_LIMIT[1]:#x})")
@@ -274,6 +280,11 @@ def score_e2b(k: Kept, preds):
         whole = m["geo"] == m["K"] - 1 and not m["early"]
         oc = outcome(j["txt"], k.dmesg(n))
         want = pred1(preds, n, "outcome")
+        if oc not in ("ok", "overflow"):
+            # a hang or a fault is no outcome: the job is void, never "completed as predicted" (post-run fix C8)
+            void.append(n)
+            rows.append((n, oc, want, "void", "", f"void ({oc})"))
+            continue
         prs, _ = runs(j["tl"])
         np_ = [(v, mm) for v, mm, s in preds.get(n, {}).get("nparts", [])]
         if np_:
