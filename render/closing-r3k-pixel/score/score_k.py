@@ -174,10 +174,11 @@ def f4_stage(outdir):
         res["c2-64x64-k4"] = "FAIL"
         lines.append("c2-64x64-k4: FAIL: TA data sha256 differs from c3's (the knob changed a 64x64 layout)")
     # the controls that every held-out reading rests on
-    ctl_bad = [n for n in ("c1-288x144-k1", "c2-64x64-k4", "c3-64x64-k1") if res.get(n) not in ("PASS", None) and res.get(n) != "NODATA"]
+    # any control that is not PASS (FAIL, NODATA, or a row that did not run) gates them (post-run fix C2, POSTRUN-FIX.md)
+    ctl_bad = [n for n in ("c1-288x144-k1", "c2-64x64-k4", "c3-64x64-k1") if res.get(n) != "PASS"]
     for n in list(res):
         if n.startswith("h") and res[n] in ("AGREES", "REFUTED") and ctl_bad:
-            res[n] = "cannot tell (control %s %s)" % (ctl_bad[0], res[ctl_bad[0]])
+            res[n] = "cannot tell (control %s %s)" % (ctl_bad[0], res.get(ctl_bad[0], "not run"))
     ho = [n for n in res if n.startswith("h")]
     agree = [n for n in ho if res[n] == "AGREES"]
     ref = [n for n in ho if res[n] == "REFUTED"]
@@ -185,7 +186,7 @@ def f4_stage(outdir):
     nd = [n for n in ho if res[n] == "NODATA"]
     ctrl = {n: res[n] for n in res if n.startswith("c")}
     if ctl_bad:
-        head = "cannot tell for the held-out rows: control %s %s%s; " % (ctl_bad[0], res[ctl_bad[0]],
+        head = "cannot tell for the held-out rows: control %s %s%s; " % (ctl_bad[0], res.get(ctl_bad[0], "not run"),
                                                                          " (the knob leaks: it completed)" if ctl_bad[0].startswith("c1") else "")
     elif any(res[x].startswith("cannot tell (the knob") for x in ct):
         head = "cannot tell for %s: the knob did not apply (the TA data is the knob-1 layout); " % ", ".join(ct)
@@ -319,15 +320,19 @@ def pb_stage(outdir, roots=None):
         return vals.pop() if len(vals) == 1 else ("split" if vals else None)
 
     p3, p4 = cons(("pb-p3a-twin", "pb-p3b-twin")), cons(("pb-p4a-ffff", "pb-p4b-ffff"))
+    # the jobs behind each reading, not "2 of 2" whatever was read (post-run fix C10, POSTRUN-FIX.md)
+    n3 = sum(1 for x in ("pb-p3a-twin", "pb-p3b-twin") if res.get(x) == p3)
+    n4 = sum(1 for x in ("pb-p4a-ffff", "pb-p4b-ffff") if res.get(x) == p4)
     if res.get("pb-p2-own11") != "PASS":
         q = "cannot tell: the p2 control (a poke of the word's own value) %s" % res.get("pb-p2-own11")
     elif p3 in (None, "split") or p4 in (None, "split"):
         q = "cannot tell: no consistent reading (p3 %s, p4 %s)" % (p3, p4)
     elif p3 == "twin" and p4 == "empty":
-        q = ("H-OLD: the 3D reads the stretch in the old layout (p3 the twin's dwords 11-26 give the twin's image in 2 of 2 jobs; "
-             "p4 a garbage dword 11 draws nothing)")
+        q = ("H-OLD: the 3D reads the stretch in the old layout (p3 the twin's dwords 11-26 give the twin's image in %d of 2 jobs; "
+             "p4 a garbage dword 11 draws nothing in %d of 2 jobs)" % (n3, n4))
     elif p3 == "not twin" and p4 == "drawn":
-        q = "H-FIELD: dword 11 is a field the 3D uses (p4 draws pixels; p3's old-layout words do not give the twin's image)"
+        q = ("H-FIELD: dword 11 is a field the 3D uses (p4 draws pixels in %d of 2 jobs; p3's old-layout words do not give the twin's image "
+             "in %d of 2 jobs)" % (n4, n3))
     elif p3 == "not twin" and p4 == "empty":
         q = "cannot tell: p3 and p4 both empty (not the twin's, nothing drawn): the cause is elsewhere; park under Q030"
     else:
@@ -431,6 +436,12 @@ def bif_stage(outdir):
     hs = sorted(set(reads.values()))
     if res.get("n0-idle") != "PASS":
         q = "cannot tell: the n0 control (the four writes with nothing held) %s" % res.get("n0-idle")
+    elif not reads and any(v == "OTHER" for n, v in res.items() if n != "n0-idle"):
+        # rows that were read and match none of the three are not "could not be read" (post-run fix C10, POSTRUN-FIX.md)
+        other = {n: v for n, v in res.items() if n != "n0-idle" and v == "OTHER"}
+        unread = {n: v for n, v in res.items() if n != "n0-idle" and v != "OTHER"}
+        q = "none of H-W1C, H-CLR, H-RST: %d of 4 held rows were read and match none of them (%s)%s; n0 PASS" % (
+            len(other), other, ("; not read: %s" % unread) if unread else "")
     elif not reads:
         q = "cannot tell: no held row could be read (%s)" % {n: v for n, v in res.items() if n != "n0-idle"}
     elif len(hs) > 1:

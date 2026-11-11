@@ -167,6 +167,31 @@ check("n0 changing something fails the n0 control and the verdict cannot tell", 
 lines, res = bifv("rst")
 check("the reset's new log lines are reported as data", any("reset" in x and "0x80000" in x for x in lines), lines)
 
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11) -------------------------------------------------------------------------
+import glob  # noqa: E402
+d = W.f4_world(tmp(), "f4")
+for f in glob.glob(os.path.join(d, "c3-64x64-k1*")):
+    os.remove(f)                      # the audit's repro: control c3 loses its output, its cases row stays
+lines, res = S.f4_stage(d); v = res["verdicts"]
+check("C2: a NODATA control gates the held-out rows (cannot tell, not AGREES)", v["c3-64x64-k1"] == "NODATA"
+      and all(v[n].startswith("cannot tell (control c3-64x64-k1 NODATA") for n in v if n.startswith("h")), v)
+check("C2: ... and the summary says so (no '8 of 8 held-out rows complete')", "cannot tell for the held-out rows: control c3-64x64-k1 NODATA" in res["summary"]
+      and "8 of 8" not in res["summary"], res["summary"])
+lines, res = bifv("other", {"n0-idle": "ok"})
+check("C10: held rows read OTHER are read, not 'no held row could be read'", res["q003"].startswith("none of H-W1C, H-CLR, H-RST")
+      and "4 of 4 held rows were read" in res["q003"], res["q003"])
+lines, res = bifv("other", {"f3-tex": "ebusy"})
+check("C10: OTHER rows and a NODATA row: the read rows and the unread row both named", res["q003"].startswith("none of H-W1C, H-CLR, H-RST")
+      and "3 of 4 held rows were read" in res["q003"] and "f3-tex" in res["q003"], res["q003"])
+lines, res = bifv("ebusy")
+check("C10: no held row read at all stays 'no held row could be read'", res["q003"].startswith("cannot tell: no held row could be read"), res["q003"])
+d = W.pb_world(tmp(), "old")
+for f in glob.glob(os.path.join(d, "pb-p4b-ffff*")):
+    os.remove(f)
+lines, res = S.pb_stage(d)
+check("C10: k-pb with one p4 job not read says 1 of 2 jobs, not 2 of 2", res["verdicts"]["pb-p4b-ffff"] == "NODATA" and "draws nothing in 1 of 2 jobs" in res["q285"]
+      and "twin's image in 2 of 2 jobs" in res["q285"], res["q285"])
+
 # ---- the whole verdict and the freeze --------------------------------------------------------------------------------------
 root = tmp()
 for st, mk in (("k-f4", lambda d: W.f4_world(d, "f4")), ("k-pb0", lambda d: W.pb0_world(d, "ok")), ("k-pb", lambda d: W.pb_world(d, "old")), ("k-bif", lambda d: W.bif_world(d, "clr"))):
