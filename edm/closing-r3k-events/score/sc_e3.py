@@ -82,6 +82,7 @@ def bit_of(v, bit):
 
 def score_e3b(S):
     stops, b1, ref_obs = [], [], {}
+    b1n = []
     for j in S.table["jobs"]:
         n, row = j["name"], j["row"]
         rec = C.record(S.d, n)
@@ -118,6 +119,7 @@ def score_e3b(S):
             S.p(info)
             continue
         b1.append((row, stopped))
+        b1n.append(n)
         obs = None
         C.Stage.tally_value(S, n, "tick_alive", yn(not stopped))
         # held-out readings that need the event to have been held: level or pulse first
@@ -152,4 +154,6 @@ def score_e3b(S):
     else:
         st = [x[1] for x in b1]
         h = "H-STOP3 (a skipped end-of-render handler stops the tick)" if all(st) else "H-FREE3 (the tick goes on)" if not any(st) else "B1 mixed"
+        # the number of runs the verdict rests on (post-run fix C9, POSTRUN-FIX.md)
+        h += f" in {len(b1n)} run{'s' if len(b1n) != 1 else ''} ({', '.join(b1n)}{'; one run, no replicate' if len(b1n) == 1 else ''})"
     return (f"e3b: {h}; stops {len(stops)} {stops}; Q111 rows: {S.t.line()}" + (f"; {note}" if note else ""))

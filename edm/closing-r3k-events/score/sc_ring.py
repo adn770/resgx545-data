@@ -154,6 +154,7 @@ def k_mode(es):
 
 def score_kicker(S):
     verdict = {}
+    readings = {}
     ctl = []
     for j in S.table["jobs"]:
         if j["op"] != "kicker":
@@ -225,6 +226,7 @@ def score_kicker(S):
                 got = q.get(pr["quantity"])
                 if got is not None:
                     verdict.setdefault(pr["model"], []).append(str(got) == pr["value"])
+                    readings.setdefault(pr["model"], {})[(n, pr["quantity"])] = str(got) == pr["value"]
         if row == "Q0":
             ctl.append(q.get("ticks_K") == 2)
     note = S.stage_note()
@@ -233,5 +235,16 @@ def score_kicker(S):
     alive = [m for m in ("H-KW", "H-LATCH", "H-HWC") if verdict.get(m) and all(verdict[m])]
     dead = [m for m in ("H-KW", "H-LATCH", "H-HWC") if verdict.get(m) and not all(verdict[m])]
     ctls = "Q0 held (ticks K = 2)" if ctl and all(ctl) else "Q0 DIFFERS" if ctl else "Q0 not read"
-    return (f"kb: {ctls}; consistent with {alive or 'none'}, refuted {dead or 'none'}; stops {len(S.stop_names)} {S.stop_names}; Q290 rows: "
+    basis = ""
+    if alive:
+        # how many held-out rows the standing hypotheses rest on, and whether those readings tell them apart (post-run fix C9)
+        ho = [r for r in S.t.rows if r[2] == alive[0] and r[3] == "held out"]
+        hd = sorted({r[0] for r in ho if r[4] is not None})
+        reps = sorted({r[0] for r in S.t.rows if r[2] == alive[0] and r[3] == "replicate" and r[4] is not None})
+        basis = f" ({sum(1 for r in ho if r[4] is not None)} of {len(ho)} held-out rows decided: {', '.join(hd) or 'none'}"
+        basis += f"; replicates {', '.join(reps)}" if reps else ""
+        if len(alive) > 1 and all(readings.get(m) == readings.get(alive[0]) for m in alive):
+            basis += "; the decided readings do not separate them"
+        basis += ")"
+    return (f"kb: {ctls}; consistent with {alive or 'none'}{basis}, refuted {dead or 'none'}; stops {len(S.stop_names)} {S.stop_names}; Q290 rows: "
             f"{S.t.line()}" + (f"; {note}" if note else ""))

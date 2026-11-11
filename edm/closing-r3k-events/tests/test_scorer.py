@@ -529,6 +529,43 @@ def test_gates():
     check(S.CONTROL_STAGES == ("k0f", "k0t", "k0c", "k0h"), "the K0 stages are the control stages (exit 9 on a failed control)")
 
 
+# ---- post-run fixes (POSTRUN-FIX.md, 2026-11-11) ------------------------------------------------------------------------------
+def kept_copy(tmp, stage, drop=()):
+    """A copy of the kept stage out/STAGE with the job records named in drop (all of them: "*") deleted, as the audit's
+    k0_nodata.py did."""
+    d = pathlib.Path(tmp) / stage
+    shutil.copytree(R3 / "out" / stage, d)
+    for f in d.glob("*.json"):
+        if f.name in ("stage.json", "env.json", "end-reset.json"):
+            continue
+        if "*" in drop or f.name.split(".")[0] in drop:
+            f.unlink()
+    return d
+
+
+def test_postrun_fixes():
+    with tempfile.TemporaryDirectory() as tmp:
+        for stage, head in (("k0f", "defaults as designed"), ("k0t", "both jobs as L1 and L2 kept them")):
+            st, summary = S.score(stage, R3 / "out" / stage)
+            check(summary.startswith(f"{stage}: {head};"), f"C3: {stage} on the kept data keeps its headline ({summary[:80]})")
+            st, summary = S.score(stage, kept_copy(tmp, stage, ("*",)))
+            check(summary.startswith(f"{stage}: cannot tell: no row decided;") and head not in summary,
+                  f"C3: {stage} with every job record deleted: no headline, cannot tell ({summary[:90]})")
+        st, summary = S.score("k0t", kept_copy(tmp + "/px", "k0t", ("px",)))
+        check(summary.startswith("k0t: cannot tell: ") and "both jobs" not in summary,
+              f"C3: k0t with one of its two jobs deleted: its control rows cannot tell, no headline ({summary[:90]})")
+    st, summary = S.score("kb", R3 / "out" / "kb")
+    check("consistent with ['H-LATCH', 'H-HWC'] (1 of 4 held-out rows decided: q1; replicates q1-r2, q1-r3; "
+          "the decided readings do not separate them)" in summary and "refuted ['H-KW']" in summary,
+          f"C9: kb says how few rows decided and that they do not separate H-LATCH from H-HWC ({summary[:200]})")
+    tab, recs = kb_world("H-LATCH")
+    st, summary = score_world("kb", recs)
+    check("consistent with ['H-LATCH'] (" in summary and "do not separate" not in summary, f"C9: kb, world H-LATCH ({summary[:160]})")
+    st, summary = S.score("e3b", R3 / "out" / "e3b")
+    check(summary.startswith("e3b: H-STOP3 (a skipped end-of-render handler stops the tick) in 1 run (b1; one run, no replicate);"),
+          f"C9: e3b says its verdict rests on one run ({summary[:140]})")
+
+
 def main():
     test_signature_and_marks()
     test_d_instrument()
@@ -540,6 +577,7 @@ def main():
     test_e3b_worlds()
     test_k0()
     test_gates()
+    test_postrun_fixes()
     print(f"{len(FAIL)} failed" if FAIL else "all scorer checks passed")
     return 1 if FAIL else 0
 

@@ -106,6 +106,18 @@ def failed_controls(S):
     return [r for r in S.t.rows if r[3] == "control" and r[4] is False]
 
 
+def k0_cannot_tell(S):
+    """Why a K0 headline may not be printed although no control FAILED (post-run fix C3, POSTRUN-FIX.md): no row decided,
+    or a control row that cannot tell (a job without data); None when the headline may stand."""
+    ctl = [r for r in S.t.rows if r[3] == "control"]
+    ct = [r for r in ctl if r[4] is None]
+    if not any(r[4] is not None for r in S.t.rows):
+        return "no row decided"
+    if not ctl or ct:
+        return f"{len(ct)} of {len(ctl)} control rows cannot tell ({', '.join(sorted({r[0] for r in ct}))})"
+    return None
+
+
 # ---- stage k0f -------------------------------------------------------------------------------------------------------------
 def score_defaults(S):
     for j in S.table["jobs"]:
@@ -131,7 +143,9 @@ def score_defaults(S):
             f"srcversion {sv.get('loaded')}")
     note = S.stage_note()
     f = failed_controls(S)
-    return f"k0f: {'defaults as designed' if not f else 'DEFAULTS DIFFER: ' + ', '.join(sorted({r[1] for r in f}))}; K0 rows: {S.t.line()}" + (f"; {note}" if note else "")
+    ct = k0_cannot_tell(S)
+    head = 'DEFAULTS DIFFER: ' + ', '.join(sorted({r[1] for r in f})) if f else f"cannot tell: {ct}" if ct else 'defaults as designed'
+    return f"k0f: {head}; K0 rows: {S.t.line()}" + (f"; {note}" if note else "")
 
 
 # ---- stage k0t -------------------------------------------------------------------------------------------------------------
@@ -160,7 +174,10 @@ def score_tool(S):
         S.p(f"{n}: class ok; tool rc {rec.get('tool_rc')}; o0 lines {rec.get('o0_lines')}; " + ", ".join(f"{k} {v}" for k, v in got.items() if k not in ("rc", "class")))
     note = S.stage_note()
     f = failed_controls(S)
-    return f"k0t: {'both jobs as L1 and L2 kept them' if not f else 'CONTROL DIFFERS: ' + ', '.join(sorted({r[0] + ' ' + r[1] for r in f}))}; K0 rows: {S.t.line()}" + (f"; {note}" if note else "")
+    ct = k0_cannot_tell(S)
+    head = ('CONTROL DIFFERS: ' + ', '.join(sorted({r[0] + ' ' + r[1] for r in f})) if f else f"cannot tell: {ct}" if ct
+            else 'both jobs as L1 and L2 kept them')
+    return f"k0t: {head}; K0 rows: {S.t.line()}" + (f"; {note}" if note else "")
 
 
 # ---- stages c and d ------------------------------------------------------------------------------------------------------
