@@ -346,13 +346,42 @@ def test_gate_and_freeze():
     check(S.freeze_problem() is None, "the freeze check is skipped under C3_NO_FREEZE_CHECK (tests only)")
 
 
+# ---- post-run fixes (POSTRUN-FIX.md, second fix 2026-11-11) ----------------------------------------------------------------
+def test_postrun_c7(tmp):
+    # C7 (the audit's synth_c3.py): l1's control fails (sa63 not read at the next event): every row after its perturbation is
+    # cannot tell, not some of them, and the Q158 L count line leaves l1 out
+    def bad_sa63(r, j, w):
+        r["rdA"]["rd"][L.RD_FIELDS.index("sa63")] ^= 1
+        return r
+    st, summ = run_world(tmp, "keep", mods={"l1": bad_sa63})
+    b_rows = [r for r in st.t.rows if r[0] == "l1" and r[1].startswith("b_")]
+    check(b_rows and all(r[4] is None for r in b_rows),
+          f"C7: a failed control gates every perturbation row of its job ({sorted({(r[1], r[4]) for r in b_rows if r[4] is not None})})")
+    ql = [ln for ln in st.lines if ln.startswith("Q158 L")]
+    check(ql and "i0/i1 2/2" in ql[0] and "1 job with a failed control not counted (l1)" in ql[0],
+          f"C7: the Q158 L line counts the two jobs whose control passed and names the gated one ({ql})")
+    ok_rows = [r for r in st.t.rows if r[0] == "l2" and r[1].startswith("b_")]
+    check(ok_rows and all(r[4] is not None for r in ok_rows), "C7: the other jobs' rows are still decided")
+    # C7: a void fill resets the fill step: f3's r21 step is not taken against f1
+    st, summ = run_world(tmp, "keep", mods={"f2": lambda r, j, w: None})
+    check(verdicts(st, case="f3", q="b_r21_step") == [None], f"C7: f2 void: f3's r21 step cannot tell ({verdicts(st, case='f3', q='b_r21_step')})")
+    st, summ = run_world(tmp, "keep")
+    check(verdicts(st, case="f3", q="b_r21_step") == [True], "C7: with every fill read, f3's r21 step is decided")
+
+    def bad_r21(r, j, w):
+        r["rdA"]["rd"][L.RD_FIELDS.index("r21")] ^= 1
+        return r
+    st, summ = run_world(tmp, "keep", mods={"f2": bad_r21})
+    check(verdicts(st, case="f3", q="b_r21_step") == [None], "C7: f2's control failed: f3's r21 step is not taken against f2's reading")
+
+
 def main():
     test_signature()
     test_tables()
     with tempfile.TemporaryDirectory() as tmp:
         test_world_keep(tmp)
     for f in (test_world_all, test_world_set, test_world_wipe, test_controls, test_states, test_stop, test_s0_start_state,
-              test_e536_fixture):
+              test_e536_fixture, test_postrun_c7):
         with tempfile.TemporaryDirectory() as tmp:
             f(tmp)
     test_gate_and_freeze()

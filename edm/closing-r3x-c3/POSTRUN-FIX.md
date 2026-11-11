@@ -57,3 +57,47 @@ Changed files (sha256, first 16 hex digits):
 | `score/score_c3.as-run.py` | (new) | b4d4cfdc41183efe | yes |
 | `tests/run_mock.py` | 5b0a0c0c0177eeba | 20767deb3ccea5ed | yes |
 | `FROZEN.sha256` | 8140fae7124e37b9 | 21f5abf785658c3b | (the freeze) |
+
+## Second scorer fix (2026-11-11)
+
+The round-3 scorer audit (2026-11-10, C7) found that a failed control still let some rows through.
+Fixed in this published copy, as a second disclosed post-run fix (decision D7 b, 2026-11-11), with
+the rule now in resgx545's `tools/closing/scorekit.py`. No line changes on the kept data: every
+control passed, and every fill was read.
+
+- **A failed control gated only some rows of its job.** When the job's markers were not read at
+  the next event (`a_markers` FAILED), `b_i_kept`, `b_r_*`, `b_sa63_kept` and `b_markers` were
+  cannot tell, but `b_p0p1`, `b_p2p3`, `b_pclink`, `b_sa20_sa24_zero` and every `b_SA_same` row
+  were still scored. Fix: the failed control makes every row after the perturbation cannot tell.
+- **The Q158 count lines counted a job whose control failed.** Fix: such a job is left out of
+  the counts, and the line names it (`; 1 job with a failed control not counted (l1)`); a row
+  with no job left prints `cannot tell`.
+- **The r21 step of a fill was taken across a fill that was not read.** `last_fill_r21` kept the
+  reading of the last fill read, so with f2 void f3's step was taken against f1. Fix: a void,
+  stopped or unread fill, and a fill whose control failed, reset it; the next step is cannot
+  tell (`no previous fill reading`).
+
+Tests (written first, in `tests/test_scorer.py`, `test_postrun_c7`): the audit's repro
+(`synth_c3.py`, l1's control failed: every `b_` row of l1 cannot tell, the Q158 L line counting 2
+of 2 and naming l1, l2's rows still decided), f2 void (f3's step cannot tell; with every fill
+read it is decided), and f2's control failed (f3's step cannot tell). Against the scorer of the
+first fix four of them fail, as they should.
+
+- `out/score-c3.fixed2.txt` is this scorer's output on the kept `out/c3/`: byte-identical to
+  `out/score-c3.fixed.txt`. `out/score-c3.txt` (the frozen scorer's output) and
+  `out/score-c3.fixed.txt` stay as they were.
+- `FROZEN.pre-fix2.sha256` is the freeze after the first fix, byte for byte; `FROZEN.sha256` is
+  regenerated after this fix (`run/freeze_c3.sh freeze`) and differs from it only in the lines of
+  `score/score_c3.py` and `tests/test_scorer.py`. `run/freeze_c3.sh verify` passes.
+- The offline tests pass on a copy of this directory (`tests/run_all.sh`: sim_c3.py 24 ok,
+  test_scorer.py 64 ok, test_guard.py 30 ok, run_mock.py 11 of 11 tests and 84 ok, guard clean).
+- The first fix's scorer is not kept as a separate file: it is `score/score_c3.py` at the
+  previous commit, and its hash is the `score/score_c3.py` line of `FROZEN.pre-fix2.sha256`.
+
+Changed files (sha256, first 16 hex digits):
+
+| file | before | after | in the freeze |
+|---|---|---|---|
+| `score/score_c3.py` | bd4856a89b8008c7 | 6e48a73485952229 | yes |
+| `tests/test_scorer.py` | 9cb53cf7d4db70cc | 7103a3e64578d49c | yes |
+| `FROZEN.sha256` | 21f5abf785658c3b | f0dafe335b2ef2b3 | (the freeze) |

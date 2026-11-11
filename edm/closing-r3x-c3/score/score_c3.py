@@ -278,6 +278,8 @@ def score_c3(S):
             S.p(f"{n}: NODATA ({v})")
             S.void_rows(n, "void")
             prev, prev_gap = None, True
+            if row == "F":
+                last_fill_r21 = None                      # post-run fix C7: no step across a fill that was not read
             continue
         cls = rec["class"]
         kept_obs = "yes" if cls == "ok" else "no" if cls == "stop" else None
@@ -292,11 +294,15 @@ def score_c3(S):
             S.p(info + f" (tick stopped; the stage ends); {sig_line(sg)}")
             S.void_rows_except(n, "kept")
             prev, prev_gap = None, True
+            if row == "F":
+                last_fill_r21 = None                      # post-run fix C7: no step across a fill that was not read
             continue
         if cls == "noreader" or rd0 is None or (j["write"] and (rdA is None or rdB is None)):
             S.p(info + " (tick kept, a reader did not run: cannot tell)")
             S.void_rows_except(n, "kept")
             prev, prev_gap = None, True
+            if row == "F":
+                last_fill_r21 = None                      # post-run fix C7: no step across a fill that was not read
             continue
         # ---- S0 -----------------------------------------------------------------------------------------------------
         if row == "S0":
@@ -330,14 +336,15 @@ def score_c3(S):
                 k for k, v_ in zip(MARK_REGS, [j["sa63"]] + list(j["ri"])) if rdA[k] != v_) + "): the perturbation rows are cannot tell"
         gate = ok_str if am else (lambda b: None)         # a failed control: the rows after the perturbation cannot be told
         gnote = "" if am else "control failed"
+        gv = (lambda x: x) if am else (lambda x: None)    # post-run fix C7: the failed control gates every row after it
         # ---- the perturbation's rows -----------------------------------------------------------------------------
         b = rdB
         res = {}
         if row == "N":
             S.judge(n, "b_markers", gate(marks_ok(b, j)), gnote)
-            S.judge(n, "b_p0p1", f"{b['p0']}{b['p1']}")
-            S.judge(n, "b_pclink", hx(b["pclink"]))
-            S.judge(n, "b_p2p3", f"{b['p2']}{b['p3']}")
+            S.judge(n, "b_p0p1", gv(f"{b['p0']}{b['p1']}"), gnote)
+            S.judge(n, "b_pclink", gv(hx(b["pclink"])), gnote)
+            S.judge(n, "b_p2p3", gv(f"{b['p2']}{b['p3']}"), gnote)
             res["markers"] = marks_ok(b, j)
         elif row == "F":
             ik = b["i0"] == j["ri"][2] and b["i1"] == j["ri"][3]
@@ -348,10 +355,10 @@ def score_c3(S):
                 step = None if last_fill_r21 is None else hx((b["r21"] - last_fill_r21) & 0xFFFFFFFF)
                 S.judge(n, "b_r21_step", step if am else None, "no previous fill reading" if step is None else gnote)
             S.judge(n, "b_sa63_kept", gate(b["sa63"] == j["sa63"]), gnote)
-            S.judge(n, "b_p0p1", f"{b['p0']}{b['p1']}")
-            S.judge(n, "b_pclink", hx(b["pclink"]))
-            S.judge(n, "b_p2p3", f"{b['p2']}{b['p3']}")
-            last_fill_r21 = b["r21"]
+            S.judge(n, "b_p0p1", gv(f"{b['p0']}{b['p1']}"), gnote)
+            S.judge(n, "b_pclink", gv(hx(b["pclink"])), gnote)
+            S.judge(n, "b_p2p3", gv(f"{b['p2']}{b['p3']}"), gnote)
+            last_fill_r21 = b["r21"] if am else None       # post-run fix C7: a fill whose control failed is no base for a step
             res.update({"i": ik, "r_replaced": b["r20"] != j["ri"][0] and b["r21"] != j["ri"][1], "sa63": b["sa63"] == j["sa63"]})
         else:
             ik = b["i0"] == j["ri"][2] and b["i1"] == j["ri"][3]
@@ -360,17 +367,18 @@ def score_c3(S):
             S.judge(n, "b_i_kept", gate(ik), gnote)
             S.judge(n, "b_r_kept", gate(rk), gnote)
             S.judge(n, "b_sa63_kept", gate(sk), gnote)
-            S.judge(n, "b_p2p3", f"{b['p2']}{b['p3']}")
-            S.judge(n, "b_p0p1", f"{b['p0']}{b['p1']}")
-            S.judge(n, "b_pclink", hx(b["pclink"]))
-            S.judge(n, "b_sa20_sa24_zero", ok_str(b["sa20"] == 0 and b["sa24"] == 0))
+            S.judge(n, "b_p2p3", gv(f"{b['p2']}{b['p3']}"), gnote)
+            S.judge(n, "b_p0p1", gv(f"{b['p0']}{b['p1']}"), gnote)
+            S.judge(n, "b_pclink", gv(hx(b["pclink"])), gnote)
+            S.judge(n, "b_sa20_sa24_zero", gate(b["sa20"] == 0 and b["sa24"] == 0), gnote)
             res.update({"i": ik, "r": rk, "sa63": sk, "r20": b["r20"] == j["ri"][0], "r21": b["r21"] == j["ri"][1]})
         if row != "F" or True:
             for r_ in SA_PLAIN:
-                S.judge(n, f"b_{r_}_same", ok_str(b[r_] == rdA[r_]))
+                S.judge(n, f"b_{r_}_same", gate(b[r_] == rdA[r_]), gnote)
         res["sa_plain"] = {r_: (rdA[r_], b[r_]) for r_ in SA_PLAIN}
         res["p"] = (b["p2"], b["p3"])
         res["r_vals"] = (b["r20"], b["r21"])
+        res["ctl"] = am
         facts["rows"].setdefault(row, []).append((n, res))
         S.p(info + f"; next event: pclink {hx(rdA['pclink'])} p {rdA['p0']}{rdA['p1']}{rdA['p2']}{rdA['p3']} (flags {''.join(map(str, j['flags']))}); "
             f"after {j['perturb']}: p {b['p0']}{b['p1']}{b['p2']}{b['p3']} sa63 {b['sa63']:#x} r20 {b['r20']:#x} r21 {b['r21']:#x} "
@@ -392,13 +400,21 @@ def score_c3(S):
     else:
         S.p("Q124 p2/p3: no discriminating job was read")
     for row, what in (("L", "reload (no reset)"), ("R", "debugfs reset and reload"), ("F", "client fill"), ("N", "1200 ms")):
-        rs = facts["rows"].get(row, [])
-        if not rs:
+        rs_all = facts["rows"].get(row, [])
+        if not rs_all:
             S.p(f"Q158 {row} ({what}): not read")
+            continue
+        # post-run fix C7: a job whose control failed is not counted, and the line names it
+        rs = [(x, r) for x, r in rs_all if r["ctl"]]
+        gated = [x for x, r in rs_all if not r["ctl"]]
+        gtail = (f"; {len(gated)} job{'s' if len(gated) != 1 else ''} with a failed control not counted ({', '.join(gated)})"
+                 if gated else "")
+        if not rs:
+            S.p(f"Q158 {row} ({what}): cannot tell" + gtail)
             continue
         if row == "N":
             m = sum(1 for _, r in rs if r["markers"])
-            S.p(f"Q158 N ({what}): sa63, r20, r21, i0, i1 kept in {m} of {len(rs)} jobs")
+            S.p(f"Q158 N ({what}): sa63, r20, r21, i0, i1 kept in {m} of {len(rs)} jobs" + gtail)
             continue
         parts = [f"i0/i1 {sum(1 for _, r in rs if r['i'])}/{len(rs)}", f"sa63 {sum(1 for _, r in rs if r['sa63'])}/{len(rs)}"]
         if row == "F":
@@ -406,7 +422,7 @@ def score_c3(S):
         else:
             parts.append(f"r20/r21 both survived {sum(1 for _, r in rs if r['r'])}/{len(rs)} (r20 {sum(1 for _, r in rs if r['r20'])}/{len(rs)}, "
                          f"r21 {sum(1 for _, r in rs if r['r21'])}/{len(rs)})")
-        S.p(f"Q158 {row} ({what}): kept " + ", ".join(parts) + "; p2 p3 after: " + " ".join(f"{r['p'][0]}{r['p'][1]}" for _, r in rs))
+        S.p(f"Q158 {row} ({what}): kept " + ", ".join(parts) + "; p2 p3 after: " + " ".join(f"{r['p'][0]}{r['p'][1]}" for _, r in rs) + gtail)
     # start state and sa100/sa127: as found
     s0 = facts["s0"]
     if s0:
