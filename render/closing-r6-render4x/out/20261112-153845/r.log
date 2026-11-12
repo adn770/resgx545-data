@@ -1,0 +1,66 @@
+## stage r
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+41E2F5C756F96D20F7109A4
+## loaded module
+41E2F5C756F96D20F7109A4
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+render_tail_room=0x00000000
+## free space on ~: 127333908 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r6x.3ebqha
+## clock
+Thu Nov 12 15:42:58 CET 2026
+## r6-render4x set B safety rules: see the header of run-b/lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 8d1dacb05180f889a46bb8fdc74c06d69edbf949a50b030b2ad51a092361d506
+  kept begin.health1.txt: 311 bytes raw, raw sha256 dff84b4ec09ad55658e4484387d3d7617a16ed38a3561a39fe21d3c5b2430973
+== r2-2048x2032 set=heldout risk=risky mode=plain knobs=[expectdiff strict]
+  free on ~: 127333892 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 2048 --height 2032 --max-width 2048 --max-height 2032 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.3ebqha/1-r2-2048x2032/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 2048x2032 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (6144,0) (0,6096), depth 0.5 0.5 0.5 
+  kept r2-2048x2032.txt: 888 bytes raw, raw sha256 7cf57ee05b3576bda967a2b9228301f2f8ef9882321902e8b49e9c3573174d26
+  kept r2-2048x2032.dmesg: 108 bytes raw, raw sha256 73683b7d96bff85f2b25db80c1a4100fa4222b36065409a0083741bbb1597058
+  kept r2-2048x2032.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept r2-2048x2032.snap0.regs: 6474 bytes raw, raw sha256 6e8df0b6e44106684861dfdcd40745837266bb9ccb602967cc74d124ae5d9424
+  kept r2-2048x2032.snap9.regs: 6474 bytes raw, raw sha256 49e5f8691d25b79c2db54fe9c4e3d088cce808fdeaa10fe585e049f6cdbcd027
+  kept r2-2048x2032.tri.param.bin: 4603904 bytes raw, raw sha256 abb99868c4fc64a2ba5358222e499fd91197a0b7164105776dac33369b2969a4
+  kept r2-2048x2032.tri.tadata.bin: 765952 bytes raw, raw sha256 665aa3113cdf52ed121cc403e8008d708866ef7a5f04e73202e844bae77cdb49
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== r1-4096x960 set=explore risk=risky mode=plain knobs=[expectdiff strict]
+  free on ~: 127333772 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 4096 --height 960 --max-width 4096 --max-height 960 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 4096x960 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (12288,0) (0,2880), depth 0.5 0.5 0.5 
+  kept r1-4096x960.txt: 456 bytes raw, raw sha256 7c79921d1658226f8744c90843e841dc4f54de826adab912651b3f1738fe1e84
+  kept r1-4096x960.dmesg: 107 bytes raw, raw sha256 109242122e26a8e59de5ca1f66417288bfccbb6620af5ac101dd7263d8d66573
+  kept r1-4096x960.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept r1-4096x960.snap0.regs: 6474 bytes raw, raw sha256 ca9b2da651008a53114cd142c9410c7d87d112ab0770335b13f803c98d43494e
+  kept r1-4096x960.snap9.regs: 6474 bytes raw, raw sha256 239332f1f2f9f6e5a3ceafbe0b88e93dee8f2eaad48888aba80389df5286803a
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== r3-4096x1152 set=explore risk=risky mode=plain knobs=[expectdiff strict]
+  free on ~: 127333748 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 4096 --height 1152 --max-width 4096 --max-height 1152 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000440 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 4096x1152 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (12288,0) (0,3456), depth 0.5 0.5 0.5 
+  kept r3-4096x1152.txt: 613 bytes raw, raw sha256 013d2df7220a5797f48814a804575e91433865bc5c264bb5b9894947fcea120a
+  kept r3-4096x1152.dmesg: 108 bytes raw, raw sha256 27917cfac05adbc0b4878539a0f01c0604a04ebd82464aee12ca848121b2d5e3
+  kept r3-4096x1152.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept r3-4096x1152.snap0.regs: 6474 bytes raw, raw sha256 b8dfc9d3d86d32633bc69735c5bba161818127de0c44ff53b8690a98755bc219
+  kept r3-4096x1152.snap9.regs: 6474 bytes raw, raw sha256 9f4ca5da3752dd12680d6ce8b59d4ac86b172640f505eff3286a30b3e84d9d22
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  kept end.fill2.txt: 174 bytes raw, raw sha256 6192a971232fd2081bfd544c2e02aa054a0383a16f8ae485af41b25ff8b07622
+  kept end.health2.txt: 311 bytes raw, raw sha256 8a820ef4ae8ed9cf80a7f930e0e3f8ddfe135a55a737f894c405797667d8c420
+## end: 3 jobs of r
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+## kernel log (journalctl)
+## kernel log: 3 case markers kept in /home/jtorra/scratch/r6x/out/20261112-153845/r/kernel.log

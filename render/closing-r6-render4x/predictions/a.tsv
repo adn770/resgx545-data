@@ -1,0 +1,366 @@
+case	quantity	value	model	set	source
+a4-1024x768-max2048x1024	dump_param	a4-1024x768-max2048x1024.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a4-1024x768-max2048x1024	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x7000 <= td.rgn 0x7000 of the 2048x1024 maximum	ctl	gen/rules.py; exp 1.2
+a4-1024x768-max2048x1024	entries_end	0x7000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a4-1024x768-max2048x1024	td_rgn	0x7000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-y-state	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-x-state	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPC-d-state	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-W	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-H	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-OR	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-AND	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-TPM	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-P	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	rule:K-AREA	complete	rules.py from the argv (target 1024x768, maximum 2048x1024)	compare	gen/rules.py
+a4-1024x768-max2048x1024	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	ctl	E845
+a4-1024x768-max2048x1024	fault_page	0x10000	the request base: a zero stream offset (E869)	ctl	E869
+a4-1024x768-max2048x1024	diff	0 of 786432 pixels	a completed 4x full triangle draws exactly (E824)	ctl	E824
+a4-1024x768-max2048x1024	pb_used	193	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a4-1024x768-max2048x1024	tadata_size	274432	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a4-1024x768-max2048x1024	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a4-1024x768-max2048x1024	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a1-1024x1280	dump_param	a1-1024x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a1-1024x1280	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x13000 <= td.rgn 0x13000 of the 1024x1280 maximum	heldout	gen/rules.py; exp 1.2
+a1-1024x1280	entries_end	0x13000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a1-1024x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a1-1024x1280	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-y-state	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-x-state	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPC-d-state	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-W	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-H	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-OR	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-AND	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-TPM	either (no threshold: K-TPM 160 inside (128, 192))	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-P	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	rule:K-AREA	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1-1024x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a1-1024x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a1-1024x1280	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a1-1024x1280	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a1-1024x1280	tadata_size	233472	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a1-1024x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a1-1024x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a1r-1024x1280	dump_param	a1r-1024x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a1r-1024x1280	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x13000 <= td.rgn 0x13000 of the 1024x1280 maximum	rep	gen/rules.py; exp 1.2
+a1r-1024x1280	entries_end	0x13000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a1r-1024x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a1r-1024x1280	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-y-state	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-x-state	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPC-d-state	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-W	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-H	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-OR	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-AND	complete	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-TPM	either (no threshold: K-TPM 160 inside (128, 192))	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-P	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	rule:K-AREA	fault	rules.py from the argv (target 1024x1280, maximum 1024x1280)	compare	gen/rules.py
+a1r-1024x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	rep	E845
+a1r-1024x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	rep	E869
+a1r-1024x1280	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	rep	E824
+a1r-1024x1280	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a1r-1024x1280	tadata_size	233472	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a1r-1024x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a1r-1024x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a12-992x1280	dump_param	a12-992x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a12-992x1280	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x12fe0 <= td.rgn 0x13000 of the 992x1280 maximum	heldout	gen/rules.py; exp 1.2
+a12-992x1280	entries_end	0x12fe0	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a12-992x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a12-992x1280	rule:TPM-y-tail	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-y-otpm	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-y-state	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-x-tail	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-x-otpm	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-x-state	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPM-x-rgn	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPC-d-state	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-W	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-H	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-OR	fault	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-AND	complete	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-TPM	either (no threshold: K-TPM 160 inside (128, 192))	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-P	either (no threshold: K-P 311 inside (193, 321))	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	rule:K-AREA	either (no threshold: K-AREA 1269760 inside (786432, 1310720))	rules.py from the argv (target 992x1280, maximum 992x1280)	compare	gen/rules.py
+a12-992x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a12-992x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a12-992x1280	diff	0 of 1269760 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a12-992x1280	pb_used	311	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a12-992x1280	tadata_size	233472	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a12-992x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a12-992x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a13-512x1536	dump_param	a13-512x1536.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a13-512x1536	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x12000 <= td.rgn 0x13000 of the 512x1536 maximum	heldout	gen/rules.py; exp 1.2
+a13-512x1536	entries_end	0x12000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a13-512x1536	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a13-512x1536	rule:TPM-y-tail	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-y-otpm	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-y-state	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-x-tail	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-x-otpm	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-x-state	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPM-x-rgn	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPC-d-rgn	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPC-d-state	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPC-rs-rgn	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:TPC-rb-rgn	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-W	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-H	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-OR	fault	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-AND	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-TPM	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-P	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	rule:K-AREA	complete	rules.py from the argv (target 512x1536, maximum 512x1536)	compare	gen/rules.py
+a13-512x1536	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a13-512x1536	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a13-512x1536	diff	0 of 786432 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a13-512x1536	pb_used	193	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a13-512x1536	tadata_size	172032	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a13-512x1536	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a13-512x1536	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a8-1024x1024-max1024x1280	dump_param	a8-1024x1024-max1024x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a8-1024x1024-max1024x1280	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x8000 <= td.rgn 0x13000 of the 1024x1280 maximum	heldout	gen/rules.py; exp 1.2
+a8-1024x1024-max1024x1280	entries_end	0x8000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a8-1024x1024-max1024x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-y-tail	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-y-otpm	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-y-state	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-x-tail	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-x-otpm	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-x-state	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPM-x-rgn	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPC-d-state	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-W	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-H	fault	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-OR	fault	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-AND	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-TPM	complete	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-P	either (no threshold: K-P 257 inside (193, 321))	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	rule:K-AREA	either (no threshold: K-AREA 1048576 inside (786432, 1310720))	rules.py from the argv (target 1024x1024, maximum 1024x1280)	compare	gen/rules.py
+a8-1024x1024-max1024x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a8-1024x1024-max1024x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a8-1024x1024-max1024x1280	diff	0 of 1048576 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a8-1024x1024-max1024x1280	pb_used	257	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a8-1024x1024-max1024x1280	tadata_size	233472	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a8-1024x1024-max1024x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a8-1024x1024-max1024x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a9-1024x800-max1024x1280	dump_param	a9-1024x800-max1024x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a9-1024x800-max1024x1280	htpm	complete	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x7ac0 <= td.rgn 0x13000 of the 1024x1280 maximum	heldout	gen/rules.py; exp 1.2
+a9-1024x800-max1024x1280	entries_end	0x7ac0	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a9-1024x800-max1024x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-y-tail	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-y-otpm	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-y-state	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-x-tail	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-x-otpm	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-x-state	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPM-x-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPC-d-state	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-W	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-H	fault	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-OR	fault	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-AND	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-TPM	complete	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-P	either (no threshold: K-P 201 inside (193, 321))	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	rule:K-AREA	either (no threshold: K-AREA 819200 inside (786432, 1310720))	rules.py from the argv (target 1024x800, maximum 1024x1280)	compare	gen/rules.py
+a9-1024x800-max1024x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a9-1024x800-max1024x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a9-1024x800-max1024x1280	diff	0 of 819200 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a9-1024x800-max1024x1280	pb_used	201	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a9-1024x800-max1024x1280	tadata_size	233472	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a9-1024x800-max1024x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a9-1024x800-max1024x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a2-1024x1296	dump_param	a2-1024x1296.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a2-1024x1296	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x13ab0 > td.rgn 0x13000 of the 1024x1296 maximum	heldout	gen/rules.py; exp 1.2
+a2-1024x1296	entries_end	0x13ab0	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a2-1024x1296	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a2-1024x1296	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-y-state	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-x-state	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPC-d-state	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-W	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-H	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-OR	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-AND	complete	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-TPM	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-P	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	rule:K-AREA	fault	rules.py from the argv (target 1024x1296, maximum 1024x1296)	compare	gen/rules.py
+a2-1024x1296	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a2-1024x1296	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a2-1024x1296	diff	0 of 1327104 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a2-1024x1296	pb_used	325	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a2-1024x1296	tadata_size	262144	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a2-1024x1296	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a2-1024x1296	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a3-1040x1280	dump_param	a3-1040x1280.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a3-1040x1280	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x18560 > td.rgn 0x13000 of the 1040x1280 maximum	heldout	gen/rules.py; exp 1.2
+a3-1040x1280	entries_end	0x18560	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a3-1040x1280	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a3-1040x1280	rule:TPM-y-tail	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-y-otpm	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-y-state	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-x-tail	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-x-otpm	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-x-state	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPM-x-rgn	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPC-d-rgn	complete	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPC-d-state	complete	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-W	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-H	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-OR	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-AND	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-TPM	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-P	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	rule:K-AREA	fault	rules.py from the argv (target 1040x1280, maximum 1040x1280)	compare	gen/rules.py
+a3-1040x1280	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a3-1040x1280	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a3-1040x1280	diff	0 of 1331200 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a3-1040x1280	pb_used	326	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a3-1040x1280	tadata_size	311296	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a3-1040x1280	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a3-1040x1280	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a5-1024x800-max2048x1024	dump_param	a5-1024x800-max2048x1024.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a5-1024x800-max2048x1024	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x7ac0 > td.rgn 0x7000 of the 2048x1024 maximum	heldout	gen/rules.py; exp 1.2
+a5-1024x800-max2048x1024	entries_end	0x7ac0	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a5-1024x800-max2048x1024	td_rgn	0x7000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-y-state	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-x-state	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPC-d-state	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-W	complete	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-H	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-OR	fault	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-AND	complete	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-TPM	complete	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-P	either (no threshold: K-P 201 inside (193, 321))	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	rule:K-AREA	either (no threshold: K-AREA 819200 inside (786432, 1310720))	rules.py from the argv (target 1024x800, maximum 2048x1024)	compare	gen/rules.py
+a5-1024x800-max2048x1024	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a5-1024x800-max2048x1024	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a5-1024x800-max2048x1024	diff	0 of 819200 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a5-1024x800-max2048x1024	pb_used	201	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a5-1024x800-max2048x1024	tadata_size	274432	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a5-1024x800-max2048x1024	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a5-1024x800-max2048x1024	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+a14-1024x1536	dump_param	a14-1024x1536.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+a14-1024x1536	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x14000 > td.rgn 0x13000 of the 1024x1536 maximum	heldout	gen/rules.py; exp 1.2
+a14-1024x1536	entries_end	0x14000	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+a14-1024x1536	td_rgn	0x13000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+a14-1024x1536	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-y-state	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-x-state	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPC-d-state	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-W	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-H	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-OR	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-AND	complete	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-TPM	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-P	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	rule:K-AREA	fault	rules.py from the argv (target 1024x1536, maximum 1024x1536)	compare	gen/rules.py
+a14-1024x1536	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+a14-1024x1536	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+a14-1024x1536	diff	0 of 1572864 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+a14-1024x1536	pb_used	385	page model U4 = 1 + ceil(2 tiles16 / 32) (E824's ten dumps; r5 m, l, x: 6 of 6)	model	gen/pbmodel.py
+a14-1024x1536	tadata_size	262144	the layout of the CONTEXT'S maximum, four arrays (r5: 6 of 6)	model	gen/pbmodel.py
+a14-1024x1536	hdr_off	0	the doubled-grid rule: grid of the target, base td.rgn of the maximum (r5 m0, m1, m2, m4: 0 off)	model	gen/rlib.py headers
+a14-1024x1536	nonzero_below_rgn	0	every completed four-array dump of r5 is zero below td.rgn (cells.out)	model	cells.out
+h1-1024x800-held	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0x7ac0 > td.rgn 0x7000 of the 1024x800 maximum	heldout	gen/rules.py; exp 1.2
+h1-1024x800-held	entries_end	0x7ac0	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+h1-1024x800-held	td_rgn	0x7000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+h1-1024x800-held	rule:TPM-y-tail	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-y-otpm	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-y-state	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-x-tail	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-x-otpm	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-x-state	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPM-x-rgn	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPC-d-state	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-W	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-H	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-OR	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-AND	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-TPM	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-P	either (no threshold: K-P 201 inside (193, 321))	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	rule:K-AREA	either (no threshold: K-AREA 819200 inside (786432, 1310720))	rules.py from the argv (target 1024x800, maximum 1024x800)	compare	gen/rules.py
+h1-1024x800-held	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+h1-1024x800-held	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+h2-1280x768-held	htpm	fault	H-TPM [E870, post hoc fit on E869's dump; this row held out]: the target's entries end 0xc800 > td.rgn 0x7000 of the 1280x768 maximum	heldout	gen/rules.py; exp 1.2
+h2-1280x768-held	entries_end	0xc800	4 x (Z(2tx - 1, 2ty - 1) + 1), y on the even bits	model	gen/rules.py
+h2-1280x768-held	td_rgn	0x7000	the maximum's layout on the rgn4 kernel (room 4 side^2 + 3 pages)	model	gen/rules.py
+h2-1280x768-held	rule:TPM-y-tail	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-y-otpm	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-y-state	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-x-tail	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-x-otpm	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-x-state	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPM-x-rgn	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPC-d-rgn	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPC-d-state	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPC-rs-rgn	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-W	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-H	complete	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-OR	fault	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-AND	complete	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-TPM	either (no threshold: K-TPM 144 inside (128, 192))	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-P	either (no threshold: K-P 241 inside (193, 321))	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	rule:K-AREA	either (no threshold: K-AREA 983040 inside (786432, 1310720))	rules.py from the argv (target 1280x768, maximum 1280x768)	compare	gen/rules.py
+h2-1280x768-held	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869)	heldout	E845
+h2-1280x768-held	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869

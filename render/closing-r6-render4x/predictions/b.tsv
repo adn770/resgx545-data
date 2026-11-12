@@ -1,0 +1,117 @@
+case	quantity	value	model	set	source
+b9-1024x768	dump_param	b9-1024x768.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b9-1024x768	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x7000 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says complete	ctl	gen/layout_b.py; gen/rules.py
+b9-1024x768	entries_end	0x7000	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b9-1024x768	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b9-1024x768	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b9-1024x768	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	ctl	E845
+b9-1024x768	fault_page	0x10000	the request base: a zero stream offset (E869)	ctl	E869
+b9-1024x768	diff	0 of 786432 pixels	a completed 4x full triangle draws exactly (E824)	ctl	E824
+b9-1024x768	pb_used	193	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b9-1024x768	tadata_size	172032	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b9-1024x768	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b9-1024x768	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b1-1280x1024	dump_param	b1-1280x1024.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b1-1280x1024	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xd800 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b1-1280x1024	rgn4_record	fault (E845, E869)	the same cell on the rgn4 kernel	compare	E845, E869
+b1-1280x1024	entries_end	0xd800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b1-1280x1024	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b1-1280x1024	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b1-1280x1024	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b1-1280x1024	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b1-1280x1024	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b1-1280x1024	pb_used	321	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b1-1280x1024	tadata_size	262144	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b1-1280x1024	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b1-1280x1024	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b2-1184x768	dump_param	b2-1184x768.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b2-1184x768	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xc760 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b2-1184x768	rgn4_record	fault (E868 x2)	the same cell on the rgn4 kernel	compare	E868 x2
+b2-1184x768	entries_end	0xc760	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b2-1184x768	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b2-1184x768	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b2-1184x768	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b2-1184x768	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b2-1184x768	diff	0 of 909312 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b2-1184x768	pb_used	223	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b2-1184x768	tadata_size	217088	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b2-1184x768	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b2-1184x768	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b3-1024x800	dump_param	b3-1024x800.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b3-1024x800	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x7ac0 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b3-1024x800	rgn4_record	fault (E868 x3, stage A h1)	the same cell on the rgn4 kernel	compare	E868 x3, stage A h1
+b3-1024x800	entries_end	0x7ac0	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b3-1024x800	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b3-1024x800	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b3-1024x800	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b3-1024x800	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b3-1024x800	diff	0 of 819200 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b3-1024x800	pb_used	201	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b3-1024x800	tadata_size	200704	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b3-1024x800	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b3-1024x800	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b4-2048x240	dump_param	b4-2048x240.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b4-2048x240	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xaff0 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b4-2048x240	rgn4_record	fault (E868 l1)	the same cell on the rgn4 kernel	compare	E868 l1
+b4-2048x240	entries_end	0xaff0	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b4-2048x240	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b4-2048x240	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b4-2048x240	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b4-2048x240	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b4-2048x240	diff	0 of 491520 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b4-2048x240	pb_used	121	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b4-2048x240	tadata_size	139264	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b4-2048x240	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b4-2048x240	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b5-768x2048	dump_param	b5-768x2048.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b5-768x2048	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x17800 <= td.rgn 0x43000 (room 0x40000, automatic); on the rgn4 layout (td.rgn 0x13000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b5-768x2048	rgn4_record	fault (E868 l3)	the same cell on the rgn4 kernel	compare	E868 l3
+b5-768x2048	entries_end	0x17800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b5-768x2048	td_rgn	0x43000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b5-768x2048	room	0x40000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b5-768x2048	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b5-768x2048	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b5-768x2048	diff	0 of 1572864 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b5-768x2048	pb_used	385	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b5-768x2048	tadata_size	520192	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b5-768x2048	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b5-768x2048	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b6-2048x1536	dump_param	b6-2048x1536.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b6-2048x1536	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x1c000 <= td.rgn 0x43000 (room 0x40000, automatic); on the rgn4 layout (td.rgn 0x13000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b6-2048x1536	rgn4_record	fault (E845)	the same cell on the rgn4 kernel	compare	E845
+b6-2048x1536	entries_end	0x1c000	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b6-2048x1536	td_rgn	0x43000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b6-2048x1536	room	0x40000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b6-2048x1536	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b6-2048x1536	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b6-2048x1536	diff	0 of 3145728 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b6-2048x1536	pb_used	769	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b6-2048x1536	tadata_size	643072	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b6-2048x1536	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b6-2048x1536	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b7-1280x768	dump_param	b7-1280x768.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b7-1280x768	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xc800 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b7-1280x768	rgn4_record	fault (E868 l4, stage A h2)	the same cell on the rgn4 kernel	compare	E868 l4, stage A h2
+b7-1280x768	entries_end	0xc800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b7-1280x768	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b7-1280x768	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b7-1280x768	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b7-1280x768	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b7-1280x768	diff	0 of 983040 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b7-1280x768	pb_used	241	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b7-1280x768	tadata_size	217088	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b7-1280x768	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b7-1280x768	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+b8-1024x1024	dump_param	b8-1024x1024.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+b8-1024x1024	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x8000 <= td.rgn 0x13000 (room 0x10000, automatic); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+b8-1024x1024	rgn4_record	fault (E868 l5)	the same cell on the rgn4 kernel	compare	E868 l5
+b8-1024x1024	entries_end	0x8000	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+b8-1024x1024	td_rgn	0x13000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+b8-1024x1024	room	0x10000	automatic: 4 x 4 side^2	model	gen/layout_b.py
+b8-1024x1024	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+b8-1024x1024	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+b8-1024x1024	diff	0 of 1048576 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+b8-1024x1024	pb_used	257	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+b8-1024x1024	tadata_size	200704	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+b8-1024x1024	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+b8-1024x1024	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
