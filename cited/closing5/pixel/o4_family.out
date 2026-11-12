@@ -1,0 +1,24 @@
+9 of 765 + 56 models reproduce the tag-5 word in all 8 kept configurations:
+   OR(o0, o3)
+   AND(o4, o6)
+   XOR(o0, o2, o6)
+   XOR(o3, o5, o6)
+   MUX(bits 2:0 of o4, bits 5:3 of o0)
+   MUX(bits 2:0 of o4, bits 5:3 of o2)
+   MUX(bits 2:0 of o4, bits 5:3 of o3)
+   MUX(bits 2:0 of o4, bits 5:3 of o5)
+   MUX(bits 2:0 of o4, bits 5:3 of o6)
+
+round 5 walk rows (w-j: bit 4 at o_j only, bit 5 at every output but o_j; tags unchanged): bits 5:4 predicted at the tag-5 words
+model                                        w-0 w-1 w-2 w-3 w-4 w-5 w-6 w-7
+OR(o0, o3)                                   3   2   2   3   2   2   2   2
+AND(o4, o6)                                  2   2   2   2   0   2   0   2
+XOR(o0, o2, o6)                              1   2   1   2   2   2   1   2
+XOR(o3, o5, o6)                              2   2   2   1   2   1   1   2
+MUX(bits 2:0 of o4, bits 5:3 of o0)          1   2   2   2   2   2   2   2
+MUX(bits 2:0 of o4, bits 5:3 of o2)          2   2   1   2   2   2   2   2
+MUX(bits 2:0 of o4, bits 5:3 of o3)          2   2   2   1   2   2   2   2
+MUX(bits 2:0 of o4, bits 5:3 of o5)          2   2   2   2   2   1   2   2
+MUX(bits 2:0 of o4, bits 5:3 of o6)          2   2   2   2   2   2   1   2
+
+9 distinct walk signatures among 9 survivors; models that share one:
