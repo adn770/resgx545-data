@@ -1,0 +1,78 @@
+#stage g5-rw
+#need $S/pix_green.bin
+#need $S/m-01.bin
+#need $S/m-02.bin
+#need $S/m-03.bin
+#need $S/m-04.bin
+#need $S/m-05.bin
+#need $S/m-06.bin
+#need $S/m-07.bin
+#need $S/m-08.bin
+#need $S/m-09.bin
+#need $S/m-10.bin
+#need $S/m-11.bin
+#need $S/m-12.bin
+#need $S/m-13.bin
+#need $S/m-14.bin
+#need $S/rw-07.bin
+#need $S/rw-10.bin
+#need $S/d-01.bin
+#need $S/d-02.bin
+#need $S/d-03.bin
+#need $S/d-04.bin
+#need $S/d-05.bin
+#need $S/d-06.bin
+#need $S/d-07.bin
+#need $S/d-08.bin
+#need $S/d-09.bin
+#need $S/d-10.bin
+#need $S/d-11.bin
+#need $S/d-12.bin
+#need $S/d-13.bin
+#need $S/d-14.bin
+#need $S/d-15.bin
+#need $S/d-16.bin
+#need $S/d-17.bin
+#need $S/d-18.bin
+#need $S/d-19.bin
+#need $S/d-20.bin
+# Q230 (geometry), g5-rw part b: H-MANT (word - RZ follows the mantissa of w): m-01..m-07 = R4's rw-01..07 at scale 1/2, m-08..m-14 =
+# R4's rw-08..14 at scale 16 (42 words, R4's delta frozen, 11 of them RZ + 1); replicates rw-07, rw-10 (R4's programs: R4's six words);
+# the dense table d-01..d-20 (60 new mantissas: 1 + k/64 for odd k, 8 hashed, 20 derived; scales 1/4 to 4), FIT / HELD OUT split
+# frozen by sha256 for a later fit.
+m-01|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-01.bin"
+m-02|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-02.bin"
+m-03|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-03.bin"
+m-04|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-04.bin"
+m-05|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-05.bin"
+m-06|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-06.bin"
+m-07|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-07.bin"
+m-08|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-08.bin"
+m-09|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-09.bin"
+m-10|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-10.bin"
+m-11|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-11.bin"
+m-12|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-12.bin"
+m-13|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-13.bin"
+m-14|heldout|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/m-14.bin"
+rw-07|replicate|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-07.bin"
+rw-10|replicate|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/rw-10.bin"
+d-01|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-01.bin"
+d-02|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-02.bin"
+d-03|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-03.bin"
+d-04|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-04.bin"
+d-05|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-05.bin"
+d-06|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-06.bin"
+d-07|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-07.bin"
+d-08|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-08.bin"
+d-09|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-09.bin"
+d-10|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-10.bin"
+d-11|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-11.bin"
+d-12|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-12.bin"
+d-13|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-13.bin"
+d-14|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-14.bin"
+d-15|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-15.bin"
+d-16|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-16.bin"
+d-17|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-17.bin"
+d-18|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-18.bin"
+d-19|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-19.bin"
+d-20|table|safe|stophang s2|-|probe --temps 8 --pixels --tri vtxuse --width 64 --height 64 --vtx-coords 2 --dump-render "$W/dump" --slot "pixel=$S/pix_green.bin" "$S/d-20.bin"
