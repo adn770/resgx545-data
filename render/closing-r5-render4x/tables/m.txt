@@ -1,0 +1,9 @@
+#stage m
+#limit 4
+# m: the same size with more room (H-TPC against every size rule).  m0 and m3 are the controls that can fail; a fault in m0 stops
+# the stage (no hypothesis knob).  Fault limit 4, strict health after each fault.
+m0-1024x768-max2048x2048|control|safe|expectdiff strict|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 768 --max-width 2048 --max-height 2048 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+m1-1280x1024-max1280x1040|heldout|risky|expectdiff strict hypo:q292:4|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1280 --height 1024 --max-width 1280 --max-height 1040 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+m2-1280x1024-max2048x2048|heldout|risky|expectdiff strict hypo:q292:4|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1280 --height 1024 --max-width 2048 --max-height 2048 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+m3-1280x1024-max2048x1024|control|risky|expectdiff strict hypo:q292:4|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1280 --height 1024 --max-width 2048 --max-height 1024 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+m4-2048x1536-max4096x4096|heldout|risky|expectdiff strict hypo:q292:4|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 2048 --height 1536 --max-width 4096 --max-height 4096 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c

@@ -1,0 +1,96 @@
+case	quantity	value	model	set	source
+m0-1024x768-max2048x2048	dump_param	m0-1024x768-max2048x2048.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+m0-1024x768-max2048x2048	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:TPC-d-state	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-W	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-H	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-OR	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-AND	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-TPM	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-P	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	rule:K-AREA	complete	rules.py from the argv (target 1024x768, maximum 2048x2048)	ctl	gen/rules.py; exp 1.4
+m0-1024x768-max2048x2048	htpc	complete	H-TPC's four variants agree	ctl	gen/rules.py
+m0-1024x768-max2048x2048	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	ctl	E845
+m0-1024x768-max2048x2048	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	ctl	E845
+m0-1024x768-max2048x2048	diff	0 of 786432 pixels	a completed 4x full triangle draws exactly (E824)	ctl	E824
+m0-1024x768-max2048x2048	pb_used	193	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+m0-1024x768-max2048x2048	tadata_size	569344	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+m0-1024x768-max2048x2048	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+m1-1280x1024-max1280x1040	dump_param	m1-1280x1024-max1280x1040.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+m1-1280x1024-max1280x1040	rule:TPC-d-rgn	complete	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:TPC-d-state	complete	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-W	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-H	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-OR	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-AND	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-TPM	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-P	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	rule:K-AREA	fault	rules.py from the argv (target 1280x1024, maximum 1280x1040)	heldout	gen/rules.py; exp 1.4
+m1-1280x1024-max1280x1040	htpc	complete	H-TPC's four variants agree	heldout	gen/rules.py
+m1-1280x1024-max1280x1040	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	heldout	E845
+m1-1280x1024-max1280x1040	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	heldout	E845
+m1-1280x1024-max1280x1040	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+m1-1280x1024-max1280x1040	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+m1-1280x1024-max1280x1040	tadata_size	311296	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+m1-1280x1024-max1280x1040	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+m2-1280x1024-max2048x2048	dump_param	m2-1280x1024-max2048x2048.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+m2-1280x1024-max2048x2048	rule:TPC-d-rgn	complete	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:TPC-d-state	complete	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-W	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-H	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-OR	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-AND	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-TPM	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-P	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	rule:K-AREA	fault	rules.py from the argv (target 1280x1024, maximum 2048x2048)	heldout	gen/rules.py; exp 1.4
+m2-1280x1024-max2048x2048	htpc	complete	H-TPC's four variants agree	heldout	gen/rules.py
+m2-1280x1024-max2048x2048	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	heldout	E845
+m2-1280x1024-max2048x2048	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	heldout	E845
+m2-1280x1024-max2048x2048	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+m2-1280x1024-max2048x2048	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+m2-1280x1024-max2048x2048	tadata_size	569344	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+m2-1280x1024-max2048x2048	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+m3-1280x1024-max2048x1024	dump_param	m3-1280x1024-max2048x1024.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+m3-1280x1024-max2048x1024	rule:TPC-d-rgn	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:TPC-d-state	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:TPC-rs-rgn	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-W	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-H	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-OR	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-AND	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-TPM	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-P	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	rule:K-AREA	fault	rules.py from the argv (target 1280x1024, maximum 2048x1024)	ctl	gen/rules.py; exp 1.4
+m3-1280x1024-max2048x1024	htpc	fault	H-TPC's four variants agree	ctl	gen/rules.py
+m3-1280x1024-max2048x1024	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	ctl	E845
+m3-1280x1024-max2048x1024	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	ctl	E845
+m3-1280x1024-max2048x1024	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	ctl	E824
+m3-1280x1024-max2048x1024	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+m3-1280x1024-max2048x1024	tadata_size	274432	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+m3-1280x1024-max2048x1024	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+m4-2048x1536-max4096x4096	dump_param	m4-2048x1536-max4096x4096.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+m4-2048x1536-max4096x4096	rule:TPC-d-rgn	complete	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:TPC-d-state	complete	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:TPC-rs-rgn	complete	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:TPC-rb-rgn	complete	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-W	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-H	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-OR	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-AND	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-TPM	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-P	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	rule:K-AREA	fault	rules.py from the argv (target 2048x1536, maximum 4096x4096)	heldout	gen/rules.py; exp 1.4
+m4-2048x1536-max4096x4096	htpc	complete	H-TPC's four variants agree	heldout	gen/rules.py
+m4-2048x1536-max4096x4096	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	heldout	E845
+m4-2048x1536-max4096x4096	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	heldout	E845
+m4-2048x1536-max4096x4096	diff	0 of 3145728 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+m4-2048x1536-max4096x4096	pb_used	769	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+m4-2048x1536-max4096x4096	tadata_size	2240512	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+m4-2048x1536-max4096x4096	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
