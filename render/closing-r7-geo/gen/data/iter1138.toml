@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# p1138 iteration vehicle: the triangle's primary PDS program iterating coordinate set 0 (source 1, two
+# components: o4 = clip z, o5 = clip x, templates/vtx_attr_zx.s) or the pixel position (source 0), no fetch,
+# DOUTU1 bit 24 and the completion bit (E437's form); the shader writes pa0 or pa1 as the colour.
+needs = ["render"]
+
+[[probe]]
+name = "p1138-it-a0"
+question = "pa0 of source 1 (the vertices' clip z) as the colour"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_pa0.s", vtxuse = "vtx_attr_zx.s" }
+vtx_coords = 2
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+labels = ["source 1, two components"]
+cases = [[0x20400800, 0x0, 0x1000004]]
+
+[[probe]]
+name = "p1138-it-a1"
+question = "pa1 of source 1 (the vertices' clip x) as the colour"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_pa1.s", vtxuse = "vtx_attr_zx.s" }
+vtx_coords = 2
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+labels = ["source 1, two components"]
+cases = [[0x20400800, 0x0, 0x1000004]]
+
+[[probe]]
+name = "p1138-pos-x"
+question = "the pixel position's x as the colour (E437)"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_pa0.s" }
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+labels = ["source 0, two components"]
+cases = [[0x20400000, 0x0, 0x1000004]]
+
+[[probe]]
+name = "p1138-pos-y"
+question = "the pixel position's y as the colour (E437)"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_pa1.s" }
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+labels = ["source 0, two components"]
+cases = [[0x20400000, 0x0, 0x1000004]]
+
+[[probe]]
+name = "p1138-green"
+question = "plain green pixel shader (the default primary program), for coverage alone"
+source = "pds_iter_nofetch.s"
+host = "tri"
+slot = "pixpds"
+slots = { pixel = "pix_green.s" }
+size = [64, 64]
+pixels = true
+inputs = ["A", "B", "U"]
+labels = ["source 0"]
+cases = [[0x20400000, 0x0, 0x1000004]]

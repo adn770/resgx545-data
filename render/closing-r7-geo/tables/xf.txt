@@ -1,0 +1,18 @@
+#stage xf
+#limit 1
+# Q206's both-fields U1 clause (E876, E884; R7-5): 8 fills at 128 x 64 with the end-of-tile DOUTU1 (pds:pixev dword 12)
+# x field (bits 11:3) and y field (bits 21:12) XORed together.  Frozen: H-INDEP (each axis placed by E884's OR rule
+# independently), H-XFIRST (only x acts when both move), H-YFIRST (only y); every pair separates the three by hash.
+# Controls that can fail: E884's 128 x 64 x ^ 0x10 fill (kept hash) and the 128 x 64 baseline (kept hash).
+# expectdiff: a fill with wrong pixels exits 1 with its diff line; needhash: a second row without a hash stops (rc 17).
+# No fault expected (1556 fills of this poke ran clean): any fault, hang or failure stops the stage (rc 4).
+xf-ctl-128x64-x10|control|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x10'
+xf-base-128x64|control|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512
+xf-128x64-x10-y2000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x2010'
+xf-128x64-x18-y3000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x3018'
+xf-128x64-x10-y4000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x4010'
+xf-128x64-x20-y2000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x2020'
+xf-128x64-x28-y6000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x6028'
+xf-128x64-x30-y4000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x4030'
+xf-128x64-x38-y2000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x2038'
+xf-128x64-x20-y6000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x6020'
