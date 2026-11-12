@@ -1,0 +1,239 @@
+## stage a
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## free space on ~: 127366868 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r6x.Xuq8cj
+## clock
+Thu Nov 12 14:49:07 CET 2026
+## r6-render4x safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 fd7d93bebbafec1627cb3cf44c7dfaf93de03849f2ea2231091dad1eb083f432
+  kept begin.health1.txt: 311 bytes raw, raw sha256 9175f97957cbc4fa210404dfe5b0c60ee01df472fe9af14c41cb35f4cf5168dd
+== a4-1024x768-max2048x1024 set=control risk=risky mode=plain knobs=[expectdiff strict]
+  free on ~: 127366852 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 768 --max-width 2048 --max-height 1024 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/1-a4-1024x768-max2048x1024/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 2048x1024 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,2304), depth 0.5 0.5 0.5 
+  kept a4-1024x768-max2048x1024.txt: 894 bytes raw, raw sha256 f28b359fb71021ff89c157465fa61068eef82c061b5b454300d8dcb7fe3d248a
+  kept a4-1024x768-max2048x1024.dmesg: 119 bytes raw, raw sha256 28f108453c4439dca0dbe6f4847122a1735370a9afc7561c8aebdb5d0d86fe50
+  kept a4-1024x768-max2048x1024.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a4-1024x768-max2048x1024.snap0.regs: 6474 bytes raw, raw sha256 2942dfc681ee0e31e026a29f770e5bbf131b62e7729a6a6fa2e1777bbc0ab77b
+  kept a4-1024x768-max2048x1024.snap9.regs: 6474 bytes raw, raw sha256 944a6990b5a302bbd9fb47a7e7c51a0c8a550c43d08b361932ca6901290a3064
+  kept a4-1024x768-max2048x1024.tri.param.bin: 4603904 bytes raw, raw sha256 a3a6e6519720bb5b1b0aa996488eba127ac1e79752b536f9222f74e8109e90d3
+  kept a4-1024x768-max2048x1024.tri.tadata.bin: 274432 bytes raw, raw sha256 06f91579f722250ffa3990d951ecb696dd0ed7efeb8aefe20aee6a9256bd27ed
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a1-1024x1280 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:a1:1]
+  free on ~: 127366800 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1280 --max-width 1024 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/2-a1-1024x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 1024x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,3840), depth 0.5 0.5 0.5 
+  kept a1-1024x1280.txt: 888 bytes raw, raw sha256 742b130bdeb6a165e1871820582fd0ac55df8288fe96e2bfa59f36b8fc126fe5
+  kept a1-1024x1280.dmesg: 107 bytes raw, raw sha256 e0678586697ca0d40a8e3dbbe1fa2d86d4f57bbad9a9038a926abba34408f900
+  kept a1-1024x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a1-1024x1280.snap0.regs: 6474 bytes raw, raw sha256 19524f5af666dc93239b9e09051cfef5df737783d37aa8edef02e1f718579051
+  kept a1-1024x1280.snap9.regs: 6474 bytes raw, raw sha256 e070d4444e89f7326e9e9bff1b925b6b9d40ad863743cf0876dfcb538b08bcc6
+  kept a1-1024x1280.tri.param.bin: 4603904 bytes raw, raw sha256 280a9614f33422c1603993a44bbda3263d1c1e14f8d6dd1a7179016ed0f68e78
+  kept a1-1024x1280.tri.tadata.bin: 233472 bytes raw, raw sha256 2bbba38bd40ae107a2c64a5a8403a9367bc8ae9357217ec36dc74fd550abeeea
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a1r-1024x1280 set=replicate risk=risky mode=plain knobs=[expectdiff strict hypo:a1:1]
+  free on ~: 127366736 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1280 --max-width 1024 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/3-a1r-1024x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 1024x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,3840), depth 0.5 0.5 0.5 
+  kept a1r-1024x1280.txt: 889 bytes raw, raw sha256 2ff865f84ba9c493dfe393f8f19be4fddd37b22e07816fba5db31e35968f3c4b
+  kept a1r-1024x1280.dmesg: 108 bytes raw, raw sha256 43fb3028caceed03e576af717a5730b76a2914101cb14403f30ae2344c7f4369
+  kept a1r-1024x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a1r-1024x1280.snap0.regs: 6474 bytes raw, raw sha256 574be5322965395d1d6ae731d7c9763d418cb12d24e0a006b6b23699cb6f0967
+  kept a1r-1024x1280.snap9.regs: 6474 bytes raw, raw sha256 2b7b37b651f25d2e8bd8c5a173822e85d79d67897dba4302967b019eb1711833
+  kept a1r-1024x1280.tri.param.bin: 4603904 bytes raw, raw sha256 280a9614f33422c1603993a44bbda3263d1c1e14f8d6dd1a7179016ed0f68e78
+  kept a1r-1024x1280.tri.tadata.bin: 233472 bytes raw, raw sha256 2bbba38bd40ae107a2c64a5a8403a9367bc8ae9357217ec36dc74fd550abeeea
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a12-992x1280 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366676 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 992 --height 1280 --max-width 992 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/4-a12-992x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 992x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (2976,0) (0,3840), depth 0.5 0.5 0.5 
+  kept a12-992x1280.txt: 884 bytes raw, raw sha256 ddc12b0dc8085b81d02c01ee8b4971a2793a4a34be37e6e0e6186b99b4578487
+  kept a12-992x1280.dmesg: 107 bytes raw, raw sha256 ef2e8e8a76d60d011128dc2f865865433543d24408b12e8b61616cdc8c3bc4da
+  kept a12-992x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a12-992x1280.snap0.regs: 6474 bytes raw, raw sha256 935db33b4ca79f0990fa9dc658820a776c9cc17e807a34d884b485371fbb2198
+  kept a12-992x1280.snap9.regs: 6474 bytes raw, raw sha256 3a109d81d0e64c31347349acbe87449e64fc15aff6a6e7e237e798a46e221706
+  kept a12-992x1280.tri.param.bin: 4603904 bytes raw, raw sha256 1cd095d8048ac4c9bada343f8ef30a6572e0dd6eda1a79d553f24845c8ba4894
+  kept a12-992x1280.tri.tadata.bin: 233472 bytes raw, raw sha256 06ba4d780f76eff1de401bff947818060f0e6f3f550a9707144da5a16736500f
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a13-512x1536 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366608 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 512 --height 1536 --max-width 512 --max-height 1536 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/5-a13-512x1536/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 512x1536 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (1536,0) (0,4608), depth 0.5 0.5 0.5 
+  kept a13-512x1536.txt: 881 bytes raw, raw sha256 7f41c007f0c4cc7d329d6ee2aa1e50f75b2f670851b11e76d5487fb4ac15019b
+  kept a13-512x1536.dmesg: 107 bytes raw, raw sha256 63bd617d3dd3197304d52f1b4e30794814a5a8c7f76a1b00629d581fd2ba748a
+  kept a13-512x1536.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a13-512x1536.snap0.regs: 6474 bytes raw, raw sha256 a6613f7f59b46b505ab38fb1e8181f6bedc5dee15e21d803d5ca3cb2631c26b4
+  kept a13-512x1536.snap9.regs: 6474 bytes raw, raw sha256 2fdfa4b49b2d242b01a7f143b1614f55c9ab2ee0be89f057472fc71954374e6f
+  kept a13-512x1536.tri.param.bin: 4603904 bytes raw, raw sha256 39d01ef5359a4f45cbcfeecf8026dc8e42360461a4a118db3323a11c6b4842f6
+  kept a13-512x1536.tri.tadata.bin: 172032 bytes raw, raw sha256 90547c150d97dc875da60f6cdedc5e8f89b7aae8b70ba9d2a658072f60d9bca3
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a8-1024x1024-max1024x1280 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366556 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1024 --max-width 1024 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/6-a8-1024x1024-max1024x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 1024x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,3072), depth 0.5 0.5 0.5 
+  kept a8-1024x1024-max1024x1280.txt: 901 bytes raw, raw sha256 df169020d127008b7cf5c7ce46a109663597bbd67b29a9441cc5b235e9b7318f
+  kept a8-1024x1024-max1024x1280.dmesg: 120 bytes raw, raw sha256 f70636001d1f8ecdf7cac88f6bef37697638a2ff3c08f04f6c1a4cb77d81c671
+  kept a8-1024x1024-max1024x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a8-1024x1024-max1024x1280.snap0.regs: 6474 bytes raw, raw sha256 7006ce9314e96336d72967ba77d9ffd21d0ad8bb90365f6ae974af6d7aa67ecc
+  kept a8-1024x1024-max1024x1280.snap9.regs: 6474 bytes raw, raw sha256 c256fdac6ce083b3ff0ea3acd43e98aa795087c268d9df4b623520634b4410be
+  kept a8-1024x1024-max1024x1280.tri.param.bin: 4603904 bytes raw, raw sha256 cfb537c149f33114ba0ae6e31ed4b03e2de7654133fb248463c5aa7aa58659c3
+  kept a8-1024x1024-max1024x1280.tri.tadata.bin: 233472 bytes raw, raw sha256 9c3fb20de5bb5814beef120b12a7237a21d675cd8a1115b53394b311743963a9
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a9-1024x800-max1024x1280 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366496 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 800 --max-width 1024 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/7-a9-1024x800-max1024x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 1024x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,2400), depth 0.5 0.5 0.5 
+  kept a9-1024x800-max1024x1280.txt: 895 bytes raw, raw sha256 7a28fbff786d30a4b4102f3c3a240b54c6c3f55c76f65637348785c3711c1af8
+  kept a9-1024x800-max1024x1280.dmesg: 119 bytes raw, raw sha256 30a7d7dd5d8dff5ba318d46ab79e510230474131b10104f60e00c07c73e5184a
+  kept a9-1024x800-max1024x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a9-1024x800-max1024x1280.snap0.regs: 6474 bytes raw, raw sha256 9215803d325645d431b65a7653a12be4d2135c9054dcbf5c269f3b4b849d2c9f
+  kept a9-1024x800-max1024x1280.snap9.regs: 6474 bytes raw, raw sha256 2a907f4e702b6d93d372709089c5c237267f0ed227a537ff6016890ba54c3ff0
+  kept a9-1024x800-max1024x1280.tri.param.bin: 4603904 bytes raw, raw sha256 b12d232f1130d167a151e75888adac9f01bc5fa5056d26ed9cc65589483b426c
+  kept a9-1024x800-max1024x1280.tri.tadata.bin: 233472 bytes raw, raw sha256 66054bce35f9cc1b8016b7ed510ef42ec11c3545d1cd09749f5a3c6bb6feda4f
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== a2-1024x1296 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366436 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1296 --max-width 1024 --max-height 1296 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/8-a2-1024x1296/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1024x1296 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,3888), depth 0.5 0.5 0.5 
+  kept a2-1024x1296.txt: 790 bytes raw, raw sha256 369fb8ff42d09917894cb20b0f684fcb81327a9dc84986f00a7a2108489cddff
+  kept a2-1024x1296.dmesg: 3702 bytes raw, raw sha256 65db99d7b68151fe6222c7b80f14f891ab23e6c1d6d75ae0ab6a2e7e0432dfdf
+  kept a2-1024x1296.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a2-1024x1296.snap0.regs: 6474 bytes raw, raw sha256 c7725e317aaaed48608f906cabb2f9a9831cace6d6be589880616acfcb9ac281
+  kept a2-1024x1296.snap9.regs: 6474 bytes raw, raw sha256 0da6ea4ed34142bf26d72691f82fd48bba7bf0906ea50c1d93f608815b72567d
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 1 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 1 of 8
+  kept a2-1024x1296.fill2.txt: 174 bytes raw, raw sha256 4b8e6e4571f524c21923a8c023cee7f0fa5fcee656a5078797dce0f4000553af
+  kept a2-1024x1296.health2.txt: 311 bytes raw, raw sha256 708bc9ae1ba60e3bdd581f773474ba656317bc275a020c4ec7d0b4729988c16d
+== a3-1040x1280 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366408 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1040 --height 1280 --max-width 1040 --max-height 1280 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/9-a3-1040x1280/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1040x1280 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3120,0) (0,3840), depth 0.5 0.5 0.5 
+  kept a3-1040x1280.txt: 792 bytes raw, raw sha256 b7ebe21d28ad9cc08f3ccdb75c13cbe63c345b47d2850863a3ab091c50e09589
+  kept a3-1040x1280.dmesg: 3610 bytes raw, raw sha256 cf66122dc7181eeffbf265ec7284f16e4e93477b2e40bc3880195d0c3e362dcc
+  kept a3-1040x1280.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a3-1040x1280.snap0.regs: 6474 bytes raw, raw sha256 bcf1f88d8abf2e517012cdad5a4c71aca04c257750a1ae546fe9b05d7ff2c1f1
+  kept a3-1040x1280.snap9.regs: 6474 bytes raw, raw sha256 fb3e1649a5fef6ab43af19541539d6886731052142c19f4e36a532bd3cab8986
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 2 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 2 of 8
+  kept a3-1040x1280.fill3.txt: 174 bytes raw, raw sha256 4891a26e497b9d3dda02a303dc6c0e1c2ee5cfe3f12cd9cb391b0f60ffb9a240
+  kept a3-1040x1280.health3.txt: 311 bytes raw, raw sha256 e466e53f83b001a8062a37f9db0066f0943c2e1e502bfd57d039f45cf9f1d4f4
+== a5-1024x800-max2048x1024 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366376 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 800 --max-width 2048 --max-height 1024 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/10-a5-1024x800-max2048x1024/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 2048x1024 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,2400), depth 0.5 0.5 0.5 
+  kept a5-1024x800-max2048x1024.txt: 787 bytes raw, raw sha256 ad5a63bf17279d1a5f5dde9530f7c10fe93cbe32d78a828536619ddf268208bd
+  kept a5-1024x800-max2048x1024.dmesg: 3714 bytes raw, raw sha256 8ac0baf8ec555e9505966254dde0f4f9ba1461d9e9ee207ca4884301c99399de
+  kept a5-1024x800-max2048x1024.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a5-1024x800-max2048x1024.snap0.regs: 6474 bytes raw, raw sha256 1960223daba1d8d73368ad4bd33e288d007a619c5059888418fedfdfb95bf90e
+  kept a5-1024x800-max2048x1024.snap9.regs: 6474 bytes raw, raw sha256 6b8e07e57073bf64ccad800bd9399acfede6a1678549cb958f409a3ef4a5d2e7
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 3 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 3 of 8
+  kept a5-1024x800-max2048x1024.fill4.txt: 174 bytes raw, raw sha256 06a0049d0775ba09092558fff1fea86bcc96ecee6b0532b247730b05bdd0c7ce
+  kept a5-1024x800-max2048x1024.health4.txt: 311 bytes raw, raw sha256 fdbf32bcc41495366dca385b27e48ec3bbef6c9f4fe0382b655075d6e54bd443
+== a14-1024x1536 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:8]
+  free on ~: 127366348 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1536 --max-width 1024 --max-height 1536 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /home/jtorra/scratch/tmp/r6x.Xuq8cj/11-a14-1024x1536/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1024x1536 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,4608), depth 0.5 0.5 0.5 
+  kept a14-1024x1536.txt: 790 bytes raw, raw sha256 f97c574071465b365ef1369c17ddcbc9428551132cc11678beb5a5527554458b
+  kept a14-1024x1536.dmesg: 3703 bytes raw, raw sha256 c4e902c4b18ef78fb422b24ffc305ff754bddef4e03b012856f69694fb4f1cf5
+  kept a14-1024x1536.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept a14-1024x1536.snap0.regs: 6474 bytes raw, raw sha256 aeba0a3ad5f6f85e8da1716fe72e10982fc3b7a5024d19bf78e2ead6f6a48a43
+  kept a14-1024x1536.snap9.regs: 6474 bytes raw, raw sha256 cc42154ca5db2bcef1dab55223dad8e54cfd923a6ddc86e75b729154a01e4c5b
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 4 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 4 of 8
+  kept a14-1024x1536.fill5.txt: 174 bytes raw, raw sha256 4af2353efaf849a5b40a5c5d5740b3d39ce3dbb9d7a5b6f5bd2f66d80f334fa5
+  kept a14-1024x1536.health5.txt: 311 bytes raw, raw sha256 3251bdc265f60e44c59a180b131e874c05a0b503d6da6dd2af07bc0c5166a723
+== h1-1024x800-held set=heldout risk=risky mode=held knobs=[expectdiff held dumpheld strict hypo:q292:8]
+  free on ~: 127366316 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 800 --max-width 1024 --max-height 800 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000ccfa3 status 0x20000000 status2 0x00000440 bif_int 0x00090100 bif_fault 0x10000011 pb 0x00c900c9
+  snap 2: clock-status 0x000ccfa3 status 0x20000000 status2 0x00000440 bif_int 0x00090100 bif_fault 0x10000011 pb 0x00c900c9
+  debugfs reset: status 0
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1024x800 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,2400), depth 0.5 0.5 0.5 
+  kept h1-1024x800-held.txt: 488 bytes raw, raw sha256 d09e07f8456db203038cdd8331c627323238199b859395820c8ed199824a950e
+  kept h1-1024x800-held.dmesg: 4183 bytes raw, raw sha256 79b49516fb21dc0934b70d4088da3d9a2e3137963b808faf792d9e7bcb9a11a3
+  kept h1-1024x800-held.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept h1-1024x800-held.snap0.regs: 6474 bytes raw, raw sha256 10eaace4c10bd040d8bf19dd7fc8bb1ba195dd54f8e7e1ec05ece2295d9c39de
+  kept h1-1024x800-held.snap1.regs: 6474 bytes raw, raw sha256 45aea27a571b05d303976aaca36791dca77abc362946a6d5aa990ad84151a57f
+  kept h1-1024x800-held.snap2.regs: 6474 bytes raw, raw sha256 cd93a91aef79686ce5b3dc2da4136d4a066c6a049c525e75aaab0f104aa3e063
+  kept h1-1024x800-held.snap3.regs: 6474 bytes raw, raw sha256 a7d9db99af81ce8af27b74fff75a17e08cdfe6382426a8e652a93a7e114b02c4
+  kept h1-1024x800-held.heldparam.bin: 4603904 bytes raw, raw sha256 b6dad9e84e382d092b982bd51faaa7e5663e10882a1e95e17c6801be65d336b8
+  kept h1-1024x800-held.heldtadata.bin: 151552 bytes raw, raw sha256 792f1fdf66e6f939fabd974382075a493622408b4d6c072455152e460ccb04ff
+  class fault (fault bits 15:0 at snap 1: 256, hold message: yes)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 5 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 5 of 8
+  kept h1-1024x800-held.fill6.txt: 174 bytes raw, raw sha256 37598ae1a8ada9c368b256d2f3df7be37a29b7170da0d07a88e22714521175b8
+  kept h1-1024x800-held.health6.txt: 311 bytes raw, raw sha256 ecdb7fe77b0db90861d4031f3306e325693159fd902b89b4eaf19ff52ab8db1a
+== h2-1280x768-held set=heldout risk=risky mode=held knobs=[expectdiff held dumpheld strict hypo:q292:8]
+  free on ~: 127366232 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  hold_recovery written Y, read back Y
+  cmd (held, background): /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1280 --height 768 --max-width 1280 --max-height 768 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 1: clock-status 0x000fffa7 status 0x20000000 status2 0x00000400 bif_int 0x00090100 bif_fault 0x10000011 pb 0x00f100f1
+  snap 2: clock-status 0x000fffa7 status 0x20000000 status2 0x00000400 bif_int 0x00090100 bif_fault 0x10000011 pb 0x00f100f1
+  debugfs reset: status 0
+  hold_recovery written N, read back N
+  snap 3: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1280x768 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3840,0) (0,2304), depth 0.5 0.5 0.5 
+  kept h2-1280x768-held.txt: 490 bytes raw, raw sha256 01468e5daea7fc43fb3a8114dddc5e34f0106110ed69f2e406c3d7985deffcae
+  kept h2-1280x768-held.dmesg: 4091 bytes raw, raw sha256 5033dbe7e6e7e76b93117f5bd1b26e133bfe180db1a754d6641ba29ece28c4ab
+  kept h2-1280x768-held.kpoke.txt: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept h2-1280x768-held.snap0.regs: 6474 bytes raw, raw sha256 fb2c740edbb6e2ed695a7a3cd91891db544905f664346537447b9b47bb7fab13
+  kept h2-1280x768-held.snap1.regs: 6474 bytes raw, raw sha256 15bf47718e63510104fdb6a1b1374a8e70ff04f811df4d54450236a9f83ef894
+  kept h2-1280x768-held.snap2.regs: 6474 bytes raw, raw sha256 d0e85ba6b3d32add606ddd16c84f65a59dbd83463cc7675e21115a215c44a3a6
+  kept h2-1280x768-held.snap3.regs: 6474 bytes raw, raw sha256 503ec08771141ac3effdadc1a649a69ef6b982ddc2cbfdf03c0a84547af4c541
+  kept h2-1280x768-held.heldparam.bin: 4603904 bytes raw, raw sha256 55f27afc6f6dda8b6b954e88ececd8aa519255aafc511eaa49c85448f7a6aa46
+  kept h2-1280x768-held.heldtadata.bin: 167936 bytes raw, raw sha256 52c45541b4f99d0aab387653db830ae285c3173bd96a2d036cc09795b282e513
+  class fault (fault bits 15:0 at snap 1: 256, hold message: yes)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 6 of at most 8 in group q292 (a hypothesis: measured); fault-class events of the stage: 6 of 8
+  kept h2-1280x768-held.fill7.txt: 174 bytes raw, raw sha256 a1eecd5494368d0ea0ef4f8e973d0c7d5b8029e9b41726a261434f477da56f38
+  kept h2-1280x768-held.health7.txt: 311 bytes raw, raw sha256 d9d7992736014f9e8381a7deec5e378ccb6f3f012e5acdcf23c5d328e9a838fd
+  kept end.fill8.txt: 174 bytes raw, raw sha256 1f9854f65067b902773ed855b47833f89739cd2ffdac34dfc7dd3c3307613050
+  kept end.health8.txt: 311 bytes raw, raw sha256 645b2e764b13ab00f4f893f3d5824c4bcb887cbc1d0661f47ad24de24590825d
+## end: 13 jobs of a
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 13 case markers kept in /home/jtorra/scratch/r6x/out/20261112-144822/a/kernel.log

@@ -1,0 +1,47 @@
+case	quantity	value	model	set	source
+k1-1280x1024-room4000	dump_param	k1-1280x1024-room4000.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+k1-1280x1024-room4000	outcome	fault	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xd800 > td.rgn 0x7000 (room 0x4000, the knob); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	ctl	gen/layout_b.py; gen/rules.py
+k1-1280x1024-room4000	entries_end	0xd800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+k1-1280x1024-room4000	td_rgn	0x7000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+k1-1280x1024-room4000	room	0x4000	the knob	model	gen/layout_b.py
+k1-1280x1024-room4000	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	ctl	E845
+k1-1280x1024-room4000	fault_page	0x10000	the request base: a zero stream offset (E869)	ctl	E869
+k1-1280x1024-room4000	lost_count	1023	H-TPM's lost offsets from td.rgn 0x7000	explore	gen/layout_b.py lost()
+k5-1024x768-room4000	dump_param	k5-1024x768-room4000.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+k5-1024x768-room4000	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x7000 <= td.rgn 0x7000 (room 0x4000, the knob); on the rgn4 layout (td.rgn 0x7000) H-TPM says complete	ctl	gen/layout_b.py; gen/rules.py
+k5-1024x768-room4000	entries_end	0x7000	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+k5-1024x768-room4000	td_rgn	0x7000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+k5-1024x768-room4000	room	0x4000	the knob	model	gen/layout_b.py
+k5-1024x768-room4000	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	ctl	E845
+k5-1024x768-room4000	fault_page	0x10000	the request base: a zero stream offset (E869)	ctl	E869
+k5-1024x768-room4000	diff	0 of 786432 pixels	a completed 4x full triangle draws exactly (E824)	ctl	E824
+k5-1024x768-room4000	pb_used	193	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+k5-1024x768-room4000	tadata_size	122880	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+k5-1024x768-room4000	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+k5-1024x768-room4000	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+k2-1280x1024-roomb000	dump_param	k2-1280x1024-roomb000.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+k2-1280x1024-roomb000	outcome	complete	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xd800 <= td.rgn 0xe000 (room 0xb000, the knob); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+k2-1280x1024-roomb000	entries_end	0xd800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+k2-1280x1024-roomb000	td_rgn	0xe000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+k2-1280x1024-roomb000	room	0xb000	the knob	model	gen/layout_b.py
+k2-1280x1024-roomb000	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+k2-1280x1024-roomb000	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+k2-1280x1024-roomb000	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	heldout	E824
+k2-1280x1024-roomb000	pb_used	321	page model U4 (widths a multiple of 32: exact on every kept dump)	model	gen/pbmodel.py
+k2-1280x1024-roomb000	tadata_size	241664	the r6-kernel layout of the maximum, four arrays	model	gen/layout_b.py
+k2-1280x1024-roomb000	hdr_off	0	the doubled-grid rule from the r6-kernel's td.rgn	model	gen/layout_b.py
+k2-1280x1024-roomb000	nonzero_below_rgn	0	every completed four-array dump of r5 and stage A is zero below td.rgn	model	cells.out; stage A
+k4-1024x768-room3000	dump_param	k4-1024x768-room3000.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+k4-1024x768-room3000	outcome	fault	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0x7000 > td.rgn 0x6000 (room 0x3000, the knob); on the rgn4 layout (td.rgn 0x7000) H-TPM says complete	heldout	gen/layout_b.py; gen/rules.py
+k4-1024x768-room3000	entries_end	0x7000	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+k4-1024x768-room3000	td_rgn	0x6000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+k4-1024x768-room3000	room	0x3000	the knob	model	gen/layout_b.py
+k4-1024x768-room3000	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+k4-1024x768-room3000	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869
+k4-1024x768-room3000	lost_count	341	H-TPM's lost offsets from td.rgn 0x6000	explore	gen/layout_b.py lost()
+k3-1280x1024-rooma000-held	outcome	fault	H-TPM (E870; held 11 of 11 in r6-render4x stage A, out/20261112-144822 (H-TPM 11 of 11; h1, h2 set equal)) on the r6-kernel layout: entries end 0xd800 > td.rgn 0xd000 (room 0xa000, the knob); on the rgn4 layout (td.rgn 0x7000) H-TPM says fault	heldout	gen/layout_b.py; gen/rules.py
+k3-1280x1024-rooma000-held	entries_end	0xd800	4 x (Z(2tx - 1, 2ty - 1) + 1)	model	gen/rules.py
+k3-1280x1024-rooma000-held	td_rgn	0xd000	round_up(room, 4K) + 3 pages	model	gen/layout_b.py
+k3-1280x1024-rooma000-held	room	0xa000	the knob	model	gen/layout_b.py
+k3-1280x1024-rooma000-held	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E867-E869, stage A)	heldout	E845
+k3-1280x1024-rooma000-held	fault_page	0x10000	the request base: a zero stream offset (E869)	heldout	E869

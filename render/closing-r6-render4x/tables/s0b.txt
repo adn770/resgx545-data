@@ -1,0 +1,8 @@
+#stage s0b
+#limit 1
+# s0b: set B's controls on the r6-kernel module: r5's three (the 4x TA data now with 4 x the room), the 1x full triangle
+# (r5 o10: TA data as before).  A miss voids set B: every later gate is closed.
+s0b-1x-1024x768|control|safe|expectdiff|-|tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --regs 0x0700-0x072c
+s0b-1xf-1024x768|control|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 768 --max-width 1024 --max-height 768 --dump-render "$W/dump" --regs 0x0700-0x072c
+s0b-4x-288x144|control|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+s0b-4x-1024x768|control|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 768 --max-width 1024 --max-height 768 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c

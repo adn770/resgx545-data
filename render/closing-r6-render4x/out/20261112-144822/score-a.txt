@@ -1,0 +1,17 @@
+a4-1024x768-max2048x1024 (control, H-TPM complete at the limit): PASS: complete, 0 wrong; pb_used 193; tadata_size 274432; hdr_off 0; nonzero_below_rgn 0
+a1-1024x1280: complete, 0 wrong (H-TPM complete: held); pb_used 321; tadata_size 233472; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR, K-P, K-AREA
+a12-992x1280: complete, 0 wrong (H-TPM complete: held); pb_used 313 (frozen 311: DIFFERS); tadata_size 233472; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR
+a13-512x1536: complete, 0 wrong (H-TPM complete: held); pb_used 193; tadata_size 172032; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR
+a8-1024x1024-max1024x1280: complete, 0 wrong (H-TPM complete: held); pb_used 257; tadata_size 233472; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR
+a9-1024x800-max1024x1280: complete, 0 wrong (H-TPM complete: held); pb_used 201; tadata_size 233472; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR
+a2-1024x1296: fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base) (H-TPM fault: held); right pixels before the fault 0 (explore); contradicts the dead TPC-d-rgn, TPC-d-state, TPC-rs-rgn, TPC-rb-rgn, K-W, K-AND
+a3-1040x1280: fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base) (H-TPM fault: held); right pixels before the fault 218240 (explore); contradicts the dead TPC-d-rgn, TPC-d-state, TPC-rs-rgn, TPC-rb-rgn
+a5-1024x800-max2048x1024: fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base) (H-TPM fault: held); right pixels before the fault 0 (explore); contradicts the dead TPC-d-rgn, TPC-rs-rgn, K-W, K-AND, K-TPM
+a14-1024x1536: fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base) (H-TPM fault: held); right pixels before the fault 0 (explore); contradicts the dead TPC-d-rgn, TPC-d-state, TPC-rs-rgn, TPC-rb-rgn, K-W, K-AND
+a1r-1024x1280: complete, 0 wrong (H-TPM complete: held); pb_used 321; tadata_size 233472; hdr_off 0; nonzero_below_rgn 0; contradicts the dead K-H, K-OR, K-P, K-AREA
+a1-1024x1280 with its replicate a1r-1024x1280: held
+h1-1024x800-held (held): fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base); lost offsets (word 1 zero at an in-target header): set equal (43); lost from 0x7000 to 0x7ab0, header 0 lost (frozen yes)
+h1-1024x800-held (explore): word 0: {'word0_zero_tile_in': 0, 'word0_zero_tile_out': 0, 'bit27': 42, 'flag04': 15, 'flag10': 16}; held scene pages 201; against a9-1024x800-max1024x1280 header by header: word 0 differs in 43, word 1 differs (not zero) in 0
+h2-1280x768-held (held): fault, BIF_INT_STAT bits 15:0 0x0100, BIF_FAULT 0x10000011 (page 0x10000: the request base); lost offsets (word 1 zero at an in-target header): set equal (511); lost from 0x7ffc to 0xc7f0, header 0 intact (frozen no)
+h2-1280x768-held (explore): word 0: {'word0_zero_tile_in': 189, 'word0_zero_tile_out': 0, 'bit27': 401, 'flag04': 14, 'flag10': 15}; held scene pages 241
+SUMMARY: a: H-TPM: a four-array 4x job faults iff the end of its target's Z-order tail-pointer entries (y on the even bits) passes the td.rgn of its context's maximum, and a held fault loses exactly the frozen stream offsets (a1, a8, a9, a12, a13 complete where K-OR and other dead size rules said fault; a2, a3, a5, a14 fault; h1 and h2 set equal) (11 of 11 rows decided); variants of the Z-order rule no decided row contradicts: TPM-y-rgn; dead size rules: none

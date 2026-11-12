@@ -1,0 +1,7 @@
+#stage s0
+#limit 1
+# s0: r5's three controls (E827 ctl-u-1024-n1; E828 j1r; E824 h8; all PASS in r5).  A miss voids the session: every later
+# stage's gate is closed.
+s0-1x-1024x768|control|safe|expectdiff|-|tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000 --dump-render "$W/dump" --regs 0x0700-0x072c
+s0-4x-288x144|control|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+s0-4x-1024x768|control|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 768 --max-width 1024 --max-height 768 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c

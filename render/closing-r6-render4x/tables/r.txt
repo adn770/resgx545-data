@@ -1,0 +1,7 @@
+#stage r
+#limit 1
+# r: the largest targets (explore the 4096-wide residue): r2 2048 x 2032 (1017 pages), r1 4096 x 960 complete, r3 4096 x 1152
+# overflows (-ENOSPC, no fault).  No hypothesis knob: any fault stops the stage.  r1, r3 without dumps (r5-dpm's lesson).
+r2-2048x2032|heldout|risky|expectdiff strict|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 2048 --height 2032 --max-width 2048 --max-height 2032 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump" --regs 0x0700-0x072c
+r1-4096x960|explore|risky|expectdiff strict|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 4096 --height 960 --max-width 4096 --max-height 960 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+r3-4096x1152|explore|risky|expectdiff strict|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 4096 --height 1152 --max-width 4096 --max-height 1152 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26

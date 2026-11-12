@@ -1,0 +1,90 @@
+attempt 20261112-153845 (set B): /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-153845; FROZEN-B.sha256 05fe1b891076e5d73aa433ad1080d2ce108374050ca5e664fdd2c70dfedaf8fa
+files verified (set B)
+gate s0b: no prerequisite
+#### s0b 15:38:46
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+SUMMARY: s0b: controls {'s0b-1x-1024x768': 'PASS', 's0b-1xf-1024x768': 'PASS', 's0b-4x-288x144': 'PASS', 's0b-4x-1024x768': 'PASS'}; later stages open
+job: ok
+job time: 810 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  107.476050] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[  107.478837] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  107.481634] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 143 us
+stage s0b done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified (set B)
+gate b: open (s0b's four controls passed)
+s0b at /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-153845/s0b
+#### b 15:39:59
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+SUMMARY: b: H-ROOM: with the r6-kernel's automatic 4x room the eight own-maximum cells that faulted on the rgn4 kernel complete with 0 wrong (b1-b8) (8 of 8 rows decided)
+job: ok
+job time: 551 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  223.661787] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[  223.664324] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  223.667112] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 144 us
+stage b done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified (set B)
+gate k: open (s0b's four controls passed)
+s0b at /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-153845/s0b
+#### k 15:41:35
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  class fault (fault bits 15:0 at snap 1: 256, hold message: yes)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+SUMMARY: k: H-TPM's exact limit through the knob: 1280 x 1024 completes with the room at 0xb000 (td.rgn 0xe000, entries end 0xd800) and faults one page lower losing exactly the frozen 171 offsets; 1024 x 768 faults with the room at 0x3000 (3 of 3 rows decided)
+job: ok
+job time: 467 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  304.334532] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[  304.337202] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  304.339984] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 147 us
+stage k done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified (set B)
+gate r: open (s0b's four controls passed)
+s0b at /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-153845/s0b
+#### r 15:42:55
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+SUMMARY: r: the largest targets: 2048 x 2032 and 4096 x 960 complete with 0 wrong; 4096 x 1152 ends in -ENOSPC without a fault [explore] (3 of 3 rows decided)
+job: ok
+job time: 372 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  362.746347] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[  362.749508] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  362.752867] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 157 us
+stage r done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+r6-render4x set B done: /Users/jtorra/src/scratch/resgx545/closing/pixel-faults/.venv/bin/python /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/score/score_b.py verdict /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-153845 /Users/jtorra/src/scratch/resgx545/closing6/r6-render4x/out/20261112-144822
