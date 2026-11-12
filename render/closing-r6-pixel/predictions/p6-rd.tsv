@@ -1,0 +1,120 @@
+case	quantity	value	model	set
+c-e709-x	g_o4_words	10..100	G-o4 structural, as R4 and R5 (tag-5 words in the x and y job (R1 to R5: 22 to 63))	control
+c-e709-x	g_o4_pairs	5..60	G-o4 structural, as R4 and R5 (pairs (R4, R5: 8 to 42))	control
+c-e709-x	g_o4_parity	even,even	G-o4 structural, as R4 and R5 (every pair source (even x, even y))	control
+c-e709-x	g_o4_tag5p_max	2	G-o4 structural, as R4 and R5 (no tag-13 word in the x job)	control
+c-u-x	marker	0x105	R4's program marker	control
+c-u-x	ctl_min_frac	0.98	frozen criterion (R1 to R5: tag-2 fraction 0.990 to 0.996)	control
+c-all4-x	marker	0x141	R5's program marker (bins/p5o4-markers.tsv of R5)	control
+c-all4-x	o4_word	5:1	E858: c-all4 read 5:1 in R5; any other reading voids the stage (not the session)	control
+c-ow-x	marker	0x181	frozen program marker (x job; the y job's is +1)	control
+c-ow-x	own_word	1:1>=0.95	the last o0 write is the pixel: bits 1 at >= 95 percent of the TRI pixels (else the stage is void)	control
+c-rd-0-x	marker	0x183	frozen program marker (x job; the y job's is +1)	control
+c-rd-0-x	own_word	1:2>=0.95	a register known to hold its word, read through r10 (E373): W_A at >= 95 percent of TRI; W_B or neither: readback cannot be read, the stage is void	control
+c-rd-0-x	tri	>=300	TRI = the pixels whose word is their own (job marker, tag 1, source the pixel) in both c-rd-0 jobs	control
+c-prd-0-k1-x	marker	0x185	frozen program marker (x job; the y job's is +1)	control
+c-prd-0-k1-x	lanes	1:2,1:1,1:2,1:2	[infer from E808's o1 result] W_1 on lane k = (x & 1) | (y & 1) << 1, W_0 on the others, each at >= 95 percent of the lane's TRI pixels; gates the predicate rows only	control
+c-prd-0-k7-x	marker	0x187	frozen program marker (x job; the y job's is +1)	control
+c-prd-0-k7-x	lanes	1:2,1:2,1:2,1:2	[infer from E808's o1 result] W_1 on lane k = (x & 1) | (y & 1) << 1, W_0 on the others, each at >= 95 percent of the lane's TRI pixels; gates the predicate rows only	control
+rd-1-x	marker	0x189	frozen program marker (x job; the y job's is +1)	heldout
+rd-1-x	labels	S=2:1 A0=1:2	class labels (rdmodel.labels)	heldout
+rd-1-x	class	S	H-STORE	heldout
+rd-1-x	class	S	H-FOUR	heldout
+rd-1-x	class	A0	H-O0	heldout
+rd-1-x	class	S	H-MOD4	heldout
+rd-2-x	marker	0x18b	frozen program marker (x job; the y job's is +1)	heldout
+rd-2-x	labels	S=3:1 A0=1:2	class labels (rdmodel.labels)	heldout
+rd-2-x	class	S	H-STORE	heldout
+rd-2-x	class	S	H-FOUR	heldout
+rd-2-x	class	A0	H-O0	heldout
+rd-2-x	class	S	H-MOD4	heldout
+rd-3-x	marker	0x18d	frozen program marker (x job; the y job's is +1)	heldout
+rd-3-x	labels	S=4:1 A0=1:2	class labels (rdmodel.labels)	heldout
+rd-3-x	class	S	H-STORE	heldout
+rd-3-x	class	S	H-FOUR	heldout
+rd-3-x	class	A0	H-O0	heldout
+rd-3-x	class	S	H-MOD4	heldout
+rd-4-x	marker	0x18f	frozen program marker (x job; the y job's is +1)	heldout
+rd-4-x	labels	S=5:1 A0=1:2	class labels (rdmodel.labels)	heldout
+rd-4-x	class	S	H-STORE	heldout
+rd-4-x	class	!S	H-FOUR	heldout
+rd-4-x	class	A0	H-O0	heldout
+rd-4-x	class	A0	H-MOD4	heldout
+rd-5-x	marker	0x191	frozen program marker (x job; the y job's is +1)	heldout
+rd-5-x	labels	S=6:1 A0=1:2 A4=2:2	class labels (rdmodel.labels)	heldout
+rd-5-x	class	S	H-STORE	heldout
+rd-5-x	class	!S	H-FOUR	heldout
+rd-5-x	class	A0	H-O0	heldout
+rd-5-x	class	A4	H-MOD4	heldout
+rd-6-x	marker	0x193	frozen program marker (x job; the y job's is +1)	heldout
+rd-6-x	labels	S=7:1 A0=1:2 A4=3:2	class labels (rdmodel.labels)	heldout
+rd-6-x	class	S	H-STORE	heldout
+rd-6-x	class	!S	H-FOUR	heldout
+rd-6-x	class	A0	H-O0	heldout
+rd-6-x	class	A4	H-MOD4	heldout
+rd-7-x	marker	0x195	frozen program marker (x job; the y job's is +1)	heldout
+rd-7-x	labels	S=8:1 A0=1:2 A4=4:2	class labels (rdmodel.labels)	heldout
+rd-7-x	class	S	H-STORE	heldout
+rd-7-x	class	!S	H-FOUR	heldout
+rd-7-x	class	A0	H-O0	heldout
+rd-7-x	class	A4	H-MOD4	heldout
+n-rd-1-x	marker	0x197	frozen program marker (x job; the y job's is +1)	heldout
+n-rd-1-x	labels	S=2:1 A0=1:2	class labels (rdmodel.labels)	heldout
+n-rd-1-x	class	!S	a word with bit 4 cannot exist in the job: not S	heldout
+n-rd-4-x	marker	0x199	frozen program marker (x job; the y job's is +1)	heldout
+n-rd-4-x	labels	S=5:1 A0=1:2	class labels (rdmodel.labels)	heldout
+n-rd-4-x	class	!S	a word with bit 4 cannot exist in the job: not S	heldout
+x-rd-4-x	marker	0x19b	frozen program marker (x job; the y job's is +1)	heldout
+x-rd-4-x	labels	S=13:1 A0=1:2	class labels (rdmodel.labels)	heldout
+x-rd-4-x	class	S	the read follows the written word, not the register's number: S shows tag 13 (scored if rd-4 reads S)	heldout
+x-rd-5-x	marker	0x19d	frozen program marker (x job; the y job's is +1)	heldout
+x-rd-5-x	labels	S=14:1 A0=1:2 A4=2:2	class labels (rdmodel.labels)	heldout
+x-rd-5-x	class	S	the read follows the written word, not the register's number: S shows tag 14 (scored if rd-5 reads S)	heldout
+prd-3-k0-x	marker	0x19f	frozen program marker (x job; the y job's is +1)	heldout
+prd-3-k0-x	lanes	4:1,4:0,4:0,4:0	gated	heldout
+prd-3-k0-x	lanes	4:1,4:1,4:1,4:1	ignored	heldout
+prd-3-k0-x	lanes	4:0,4:0,4:0,4:0	never	heldout
+prd-3-k1-x	marker	0x1a1	frozen program marker (x job; the y job's is +1)	heldout
+prd-3-k1-x	lanes	4:0,4:1,4:0,4:0	gated	heldout
+prd-3-k1-x	lanes	4:1,4:1,4:1,4:1	ignored	heldout
+prd-3-k1-x	lanes	4:0,4:0,4:0,4:0	never	heldout
+prd-3-k2-x	marker	0x1a3	frozen program marker (x job; the y job's is +1)	heldout
+prd-3-k2-x	lanes	4:0,4:0,4:1,4:0	gated	heldout
+prd-3-k2-x	lanes	4:1,4:1,4:1,4:1	ignored	heldout
+prd-3-k2-x	lanes	4:0,4:0,4:0,4:0	never	heldout
+prd-3-k3-x	marker	0x1a5	frozen program marker (x job; the y job's is +1)	heldout
+prd-3-k3-x	lanes	4:0,4:0,4:0,4:1	gated	heldout
+prd-3-k3-x	lanes	4:1,4:1,4:1,4:1	ignored	heldout
+prd-3-k3-x	lanes	4:0,4:0,4:0,4:0	never	heldout
+prd-3-k7-x	marker	0x1a7	frozen program marker (x job; the y job's is +1)	heldout
+prd-3-k7-x	lanes	4:0,4:0,4:0,4:0	gated	heldout
+prd-3-k7-x	lanes	4:1,4:1,4:1,4:1	ignored	heldout
+prd-3-k7-x	lanes	4:0,4:0,4:0,4:0	never	heldout
+prd-4-k0-x	marker	0x1a9	frozen program marker (x job; the y job's is +1)	heldout
+prd-4-k0-x	lanes	5:1,5:0,5:0,5:0	gated	heldout
+prd-4-k0-x	lanes	5:1,5:1,5:1,5:1	ignored	heldout
+prd-4-k0-x	lanes	5:0,5:0,5:0,5:0	never	heldout
+prd-4-k1-x	marker	0x1ab	frozen program marker (x job; the y job's is +1)	heldout
+prd-4-k1-x	lanes	5:0,5:1,5:0,5:0	gated	heldout
+prd-4-k1-x	lanes	5:1,5:1,5:1,5:1	ignored	heldout
+prd-4-k1-x	lanes	5:0,5:0,5:0,5:0	never	heldout
+prd-4-k2-x	marker	0x1ad	frozen program marker (x job; the y job's is +1)	heldout
+prd-4-k2-x	lanes	5:0,5:0,5:1,5:0	gated	heldout
+prd-4-k2-x	lanes	5:1,5:1,5:1,5:1	ignored	heldout
+prd-4-k2-x	lanes	5:0,5:0,5:0,5:0	never	heldout
+prd-4-k3-x	marker	0x1af	frozen program marker (x job; the y job's is +1)	heldout
+prd-4-k3-x	lanes	5:0,5:0,5:0,5:1	gated	heldout
+prd-4-k3-x	lanes	5:1,5:1,5:1,5:1	ignored	heldout
+prd-4-k3-x	lanes	5:0,5:0,5:0,5:0	never	heldout
+prd-4-k7-x	marker	0x1b1	frozen program marker (x job; the y job's is +1)	heldout
+prd-4-k7-x	lanes	5:0,5:0,5:0,5:0	gated	heldout
+prd-4-k7-x	lanes	5:1,5:1,5:1,5:1	ignored	heldout
+prd-4-k7-x	lanes	5:0,5:0,5:0,5:0	never	heldout
+rd-4-x-rep	marker	0x18f	frozen program marker (identical program)	replicate
+rd-4-x-rep	class	=rd-4	the replicate reads rd-4's class	replicate
+@p6-rd	premise	o4..o7's own words reach no pixel of any kept image (0 of 12143 words of w-4..w-7, no tag-8 word in E570); E081's o4..o7 counts are leftovers	E871 (resgx545 main d9b2969): the image cannot say where they land; readback asks whether the write is stored	heldout
+@p6-rd	models	H-STORE=S,S,S,S,S,S,S H-FOUR=S,S,S,!S,!S,!S,!S H-O0=A0,A0,A0,A0,A0,A0,A0 H-MOD4=S,S,S,A0,A4,A4,A4	plan 2.1: the rd vector over j = 1..7 per model (!S = any decided class but S; at j = 4 H-MOD4's A4 is o0's word, named A0)	heldout
+@p6-rd	class_rule	one class at >= 0.9 of the TRI pixels of both jobs; X: < 0.05 carry the job's marker; O: >= 0.9 one other marker; else cannot tell	plan 2.1	heldout
+@p6-rd	lane_rule	a lane reads a label with >= 0.95 of its TRI pixels in both jobs	plan 2.4	heldout
+@p6-rd	prd_gate	prd-j scored only if rd-j reads S and both c-prd-0 rows pass; else cannot tell by design	plan 2.4	heldout
+@p6-rd	verdict	the predicate gates the o_j write iff gated at k = 0, 1, 2, 3 and 7	plan 2.4	heldout
