@@ -1,0 +1,5 @@
+#!/bin/sh
+# timeout [-k N] DURATION CMD...: the mock runs CMD at once (the runner must pass -k: R5's rule)
+[ "$1" = "-k" ] || { echo "timeout without -k: $*" >> "${FAKE_LOG:-/dev/null}"; }
+[ "$1" = "-k" ] && shift 2
+shift; exec "$@"
