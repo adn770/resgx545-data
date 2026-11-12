@@ -7,7 +7,8 @@
 # name, size, sha256 of the file before gzip).  Then Q139's held-out rows: the model files are
 # checked against fold/q139_FROZEN.sha256 (committed before the held-out read), the fit is re-run
 # (fold/q139_fit.py check, byte-identical to fold/q139_fit.out's first part) and score_dump.py
-# q139-heldout's output is compared with fold/q139_heldout.out.
+# q139-heldout's output is compared with fold/q139_heldout.out; last, the post hoc write-order
+# check (fold/q139_order_posthoc.py, run after the held-out read).
 #   PY=python S7=<t7 sha256> fold/reproduce.sh > fold/reproduce.out
 cd "$(dirname "$0")/.." || exit 1
 export PYTHONDONTWRITEBYTECODE=1
@@ -53,5 +54,10 @@ cmp -s "$tmp/fit" <(head -n "$(wc -l < "$tmp/fit")" fold/q139_fit.out) \
 cmp -s "$tmp/heldout" fold/q139_heldout.out && echo "q139-heldout: byte-identical to fold/q139_heldout.out" \
 	|| { echo "q139-heldout: DIFFERS"; st=1; }
 grep '^SUMMARY' fold/q139_heldout.out
+echo "== post hoc, after the held-out read: R7-BLK's slot rule under five write orders (fold/q139_order_posthoc.py)"
+"$PY" fold/q139_order_posthoc.py > "$tmp/order"
+cmp -s "$tmp/order" fold/q139_order_posthoc.out && echo "q139_order_posthoc.py: byte-identical to fold/q139_order_posthoc.out" \
+	|| { echo "q139_order_posthoc.py: DIFFERS"; st=1; }
+cat fold/q139_order_posthoc.out
 rm -f .verify.out
 exit $st
