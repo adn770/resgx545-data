@@ -1,0 +1,70 @@
+# stage L's programs (gen/asm_l.py; usse-asm listings; do not edit)
+== l0-lock-release
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0xFCA1705003AF0000	mov.skipinv r29, #0x5CAF0000
+     2: 0xFCA0000000600001	mov.skipinv r3, #0x00000001
+     3: 0xFD20000000000000	lock #0
+     4: 0xE8A30000A0474000	ldad.skipinv r2, [r29,+#0], drc0
+     5: 0xF920000000000000	wdf drc0
+     6: 0x4880118000570182	iadd32.skipinv.testtaz.chan0 r2, p0, r3, r2
+     7: 0xF0A2000080074002	stad.skipinv [r29,+#0], r2
+     8: 0xF820000000000000	idf drc0, bif
+     9: 0xF920000000000000	wdf drc0
+    10: 0xFD20000000000001	release #0
+    11: 0x2885100120000100	mov.skipinv.end o0, r2
+== l1-lock0-lock1
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0xFCA1705003AF0000	mov.skipinv r29, #0x5CAF0000
+     2: 0xFCA0000000600001	mov.skipinv r3, #0x00000001
+     3: 0xFD20000000000000	lock #0
+     4: 0xFD20000000000010	lock #1
+     5: 0xE8A30000A0474000	ldad.skipinv r2, [r29,+#0], drc0
+     6: 0xF920000000000000	wdf drc0
+     7: 0x4880118000570182	iadd32.skipinv.testtaz.chan0 r2, p0, r3, r2
+     8: 0xF0A2000080074002	stad.skipinv [r29,+#0], r2
+     9: 0xF820000000000000	idf drc0, bif
+    10: 0xF920000000000000	wdf drc0
+    11: 0xFD20000000000011	release #1
+    12: 0xFD20000000000001	release #0
+    13: 0x2885100120000100	mov.skipinv.end o0, r2
+== l2-lock-lock-rel-rel
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0xFCA1705003AF0000	mov.skipinv r29, #0x5CAF0000
+     2: 0xFCA0000000600001	mov.skipinv r3, #0x00000001
+     3: 0xFD20000000000000	lock #0
+     4: 0xFD20000000000000	lock #0
+     5: 0xE8A30000A0474000	ldad.skipinv r2, [r29,+#0], drc0
+     6: 0xF920000000000000	wdf drc0
+     7: 0x4880118000570182	iadd32.skipinv.testtaz.chan0 r2, p0, r3, r2
+     8: 0xF0A2000080074002	stad.skipinv [r29,+#0], r2
+     9: 0xF820000000000000	idf drc0, bif
+    10: 0xF920000000000000	wdf drc0
+    11: 0xFD20000000000001	release #0
+    12: 0xFD20000000000001	release #0
+    13: 0x2885100120000100	mov.skipinv.end o0, r2
+== l3-lock-lock-rel
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0xFCA1705003AF0000	mov.skipinv r29, #0x5CAF0000
+     2: 0xFCA0000000600001	mov.skipinv r3, #0x00000001
+     3: 0xFD20000000000000	lock #0
+     4: 0xFD20000000000000	lock #0
+     5: 0xE8A30000A0474000	ldad.skipinv r2, [r29,+#0], drc0
+     6: 0xF920000000000000	wdf drc0
+     7: 0x4880118000570182	iadd32.skipinv.testtaz.chan0 r2, p0, r3, r2
+     8: 0xF0A2000080074002	stad.skipinv [r29,+#0], r2
+     9: 0xF820000000000000	idf drc0, bif
+    10: 0xF920000000000000	wdf drc0
+    11: 0xFD20000000000001	release #0
+    12: 0x2885100120000100	mov.skipinv.end o0, r2
+== l4-lock-norel
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0xFCA1705003AF0000	mov.skipinv r29, #0x5CAF0000
+     2: 0xFCA0000000600001	mov.skipinv r3, #0x00000001
+     3: 0xFD20000000000000	lock #0
+     4: 0xE8A30000A0474000	ldad.skipinv r2, [r29,+#0], drc0
+     5: 0xF920000000000000	wdf drc0
+     6: 0x4880118000570182	iadd32.skipinv.testtaz.chan0 r2, p0, r3, r2
+     7: 0xF0A2000080074002	stad.skipinv [r29,+#0], r2
+     8: 0xF820000000000000	idf drc0, bif
+     9: 0xF920000000000000	wdf drc0
+    10: 0x2885100120000100	mov.skipinv.end o0, r2

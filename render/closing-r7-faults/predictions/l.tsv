@@ -1,0 +1,19 @@
+case	quantity	value	model	set	source
+l0-lock-release	class	ok	L-CTL	control	E088: lock #0 / release #0 serialises the 512 quads (0xd0000200)
+l0-lock-release	count	512	L-CTL	control	E088: lock #0 / release #0 serialises the 512 quads (0xd0000200)
+l1-lock0-lock1	class	ok	L-CTL	control	[infer] two mutexes: a second lock as such does not hang
+l1-lock0-lock1	count	512	L-CTL	control	[infer] two mutexes: a second lock as such does not hang
+l2-lock-lock-rel-rel	class	hang	H-SELF	heldout	[infer] a second lock of a held mutex blocks its holder
+l2-lock-lock-rel-rel	count	0	H-SELF	heldout	[infer] a second lock of a held mutex blocks its holder
+l2-lock-lock-rel-rel	class	ok	H-REFLAG	heldout	[infer] a re-lock passes, one release frees it
+l2-lock-lock-rel-rel	count	512	H-REFLAG	heldout	[infer] a re-lock passes, one release frees it
+l2-lock-lock-rel-rel	class	ok	H-RECOUNT	heldout	[infer] a re-lock passes, the locks are counted
+l2-lock-lock-rel-rel	count	512	H-RECOUNT	heldout	[infer] a re-lock passes, the locks are counted
+l3-lock-lock-rel	class	hang	H-SELF	heldout	[infer] a second lock of a held mutex blocks its holder
+l3-lock-lock-rel	count	0	H-SELF	heldout	[infer] a second lock of a held mutex blocks its holder
+l3-lock-lock-rel	class	ok	H-REFLAG	heldout	[infer] a re-lock passes, one release frees it
+l3-lock-lock-rel	count	512	H-REFLAG	heldout	[infer] a re-lock passes, one release frees it
+l3-lock-lock-rel	class	hang	H-RECOUNT	heldout	[infer] a re-lock passes, the locks are counted
+l3-lock-lock-rel	count	1	H-RECOUNT	heldout	[infer] a re-lock passes, the locks are counted
+l4-lock-norel	class	hang	L-REP	replicate	E088 case 3: the job hung, 0xd0000001
+l4-lock-norel	count	1	L-REP	replicate	E088 case 3: the job hung, 0xd0000001

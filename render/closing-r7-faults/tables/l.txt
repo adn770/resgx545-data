@@ -1,0 +1,9 @@
+#stage l
+#limit 3
+# l: Q111, `lock #0` twice in a pixel program: E088's counter probe (a 64 x 32 fill, every instance adds 1 to scratch
+# dword 0), five programs (bins/, gen/asm_l.py).  A hang is a reading; the third hang with rows left stops the stage.
+l0-lock-release|control|risky|probe|-|probe --temps 32 --pixels "$S/l0-lock-release.bin"
+l1-lock0-lock1|control|risky|probe|-|probe --temps 32 --pixels "$S/l1-lock0-lock1.bin"
+l2-lock-lock-rel-rel|heldout|risky|probe|-|probe --temps 32 --pixels "$S/l2-lock-lock-rel-rel.bin"
+l3-lock-lock-rel|heldout|risky|probe|-|probe --temps 32 --pixels "$S/l3-lock-lock-rel.bin"
+l4-lock-norel|replicate|risky|probe|-|probe --temps 32 --pixels "$S/l4-lock-norel.bin"

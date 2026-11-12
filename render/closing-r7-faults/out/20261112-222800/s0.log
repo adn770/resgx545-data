@@ -1,0 +1,66 @@
+## stage s0
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+41E2F5C756F96D20F7109A4
+## loaded module
+41E2F5C756F96D20F7109A4
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## peek (the module's identity only: read once, never written)
+reg 0x0694 0x00000000
+## kregnow (read: the BIF rows are listed)
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork r6-kernel: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+## free space on ~: 127266688 KiB (at least 300 MiB)
+## timed-out boots so far in this session (the ledger): 0 of 16
+## work directory: /home/jtorra/scratch/tmp/r7f.DZ6yFM
+## clock
+Thu Nov 12 22:28:02 CET 2026
+## r7-faults safety rules: see the header of lib_f.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 af2e5a8667da7586cadeb968f09fdb80c6bbb7581916cb20d89dde6bee20256e
+  kept begin.health1.txt: 311 bytes raw, raw sha256 981e55ed4965f722f38e2078878978e7099ab8abf6c80ba7b98a094d5d033f3f
+  kept begin.row.dmesg: 3507 bytes raw, raw sha256 9ee5edc731fb760abf060952bb1a5e20a3fc12be91048f5966fbf5d61fd1d672
+  boots in the row: U (0 timed out); session total 0 of 16
+== n0-clr-idle set=control risk=safe mode=gate knobs=[gate]
+  free on ~: 127266672 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000 dpm_page_status 0x00000000
+  gate: kregnow 0x0c00^=0x10 twice with nothing held (the fork: taken; BIF_CTRL 0x10, then back)
+  kregnow set: 0x0c00^=0x10 -> status 0
+  snap c1: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000010 bif_int 0x00080000 bif_fault 0x00000000 dpm_page_status 0x00000000
+  kregnow clear: 0x0c00^=0x10 -> status 0
+  snap 1: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000 dpm_page_status 0x00000000
+  rc 0 set rc 0 clear rc 0 
+  kept n0-clr-idle.txt: 20 bytes raw, raw sha256 4deae7b4cfd47c620d1567917e992a97c02ab32e5bf385fc5e8c85362e89a468
+  kept n0-clr-idle.dmesg: 717 bytes raw, raw sha256 259b232ff2c2f78f86d06ec1db52717ce3d493979b795f271552b1d7eced45a4
+  kept n0-clr-idle.regs: 6474 bytes raw, raw sha256 5dc90dc99af5db77803fe731a84f1a951aa88360731d8fc87e87054d2120cb64
+  kept n0-clr-idle.snap0.regs: 6474 bytes raw, raw sha256 49f89605d995961171f715f553765fd07f9fe22d004591c2af6aac2bb99e08ef
+  kept n0-clr-idle.snapc1.regs: 6474 bytes raw, raw sha256 7ee5b0c1b9b52d02e1ae8d3ad39e6082e1169c32d0c1eb0a4912ef8a8df7d16e
+  kept n0-clr-idle.kw.txt: 48 bytes raw, raw sha256 217be8013d9bfa3f0a3351d255e581f118af972325b7a3830ef4e3d83789d999
+  class ok (fault bits 15:0 at snap 1: -, hold message: no, boots in the job's slice: )
+  kept n0-clr-idle.row.dmesg: 4561 bytes raw, raw sha256 86ee084a604b010b055d786bf63a16b821127e71682b20e7458eb3912e6ce32f
+  boots in the row: U (0 timed out); session total 0 of 16
+== c1-tri set=control risk=safe mode=plain knobs=[expectdiff]
+  free on ~: 127266644 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000 dpm_page_status 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going
+  snap 1: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000 dpm_page_status 0x00000000
+  rc 0 tri: render context for targets up to 64x64 job: ok tri: 1 renders ok 
+  kept c1-tri.txt: 311 bytes raw, raw sha256 0f627cf074992c480d1779bf55e4dbdb5b0147cb8efae1dfc92221ee4044d7bc
+  kept c1-tri.dmesg: 114 bytes raw, raw sha256 d26e3bcc12dd54f2ce312f72b8150a4ecc82ed835fd63c964e03200c959fc4dc
+  kept c1-tri.regs: 6474 bytes raw, raw sha256 dcf5ab26725cf946d47c39a660ab830aaf5b172cd1ed91ae8b1b949c19e3c70c
+  kept c1-tri.snap0.regs: 6474 bytes raw, raw sha256 8be6e92b1608ea75ebf71ec83f0a5729dc6e71aeb7cabd34678532151e60dd81
+  class ok (fault bits 15:0 at snap 1: -, hold message: no, boots in the job's slice: )
+  kept c1-tri.row.dmesg: 3933 bytes raw, raw sha256 7786006d5d89447f2ef908b225d8916af5ec19613ea1d5ed6f0d9279e97fe677
+  boots in the row: U (0 timed out); session total 0 of 16
+  kept end.fill2.txt: 174 bytes raw, raw sha256 95620ca15dd43f3c0d9d7396b89eee661819bcd784cbaec25c91635b37c48f08
+  kept end.health2.txt: 311 bytes raw, raw sha256 f5c4f69a472874c02f49eb4c4951b3880a8feb464fe8ce27576c62808e015a92
+  kept end.row.dmesg: 3503 bytes raw, raw sha256 e3464dd697d905685de0f73b25d8d6393ea9b9ec6742eeb08099bfc6f2bd8f38
+  boots in the row: U (0 timed out); session total 0 of 16
+## end: 2 rows of s0
+## exit: hold_recovery=N render_rgn_arrays=0x00000000 render_pb_pages=0x00000422 render_tail_room=0x00000000
+## kernel log (journalctl)
+## kernel log: 2 case markers kept in /home/jtorra/scratch/r7f/out/20261112-222800/s0/kernel.log

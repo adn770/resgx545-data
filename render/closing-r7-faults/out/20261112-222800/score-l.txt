@@ -1,0 +1,28 @@
+l0-lock-release: class=ok count=512
+  class          L-CTL     control   held        got ok           frozen ok           E088: lock #0 / release #0 serialises the 512 quads (0xd0000
+  count          L-CTL     control   held        got 512          frozen 512          E088: lock #0 / release #0 serialises the 512 quads (0xd0000
+l1-lock0-lock1: class=ok count=512
+  class          L-CTL     control   held        got ok           frozen ok           [infer] two mutexes: a second lock as such does not hang
+  count          L-CTL     control   held        got 512          frozen 512          [infer] two mutexes: a second lock as such does not hang
+l2-lock-lock-rel-rel: class=hang count=0
+  class          H-SELF    heldout   held        got hang         frozen hang         [infer] a second lock of a held mutex blocks its holder
+  count          H-SELF    heldout   held        got 0            frozen 0            [infer] a second lock of a held mutex blocks its holder
+  class          H-REFLAG  heldout   FAILED      got hang         frozen ok           [infer] a re-lock passes, one release frees it
+  count          H-REFLAG  heldout   FAILED      got 0            frozen 512          [infer] a re-lock passes, one release frees it
+  class          H-RECOUNT heldout   FAILED      got hang         frozen ok           [infer] a re-lock passes, the locks are counted
+  count          H-RECOUNT heldout   FAILED      got 0            frozen 512          [infer] a re-lock passes, the locks are counted
+l3-lock-lock-rel: class=hang count=0
+  class          H-SELF    heldout   held        got hang         frozen hang         [infer] a second lock of a held mutex blocks its holder
+  count          H-SELF    heldout   held        got 0            frozen 0            [infer] a second lock of a held mutex blocks its holder
+  class          H-REFLAG  heldout   FAILED      got hang         frozen ok           [infer] a re-lock passes, one release frees it
+  count          H-REFLAG  heldout   FAILED      got 0            frozen 512          [infer] a re-lock passes, one release frees it
+  class          H-RECOUNT heldout   held        got hang         frozen hang         [infer] a re-lock passes, the locks are counted
+  count          H-RECOUNT heldout   FAILED      got 0            frozen 1            [infer] a re-lock passes, the locks are counted
+l4-lock-norel: class=hang count=1
+  class          L-REP     replicate held        got hang         frozen hang         E088 case 3: the job hung, 0xd0000001
+  count          L-REP     replicate held        got 1            frozen 1            E088 case 3: the job hung, 0xd0000001
+SUMMARY: l: H-SELF consistent (4 held, 0 FAILED, 0 cannot tell of 4); H-REFLAG REFUTED (0 held, 4 FAILED, 0 cannot tell of 4); H-RECOUNT REFUTED (1 held, 3 FAILED, 0 cannot tell of 4); L-REP consistent (2 held, 0 FAILED, 0 cannot tell of 2)
+SUMMARY: Q111 lock (l): H-SELF: a second lock #0 of a held mutex blocks its own holder (a pixel program) (4 of 4 rows decided)
+SUMMARY: Q111 lock (l): H-REFLAG: a re-lock passes and one release frees the mutex is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: Q111 lock (l): H-RECOUNT: a re-lock passes and the locks are counted is not supported: 1 held, 3 FAILED, 0 cannot tell of 4
+SUMMARY: l controls: 9 PASS, 0 FAIL, 0 NODATA

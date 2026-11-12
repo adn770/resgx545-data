@@ -1,0 +1,11 @@
+#stage d
+#limit 21
+# d: Q003's fault-page dose: E848's held job (hold_recovery Y, render_rgn_arrays 1) at seven sizes, the debugfs reset
+# while held, then triangles until one draws (three at most).  A -110 is a reading; d0 (640 x 480) timing out stops d.
+d0-640x480|control|risky|held rgn:1 expectdiff hypo:d:7 cell:health ctl640|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d1-288x144|control|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d2-320x400|heldout|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d3-256x288|heldout|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 256 --height 288 --max-width 256 --max-height 288 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d4-128x528|heldout|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 128 --height 528 --max-width 128 --max-height 528 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d5-384x384|heldout|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 384 --height 384 --max-width 384 --max-height 384 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+d6-320x400|heldout|risky|held rgn:1 expectdiff hypo:d:7 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 320 --height 400 --max-width 320 --max-height 400 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26

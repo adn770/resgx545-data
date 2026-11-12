@@ -1,0 +1,10 @@
+#stage m
+#limit 18
+# m: Q003's manipulations at 288 x 144 before the held reset: none, CLEAR_FAULT set then cleared (kregnow), a 9 s hold;
+# order M0 M1 M2 M2 M1 M0.
+m0a-none|control|risky|held rgn:1 expectdiff hypo:m:6 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+m1a-clr|heldout|risky|held rgn:1 expectdiff hypo:m:6 cell:health clr|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+m2a-long|heldout|risky|held rgn:1 expectdiff hypo:m:6 cell:health long|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+m2b-long|heldout|risky|held rgn:1 expectdiff hypo:m:6 cell:health long|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+m1b-clr|heldout|risky|held rgn:1 expectdiff hypo:m:6 cell:health clr|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+m0b-none|control|risky|held rgn:1 expectdiff hypo:m:6 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
