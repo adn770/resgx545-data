@@ -1,0 +1,19 @@
+#stage s-k
+#set B
+#module 37EC97AB0CB37213C42FCCC
+#need $S/p1139-green.bin
+#need $S/oomring2.blob
+# s-k passes (10, SET B, after the one-shot boot of module 37EC97AB): oomring2 armed before each job (oomring + ldr of 0x0724 and 
+# 0x072c, words 6 and 7 of each rung).  k-b6 first: its premise (the arm accepted, rungs with non-zero counts inside the host samp
+# les' bracket) else STOP; k-b5 and k-b6 controls; c4-b3, S3, S4+1, t-s3m6, band 5 A-1 and A (0x177, 0x178), the 2048x4096 creep c
+# ell twice.  An EDM stall is reset once; a second ends s-k.
+k-b6|control|safe|0x105|stophang fw fwprem reads:ring_counts,dec_sa8_380|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b5|control|safe|0x104|stophang fw reads:dec_sa8_380,cls|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b3|repeat|safe|0x10a|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s3|heldout|safe|0xbf|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s4p1|heldout|safe|0x10b|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s3m6|heldout|safe|0xb9|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b5-0x177|heldout|safe|0x199|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b5-0x178|heldout|safe|0x19a|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-creep|heldout|safe|0x26c|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 4096 --vertices 1500 "$S/p1139-green.bin"
+k-creep2|repeat|safe|0x26c|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 4096 --vertices 1500 "$S/p1139-green.bin"
