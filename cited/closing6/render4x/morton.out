@@ -1,0 +1,54 @@
+part 1: d against m1, 12288 headers: dwords lost (zero in d, non-zero in m1) 1213, non-zero and equal 20397, other differences 918
+  other differences by (d xor m1): {'0x10000000': 2, '0x04000000': 2, '0x08000000': 914}
+  interleave y even: lost word-1 dwords 1023; predicted (a stream offset whose dword is an in-target tile's entry) 1023; both 1023, lost only 0, predicted only 0
+     lost word-0 dwords 190: at an in-target entry 1, at an entry of the header grid outside the target 189, neither 0
+     word-0 dwords at an in-target entry: 1025, of them lost 1; at a grid-only entry 682, lost 189
+  interleave x even: lost word-1 dwords 1023; predicted (a stream offset whose dword is an in-target tile's entry) 1708; both 426, lost only 597, predicted only 1282
+     lost word-0 dwords 190: at an in-target entry 183, at an entry of the header grid outside the target 6, neither 1
+     word-0 dwords at an in-target entry: 1706, of them lost 183; at a grid-only entry 341, lost 6
+  bit 27 set in d only: 914 headers; {'own entry in the headers': 914}
+  in-target tiles by where their own entry lies: {'in the tail room': 4096, 'in ctl/OTPM/state': 3072, 'in the headers': 3072}
+part 2: fault iff 4 * (largest Z over the tiles) >= limit of the maximum's layout; misses over 26 cells
+  y even, tiles of the target, limit tail :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  y even, tiles of the target, limit otpm :  4 misses 640x480 on 640x480; 1024x768 on 1024x768; 256x1536 on 256x1536; 1024x512 on 1024x512
+  y even, tiles of the target, limit state:  3 misses 640x480 on 640x480; 1024x768 on 1024x768; 1024x512 on 1024x512
+  y even, tiles of the target, limit rgn  :  0 misses 
+  y even, tiles of the grid  , limit tail :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  y even, tiles of the grid  , limit otpm :  4 misses 640x480 on 640x480; 1024x768 on 1024x768; 256x1536 on 256x1536; 1024x512 on 1024x512
+  y even, tiles of the grid  , limit state:  3 misses 640x480 on 640x480; 1024x768 on 1024x768; 1024x512 on 1024x512
+  y even, tiles of the grid  , limit rgn  :  0 misses 
+  x even, tiles of the target, limit tail :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  x even, tiles of the target, limit otpm :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  x even, tiles of the target, limit state:  5 misses 640x480 on 640x480; 1024x768 on 1024x768; 2048x240 on 2048x240; 256x1536 on 256x1536; 1024x512 on 1024x512
+  x even, tiles of the target, limit rgn  :  3 misses 1024x768 on 1024x768; 2048x240 on 2048x240; 256x1536 on 256x1536
+  x even, tiles of the grid  , limit tail :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  x even, tiles of the grid  , limit otpm :  8 misses 256x288 on 256x288; 384x384 on 384x384; 512x384 on 512x384; 640x480 on 640x480; 320x400 on 320x400; 1024x768 on 1024x768
+  x even, tiles of the grid  , limit state:  5 misses 640x480 on 640x480; 1024x768 on 1024x768; 2048x240 on 2048x240; 256x1536 on 256x1536; 1024x512 on 1024x512
+  x even, tiles of the grid  , limit rgn  :  3 misses 1024x768 on 1024x768; 2048x240 on 2048x240; 256x1536 on 256x1536
+  the cells under (y even, target, rgn):
+      64 x 64   on   64 x 64    entries end 0x000080  room 0x001000 rgn 0x004000  -> complete measured complete E824 c2
+     288 x 144  on  288 x 144   entries end 0x000c10  room 0x001000 rgn 0x004000  -> complete measured complete E824 h1, E828 j1r
+     256 x 288  on  256 x 288   entries end 0x0012c0  room 0x001000 rgn 0x004000  -> complete measured complete E824 h2
+     384 x 384  on  384 x 384   entries end 0x001a00  room 0x001000 rgn 0x004000  -> complete measured complete E824 h3
+     320 x 160  on  320 x 160   entries end 0x000c40  room 0x001000 rgn 0x004000  -> complete measured complete E824 h4
+     512 x 384  on  512 x 384   entries end 0x001c00  room 0x001000 rgn 0x004000  -> complete measured complete E824 h5
+     640 x 480  on  640 x 480   entries end 0x0035c0  room 0x001000 rgn 0x004000  -> complete measured complete E824 h6
+     320 x 400  on  320 x 400   entries end 0x001c30  room 0x001000 rgn 0x004000  -> complete measured complete E824 h7
+    1024 x 768  on 1024 x 768   entries end 0x007000  room 0x004000 rgn 0x007000  -> complete measured complete E824 h8
+    1280 x 1024 on 1280 x 1024  entries end 0x00d800  room 0x004000 rgn 0x007000  -> fault    measured fault    E845, E869 d
+    2048 x 1536 on 2048 x 1536  entries end 0x01c000  room 0x010000 rgn 0x013000  -> fault    measured fault    E845
+    1024 x 768  on 2048 x 2048  entries end 0x007000  room 0x010000 rgn 0x013000  -> complete measured complete E867 m0
+    1280 x 1024 on 1280 x 1040  entries end 0x00d800  room 0x010000 rgn 0x013000  -> complete measured complete E867 m1
+    1280 x 1024 on 2048 x 2048  entries end 0x00d800  room 0x010000 rgn 0x013000  -> complete measured complete E867 m2
+    1280 x 1024 on 2048 x 1024  entries end 0x00d800  room 0x004000 rgn 0x007000  -> fault    measured fault    E867 m3
+    2048 x 1536 on 4096 x 4096  entries end 0x01c000  room 0x040000 rgn 0x043000  -> complete measured complete E867 m4
+    2048 x 240  on 2048 x 240   entries end 0x00aff0  room 0x004000 rgn 0x007000  -> fault    measured fault    E868 l1
+     256 x 1536 on  256 x 1536  entries end 0x011800  room 0x010000 rgn 0x013000  -> complete measured complete E868 l2
+     768 x 2048 on  768 x 2048  entries end 0x017800  room 0x010000 rgn 0x013000  -> fault    measured fault    E868 l3
+    1280 x 768  on 1280 x 768   entries end 0x00c800  room 0x004000 rgn 0x007000  -> fault    measured fault    E868 l4
+    1024 x 1024 on 1024 x 1024  entries end 0x008000  room 0x004000 rgn 0x007000  -> fault    measured fault    E868 l5
+    1024 x 512  on 1024 x 512   entries end 0x004000  room 0x001000 rgn 0x004000  -> complete measured complete E868 x1
+    1184 x 768  on 1184 x 768   entries end 0x00c760  room 0x004000 rgn 0x007000  -> fault    measured fault    E868 x2
+    1024 x 800  on 1024 x 800   entries end 0x007ac0  room 0x004000 rgn 0x007000  -> fault    measured fault    E868 x3
+    4096 x 1152 on 4096 x 1152  entries end 0x03ac00  room 0x010000 rgn 0x013000  -> fault    measured fault    E846 o7 (also overflows)
+    4096 x 4096 on 4096 x 4096  entries end 0x080000  room 0x040000 rgn 0x043000  -> fault    measured fault    E828 j4 (also overflows)
