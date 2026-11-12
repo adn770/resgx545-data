@@ -1,0 +1,14 @@
+#stage s-a0
+#set A
+#module 41E2F5C756F96D20F7109A4
+#need $S/p1139-green.bin
+# s-a0 premise (6): 2048x2048 calibrations at P 0x162 (S2..S5, 2 pages left) and 0x422 (complete: S2..S7, need 0x213), c4-b5 R and
+#  2 left, c4-b6 N and 1 left, t-s3m6 1 left, g-qf at P 0xa2 2 partial renders and H-REPLAY64's run peaks.  Every row is a control
+#  and declares what it reads: a control off or WITHOUT A READING, a knob proof off or a capture not whole STOPS the session befor
+# e s-m (rc 10, state/CTLFAIL; rc 13 for the capture).
+a0-cal-2048|control|safe|0x162|stophang prem cal:c2048 model:0x51,0x9d,0xe8,0x132,0x181,0x1ca ctlleft:2 reads:S2,S3,S4,S5,knob,mono,gps_left|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-cal-2048f|control|safe|0x422|stophang prem cal:c2048f model:0x51,0x9d,0xe8,0x132,0x181,0x1ca ctlneed:0x213 ctlcnt:0 reads:S2,S3,S4,S5,S6,S7,knob,mono,need,nparts|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-c4-b5|control|safe|0x104|stophang prem ctl:R ctlleft:2 reads:cls,gps_left,knob|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-c4-b6|control|safe|0x105|stophang prem ctl:N ctlleft:1 reads:cls,gps_left,knob|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-t-s3m6|control|safe|0xb9|stophang prem ctlleft:1 reads:gps_left,knob|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-qf-0xa2|control|safe|0xa2|stophang expectdiff prem ctlcnt:2 ctlpeaks:0x80,0xa0,0x2 reads:nparts,runpeaks,knob,gmax|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c
