@@ -1,0 +1,9 @@
+#stage s0
+#limit 0
+# Session gate (the driver stops, exit 40, on a miss): the default 64 x 64 triangle with t4, t6 and t7 draws exactly (diff 0 of 4096), and
+# E831's z-ctl-34x18-y with t4 stores 924 dwords, rule A's set (so a t7 that changed an even width would show at q287's
+# t7 controls, and the module on this boot still stores E831's band).
+s0-tri-t4|control|safe|expectdiff|t4|tri
+s0-tri-t6|control|safe|expectdiff|t6|tri
+s0-tri-t7|control|safe|expectdiff|t7|tri
+s0-z-ctl-34x18-y-t4|control|safe|expectdiff|t4|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200

@@ -1,0 +1,31 @@
+#stage q139
+#limit 1
+# q139: TA dumps at E877's missed cases (plan 3.6).  The datasets' own command token for token (ta/mtile-fields*/
+# scripts) plus --keep-going (deviation: without it t4 keeps no dump of a wrong image) and --dump-render.
+# Controls first (the baselines of each size, then the poked exact control), fit, held out, the replicate last.
+# Held-out rows are read only after the fold's fitted model is hashed: score_dump.py q139-heldout KEPT MODEL_SHA.
+# Disk: 640 x 480 --pixels prints 3.4 MB of text, the parameter dump is 4.6 MB raw (gzipped when kept).
+q139-c-256x256-ctl|control|safe|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-c-640x480-ctl|control|safe|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-c-256x256-m1-B1-5|control|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x01404004 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-m1-B2-8|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x01008004 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-m1-B2-5|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x01005004 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-m2-B2-10|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200a008 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-stride-8|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x8 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-stride-16|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x10 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-256x256-part1-8_8_8|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x02008008 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-640x480-m1-B1-20|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x85010018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-640x480-m1-B2-20|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x82014018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-640x480-m2-B1-17|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x04410018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-f-640x480-m2-B2-24|fit|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x02018018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-256x256-m1-B2-12|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x0100c004 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-256x256-m2-B2-12|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200c008 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-256x256-stride-4|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x4 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-256x256-stride-24|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x18 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-256x256-part2-10_10_10|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0280a00a --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-640x480-m1-B1-28|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x87010018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-640x480-m1-B2-32|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x82020018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-640x480-m2-B1-20|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x05010018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-640x480-m2-B2-28|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x0201c018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-h-640x480-m1-flag0|heldout|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x02010018 --wait-ms 20000 --keep-going --dump-render "$W/dump"
+q139-r-256x256-m1-B2-8|replicate|risky|expectdiff needdump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x01008004 --wait-ms 20000 --keep-going --dump-render "$W/dump"

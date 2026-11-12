@@ -1,0 +1,36 @@
+q287: stored (not 1.0f) tile-area dwords at the store's pitch (2 tiles a row) and the rules whose set equals them
+job               set      size   stored  cols  matched          A!=FLOOR  note
+z-dry-33x18       gate     33x18  902     41    A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-x-t4  control  34x18  924     42    A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-x-t6  control  34x18  924     42    A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-x-t7  control  34x18  924     42    A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-y-t7  control  34x18  924     42    A FLOOR RSTRICT  no        ok  
+z-fit-19x18-x-r1  fit      19x18  528     24    A                yes       ok  
+z-fit-19x18-x-r2  fit      19x18  528     24    A                yes       ok  
+z-7x18-x-r1       heldout  7x18   198     9     A                yes       ok  
+z-7x18-x-r2       heldout  7x18   198     9     A                yes       ok  
+z-11x18-x-r1      heldout  11x18  308     14    A                yes       ok  
+z-11x18-x-r2      heldout  11x18  308     14    A                yes       ok  
+z-23x18-x-r1      heldout  23x18  638     29    A                yes       ok  
+z-23x18-x-r2      heldout  23x18  638     29    A                yes       ok  
+z-35x18-x-r1      heldout  35x18  968     44    A                yes       ok  
+z-35x18-x-r2      heldout  35x18  968     44    A                yes       ok  
+z-19x18-y         heldout  19x18  528     24    A                yes       ok  
+z-23x18-y         heldout  23x18  638     29    A                yes       ok  
+z-35x18-y         heldout  35x18  968     44    A                yes       ok  
+z-43x18-x         heldout  43x18  1188    54    A                yes       ok  
+z-51x18-x         heldout  51x18  1408    64    A                yes       ok  
+z-17x18-x         confirm  17x18  462     21    A FLOOR RSTRICT  no        ok  
+z-21x18-x         confirm  21x18  572     26    A FLOOR RSTRICT  no        ok  
+z-pk-20x18-scr    twin     20x18  550     25    H-VP             -         ok  
+z-pk-20x18-vp     twin     20x18  528     24    H-VP             -         ok  
+z-pk-20x18-both   twin     20x18  528     24    H-SCR H-VP       -         ok  
+
+poke twins (W 20, gate nothing): scr H-VP, vp H-VP, both both (same set)
+rule A       fit 1 held, 0 FAILED, 0 cannot tell of 1 | held out 9 held, 0 FAILED, 0 cannot tell of 9 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+rule FLOOR   fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 9 FAILED, 0 cannot tell of 9 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+rule ROUND   fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 9 FAILED, 0 cannot tell of 9 | confirm 0 held, 2 FAILED, 0 cannot tell of 2
+rule CEIL    fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 9 FAILED, 0 cannot tell of 9 | confirm 0 held, 2 FAILED, 0 cannot tell of 2
+rule RSTRICT fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 9 FAILED, 0 cannot tell of 9 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+SUMMARY: Q287 (odd widths, H 18): rule A held on the held-out cells (9 of 9), FLOOR refuted (0 of 9); fit cell 19: A held, FLOOR refuted; .25 confirmations A 2 of 2; controls pass; poke twins (W 20, gate nothing): scr H-VP, vp H-VP, both both (same set)
+SUMMARY: Q287 (odd widths, H 18): rule A held on the held-out cells (9 of 9), FLOOR refuted (0 of 9); fit cell 19: A held, FLOOR refuted; .25 confirmations A 2 of 2; controls pass; poke twins (W 20, gate nothing): scr H-VP, vp H-VP, both both (same set)

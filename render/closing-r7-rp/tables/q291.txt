@@ -1,0 +1,44 @@
+#stage q291
+#limit 1
+# Q291, the attribute band (plan 3.3), t6 (R6's d9b2969 build: --tri-v, pixpds:12, --slot and
+# --vtx-coords for probe --tri).  Valid set = the slots whose scratch dword 1 changed; every row
+# touches one tile (pix_posstore reads only g23-g25).  Frozen, exact set equality: H-BAND
+# (predicted: covered, in the tile area, x + 0.5 < 1.25 W and y + 0.5 < 1.25 H) against H-TARGET
+# (inside W x H) and H-TILE (the tile area); the 12 held-out P rows separate H-BAND from both.
+# Values: P (q291_pos.bin, E437) f32(x + 0.5), f32(y + 0.5) past the target too (H-LIN); V
+# (q291_vtx.bin, E606's vertex pair, vtx_attr_zx.bin) clip z 0 within 4, clip x within 23 units
+# of 2^-23 (E661).  Controls that can fail: pix_pa0's image at 20 x 12 (x + 0.5 words), the cut
+# triangles at 64 x 16 (tile (1,0)) and 32 x 32 (tile (0,1)) (512 slots each), V at 32 x 16.
+# Depth twins (tri --depth, E831's row shape, x ramp): rule A's stored set at sizes never run.
+# No fault expected (fault limit 1).
+#need $S/pix_posstore.bin
+#need $S/q291_pos.bin
+#need $S/q291_vtx.bin
+#need $S/vtx_attr_zx.bin
+#need $S/pix_pa0.bin
+q291-pa0-ctl-20x12|control|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 20 --height 12 --tri-full --slot pixel="$S/pix_pa0.bin" "$S/q291_pos.bin"
+q291-ps-ctl-cutx-64x16|control|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 64 --height 16 --tri-v 8192,0,32768,0,8192,12288 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-ctl-cuty-32x32|control|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 32 --height 32 --tri-v 0,4096,24576,4096,0,16384 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-pv-ctl-32x16|control|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 32 --height 16 --tri-full --vtx-coords 2 --slot vtxuse="$S/vtx_attr_zx.bin" --slot pixel="$S/pix_posstore.bin" "$S/q291_vtx.bin"
+q291-ps-fit-20x12-r1|fit|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 20 --height 12 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-fit-20x12-r2|fit|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 20 --height 12 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-18x12|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 18 --height 12 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-24x8|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 24 --height 8 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-12x12|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 12 --height 12 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-20x8|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 20 --height 8 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-26x10|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 26 --height 10 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-10x6|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 10 --height 6 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cutx-34x16|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 34 --height 16 --tri-v 8192,0,32768,0,8192,12288 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cutx-36x16|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 36 --height 16 --tri-v 8192,0,32768,0,8192,12288 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cutx-44x16|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 44 --height 16 --tri-v 8192,0,32768,0,8192,12288 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cutx-50x16|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 50 --height 16 --tri-v 8192,0,32768,0,8192,12288 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cuty-32x18|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 32 --height 18 --tri-v 0,4096,24576,4096,0,16384 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-ps-cuty-32x24|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 32 --height 24 --tri-v 0,4096,24576,4096,0,16384 --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"
+q291-pv-20x12|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 20 --height 12 --tri-full --vtx-coords 2 --slot vtxuse="$S/vtx_attr_zx.bin" --slot pixel="$S/pix_posstore.bin" "$S/q291_vtx.bin"
+q291-pv-18x12|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 18 --height 12 --tri-full --vtx-coords 2 --slot vtxuse="$S/vtx_attr_zx.bin" --slot pixel="$S/pix_posstore.bin" "$S/q291_vtx.bin"
+q291-pv-24x8|heldout|safe|-|t6|probe --tri pixpds:12 --temps 32 --pixels --width 24 --height 8 --tri-full --vtx-coords 2 --slot vtxuse="$S/vtx_attr_zx.bin" --slot pixel="$S/pix_posstore.bin" "$S/q291_vtx.bin"
+q291-pz-20x12|twin|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 20 --height 12 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+q291-pz-18x12|twin|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 18 --height 12 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+q291-pz-24x8|twin|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 24 --height 8 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+q291-pz-12x12|twin|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 12 --height 12 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
+q291-pz-10x6|twin|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 10 --height 6 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 17 --poke blk:1=0x00400200
