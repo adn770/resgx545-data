@@ -1,0 +1,5 @@
+q293-u1-ctl-n3 (control): PASS: objects at 0, 27, 54, each +11 zero, +12 0x00040101; render 3: 0 triangle, 4096 background, 0 other; 3 objects found
+q293-u2-ctl-t7 (control): PASS: as E888's t7 (dump head 0-63, render 2 0 triangle, 4096 background, 0 other, diff 3969 of 4096, hash 0x8ea26cdfee74a325, poke applied)
+q293-u3-obj2-twin (held out): H-READ2 held: 16 of 16 pokes applied and in the dump; render 3: 4096 triangle, 0 background, 0 other, diff 0 of 4096 (render 2's object, put in the bit-29-set layout, drew)
+q293-u4-obj2-ffff (held out): H-READ2 held: 1 of 1 pokes applied and in the dump; render 3: 0 triangle, 4096 background, 0 other
+SUMMARY: q293: Q293: render 2's own object is read as render 1's: put in the bit-29-set layout by a poke before render 3 it draws (u3, 4096 triangle pixels) and 0xffffffff at its dword 11 draws nothing (u4); three renders leave objects at 0, 27, 54 in the displaced layout and draw nothing (u1) (2 of 2 rows decided)

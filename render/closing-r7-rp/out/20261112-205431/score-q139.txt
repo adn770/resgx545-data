@@ -1,0 +1,17 @@
+q139-c-256x256-ctl (control, baseline 256x256): PASS: image exact; headers: every one of the 128 target tiles has one header with a stream (base 0x4000, 128 header slots read)
+q139-c-640x480-ctl (control, baseline 640x480): PASS: image exact; headers: every one of the 600 target tiles has one header with a stream (base 0x4000, 1024 header slots read)
+q139-c-256x256-m1-B1-5 (control, poked, exact): PASS: image complete, 0 wrong tiles; 0 headers moved, 0 emptied
+q139-f-256x256-m1-B2-5 (fit): replicates (12 wrong tiles, as kept); H-MOVED FAILED: 12 wrong, 16 moved, 12 both, 0 wrong in place (H-INPLACE), 4 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 4.12,4.13,4.14)
+q139-f-256x256-m1-B2-8 (fit): replicates (32 wrong tiles, as kept); H-MOVED FAILED: 32 wrong, 96 moved, 32 both, 0 wrong in place (H-INPLACE), 64 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.12,0.13,0.14)
+q139-f-256x256-m2-B2-10 (fit): replicates (24 wrong tiles, as kept); H-MOVED FAILED: 24 wrong, 40 moved, 24 both, 0 wrong in place (H-INPLACE), 16 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.12,1.12,0.13)
+q139-f-256x256-part1-8_8_8 (fit): replicates (32 wrong tiles, as kept); H-MOVED FAILED: 32 wrong, 96 moved, 32 both, 0 wrong in place (H-INPLACE), 64 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.12,0.13,0.14)
+q139-f-256x256-stride-16 (fit): replicates (48 wrong tiles, as kept); H-MOVED FAILED: 48 wrong, 112 moved, 48 both, 0 wrong in place (H-INPLACE), 64 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.8,0.9,0.10)
+q139-f-256x256-stride-8 (fit): replicates (72 wrong tiles, as kept); H-MOVED FAILED: 72 wrong, 120 moved, 72 both, 0 wrong in place (H-INPLACE), 48 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.8,0.9,0.10)
+q139-f-640x480-m1-B1-20 (fit): replicates (288 wrong tiles, as kept); H-MOVED FAILED: 288 wrong, 472 moved, 288 both, 0 wrong in place (H-INPLACE), 184 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.28,1.28,0.29)
+q139-f-640x480-m1-B2-20 (fit): replicates (112 wrong tiles, as kept); H-MOVED FAILED: 112 wrong, 120 moved, 112 both, 0 wrong in place (H-INPLACE), 8 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 16.28,17.28,16.29)
+q139-f-640x480-m2-B1-17 (fit): replicates (108 wrong tiles, as kept); H-MOVED held: 108 wrong, 108 moved, 108 both, 0 wrong in place (H-INPLACE), 0 moved that drew, 0 emptied in place
+q139-f-640x480-m2-B2-24 (fit): replicates (0 wrong tiles, as kept); H-MOVED held: 0 wrong, 0 moved, 0 both, 0 wrong in place (H-INPLACE), 0 moved that drew, 0 emptied in place
+q139-r-256x256-m1-B2-8 (replicate): replicates (32 wrong tiles, as kept); H-MOVED FAILED: 32 wrong, 96 moved, 32 both, 0 wrong in place (H-INPLACE), 64 moved that drew, 0 emptied in place: headers moved for tiles that drew (e.g. 0.12,0.13,0.14)
+case q100-256x256-m1-B2-8 with its replicate: refuted
+held out: 10 rows kept, not read here (score_dump.py q139-heldout KEPT MODEL_SHA after the fold's model)
+SUMMARY: q139: Q139 H-MOVED: a tile of a poked macrotile word is wrong iff its region header is not at the slot the baseline of its size has it at (fit rows) is not supported: 2 held, 8 FAILED, 0 cannot tell of 10; headers moved for tiles that drew in 9 fit rows

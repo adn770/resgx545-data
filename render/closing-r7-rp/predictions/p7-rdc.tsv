@@ -1,0 +1,20 @@
+case	quantity	value	model	set
+c-e709-x	g_o4_words	10..100	G-o4 structural, as R4 and R5 (tag-5 words in the x and y job (R1 to R5: 22 to 63))	control
+c-e709-x	g_o4_pairs	5..60	G-o4 structural, as R4 and R5 (pairs (R4, R5: 8 to 42))	control
+c-e709-x	g_o4_parity	even,even	G-o4 structural, as R4 and R5 (every pair source (even x, even y))	control
+c-e709-x	g_o4_tag5p_max	2	G-o4 structural, as R4 and R5 (no tag-13 word in the x job)	control
+c-u-x	marker	0x105	R4's program marker	control
+c-u-x	ctl_min_frac	0.98	frozen criterion (R1 to R5: tag-2 fraction 0.990 to 0.996)	control
+c-all4-x	marker	0x141	R5's program marker (bins/p5o4-markers.tsv of R5)	control
+c-all4-x	o4_word	5:1	E858: c-all4 read 5:1 in R5; any other reading voids the stage (not the session)	control
+c-ow-x	marker	0x181	frozen program marker (x job; the y job's is +1)	control
+c-ow-x	own_word	1:1>=0.95	the last o0 write is the pixel: bits 1 at >= 95 percent of the TRI pixels (else the stage is void)	control
+c-rd-0-x	marker	0x183	frozen program marker (x job; the y job's is +1)	control
+c-rd-0-x	own_word	1:2>=0.95	a register known to hold its word, read through r10 (E373): W_A at >= 95 percent of TRI; W_B or neither: readback cannot be read, the stage is void	control
+c-rd-0-x	tri	>=300	TRI = the pixels whose word is their own (job marker, tag 1, source the pixel) in both c-rd-0 jobs	control
+c-prd-0-k1-x	marker	0x185	frozen program marker (x job; the y job's is +1)	control
+c-prd-0-k1-x	lanes	1:2,1:1,1:2,1:2	[infer from E808's o1 result] W_1 on lane k = (x & 1) | (y & 1) << 1, W_0 on the others, each at >= 95 percent of the lane's TRI pixels; gates the predicate rows only	control
+c-prd-0-k7-x	marker	0x187	frozen program marker (x job; the y job's is +1)	control
+c-prd-0-k7-x	lanes	1:2,1:2,1:2,1:2	[infer from E808's o1 result] W_1 on lane k = (x & 1) | (y & 1) << 1, W_0 on the others, each at >= 95 percent of the lane's TRI pixels; gates the predicate rows only	control
+@p7-rdc	gate	G-o4 c-e709; G-o1 c-u >= 0.98; c-ow 1:1 >= 0.95 of TRI; c-rd-0 1:2 >= 0.95 of TRI; c-prd-0 k1 and k7 lanes as frozen (>= 0.95 of each lane's TRI pixels in both jobs)	R6's bridge (plan 3.4); any control not PASS: gate not 0, the driver skips p7-rd	control
+@p7-rdc	void	c-all4 not 5:1	R6: the stage's layout cannot be read; p7-rd's verdict is cannot tell (not a gate)	control

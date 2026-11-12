@@ -1,0 +1,11 @@
+#stage q291g
+#limit 1
+# Q291 gate (plan closing7/a/exp-pixel-r7.md 3.3, stop rc 24): pix_posstore.bin (E898) as the
+# triangle's pixel program with E437's position pair (q291_pos.bin) at 32 x 16 --tri-full: the
+# target is one tile, so all 512 slots are known: dword 1 = f32(x + 0.5), dword 2 = f32(y + 0.5),
+# dword 3 = 0x7E570000 | (x & 1) | (y & 1) << 1 (E808's g23, g24, g25; E437).  score_q291.py gate
+# q291g = 0 only when the 512 slots are exactly these; otherwise the driver skips stage q291 and
+# the session goes on.  First job of the new program: a fault ends the stage (strict health, rc 4).
+#need $S/pix_posstore.bin
+#need $S/q291_pos.bin
+q291-ps-gate-32x16|gate|safe|strict|t6|probe --tri pixpds:12 --temps 32 --pixels --width 32 --height 16 --tri-full --slot pixel="$S/pix_posstore.bin" "$S/q291_pos.bin"

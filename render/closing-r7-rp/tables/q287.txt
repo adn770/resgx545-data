@@ -1,0 +1,39 @@
+#stage q287
+#limit 1
+# Q287 odd WIDTHS at H 18 (round 6 did odd heights at W 34: E885).  E831's g-z row (the full-screen triangle's depth ramp,
+# buffer pre-filled 0xdeadbeef, a dword stored iff it is not 1.0f), x ramp, with t7 (resgx545 1c64f3a: the colour row pitch
+# is (W + 1) & ~1, so odd widths are accepted); t4 and t6 refuse them.  --depth-pages 18 = the store's extent (2 tile rows x
+# 2 tiles at G = 1 x 512 dwords = 2 pages) + 16; the tool's own minimum (W * H dwords) is smaller and not the extent.
+# Frozen: rule A (x + 0.5 < 1.25 W) against FLOOR (x < floor(1.25 W)), ROUND, CEIL, RSTRICT, cut at the tile area.
+# Separating (A != FLOOR): 19 (fit), 7, 11, 23, 35, 43, 51 (held out; 19, 23, 35 also with the y ramp); .25 cells 17, 21
+# (and the gate 33) have A = FLOOR.  Controls that can fail: the gate (33 x 18: A = FLOOR = 902), 34 x 18 with t4, t6, t7
+# (E831's 924, rule A's set) and t7's y ramp.  Poke twins at W 20 (t7; they gate nothing): cmd:9 = MTE_SCREEN set to W 19,
+# blk:6 / blk:7 = the viewport's x scale / offset set to 9.5 (W 19): the band's W is the screen word's (H-SCR) or twice and a
+# half the viewport's half width (H-VP).
+# gateodd (the first row): if the module refuses the odd width (`Invalid argument`, rc 1, no `diff:`) every row with knob
+# oddw is skipped, the stage exits 21 and the twins still run; any fault or hang stops the stage (rc 4).
+z-dry-33x18|gate|safe|expectdiff gateodd oddw|t7|tri --keep-overflow --wait-ms 20000 --width 33 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-34x18-x-t4|control|safe|expectdiff|t4|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-34x18-x-t6|control|safe|expectdiff|t6|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-34x18-x-t7|control|safe|expectdiff|t7|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-ctl-34x18-y-t7|control|safe|expectdiff|t7|tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-fit-19x18-x-r1|fit|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 19 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-fit-19x18-x-r2|fit|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 19 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-7x18-x-r1|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 7 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-7x18-x-r2|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 7 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-11x18-x-r1|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 11 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-11x18-x-r2|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 11 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-23x18-x-r1|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 23 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-23x18-x-r2|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 23 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-35x18-x-r1|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 35 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-35x18-x-r2|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 35 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-19x18-y|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 19 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-23x18-y|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 23 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-35x18-y|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 35 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-43x18-x|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 43 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-51x18-x|heldout|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 51 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-17x18-x|confirm|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 17 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-21x18-x|confirm|safe|expectdiff oddw|t7|tri --keep-overflow --wait-ms 20000 --width 21 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200
+z-pk-20x18-scr|twin|safe|expectdiff|t7|tri --keep-overflow --wait-ms 20000 --width 20 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200 --poke cmd:9=0x00110012
+z-pk-20x18-vp|twin|safe|expectdiff|t7|tri --keep-overflow --wait-ms 20000 --width 20 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200 --poke blk:6=0x41180000 --poke blk:7=0x41180000
+z-pk-20x18-both|twin|safe|expectdiff|t7|tri --keep-overflow --wait-ms 20000 --width 20 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump "$W/depth" --depth-pages 18 --poke blk:1=0x00400200 --poke cmd:9=0x00110012 --poke blk:6=0x41180000 --poke blk:7=0x41180000

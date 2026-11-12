@@ -1,0 +1,20 @@
+#!/bin/bash
+# fake ssh for tests/run_mock.sh: "the laptop" is the directory $FAKE_HOME.  Options (-o X) are skipped, the host is ignored, the
+# command runs in bash under `env -i` (as an ssh login gives a fresh environment) with HOME=$FAKE_HOME, PATH and ONLY the fake
+# laptop's own variables (the fake debugfs, kmsg, module and the fake tool's world: tests/run_mock.sh's envw list), so the staged
+# tree runs with nothing of the Mac side's environment.  The driver's knob read answers from the fake debugfs.
+while [ "${1:-}" = "-o" ]; do shift 2; done
+shift
+cmd=$1
+case "$cmd" in
+*render_rgn_arrays*hold_recovery*) [ -n "${FAKE_KNOB_UNREADABLE:-}" ] && exit 1
+	for k in alias_skip render_rgn_arrays render_pb_pages; do printf '0x%08x\n' $(( $(cat "${FAKE_DBGREAL:?}/$k") )); done
+	cat "$FAKE_DBGREAL/hold_recovery"; printf '0x%08x\n' $(( $(cat "$FAKE_DBGREAL/render_tail_room") )); exit 0 ;;
+esac
+keep=(PATH="$PATH" HOME="${FAKE_HOME:?}")
+for v in $(compgen -e); do
+	case "$v" in FAKE_*|SGXFIVE_DEBUGFS|KMSG|SRCV_PATH|FW_PATH|PY|R7_TOOL_SHA|R7_TOOL6_SHA|R7_SRCV_EXPECT|RESET_WAIT|HEALTH_WAIT|TEE_GRACE|JOB_TIMEOUT|MIN_FREE_KB)
+		keep+=("$v=${!v}") ;;
+	esac
+done
+cd "$FAKE_HOME" && exec env -i "${keep[@]}" bash -c "$cmd"

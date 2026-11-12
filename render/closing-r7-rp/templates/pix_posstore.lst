@@ -1,0 +1,17 @@
+     0: 0xFA44070000000000	phas #0, #0, pixel, end, parallel
+     1: 0x6003100060202C05	shl r1, g24, #0x00000005
+     2: 0x50011008102000D7	or r1, r1, g23
+     3: 0x500110002020C0FF	and r1, r1, #0x000001FF
+     4: 0x5001116820200080	or r1, r1, #0x00100000
+     5: 0x500313F8605E6CAE	or r2, g25, #0x7E570000
+     6: 0xFC217050000F0000	mov r0, #0x5CAF0000
+     7: 0xF020000020000080	stad [r0,+r1], pa0
+     8: 0xFC217050000F0004	mov r0, #0x5CAF0004
+     9: 0xF0A0000020000080	stad.skipinv [r0,+r1], pa0
+    10: 0xFC217050000F0008	mov r0, #0x5CAF0008
+    11: 0xF0A0000020000081	stad.skipinv [r0,+r1], pa1
+    12: 0xFC217050000F000C	mov r0, #0x5CAF000C
+    13: 0xF0A0000000000082	stad.skipinv [r0,+r1], r2
+    14: 0xF820000000000000	idf drc0, bif
+    15: 0xF920000000000000	wdf drc0
+    16: 0x28851001A0000000	mov.skipinv.end o0, pa0

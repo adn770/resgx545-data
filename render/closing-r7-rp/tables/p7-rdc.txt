@@ -1,0 +1,38 @@
+#stage p7-rdc
+#limit 1
+#need $S/pds_iter_xy.bin
+#need $S/vtx_coords.bin
+#need $S/r4o-e709-x.bin
+#need $S/r4o-e709-y.bin
+#need $S/r4o-u-x.bin
+#need $S/r4o-u-y.bin
+#need $S/r5o-c-all4-x.bin
+#need $S/r5o-c-all4-y.bin
+#need $S/r6o-c-ow-x.bin
+#need $S/r6o-c-ow-y.bin
+#need $S/r6o-c-rd-0-x.bin
+#need $S/r6o-c-rd-0-y.bin
+#need $S/r6o-c-prd-0-k1-x.bin
+#need $S/r6o-c-prd-0-k1-y.bin
+#need $S/r6o-c-prd-0-k7-x.bin
+#need $S/r6o-c-prd-0-k7-y.bin
+# Q276 (r7-rp), stage p7-rdc: R6's 14 bridge controls of p6-rd, R6's command and programs byte for byte (bins pinned in
+# gen/data/bins-rd.txt), tool t4.  c-e709 (E709's o4g-3: G-o4), c-u (R4's program: G-o1, tag-2 fraction >= 0.98), c-all4 (R5's:
+# 5:1), c-ow (the last o0 write is the pixel, >= 0.95 of TRI), c-rd-0 (readback through r10, >= 0.95 of TRI; TRI = its own pixels in
+# both jobs), c-prd-0 k = 1 and 7 (the predicate on o0 lane by lane, >= 0.95 of each lane).  The driver's gate (score_rd7.py gate
+# p7-rdc): G-o4, G-o1, c-ow, c-rd-0 and both c-prd-0 rows must pass, else p7-rd is skipped and the session goes on.  No fault
+# expected (none in R5's p5-o4 or R6's p6-rd); a fault stops the stage.
+c-e709-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r4o-e709-x.bin"
+c-e709-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r4o-e709-y.bin"
+c-u-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r4o-u-x.bin"
+c-u-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r4o-u-y.bin"
+c-all4-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r5o-c-all4-x.bin"
+c-all4-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r5o-c-all4-y.bin"
+c-ow-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-ow-x.bin"
+c-ow-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-ow-y.bin"
+c-rd-0-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-rd-0-x.bin"
+c-rd-0-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-rd-0-y.bin"
+c-prd-0-k1-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-prd-0-k1-x.bin"
+c-prd-0-k1-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-prd-0-k1-y.bin"
+c-prd-0-k7-x|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-prd-0-k7-x.bin"
+c-prd-0-k7-y|control|safe|-|t4|probe --tri pixel --temps 32 --pixels --dump-render "$W/dump" --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --slot pixpds="$S/pds_iter_xy.bin:12" --slot vtxuse="$S/vtx_coords.bin" "$S/r6o-c-prd-0-k7-y.bin"
