@@ -1,0 +1,11 @@
+Round 6 planning, Q230 (1/w), frozen BEFORE rw6_hfrac.py is run on the HELD OUT set (2026-11-12).
+Read on the FIT set only (rw6_look.out, 100 mantissas, the 30 HELD OUT deltas not parsed):
+  with frac = the fractional part of 2^47 / M (how far the exact 1/w lies above RZ, in ulp of the stored word),
+  0 of 51 FIT mantissas with frac < 0.5 store RZ + 1; the 15 RZ + 1 mantissas have frac 0.583 to 0.995;
+  the RZ + 1 share by frac: [0.5,0.6) 1 of 13, [0.6,0.7) 2 of 11, [0.7,0.8) 2 of 8, [0.8,0.9) 3 of 9, [0.9,1.0) 7 of 8.
+H-FRAC (scored, held out): no HELD OUT mantissa with frac < 0.5 stores RZ + 1.
+  Held iff the count is 0 and at least 3 HELD OUT mantissas store RZ + 1 and at least 8 have frac < 0.5 (else cannot tell).
+  Refuted by one HELD OUT mantissa with frac < 0.5 and RZ + 1.
+  Chance of a pass if the delta were independent of frac: hypergeometric, printed by the script.
+H-RISE (reported, not scored): the RZ + 1 share of the HELD OUT mantissas with frac >= 0.75 is above that of [0.5, 0.75).
+The script prints counts only (no mantissa, no word), so the HELD OUT half stays unread for a later declared family.
