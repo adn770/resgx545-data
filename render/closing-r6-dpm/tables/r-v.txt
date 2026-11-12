@@ -1,0 +1,12 @@
+#stage r-v
+#need $S/p1139-green.bin
+# r-v object size (6, discriminating): 2048x2048 with --vtx-coords 4 and 8: a calibration with its dump (L read from it, the steps
+#  against H-BURST-CAP and H-BURST-PAGE at that L), then the cells E - 1 and E of the first band from 3 on whose burst end the fro
+# zen timeline rule finds in the calibration (none found: the cells are skipped; the steps decide).  The first job is the premise:
+#  if it is not a 1500-vertex scene the stage's rest is skipped.
+v-cal-c4|heldout|safe|0x422|stophang cal:v4 vprem|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 4 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-c4-e3m1|heldout|safe|E:v4:3+:-1|stophang|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 4 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-c4-e3|heldout|safe|E:v4:3+:0|stophang|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 4 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-cal-c8|heldout|safe|0x422|stophang cal:v8 vprem|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 8 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-c8-e3m1|heldout|safe|E:v8:3+:-1|stophang|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 8 --dump-render "$W/dump" "$S/p1139-green.bin"
+v-c8-e3|heldout|safe|E:v8:3+:0|stophang|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --vtx-coords 8 --dump-render "$W/dump" "$S/p1139-green.bin"

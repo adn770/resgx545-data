@@ -1,0 +1,13 @@
+#stage r-a0
+#need $S/p1139-green.bin
+# r-a0 premise (7): the 2048x2048 calibrations at P 0x162 and 0x422 (complete: S2 to S7 in their brackets), c4-b5 R, c4-b6 N, t-s3
+# m7 (thr0 0x96) 2 global pages left, t-s3m6 (0x97) 1, g-qf at P 0xa2 2 partial renders.  Every row is a premise: a control off, a
+#  calibration whose steps are not monotone or a job whose own 0x0624 is not P - 0x22 STOPS the session before r-m (rc 10, state/C
+# TLFAIL).
+a0-cal-2048|control|safe|0x162|stophang prem cal:c2048|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-cal-2048f|control|safe|0x422|stophang prem cal:c2048f|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-c4-b5|control|safe|0x104|stophang prem ctl:R|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-c4-b6|control|safe|0x105|stophang prem ctl:N|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-t-s3m7|control|safe|0xb8|stophang prem ctlleft:2|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-t-s3m6|control|safe|0xb9|stophang prem ctlleft:1|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+a0-qf-0xa2|control|safe|0xa2|stophang expectdiff prem ctlcnt:2|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words "$W/words" --regs 0x0700-0x074c

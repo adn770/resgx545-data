@@ -1,0 +1,14 @@
+#stage r-k
+#need $S/p1139-green.bin
+# r-k passes (8, LAST): the own task armed before each job (r5's oomring: oomring2's two ldr are refused by both verifiers, so the
+#  counts at the passes cannot be read and the sa8 bits are): c4-b5, c4-b6, c4-b3 (S4), the S3 cell, S4 + 1, t-s3m6, the 2048x4096
+#  band 4 creep cell thr0 0x24a twice (dword 36 = 2 above 1 page left: sa8 & 0x380 = 0 pins the isub16 operand order).  An EDM sta
+# ll is reset once; a second one ends r-k.
+k-b5|control|safe|0x104|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b6|control|safe|0x105|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-b3|repeat|safe|0x10a|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s3|heldout|safe|S:c2048:3:0|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s4p1|heldout|safe|S:c2048:4:+1|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-s3m6|heldout|safe|0xb9|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render "$W/dump" "$S/p1139-green.bin"
+k-creep|heldout|safe|0x26c|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 4096 --vertices 1500 "$S/p1139-green.bin"
+k-creep2|repeat|safe|0x26c|stophang fw|0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74|probe --tri pixel --width 2048 --height 4096 --vertices 1500 "$S/p1139-green.bin"
