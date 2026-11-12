@@ -1,0 +1,9 @@
+#!/bin/bash
+# fake df for tests/run_mock.sh: `df -Pk PATH` in POSIX format, FAKE_FREE_KB free (default plenty); with FAKE_FREE_LOW_FROM=N the
+# N-th call and every later one (counted in $FAKE_DIR/df-calls) answer 1000 KB: the space runs out during a stage
+n=1
+if [ -n "${FAKE_DIR:-}" ]; then echo x >> "$FAKE_DIR/df-calls"; n=$(grep -c . "$FAKE_DIR/df-calls"); fi
+free=${FAKE_FREE_KB:-9000000}
+[ -n "${FAKE_FREE_LOW_FROM:-}" ] && [ "$n" -ge "$FAKE_FREE_LOW_FROM" ] && free=1000
+echo "Filesystem 1024-blocks Used Available Capacity Mounted on"
+echo "fakefs 10000000 1000 $free 1% /"

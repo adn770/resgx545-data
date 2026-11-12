@@ -1,0 +1,33 @@
+case	quantity	value	model	set
+c-s-all4-x	marker	0x1d9	frozen program marker (x job; the y job's is +1)	control
+c-s-all4-x	pattern	tags 2..4 <= 2 a job, tag 5 >= 10 a job	E406's setup pattern (tags 1 and 5 only, 27 of 27); else the set is void	control
+s-0-x	marker	0x1db	frozen program marker (x job; the y job's is +1)	heldout
+s-0-x	o4_word	5:3	H-OR	heldout
+s-0-x	o4_word	5:2	H-OWN4	heldout
+s-1-x	marker	0x1dd	frozen program marker (x job; the y job's is +1)	heldout
+s-1-x	o4_word	5:2	H-OR	heldout
+s-1-x	o4_word	5:2	H-OWN4	heldout
+s-2-x	marker	0x1df	frozen program marker (x job; the y job's is +1)	heldout
+s-2-x	o4_word	5:2	H-OR	heldout
+s-2-x	o4_word	5:2	H-OWN4	heldout
+s-3-x	marker	0x1e1	frozen program marker (x job; the y job's is +1)	heldout
+s-3-x	o4_word	5:3	H-OR	heldout
+s-3-x	o4_word	5:2	H-OWN4	heldout
+s-4-x	marker	0x1e3	frozen program marker (x job; the y job's is +1)	heldout
+s-4-x	o4_word	5:2	H-OR	heldout
+s-4-x	o4_word	5:1	H-OWN4	heldout
+s-5-x	marker	0x1e5	frozen program marker (x job; the y job's is +1)	heldout
+s-5-x	o4_word	5:2	H-OR	heldout
+s-5-x	o4_word	5:2	H-OWN4	heldout
+s-6-x	marker	0x1e7	frozen program marker (x job; the y job's is +1)	heldout
+s-6-x	o4_word	5:2	H-OR	heldout
+s-6-x	o4_word	5:2	H-OWN4	heldout
+s-7-x	marker	0x1e9	frozen program marker (x job; the y job's is +1)	heldout
+s-7-x	o4_word	5:2	H-OR	heldout
+s-7-x	o4_word	5:2	H-OWN4	heldout
+s-n4-x	marker	0x1eb	frozen program marker (x job; the y job's is +1)	heldout
+s-n4-x	o4_word	5:0	H-OR	heldout
+s-n4-x	o4_word	none	H-OWN4	heldout
+r-u-x	marker	0x105	R4's program marker	control
+r-u-x	ctl_min_frac	0.98	G-o1 after the setup (the restore check)	control
+@p6-s	verdict	H-OR or H-OWN4 by s-0..s-7 and s-n4, only if c-s-all4 shows the pattern; r-u must pass G-o1	plan 2.6	heldout

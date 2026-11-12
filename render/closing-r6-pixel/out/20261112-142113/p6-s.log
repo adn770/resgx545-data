@@ -1,0 +1,334 @@
+## stage p6-s
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## free space
+127370888 KB free on /home/jtorra/scratch/tmp
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000
+## clock
+Thu Nov 12 14:37:32 CET 2026
+## R6-pixel safety rules: see the header of lib_r6.sh
+  kept begin.health1.txt: 311 bytes raw, raw sha256 c4589165a7032018d166ee2b5ece882f17d4fae1984642848ea49c747e7a1d6f
+== c-s-all4-x set=control risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept c-s-all4-x.pre.regs.txt: 6474 bytes raw, raw sha256 9008e66e808bcef5525f56785211704d32f6be3a6a297da7e713ad37f76cf332
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.HLbnNe/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-c-s-all4-x.bin
+  kept c-s-all4-x.after.regs.txt: 6474 bytes raw, raw sha256 7bb397867246576c73fdf54d4e15f8026499d3c052add7602807ed562f515714
+  STATUS2 after: 1024
+  rc 0 probe r6o-c-s-all4-x: o0 mixed 0xff203040 x3034 0xbec87651 x43 0xbed87651 x39 0xbeb87651 x39 other x941 
+  kept c-s-all4-x.txt: 39212 bytes raw, raw sha256 7a0c8e26176977e1d1fa0db1825914faf8a7c526dbf5e62b422d8e43bbe5a48c
+  kept c-s-all4-x.dmesg: 81 bytes raw, raw sha256 054b0d02d1285ab46fee7b9a191e1d5cd471c7d1b5d8ce1d592ae7e8a20dae1a
+  kept c-s-all4-x.r6o-c-s-all4-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept c-s-all4-x.r6o-c-s-all4-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== c-s-all4-y set=control risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept c-s-all4-y.pre.regs.txt: 6474 bytes raw, raw sha256 5c17174c7d8bf705e019eebdb8db4306f1a0b7d1c278bef8689f2b6e179f5122
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.Q5Q6QA/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-c-s-all4-y.bin
+  kept c-s-all4-y.after.regs.txt: 6474 bytes raw, raw sha256 062687bb6189060f4f0cd3dcd6dffb2e4805e017bf85176b4df3551ffaee6cb5
+  STATUS2 after: 1024
+  rc 0 probe r6o-c-s-all4-y: o0 mixed 0xff203040 x3034 0xbec87691 x43 0xbed87691 x39 0xbea87691 x39 other x941 
+  kept c-s-all4-y.txt: 39212 bytes raw, raw sha256 24964b107b1f6c733febd492ca612facffa4d9b8b55cf38630a82e782f4f2764
+  kept c-s-all4-y.dmesg: 81 bytes raw, raw sha256 cadf4d95ae5fa67ca8244b2a50b21e8407551e080cf9fb0431ec694e54b0a30f
+  kept c-s-all4-y.r6o-c-s-all4-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept c-s-all4-y.r6o-c-s-all4-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-0-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-0-x.pre.regs.txt: 6474 bytes raw, raw sha256 39c5d75352a16d45d1d7fcbbdd7e86681d710acdb73784da43bed56381e00372
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.PBQkET/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-0-x.bin
+  kept s-0-x.after.regs.txt: 6474 bytes raw, raw sha256 a9cb3167e3c4e1a5715249685a7420311bbd6afba20244423f3997fffee303ae
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-0-x: o0 mixed 0xff203040 x3034 0xbec876d1 x43 0xbed876d1 x39 0xbeb876d1 x39 other x941 
+  kept s-0-x.txt: 38862 bytes raw, raw sha256 f1de46bd77b0b03a30406a1485fb5fee2221592eea1cf3b17cb989c88701ba24
+  kept s-0-x.dmesg: 81 bytes raw, raw sha256 457af4d6815785b60183957dc7790a7fa446f837df1812a366407d00d7c3d30e
+  kept s-0-x.r6o-s-0-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-0-x.r6o-s-0-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-0-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-0-y.pre.regs.txt: 6474 bytes raw, raw sha256 4750aa19c32e48d68341f4a2acfa5190e24fd97d94c148a6e62af1093b517705
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.BzPVjU/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-0-y.bin
+  kept s-0-y.after.regs.txt: 6474 bytes raw, raw sha256 72a59986da3a7e1fcb701ff12353ddfb422da9fbdda480d56c1dbadcb2e8978c
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-0-y: o0 mixed 0xff203040 x3034 0xbec87711 x43 0xbed87711 x39 0xbea87711 x39 other x941 
+  kept s-0-y.txt: 38862 bytes raw, raw sha256 b14c69c7c4be8af3c4a261f66f62dbda331b098e63b43cc86df88c4c695c39e0
+  kept s-0-y.dmesg: 81 bytes raw, raw sha256 1511b9f2e27142aaa9bd90c19f2d6baafd9d272ce239ad42b68afffe08d48541
+  kept s-0-y.r6o-s-0-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-0-y.r6o-s-0-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-1-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-1-x.pre.regs.txt: 6474 bytes raw, raw sha256 c4ec464741d4e9794df9bc72875289802cb41586ad11f7cec648f0332acfcf43
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.wPD7So/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-1-x.bin
+  kept s-1-x.after.regs.txt: 6474 bytes raw, raw sha256 d27b935513d80605f2e2e226ed1e8dd28ebe6dbd90c3fa8121099af4f39a158b
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-1-x: o0 mixed 0xff203040 x3034 0xbec87761 x43 0xbed87761 x39 0xbe707761 x39 other x941 
+  kept s-1-x.txt: 38862 bytes raw, raw sha256 c7534d37e96739690157ce20523f1f0369080c119876b5a0b6e7267b710ac23f
+  kept s-1-x.dmesg: 81 bytes raw, raw sha256 d834d2d2ba59fc26596d0e91be7686de61b93206787f8d4679061a8a23e2e70e
+  kept s-1-x.r6o-s-1-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-1-x.r6o-s-1-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-1-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-1-y.pre.regs.txt: 6474 bytes raw, raw sha256 9235fcb38cd5f54986eda994e67729c92ef0126c7d0bd4b339ff85f12a458ea5
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.hfCV0O/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-1-y.bin
+  kept s-1-y.after.regs.txt: 6474 bytes raw, raw sha256 452226961c1bff09349f476a81a8d710b86c5ab4dc6ff6ed00e3790a45a95f3b
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-1-y: o0 mixed 0xff203040 x3034 0xbec877a1 x43 0xbed877a1 x39 0xbea877a1 x39 other x941 
+  kept s-1-y.txt: 38862 bytes raw, raw sha256 3af5cdec1192bf89730dedef9de4b1f2b20458c5be07d859f26103f30d1d2c20
+  kept s-1-y.dmesg: 81 bytes raw, raw sha256 20c2be02efdf4af0cdb78bdf898138d3f049333f66571bcdf142279e3d7adff6
+  kept s-1-y.r6o-s-1-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-1-y.r6o-s-1-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-2-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-2-x.pre.regs.txt: 6474 bytes raw, raw sha256 dbf9d1b3a21ef7e5e58da86d88aa79f4a91ab82563a08665dfee5aa9dcbcfac1
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.wA5GiD/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-2-x.bin
+  kept s-2-x.after.regs.txt: 6474 bytes raw, raw sha256 ec05f0cc2694848a23149171dc6827011f9ec3d3700cf285cc7f2793d8a85e34
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-2-x: o0 mixed 0xff203040 x3034 0xbec877e1 x43 0xbed877e1 x39 0xbe7077e1 x39 other x941 
+  kept s-2-x.txt: 38862 bytes raw, raw sha256 f68addc2b72453201851e010806d25415012fab9a75e62b90a96a90fe5343334
+  kept s-2-x.dmesg: 81 bytes raw, raw sha256 9e7b97028dca72dff8380752454d7541ebbd292023ca0c30c0fe9a9f51eed7f2
+  kept s-2-x.r6o-s-2-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-2-x.r6o-s-2-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-2-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-2-y.pre.regs.txt: 6474 bytes raw, raw sha256 0f2ba49054abaa5bfb512137ce628bb6bfa30a495e852295fe1ae03456a4014f
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.zX1jQ8/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-2-y.bin
+  kept s-2-y.after.regs.txt: 6474 bytes raw, raw sha256 06186e0f77ecf592456df26f9f028784d5b5f2822451fec47f1542651fba1431
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-2-y: o0 mixed 0xff203040 x3034 0xbec87821 x43 0xbed87821 x39 0xbea87821 x39 other x941 
+  kept s-2-y.txt: 38862 bytes raw, raw sha256 fd1775c40deb299775a44aa3d99284745cafb946e6969d3567a8a8acdf033514
+  kept s-2-y.dmesg: 81 bytes raw, raw sha256 cb4a410cf9660731e34791c5e1ebdd85e4c666bd5e4c88c4e308a609dcb817e4
+  kept s-2-y.r6o-s-2-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-2-y.r6o-s-2-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-3-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-3-x.pre.regs.txt: 6474 bytes raw, raw sha256 8ffa7807953b844af52528dfa9fb03460e7d7ad201553798a2a7f0c4e0593fad
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.9QmYq8/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-3-x.bin
+  kept s-3-x.after.regs.txt: 6474 bytes raw, raw sha256 eb878a96b01d3e80a4e718ed8c82e6cef7de15e6a0be880db07bc3831fb9abf1
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-3-x: o0 mixed 0xff203040 x3034 0xbec87861 x43 0xbed87861 x39 0xbeb87861 x39 other x941 
+  kept s-3-x.txt: 38862 bytes raw, raw sha256 184f3ba22ca1c391cb675bb9381d4b6ee03c1534055bbd2c52d9d68256dda816
+  kept s-3-x.dmesg: 81 bytes raw, raw sha256 ccf1c820b80e6b40122e58f7da230e2d7b39451117a35484c1dbe8cf441c27d2
+  kept s-3-x.r6o-s-3-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-3-x.r6o-s-3-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-3-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-3-y.pre.regs.txt: 6474 bytes raw, raw sha256 aece9b45daf39114c2f7eca21962186873b1f56829343d4021193c35d5b8fa2f
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.2H2hhz/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-3-y.bin
+  kept s-3-y.after.regs.txt: 6474 bytes raw, raw sha256 40f7753f338a1ead9a7a1f4d79d4c958a7447aa2a2ac2048cd010a39c3d5cab4
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-3-y: o0 mixed 0xff203040 x3034 0xbec878a1 x43 0xbed878a1 x39 0xbea878a1 x39 other x941 
+  kept s-3-y.txt: 38862 bytes raw, raw sha256 a7ddd6a06371d42c1f1b25f2efd7d40d0e3cf358b1aa11a090fed61e494fc549
+  kept s-3-y.dmesg: 81 bytes raw, raw sha256 696d5c68f089fa3ac2ef68fc219a47918fb3bab7aa0a25971ec5327e8afc20bd
+  kept s-3-y.r6o-s-3-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-3-y.r6o-s-3-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-4-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-4-x.pre.regs.txt: 6474 bytes raw, raw sha256 bb98f0d73766eab871c466eec4ab06fe0a1cb176d3c84d85ac1093e48ae15515
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.lB9H6i/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-4-x.bin
+  kept s-4-x.after.regs.txt: 6474 bytes raw, raw sha256 c59224c387757ef09201e7a29a5df41e4fa39ea7e4413e008529a8a3c0e6ba6b
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-4-x: o0 mixed 0xff203040 x3034 0xbec878e1 x43 0xbed878e1 x39 0xbeb878e1 x39 other x941 
+  kept s-4-x.txt: 38862 bytes raw, raw sha256 3b82b84da637205b59333f052392414817c7f2581949a28bda436d7b0684ef9c
+  kept s-4-x.dmesg: 81 bytes raw, raw sha256 f9348461e832f1279064b1ead0dc165ad9558fffccbf32ceac40e88734a533a1
+  kept s-4-x.r6o-s-4-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-4-x.r6o-s-4-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-4-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-4-y.pre.regs.txt: 6474 bytes raw, raw sha256 c731ec4ec1889a01cad86354f02eb49022329cadc45d9182c77aa1050be16106
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.gisyBZ/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-4-y.bin
+  kept s-4-y.after.regs.txt: 6474 bytes raw, raw sha256 4803048aa701ff212eee3a631e54088abde09e47373e21ec606f822f03dac23d
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-4-y: o0 mixed 0xff203040 x3034 0xbec87921 x43 0xbed87921 x39 0xbea87921 x39 other x941 
+  kept s-4-y.txt: 38862 bytes raw, raw sha256 a44c68e23d9f16d617c128cafa3f519aac96ffe37a69a70a6e8962cc03260fd6
+  kept s-4-y.dmesg: 81 bytes raw, raw sha256 8d29766a2494a81cae2839264c5fe356dac260dafdd3493213ae40598a44efc4
+  kept s-4-y.r6o-s-4-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-4-y.r6o-s-4-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-5-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-5-x.pre.regs.txt: 6474 bytes raw, raw sha256 a55528485cd01fc4d1be2a980fdf11e4a9d05b34a2e186b508e02e7683fb4f0c
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.LYXmCO/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-5-x.bin
+  kept s-5-x.after.regs.txt: 6474 bytes raw, raw sha256 5692497941056c667b2afce2ca66a50204b6e7a76e5512e1a860c8a27515d2aa
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-5-x: o0 mixed 0xff203040 x3034 0xbec87961 x43 0xbed87961 x39 0xbeb87961 x39 other x941 
+  kept s-5-x.txt: 38862 bytes raw, raw sha256 55f5d59207838197f69d576d0f01fec8b6cad94a3512fabc9e9321f83f530665
+  kept s-5-x.dmesg: 81 bytes raw, raw sha256 4a371accbf2e02407c35c60f6d8a574c205c9a64d44e0e6c19a1060fa92d548a
+  kept s-5-x.r6o-s-5-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-5-x.r6o-s-5-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-5-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-5-y.pre.regs.txt: 6474 bytes raw, raw sha256 c7260a6808af125e9b161c87367b797ceff2bd7d0b1768dccb79043e9f3a8a7a
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.Z8p82V/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-5-y.bin
+  kept s-5-y.after.regs.txt: 6474 bytes raw, raw sha256 f453653c58c4077d7f160670c364d9cfcf0bc94bab935a7412aeb7bb0c3cea4b
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-5-y: o0 mixed 0xff203040 x3034 0xbec879a1 x43 0xbed879a1 x39 0xbea879a1 x39 other x941 
+  kept s-5-y.txt: 38862 bytes raw, raw sha256 7d51fd603fb9653aa74320e232b65c5cb705a207e306d93f321f6ec41a69f1b9
+  kept s-5-y.dmesg: 81 bytes raw, raw sha256 910bd90d65671455f02473efa910a569bb0e1bea707daa8d3ca08b75b3b08512
+  kept s-5-y.r6o-s-5-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-5-y.r6o-s-5-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-6-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-6-x.pre.regs.txt: 6474 bytes raw, raw sha256 5ae0060f6498beaf2efdbfc8c313f363381f8a6bfe717800c6db5df809115867
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.UF29Uq/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-6-x.bin
+  kept s-6-x.after.regs.txt: 6474 bytes raw, raw sha256 a21b9746c061b93f77144c16a4f8eeeca6f639b07b3a8defc687e7fa4aa52000
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-6-x: o0 mixed 0xff203040 x3034 0xbec879e1 x43 0xbeb879e1 x40 0xbed879e1 x39 other x940 
+  kept s-6-x.txt: 38862 bytes raw, raw sha256 de72fb915df4f12af5f31bc817a39cd152ef87bdf2aa61950437ab4781bfad74
+  kept s-6-x.dmesg: 81 bytes raw, raw sha256 29fb10034ca15128506e18767bfeea025a57c1e8a463c65c1adf3395d4999712
+  kept s-6-x.r6o-s-6-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-6-x.r6o-s-6-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-6-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-6-y.pre.regs.txt: 6474 bytes raw, raw sha256 1ff91fac4e202faf37a5ef64ad5433000285e636b581ce95b6b3c0fd488879c7
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.Hyvb4t/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-6-y.bin
+  kept s-6-y.after.regs.txt: 6474 bytes raw, raw sha256 016d967941a4324e37f288569582acd964f4c66e68be2077a95b243cdc86bafa
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-6-y: o0 mixed 0xff203040 x3034 0xbec87a21 x43 0xbed87a21 x39 0xbea87a21 x39 other x941 
+  kept s-6-y.txt: 38862 bytes raw, raw sha256 1efe39d86c7779974614ce69cf3ca5211cc2afe7d88b96a3c7aea60d38bdcda4
+  kept s-6-y.dmesg: 81 bytes raw, raw sha256 961eeef7f1a27858ebb68aded6145928ce7a5c3af4bf66fe11304d70d3fa5dc5
+  kept s-6-y.r6o-s-6-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-6-y.r6o-s-6-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-7-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-7-x.pre.regs.txt: 6474 bytes raw, raw sha256 038e68ad66b87bc3dd14b996e5a1856b7e66aa65df509ca9781a00f876e363be
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.Qw9azB/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-7-x.bin
+  kept s-7-x.after.regs.txt: 6474 bytes raw, raw sha256 75c9b271d48e9ebb44131ffdb2477e2a6892380dfb0783c82755fad62a17f5af
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-7-x: o0 mixed 0xff203040 x3034 0xbec87a61 x43 0xbed87a61 x39 0xbe707a61 x39 other x941 
+  kept s-7-x.txt: 38862 bytes raw, raw sha256 2af3f1fbcb89222b5731d6304709e25c9ebe75b2de60f302da640de071d851e6
+  kept s-7-x.dmesg: 81 bytes raw, raw sha256 6e5514e311c15fc72bdc807899ff889cca1ee34ede3d657019e32f1954921d26
+  kept s-7-x.r6o-s-7-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-7-x.r6o-s-7-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-7-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-7-y.pre.regs.txt: 6474 bytes raw, raw sha256 f5e8f7424b51992103607a21f85dc37ac4b32a38ad7ed930a18ad48f2bfb8bb7
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.Zd2qsT/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-7-y.bin
+  kept s-7-y.after.regs.txt: 6474 bytes raw, raw sha256 2f4cc11655b12aef1c74671fec09d655ea39fef1fcdf58e6374a335ef75897eb
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-7-y: o0 mixed 0xff203040 x3034 0xbec87aa1 x43 0xbed87aa1 x39 0xbea87aa1 x39 other x941 
+  kept s-7-y.txt: 38862 bytes raw, raw sha256 398de847f472d750eb6d70cf7455b04eb9ab225a75d627a325a2a85a6114dab8
+  kept s-7-y.dmesg: 81 bytes raw, raw sha256 f5d19be0804f259e7410969715847dc3323209e0f57d0f357b3bdf53d9bca4cf
+  kept s-7-y.r6o-s-7-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-7-y.r6o-s-7-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-n4-x set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-n4-x.pre.regs.txt: 6474 bytes raw, raw sha256 42631f1d05ad99cb13aa38297383fdd9cbfdce6a00433be52ced6af56b6851c3
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.WzFllS/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-n4-x.bin
+  kept s-n4-x.after.regs.txt: 6474 bytes raw, raw sha256 fffacde58835fbe5744d01139599648d66bdcd1b265f9e89af3200a07cb03240
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-n4-x: o0 mixed 0xff203040 x3034 0xbec87ac1 x43 0xbeb87ac1 x41 0xbea87ac1 x40 other x938 
+  kept s-n4-x.txt: 38932 bytes raw, raw sha256 effd10b4ec6219024059647d0dd3fa27cea031a75fba1756d332f4c33b909482
+  kept s-n4-x.dmesg: 81 bytes raw, raw sha256 fd84bfda54d55612db01fe154220480190bbf4d41ddcacd81ccaec07bb9222d8
+  kept s-n4-x.r6o-s-n4-x.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-n4-x.r6o-s-n4-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== s-n4-y set=heldout risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept s-n4-y.pre.regs.txt: 6474 bytes raw, raw sha256 32e85d2b3adfbf46d62c012e33171a4f27dd55f97e423e98930c2ba06d1c2db0
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.wBichM/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --blk 1=0x05d00200 --kpoke rd:9=1 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r6o-s-n4-y.bin
+  kept s-n4-y.after.regs.txt: 6474 bytes raw, raw sha256 c2f8d35b9f4bbf0535d04c3d076eec79d67b82fad8e235392dd52ceba9b2c159
+  STATUS2 after: 1024
+  rc 0 probe r6o-s-n4-y: o0 mixed 0xff203040 x3034 0xbec87b01 x43 0xbea87b01 x41 0xbeb87b01 x40 other x938 
+  kept s-n4-y.txt: 38932 bytes raw, raw sha256 25999ecc08166012a6b124f95ea9b821d21bec31348d1a29532c8e069cac1351
+  kept s-n4-y.dmesg: 81 bytes raw, raw sha256 0a7a866f10b5956e71eac3af78b615585d45f8739d0a83d36efa6159c243c07e
+  kept s-n4-y.r6o-s-n4-y.param.bin: 4603904 bytes raw, raw sha256 cd79436fea405f275ced4138bb029ecbec7c1c71dc626c2b551fb329803716b5
+  kept s-n4-y.r6o-s-n4-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== r-u-x set=control risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept r-u-x.pre.regs.txt: 6474 bytes raw, raw sha256 43cb2e6cb41914051e780b27b803b34316906479c60a1a32d7f8dae8e7f23345
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.nObSHg/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --kpoke rd:9=0 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r4o-u-x.bin
+  kept r-u-x.after.regs.txt: 6474 bytes raw, raw sha256 03f161deebd6d6e79d7cca1d5eec660378b22c0d1b67620951d56a92f60c773c
+  STATUS2 after: 1024
+  rc 0 probe r4o-u-x: o0 mixed 0xff203040 x2561 0xbe704141 x39 0xbec84141 x38 0xbeb84141 x38 other x1420 
+  kept r-u-x.txt: 38721 bytes raw, raw sha256 05003a653605b65a944c7ea5653d222ec4fd638d859579ceb24f9424217d817a
+  kept r-u-x.dmesg: 81 bytes raw, raw sha256 0d5424aa28c4b51b5d527fd1f45fc8ca13d426907ccea84f6486a9c48f9f9f75
+  kept r-u-x.r4o-u-x.param.bin: 4603904 bytes raw, raw sha256 b0b6964842fe970425a19b6da6c1945defa899ccb8e8edf556eb8b9502be598e
+  kept r-u-x.r4o-u-x.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+== r-u-y set=control risk=safe knobs=[stophang s2 kpoke] rt=-
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  kept r-u-y.pre.regs.txt: 6474 bytes raw, raw sha256 50018cdc45c7ceac92dff3e66288ab3bca43fd7a9a986df5aaa047a103b3560f
+  STATUS2 before: 1024
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --pixels --dump-render /home/jtorra/scratch/tmp/r6p.e7s25h/dump --width 64 --height 64 --vtx-coords 2 --blk 4=0x00030001 --kpoke rd:9=0 --slot pixpds=/home/jtorra/scratch/r6p/stage/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r6p/stage/vtx_coords.bin /home/jtorra/scratch/r6p/stage/r4o-u-y.bin
+  kept r-u-y.after.regs.txt: 6474 bytes raw, raw sha256 68155e331a4b3e4d530219f5a8f9cb1b628073a0192fe206b1d0d9dad0013c00
+  STATUS2 after: 1024
+  rc 0 probe r4o-u-y: o0 mixed 0xff203040 x2559 0xbec84182 x39 0xbed84182 x35 0xbee84182 x32 other x1431 
+  kept r-u-y.txt: 38721 bytes raw, raw sha256 b7817a38dc8c2c43503abb2064c086f5e4bd8d7128a080e9451c2248b4ae67a1
+  kept r-u-y.dmesg: 81 bytes raw, raw sha256 5c47feae6358f154aeaba07984467ef63cffebc4aa8df3c00dd39527ab1f415a
+  kept r-u-y.r4o-u-y.param.bin: 4603904 bytes raw, raw sha256 b0b6964842fe970425a19b6da6c1945defa899ccb8e8edf556eb8b9502be598e
+  kept r-u-y.r4o-u-y.tadata.bin: 24576 bytes raw, raw sha256 cea669f5cd924be9528ff8781867092c32a7b77a24ce2bee8dbf11107b82dcf9
+  kpoke after: []
+  class ok
+  kept end.health2.txt: 311 bytes raw, raw sha256 7fd80937522b54dc44a165effc8d53f875f06db8a1cac2194bc16c9392f94d0d
+## end: 22 jobs of p6-s
+## exit: hold_recovery=N
+## exit: kpoke=[]
+## kernel log (journalctl)
+## kernel log: 22 case markers kept in /home/jtorra/scratch/r6p/out/20261112-142113/p6-s/kernel.log
