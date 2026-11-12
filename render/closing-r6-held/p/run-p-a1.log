@@ -1,0 +1,40 @@
+#### r6hp attempt a1 15:44:50
+free on ~: 127333512 KiB (load)
+job: ok
+job time: 357 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+peek: reg 0x0694 0x00000000
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 render_tail_room=0x00000000 
+[  362.749508] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  362.752867] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 157 us
+[  407.514252] perf: interrupt took too long (4013 > 4012), lowering kernel.perf_event_max_sample_rate to 49800
+#### p1 15:44:53
+free on ~: 127333512 KiB (p1)
+GATE p1 OPEN (no previous stage)
+## preflight ok: {"srcversion_loaded": "41E2F5C756F96D20F7109A4", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== b0: class ok 
+## STOP SIGNATURE b1p (after-watch): [{"t": 2.0937, "regs": {"0x8": 839584, "0xb14": 1073, "0xacc": 17056424, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1066, "hc14": 0, "ccb": [3, 3], "pass": [116, 116]}, {"t": 2.1349, "regs": {"0x8": 839584, "0xb14": 1073, "0xacc": 17023876, "0x12c": 5371
+== b1p: class stop 
+## stop1-b1p: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1p-r2 (after-watch): [{"t": 2.1124, "regs": {"0x8": 839584, "0xb14": 1075, "0xacc": 17047245, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1068, "hc14": 0, "ccb": [3, 3], "pass": [116, 116]}, {"t": 2.1608, "regs": {"0x8": 839584, "0xb14": 1075, "0xacc": 16938032, "0x12c": 5371
+== b1p-r2: class stop 
+## stop2-b1p-r2: reset ok True, gate ok True, health ok True
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 389 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+peek: reg 0x0694 0x00000000
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 render_tail_room=0x00000000 
+[  445.024253] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  445.027020] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 150 us
+[  445.641335] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 196 us
+SUMMARY: p1: B0 held; H-HWR consistent (12 row groups), H-NOMARK REFUTED; H-TICKS consistent (1 row groups); H-LEVEL consistent (1 row groups), H-PULSE REFUTED; H-W consistent (2 row groups), H-ALL REFUTED, H-NONE REFUTED; H-R6 REFUTED, H-IDLE consistent (1 row groups); H-RESET consistent (1 row groups); stops 2 ['b1p', 'b1p-r2']; every control PASS (29); 64 of 64 non-control rows decided; Q111/Q295/Q166 rows: held out: 46 held, 18 FAILED, 0 cannot tell/void; refuted ['H-ALL', 'H-NOMARK', 'H-NONE', 'H-PULSE', "H-R6 (CR_DPM_TASK_STATE = 2 at the lockup stop: the lockup path writes it before its poll of EVENT_STATUS bit 6, E855's [RE] row; debugfs peek of fork r6-kernel db7faabc (one read of 0x0694 under the device lock), read before any write after the stop's signature)", "H-R6 (the stop's read differs from the arm's: decided only when the arm read is not 2)"]; control: 29 held, 0 FAILED, 0 cannot tell/void
+stage p1 done, health ok
+timer_clock at the end: timer_clock=0x00000000 (the knob each stage's clock_back read back: "knob": "0x00000000" )
+R6hp a1 done (r6-held part P)

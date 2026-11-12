@@ -1,0 +1,69 @@
+a0-640-health: job fault 0x00090004 0x2000a061; steps: t1 fault 0x2000a061, t2 fault 0x2000a061, t3 ok; replays 2; -110 in the cell 0; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h2; E507/E729 page 0x2000a
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x2000a061   frozen 0x2000a061   E848 h2; E507/E729 page 0x2000a; list 1 after the job's own 
+  first_tri      H-REPLAY control  held       got fault        frozen fault        E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction
+  first_word     H-REPLAY control  held       got 0x2000a061   frozen 0x2000a061   E848 h2: the job's word, a page never seen in health
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+b0-640-flush-health: job fault 0x00090004 0x2000a061; steps: t1 fault 0x2000a061, t2 fault 0x2000a061, t3 ok; replays 2; -110 in the cell 0; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h2; E507/E729 page 0x2000a
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x2000a061   frozen 0x2000a061   E848 h2; E507/E729 page 0x2000a; list 1 after the job's own 
+  flush_rc       H-KEEP   control  held       got 0            frozen 0            fork 3f0b3e74: a recovery is held, so the write is taken
+  flush_ctrl_same H-KEEP   control  held       got yes          frozen yes          fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+  flush_int      H-LATCH  heldout  held       got 0x00090004   frozen 0x00090004   E826: only the reset cleared a held fault
+  flush_word     H-LATCH  heldout  held       got 0x2000a061   frozen 0x2000a061   E826: only the reset cleared a held fault
+  first_tri      H-FLUSH  heldout  FAILED     got fault        frozen ok           [infer] the invalidate drops the pending write
+  first_tri      H-PEND   heldout  held       got fault        frozen fault        the replay as without the flush (E848)
+  first_word     H-PEND   heldout  held       got 0x2000a061   frozen 0x2000a061   H-PEND with H-LIST's list
+  minus110_reset H-BOOT   heldout  held       got 0            frozen 0            [infer] E848's -110 dumps: a TA write fault in the boot
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+a1-640-fill: job fault 0x00090004 0x2000a061; steps: fill ok, t1 fault 0x2000a062, t2 fault 0x2000a061, t3 ok; replays 2; -110 in the cell 0; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h2; E507/E729 page 0x2000a
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x2000a061   frozen 0x2000a061   E848 h2; E507/E729 page 0x2000a; list 1 after the job's own 
+  fill_class     H-FILL   control  held       got ok           frozen ok           E848 h4: the fill passed (a transfer: no TA)
+  first_tri      H-REPLAY heldout  held       got fault        frozen fault        E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction
+  first_word     H-LIST   heldout  held       got 0x2000a062   frozen 0x2000a062   E848 h4 post hoc: the list current at the next TA run
+  first_word     H-WORD   heldout  FAILED     got 0x2000a062   frozen 0x2000a061   E848's frozen word test
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+b1-640-flush-fill: job fault 0x00090004 0x2000a061; steps: fill ok, t1 fault 0x2000a062, t2 fault 0x2000a061, t3 ok; replays 2; -110 in the cell 0; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h2; E507/E729 page 0x2000a
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x2000a061   frozen 0x2000a061   E848 h2; E507/E729 page 0x2000a; list 1 after the job's own 
+  fill_class     H-FILL   control  held       got ok           frozen ok           E848 h4: the fill passed (a transfer: no TA)
+  flush_rc       H-KEEP   control  held       got 0            frozen 0            fork 3f0b3e74: a recovery is held, so the write is taken
+  flush_ctrl_same H-KEEP   control  held       got yes          frozen yes          fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+  flush_int      H-LATCH  heldout  held       got 0x00090004   frozen 0x00090004   E826: only the reset cleared a held fault
+  flush_word     H-LATCH  heldout  held       got 0x2000a061   frozen 0x2000a061   E826: only the reset cleared a held fault
+  first_tri      H-FLUSH  heldout  FAILED     got fault        frozen ok           [infer] the invalidate drops the pending write
+  first_tri      H-PEND   heldout  held       got fault        frozen fault        the replay as without the flush (E848)
+  first_word     H-PEND   heldout  held       got 0x2000a062   frozen 0x2000a062   H-PEND with H-LIST's list
+  minus110_reset H-BOOT   heldout  held       got 0            frozen 0            [infer] E848's -110 dumps: a TA write fault in the boot
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+a2-288-fill: job fault 0x00090004 0x20006061; steps: fill ok, t1 fault 0x20006062, t2 ok; replays 1; -110 in the cell 1; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h1/h4; E507/E729 page 0x20006
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x20006061   frozen 0x20006061   E848 h1/h4; E507/E729 page 0x20006; list 1 after the job's o
+  fill_class     H-FILL   control  held       got ok           frozen ok           E848 h4: the fill passed (a transfer: no TA)
+  first_tri      H-REPLAY heldout  held       got fault        frozen fault        E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction
+  first_word     H-LIST   replicate held       got 0x20006062   frozen 0x20006062   E848 h4 post hoc: the list current at the next TA run
+  first_word     H-WORD   replicate FAILED     got 0x20006062   frozen 0x20006061   E848's frozen word test
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+b2-288-flush-health: job fault 0x00090004 0x20006061; steps: t1 fault 0x20006061, t2 fault 0x20006061, t3 ok; replays 2; -110 in the cell 1; peek 0=reg 0x0694 0x00000000 / 1=reg 0x0694 0x00000000 / 3=reg 0x0694 0x00000000
+  job_class      H-JOB    control  held       got fault        frozen fault        E848 h1/h4; E507/E729 page 0x20006
+  job_int        H-JOB    control  held       got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB    control  held       got 0x20006061   frozen 0x20006061   E848 h1/h4; E507/E729 page 0x20006; list 1 after the job's o
+  flush_rc       H-KEEP   control  held       got 0            frozen 0            fork 3f0b3e74: a recovery is held, so the write is taken
+  flush_ctrl_same H-KEEP   control  held       got yes          frozen yes          fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+  flush_int      H-LATCH  heldout  held       got 0x00090004   frozen 0x00090004   E826: only the reset cleared a held fault
+  flush_word     H-LATCH  heldout  held       got 0x20006061   frozen 0x20006061   E826: only the reset cleared a held fault
+  first_tri      H-FLUSH  heldout  FAILED     got fault        frozen ok           [infer] the invalidate drops the pending write
+  first_tri      H-PEND   heldout  held       got fault        frozen fault        the replay as without the flush (E848)
+  first_word     H-PEND   heldout  held       got 0x20006061   frozen 0x20006061   H-PEND with H-LIST's list
+  minus110_reset H-BOOT   heldout  FAILED     got 1            frozen 0            [infer] E848's -110 dumps: a TA write fault in the boot
+  passes_within  H-END    control  held       got 3            frozen 3            E848: the third triangle at the latest passed (h2)
+SUMMARY: q: H-LIST consistent (2 held, 0 FAILED, 0 cannot tell of 2); H-WORD REFUTED (0 held, 2 FAILED, 0 cannot tell of 2); H-FLUSH REFUTED (0 held, 3 FAILED, 0 cannot tell of 3); H-PEND consistent (6 held, 0 FAILED, 0 cannot tell of 6); H-BOOT REFUTED (2 held, 1 FAILED, 0 cannot tell of 3); H-LATCH consistent (6 held, 0 FAILED, 0 cannot tell of 6); H-REPLAY consistent (2 held, 0 FAILED, 0 cannot tell of 2)
+SUMMARY: Q003 list (q): H-LIST: the replay goes through the directory list current at the next TA run (2 of 2 rows decided)
+SUMMARY: Q003 flush (q): H-FLUSH: a BIF invalidate while the fault is held drops the pending write (no replay) is not supported: 0 held, 3 FAILED, 0 cannot tell of 3
+SUMMARY: q controls: 40 PASS, 0 FAIL, 0 NODATA

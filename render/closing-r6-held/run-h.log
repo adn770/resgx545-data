@@ -1,0 +1,32 @@
+attempt 20261112-154536: /Users/jtorra/src/scratch/resgx545/closing6/r6-held/out/20261112-154536; FROZEN.sha256 fb25e4ab4076103fe2bedbf80871e0464885b5bff5d3960f4c7469075a0c1d84
+files verified
+#### s0 15:45:36
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+## exit: hold_recovery=N render_rgn_arrays=0x00000000 render_pb_pages=0x00000422 render_tail_room=0x00000000
+SUMMARY: s0: controls all PASS (4)
+job: ok
+job time: 880 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 
+[  500.157117] gma500 0000:00:02.0: [drm] ta3dctl[56]: 00 00 00 00 00 00 00 00 00 00 00 00
+[  500.159824] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[  500.162774] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 188 us
+stage s0 done, health ok, render_rgn_arrays 0x00000000, render_pb_pages 0x00000422
+files verified
+gate q: open (s0 from /Users/jtorra/src/scratch/resgx545/closing6/r6-held/out/20261112-154536/s0)
+#### q 15:46:11
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+  class fault (fault bits 15:0 at snap 1: 4, hold message: yes)
+## STOP: a -110 in two cells in a row (the boot after a reset timed out): rc 22
+## exit: hold_recovery=N render_rgn_arrays=0x00000000 render_pb_pages=0x00000422 render_tail_room=0x00000000
+STOP: stage q exited 22 (see /Users/jtorra/src/scratch/resgx545/closing6/r6-held/out/20261112-154536/q.log and q/runner.log; 255 = ssh lost, 142 = the alarm: a freeze)
+knobs after the stop (alias_skip, render_rgn_arrays; read only): 0x00000000 0x00000000 0x00000422 
+to continue after the lead's decision: run/h.sh --from q (a new attempt directory)
