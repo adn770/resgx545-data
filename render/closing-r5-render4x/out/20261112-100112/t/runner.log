@@ -1,0 +1,133 @@
+## stage t
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## clock
+Thu Nov 12 10:01:57 CET 2026
+## r5-render4x safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 937e265a58196c906768d16b55acf121c1fda35b88c004307f89b4461cd5cdb0
+  kept begin.health1.txt: 311 bytes raw, raw sha256 82b9390ea9f4bae9cf62a2799638def270a472a87b9536e050b7b8c6e18f2af0
+== t6-ctl-te40-1array set=control risk=safe mode=plain knobs=[expectdiff rgn:1]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.KWwEfSLeOQ/1-t6-ctl-te40-1array/dump
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 64x64 tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 job: ok 
+  kept t6-ctl-te40-1array.txt: 540 bytes raw, raw sha256 06ce62e88882c238aa90bac0608ef16487845904846c53e505e190b11bf78153
+  kept t6-ctl-te40-1array.dmesg: 115 bytes raw, raw sha256 6339cc0d91ccccb5c42e1d671589f08e61131672295833dfe19c97872599c9e7
+  kept t6-ctl-te40-1array.snap0.regs: 6474 bytes raw, raw sha256 eaec43064952bc1e9802c1de84a0673c0f502ef87ec061d41b72bda731182e30
+  kept t6-ctl-te40-1array.snap9.regs: 6474 bytes raw, raw sha256 eda9cb9431c31f284339e3779e4be14f4237d459ea8f000549d3797f42326253
+  kept t6-ctl-te40-1array.tri.param.bin: 4603904 bytes raw, raw sha256 af307bd5eaafa17c96848ee9e1d64a65097adf17876ca478664f92f3f938f82c
+  kept t6-ctl-te40-1array.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t3b-line-base set=control risk=safe mode=plain knobs=[-]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --pixels --dump-render /tmp/tmp.KWwEfSLeOQ/2-t3b-line-base/dump /home/jtorra/r5x-stage/p1131-green__0.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t3b-line-base.txt: 39126 bytes raw, raw sha256 d1d8f363f7f971c9a53f411e7c06b8e9cecb78fe40c5e8de921376433f436a22
+  kept t3b-line-base.dmesg: 110 bytes raw, raw sha256 013307c784afc163969e541fcb7af9880c23a3032de35ba51b9aa60da5307811
+  kept t3b-line-base.snap0.regs: 6474 bytes raw, raw sha256 dcb7bb03c8732f5a0b96d627a40bbffd5f0d43c12d6dc84a9c781082d521bae8
+  kept t3b-line-base.snap9.regs: 6474 bytes raw, raw sha256 4045e8e57061e2d0739224b5444ac55957da5b9e6812e823a8b05640879575d9
+  kept t3b-line-base.p1131-green__0.param.bin: 4603904 bytes raw, raw sha256 8d8df522ab1c11816f6b83597ccf090f115844b6cd42cb6f76300849f6c3da6f
+  kept t3b-line-base.p1131-green__0.tadata.bin: 24576 bytes raw, raw sha256 79941e0020bbd8a02a2f780939a2148d295f7c886248299d0a95299833f61d61
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t4b-point-base set=control risk=safe mode=plain knobs=[-]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri vtxuse --temps 32 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel=/home/jtorra/r5x-stage/p1131-green__0.bin --dump-render /tmp/tmp.KWwEfSLeOQ/3-t4b-point-base/dump /home/jtorra/r5x-stage/p1131-psizes__1.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t4b-point-base.txt: 39222 bytes raw, raw sha256 9144c858d568baa780373823a439645dc8251bb246d6b07070e79ae418b70889
+  kept t4b-point-base.dmesg: 111 bytes raw, raw sha256 7ab1da1937218c3cb6d28f11f5f9d85de5508aeef70317d1d3af6bb525c3663f
+  kept t4b-point-base.snap0.regs: 6474 bytes raw, raw sha256 79e5a72136615d9796821cf360e1794ae264ad588843df8fb6b94d2240217441
+  kept t4b-point-base.snap9.regs: 6474 bytes raw, raw sha256 2555c37fc92b07689058b50afa7dfa4359e8da620e89638acd66df62085cd24d
+  kept t4b-point-base.p1131-psizes__1.param.bin: 4603904 bytes raw, raw sha256 788df40c5ce0178a9842f30ef5c146e89e488d591b9fd71e5e7d44cff6153460
+  kept t4b-point-base.p1131-psizes__1.tadata.bin: 24576 bytes raw, raw sha256 4254fb77ac11e58636e96e0d6ff58650f0bff3db7b33c176b2e84408eb0bc13b
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t1-aa4-te40 set=replicate risk=safe mode=plain knobs=[expectdiff]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --aa4 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.KWwEfSLeOQ/4-t1-aa4-te40/dump
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 64x64 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 
+  kept t1-aa4-te40.txt: 604 bytes raw, raw sha256 f5e5ec6bc8be2ca251b5be9e27409767b276f7d4a551fa3019e953f841f1e288
+  kept t1-aa4-te40.dmesg: 108 bytes raw, raw sha256 c95a31ab4721ea53c0e2855417c3d0412256f21bf97e6e94f873818c36b95234
+  kept t1-aa4-te40.snap0.regs: 6474 bytes raw, raw sha256 efd5e8d0526efeb70d0fd392f557313e8b25e00f42456ebf4747b0b40fa9ebb5
+  kept t1-aa4-te40.snap9.regs: 6474 bytes raw, raw sha256 10bc3c6c7d001c5f30bd89c54b05d1cc55a835bb56e2dfc8643222a41f9de68a
+  kept t1-aa4-te40.tri.param.bin: 4603904 bytes raw, raw sha256 af307bd5eaafa17c96848ee9e1d64a65097adf17876ca478664f92f3f938f82c
+  kept t1-aa4-te40.tri.tadata.bin: 24576 bytes raw, raw sha256 8ec0ebc74064b0bf9cb845eaa6d6b8cd51b1777152ac306ff1c86ea243c526ca
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t2-aa4-te80 set=replicate risk=safe mode=plain knobs=[expectdiff]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --aa4 --poke cmd:1=0x80000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.KWwEfSLeOQ/5-t2-aa4-te80/dump
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 64x64 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (192,0) (0,192), depth 0.5 0.5 0.5 
+  kept t2-aa4-te80.txt: 604 bytes raw, raw sha256 d0bbd925c883358a771ff5896a3071bf6fc532b87ae8d11069e013e5a84c2444
+  kept t2-aa4-te80.dmesg: 108 bytes raw, raw sha256 56902fc5756e2c1f8e7e84f26d63ce65b242aac78fa80e127c8547d30ff69911
+  kept t2-aa4-te80.snap0.regs: 6474 bytes raw, raw sha256 f3ecc8e5cc75ca13aaff82f6d85c403ba584777fd8481d12465bda10b049ca37
+  kept t2-aa4-te80.snap9.regs: 6474 bytes raw, raw sha256 da386d42d89fa06ebed1d72d17c2211218d10de4f650ebb140d7d87fa6ee44a0
+  kept t2-aa4-te80.tri.param.bin: 4603904 bytes raw, raw sha256 696135bab3174bc5a316f96133356811ddaeebeab2b765dcd4076a538662cbff
+  kept t2-aa4-te80.tri.tadata.bin: 24576 bytes raw, raw sha256 5cb53d06e45621af20f88423f56eef145e1c391399a6bb505fadd623de511221
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t3-line-te40 set=replicate risk=safe mode=plain knobs=[rgn:1]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --cmd 1=0x40000000 --pixels --dump-render /tmp/tmp.KWwEfSLeOQ/6-t3-line-te40/dump /home/jtorra/r5x-stage/p1131-green__0.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t3-line-te40.txt: 39131 bytes raw, raw sha256 d57e899a872ab9ac25bd0a13f3639b534cdbfc9494843f886c40a8f06d4d3345
+  kept t3-line-te40.dmesg: 109 bytes raw, raw sha256 2c368369cb408bb7e1bcd18290040c0686651ccb2458519aaebcbee33ecc542c
+  kept t3-line-te40.snap0.regs: 6474 bytes raw, raw sha256 040ae7e42641c342bf48b3d8a1bb8f1c5f866cd544a853938b87a011e620a3f8
+  kept t3-line-te40.snap9.regs: 6474 bytes raw, raw sha256 cf3835e517adc21edcb67d1b15fa44d4a976ab61f930bbc3675da94762af3666
+  kept t3-line-te40.p1131-green__0.param.bin: 4603904 bytes raw, raw sha256 2ecb4e676e155457e590a165a4c9556afda97bed87f9998c5d81078d1ec6f3b5
+  kept t3-line-te40.p1131-green__0.tadata.bin: 24576 bytes raw, raw sha256 5c47dab5e10c20a9dc58ab06b2284a7efed3e540717c4f5c5232a8899751ada3
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t4-point-te40 set=replicate risk=safe mode=plain knobs=[rgn:1]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri vtxuse --temps 32 --cmd 1=0x40000000 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel=/home/jtorra/r5x-stage/p1131-green__0.bin --dump-render /tmp/tmp.KWwEfSLeOQ/7-t4-point-te40/dump /home/jtorra/r5x-stage/p1131-psizes__1.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t4-point-te40.txt: 39228 bytes raw, raw sha256 7879bc32951d02fa78eb752f63723404de57c723e1f48c4e9ee61357efe4debd
+  kept t4-point-te40.dmesg: 110 bytes raw, raw sha256 d265daf91188ce90982ee6e4826af0327b924418483be9a8d8136be8e6efd312
+  kept t4-point-te40.snap0.regs: 6474 bytes raw, raw sha256 9673606b74ee9c1140e97167ae6647a4a5cb16fd9ba1ca0c36fc33e036f87ad9
+  kept t4-point-te40.snap9.regs: 6474 bytes raw, raw sha256 bc3c3dc4cb89fa1411245bcd84184bdf16892ac052235af949e417ee05c2c064
+  kept t4-point-te40.p1131-psizes__1.param.bin: 4603904 bytes raw, raw sha256 02b23cd8494baaa342538b6982a4910846ddf49ed09cbde8d2088981a1da4e77
+  kept t4-point-te40.p1131-psizes__1.tadata.bin: 24576 bytes raw, raw sha256 5ea850792c646d0c3e7ef792318669be78ec7072f607b29e1562112fce8d041f
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t3c-line-te80 set=heldout risk=safe mode=plain knobs=[rgn:1]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --cmd 1=0x80000000 --pixels --dump-render /tmp/tmp.KWwEfSLeOQ/8-t3c-line-te80/dump /home/jtorra/r5x-stage/p1131-green__0.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t3c-line-te80.txt: 39132 bytes raw, raw sha256 0becf7fcdea73676dab212176041b55b8dcb3bfc1b6668a26c6d45ebdc47edc0
+  kept t3c-line-te80.dmesg: 110 bytes raw, raw sha256 d0369cc8746a7d1d799d514ca2fb03cd67ad4f34dde3b5783b53701f6d89284a
+  kept t3c-line-te80.snap0.regs: 6474 bytes raw, raw sha256 3f9863012bc8a490e94a919efd5329947c1d43ad4c2be812b7b9891317b4f711
+  kept t3c-line-te80.snap9.regs: 6474 bytes raw, raw sha256 ef8f9327d5810adb9e0d9e7fbbe47347b1a31577b18cd50dc8c310a441745fac
+  kept t3c-line-te80.p1131-green__0.param.bin: 4603904 bytes raw, raw sha256 86d9545c382b590bb37de99f89b89aaf706f87f21686d14929d49a59541df650
+  kept t3c-line-te80.p1131-green__0.tadata.bin: 24576 bytes raw, raw sha256 3ac067476e3705d99c5e47eec43cc60f80936479738d6f7f24362b8841a0bb02
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== t4c-point-te80 set=heldout risk=safe mode=plain knobs=[rgn:1]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 probe --tri vtxuse --temps 32 --cmd 1=0x80000000 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel=/home/jtorra/r5x-stage/p1131-green__0.bin --dump-render /tmp/tmp.KWwEfSLeOQ/9-t4c-point-te80/dump /home/jtorra/r5x-stage/p1131-psizes__1.bin
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 
+  kept t4c-point-te80.txt: 39229 bytes raw, raw sha256 f47bcd0e6b0b64e936d25966cc97f47fdba53f61d3216a1dc32283d20912f7a6
+  kept t4c-point-te80.dmesg: 111 bytes raw, raw sha256 228a703f544946a00dd90de0ed6584268773d83464a22fff0e34cd5390c1d647
+  kept t4c-point-te80.snap0.regs: 6474 bytes raw, raw sha256 a575c0ac580f34c5ea43c17c0f764e765ba2804e84071ef1ce79fd3c745fa2ac
+  kept t4c-point-te80.snap9.regs: 6474 bytes raw, raw sha256 2b431d0f82759dea5e262e42b2cd06c6cd35b9706284d5e19d7117fa67076520
+  kept t4c-point-te80.p1131-psizes__1.param.bin: 4603904 bytes raw, raw sha256 479d1d686f4fbb1a3d0a2e24701778d777a15b148a79ee6ef443b079b2f319c7
+  kept t4c-point-te80.p1131-psizes__1.tadata.bin: 24576 bytes raw, raw sha256 44902fe4d5bbb24d41c14530c0379898437ba001094e8d4d0ead8dfe101028fc
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  kept end.fill2.txt: 174 bytes raw, raw sha256 918f08a09946bfdd1ef3c7af2e8c6b298eed209fdabcc63f23b94e9fd67f4a3d
+  kept end.health2.txt: 311 bytes raw, raw sha256 e63b6f9f62e9e09b5963460e038f0c9ef05e27079eb0dfca78f9752b01c9d735
+## end: 9 jobs of t
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 9 case markers kept in /home/jtorra/r5x-out/20261112-100112/t/kernel.log

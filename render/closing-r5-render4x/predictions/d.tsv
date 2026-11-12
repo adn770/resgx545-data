@@ -1,0 +1,24 @@
+case	quantity	value	model	set	source
+d1-1280x1024-held	rule:TPC-d-rgn	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:TPC-d-state	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:TPC-rs-rgn	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-W	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-H	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-OR	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-AND	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-TPM	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-P	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	rule:K-AREA	fault	rules.py from the argv (target 1280x1024, maximum 1280x1024)	explore	gen/rules.py; exp 1.4
+d1-1280x1024-held	htpc	fault	H-TPC's four variants agree	explore	gen/rules.py
+d1-1280x1024-held	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	explore	E845
+d1-1280x1024-held	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	explore	E845
+d1-1280x1024-held	diff	0 of 1310720 pixels	a completed 4x full triangle draws exactly (E824)	explore	E824
+d1-1280x1024-held	pb_used	321	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+d1-1280x1024-held	tadata_size	212992	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+d1-1280x1024-held	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+d1-1280x1024-held	held_pages	321	H-TPC: the TA finished: the held parameter dump has U4 scene pages	explore	gen/rules.py
+d1-1280x1024-held	hdr_zero_below_d	0xa000	H-TPC d: the headers off the rule all lie below this offset of the TA data, header 0 among them, every header past it on the rule	explore	gen/rules.py
+d1-1280x1024-held	hdr_zero_below_rs	0xc000	H-TPC rs: the headers off the rule all lie below this offset of the TA data, header 0 among them, every header past it on the rule	explore	gen/rules.py
+d1-1280x1024-held	hdr_zero_below_rb	0xc000	H-TPC rb: the headers off the rule all lie below this offset of the TA data, header 0 among them, every header past it on the rule	explore	gen/rules.py
+d1-1280x1024-held	held_short	a held dump shorter than a page is 'held dump not read' (o5's kept 62- and 63-byte files): the dump lines cannot tell	exp 1.5, 3.5	explore	R4-G o5

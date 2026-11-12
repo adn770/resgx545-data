@@ -1,0 +1,15 @@
+#stage t
+#limit 1
+#need $S/p1131-green__0.bin
+#need $S/p1131-psizes__1.bin
+# t: Q293 again with the dump names fixed.  t6, t3b, t4b are the controls; t1 to t4 replicate E847; t3c, t4c (0x80 on a line and a
+# point) are held out.  rgn:1: the module refuses TE_AA bits 31:30 on a context made without --aa4 unless the knob forces a count.
+t6-ctl-te40-1array|control|safe|expectdiff rgn:1|-|tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+t3b-line-base|control|safe|-|-|probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --pixels --dump-render "$W/dump" "$S/p1131-green__0.bin"
+t4b-point-base|control|safe|-|-|probe --tri vtxuse --temps 32 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel="$S/p1131-green__0.bin" --dump-render "$W/dump" "$S/p1131-psizes__1.bin"
+t1-aa4-te40|replicate|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --aa4 --poke cmd:1=0x40000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+t2-aa4-te80|replicate|safe|expectdiff|-|tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --aa4 --poke cmd:1=0x80000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render "$W/dump"
+t3-line-te40|replicate|safe|rgn:1|-|probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --cmd 1=0x40000000 --pixels --dump-render "$W/dump" "$S/p1131-green__0.bin"
+t4-point-te40|replicate|safe|rgn:1|-|probe --tri vtxuse --temps 32 --cmd 1=0x40000000 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel="$S/p1131-green__0.bin" --dump-render "$W/dump" "$S/p1131-psizes__1.bin"
+t3c-line-te80|heldout|safe|rgn:1|-|probe --tri pixel --temps 32 --width 64 --height 64 --blk 1=0x01d08200 --blk 6=0x42000000 --blk 7=0x42000000 --blk 8=0x42000000 --blk 9=0x42000000 --vdm 2=0x84c00002 --cmd 1=0x80000000 --pixels --dump-render "$W/dump" "$S/p1131-green__0.bin"
+t4c-point-te80|heldout|safe|rgn:1|-|probe --tri vtxuse --temps 32 --cmd 1=0x80000000 --pixels --width 64 --height 64 --vtx-coords 1 --blk 1=0x01d18200 --blk 13^=0x00000100 --blk 6=0x41b40000 --blk 7=0x41800000 --blk 8=0x41b40000 --blk 9=0x41800000 --vdm 2=0x88c00003 --slot pixel="$S/p1131-green__0.bin" --dump-render "$W/dump" "$S/p1131-psizes__1.bin"

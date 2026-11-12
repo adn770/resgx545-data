@@ -1,0 +1,55 @@
+case	quantity	value	model	set	source
+o1-1x-1024x768-p35	dump_param	o1-1x-1024x768-p35.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o1-1x-1024x768-p35	need	19	kept twins (6): closing-r1-pixgeo/u-ctl-1 19, closing-r4-render4x/s0-1x-1024x768 19, closing-r4-render4x/o1-1x-1024x768-p83 19, closing-r4-render4x/o2-1x-1024x768-p82 19, closing-s1/u-1-0x422 19, closing-s1/u-1-0x422 19	ctl	gen/data/twins.tsv
+o1-1x-1024x768-p35	tri1_scene	207456 triangle, 578976 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o1-1x-1024x768-p35	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x35 - 0x22 = 19 >= 19	ctl	E846
+o1-1x-1024x768-p35	diff	0 of 786432 pixels	a completed render draws exactly	ctl	E824 / E827
+o1-1x-1024x768-p35	pb_used	19	the scene pages of the completed render's dump = its need	ctl	gen/data/twins.tsv
+o2-1x-1024x768-p34	dump_param	o2-1x-1024x768-p34.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o2-1x-1024x768-p34	need	19	kept twins (6): closing-r1-pixgeo/u-ctl-1 19, closing-r4-render4x/s0-1x-1024x768 19, closing-r4-render4x/o1-1x-1024x768-p83 19, closing-r4-render4x/o2-1x-1024x768-p82 19, closing-s1/u-1-0x422 19, closing-s1/u-1-0x422 19	ctl	gen/data/twins.tsv
+o2-1x-1024x768-p34	tri1_scene	207456 triangle, 578976 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o2-1x-1024x768-p34	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x34 - 0x22 = 18 < 19; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	ctl	E846
+o3-4x-1024x768-pe3	dump_param	o3-4x-1024x768-pe3.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o3-4x-1024x768-pe3	need	193	kept twins (3): closing-r3k-pixel/h8-1024x768-k4 193, closing-r4-render4x/s0-4x-1024x768 193, closing-r4-render4x/o3-4x-1024x768-pe3 193	ctl	gen/data/twins.tsv
+o3-4x-1024x768-pe3	tri1_scene	786432 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o3-4x-1024x768-pe3	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0xe3 - 0x22 = 193 >= 193	ctl	E846
+o3-4x-1024x768-pe3	diff	0 of 786432 pixels	a completed render draws exactly	ctl	E824 / E827
+o3-4x-1024x768-pe3	pb_used	193	the scene pages of the completed render's dump = its need	ctl	gen/data/twins.tsv
+o4-4x-1024x768-pe2	dump_param	o4-4x-1024x768-pe2.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o4-4x-1024x768-pe2	need	193	kept twins (3): closing-r3k-pixel/h8-1024x768-k4 193, closing-r4-render4x/s0-4x-1024x768 193, closing-r4-render4x/o3-4x-1024x768-pe3 193	rep	gen/data/twins.tsv
+o4-4x-1024x768-pe2	tri1_scene	786432 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o4-4x-1024x768-pe2	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0xe2 - 0x22 = 192 < 193; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	rep	E846
+o5-4x-288x144-p23	need	12	kept twins (2): closing-r3k-pixel/h1-288x144-k4 12, closing-r4-render4x/s0-4x-288x144 12	rep	gen/data/twins.tsv
+o5-4x-288x144-p23	tri1_scene	41472 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o5-4x-288x144-p23	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x23 - 0x22 = 1 < 12; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	rep	E846
+o6-4x-640x480-p6e	dump_param	o6-4x-640x480-p6e.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o6-4x-640x480-p6e	need	76	kept twins (1): closing-r3k-pixel/h6-640x480-k4 76	heldout	gen/data/twins.tsv
+o6-4x-640x480-p6e	tri1_scene	307200 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o6-4x-640x480-p6e	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x6e - 0x22 = 76 >= 76	heldout	E846
+o6-4x-640x480-p6e	diff	0 of 307200 pixels	a completed render draws exactly	heldout	E824 / E827
+o6-4x-640x480-p6e	pb_used	76	the scene pages of the completed render's dump = its need	heldout	gen/data/twins.tsv
+o7-4x-640x480-p6d	dump_param	o7-4x-640x480-p6d.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o7-4x-640x480-p6d	need	76	kept twins (1): closing-r3k-pixel/h6-640x480-k4 76	heldout	gen/data/twins.tsv
+o7-4x-640x480-p6d	tri1_scene	307200 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o7-4x-640x480-p6d	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x6d - 0x22 = 75 < 76; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	heldout	E846
+o8-4x-512x384-p53	dump_param	o8-4x-512x384-p53.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o8-4x-512x384-p53	need	49	kept twins (1): closing-r3k-pixel/h5-512x384-k4 49	heldout	gen/data/twins.tsv
+o8-4x-512x384-p53	tri1_scene	196608 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o8-4x-512x384-p53	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x53 - 0x22 = 49 >= 49	heldout	E846
+o8-4x-512x384-p53	diff	0 of 196608 pixels	a completed render draws exactly	heldout	E824 / E827
+o8-4x-512x384-p53	pb_used	49	the scene pages of the completed render's dump = its need	heldout	gen/data/twins.tsv
+o9-4x-512x384-p52	dump_param	o9-4x-512x384-p52.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o9-4x-512x384-p52	need	49	kept twins (1): closing-r3k-pixel/h5-512x384-k4 49	heldout	gen/data/twins.tsv
+o9-4x-512x384-p52	tri1_scene	196608 triangle, 0 background, 0 other	the scene the need was frozen for (the twin's kept triangle counts; the tool's own --mock must print them: tests/mock_all.py)	census	gen/data/twins.tsv
+o9-4x-512x384-p52	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x52 - 0x22 = 48 < 49; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	heldout	E846
+o10-1xf-1024x768-p53	dump_param	o10-1xf-1024x768-p53.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o10-1xf-1024x768-p53	need	49	[model] no kept twin of this argv	explore	gen/data/twins.tsv
+o10-1xf-1024x768-p53	tri1_scene	786432 triangle, 0 background, 0 other	[model] the full triangle covers the target	census	gen/data/twins.tsv
+o10-1xf-1024x768-p53	outcome	complete	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x53 - 0x22 = 49 >= 49	explore	E846
+o10-1xf-1024x768-p53	diff	0 of 786432 pixels	a completed render draws exactly	explore	E824 / E827
+o10-1xf-1024x768-p53	pb_used	49	the scene pages of the completed render's dump = its need	explore	gen/data/twins.tsv
+o11-1xf-1024x768-p52	dump_param	o11-1xf-1024x768-p52.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+o11-1xf-1024x768-p52	need	49	[model] no kept twin of this argv	explore	gen/data/twins.tsv
+o11-1xf-1024x768-p52	tri1_scene	786432 triangle, 0 background, 0 other	[model] the full triangle covers the target	census	gen/data/twins.tsv
+o11-1xf-1024x768-p52	outcome	overflow	page rule: completes when P - 0x22 >= need (E625, E735, E773): 0x52 - 0x22 = 48 < 49; H-ENOSPC4 [infer, E846 post hoc]: an overflowing 4x scene ends in -ENOSPC with no BIF line, as at 1x (E311, E438, E412)	explore	E846
+o10-1xf-1024x768-p53	e846_correction	if 49 is measured: E846's 'the frozen need 97 is the model of the full triangle' needs an appended correction (the model was wrong for 1x)	exp 1.6	explore	E846

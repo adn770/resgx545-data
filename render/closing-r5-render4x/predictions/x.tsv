@@ -1,0 +1,58 @@
+case	quantity	value	model	set	source
+x1-1024x512	dump_param	x1-1024x512.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+x1-1024x512	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:TPC-d-state	fault	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:TPC-rb-rgn	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-W	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-H	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-OR	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-AND	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-TPM	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-P	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	rule:K-AREA	complete	rules.py from the argv (target 1024x512, maximum 1024x512)	explore	gen/rules.py; exp 1.4
+x1-1024x512	htpc	split	H-TPC's four variants	explore	gen/rules.py
+x1-1024x512	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	explore	E845
+x1-1024x512	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	explore	E845
+x1-1024x512	diff	0 of 524288 pixels	a completed 4x full triangle draws exactly (E824)	explore	E824
+x1-1024x512	pb_used	129	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+x1-1024x512	tadata_size	77824	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+x1-1024x512	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+x2-1184x768	dump_param	x2-1184x768.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+x2-1184x768	rule:TPC-d-rgn	complete	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:TPC-d-state	fault	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:TPC-rs-rgn	fault	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-W	fault	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-H	complete	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-OR	fault	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-AND	complete	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-TPM	either (no threshold: K-TPM 144 inside (128, 192))	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-P	either (no threshold: K-P 223 inside (193, 321))	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	rule:K-AREA	either (no threshold: K-AREA 909312 inside (786432, 1310720))	rules.py from the argv (target 1184x768, maximum 1184x768)	explore	gen/rules.py; exp 1.4
+x2-1184x768	htpc	split	H-TPC's four variants	explore	gen/rules.py
+x2-1184x768	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	explore	E845
+x2-1184x768	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	explore	E845
+x2-1184x768	diff	0 of 909312 pixels	a completed 4x full triangle draws exactly (E824)	explore	E824
+x2-1184x768	pb_used	223	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+x2-1184x768	tadata_size	167936	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+x2-1184x768	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers
+x3-1024x800	dump_param	x3-1024x800.tri.param.bin.gz	the verb's dump name (rlib.dump_stem: tri -> tri, probe PROG.bin -> PROG)	census	sgxfive-test.c dump_render
+x3-1024x800	rule:TPC-d-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:TPC-d-state	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:TPC-rs-rgn	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:TPC-rb-rgn	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-W	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-H	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-OR	fault	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-AND	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-TPM	complete	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-P	either (no threshold: K-P 201 inside (193, 321))	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	rule:K-AREA	either (no threshold: K-AREA 819200 inside (786432, 1310720))	rules.py from the argv (target 1024x800, maximum 1024x800)	explore	gen/rules.py; exp 1.4
+x3-1024x800	htpc	split	H-TPC's four variants	explore	gen/rules.py
+x3-1024x800	fault_int	0x0100	the 3D-side word of every 4x fault on record (E845, E846 o7, E828 j4)	explore	E845
+x3-1024x800	fault_page	0x10000	the request base: a zeroed header reads as a stream at offset 0 [infer, exp 1.2]	explore	E845
+x3-1024x800	diff	0 of 819200 pixels	a completed 4x full triangle draws exactly (E824)	explore	E824
+x3-1024x800	pb_used	201	page model U4 = 1 + ceil(2 tiles16 / 32) (fit E824's ten dumps; R4-G p held 1 of 1 at 1280 x 1024 before the fault)	model	gen/pbmodel.py
+x3-1024x800	tadata_size	151552	the layout of the CONTEXT'S maximum, four arrays (sgx_render.c; R4-G p 1 of 1)	model	gen/pbmodel.py
+x3-1024x800	hdr_off	0	the doubled-grid rule (exp 1.2, fit 12 of 12): grid of the target, base td.rgn of the maximum [infer]	model	gen/rlib.py headers

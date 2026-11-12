@@ -1,0 +1,93 @@
+## stage l
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## clock
+Thu Nov 12 10:06:00 CET 2026
+## r5-render4x safety rules: see the header of lib_k.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 ea2baf0c8e88a7942a9312291207ba0d44e0715296aed96a1e18f42e5b1dd162
+  kept begin.health1.txt: 311 bytes raw, raw sha256 1ef88ccf91dcfc400c36f09553364f05a5535b84b829c508c07f64a45944a580
+== l1-2048x240 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:5]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 2048 --height 240 --max-width 2048 --max-height 240 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.h7xs6RteZS/1-l1-2048x240/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 2048x240 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (6144,0) (0,720), depth 0.5 0.5 0.5 
+  kept l1-2048x240.txt: 787 bytes raw, raw sha256 8b85fd73762348965434426741e85e8873cd886064ea057eb0aaac29847cfbb7
+  kept l1-2048x240.dmesg: 3611 bytes raw, raw sha256 fb0c467fe0764161beffaa9fe1ce20b63d1e6556ccad5181a23fd0802a8a5d64
+  kept l1-2048x240.snap0.regs: 6474 bytes raw, raw sha256 0d8fde88d0f0e130afe16f65936e4f0742b3626ed6da1a3930029a1bed2568da
+  kept l1-2048x240.snap9.regs: 6474 bytes raw, raw sha256 a3acbe156cb95e33ff2c5c20ce511e995f79fae6d9fd3554641db97e77b2ba5d
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 1 of at most 5 in group q292 (a hypothesis: measured); fault-class events of the stage: 1 of 5
+  kept l1-2048x240.fill2.txt: 174 bytes raw, raw sha256 adeb6574b05888cfde7d156c69dc1b20451803fbb82bb61d23699ac2e6be07da
+  kept l1-2048x240.health2.txt: 311 bytes raw, raw sha256 b786483d1cd838ca585e14cedd9078c92b66845bb3c19bf31cedaa4e245dad27
+== l2-256x1536 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:5]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 256 --height 1536 --max-width 256 --max-height 1536 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.h7xs6RteZS/2-l2-256x1536/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 0 tri: render context for targets up to 256x1536 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (768,0) (0,4608), depth 0.5 0.5 0.5 
+  kept l2-256x1536.txt: 863 bytes raw, raw sha256 c2533ddc5eae977167d12bcb62a2f6656e5f8593ed8a1392b42b6156a90684f2
+  kept l2-256x1536.dmesg: 108 bytes raw, raw sha256 2b906a2f7b0b02e5bfcc22dbd9547071470b4cc0be5a992c6d33030bc04eccd4
+  kept l2-256x1536.snap0.regs: 6474 bytes raw, raw sha256 8c7789d08dcc5c83bb7c4a2eeec1013b09484a7e056e9d980c6f04d3ea9bc007
+  kept l2-256x1536.snap9.regs: 6474 bytes raw, raw sha256 f8d711ca12e479fa9ab68e28684b0e70ba9138da8fdc83a211f3edfec7e28f9e
+  kept l2-256x1536.tri.param.bin: 4603904 bytes raw, raw sha256 9b66af7f53d111439014d9d8a6d237ec97569faef81907a6a51b1d122700aaa8
+  kept l2-256x1536.tri.tadata.bin: 172032 bytes raw, raw sha256 bfa3a2c3a22290602d9daf7b3e868e086ba5d54ff3f650c89ec263db665e7142
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+== l3-768x2048 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:5]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 768 --height 2048 --max-width 768 --max-height 2048 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.h7xs6RteZS/3-l3-768x2048/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 768x2048 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (2304,0) (0,6144), depth 0.5 0.5 0.5 
+  kept l3-768x2048.txt: 788 bytes raw, raw sha256 100dfcecb75b5bce8a20b372602de4728b7eee4dc514dab5652b129974717324
+  kept l3-768x2048.dmesg: 3704 bytes raw, raw sha256 57e81929ac9ebc02948dcd6a64822741cacc333a405acebe5f3dbd20093ce193
+  kept l3-768x2048.snap0.regs: 6474 bytes raw, raw sha256 b7ef2848431f5109ca663a62ec3da67c8f5cad32df15534a46dfcba9af326893
+  kept l3-768x2048.snap9.regs: 6474 bytes raw, raw sha256 9c61e396f960af1be16e039574298a26b9aec6be7071c762104d488517419747
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 2 of at most 5 in group q292 (a hypothesis: measured); fault-class events of the stage: 2 of 5
+  kept l3-768x2048.fill3.txt: 174 bytes raw, raw sha256 5aeb129b7cf40304fd07c0caecd5f59abcbed34b65bb91164a83fb63e4df7217
+  kept l3-768x2048.health3.txt: 311 bytes raw, raw sha256 e466e53f83b001a8062a37f9db0066f0943c2e1e502bfd57d039f45cf9f1d4f4
+== l4-1280x768 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:5]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1280 --height 768 --max-width 1280 --max-height 768 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.h7xs6RteZS/4-l4-1280x768/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1280x768 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3840,0) (0,2304), depth 0.5 0.5 0.5 
+  kept l4-1280x768.txt: 788 bytes raw, raw sha256 21ac848fb2b6c9b7d0ac4639dbea1a232629cc72632db9120d5e74bb0ea75215
+  kept l4-1280x768.dmesg: 3612 bytes raw, raw sha256 13013e0b11fe6483b19ff2986f3ac5028e8c5484542f318e4f1bc1b698303c0b
+  kept l4-1280x768.snap0.regs: 6474 bytes raw, raw sha256 a12971934ea70952733b339aef626fa0c1c37ba4f1376cc933c573c63745142c
+  kept l4-1280x768.snap9.regs: 6474 bytes raw, raw sha256 e31b38b42da82227e8b2cfc13eabf5613b4a72489167da9299b89ac481d9803e
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 3 of at most 5 in group q292 (a hypothesis: measured); fault-class events of the stage: 3 of 5
+  kept l4-1280x768.fill4.txt: 174 bytes raw, raw sha256 556fa46296de77d2c34546e04ed376f8a974b862f5a5ed37b6edf8a94c365a9d
+  kept l4-1280x768.health4.txt: 311 bytes raw, raw sha256 b33a7fa8322ebb14eec50b943ed0038bf47fc9d3a1b694681f459a971870142d
+== l5-1024x1024 set=heldout risk=risky mode=plain knobs=[expectdiff strict hypo:q292:5]
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --keep-overflow --wait-ms 20000 --width 1024 --height 1024 --max-width 1024 --max-height 1024 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --dump-render /tmp/tmp.h7xs6RteZS/5-l5-1024x1024/dump --regs 0x0700-0x072c
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000 pb 0x00000000
+  rc 1 tri: render context for targets up to 1024x1024 tri: render context made for 4x targets (DRM_SGXFIVE_CTX_RENDER_AA_4X) tri: triangle (0,0) (3072,0) (0,3072), depth 0.5 0.5 0.5 
+  kept l5-1024x1024.txt: 790 bytes raw, raw sha256 c263bcdb7c276a8303140308933eca23aae0b0a27433bf6e05d5502d2e3df265
+  kept l5-1024x1024.dmesg: 3704 bytes raw, raw sha256 98627c202c8ac4c349d53b72715b0514c1dddfeb184c1b6ec051ff5fd1e3027f
+  kept l5-1024x1024.snap0.regs: 6474 bytes raw, raw sha256 d34f6610f25bfadbbe98594234ccdc50d6745dba6744d3cbde291c830941822f
+  kept l5-1024x1024.snap9.regs: 6474 bytes raw, raw sha256 a7f7bbac2db05396c913aeda0bf1423427f088c1daf952cd90cd6ac4560e4de3
+  class fault (fault bits 15:0 at snap 1: -, hold message: no)
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 4 of at most 5 in group q292 (a hypothesis: measured); fault-class events of the stage: 4 of 5
+  kept l5-1024x1024.fill5.txt: 174 bytes raw, raw sha256 6b4cf19a5d2c5b76e533d3f2f60cc3e9f7a29de3c16606b006464d651971ac27
+  kept l5-1024x1024.health5.txt: 311 bytes raw, raw sha256 2898da28515c5b2bbba7d161427abb2c2761491f8dee4d95a19d3e7b5dbe8b2c
+  kept end.fill6.txt: 174 bytes raw, raw sha256 41760ac9b0b361c69ce376803bf29419b45947dd1cb53e4b44c7625a06104b9e
+  kept end.health6.txt: 311 bytes raw, raw sha256 7b58f851f8b37817c21f49bbfcf90f8fbc0dd448a496610b3655e217032abee0
+## end: 5 jobs of l
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 5 case markers kept in /home/jtorra/r5x-out/20261112-100112/l/kernel.log
