@@ -1,0 +1,121 @@
+case	quantity	value	model	set
+b0	skipped	0	control (the design: the host's flag, the task's count)	control
+b0	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b0	hold_recovery_after	N	control (put back and read back)	control
+b0	timer_clock_read	0x00000000	control (the knob written before the job's reset, read back)	control
+b0	arm_dword6	400000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b0	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b0	tick_gap	25000+-10	control (E084 (dword 6 / 16 CR_TIMER units a tick); a job whose gap is not its clock's is void)	control
+b0	tool_ok	yes	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	tick_alive	yes	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	end_render_entries	1	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	bit18_in_watch	never	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	post_marks	0 0	control (HostCtl dwords 3 and 8 in a status dump after the watch: no lockup without the skip)	control
+b1p	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p	hold_recovery_after	N	control (put back and read back)	control
+b1p	timer_clock_read	0x00000000	control (the knob written before the job's reset, read back)	control
+b1p	arm_dword6	400000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1p	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1p	tick_gap	25000+-10	control (E084 (dword 6 / 16 CR_TIMER units a tick); a job whose gap is not its clock's is void)	control
+b1p	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1p	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1p	tick_alive	no	H-HWR (the firmware's 3D lockup check: R-6 (data-private cited/closing5/r6/reading-r6.md) (i)-(ii), S0 (cited/closing5/r6/s0/RESULT.md); b1p's marks E849)	heldout
+b1p	tick_alive	no	H-NOMARK (another cause: b1p's marks were incidental)	heldout
+b1p	lockups	1	H-HWR (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1p	lockups	0	H-NOMARK	heldout
+b1p	iflags	1	H-HWR (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1p	iflags	0	H-NOMARK	heldout
+b1p	sw_events	1	H-HWR (the kernel counted one SW_EVENT: the lockup path writes EVENT_STATUS bit 14, R-6 (i); E849)	heldout
+b1p	sw_events	0	H-NOMARK	heldout
+b1p	dword9	0	H-HWR (InterruptClearFlags: the lockup path does not write it)	heldout
+b1p	dword57	0	H-HWR (TA3DCtl dword 57 zeroed by the 20th tick's sample, R-6 (i); b1p 0, E849)	heldout
+b1p	dword58	nonzero	H-HWR (TA3DCtl dword 58 = the register signature stored at ticks 10 and 20, R-6 (i); b1p 0xaac267c2, E849)	heldout
+b1p	dword58	0	H-NOMARK	heldout
+b1p	dword14	0	H-HWR (HostCtl dword 14: the assert routine at 0x0 did not run, 0 in every stop but E813's)	heldout
+b1p	ccb	3 3	H-HWR (the CCB offsets at the stop: boot, arm and fill commands read, b1p 3 3)	heldout
+b1p	status_bit6	clear	H-HWR (EVENT_STATUS bit 6 DPM_STATE_CLEAR clear: the lockup path polls it with no exit, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md))	heldout
+b1p	dpm_task_state	2	R6-DPM [not in a family: the rgn4 kernel cannot read it] (CR_DPM_TASK_STATE 0x0694 = 2 written before the poll, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md); the rgn4 regs file never reads 0x0694 (fork a2788bd8 sgxfive_regdump.c: T, skip): cannot tell on this kernel)	heldout
+b1p	ta3d_dword28	0	H-HWR [infer] (TA3DCtl dword 28, the 3D render context of the render kick, 0: the fill's 3D kick is the second of R-6's two 3D kicks, which also sets sa9 bit 2, so the lockup path skips the context's dword 13 bit 11 (R-6); b1p 0, bif_faults 0)	heldout
+b1p	p3_answered	no	H-HWR (the EDM waits for DPM_STATE_CLEAR under lock #0: a miscinfo is not read, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii); E836 P3)	heldout
+b1p	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1p	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E837, E823 48 ms)	heldout
+b1p	bit18_in_watch	never	H-PULSE	heldout
+b1p	bit18_after_bit15	1	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p	bit18_after_bit15	0	H-ALL	heldout
+b1p	bit18_after_bit15	1	H-NONE	heldout
+b1p	bit18_after_bit18	0	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p	bit18_after_bit18	0	H-ALL	heldout
+b1p	bit18_after_bit18	1	H-NONE	heldout
+b1p-r2	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p-r2	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p-r2	hold_recovery_after	N	control (put back and read back)	control
+b1p-r2	timer_clock_read	0x00000000	control (the knob written before the job's reset, read back)	control
+b1p-r2	arm_dword6	400000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1p-r2	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1p-r2	tick_gap	25000+-10	control (E084 (dword 6 / 16 CR_TIMER units a tick); a job whose gap is not its clock's is void)	control
+b1p-r2	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1p-r2	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1p-r2	tick_alive	no	H-HWR (the firmware's 3D lockup check: R-6 (data-private cited/closing5/r6/reading-r6.md) (i)-(ii), S0 (cited/closing5/r6/s0/RESULT.md); b1p's marks E849)	heldout
+b1p-r2	tick_alive	no	H-NOMARK (another cause: b1p's marks were incidental)	heldout
+b1p-r2	lockups	1	H-HWR (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1p-r2	lockups	0	H-NOMARK	heldout
+b1p-r2	iflags	1	H-HWR (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1p-r2	iflags	0	H-NOMARK	heldout
+b1p-r2	sw_events	1	H-HWR (the kernel counted one SW_EVENT: the lockup path writes EVENT_STATUS bit 14, R-6 (i); E849)	heldout
+b1p-r2	sw_events	0	H-NOMARK	heldout
+b1p-r2	dword9	0	H-HWR (InterruptClearFlags: the lockup path does not write it)	heldout
+b1p-r2	dword57	0	H-HWR (TA3DCtl dword 57 zeroed by the 20th tick's sample, R-6 (i); b1p 0, E849)	heldout
+b1p-r2	dword58	nonzero	H-HWR (TA3DCtl dword 58 = the register signature stored at ticks 10 and 20, R-6 (i); b1p 0xaac267c2, E849)	heldout
+b1p-r2	dword58	0	H-NOMARK	heldout
+b1p-r2	dword14	0	H-HWR (HostCtl dword 14: the assert routine at 0x0 did not run, 0 in every stop but E813's)	heldout
+b1p-r2	ccb	3 3	H-HWR (the CCB offsets at the stop: boot, arm and fill commands read, b1p 3 3)	heldout
+b1p-r2	status_bit6	clear	H-HWR (EVENT_STATUS bit 6 DPM_STATE_CLEAR clear: the lockup path polls it with no exit, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md))	heldout
+b1p-r2	dpm_task_state	2	R6-DPM [not in a family: the rgn4 kernel cannot read it] (CR_DPM_TASK_STATE 0x0694 = 2 written before the poll, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md); the rgn4 regs file never reads 0x0694 (fork a2788bd8 sgxfive_regdump.c: T, skip): cannot tell on this kernel)	heldout
+b1p-r2	ta3d_dword28	0	H-HWR [infer] (TA3DCtl dword 28, the 3D render context of the render kick, 0: the fill's 3D kick is the second of R-6's two 3D kicks, which also sets sa9 bit 2, so the lockup path skips the context's dword 13 bit 11 (R-6); b1p 0, bif_faults 0)	heldout
+b1p-r2	p3_answered	no	H-HWR (the EDM waits for DPM_STATE_CLEAR under lock #0: a miscinfo is not read, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii); E836 P3)	heldout
+b1p-r2	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1p-r2	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E837, E823 48 ms)	heldout
+b1p-r2	bit18_in_watch	never	H-PULSE	heldout
+b1p-r2	bit18_after_bit15	1	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p-r2	bit18_after_bit15	0	H-ALL	heldout
+b1p-r2	bit18_after_bit15	1	H-NONE	heldout
+b1p-r2	bit18_after_bit18	0	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p-r2	bit18_after_bit18	0	H-ALL	heldout
+b1p-r2	bit18_after_bit18	1	H-NONE	heldout
+b1p-r3	skipped	1	control (the design: the host's flag, the task's count)	control
+b1p-r3	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1p-r3	hold_recovery_after	N	control (put back and read back)	control
+b1p-r3	timer_clock_read	0x00000000	control (the knob written before the job's reset, read back)	control
+b1p-r3	arm_dword6	400000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1p-r3	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1p-r3	tick_gap	25000+-10	control (E084 (dword 6 / 16 CR_TIMER units a tick); a job whose gap is not its clock's is void)	control
+b1p-r3	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1p-r3	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1p-r3	tick_alive	no	H-HWR (the firmware's 3D lockup check: R-6 (data-private cited/closing5/r6/reading-r6.md) (i)-(ii), S0 (cited/closing5/r6/s0/RESULT.md); b1p's marks E849)	heldout
+b1p-r3	tick_alive	no	H-NOMARK (another cause: b1p's marks were incidental)	heldout
+b1p-r3	lockups	1	H-HWR (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1p-r3	lockups	0	H-NOMARK	heldout
+b1p-r3	iflags	1	H-HWR (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1p-r3	iflags	0	H-NOMARK	heldout
+b1p-r3	sw_events	1	H-HWR (the kernel counted one SW_EVENT: the lockup path writes EVENT_STATUS bit 14, R-6 (i); E849)	heldout
+b1p-r3	sw_events	0	H-NOMARK	heldout
+b1p-r3	dword9	0	H-HWR (InterruptClearFlags: the lockup path does not write it)	heldout
+b1p-r3	dword57	0	H-HWR (TA3DCtl dword 57 zeroed by the 20th tick's sample, R-6 (i); b1p 0, E849)	heldout
+b1p-r3	dword58	nonzero	H-HWR (TA3DCtl dword 58 = the register signature stored at ticks 10 and 20, R-6 (i); b1p 0xaac267c2, E849)	heldout
+b1p-r3	dword58	0	H-NOMARK	heldout
+b1p-r3	dword14	0	H-HWR (HostCtl dword 14: the assert routine at 0x0 did not run, 0 in every stop but E813's)	heldout
+b1p-r3	ccb	3 3	H-HWR (the CCB offsets at the stop: boot, arm and fill commands read, b1p 3 3)	heldout
+b1p-r3	status_bit6	clear	H-HWR (EVENT_STATUS bit 6 DPM_STATE_CLEAR clear: the lockup path polls it with no exit, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md))	heldout
+b1p-r3	dpm_task_state	2	R6-DPM [not in a family: the rgn4 kernel cannot read it] (CR_DPM_TASK_STATE 0x0694 = 2 written before the poll, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md); the rgn4 regs file never reads 0x0694 (fork a2788bd8 sgxfive_regdump.c: T, skip): cannot tell on this kernel)	heldout
+b1p-r3	ta3d_dword28	0	H-HWR [infer] (TA3DCtl dword 28, the 3D render context of the render kick, 0: the fill's 3D kick is the second of R-6's two 3D kicks, which also sets sa9 bit 2, so the lockup path skips the context's dword 13 bit 11 (R-6); b1p 0, bif_faults 0)	heldout
+b1p-r3	p3_answered	no	H-HWR (the EDM waits for DPM_STATE_CLEAR under lock #0: a miscinfo is not read, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii); E836 P3)	heldout
+b1p-r3	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1p-r3	bit18_in_watch	all	H-LEVEL (bit 18 holds until acknowledged: E837, E823 48 ms)	heldout
+b1p-r3	bit18_in_watch	never	H-PULSE	heldout
+b1p-r3	bit18_after_bit15	1	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p-r3	bit18_after_bit15	0	H-ALL	heldout
+b1p-r3	bit18_after_bit15	1	H-NONE	heldout
+b1p-r3	bit18_after_bit18	0	H-W (the bits written are the bits cleared: E837 fit)	heldout
+b1p-r3	bit18_after_bit18	0	H-ALL	heldout
+b1p-r3	bit18_after_bit18	1	H-NONE	heldout

@@ -1,0 +1,93 @@
+#### r5e attempt a1 09:15:50
+job: ok
+job time: 935 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 
+[ 8513.889440] perf: interrupt took too long (10071 > 10050), lowering kernel.perf_event_max_sample_rate to 19800
+[15372.771232] perf: interrupt took too long (12619 > 12588), lowering kernel.perf_event_max_sample_rate to 15600
+[43467.102740] perf: interrupt took too long (15835 > 15773), lowering kernel.perf_event_max_sample_rate to 12600
+#### h1 09:15:52
+GATE h1 OPEN (no previous stage)
+## preflight ok: {"srcversion_loaded": "99CD90DA26E3AFF9C450517", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== b0: class ok 
+## STOP SIGNATURE b1p (after-watch): [{"t": 2.0662, "regs": {"0x8": 839584, "0xb14": 1025, "0xacc": 16993137, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1018, "hc14": 0, "ccb": [3, 3], "pass": [115, 115]}, {"t": 2.1062, "regs": {"0x8": 839584, "0xb14": 1025, "0xacc": 17057689, "0x12c": 5371
+== b1p: class stop 
+## stop1-b1p: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1p-r2 (after-watch): [{"t": 2.0871, "regs": {"0x8": 839584, "0xb14": 1043, "0xacc": 16982660, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1036, "hc14": 0, "ccb": [3, 3], "pass": [116, 116]}, {"t": 2.141, "regs": {"0x8": 839584, "0xb14": 1043, "0xacc": 16854312, "0x12c": 53713
+== b1p-r2: class stop 
+## stop2-b1p-r2: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1p-r3 (after-watch): [{"t": 2.0763, "regs": {"0x8": 839584, "0xb14": 1030, "0xacc": 17026974, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 1023, "hc14": 0, "ccb": [3, 3], "pass": [115, 115]}, {"t": 2.116, "regs": {"0x8": 839584, "0xb14": 1030, "0xacc": 17156206, "0x12c": 53713
+== b1p-r3: class stop 
+## stop3-b1p-r3: reset ok True, gate ok True, health ok True
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 372 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 
+[47442.657442] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[47442.660234] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 140 us
+[47443.273189] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 156 us
+SUMMARY: h1: B0 held; H-HWR consistent (12 row groups), H-NOMARK REFUTED; H-TICKS consistent (1 row groups); H-LEVEL consistent (1 row groups), H-PULSE REFUTED; H-W consistent (2 row groups), H-ALL REFUTED, H-NONE REFUTED; stops 3 ['b1p', 'b1p-r2', 'b1p-r3']; every control PASS (33); 84 of 87 non-control rows decided; Q295/Q166 rows: held out: 63 held, 21 FAILED, 3 cannot tell/void; refuted ['H-ALL', 'H-NOMARK', 'H-NONE', 'H-PULSE']; cannot tell ['R6-DPM [not in a family: the rgn4 kernel cannot read it] (CR_DPM_TASK_STATE 0x0694 = 2 written before the poll, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md); the rgn4 regs file never reads 0x0694 (fork a2788bd8 sgxfive_regdump.c: T, skip): cannot tell on this kernel)']; control: 33 held, 0 FAILED, 0 cannot tell/void
+stage h1 done, health ok
+#### h2 09:16:18
+GATE h2 OPEN: h1 finished (exit 0, run 1794471354-29206)
+## STOP SIGNATURE b1pa (after-watch): [{"t": 2.1223, "regs": {"0x8": 839584, "0xb14": 538, "0xacc": 16931441, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 531, "hc14": 0, "ccb": [3, 3], "pass": [69, 69]}, {"t": 2.1622, "regs": {"0x8": 839584, "0xb14": 538, "0xacc": 17061209, "0x12c": 537133056
+== b1pa: class stop 
+## stop1-b1pa: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1pa-r2 (after-watch): [{"t": 2.1442, "regs": {"0x8": 839584, "0xb14": 538, "0xacc": 17039300, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 531, "hc14": 0, "ccb": [3, 3], "pass": [68, 68]}, {"t": 2.1839, "regs": {"0x8": 839584, "0xb14": 538, "0xacc": 17224324, "0x12c": 537133056
+== b1pa-r2: class stop 
+## stop2-b1pa-r2: reset ok True, gate ok True, health ok True
+== b0b: class ok 
+## STOP SIGNATURE b1pb (after-watch): [{"t": 2.204, "regs": {"0x8": 839584, "0xb14": 286, "0xacc": 17116994, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 279, "hc14": 0, "ccb": [3, 3], "pass": [45, 45]}, {"t": 2.2438, "regs": {"0x8": 839584, "0xb14": 286, "0xacc": 17204440, "0x12c": 537133056,
+== b1pb: class stop 
+## stop3-b1pb: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1pb-r2 (after-watch): [{"t": 2.1861, "regs": {"0x8": 839584, "0xb14": 278, "0xacc": 18372169, "0x12c": 537133056, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 271, "hc14": 0, "ccb": [3, 3], "pass": [45, 45]}, {"t": 2.2258, "regs": {"0x8": 839584, "0xb14": 278, "0xacc": 17017910, "0x12c": 537133056
+== b1pb-r2: class stop 
+## stop4-b1pb-r2: reset ok True, gate ok True, health ok True
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 792 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 
+[47474.691024] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[47474.693889] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 148 us
+[47475.309019] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 241 us
+SUMMARY: h2: B0 held; H-HWR consistent (24 row groups), H-NOMARK REFUTED; H-TICKS consistent (2 row groups), H-TIME REFUTED; H-LEVEL consistent (2 row groups), H-PULSE REFUTED; stops 4 ['b1pa', 'b1pa-r2', 'b1pb', 'b1pb-r2']; every control PASS (52); 92 of 96 non-control rows decided; Q295/Q166 rows: held out: 68 held, 24 FAILED, 4 cannot tell/void; refuted ['H-NOMARK', 'H-PULSE', 'H-TIME (the stop about 19.3 ms after the kick whatever the tick: 10 +-1 ticks at 800000; no mechanism in the code, R-6)', 'H-TIME (the stop about 19.3 ms after the kick whatever the tick: 5 +-1 ticks at 1600000; no mechanism in the code, R-6)']; cannot tell ['R6-DPM [not in a family: the rgn4 kernel cannot read it] (CR_DPM_TASK_STATE 0x0694 = 2 written before the poll, R-6 (data-private cited/closing5/r6/reading-r6.md) (ii), S0 (cited/closing5/r6/s0/RESULT.md); the rgn4 regs file never reads 0x0694 (fork a2788bd8 sgxfive_regdump.c: T, skip): cannot tell on this kernel)']; control: 52 held, 0 FAILED, 0 cannot tell/void
+stage h2 done, health ok
+#### h3 09:16:49
+GATE h3 OPEN: h2 finished (exit 0, run 1794471379-29331)
+## preflight ok: {"srcversion_loaded": "99CD90DA26E3AFF9C450517", "uname": "7.3.0-resgx545", "tool_sha256": "46a2d06380814fdb07e7d711376f41fee4af8e6b3f75698d3e2ce52acfd6cc71", "debugfs": "/sys/kernel/debug/dri/0/sgx"}
+== b0: class ok 
+## STOP SIGNATURE b1e (after-watch): [{"t": 2.2167, "regs": {"0x8": 839584, "0xb14": 283, "0xacc": 17505491, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 274, "hc14": 0, "ccb": [4, 4], "pass": [45, 45]}, {"t": 2.2565, "regs": {"0x8": 839584, "0xb14": 283, "0xacc": 17756093, "0x12c": 536870912
+== b1e: class stop 
+## stop1-b1e: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1e-r2 (after-watch): [{"t": 2.2227, "regs": {"0x8": 839584, "0xb14": 280, "0xacc": 17668035, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 271, "hc14": 0, "ccb": [4, 4], "pass": [45, 45]}, {"t": 2.2629, "regs": {"0x8": 839584, "0xb14": 280, "0xacc": 17716033, "0x12c": 536870912
+== b1e-r2: class stop 
+## stop2-b1e-r2: reset ok True, gate ok True, health ok True
+## STOP SIGNATURE b1e-r3 (after-watch): [{"t": 2.2281, "regs": {"0x8": 839584, "0xb14": 280, "0xacc": 17549492, "0x12c": 536870912, "0x118": 1024, "0xc04": 524288, "0xb20": 65536, "0xc08": 0}, "hc12": 271, "hc14": 0, "ccb": [4, 4], "pass": [46, 46]}, {"t": 2.2679, "regs": {"0x8": 839584, "0xb14": 280, "0xacc": 17554658, "0x12c": 536870912
+== b1e-r3: class stop 
+## stop3-b1e-r3: reset ok True, gate ok True, health ok True
+## end: reset ok True, gate ok True, health ok True
+job: ok
+job time: 861 us
+diff: 0 of 2048 pixels
+tri: render context for targets up to 64x64
+diff: 0 of 4096 pixels
+tri 64x64 #1: 1062 triangle, 3034 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 612 if flipped; guard 0
+hold_recovery=N rtds_keep=N alias_ta3d_ro=N render_pb_pages=0x00000422 render_ctx_flags=0x00000000 kick_no_bump=N render_rgn_arrays=0x00000000 timer_clock=0x00000000 
+[47501.835071] gma500 0000:00:02.0: [drm] ccbctl[ 0]: 00 00 00 00 00 00 00 00
+[47501.837934] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 139 us
+[47502.452839] gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 228 us
+SUMMARY: h3: B0 held; H-STATE consistent (4 row groups), H-ACK18 REFUTED; H-TICKS consistent (1 row groups); H-LEVEL consistent (1 row groups); H-W consistent (2 row groups), H-ALL REFUTED, H-NONE REFUTED; stops 3 ['b1e', 'b1e-r2', 'b1e-r3']; every control PASS (39); 51 of 51 non-control rows decided; Q295/Q166 rows: held out: 36 held, 15 FAILED, 0 cannot tell/void; refuted ['H-ACK18', 'H-ACK18 (the unacknowledged bit 18 keeps the check armed: the clears end it)', 'H-ALL', 'H-NONE']; control: 39 held, 0 FAILED, 0 cannot tell/void
+stage h3 done, health ok
+timer_clock at the end: timer_clock=0x00000000 (the knob each stage's clock_back read back: "knob": "0x00000000" "knob": "0x00000000" "knob": "0x00000000" )
+R5e a1 done

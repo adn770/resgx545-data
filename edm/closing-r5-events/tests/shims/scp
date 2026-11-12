@@ -1,0 +1,25 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# mock scp: HOST:path is MOCK_HOME/path; -r copies a directory; options dropped
+args=()
+rec=""
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-o) shift 2 ;;
+	-r) rec=-R; shift ;;
+	-*) shift ;;
+	*) args+=("$1"); shift ;;
+	esac
+done
+n=${#args[@]}
+dst=${args[$((n - 1))]}
+map() { case "$1" in *:*) echo "$MOCK_HOME/${1#*:}" ;; *) echo "$1" ;; esac; }
+d=$(map "$dst")
+st=0
+for ((i = 0; i < n - 1; i++)); do
+	s=$(map "${args[$i]}")
+	# shellcheck disable=SC2086
+	cp $rec "$s" "$d" || st=1
+done
+echo "scp ${args[*]}" >> "$MOCK_DIR/ssh.log"
+exit $st

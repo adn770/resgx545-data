@@ -1,0 +1,91 @@
+case	quantity	value	model	set
+b0	skipped	0	control (the design: the host's flag, the task's count)	control
+b0	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b0	hold_recovery_after	N	control (put back and read back)	control
+b0	timer_clock_read	0x00186a00	control (the knob written before the job's reset, read back)	control
+b0	arm_dword6	1600000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b0	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b0	tick_gap	100000+-40	control (E084's rule at a clock it did not measure (B0B is its measurement); a job whose gap is not its clock's is void)	control
+b0	tool_ok	yes	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	tick_alive	yes	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	end_render_entries	1	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	bit18_in_watch	never	control (E823 B0 3 of 3, E836 b0: the fill without the skip)	control
+b0	post_marks	0 0	control (HostCtl dwords 3 and 8 in a status dump after the watch: no lockup without the skip)	control
+b1e	skipped	1	control (the design: the host's flag, the task's count)	control
+b1e	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1e	hold_recovery_after	N	control (put back and read back)	control
+b1e	timer_clock_read	0x00186a00	control (the knob written before the job's reset, read back)	control
+b1e	arm_dword6	1600000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1e	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1e	tick_gap	100000+-40	control (E084's rule at a clock it did not measure (B0B is its measurement); a job whose gap is not its clock's is void)	control
+b1e	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1e	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1e	tick_alive	no	H-STATE (the arm is firmware state, sa9 bit 0, which no host write to EVENT_HOST_CLEAR touches: R-6 (data-private cited/closing5/r6/reading-r6.md) (i), (iii))	heldout
+b1e	tick_alive	yes	H-ACK18 (the unacknowledged bit 18 keeps the check armed: the clears end it)	heldout
+b1e	lockups	1	H-STATE (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1e	lockups	0	H-ACK18	heldout
+b1e	iflags	1	H-STATE (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1e	iflags	0	H-ACK18	heldout
+b1e	sig_event_status	0x20000000	H-STATE (the stop's EVENT_STATUS after the host cleared bit 18: bit 29 alone)	heldout
+b1e	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1e	misc_answered	yes	control (the miscinfo after the clears is answered: the EDM was running at the clears)	control
+b1e	misc_kick_in_ring	yes	control (its kick entry is in the slot 0 ring with a tick after it)	control
+b1e	bit18_before_clears	1	H-LEVEL (bit 18 set at the slot 3 entry of a skipped pass, E837)	heldout
+b1e	bit18_after_bit15	1	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e	bit18_after_bit15	0	H-ALL	heldout
+b1e	bit18_after_bit15	1	H-NONE	heldout
+b1e	bit18_after_bit18	0	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e	bit18_after_bit18	0	H-ALL	heldout
+b1e	bit18_after_bit18	1	H-NONE	heldout
+b1e-r2	skipped	1	control (the design: the host's flag, the task's count)	control
+b1e-r2	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1e-r2	hold_recovery_after	N	control (put back and read back)	control
+b1e-r2	timer_clock_read	0x00186a00	control (the knob written before the job's reset, read back)	control
+b1e-r2	arm_dword6	1600000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1e-r2	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1e-r2	tick_gap	100000+-40	control (E084's rule at a clock it did not measure (B0B is its measurement); a job whose gap is not its clock's is void)	control
+b1e-r2	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1e-r2	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1e-r2	tick_alive	no	H-STATE (the arm is firmware state, sa9 bit 0, which no host write to EVENT_HOST_CLEAR touches: R-6 (data-private cited/closing5/r6/reading-r6.md) (i), (iii))	heldout
+b1e-r2	tick_alive	yes	H-ACK18 (the unacknowledged bit 18 keeps the check armed: the clears end it)	heldout
+b1e-r2	lockups	1	H-STATE (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1e-r2	lockups	0	H-ACK18	heldout
+b1e-r2	iflags	1	H-STATE (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1e-r2	iflags	0	H-ACK18	heldout
+b1e-r2	sig_event_status	0x20000000	H-STATE (the stop's EVENT_STATUS after the host cleared bit 18: bit 29 alone)	heldout
+b1e-r2	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1e-r2	misc_answered	yes	control (the miscinfo after the clears is answered: the EDM was running at the clears)	control
+b1e-r2	misc_kick_in_ring	yes	control (its kick entry is in the slot 0 ring with a tick after it)	control
+b1e-r2	bit18_before_clears	1	H-LEVEL (bit 18 set at the slot 3 entry of a skipped pass, E837)	heldout
+b1e-r2	bit18_after_bit15	1	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e-r2	bit18_after_bit15	0	H-ALL	heldout
+b1e-r2	bit18_after_bit15	1	H-NONE	heldout
+b1e-r2	bit18_after_bit18	0	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e-r2	bit18_after_bit18	0	H-ALL	heldout
+b1e-r2	bit18_after_bit18	1	H-NONE	heldout
+b1e-r3	skipped	1	control (the design: the host's flag, the task's count)	control
+b1e-r3	slot3_logged	yes	control (the slot 3 end-of-render entry is in the page before the watch starts)	control
+b1e-r3	hold_recovery_after	N	control (put back and read back)	control
+b1e-r3	timer_clock_read	0x00186a00	control (the knob written before the job's reset, read back)	control
+b1e-r3	arm_dword6	1600000	control (HostCtl dword 6 in the arm's status dump = the knob, 400000 for 0: E084)	control
+b1e-r3	arm_marks	0 0	control (HostCtl dwords 3 and 8 in the arm's status dump: the reset rebuilds every firmware buffer, fork a2788bd8 sgx_fw.c sgx_fw_build; 0 in the 22 other kept stops, E849)	control
+b1e-r3	tick_gap	100000+-40	control (E084's rule at a clock it did not measure (B0B is its measurement); a job whose gap is not its clock's is void)	control
+b1e-r3	fill_returned_in_watch	no	both (the closed slot 3 handler is not called: the job is held, E836)	heldout
+b1e-r3	end_render_entries	1	H-ONCE (the event is not re-fired, E836)	heldout
+b1e-r3	tick_alive	no	H-STATE (the arm is firmware state, sa9 bit 0, which no host write to EVENT_HOST_CLEAR touches: R-6 (data-private cited/closing5/r6/reading-r6.md) (i), (iii))	heldout
+b1e-r3	tick_alive	yes	H-ACK18 (the unacknowledged bit 18 keeps the check armed: the clears end it)	heldout
+b1e-r3	lockups	1	H-STATE (HostCtl dword 3 at the stop minus at the arm: +1, R-6 (i); E849)	heldout
+b1e-r3	lockups	0	H-ACK18	heldout
+b1e-r3	iflags	1	H-STATE (HostCtl dword 8 = 1, InterruptFlags bit 0: the HWR request, R-6 (i); E849)	heldout
+b1e-r3	iflags	0	H-ACK18	heldout
+b1e-r3	sig_event_status	0x20000000	H-STATE (the stop's EVENT_STATUS after the host cleared bit 18: bit 29 alone)	heldout
+b1e-r3	ticks_after_kick	20	H-TICKS (the stop on the 20th tick after the fill's kick, R-6 (data-private cited/closing5/r6/reading-r6.md) (i), S0 (cited/closing5/r6/s0/RESULT.md); b1p 20, E849)	heldout
+b1e-r3	misc_answered	yes	control (the miscinfo after the clears is answered: the EDM was running at the clears)	control
+b1e-r3	misc_kick_in_ring	yes	control (its kick entry is in the slot 0 ring with a tick after it)	control
+b1e-r3	bit18_before_clears	1	H-LEVEL (bit 18 set at the slot 3 entry of a skipped pass, E837)	heldout
+b1e-r3	bit18_after_bit15	1	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e-r3	bit18_after_bit15	0	H-ALL	heldout
+b1e-r3	bit18_after_bit15	1	H-NONE	heldout
+b1e-r3	bit18_after_bit18	0	H-W (on a running EDM: the bits written are the bits cleared)	heldout
+b1e-r3	bit18_after_bit18	0	H-ALL	heldout
+b1e-r3	bit18_after_bit18	1	H-NONE	heldout
