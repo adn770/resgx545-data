@@ -1,0 +1,384 @@
+case	quantity	value	model	set
+c-e709-x	g_o4_words	10..100	G-o4 structural, as R4 (tag-5 words in the x and y job (R1, S1b, R3, R4: 22 to 63))	control
+c-e709-x	g_o4_pairs	5..60	G-o4 structural, as R4 (pairs (R4: 8 to 42))	control
+c-e709-x	g_o4_parity	even,even	G-o4 structural, as R4 (every pair source (even x, even y))	control
+c-e709-x	g_o4_tag5p_max	2	G-o4 structural, as R4 (no tag-13 word in the x job)	control
+c-e709-x	bits54_x	3	E850: bits 5:4 set at every tag-5 word of c-e709-x (0xcf5, 39 of 39); reported, not gating	control
+c-u-x	marker	0x105	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	control
+c-u-x	ctl_min_frac	0.98	frozen criterion (R1 / S1b / R3 / R4: tag-2 fraction 0.990 to 0.996)	control
+c-all4-x	marker	0x141	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	control
+c-all4-x	o4_word	5:1	OR(o0,o3)	control
+c-all4-x	o4_word	5:1	AND(o4,o6)	control
+c-all4-x	o4_word	5:1	XOR(o0,o2,o6)	control
+c-all4-x	o4_word	5:1	XOR(o3,o5,o6)	control
+c-all4-x	o4_word	5:1	MUX(o4;o0)	control
+c-all4-x	o4_word	5:1	MUX(o4;o2)	control
+c-all4-x	o4_word	5:1	MUX(o4;o3)	control
+c-all4-x	o4_word	5:1	MUX(o4;o5)	control
+c-all4-x	o4_word	5:1	MUX(o4;o6)	control
+c-v-a4-x	marker	0x109	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	control
+c-v-a4-x	o4_word	5:0	E838 / E850: c-v-a4 read class A (tag 5, bits 5:4 clear) in both jobs	control
+w-0-x	marker	0x143	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-0-x	o4_word	5:3	OR(o0,o3)	heldout
+w-0-x	o4_word	5:2	AND(o4,o6)	heldout
+w-0-x	o4_word	5:1	XOR(o0,o2,o6)	heldout
+w-0-x	o4_word	5:2	XOR(o3,o5,o6)	heldout
+w-0-x	o4_word	5:1	MUX(o4;o0)	heldout
+w-0-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-0-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-0-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-0-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-0-x	pos_ctl	tag1:bit4>=0.95	positive control: >= 95% of the own-pixel tag-1 words carry bit 4 (o0's own bit shows where its word lands)	control
+w-1-x	marker	0x145	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-1-x	o4_word	5:2	OR(o0,o3)	heldout
+w-1-x	o4_word	5:2	AND(o4,o6)	heldout
+w-1-x	o4_word	5:2	XOR(o0,o2,o6)	heldout
+w-1-x	o4_word	5:2	XOR(o3,o5,o6)	heldout
+w-1-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-1-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-1-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-1-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-1-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-1-x	pos_ctl	tag2:bit4>=0.95	positive control: >= 95% of the tag-2 words carry bit 4 (o1's own bit shows where its word lands)	control
+w-2-x	marker	0x147	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-2-x	o4_word	5:2	OR(o0,o3)	heldout
+w-2-x	o4_word	5:2	AND(o4,o6)	heldout
+w-2-x	o4_word	5:1	XOR(o0,o2,o6)	heldout
+w-2-x	o4_word	5:2	XOR(o3,o5,o6)	heldout
+w-2-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-2-x	o4_word	5:1	MUX(o4;o2)	heldout
+w-2-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-2-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-2-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-3-x	marker	0x149	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-3-x	o4_word	5:3	OR(o0,o3)	heldout
+w-3-x	o4_word	5:2	AND(o4,o6)	heldout
+w-3-x	o4_word	5:2	XOR(o0,o2,o6)	heldout
+w-3-x	o4_word	5:1	XOR(o3,o5,o6)	heldout
+w-3-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-3-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-3-x	o4_word	5:1	MUX(o4;o3)	heldout
+w-3-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-3-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-4-x	marker	0x14b	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-4-x	o4_word	5:2	OR(o0,o3)	heldout
+w-4-x	o4_word	5:0	AND(o4,o6)	heldout
+w-4-x	o4_word	5:2	XOR(o0,o2,o6)	heldout
+w-4-x	o4_word	5:2	XOR(o3,o5,o6)	heldout
+w-4-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-4-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-4-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-4-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-4-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-5-x	marker	0x14d	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-5-x	o4_word	5:2	OR(o0,o3)	heldout
+w-5-x	o4_word	5:2	AND(o4,o6)	heldout
+w-5-x	o4_word	5:2	XOR(o0,o2,o6)	heldout
+w-5-x	o4_word	5:1	XOR(o3,o5,o6)	heldout
+w-5-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-5-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-5-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-5-x	o4_word	5:1	MUX(o4;o5)	heldout
+w-5-x	o4_word	5:2	MUX(o4;o6)	heldout
+w-6-x	marker	0x14f	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-6-x	o4_word	5:2	OR(o0,o3)	heldout
+w-6-x	o4_word	5:0	AND(o4,o6)	heldout
+w-6-x	o4_word	5:1	XOR(o0,o2,o6)	heldout
+w-6-x	o4_word	5:1	XOR(o3,o5,o6)	heldout
+w-6-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-6-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-6-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-6-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-6-x	o4_word	5:1	MUX(o4;o6)	heldout
+w-7-x	marker	0x151	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+w-7-x	o4_word	5:2	OR(o0,o3)	heldout
+w-7-x	o4_word	5:2	AND(o4,o6)	heldout
+w-7-x	o4_word	5:2	XOR(o0,o2,o6)	heldout
+w-7-x	o4_word	5:2	XOR(o3,o5,o6)	heldout
+w-7-x	o4_word	5:2	MUX(o4;o0)	heldout
+w-7-x	o4_word	5:2	MUX(o4;o2)	heldout
+w-7-x	o4_word	5:2	MUX(o4;o3)	heldout
+w-7-x	o4_word	5:2	MUX(o4;o5)	heldout
+w-7-x	o4_word	5:2	MUX(o4;o6)	heldout
+z-o3-x	marker	0x153	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+z-o3-x	o4_word	d1	OR(o0,o3)	heldout
+z-o3-x	o4_word	5:0	AND(o4,o6)	heldout
+z-o3-x	o4_word	5:0	XOR(o0,o2,o6)	heldout
+z-o3-x	o4_word	d1	XOR(o3,o5,o6)	heldout
+z-o3-x	o4_word	5:0	MUX(o4;o0)	heldout
+z-o3-x	o4_word	5:0	MUX(o4;o2)	heldout
+z-o3-x	o4_word	5:0	MUX(o4;o3)	heldout
+z-o3-x	o4_word	5:0	MUX(o4;o5)	heldout
+z-o3-x	o4_word	5:0	MUX(o4;o6)	heldout
+l-o4-x	marker	0x155	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+l-o4-x	o4_word	5:0	OR(o0,o3)	heldout
+l-o4-x	o4_word	4:0	AND(o4,o6)	heldout
+l-o4-x	o4_word	5:0	XOR(o0,o2,o6)	heldout
+l-o4-x	o4_word	5:0	XOR(o3,o5,o6)	heldout
+l-o4-x	o4_word	4:0	MUX(o4;o0)	heldout
+l-o4-x	o4_word	4:0	MUX(o4;o2)	heldout
+l-o4-x	o4_word	4:0	MUX(o4;o3)	heldout
+l-o4-x	o4_word	4:0	MUX(o4;o5)	heldout
+l-o4-x	o4_word	4:0	MUX(o4;o6)	heldout
+l-o6-x	marker	0x157	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+l-o6-x	o4_word	5:0	OR(o0,o3)	heldout
+l-o6-x	o4_word	d1	AND(o4,o6)	heldout
+l-o6-x	o4_word	d1	XOR(o0,o2,o6)	heldout
+l-o6-x	o4_word	d1	XOR(o3,o5,o6)	heldout
+l-o6-x	o4_word	5:0	MUX(o4;o0)	heldout
+l-o6-x	o4_word	5:0	MUX(o4;o2)	heldout
+l-o6-x	o4_word	5:0	MUX(o4;o3)	heldout
+l-o6-x	o4_word	5:0	MUX(o4;o5)	heldout
+l-o6-x	o4_word	5:0	MUX(o4;o6)	heldout
+n-o4-x	marker	0x159	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+n-o4-x	o4_word	5:0	OR(o0,o3)	heldout
+n-o4-x	o4_word	nofrozen	AND(o4,o6)	heldout
+n-o4-x	o4_word	5:0	XOR(o0,o2,o6)	heldout
+n-o4-x	o4_word	5:0	XOR(o3,o5,o6)	heldout
+n-o4-x	o4_word	nofrozen	MUX(o4;o0)	heldout
+n-o4-x	o4_word	nofrozen	MUX(o4;o2)	heldout
+n-o4-x	o4_word	nofrozen	MUX(o4;o3)	heldout
+n-o4-x	o4_word	nofrozen	MUX(o4;o5)	heldout
+n-o4-x	o4_word	nofrozen	MUX(o4;o6)	heldout
+p4-pa-k0-x	marker	0x15b	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-pa-k0-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-pa-k0-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	AND(o4,o6)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-pa-k0-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-pa-k0-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	MUX(o4;o0)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	MUX(o4;o2)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	MUX(o4;o3)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	MUX(o4;o3)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	MUX(o4;o5)+ignored	heldout
+p4-pa-k0-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p4-pa-k0-x	o4_word	4:0	MUX(o4;o6)+ignored	heldout
+p4-pa-k3-x	marker	0x15d	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-pa-k3-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-pa-k3-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	AND(o4,o6)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	AND(o4,o6)+ignored	heldout
+p4-pa-k3-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-pa-k3-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-pa-k3-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-pa-k3-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o0)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o0)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o2)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o2)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o3)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o3)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o5)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o5)+ignored	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o6)+gated	heldout
+p4-pa-k3-x	o4_word	4:0	MUX(o4;o6)+ignored	heldout
+p4-pa-k7-x	marker	0x15f	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-pa-k7-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-pa-k7-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	AND(o4,o6)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	AND(o4,o6)+ignored	heldout
+p4-pa-k7-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-pa-k7-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-pa-k7-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-pa-k7-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o0)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o0)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o2)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o2)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o3)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o3)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o5)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o5)+ignored	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o6)+gated	heldout
+p4-pa-k7-x	o4_word	4:0	MUX(o4;o6)+ignored	heldout
+p4-ps-k0-x	marker	0x161	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-ps-k0-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o3)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p4-ps-k0-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p4-ps-k3-x	marker	0x163	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-ps-k3-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	AND(o4,o6)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p4-ps-k3-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-ps-k3-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	MUX(o4;o0)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	MUX(o4;o2)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	MUX(o4;o3)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	MUX(o4;o5)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p4-ps-k3-x	o4_word	4:0	MUX(o4;o6)+gated	heldout
+p4-ps-k3-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p4-ps-k7-x	marker	0x165	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p4-ps-k7-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	AND(o4,o6)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p4-ps-k7-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p4-ps-k7-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	MUX(o4;o0)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	MUX(o4;o2)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	MUX(o4;o3)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	MUX(o4;o5)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p4-ps-k7-x	o4_word	4:0	MUX(o4;o6)+gated	heldout
+p4-ps-k7-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-pa-k0-x	marker	0x167	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-pa-k0-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p3-pa-k0-x	o4_word	5:1	OR(o0,o3)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p3-pa-k0-x	o4_word	5:1	XOR(o3,o5,o6)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o3)+gated	heldout
+p3-pa-k0-x	o4_word	5:1	MUX(o4;o3)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-pa-k0-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-pa-k3-x	marker	0x169	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-pa-k3-x	o4_word	5:1	OR(o0,o3)+gated	heldout
+p3-pa-k3-x	o4_word	5:1	OR(o0,o3)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-pa-k3-x	o4_word	5:1	XOR(o3,o5,o6)+gated	heldout
+p3-pa-k3-x	o4_word	5:1	XOR(o3,o5,o6)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-pa-k3-x	o4_word	5:1	MUX(o4;o3)+gated	heldout
+p3-pa-k3-x	o4_word	5:1	MUX(o4;o3)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-pa-k3-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-pa-k7-x	marker	0x16b	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-pa-k7-x	o4_word	5:1	OR(o0,o3)+gated	heldout
+p3-pa-k7-x	o4_word	5:1	OR(o0,o3)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-pa-k7-x	o4_word	5:1	XOR(o3,o5,o6)+gated	heldout
+p3-pa-k7-x	o4_word	5:1	XOR(o3,o5,o6)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-pa-k7-x	o4_word	5:1	MUX(o4;o3)+gated	heldout
+p3-pa-k7-x	o4_word	5:1	MUX(o4;o3)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-pa-k7-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-ps-k0-x	marker	0x16d	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-ps-k0-x	o4_word	5:0	OR(o0,o3)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	XOR(o3,o5,o6)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o3)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-ps-k0-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-ps-k3-x	marker	0x16f	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-ps-k3-x	o4_word	5:1	OR(o0,o3)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-ps-k3-x	o4_word	5:1	XOR(o3,o5,o6)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-ps-k3-x	o4_word	5:1	MUX(o4;o3)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-ps-k3-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+p3-ps-k7-x	marker	0x171	frozen program marker (x job; the y job's is +1): ((word & 0xffff) >> 6)	heldout
+p3-ps-k7-x	o4_word	5:1	OR(o0,o3)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	OR(o0,o3)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	AND(o4,o6)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	AND(o4,o6)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	XOR(o0,o2,o6)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	XOR(o0,o2,o6)+ignored	heldout
+p3-ps-k7-x	o4_word	5:1	XOR(o3,o5,o6)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	XOR(o3,o5,o6)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o0)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o0)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o2)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o2)+ignored	heldout
+p3-ps-k7-x	o4_word	5:1	MUX(o4;o3)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o3)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o5)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o5)+ignored	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o6)+gated	heldout
+p3-ps-k7-x	o4_word	5:0	MUX(o4;o6)+ignored	heldout
+w-3-x-rep	marker	0x149	frozen program marker (identical program)	replicate
+w-3-x-rep	o4_word	5:3	OR(o0,o3)	replicate
+w-3-x-rep	o4_word	5:2	AND(o4,o6)	replicate
+w-3-x-rep	o4_word	5:2	XOR(o0,o2,o6)	replicate
+w-3-x-rep	o4_word	5:1	XOR(o3,o5,o6)	replicate
+w-3-x-rep	o4_word	5:2	MUX(o4;o0)	replicate
+w-3-x-rep	o4_word	5:2	MUX(o4;o2)	replicate
+w-3-x-rep	o4_word	5:1	MUX(o4;o3)	replicate
+w-3-x-rep	o4_word	5:2	MUX(o4;o5)	replicate
+w-3-x-rep	o4_word	5:2	MUX(o4;o6)	replicate
+@p5-o4	family	OR(o0,o3) AND(o4,o6) XOR(o0,o2,o6) XOR(o3,o5,o6) MUX(o4;o0) MUX(o4;o2) MUX(o4;o3) MUX(o4;o5) MUX(o4;o6)	E850 (resgx545 main): the nine bitwise models of 821 that fit every kept configuration of E808 and E838; R-CLR refuted	heldout
+@p5-o4	p4_gate	AND(o4,o6) MUX(o4;o0) MUX(o4;o2) MUX(o4;o3) MUX(o4;o5) MUX(o4;o6)	P4 is scored only if the walk's model reads o4	heldout
+@p5-o4	p3_gate	OR(o0,o3) XOR(o3,o5,o6) MUX(o4;o3)	P3 is scored only if the walk's model reads o3	heldout
+@p5-o4	class_rule	>=10 words in both jobs, <=2 of any other; d1 10..100 displaced tag-1 pairs	R4's rule; the displaced tag-1 count of R4's 17 configurations is 0 (tests/test_replay.py)	heldout

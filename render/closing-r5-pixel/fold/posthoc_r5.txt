@@ -1,0 +1,49 @@
+A. E850's eight configurations: the o4 write at the tag-5 pair source (lane 0)
+  R4 base, v-a3, v-a4, v-a-a5 (gen/r4_o4.py kinds u and value: `or.skipinv o4` unpredicated): guard g25 == None; o4 lines ['or.skipinv o4, ... (unpredicated)']; at lane 0: written (no guard)
+  R4 c-e709-x (E709's o4g-3-x.s): guard g25 == 3; o4 lines ['p1 or.skipinv o4, pa0, #0xcf5']; at lane 0: NOT written at lane 0 if the predicate gates o4 as it gates o1 (E808); written only if it is ignored (k = 3)
+  R3 o4s-u: guard g25 == None; o4 lines ['or.skipinv o4, pa0, #0x335', 'or.skipinv o4, pa0, #0x33d']; at lane 0: written (no guard)
+  R3 k5: guard g25 == 5; o4 lines ['p1 or.skipinv o4, pa0, #0x335']; at lane 0: NOT written at lane 0 if the predicate gates o4 as it gates o1 (E808); written only if it is ignored (k = 5)
+  R3 k7: guard g25 == 7; o4 lines ['p1 or.skipinv o4, pa0, #0x335']; at lane 0: NOT written at lane 0 if the predicate gates o4 as it gates o1 (E808); written only if it is ignored (k = 7)
+  R3 k3: guard g25 == 3; o4 lines ['p1 or.skipinv o4, pa0, #0x335']; at lane 0: NOT written at lane 0 if the predicate gates o4 as it gates o1 (E808); written only if it is ignored (k = 3)
+  o4-reading models of E850 (AND(o4,o6), MUX(o4; o0, o2, o3, o5, o6)) fit c-e709-x, k5/k7 and k3 only if o4 is written at lane 0
+  R5 n-o4: reads 5:0  d1 0  x {'5:0': 37}  y {'5:0': 39}
+  R5 l-o4: reads 5:0  d1 0  x {'5:0': 39}  y {'5:0': 23}
+  R5 c-e709: reads 5:0  d1 0  x {'5:0': 28}  y {'5:0': 30}
+
+B. P3 (p1 o3 = tag 4, !p1 o3 = tag 4 + bit 4), read per job against OR(o0,o3) gated / ignored (frozen predictions)
+  p3-pa-k0: x {'5:0': 36} y {'5:1': 21}  gated 5:0  ignored 5:1
+  p3-pa-k3: x {'5:1': 33} y {'5:1': 40}  gated 5:1  ignored 5:1
+  p3-pa-k7: x {'5:1': 51} y {'5:1': 39}  gated 5:1  ignored 5:1
+  p3-ps-k0: x {'5:0': 36} y {'5:1': 35}  gated 5:0  ignored 5:0
+  p3-ps-k3: x {'5:1': 35} y {'5:1': 40}  gated 5:1  ignored 5:0
+  p3-ps-k7: x {'5:1': 31} y {'5:1': 39}  gated 5:1  ignored 5:0
+
+C. 1/w words of kept vertices, by the mantissa of w
+  196 words ({'E842': 42, 'E859': 126, 'earlier': 23, 'sgx-pipe lists': 5}): RZ 155, RZ + 1 41, other 0
+  distinct mantissas 130; read at more than one exponent 47; with both RZ and RZ + 1: 0 []
+  exponents of w read (count of words): {-16: 1, -9: 1, -2: 31, -1: 37, 0: 48, 1: 14, 2: 39, 3: 2, 4: 23}
+  exponents of the E859 words: [-2, -1, 0, 1, 2, 4]
+  table for sgx-pipe (23-bit mantissa, delta), one word or more read:
+    (0x000000, 0), (0x000001, 0), (0x000003, 0), (0x020000, 1), (0x022921, 0), (0x040000, 0),
+    (0x050000, 0), (0x060000, 0), (0x070000, 0), (0x080000, 0), (0x08e700, 1), (0x090000, 0),
+    (0x0905fe, 0), (0x0a0000, 0), (0x0a336c, 0), (0x0b0000, 0), (0x0c0000, 1), (0x0ccccd, 0),
+    (0x0d0000, 0), (0x0e0000, 0), (0x0f0000, 0), (0x0f0c30, 0), (0x0f4438, 0), (0x100000, 1),
+    (0x120000, 0), (0x129355, 0), (0x140000, 0), (0x158f4d, 1), (0x160000, 0), (0x180000, 0),
+    (0x19999a, 0), (0x1a0000, 0), (0x1c0000, 0), (0x1d0000, 0), (0x1e0000, 0), (0x1f0000, 0),
+    (0x200000, 0), (0x210000, 0), (0x220000, 0), (0x22524d, 0), (0x230000, 0), (0x240000, 0),
+    (0x250000, 0), (0x260000, 0), (0x266666, 0), (0x270000, 0), (0x280000, 0), (0x282e6c, 0),
+    (0x283d12, 0), (0x286904, 0), (0x29b969, 1), (0x2a0000, 1), (0x2c0000, 0), (0x2e0000, 0),
+    (0x300000, 0), (0x320000, 0), (0x333333, 1), (0x340000, 1), (0x350000, 0), (0x360000, 0),
+    (0x370000, 0), (0x380000, 0), (0x390000, 1), (0x397b97, 0), (0x3a0000, 0), (0x3b0000, 0),
+    (0x3b2b3a, 0), (0x3b992f, 0), (0x3c0000, 0), (0x3d0000, 0), (0x3e0000, 0), (0x3f0000, 1),
+    (0x400000, 0), (0x420000, 0), (0x440000, 0), (0x449ba6, 0), (0x460000, 0), (0x4673ad, 1),
+    (0x480000, 0), (0x4826b3, 0), (0x4a0000, 0), (0x4c0000, 1), (0x4d0000, 1), (0x4e0000, 1),
+    (0x4ecfc1, 1), (0x4f0000, 0), (0x500000, 0), (0x510000, 0), (0x520000, 0), (0x530000, 0),
+    (0x540000, 0), (0x550000, 0), (0x560000, 0), (0x570000, 0), (0x580000, 1), (0x5a0000, 0),
+    (0x5c0000, 0), (0x5e0000, 0), (0x5e5ca1, 0), (0x600000, 0), (0x60d10e, 1), (0x620000, 0),
+    (0x62430c, 0), (0x62caeb, 1), (0x6399d4, 0), (0x640000, 1), (0x650000, 0), (0x660000, 0),
+    (0x670000, 0), (0x680000, 0), (0x690000, 0), (0x6a0000, 0), (0x6b0000, 0), (0x6c0000, 1),
+    (0x6d0000, 0), (0x6e0000, 0), (0x6f0000, 0), (0x700000, 0), (0x713881, 0), (0x720000, 0),
+    (0x740000, 0), (0x746675, 1), (0x760000, 0), (0x780000, 0), (0x7a0000, 0), (0x7ad92c, 1),
+    (0x7ba882, 0), (0x7c0000, 0), (0x7e0000, 0), (0x7ffffe, 0),
+  130 entries, 23 RZ + 1
