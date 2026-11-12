@@ -1,0 +1,29 @@
+q086: class of each 4x job against H-COV (complete iff the words' grid covers the target) and H-ANY (all complete)
+job               set      size      cover (B3+B1 of tiles)  H-COV  observed  COV/ANY  note                                                       
+q086-1024x768-R   control  1024x768  32,48 of 32,48          ok     ok        y/y      ok                                                         
+q086-320x160-U2   heldout  320x160   12,12 of 10,10          ok     ok        y/y      ok                                                         
+q086-384x192-U2   heldout  384x192   12,12 of 12,12          ok     ok        y/y      ok                                                         
+q086-448x224-U2Q  heldout  448x224   16,16 of 14,14          ok     ok        y/y      ok                                                         
+q086-512x256-U2Q  heldout  512x256   16,16 of 16,16          ok     ok        y/y      ok                                                         
+q086-512x384-U2Q  heldout  512x384   16,24 of 16,24          ok     ok        y/y      ok                                                         
+q086-640x480-U2   heldout  640x480   24,32 of 20,30          ok     ok        y/y      ok                                                         
+q086-320x160-FX   heldout  320x160   4,4 of 10,10            fault  fault     y/n      ok                                                         
+q086-384x192-FX   heldout  384x192   4,4 of 12,12            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-448x224-FX   heldout  448x224   4,4 of 14,14            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-512x256-FX   heldout  512x256   4,4 of 16,16            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-512x384-FX   heldout  512x384   4,4 of 16,24            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-640x480-FX   heldout  640x480   4,4 of 20,30            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-1024x768-FX  heldout  1024x768  4,4 of 32,48            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-320x160-HS   heldout  320x160   8,8 of 10,10            fault  fault     y/n      ok                                                         
+q086-384x192-HS   heldout  384x192   8,8 of 12,12            fault  fault     y/n      ok                                                         
+q086-448x224-HS   heldout  448x224   8,8 of 14,14            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-512x256-HS   heldout  512x256   8,8 of 16,16            fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-512x384-HS   heldout  512x384   8,12 of 16,24           fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-640x480-HS   heldout  640x480   16,16 of 20,30          fault  -         -/-      not run (its group reached its count, or the stage stopped)
+q086-1024x768-HS  heldout  1024x768  16,24 of 32,48          fault  -         -/-      not run (its group reached its count, or the stage stopped)
+
+H-COV on the held-out rows: 9 held, 0 FAILED, 11 cannot tell of 20
+H-ANY on the held-out rows: 6 held, 3 FAILED, 11 cannot tell of 20
+fault words: q086-320x160-FX 256/0x10000011, q086-320x160-HS 256/0x10000011, q086-384x192-HS 256/0x10000011
+not run: 11 rows (q086-384x192-FX q086-448x224-FX q086-512x256-FX q086-512x384-FX q086-640x480-FX q086-1024x768-FX q086-448x224-HS q086-512x256-HS q086-512x384-HS q086-640x480-HS q086-1024x768-HS)
+SUMMARY: Q086: H-COV held (9 of 9 held-out rows), H-ANY refuted (6 of 9); 11 rows not run; control R passes

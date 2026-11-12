@@ -1,0 +1,32 @@
+#stage q289
+#limit 1
+# Q289 held-out fill row (E876 post hoc, DECISIONS-R6 R6-6 a: Q289 retires if this row picks OR or ADD).  The rgn4 tool's
+# fill (64 x 32 default, colour 0xff336699) at 128 x 64 and 256 x 32 with the end-of-tile DOUTU1 (pds:pixev dword 12) XORed:
+# x field V / 8, y field V / 0x1000 half-tile units.  Frozen: M-OR and M-ADD (hash, wrong pixels, unwritten tiles), job ok,
+# outside 0.  Controls that can fail: the 64 x 32 x ^ 0x10 case (E876's hash 0x97334f75829dab25) and the two baselines.
+# expectdiff: a fill with wrong pixels exits 1 (`fill: FAIL, N wrong dwords`, as in the kept sweeps): recorded, not a failure.
+# needhash: the row must print `target: WxH hash 0x...`; the second row without one stops the stage (rc 17).  No fault
+# is expected (1536 kept fills of this poke ran clean): any fault, hang or failure stops the stage (rc 4).
+f-ctl-64x32-x10|control|safe|expectdiff needhash|t4|fill --width 64 --height 32 --stride 256 --poke 'pds:pixev:12^=0x10'
+f-base-128x64|control|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512
+f-base-256x32|control|safe|expectdiff needhash|t4|fill --width 256 --height 32 --stride 1024
+f-128x64-x08|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x8'
+f-128x64-x10|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x10'
+f-128x64-x18|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x18'
+f-128x64-x20|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x20'
+f-128x64-x28|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x28'
+f-128x64-x30|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x30'
+f-128x64-x38|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x38'
+f-128x64-x40|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x40'
+f-128x64-y1000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x1000'
+f-128x64-y2000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x2000'
+f-128x64-y3000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x3000'
+f-128x64-y4000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x4000'
+f-128x64-y5000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x5000'
+f-128x64-y6000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x6000'
+f-128x64-y7000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x7000'
+f-128x64-y8000|heldout|safe|expectdiff needhash|t4|fill --width 128 --height 64 --stride 512 --poke 'pds:pixev:12^=0x8000'
+f-256x32-x10|heldout|safe|expectdiff needhash|t4|fill --width 256 --height 32 --stride 1024 --poke 'pds:pixev:12^=0x10'
+f-256x32-x18|heldout|safe|expectdiff needhash|t4|fill --width 256 --height 32 --stride 1024 --poke 'pds:pixev:12^=0x18'
+f-256x32-x30|heldout|safe|expectdiff needhash|t4|fill --width 256 --height 32 --stride 1024 --poke 'pds:pixev:12^=0x30'
+f-256x32-x50|heldout|safe|expectdiff needhash|t4|fill --width 256 --height 32 --stride 1024 --poke 'pds:pixev:12^=0x50'

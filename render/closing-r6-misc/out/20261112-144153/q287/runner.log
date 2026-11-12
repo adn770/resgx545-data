@@ -1,0 +1,247 @@
+## stage q287
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tools
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+97df5c0ebf5bff2786a59b302e9a8a722bad36f0ef2f5dba11b6f2957f4ad98c /home/jtorra/scratch/r6m/bin/sgxfive-test
+## knobs at start (read only; must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## free space on ~: 127368152 KiB (at least 204800 before each job)
+## work directory /home/jtorra/scratch/tmp/r6m.k3C7EG
+## clock
+Thu Nov 12 14:44:05 CET 2026
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 869d922559d7f6d2849f2bff84c559966d9da906c3b565277f948340b012a98e
+  kept begin.health1.txt: 311 bytes raw, raw sha256 bf922983f26363d259dc7e722650d31f41a1fe49779eacd6a34d2ee77f47a646
+== z-dry-34x17-y set=gate risk=safe tool=t6 knobs=[expectdiff gateodd]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 17 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/1-z-dry-34x17-y/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x17 hash 0xb110862c136e0135 diff: 0 of 578 pixels outside: 0 dwords 
+  kept z-dry-34x17-y.txt: 616 bytes raw, raw sha256 33a2ccf7d137d652519b3ca0c9acdc145d72581355b243712c3524cf59ff5a7e
+  kept z-dry-34x17-y.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-dry-34x17-y.dmesg: 519 bytes raw, raw sha256 b3e7b2deac5d875e825715b28061cece29e56b19ec7b7d8dd6e9dc18ce593c86
+  kept z-dry-34x17-y.snap0.regs: 6474 bytes raw, raw sha256 1154015d9b103766893eeae4848297dc81dce3b27ac741792e1e21d07557c9e2
+  kept z-dry-34x17-y.snap9.regs: 6474 bytes raw, raw sha256 fb01783803111e0a81aa373bfef6f0cb907ad10099a56bbad9fb3794d67fedd5
+  class ok
+== z-ctl-34x18-y-t4 set=control risk=safe tool=t4 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/2-z-ctl-34x18-y-t4/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x18 hash 0x94625faece208e45 diff: 0 of 612 pixels outside: 0 dwords 
+  kept z-ctl-34x18-y-t4.txt: 616 bytes raw, raw sha256 3b39d90ef04fe6f519d1d9f3e65d01a468b2a3569d8786b6926cbc2f99bf2d95
+  kept z-ctl-34x18-y-t4.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-ctl-34x18-y-t4.dmesg: 522 bytes raw, raw sha256 2a1a087c686c05fcc83360f76d0e5f077d45d281e496d40a46487e513299d1ab
+  kept z-ctl-34x18-y-t4.snap0.regs: 6474 bytes raw, raw sha256 7e0b465903ec0968d34a4bd2adeffe13fc50a0d6ef844d5cc7e62dcb857cc460
+  kept z-ctl-34x18-y-t4.snap9.regs: 6474 bytes raw, raw sha256 4c19824a2bb4d0501a17a791f0b4c498a77ce4535658fd68f1e22e32f3f7378d
+  class ok
+== z-ctl-34x18-y-t6 set=control risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/3-z-ctl-34x18-y-t6/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x18 hash 0x94625faece208e45 diff: 0 of 612 pixels outside: 0 dwords 
+  kept z-ctl-34x18-y-t6.txt: 616 bytes raw, raw sha256 a9d15444d7288044112e8f5658c4bc53f289932d411ce55559b95275de35d5dd
+  kept z-ctl-34x18-y-t6.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-ctl-34x18-y-t6.dmesg: 522 bytes raw, raw sha256 9db1b191bec7108f7295638828490e916d842744b417e123575d7ee559563bc2
+  kept z-ctl-34x18-y-t6.snap0.regs: 6474 bytes raw, raw sha256 653b4410a7b1dcf86aaf4fcc00e2d37cf51a64e383f1b36754047f3b40bc2cca
+  kept z-ctl-34x18-y-t6.snap9.regs: 6474 bytes raw, raw sha256 6c5499b29e64bf1fcd8fec4438b329d5dfde98ab578de2cfea02c87c7ec286ae
+  class ok
+== z-ctl-34x18-x-t6 set=control risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 18 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/4-z-ctl-34x18-x-t6/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x18 hash 0x94625faece208e45 diff: 0 of 612 pixels outside: 0 dwords 
+  kept z-ctl-34x18-x-t6.txt: 616 bytes raw, raw sha256 e38f69adc656c42ce8104128eb6c16fce0cac73ab5a9d9918a8aa77f91b8416f
+  kept z-ctl-34x18-x-t6.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-ctl-34x18-x-t6.dmesg: 522 bytes raw, raw sha256 bb9684dd50f5f5682877288f79293a7eceeb300ed973552ab114f40ae52dd9d3
+  kept z-ctl-34x18-x-t6.snap0.regs: 6474 bytes raw, raw sha256 2ef88b41fa815840085c83c3c346cae900f040d46bd764b2371f02715e3cb7f3
+  kept z-ctl-34x18-x-t6.snap9.regs: 6474 bytes raw, raw sha256 ee7e5616cf0c9071e767083262f7c84d96e7cf5a4a11bfcd8f45a2a15374c5d6
+  class ok
+== z-fit-34x19-y-r1 set=fit risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 19 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/5-z-fit-34x19-y-r1/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x19 hash 0xdd46a8a6d0f51955 diff: 0 of 646 pixels outside: 0 dwords 
+  kept z-fit-34x19-y-r1.txt: 616 bytes raw, raw sha256 d481ee3f485e6d53c2a624d90ed0fc69e2506cad2332e04955ade8253d046298
+  kept z-fit-34x19-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-fit-34x19-y-r1.dmesg: 522 bytes raw, raw sha256 113194836f0fc06f633109644f221278a4d59fef31d1d83095a48c853bbfc4b1
+  kept z-fit-34x19-y-r1.snap0.regs: 6474 bytes raw, raw sha256 97614d874b29f3709628d2f939bdaf3a454cbb497acd1e7147bd12131200b08a
+  kept z-fit-34x19-y-r1.snap9.regs: 6474 bytes raw, raw sha256 556c99b349a35ed0d5c888f1ac10e794e8b8fc5c4f4bb219b98eb281b01649b8
+  class ok
+== z-fit-34x19-y-r2 set=fit risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 19 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/6-z-fit-34x19-y-r2/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x19 hash 0xdd46a8a6d0f51955 diff: 0 of 646 pixels outside: 0 dwords 
+  kept z-fit-34x19-y-r2.txt: 616 bytes raw, raw sha256 c41c0d20bd1daf532bdbbea9f27f4b7c8180524193ee0f10f46049804000ba5f
+  kept z-fit-34x19-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-fit-34x19-y-r2.dmesg: 522 bytes raw, raw sha256 a06026d8522f7f1b79a99f90bbd95e0812ca684ee7057d0d3deb9d5549cd918b
+  kept z-fit-34x19-y-r2.snap0.regs: 6474 bytes raw, raw sha256 afb1e08c9471f94764523533cc526671530c9c9a4a280f6a5edcd7e29403488d
+  kept z-fit-34x19-y-r2.snap9.regs: 6474 bytes raw, raw sha256 c5d83e31bcd902735828750c5f79beeb9fbf6e3a0a523e0087e8091fe5e57f06
+  class ok
+== z-34x7-y-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 7 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/7-z-34x7-y-r1/depth --depth-pages 17 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x7 hash 0x94c4688ffdea9a95 diff: 0 of 238 pixels outside: 0 dwords 
+  kept z-34x7-y-r1.txt: 611 bytes raw, raw sha256 2459e8db04d2c457096bb647fc8466000fd5bd1b391a0eb9d265019e7465763e
+  kept z-34x7-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x7-y-r1.dmesg: 517 bytes raw, raw sha256 a1571e6bbfdfe9c9a03859917776c724ff3a96621d5c2f4f7e475f44253917ac
+  kept z-34x7-y-r1.snap0.regs: 6474 bytes raw, raw sha256 4693e1a4ce949286297d3c7b3da45b79b57b4eb42fb48838681898478d9986d8
+  kept z-34x7-y-r1.snap9.regs: 6474 bytes raw, raw sha256 3c2215831377738f84c3b7c857d2ba558933866668ac357879f125caa0bffec3
+  class ok
+== z-34x7-y-r2 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 7 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/8-z-34x7-y-r2/depth --depth-pages 17 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x7 hash 0x94c4688ffdea9a95 diff: 0 of 238 pixels outside: 0 dwords 
+  kept z-34x7-y-r2.txt: 611 bytes raw, raw sha256 a45dbebbc86bb73e5395d0aae4a524ab02c74e5e53a2710e1f1d5eab1379118d
+  kept z-34x7-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x7-y-r2.dmesg: 517 bytes raw, raw sha256 e068f4e2db49d586e00abf4aa7953730cf8c031f3584cb36a8f7d436b3357c83
+  kept z-34x7-y-r2.snap0.regs: 6474 bytes raw, raw sha256 5b854ec7e4f9a47c642c06c61c506e0fff464897bfba9e625c9a0e703cb39615
+  kept z-34x7-y-r2.snap9.regs: 6474 bytes raw, raw sha256 3d511c7d9a3f8b428ad0c6b9026ef4b1d0751026d413b23d848d803d93af1673
+  class ok
+== z-34x11-y-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 11 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/9-z-34x11-y-r1/depth --depth-pages 17 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x11 hash 0x88b04c651931aad5 diff: 0 of 374 pixels outside: 0 dwords 
+  kept z-34x11-y-r1.txt: 615 bytes raw, raw sha256 9379a8832e98b45a5fcdb4b79e54832ccba16774baba171d4b0b5b117536bc28
+  kept z-34x11-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x11-y-r1.dmesg: 518 bytes raw, raw sha256 ad704b2a3de29c07311b0646f45107b92e7941d488695cd333f0a4d23a0cb15f
+  kept z-34x11-y-r1.snap0.regs: 6474 bytes raw, raw sha256 14f130d57962606192d79d8559808f871dd72ed687ee36af1f0da54ee40f8317
+  kept z-34x11-y-r1.snap9.regs: 6474 bytes raw, raw sha256 5c65f402f95e440504abdb9b7bd885d15cf15535c4e57ac7f3ab0b2de2a682df
+  class ok
+== z-34x11-y-r2 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 11 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/10-z-34x11-y-r2/depth --depth-pages 17 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x11 hash 0x88b04c651931aad5 diff: 0 of 374 pixels outside: 0 dwords 
+  kept z-34x11-y-r2.txt: 615 bytes raw, raw sha256 1e33a57a5965e1b8f1f4be5f17fc449c9b02dd1b2d1393696a257a7c46c9797d
+  kept z-34x11-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x11-y-r2.dmesg: 518 bytes raw, raw sha256 7793144ca8a0262d6cac2f735f195bed5e25549693bfde391623534c95570440
+  kept z-34x11-y-r2.snap0.regs: 6474 bytes raw, raw sha256 006f85d8a4f0621d96a0a09ee583fa158fc1f56fe9dafd0b4501623cdbb9ead2
+  kept z-34x11-y-r2.snap9.regs: 6474 bytes raw, raw sha256 46f30fbcdcb85086bc2fb2dd8b11a3af2043aed53ecaa1e520f8d93a941c8f51
+  class ok
+== z-34x23-y-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 23 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/11-z-34x23-y-r1/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x23 hash 0x9340a330d1bfc395 diff: 0 of 782 pixels outside: 0 dwords 
+  kept z-34x23-y-r1.txt: 615 bytes raw, raw sha256 14bfd9912a717ae46b60ad9ee16a6028593addb6221c211f310df3b2aa4ddfe6
+  kept z-34x23-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x23-y-r1.dmesg: 518 bytes raw, raw sha256 0d27fd4296bcca1d47449cf141d56cb6071cf923867dd85487e48c281b988409
+  kept z-34x23-y-r1.snap0.regs: 6474 bytes raw, raw sha256 ed511723df0db3790543a9e48049209e001668b6c54dffd035fd5f39fe25ea5f
+  kept z-34x23-y-r1.snap9.regs: 6474 bytes raw, raw sha256 c64a1368a11fd8a174d133b9ec6d81f1d11abd8529038d8b439f2340b3406012
+  class ok
+== z-34x23-y-r2 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 23 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/12-z-34x23-y-r2/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x23 hash 0x9340a330d1bfc395 diff: 0 of 782 pixels outside: 0 dwords 
+  kept z-34x23-y-r2.txt: 615 bytes raw, raw sha256 87f948dc930e392cebcf033b464f8091d20bafe63890c013d0fe4d50e4f54e38
+  kept z-34x23-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x23-y-r2.dmesg: 518 bytes raw, raw sha256 3a7001b8d11dc9fe7bd689a96bb2bfa51b89fb325b53d3536197fc212eec25b8
+  kept z-34x23-y-r2.snap0.regs: 6474 bytes raw, raw sha256 ee95d36bf26948c7c53f82ddbd413f4a886b62cbc9b6710679a5ad574496232d
+  kept z-34x23-y-r2.snap9.regs: 6474 bytes raw, raw sha256 d138c722d6c94436ead6c15236aa528aedb3717c4fbcef49377116feb721f9e2
+  class ok
+== z-34x35-y-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 35 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/13-z-34x35-y-r1/depth --depth-pages 19 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x35 hash 0xb98a889829dfc255 diff: 0 of 1190 pixels outside: 0 dwords 
+  kept z-34x35-y-r1.txt: 619 bytes raw, raw sha256 51128495b00926809b6aba08bbb86a166bf18f3595a2fad7e788fa3f514c36b1
+  kept z-34x35-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x35-y-r1.dmesg: 518 bytes raw, raw sha256 5044fce9e2935313c73be15670f531442e3615d2e2eb342cae2e9786418279ad
+  kept z-34x35-y-r1.snap0.regs: 6474 bytes raw, raw sha256 77a79925da847aa46725a06841f470ec69a458e25c9f1b3f143c10e36c0ff5d1
+  kept z-34x35-y-r1.snap9.regs: 6474 bytes raw, raw sha256 71468424f50345da3d7e2d509b3133b05e838c65f1d705bae3ec46d7c55da11c
+  class ok
+== z-34x35-y-r2 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 35 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/14-z-34x35-y-r2/depth --depth-pages 19 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x35 hash 0xb98a889829dfc255 diff: 0 of 1190 pixels outside: 0 dwords 
+  kept z-34x35-y-r2.txt: 619 bytes raw, raw sha256 b659ec8853e93b89d0681070060cbd4701bc47e33efe47f3ac77290b123f2dc3
+  kept z-34x35-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x35-y-r2.dmesg: 518 bytes raw, raw sha256 5e6a22769af63d5b2f5bdf9ab591612a6d04b8245f6cef0fc7bdd160cf5b6edb
+  kept z-34x35-y-r2.snap0.regs: 6474 bytes raw, raw sha256 0488b8b261f6f4bff5ad06cbec31b1b3a8552ee1e68b4593b609adf67190dff1
+  kept z-34x35-y-r2.snap9.regs: 6474 bytes raw, raw sha256 5552e146434e0d99175c07fd1744c18ff468d02da60de4e7f996b7262df0ad14
+  class ok
+== z-34x19-x-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 19 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/15-z-34x19-x-r1/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x19 hash 0xdd46a8a6d0f51955 diff: 0 of 646 pixels outside: 0 dwords 
+  kept z-34x19-x-r1.txt: 616 bytes raw, raw sha256 6ebd491a42c224710c5ea7101ad2ff4296cd2057f6bab17c8fdb92ab766dcded
+  kept z-34x19-x-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x19-x-r1.dmesg: 518 bytes raw, raw sha256 7349a7a893bc58a6ed2abebad775d91ef87c8a7cabfc35688041d179e1d9624c
+  kept z-34x19-x-r1.snap0.regs: 6474 bytes raw, raw sha256 84d6cc16aac0d69ba91d40ba2a5fb6696c439494bccb81cc008f250b10cc2cdd
+  kept z-34x19-x-r1.snap9.regs: 6474 bytes raw, raw sha256 352098b3ca1cd4143addde1d297a8664cad7b4e6be018c2498d8c2c0c350a627
+  class ok
+== z-34x23-x-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 23 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/16-z-34x23-x-r1/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x23 hash 0x9340a330d1bfc395 diff: 0 of 782 pixels outside: 0 dwords 
+  kept z-34x23-x-r1.txt: 615 bytes raw, raw sha256 e9885627afcce6c01d0dfee8668b6a1e2ac7388ba336493d0304467a26ec1902
+  kept z-34x23-x-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x23-x-r1.dmesg: 518 bytes raw, raw sha256 1176ec48c11cb2306535c873d408b0b444ef9a88ef0d9c248433d89392582924
+  kept z-34x23-x-r1.snap0.regs: 6474 bytes raw, raw sha256 80b01d3a8c703da9e4d4070db30ed50df25ef01a3bf70cdfa88c18798fc9465a
+  kept z-34x23-x-r1.snap9.regs: 6474 bytes raw, raw sha256 29d54709d66f4a50e311f75e909305b737058a7ec05b16062496ff62f47b1373
+  class ok
+== z-34x35-x-r1 set=heldout risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 35 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/17-z-34x35-x-r1/depth --depth-pages 19 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x35 hash 0xb98a889829dfc255 diff: 0 of 1190 pixels outside: 0 dwords 
+  kept z-34x35-x-r1.txt: 619 bytes raw, raw sha256 18f953fecf0c9d14bca736b1e5a3a60f0d3d680eb0bd7000df62686d9fea3536
+  kept z-34x35-x-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x35-x-r1.dmesg: 518 bytes raw, raw sha256 aa32a1bf5bb8e74dea663b9502cfde2877a710e0907a5909118e18f76b6e9df6
+  kept z-34x35-x-r1.snap0.regs: 6474 bytes raw, raw sha256 6e9bc3278ae9ea9ab08c0b45491339bc75e6c88ac3572213457c90654f2f61eb
+  kept z-34x35-x-r1.snap9.regs: 6474 bytes raw, raw sha256 74d52be4f0325256f637a9b96b0c73bd1a9357301fee65820e03cb448ccbf5dd
+  class ok
+== z-34x17-y-r2 set=confirm risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 17 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/18-z-34x17-y-r2/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x17 hash 0xb110862c136e0135 diff: 0 of 578 pixels outside: 0 dwords 
+  kept z-34x17-y-r2.txt: 616 bytes raw, raw sha256 1d8a546f9c9743e29289628a0872962aeb546538301efe8a53b549a9094b03ed
+  kept z-34x17-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x17-y-r2.dmesg: 518 bytes raw, raw sha256 15ec0808edcd6060b46debe12b9e8ce076455b58cc91f654e3c880c862848324
+  kept z-34x17-y-r2.snap0.regs: 6474 bytes raw, raw sha256 914c68487cf2c8db7da99d73cd1f76ec41397ba11f5925c19c9c4c594875e656
+  kept z-34x17-y-r2.snap9.regs: 6474 bytes raw, raw sha256 843d7659caf9df63fbe630070313172b9fe97fbb989fc0bc42fa414c2a2322b6
+  class ok
+== z-34x21-y-r1 set=confirm risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 21 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/19-z-34x21-y-r1/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x21 hash 0x6c9a347df647c175 diff: 0 of 714 pixels outside: 0 dwords 
+  kept z-34x21-y-r1.txt: 615 bytes raw, raw sha256 34c8c817f2a84b1180bcb1573d97e68d7d236acc79f4e11cf3d96278c4eb6790
+  kept z-34x21-y-r1.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x21-y-r1.dmesg: 518 bytes raw, raw sha256 63d776d0bf3e3e29fbfae37543f1a3a93cb2a2baa9207363e5c9a578e5ce73a0
+  kept z-34x21-y-r1.snap0.regs: 6474 bytes raw, raw sha256 76a67192d2a14a9c96a9dba0a1ef26c763c4aef0ce5d75592787bbab9e108f43
+  kept z-34x21-y-r1.snap9.regs: 6474 bytes raw, raw sha256 56e1c07a5cc4f457c59d2225928137ba588ffae8b71f81302fa47228efa0a3ae
+  class ok
+== z-34x21-y-r2 set=confirm risk=safe tool=t6 knobs=[expectdiff]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/scratch/r6m/bin/sgxfive-test tri --keep-overflow --wait-ms 20000 --width 34 --height 21 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x17100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r6m.k3C7EG/20-z-34x21-y-r2/depth --depth-pages 18 --poke blk:1=0x00400200
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 34x21 hash 0x6c9a347df647c175 diff: 0 of 714 pixels outside: 0 dwords 
+  kept z-34x21-y-r2.txt: 615 bytes raw, raw sha256 d19e1d38c49297a53fe88ab40e35ca76d6ff041a3b3b05548bdb5322f3bfe9c9
+  kept z-34x21-y-r2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept z-34x21-y-r2.dmesg: 518 bytes raw, raw sha256 b1c6a2fbf29dd42c41fb170b1ca48910c42b440441874933db6a99f46c458567
+  kept z-34x21-y-r2.snap0.regs: 6474 bytes raw, raw sha256 752656b488a414eb519609d7fa4f2b19cb18f493edcd1f5b4c2c6725380d01d2
+  kept z-34x21-y-r2.snap9.regs: 6474 bytes raw, raw sha256 5c00e7a2fa63ccde7bb2b8482212ca48229b6d7d816183ec275ffb683462330d
+  class ok
+  kept end.fill2.txt: 174 bytes raw, raw sha256 b1f477e94d0f13c624dc67257d22fa5603a557b0736fd8c3791d0aade29d7cc8
+  kept end.health2.txt: 311 bytes raw, raw sha256 e238596793a658bb9c5c8352bb035266d65529fabb03df1c1a4db05994669091
+## end: 20 jobs of q287
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 20 case markers kept in /home/jtorra/scratch/r6m/out/20261112-144153/q287/kernel.log

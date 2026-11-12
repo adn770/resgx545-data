@@ -1,0 +1,162 @@
+## stage q086
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+99CD90DA26E3AFF9C450517
+## loaded module
+99CD90DA26E3AFF9C450517
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tools
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (read only; must be the defaults of fork a2788bd8: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000
+## free space on ~: 127367576 KiB (at least 204800 before each job)
+## work directory /home/jtorra/scratch/tmp/r6m.9Vn7lj
+## clock
+Thu Nov 12 14:46:00 CET 2026
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 ce2e1621a40a125757887e453b9d3195edfe4070136e1a2779db5bcc1f6d8486
+  kept begin.health1.txt: 311 bytes raw, raw sha256 2ed6d29e90c952cf13fce837127213f4451fe47459b353c0daececddcde24d36
+== q086-1024x768-R set=control risk=risky tool=t4 knobs=[expectdiff strict]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 1024 --height 768 --max-width 1024 --max-height 768 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 1024x768 hash 0xde0b9233c9822325 diff: 0 of 786432 pixels outside: 0 dwords 
+  kept q086-1024x768-R.txt: 8658007 bytes raw, raw sha256 b2fec77742af2a19553043a4be7b9d96b44f8a828f2f2c74dc66dd3b887422d5
+  kept q086-1024x768-R.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-1024x768-R.dmesg: 112 bytes raw, raw sha256 7bbc4711f892e5cfb23bb7dba6010413b8cdd7a08dbe3820b992b75a6f9b1126
+  kept q086-1024x768-R.snap0.regs: 6474 bytes raw, raw sha256 2e353a1be8775e841dc5d431e493a88d8c4283f51119369281259f1c2038aae3
+  kept q086-1024x768-R.snap9.regs: 6474 bytes raw, raw sha256 7c1e1982445652aaaacef126d48e0f8fe7bbcef3776e0672b5dea7ec483d97d0
+  class ok
+== q086-320x160-U2 set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 320 --height 160 --max-width 320 --max-height 160 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x01806006 --kpoke-render 1:ta:144=0x01806006 --kpoke-render 1:ta:146=0x24
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 320x160 hash 0x802a376392a66325 diff: 0 of 51200 pixels outside: 0 dwords 
+  kept q086-320x160-U2.txt: 565106 bytes raw, raw sha256 2479214cb8c3c452dbd4ed1e03b461a31a1572de689fc7acd5241d2c6b416b4f
+  kept q086-320x160-U2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-320x160-U2.dmesg: 361 bytes raw, raw sha256 5f2a614c3e806c41b6d53d34c0745dd6fa98a45672fb021d8159ac88093a0c51
+  kept q086-320x160-U2.snap0.regs: 6474 bytes raw, raw sha256 0e01efc8e2d4cbc3494653e82f924d3f3fbfd532e41158b2a2101b160affce49
+  kept q086-320x160-U2.snap9.regs: 6474 bytes raw, raw sha256 3b2a942289af2bf8cd5e93411065a935a5b88491ccbf5ca31a404e1d0a51a8f3
+  class ok
+== q086-384x192-U2 set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 384 --height 192 --max-width 384 --max-height 192 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x01806006 --kpoke-render 1:ta:144=0x01806006 --kpoke-render 1:ta:146=0x24
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 384x192 hash 0x35843c4cf2a32325 diff: 0 of 73728 pixels outside: 0 dwords 
+  kept q086-384x192-U2.txt: 813203 bytes raw, raw sha256 fef48ed5de5f3b35e9f6bde9ba3fea49ebf944815386cd2bbde50400d105d2d6
+  kept q086-384x192-U2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-384x192-U2.dmesg: 361 bytes raw, raw sha256 5100ea37b31a07542837d7b3a049cfc1c4957bc48e22a18cc56551925603fc87
+  kept q086-384x192-U2.snap0.regs: 6474 bytes raw, raw sha256 0cade8b1387e8f1c0969f3a7f9e4b16bb6036d176d5f3aadf85526286ea578b2
+  kept q086-384x192-U2.snap9.regs: 6474 bytes raw, raw sha256 b72a121292006e2ebc5e92dee9113eeb02495d0277cdb165fc2d2ea04536ca42
+  class ok
+== q086-448x224-U2Q set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 448 --height 224 --max-width 448 --max-height 224 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x8100800c --kpoke-render 1:ta:144=0x0100800c --kpoke-render 1:ta:146=0x10
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 448x224 hash 0xb920c06f86fc6325 diff: 0 of 100352 pixels outside: 0 dwords 
+  kept q086-448x224-U2Q.txt: 1106357 bytes raw, raw sha256 9e1325e4af5b63af2c43589980a4cb522d2cbb1b695960b637906dd2f78f22d0
+  kept q086-448x224-U2Q.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-448x224-U2Q.dmesg: 362 bytes raw, raw sha256 a1b0c16a0b907e2094e967e10ee44b96b1ef2bc1f8a88951ecdbec11a0cc8beb
+  kept q086-448x224-U2Q.snap0.regs: 6474 bytes raw, raw sha256 da4f5dc38e3f0b2bd609b381ff81a029315b9f720c6c14982748e2830358087a
+  kept q086-448x224-U2Q.snap9.regs: 6474 bytes raw, raw sha256 859a331af51ab3377668766a6a21c77598d97c68d1cd2351d0ccbe65b49d391e
+  class ok
+== q086-512x256-U2Q set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 512 --height 256 --max-width 512 --max-height 256 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x8100800c --kpoke-render 1:ta:144=0x0100800c --kpoke-render 1:ta:146=0x10
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 512x256 hash 0xf507e8c70fb22325 diff: 0 of 131072 pixels outside: 0 dwords 
+  kept q086-512x256-U2Q.txt: 1444565 bytes raw, raw sha256 d9337de33db01dba0be78b7571ec46457cac3ecf016d8d82769c08dbbb10bf28
+  kept q086-512x256-U2Q.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-512x256-U2Q.dmesg: 362 bytes raw, raw sha256 39212869de12d2fdedad5c36274cfcacfda37df8ec888e67260331777c88a51d
+  kept q086-512x256-U2Q.snap0.regs: 6474 bytes raw, raw sha256 b0145b488d532fa0ffe0a2041f5e85df7f1fdf711dc7301d428929d9718f2350
+  kept q086-512x256-U2Q.snap9.regs: 6474 bytes raw, raw sha256 2a301c4881b3ffa591d6d489a3b527650b184b7f77c7605149f1f6c811308225
+  class ok
+== q086-512x384-U2Q set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 512 --height 384 --max-width 512 --max-height 384 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x8100800c --kpoke-render 1:ta:144=0x0180c012 --kpoke-render 1:ta:146=0x18
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 512x384 hash 0x3fdcc978557a2325 diff: 0 of 196608 pixels outside: 0 dwords 
+  kept q086-512x384-U2Q.txt: 2166614 bytes raw, raw sha256 34c4e5836083ae780ad9e2841093333673e2cb8f5b5f1498a094c168b051bfcb
+  kept q086-512x384-U2Q.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-512x384-U2Q.dmesg: 362 bytes raw, raw sha256 615415011d67b6a74cd3eed37f500ca4a52ace25747603b1e86e87056d5fbed2
+  kept q086-512x384-U2Q.snap0.regs: 6474 bytes raw, raw sha256 bee050aadf354c144afca9473ffd79d1981ebd97add8dcee453492f489f17781
+  kept q086-512x384-U2Q.snap9.regs: 6474 bytes raw, raw sha256 fa84f5dd4835f58add6f95da5e424f704af04d5fb738c2aa393bdbca64a6f314
+  class ok
+== q086-640x480-U2 set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:u:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 640 --height 480 --max-width 640 --max-height 480 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x8180c012 --kpoke-render 1:ta:146=0x30
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok target: 640x480 hash 0xf19c7b73bb3ba325 diff: 0 of 307200 pixels outside: 0 dwords 
+  kept q086-640x480-U2.txt: 3383944 bytes raw, raw sha256 64fc00b85a1d506c9b17ab81cf5f2bd399ea0e239774d41093359d94602e7267
+  kept q086-640x480-U2.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept q086-640x480-U2.dmesg: 278 bytes raw, raw sha256 f6b44225d67c5e08197b1c25e62cfecb23160401f4c9a5593c095ebe16e4136d
+  kept q086-640x480-U2.snap0.regs: 6474 bytes raw, raw sha256 f5a7608807a976b75398d0c583c73c1c7d49c52a011ca561c6391c523d55624b
+  kept q086-640x480-U2.snap9.regs: 6474 bytes raw, raw sha256 72f47367053470275d6a8da9cc61161d9c459963dda057d62f39b1fb8326ff4d
+  class ok
+== q086-320x160-FX set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:fx:1]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 320 --height 160 --max-width 320 --max-height 160 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x00802002 --kpoke-render 1:ta:144=0x00802002 --kpoke-render 1:ta:146=0x4
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 320x160 hash 0xdb7154b29fbac325 diff: 43473 of 51200 pixels, first (128, 0) 0xdeadbeef expected 0xff00ff00 outside: 0 dwords 
+  kept q086-320x160-FX.txt: 565076 bytes raw, raw sha256 5897981003cae7bf55fd662f208edf2ba932606b03bf8de88db870d3b7c1843b
+  kept q086-320x160-FX.err: 69 bytes raw, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  kept q086-320x160-FX.dmesg: 3864 bytes raw, raw sha256 26f773151cd28b8070ce88e874b7746218469568f1f97d65fc58a97f0d461b1a
+  kept q086-320x160-FX.snap0.regs: 6474 bytes raw, raw sha256 c6a38112b5b407430f528ad68c925860a1ffa87596bcde9c4ba56ffc7d9c4416
+  kept q086-320x160-FX.snap9.regs: 6474 bytes raw, raw sha256 8b1f1477e815a65bd1e3484da46983a47da3dd47f4b24c893fc21b064d10b040
+grep: write error: Broken pipe
+  class fault
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 1 of at most 1 in group fx (a hypothesis: measured); fault-class events of the stage: 1 of 3
+  kept q086-320x160-FX.fill2.txt: 174 bytes raw, raw sha256 41af7e3e390e68497f29bcb5cf51c93c1d171dff3422b34fcdf07f1b642778d8
+  kept q086-320x160-FX.health2.txt: 311 bytes raw, raw sha256 ac02e0e12ddcf4a5dd036e4aaf9d05fb4ec13b48b51cf3f358a0f623460589f7
+== q086-384x192-FX skipped: group fx reached its 1 faults
+== q086-448x224-FX skipped: group fx reached its 1 faults
+== q086-512x256-FX skipped: group fx reached its 1 faults
+== q086-512x384-FX skipped: group fx reached its 1 faults
+== q086-640x480-FX skipped: group fx reached its 1 faults
+== q086-1024x768-FX skipped: group fx reached its 1 faults
+== q086-320x160-HS set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:hs:2]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 320 --height 160 --max-width 320 --max-height 160 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x01004004 --kpoke-render 1:ta:144=0x01004004 --kpoke-render 1:ta:146=0x10
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 320x160 hash 0x28be147b483c0325 diff: 19409 of 51200 pixels, first (256, 0) 0xdeadbeef expected 0xff00ff00 outside: 0 dwords 
+  kept q086-320x160-HS.txt: 565077 bytes raw, raw sha256 b3311b55d580f96376f6081a086d8aa6e7c5ab01727d4d8f7e19122c60398c04
+  kept q086-320x160-HS.err: 69 bytes raw, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  kept q086-320x160-HS.dmesg: 3864 bytes raw, raw sha256 a9882704b3ebc4b12b3ddacf9abed5a4d6520373e570f6b48ad7e83bd3081175
+  kept q086-320x160-HS.snap0.regs: 6474 bytes raw, raw sha256 37e32837e51e4a76900054a31ee7d052ba36cbf294024c6817587842257e1cf6
+  kept q086-320x160-HS.snap9.regs: 6474 bytes raw, raw sha256 adbb9c3868f458de941e8b36b1f3e83f9a9013fcab37ba19bcc06b11d441047a
+grep: write error: Broken pipe
+  class fault
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 1 of at most 2 in group hs (a hypothesis: measured); fault-class events of the stage: 2 of 3
+  kept q086-320x160-HS.fill3.txt: 174 bytes raw, raw sha256 c299768a8449204d1ff8476e8388e9ea9d96806dad837bf9d23574dbf19f6747
+  kept q086-320x160-HS.health3.txt: 311 bytes raw, raw sha256 27c29833890728a53f10a0ddecbbd9147a36df1664a866cf56e334fc04b6219a
+== q086-384x192-HS set=heldout risk=risky tool=t4 knobs=[expectdiff strict hypo:hs:2]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --pixels --width 384 --height 192 --max-width 384 --max-height 192 --aa4 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --kpoke-render 1:ta:143=0x01004004 --kpoke-render 1:ta:144=0x01004004 --kpoke-render 1:ta:146=0x10
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 384x192 hash 0x56824edd20ca8325 diff: 41681 of 73728 pixels, first (256, 0) 0xdeadbeef expected 0xff00ff00 outside: 0 dwords 
+  kept q086-384x192-HS.txt: 813174 bytes raw, raw sha256 e052145897ada02f205cebd3445fdd58967abe18c1b19c025718bce0313f7d4b
+  kept q086-384x192-HS.err: 69 bytes raw, raw sha256 a747630dc3ba48a618e25d1bcc0d4711fb7dd3e2b810531758c639afe8ab39c5
+  kept q086-384x192-HS.dmesg: 3865 bytes raw, raw sha256 cfd012b8f73cf1cfa9fb800b96e2069626d77bcdb514ead31dd5f192f47a4812
+  kept q086-384x192-HS.snap0.regs: 6474 bytes raw, raw sha256 5c41842474ebd9f83452825e3d09ee0e98bbadafbc1a5dcec9bd1f3e3fcd31fe
+  kept q086-384x192-HS.snap9.regs: 6474 bytes raw, raw sha256 53913cf939850da2c7f96580fb4a55d15056f2e58f05ef040476309314a320ae
+grep: write error: Broken pipe
+  class fault
+  fault: BIF_INT_STAT bits 15:0 256, BIF_FAULT 0x10000011
+  fault 2 of at most 2 in group hs (a hypothesis: measured); fault-class events of the stage: 3 of 3
+  kept q086-384x192-HS.fill4.txt: 174 bytes raw, raw sha256 55cf4de4c672717765f755eef21686358fcc8a74d491446190d90d5563d6db6c
+  kept q086-384x192-HS.health4.txt: 311 bytes raw, raw sha256 822eb92460f511915d7b50c4087cf8930fc96d5a916c2ffde01a3cebb5a09cd5
+== q086-448x224-HS skipped: group hs reached its 2 faults
+== q086-512x256-HS skipped: group hs reached its 2 faults
+== q086-512x384-HS skipped: group hs reached its 2 faults
+== q086-640x480-HS skipped: group hs reached its 2 faults
+== q086-1024x768-HS skipped: group hs reached its 2 faults
+  kept end.fill5.txt: 174 bytes raw, raw sha256 25976c49e6370d9b4b209f44b552819355444c2c969d28b84796e8a4d465a774
+  kept end.health5.txt: 311 bytes raw, raw sha256 2d89018d159fdc19f30b41b9f41235839f77459c9f8510ef4d01ae623a55a5b6
+## end: 10 jobs of q086
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000
+## kernel log (journalctl)
+## kernel log: 10 case markers kept in /home/jtorra/scratch/r6m/out/20261112-144153/q086/kernel.log

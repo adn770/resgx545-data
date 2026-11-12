@@ -1,0 +1,29 @@
+q287: stored (not 1.0f) tile-area dwords and the rules whose set equals them
+job               set      size   stored  extent  rules matched    A!=FLOOR  note
+z-dry-34x17-y     gate     34x17  882     42,21   A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-y-t4  control  34x18  924     42,22   A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-y-t6  control  34x18  924     42,22   A FLOOR RSTRICT  no        ok  
+z-ctl-34x18-x-t6  control  34x18  924     42,22   A FLOOR RSTRICT  no        ok  
+z-fit-34x19-y-r1  fit      34x19  1008    42,24   A                yes       ok  
+z-fit-34x19-y-r2  fit      34x19  1008    42,24   A                yes       ok  
+z-34x7-y-r1       heldout  34x7   378     42,9    A                yes       ok  
+z-34x7-y-r2       heldout  34x7   378     42,9    A                yes       ok  
+z-34x11-y-r1      heldout  34x11  588     42,14   A                yes       ok  
+z-34x11-y-r2      heldout  34x11  588     42,14   A                yes       ok  
+z-34x23-y-r1      heldout  34x23  1218    42,29   A                yes       ok  
+z-34x23-y-r2      heldout  34x23  1218    42,29   A                yes       ok  
+z-34x35-y-r1      heldout  34x35  1848    42,44   A                yes       ok  
+z-34x35-y-r2      heldout  34x35  1848    42,44   A                yes       ok  
+z-34x19-x-r1      heldout  34x19  1008    42,24   A                yes       ok  
+z-34x23-x-r1      heldout  34x23  1218    42,29   A                yes       ok  
+z-34x35-x-r1      heldout  34x35  1848    42,44   A                yes       ok  
+z-34x17-y-r2      confirm  34x17  882     42,21   A FLOOR RSTRICT  no        ok  
+z-34x21-y-r1      confirm  34x21  1092    42,26   A FLOOR RSTRICT  no        ok  
+z-34x21-y-r2      confirm  34x21  1092    42,26   A FLOOR RSTRICT  no        ok  
+
+rule A       fit 1 held, 0 FAILED, 0 cannot tell of 1 | held out 7 held, 0 FAILED, 0 cannot tell of 7 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+rule FLOOR   fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 7 FAILED, 0 cannot tell of 7 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+rule ROUND   fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 7 FAILED, 0 cannot tell of 7 | confirm 0 held, 2 FAILED, 0 cannot tell of 2
+rule CEIL    fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 7 FAILED, 0 cannot tell of 7 | confirm 0 held, 2 FAILED, 0 cannot tell of 2
+rule RSTRICT fit 0 held, 1 FAILED, 0 cannot tell of 1 | held out 0 held, 7 FAILED, 0 cannot tell of 7 | confirm 2 held, 0 FAILED, 0 cannot tell of 2
+SUMMARY: Q287 (odd heights, W 34): rule A held on the held-out cells (7 of 7), FLOOR refuted (0 of 7); fit cell 19: A held, FLOOR refuted; .25 confirmations A 2 of 2; controls pass
