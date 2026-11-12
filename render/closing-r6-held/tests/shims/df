@@ -1,0 +1,6 @@
+#!/bin/bash
+# fake df for tests/run_mock.sh: `df -Pk DIR` answers with the free KiB in $FAKE_DIR/df_kb (default 5 GB): the runner's free-space
+# check reads column 4 of line 2
+kb=$(cat "${FAKE_DIR:?}/df_kb" 2>/dev/null || echo 5000000)
+echo "Filesystem 1024-blocks Used Available Capacity Mounted on"
+echo "/dev/fake 10000000 1000 $kb 1% /"

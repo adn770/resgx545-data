@@ -1,0 +1,22 @@
+#!/bin/bash
+# fake ssh for tests/run_mock.sh: "the laptop" is the directory $FAKE_HOME.  Options (-o X) are skipped, the host is ignored.  The
+# command runs as the laptop would run it: `env -i` with HOME=$FAKE_HOME, PATH=$FAKE_LAPTOP_PATH (a directory of the laptop's commands
+# only: the shims sudo, timeout, df, modinfo, sha256sum and an allow-list of coreutils, no python, no perl for the runner) and the
+# mock's plumbing (FAKE_*, SGXFIVE_DEBUGFS, KMSG, SRCV_PATH, FW_PATH and the runner's short waits).  No Mac path or Mac variable (PY,
+# RESGX545_*, PATH) reaches the runner.  The driver's knob read (`sudo -n sh -c "...alias_skip...render_rgn_arrays...render_pb_pages"`)
+# answers from the fake debugfs.
+while [ "${1:-}" = "-o" ]; do shift 2; done
+shift
+cmd=$1
+case "$cmd" in
+*render_rgn_arrays*) [ -n "${FAKE_KNOB_UNREADABLE:-}" ] && exit 1
+	printf '0x%08x\n' $(( $(cat "${FAKE_DBGREAL:?}/alias_skip") ))
+	printf '0x%08x\n' $(( $(cat "${FAKE_DBGREAL:?}/render_rgn_arrays") ))
+	printf '0x%08x\n' $(( $(cat "${FAKE_DBGREAL:?}/render_pb_pages") ))
+	exit 0 ;;
+esac
+pass=()
+for v in $(env | sed -n 's/^\(FAKE_[A-Z0-9_]*\)=.*/\1/p') SGXFIVE_DEBUGFS KMSG SRCV_PATH FW_PATH RESET_WAIT HEALTH_WAIT HOLD_READ HOLD_GAP TEE_GRACE MIN_FREE_MB; do
+	[ -n "${!v+x}" ] && pass+=("$v=${!v}")
+done
+cd "${FAKE_HOME:?}" && exec env -i HOME="$FAKE_HOME" PATH="${FAKE_LAPTOP_PATH:?}" "${pass[@]}" bash -c "$cmd"

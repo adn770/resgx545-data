@@ -1,0 +1,11 @@
+#stage q
+#limit 15
+# q: Q003's replay clause on the new kernel (module 41E2F5C7..., fork r6-kernel 3f0b3e74).  Each cell: E848's job held
+# (hold_recovery Y, render_rgn_arrays 1), the fault read, [flush: debugfs bif_flush 1 while held], the debugfs reset, the
+# follow-up (fill: one fill), then health triangles one by one until one draws, three at most.  Order a0 b0 a1 b1 a2 b2.
+a0-640-health|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:health|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+b0-640-flush-health|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:health flush|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+a1-640-fill|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:fill|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+b1-640-flush-fill|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:fill flush|-|tri --tri-full --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+a2-288-fill|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:fill|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+b2-288-flush-health|heldout|risky|held rgn:1 expectdiff hypo:q:6 cell:health flush|-|tri --tri-full --keep-going --wait-ms 20000 --width 288 --height 144 --max-width 288 --max-height 144 --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26

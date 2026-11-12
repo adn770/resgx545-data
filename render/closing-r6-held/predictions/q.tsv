@@ -1,0 +1,60 @@
+case	quantity	value	model	set	source
+a0-640-health	job_class	fault	H-JOB	control	E848 h2; E507/E729 page 0x2000a
+a0-640-health	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+a0-640-health	job_word	0x2000a061	H-JOB	control	E848 h2; E507/E729 page 0x2000a; list 1 after the job's own reset
+a0-640-health	first_tri	fault	H-REPLAY	control	E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction)
+a0-640-health	first_word	0x2000a061	H-REPLAY	control	E848 h2: the job's word, a page never seen in health
+a0-640-health	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)
+b0-640-flush-health	job_class	fault	H-JOB	control	E848 h2; E507/E729 page 0x2000a
+b0-640-flush-health	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+b0-640-flush-health	job_word	0x2000a061	H-JOB	control	E848 h2; E507/E729 page 0x2000a; list 1 after the job's own reset
+b0-640-flush-health	flush_rc	0	H-KEEP	control	fork 3f0b3e74: a recovery is held, so the write is taken
+b0-640-flush-health	flush_ctrl_same	yes	H-KEEP	control	fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+b0-640-flush-health	flush_int	0x00090004	H-LATCH	heldout	E826: only the reset cleared a held fault
+b0-640-flush-health	flush_word	0x2000a061	H-LATCH	heldout	E826: only the reset cleared a held fault
+b0-640-flush-health	first_tri	ok	H-FLUSH	heldout	[infer] the invalidate drops the pending write
+b0-640-flush-health	first_tri	fault	H-PEND	heldout	the replay as without the flush (E848)
+b0-640-flush-health	first_word	0x2000a061	H-PEND	heldout	H-PEND with H-LIST's list
+b0-640-flush-health	minus110_reset	0	H-BOOT	heldout	[infer] E848's -110 dumps: a TA write fault in the boot
+b0-640-flush-health	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)
+a1-640-fill	job_class	fault	H-JOB	control	E848 h2; E507/E729 page 0x2000a
+a1-640-fill	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+a1-640-fill	job_word	0x2000a061	H-JOB	control	E848 h2; E507/E729 page 0x2000a; list 1 after the job's own reset
+a1-640-fill	fill_class	ok	H-FILL	control	E848 h4: the fill passed (a transfer: no TA)
+a1-640-fill	first_tri	fault	H-REPLAY	heldout	E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction)
+a1-640-fill	first_word	0x2000a062	H-LIST	heldout	E848 h4 post hoc: the list current at the next TA run
+a1-640-fill	first_word	0x2000a061	H-WORD	heldout	E848's frozen word test
+a1-640-fill	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)
+b1-640-flush-fill	job_class	fault	H-JOB	control	E848 h2; E507/E729 page 0x2000a
+b1-640-flush-fill	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+b1-640-flush-fill	job_word	0x2000a061	H-JOB	control	E848 h2; E507/E729 page 0x2000a; list 1 after the job's own reset
+b1-640-flush-fill	fill_class	ok	H-FILL	control	E848 h4: the fill passed (a transfer: no TA)
+b1-640-flush-fill	flush_rc	0	H-KEEP	control	fork 3f0b3e74: a recovery is held, so the write is taken
+b1-640-flush-fill	flush_ctrl_same	yes	H-KEEP	control	fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+b1-640-flush-fill	flush_int	0x00090004	H-LATCH	heldout	E826: only the reset cleared a held fault
+b1-640-flush-fill	flush_word	0x2000a061	H-LATCH	heldout	E826: only the reset cleared a held fault
+b1-640-flush-fill	first_tri	ok	H-FLUSH	heldout	[infer] the invalidate drops the pending write
+b1-640-flush-fill	first_tri	fault	H-PEND	heldout	the replay as without the flush (E848)
+b1-640-flush-fill	first_word	0x2000a062	H-PEND	heldout	H-PEND with H-LIST's list
+b1-640-flush-fill	minus110_reset	0	H-BOOT	heldout	[infer] E848's -110 dumps: a TA write fault in the boot
+b1-640-flush-fill	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)
+a2-288-fill	job_class	fault	H-JOB	control	E848 h1/h4; E507/E729 page 0x20006
+a2-288-fill	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+a2-288-fill	job_word	0x20006061	H-JOB	control	E848 h1/h4; E507/E729 page 0x20006; list 1 after the job's own reset
+a2-288-fill	fill_class	ok	H-FILL	control	E848 h4: the fill passed (a transfer: no TA)
+a2-288-fill	first_tri	fault	H-REPLAY	heldout	E848: 4 of 4 faults replayed (h1, h2, h4; K2 E826 correction)
+a2-288-fill	first_word	0x20006062	H-LIST	replicate	E848 h4 post hoc: the list current at the next TA run
+a2-288-fill	first_word	0x20006061	H-WORD	replicate	E848's frozen word test
+a2-288-fill	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)
+b2-288-flush-health	job_class	fault	H-JOB	control	E848 h1/h4; E507/E729 page 0x20006
+b2-288-flush-health	job_int	0x00090004	H-JOB	control	E789, E848: a TA write fault
+b2-288-flush-health	job_word	0x20006061	H-JOB	control	E848 h1/h4; E507/E729 page 0x20006; list 1 after the job's own reset
+b2-288-flush-health	flush_rc	0	H-KEEP	control	fork 3f0b3e74: a recovery is held, so the write is taken
+b2-288-flush-health	flush_ctrl_same	yes	H-KEEP	control	fork 3f0b3e74 sgx_seq_bif_flush keeps the other bits
+b2-288-flush-health	flush_int	0x00090004	H-LATCH	heldout	E826: only the reset cleared a held fault
+b2-288-flush-health	flush_word	0x20006061	H-LATCH	heldout	E826: only the reset cleared a held fault
+b2-288-flush-health	first_tri	ok	H-FLUSH	heldout	[infer] the invalidate drops the pending write
+b2-288-flush-health	first_tri	fault	H-PEND	heldout	the replay as without the flush (E848)
+b2-288-flush-health	first_word	0x20006061	H-PEND	heldout	H-PEND with H-LIST's list
+b2-288-flush-health	minus110_reset	0	H-BOOT	heldout	[infer] E848's -110 dumps: a TA write fault in the boot
+b2-288-flush-health	passes_within	3	H-END	control	E848: the third triangle at the latest passed (h2)

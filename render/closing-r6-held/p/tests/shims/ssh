@@ -1,0 +1,23 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# mock ssh: drop the options and the host, run the remote command in the mock laptop home (MOCK_HOME) with ONLY the laptop's environment
+# (r6-held part P, round 6 brief): `env -i` with HOME, a PATH of the mock's laptop commands (the shims dir: sudo, dmesg, modinfo, python3
+# = the system /usr/bin/python3, never the Mac's venv) and /usr/bin:/bin, and the mock's own hooks (MOCK_*, R3_*: the fake kernel,
+# never a path into the session's source tree: the mock's firmware and layout are copies in the mock home).  Nothing of the Mac's
+# environment (PY, PYTHONPATH, the venv, RESGX545) reaches the laptop side.
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-o) shift 2 ;;
+	-*) shift ;;
+	*) break ;;
+	esac
+done
+shift                                   # the host
+echo "ssh $*" >> "$MOCK_DIR/ssh.log"
+cd "$MOCK_HOME" || exit 255
+keep=()
+while IFS='=' read -r k _; do
+	case "$k" in MOCK_*|R3_*) keep+=("$k=${!k}") ;; esac
+done < <(env | grep -E '^(MOCK_|R3_)[A-Z0-9_]*=')
+exec env -i HOME="$MOCK_HOME" PATH="$MOCK_SHIMS:/usr/bin:/bin:/usr/sbin:/sbin" LANG=C "${keep[@]}" MOCK_PY=/usr/bin/python3 \
+	PYTHONDONTWRITEBYTECODE=1 bash -c "$*"

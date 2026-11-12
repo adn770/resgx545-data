@@ -1,0 +1,248 @@
+# SPDX-License-Identifier: MIT
+# lib_h.sh: what the laptop-side r6-held part H stage runner shares (sourced by run_h.sh, never run).  From r6-render4x's lib_k.sh
+# (closing6/r6-render4x/run/lib_k.sh: R4-G's and round 5's, with round 6's laptop files) for the new kernel (fork r6-kernel 3f0b3e74):
+# everything under ~/scratch/r6h/ (run, stage, out), the work directories under ONE `mktemp -d ~/scratch/tmp/r6h.XXXXXX` (never /tmp:
+# a 991M tmpfs in RAM), each job's work directory removed once its files are kept and the whole mktemp directory at every exit, a
+# free-space check (MIN_FREE_MB on ~) before each job.  Two knobs written: hold_recovery (Y and N by the held flow only) and
+# render_rgn_arrays (1 for a row that names rgn:1, back to 0 after every job and at every exit).  One action file written:
+# bif_flush, "1" only, once a cell with `flush` (while its recovery is held) and once in s0's gate row (nothing held: refused).
+#
+# Safety rules of this runner (checked by run/guard_h.sh and tests/run_mock.sh):
+#  - debugfs is root only: EVERY access goes through `sudo -n` (dbg_cat, dbg_write, snap, peek, the preflight's `sudo -n test -e`,
+#    the directory test and the glob).  The mock makes the debugfs directory unreadable to the user, so a bare access fails.
+#  - the ONLY debugfs files written are `reset 1`, `render_rgn_arrays 0|1`, `hold_recovery Y|N` and `bif_flush 1`; /dev/kmsg gets
+#    the markers (an append).  `peek` is only READ (its default offset is 0x0694, the only one it allows: never written here).  No kreg,
+#    no kregnow, no kpoke, no render_pb_pages or render_tail_room write (both only read, at the defaults 0x422 and 0), no clock-gate
+#    register, no firmware-task str, no /dev/mem write.
+#  - never a reboot, a boot-loader change or a kernel build; no compile at all.
+#  - no polling or wait loop: no while/until; single fixed sleeps; one `wait PID` for a background job that is itself bounded by
+#    `timeout -k`; each health attempt and each step of a cell is written out one after the other (no loop).
+#  - files: the kept ones under ~/scratch/r6h/out/ATT/STAGE (never deleted); each job works in its own new directory under one
+#    `mktemp -d ~/scratch/tmp/r6h.XXXXXX`; rm_work removes a job's directory after its files are kept (and refuses any path that is not
+#    under that mktemp directory), the exit trap removes the mktemp directory itself; nothing else is ever removed.  /tmp is not used.
+#  - a free-space check before each job: at least MIN_FREE_MB (h.env) free on ~, else the stage stops (rc 21) before the job.
+#  - the kernel log of a job or a step is the slice after its marker (never a line count); the kernel's reset information lines
+#    ("SGX reset: BIF_FAULT ...", "SGX reset: after the fault clear ...") are not bad lines.
+set -u
+STAGE=${STAGE:?lib_h.sh: STAGE not set}
+LIBDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+. "$LIBDIR/h.env"
+TOOL_SHA=${K_TOOL_SHA:-$TOOL_SHA}
+SRCV_EXPECT=${K_SRCV_EXPECT:-$SRCV_EXPECT}
+T=${SGXFIVE_TEST:-$HOME/sgxfive-test-rgn4}
+# one directory an attempt (ATT from the driver), never reused: no merging of attempts
+KEEP=${K_OUT:-$HOME/scratch/r6h/out}/${ATT:?lib_h.sh: ATT not set}/$STAGE
+if [ -d "$KEEP" ] && [ -n "$(ls -A "$KEEP")" ]; then echo "$KEEP is not empty: an attempt is never rerun into its directory"; exit 1; fi
+mkdir -p "$KEEP" || { echo "cannot create $KEEP"; exit 1; }
+TEE_P=""; tee -p /dev/null < /dev/null > /dev/null 2>&1 && TEE_P=-p
+mkdir -p "$HOME/scratch/tmp" || { echo "cannot create $HOME/scratch/tmp"; exit 1; }
+WROOT=$(mktemp -d "$HOME/scratch/tmp/r6h.XXXXXX") || { echo "mktemp under $HOME/scratch/tmp failed"; exit 1; }
+case "$WROOT" in "$HOME"/scratch/tmp/r6h.??????) ;; *) echo "the work directory $WROOT is not ~/scratch/tmp/r6h.XXXXXX"; exit 1 ;; esac
+# until the full exit trap below is set, an early exit still removes the work directory
+trap 'case "$WROOT" in "$HOME"/scratch/tmp/r6h.??????) rm -rf -- "$WROOT" ;; esac' EXIT
+mkfifo "$WROOT/out.fifo" || { echo "mkfifo failed"; exit 1; }
+tee $TEE_P -a "$KEEP/runner.log" < "$WROOT/out.fifo" &
+TEEPID=$!
+exec > "$WROOT/out.fifo" 2>&1
+KMSG=${KMSG:-/dev/kmsg}
+FATAL_RE='soft lockup|hard LOCKUP|NMI watchdog|watchdog: BUG|rcu.*(stall|self-detected)|blocked for more than|Oops|BUG:|Call Trace|kernel panic|general protection|machine check|psb.*watchdog'
+RESET_INFO_RE='SGX reset: (after the fault clear )?BIF_FAULT'
+if [ -n "${SGXFIVE_DEBUGFS:-}" ]; then
+	D=$SGXFIVE_DEBUGFS
+else
+	DL=/sys/kernel/debug/dri/0/sgx
+	if ! sudo -n test -d "$DL"; then DL=$(sudo -n sh -c 'ls -d /sys/kernel/debug/dri/*/sgx' | head -n 1); fi
+	[ -n "$DL" ] && sudo -n test -d "$DL" || { echo "no sgx debugfs directory (dri/0/sgx or any dri/*/sgx)"; exit 1; }
+	D=$DL
+fi
+[ -x "$T" ] || { echo "no $T (r6-held uses ~/sgxfive-test-rgn4: see PREFLIGHT.md)"; exit 1; }
+START=$(date +%s)
+RUN=$(date +%s)-$$
+sha() { if command -v sha256sum >/dev/null 2>&1; then sha256sum "$@"; else shasum -a 256 "$@"; fi; }
+W=$WROOT
+
+mark() { printf "resgx545 r6h %s %s\n" "$*" "$RUN" | sudo -n tee -a "$KMSG" >/dev/null; }
+mark_case() { printf "resgx545 case %s %s\n" "$1" "$RUN" | sudo -n tee -a "$KMSG" >/dev/null; }
+
+dbg_cat() { sudo -n timeout -k 5 20 cat "$D/$1"; }
+dbg_write() { # NAME VALUE: the allow-listed debugfs files only, bounded; the status of the write (tee's) is returned
+	case "$1 $2" in
+	"reset 1"|"render_rgn_arrays 0"|"render_rgn_arrays 1"|"hold_recovery Y"|"hold_recovery N"|"bif_flush 1") ;;
+	*) echo "dbg_write: $1 $2 is not allowed in r6-held"; exit 7 ;;
+	esac
+	printf '%s\n' "$2" | sudo -n timeout -k 5 20 tee "$D/$1" >/dev/null
+}
+# flush_write OUT: `1` into bif_flush; its status, and tee's message (the errno text) into OUT
+flush_write() { dbg_write bif_flush 1 2> "$1"; }
+hold_now() { dbg_cat hold_recovery; }
+set_hold() { dbg_write hold_recovery "$1"; dbg_cat hold_recovery; }
+rgn_now() { dbg_cat render_rgn_arrays; }
+rgn_is() { local v; v=$(rgn_now); [ -n "$v" ] && [ $(( v )) -eq "$1" ]; }
+pb_now() { dbg_cat render_pb_pages; }
+room_now() { dbg_cat render_tail_room; }
+rgn_set() { dbg_write render_rgn_arrays "$1"; rgn_is "$1"; }
+knobs_ok() { # RGN: hold_recovery N, render_rgn_arrays RGN, render_pb_pages 0x422 and render_tail_room 0 (never written here)
+	local pb room
+	pb=$(pb_now); room=$(room_now)
+	[ "$(hold_now)" = N ] && rgn_is "$1" && [ -n "$pb" ] && [ $(( pb )) -eq $(( 0x422 )) ] && [ -n "$room" ] && [ $(( room )) -eq 0 ]
+}
+NO_MORE_RESET=0
+reset_gpu() {
+	[ "$NO_MORE_RESET" = 1 ] && { echo "  (no reset: the session stopped on a fault that did not clear)"; return 1; }
+	dbg_write reset 1; local r=$?
+	sleep "${RESET_WAIT:-3}"
+	return $r
+}
+regval() { awk -v r="$2" '$1 == "reg" && $2 == r { print $3 }' "$1"; }
+snap() { # NAME K: debugfs regs into $JW/snapK.regs (kept as NAME.snapK.regs.gz); prints the registers; 1 if unreadable
+	local f="$JW/snap$2.regs"
+	sudo -n timeout -k 5 20 cat "$D/regs" > "$f" 2>&1
+	local r=$?
+	if [ "$r" -ne 0 ] || ! grep -q '^reg 0x0c04 ' "$f"; then echo "  snap $2: regs unreadable (status $r)"; return 1; fi
+	echo "  snap $2: clock-status $(regval "$f" 0x0008) status $(regval "$f" 0x012c) status2 $(regval "$f" 0x0118) bif_ctrl $(regval "$f" 0x0c00) bif_int $(regval "$f" 0x0c04) bif_fault $(regval "$f" 0x0c08)"
+	mark "snap $1 $2 $(regval "$f" 0x0c00) $(regval "$f" 0x0c04) $(regval "$f" 0x0c08) $(regval "$f" 0x012c) $(regval "$f" 0x0118)"
+	return 0
+}
+# peek NAME K: one read of debugfs peek (CR_DPM_TASK_STATE, 0x0694: the file's default and only offset) into $JW/peekK.txt, kept
+# with the job; never written.  Explore only in part H (Q111's row is part P's).
+peek() {
+	sudo -n timeout -k 5 20 cat "$D/peek" > "$JW/peek$2.txt" 2>&1
+	echo "  peek $2: $(head -c 80 "$JW/peek$2.txt")"
+}
+fault_req() { local v; v=$(regval "$1" 0x0c04); [ -n "$v" ] && echo $(( v & 0xffff )); }
+
+free_kb() { df -Pk "$HOME" | awk 'NR == 2 { print $4 }'; }
+space_ok() { local k; k=$(free_kb); [ -n "$k" ] && [ "$k" -ge $(( MIN_FREE_MB * 1024 )) ]; }
+rm_work() {
+	case "$1" in
+	"$WROOT"/?*) rm -rf -- "$1" ;;
+	*) echo "rm_work: $1 is not under $WROOT: refused"; exit 1 ;;
+	esac
+}
+
+preflight() {
+	echo "## stage $STAGE"; echo "## uname"; uname -r
+	echo "## firmware"; sha "${FW_PATH:-/lib/firmware/sgx545_ukernel.fw}" || { echo "no firmware file"; exit 1; }
+	echo "## installed module"; SRCV_FILE=$(modinfo -F srcversion gma500_gfx); echo "$SRCV_FILE"
+	echo "## loaded module"; SRCV_LOADED=$(sudo -n cat "${SRCV_PATH:-/sys/module/gma500_gfx/srcversion}"); echo "$SRCV_LOADED"
+	[ -n "$SRCV_FILE" ] && [ "$SRCV_FILE" = "$SRCV_LOADED" ] || { echo "the loaded module is not the installed one"; exit 1; }
+	[ "$SRCV_LOADED" = "$SRCV_EXPECT" ] || { echo "the loaded module ($SRCV_LOADED) is not the expected build ($SRCV_EXPECT)"; exit 1; }
+	echo "## debugfs directory: $D"
+	for f in reset hold_recovery regs render_pb_pages alias_skip render_rgn_arrays render_tail_room peek bif_flush; do
+		sudo -n test -e "$D/$f" || { echo "the loaded driver has no debugfs $f (not the r6-kernel build)"; exit 1; }
+	done
+	echo "## peek"; pk=$(dbg_cat peek); echo "$pk"
+	echo "$pk" | grep -Eq '^reg 0x0694 0x[0-9a-f]{8}$' || { echo "debugfs peek does not print 'reg 0x0694 0x........'"; exit 1; }
+	echo "## tool"; got=$(sha "$T" | cut -d' ' -f1); echo "$got $T"
+	[ "$got" = "$TOOL_SHA" ] || { echo "the tool is not the rgn4 build ($TOOL_SHA)"; exit 1; }
+	echo "## knobs at start (must be the defaults of fork r6-kernel: nothing of an earlier session left)"
+	h=$(dbg_cat hold_recovery); pb=$(dbg_cat render_pb_pages); as=$(dbg_cat alias_skip); ra=$(dbg_cat render_rgn_arrays); tr=$(dbg_cat render_tail_room)
+	echo "hold_recovery=$h render_pb_pages=$pb alias_skip=$as render_rgn_arrays=$ra render_tail_room=$tr"
+	[ -n "$ra" ] && [ $(( ra )) -eq 0 ] || { echo "render_rgn_arrays is not 0 (automatic, the default) at the start"; exit 1; }
+	[ "$h" = N ] || { echo "hold_recovery is not N at the start"; exit 1; }
+	[ -n "$pb" ] && [ $((pb)) -eq $((0x422)) ] || { echo "render_pb_pages is not 0x422"; exit 1; }
+	[ -n "$as" ] && [ $((as)) -eq 0 ] || { echo "alias_skip is not 0"; exit 1; }
+	[ -n "$tr" ] && [ $((tr)) -eq 0 ] || { echo "render_tail_room is not 0 (automatic, the default)"; exit 1; }
+	echo "## free space on ~: $(free_kb) KiB (at least $MIN_FREE_MB MiB)"
+	space_ok || { echo "less than $MIN_FREE_MB MiB free on ~"; exit 21; }
+	echo "## work directory: $WROOT"
+	echo "## clock"; date
+	echo "## r6-held safety rules: see the header of lib_h.sh"
+}
+
+FATAL_STOP=0
+STARTED=0
+JOBPID=""
+cleanup_gpu() {
+	if [ "$STARTED" != 1 ]; then echo "## exit before the preflight passed: nothing touched"; return; fi
+	# the two knobs back to the defaults at EVERY exit (bounded writes): a hold left set would hold every later fault,
+	# render_rgn_arrays 1 would change every context
+	dbg_write hold_recovery N
+	dbg_write render_rgn_arrays 0
+	echo "## exit: hold_recovery=$(hold_now) render_rgn_arrays=$(rgn_now) render_pb_pages=$(pb_now) render_tail_room=$(room_now)"
+	mark "exit hold_recovery=$(hold_now) render_rgn_arrays=$(rgn_now)"
+	if [ "$FATAL_STOP" != 1 ]; then
+		[ -n "$JOBPID" ] && wait "$JOBPID"
+		reset_gpu
+	fi
+	finish_log
+}
+cleanup() {
+	cleanup_gpu
+	exec >&- 2>&-
+	( sleep "${TEE_GRACE:-10}"; kill "$TEEPID" 2>/dev/null ) </dev/null >/dev/null 2>&1 &
+	wait "$TEEPID"
+	case "$WROOT" in "$HOME"/scratch/tmp/r6h.??????) rm -rf -- "$WROOT" ;; esac
+}
+trap cleanup EXIT
+finish_log() {
+	if sudo -n journalctl -k --since "@$START" --no-pager > "$KEEP/kernel.log" 2>&1; then
+		echo "## kernel log (journalctl)"
+	else
+		sudo -n dmesg > "$KEEP/kernel.log" 2>&1; echo "## kernel log (dmesg: journalctl failed)"
+	fi
+	echo "## kernel log: $(grep -c 'resgx545 case' "$KEEP/kernel.log") case markers kept in $KEEP/kernel.log"
+}
+keep() { # NAME FILE [SUFFIX]: gzip the whole raw file (mtime 0), print its sizes and raw sha256
+	raw=$(wc -c < "$2" | tr -d ' ')
+	sum=$(sha "$2" | cut -d' ' -f1)
+	gzip -n -6 -c "$2" > "$KEEP/$1${3:-.txt}.gz"
+	echo "$1${3:-.txt} $raw $sum" >> "$KEEP/raw.sha256"
+	echo "  kept $1${3:-.txt}: $raw bytes raw, raw sha256 $sum"
+}
+
+HN=0
+health_ok() { # NAME: one fill and one plain 64x64 triangle, kept; 0 if both drew exactly
+	HN=$((HN + 1))
+	mark "health $1 fill try $HN"
+	sudo -n timeout -k 10 60 "$T" fill > "$JW/fill.$HN.out" 2>&1 </dev/null
+	keep "$1.fill$HN" "$JW/fill.$HN.out"
+	mark "health $1 tri try $HN"
+	sudo -n timeout -k 10 60 "$T" tri > "$JW/health.$HN.out" 2>&1 </dev/null
+	keep "$1.health$HN" "$JW/health.$HN.out"
+	grep -q "^diff: 0 of" "$JW/fill.$HN.out" && grep -q "^diff: 0 of 4096" "$JW/health.$HN.out"
+}
+health() { # NAME: fill and triangle exact; a reset and two more attempts, written out one by one; then stop
+	sleep "${HEALTH_WAIT:-3}"
+	if health_ok "$1"; then return 0; fi
+	reset_gpu; sleep "${HEALTH_WAIT:-5}"
+	if health_ok "$1"; then echo "  health: recovered after a reset"; return 0; fi
+	sleep "${HEALTH_WAIT:-5}"
+	if health_ok "$1"; then echo "  health: recovered on the retry"; return 0; fi
+	echo "## abort: the fill and triangle do not draw after a reset and a retry (the first failed recovery stops)"
+	exit 5
+}
+# strict_health NAME: after a cell or a fault-class event the FIRST health fill and triangle must draw (R6-5 a: strict health); if
+# not, the usual recovery runs and the stage stops, rc 16
+strict_health() {
+	sleep "${HEALTH_WAIT:-3}"
+	if health_ok "$1"; then return 0; fi
+	echo "## STOP: the health fill or triangle failed after $1 (strict): recovery, then stop"
+	reset_gpu; sleep "${HEALTH_WAIT:-5}"
+	if ! health_ok "$1"; then sleep "${HEALTH_WAIT:-5}"; health_ok "$1" || { echo "## abort: no recovery"; exit 5; }; fi
+	exit 16
+}
+begin() {
+	printf 'name\tstage\tset\trisk\tknobs\trt\targs\trc\tclass\tmode\tfault_req\treset_rc\theld_msg\n' > "$KEEP/cases.tsv"
+	: > "$KEEP/raw.sha256"
+	JW=$WROOT/begin; mkdir -p "$JW"
+	preflight
+	STARTED=1
+	reset_gpu || { echo "the first debugfs reset failed"; exit 1; }
+	health begin </dev/null
+	rm_work "$JW"
+}
+# the fault of a plain job or step: the first "BIF fault 0xSTAT at 0xWORD" line of its slice; bits 15:0 of STAT (decimal) and WORD
+fault_int() { awk 'match($0, /BIF fault 0x[0-9a-f]+ at/) { v = substr($0, RSTART + 12, RLENGTH - 15); print v; exit }' "$1" | { read -r v; [ -n "$v" ] && echo $(( 0x$v & 0xffff )); }; }
+fault_word() { awk 'match($0, /BIF fault 0x[0-9a-f]+ at 0x[0-9a-f]+/) { s = substr($0, RSTART, RLENGTH); sub(/.* at /, "", s); print s; exit }' "$1"; }
+# the kernel log after a marker: the slice of one job or step, never a count of lines
+slice_since() { sudo -n dmesg > "$JW/dmesg.all"; awk -v m="$1" 'f{print} index($0,m){f=1}' "$JW/dmesg.all"; }
+bad_lines() { grep -Ev "$RESET_INFO_RE" "$@"; }
+classify_plain() { # OUT DMESG RC: fault | hang | ok | fail
+	if bad_lines "$1" "$2" | grep -Eq "BIF fault|faulted"; then echo fault
+	elif bad_lines "$1" "$2" | grep -Eq "job [0-9]+ hung|hung|timed out waiting"; then echo hang
+	elif [ "$3" -eq 0 ]; then echo ok
+	else echo fail; fi
+}
+# minus110 FILE: 1 if the slice holds the kernel's "SGX recovery failed: -110" (the boot after a reset timed out), else 0
+minus110() { if grep -q 'recovery failed: -110' "$1"; then echo 1; else echo 0; fi; }

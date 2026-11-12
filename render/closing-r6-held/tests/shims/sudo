@@ -1,0 +1,92 @@
+#!/bin/bash
+# fake sudo for tests/run_mock.sh (from r6-render4x's, for the new kernel's files).  The mock debugfs directory $SGXFIVE_DEBUGFS is
+# mode 000: only through this shim (as on the laptop, where debugfs is root only) does a path in it reach the real files in
+# $FAKE_DBGREAL.  A `regs` read while hold_recovery is Y WAITS (bounded, 120 s) until the fake tool has answered the latest case marker
+# ($FAKE_DIR/answered holds that marker's name): the held flow's snap 1 never depends on how fast the fake starts.  The fake GPU state
+# is in $FAKE_DIR (tests/worlds.py's docstring).  Every debugfs write is logged in $FAKE_DIR/writes ("NAME VALUE").
+#   reset           the kernel's reset lines; after a held fault in world m110 the -110 boot timeout too; state idle; list 1
+#   bif_flush       "1" while hold is Y and a fault is latched: the fork's kernel line (BIF_CTRL kept, the latched words); world
+#                   flushclears drops the pending write; otherwise refused "Device or resource busy" (gatebad: always taken;
+#                   flushrefused: always refused)
+#   peek            "reg 0x0694 0x00000000" (FAKE_PEEK overrides the line); never writable here (a write is logged as other)
+# Knobs: FAKE_STUCK (a reset leaves the fault latched), FAKE_SNAP_FAIL (regs unreadable), FAKE_RGN_STUCK, FAKE_RGN_STUCK_AT0,
+# FAKE_HOLD_NOY, FAKE_RESET_FAIL_FROM (the Nth reset and later fail).
+[ "$1" = "-n" ] && shift
+DB=${SGXFIVE_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+if [ "$1" = timeout ]; then shift; [ "$1" = "-k" ] && shift 2; shift; fi
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+regs() {
+	read -r w a s2 s < "$F/state"
+	cg=0x00000020
+	if [ "$w" = idle ]; then w=0; a=0; s2=0x400; s=0x20000000; else cg=0x000ccff8; fi
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0008 %s\nreg 0x0114 skip\nreg 0x0118 0x%08x\nreg 0x012c 0x%08x\n' "$cg" $((s2)) $((s))
+	printf 'reg 0x0694 skip\nreg 0x0c00 0x00000000\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\n' $(( w | 0x80000 )) $((a))
+}
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }
+		if [ "$(cat "$F/hold" 2>/dev/null)" = Y ]; then
+			want=$(grep -o 'resgx545 case [^ ]*' "${KMSG:-/dev/null}" | tail -n 1 | cut -d' ' -f3)
+			for _ in $(seq 1 1200); do
+				[ "$(cat "$F/answered" 2>/dev/null)" = "$want" ] && break
+				sleep 0.1
+			done
+		fi
+		regs; exit 0 ;;
+	"$DB/hold_recovery") cat "$F/hold"; exit 0 ;;
+	"$DB/peek") [ -e "$R/peek" ] || { echo "cat: peek: No such file" >&2; exit 1; }; echo "${FAKE_PEEK:-reg 0x0694 0x00000000}"; exit 0 ;;
+	"$DB/alias_skip"|"$DB/render_pb_pages"|"$DB/render_rgn_arrays"|"$DB/render_tail_room") printf '0x%08x\n' $(( $(cat "$R/${2##*/}") )); exit 0 ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/render_rgn_arrays")
+		read -r v
+		echo "rgn $v" >> "$F/writes"
+		[ -n "${FAKE_RGN_STUCK:-}" ] && exit 0
+		[ -n "${FAKE_RGN_STUCK_AT0:-}" ] && [ "$v" = 0 ] && exit 0
+		case "$v" in 1|2|4) ;; *) v=0 ;; esac
+		echo "$v" > "$R/render_rgn_arrays"; exit 0 ;;
+	"$DB/hold_recovery")
+		read -r v
+		echo "hold $v" >> "$F/writes"
+		[ "$v" = Y ] && [ -n "${FAKE_HOLD_NOY:-}" ] && exit 0
+		case "$v" in Y|N) ;; *) v=N ;; esac
+		echo "$v" > "$F/hold"; exit 0 ;;
+	"$DB/bif_flush")
+		read -r v
+		echo "bif_flush $v" >> "$F/writes"
+		read -r w a s2 s < "$F/state"
+		world=${FAKE_WORLD:-model}
+		if [ "$world" = gatebad ] || { [ "$world" != flushrefused ] && [ "$(cat "$F/hold")" = Y ] && [ "$w" != idle ]; }; then
+			[ "$w" = idle ] && { w=0; a=0; }
+			printf 'gma500 0000:00:02.0: [drm] sgxfive: bif_flush: BIF_CTRL 0x00000000 -> 0x00000000, BIF_INT_STAT 0x%08x BIF_FAULT 0x%08x MEM_REQ_STAT 0x00000000\n' $(( w | 0x80000 )) $((a)) >> "$KMSG"
+			[ "$world" = flushclears ] && rm -f "$F/pending"
+			exit 0
+		fi
+		echo "tee: $2: Device or resource busy" >&2; exit 1 ;;
+	"$DB/reset")
+		cat > /dev/null
+		echo "reset 1" >> "$F/writes"
+		echo "x" >> "$F/reset-tries"
+		if [ -n "${FAKE_RESET_FAIL_FROM:-}" ] && [ "$(grep -c . "$F/reset-tries")" -ge "$FAKE_RESET_FAIL_FROM" ]; then
+			echo "tee: reset: Connection timed out" >&2; exit 1
+		fi
+		read -r w a s2 s < "$F/state"; [ "$w" = idle ] && s2=0x400
+		echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 BIF_INT_STAT 0x80000 EVENT_STATUS 0x20000000/$s2" >> "$KMSG"
+		echo "gma500 0000:00:02.0: [drm] SGX reset: after the fault clear BIF_FAULT 0x0 BIF_INT_STAT 0x80000" >> "$KMSG"
+		if [ "$w" != idle ] && [ "${FAKE_WORLD:-model}" = m110 ]; then
+			echo "gma500 0000:00:02.0: [drm] *ERROR* SGX boot: no INIT_COMPLETE after 500 ms" >> "$KMSG"
+			echo "gma500 0000:00:02.0: [drm] *ERROR* SGX recovery failed: -110" >> "$KMSG"
+			echo "gma500 0000:00:02.0: [drm] SGX boot: EDM up after 160 us" >> "$KMSG"
+		fi
+		echo "x" >> "$F/resets"
+		echo 1 > "$F/list"
+		[ -n "${FAKE_STUCK:-}" ] || echo idle > "$F/state"
+		exit 0 ;;
+	"$DB/"*) echo "${2##*/} ?" >> "$F/writes"; echo "${2##*/}" >> "$F/other-writes"; cat > /dev/null; exit 0 ;;
+	esac
+fi
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"

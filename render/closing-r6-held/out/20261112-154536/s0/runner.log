@@ -1,0 +1,59 @@
+## stage s0
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+41E2F5C756F96D20F7109A4
+## loaded module
+41E2F5C756F96D20F7109A4
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## peek
+reg 0x0694 0x00000000
+## tool
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (must be the defaults of fork r6-kernel: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+## free space on ~: 127333164 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r6h.GgugUr
+## clock
+Thu Nov 12 15:45:38 CET 2026
+## r6-held safety rules: see the header of lib_h.sh
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 1b275ddd8b357b3ae07850006fc38c9a2c89681c2b668fe1c7a2eb61b51d85b8
+  kept begin.health1.txt: 311 bytes raw, raw sha256 bcfd3ae3adf069818594c2cc2cdc6a0a32ad152fffc887439543515e3c5c82f7
+== n0-gate set=control risk=safe mode=gate knobs=[gate]
+  free on ~: 127333152 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000
+  peek 0: reg 0x0694 0x00000000
+  gate: bif_flush 1 with nothing held (the fork: -EBUSY)
+  snap 1: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000
+  peek 1: reg 0x0694 0x00000000
+  rc 1 rc 1 
+  kept n0-gate.txt: 73 bytes raw, raw sha256 797a786b99ae1a4072425b54e992330f0e3c7d8dd578fe2b2b2d0c2f2cd358c1
+  kept n0-gate.dmesg: 114 bytes raw, raw sha256 8b176895720221a1c13790ea58a2f6558565b9aa06d81ce7cac1427eb7f137fa
+  kept n0-gate.snap0.regs: 6474 bytes raw, raw sha256 7df0f0b4b1853ef4f040430e458d8d47f511fc2cd06a2da036f2900c7d6bf944
+  kept n0-gate.snap1.regs: 6474 bytes raw, raw sha256 396a1f44f2800387ea306822c4b10415ac8dd312267f600ea3eb8525122c9de3
+  kept n0-gate.peek0.txt: 22 bytes raw, raw sha256 99166e0d15dccadb05ea859d55ee2368958dffbeb3ddba52fb31f733b2ee85e8
+  kept n0-gate.peek1.txt: 22 bytes raw, raw sha256 99166e0d15dccadb05ea859d55ee2368958dffbeb3ddba52fb31f733b2ee85e8
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  -110 in this row: 0
+== c1-tri set=control risk=safe mode=plain knobs=[expectdiff]
+  free on ~: 127333128 KiB
+  snap 0: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000
+  peek 0: reg 0x0694 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going
+  snap 9: clock-status 0x00000020 status 0x20000000 status2 0x00000400 bif_ctrl 0x00000000 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 tri: render context for targets up to 64x64 job: ok tri: 1 renders ok 
+  kept c1-tri.txt: 311 bytes raw, raw sha256 771cc079820962d374a5acb361cac4170d52cbe24332bfd4c0df23e391d29bd6
+  kept c1-tri.dmesg: 113 bytes raw, raw sha256 e135b7cec5156e6762c4db0d01cbd435f9919ff1d1292b86a3337b417967e5b7
+  kept c1-tri.snap0.regs: 6474 bytes raw, raw sha256 ec9e81dcac87506d9adf5f78d6fcdf0f56bdcd9b3aa16048b653e7e042e3e3ff
+  kept c1-tri.snap9.regs: 6474 bytes raw, raw sha256 94462bc5fdcf4c256b5df056165ff97b3176ad9408eaa35b5df6f00cf341207e
+  kept c1-tri.peek0.txt: 22 bytes raw, raw sha256 99166e0d15dccadb05ea859d55ee2368958dffbeb3ddba52fb31f733b2ee85e8
+  class ok (fault bits 15:0 at snap 1: -, hold message: no)
+  -110 in this row: 0
+  kept end.fill2.txt: 174 bytes raw, raw sha256 8564caa784ec784915294ff5049fd6bb13002040ba419ec13d6d6d3da3162d19
+  kept end.health2.txt: 311 bytes raw, raw sha256 75e555f33e4f8a5464b30578e7044a7a43cc4691f86d9db971dcfd08c3f4cc67
+## end: 2 rows of s0
+## exit: hold_recovery=N render_rgn_arrays=0x00000000 render_pb_pages=0x00000422 render_tail_room=0x00000000
+## kernel log (journalctl)
+## kernel log: 2 case markers kept in /home/jtorra/scratch/r6h/out/20261112-154536/s0/kernel.log
