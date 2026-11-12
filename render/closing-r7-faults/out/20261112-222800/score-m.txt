@@ -1,0 +1,50 @@
+m0a-none: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|TU|; steps: t1 fault 0x20006061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8,0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  boot_held      M-CTL     control   held        got timeout      frozen timeout      E901: 0x20006 10 of 11; 6 of 6 held resets of r6-held and E8
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+m1a-clr: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|TU|; steps: t1 fault 0x20006061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8,0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  clr_hidden     M-CLR     control   held        got yes          frozen yes          E826 f2: with the bit set the kernel read 0 and 0
+  clr_back       M-CLR     control   held        got yes          frozen yes          E826: clearing it returned the fault's words (4 of 4)
+  boot_held      H-CLR     heldout   FAILED      got timeout      frozen up           [infer] E826 f2 (cleared, up) vs E789 a6 (timed out)
+  boot_held      H-NULL    heldout   held        got timeout      frozen timeout      E901 R-PAGE: page 0x20006 times out
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+m2a-long: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|TU|; steps: t1 fault 0x20006061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8,0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  boot_held      H-TIME    heldout   FAILED      got timeout      frozen up           [infer] E826 f2 held 9.1 s, up
+  boot_held      H-NULL    heldout   held        got timeout      frozen timeout      E901 R-PAGE: page 0x20006 times out
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+m2b-long: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|U|TU|; steps: t1 fault 0x20006061, t2 fault 0x20006061, t3 ok; replays 2; timed-out dumps' CLKGATESTATUS 0x000ccff8,0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  boot_held      H-TIME    heldout   FAILED      got timeout      frozen up           [infer] E826 f2 held 9.1 s, up
+  boot_held      H-NULL    heldout   held        got timeout      frozen timeout      E901 R-PAGE: page 0x20006 times out
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+m1b-clr: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) U|; steps: t1 ok; replays 0; timed-out dumps' CLKGATESTATUS -
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  clr_hidden     M-CLR     control   held        got yes          frozen yes          E826 f2: with the bit set the kernel read 0 and 0
+  clr_back       M-CLR     control   held        got yes          frozen yes          E826: clearing it returned the fault's words (4 of 4)
+  boot_held      H-CLR     heldout   held        got up           frozen up           [infer] E826 f2 (cleared, up) vs E789 a6 (timed out)
+  boot_held      H-NULL    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: page 0x20006 times out
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+m0b-none: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|U|; steps: t1 fault 0x20006061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  boot_held      M-CTL     control   held        got timeout      frozen timeout      E901: 0x20006 10 of 11; 6 of 6 held resets of r6-held and E8
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+SUMMARY: m: H-CLR REFUTED (1 held, 1 FAILED, 0 cannot tell of 2); H-TIME REFUTED (0 held, 2 FAILED, 0 cannot tell of 2); H-NULL REFUTED (3 held, 1 FAILED, 0 cannot tell of 4)
+SUMMARY: Q003 clear (m): H-CLR: CLEAR_FAULT set and cleared while held makes the boot come up is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: Q003 time (m): H-TIME: a 9 s hold makes the boot come up is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: Q003 null (m): H-NULL: the boot times out as without the manipulation is not supported: 3 held, 1 FAILED, 0 cannot tell of 4
+SUMMARY: m: timed-out boots after the held resets 5 (explore; every boot of the rows: the ledger)
+SUMMARY: m controls: 35 PASS, 0 FAIL, 0 NODATA

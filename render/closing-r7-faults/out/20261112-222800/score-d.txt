@@ -1,0 +1,57 @@
+d0-640x480: job fault 0x00090004 0x2000a061; dpm pages at the hold 0x6; boots (held reset | steps) U|U|; steps: t1 fault 0x2000a061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS -
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x2000a061   frozen 0x2000a061   E848 h2 page 0x2000a; list 1 after the job's own reset
+  boot_held      D-CTL     control   held        got up           frozen up           E901: 0x2000a 0 of 15, 0x20006 10 of 11 (both rules agree)
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d1-288x144: job fault 0x00090004 0x20006061; dpm pages at the hold 0xb; boots (held reset | steps) TU|TU|; steps: t1 fault 0x20006061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8,0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E848 h1/h4 page 0x20006; list 1 after the job's own reset
+  boot_held      D-CTL     control   held        got timeout      frozen timeout      E901: 0x2000a 0 of 15, 0x20006 10 of 11 (both rules agree)
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d2-320x400: job fault 0x00090004 0x20008061; dpm pages at the hold 0x13; boots (held reset | steps) U|U|; steps: t1 fault 0x20008061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS -
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20008061   frozen 0x20008061   E789 a6 page 0x20008; list 1 after the job's own reset
+  boot_held      H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: 0x20006 to 0x20008 time out
+  boot_held      H-SIZE    heldout   held        got up           frozen up           E892: the timeouts followed the 288 x 144 cells
+  boot_replay1   H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: every first boot after such a fault
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d3-256x288: job fault 0x00090004 0x20006061; dpm pages at the hold 0x13; boots (held reset | steps) U|U|TU|; steps: t1 fault 0x20006061, t2 fault 0x20006061, t3 ok; replays 2; timed-out dumps' CLKGATESTATUS 0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20006061   frozen 0x20006061   E729 page 0x20006; list 1 after the job's own reset
+  boot_held      H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: 0x20006 to 0x20008 time out
+  boot_held      H-SIZE    heldout   held        got up           frozen up           E892: the timeouts followed the 288 x 144 cells
+  boot_replay1   H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: every first boot after such a fault
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d4-128x528: job fault 0x00090004 0x20009061; dpm pages at the hold 0x12; boots (held reset | steps) TU|U|U|; steps: t1 fault 0x20009061, t2 fault 0x20009061, t3 ok; replays 2; timed-out dumps' CLKGATESTATUS 0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20009061   frozen 0x20009061   [infer] the fork's layout page 0x20009; list 1 after the job
+  boot_held      H-PAGE    heldout   FAILED      got timeout      frozen up           E901 R-PAGE: 0x20006 to 0x20008 time out
+  boot_held      H-SIZE    heldout   FAILED      got timeout      frozen up           E892: the timeouts followed the 288 x 144 cells
+  boot_replay1   H-PAGE    heldout   held        got up           frozen up           E901 R-PAGE: every first boot after such a fault
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d5-384x384: job fault 0x00090004 0x20008061; dpm pages at the hold 0x1f; boots (held reset | steps) U|U|U|; steps: t1 fault 0x20008061, t2 fault 0x20008061, t3 ok; replays 2; timed-out dumps' CLKGATESTATUS -
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20008061   frozen 0x20008061   E729 page 0x20008; list 1 after the job's own reset
+  boot_held      H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: 0x20006 to 0x20008 time out
+  boot_held      H-SIZE    heldout   held        got up           frozen up           E892: the timeouts followed the 288 x 144 cells
+  boot_replay1   H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: every first boot after such a fault
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+d6-320x400: job fault 0x00090004 0x20008061; dpm pages at the hold 0x13; boots (held reset | steps) U|TU|; steps: t1 fault 0x20008061, t2 ok; replays 1; timed-out dumps' CLKGATESTATUS 0x000ccff8
+  job_class      H-JOB     control   held        got fault        frozen fault        E848: the held 4x job faults (rgn:1, E828)
+  job_int        H-JOB     control   held        got 0x00090004   frozen 0x00090004   E789, E848: a TA write fault
+  job_word       H-JOB     control   held        got 0x20008061   frozen 0x20008061   E789 a6 page 0x20008; list 1 after the job's own reset
+  boot_held      H-PAGE    heldout   FAILED      got up           frozen timeout      E901 R-PAGE: 0x20006 to 0x20008 time out
+  boot_held      H-SIZE    heldout   held        got up           frozen up           E892: the timeouts followed the 288 x 144 cells
+  boot_replay1   H-PAGE    heldout   held        got timeout      frozen timeout      E901 R-PAGE: every first boot after such a fault
+  passes_within  H-END     control   held        got 3            frozen 3            E848, E891: a draw within three triangles
+SUMMARY: d: H-PAGE REFUTED (2 held, 8 FAILED, 0 cannot tell of 10); H-SIZE REFUTED (4 held, 1 FAILED, 0 cannot tell of 5)
+SUMMARY: Q003 page (d): H-PAGE: the boot after a held 0x90004 fault times out iff the page is 0x20006 to 0x20008 is not supported: 2 held, 8 FAILED, 0 cannot tell of 10
+SUMMARY: Q003 page (d): H-SIZE: it times out iff the size is 288 x 144 is not supported: 4 held, 1 FAILED, 0 cannot tell of 5
+SUMMARY: d: timed-out boots after the held resets 2 (explore; every boot of the rows: the ledger)
+SUMMARY: d controls: 35 PASS, 0 FAIL, 0 NODATA

@@ -1,0 +1,80 @@
+#!/bin/bash
+# fake sudo for tests/run_mock.sh (from r6-held's, for r7-faults' files).  The mock debugfs directory $SGXFIVE_DEBUGFS is mode 000:
+# only through this shim (as on the laptop, where debugfs is root only) does a path in it reach the real files in $FAKE_DBGREAL.  A
+# `regs` read while hold_recovery is Y WAITS (bounded, 120 s) until the fake tool has answered the latest case marker
+# ($FAKE_DIR/answered holds that marker's name): the held flow's snap 1 never depends on how fast the fake starts.  The fake GPU
+# state is in $FAKE_DIR (tests/worlds.py's docstring).  Every debugfs write is logged in $FAKE_DIR/writes ("NAME VALUE").
+#   reset           tests/worlds.py reset: the kernel's reset lines and boots (a held fault: as the world says); the write's status
+#   kregnow         tests/worlds.py kregnow VALUE: CR_BIF_CTRL bit 4 flipped, the kernel's line (world kregrefuse: refused)
+#   peek, kregnow   read: "reg 0x0694 0x00000000" (FAKE_PEEK overrides); the kregnow rows
+# Knobs: FAKE_STUCK (a reset leaves the fault latched), FAKE_SNAP_FAIL (regs unreadable), FAKE_RGN_STUCK, FAKE_HOLD_NOY,
+# FAKE_RESET_FAIL_FROM (the Nth reset and later fail with no boot).
+[ "$1" = "-n" ] && shift
+DB=${SGXFIVE_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+if [ "$1" = timeout ]; then shift; [ "$1" = "-k" ] && shift 2; shift; fi
+case "$1" in dmesg) cat "${KMSG:-/dev/null}"; exit 0 ;; journalctl) exit 1 ;; esac
+regs() {
+	read -r w a s2 s < "$F/state"
+	cg=0x00000020; dpm=0x00000000
+	if [ "$w" = idle ]; then w=0; a=0; s2=0x400; s=0x20000000; else cg=0x000ccff8; dpm=0x000b000b; fi
+	bc=$(cat "$F/bifctrl" 2>/dev/null || echo 0)
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0008 %s\nreg 0x0114 skip\nreg 0x0118 0x%08x\nreg 0x012c 0x%08x\n' "$cg" $((s2)) $((s))
+	printf 'reg 0x0694 skip\nreg 0x0700 0x0422000b\nreg 0x0724 %s\nreg 0x0c00 0x%08x\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\n' "$dpm" $((bc)) $(( w | 0x80000 )) $((a))
+}
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }
+		if [ "$(cat "$F/hold" 2>/dev/null)" = Y ]; then
+			want=$(grep -o 'resgx545 case [^ ]*' "${KMSG:-/dev/null}" | tail -n 1 | cut -d' ' -f3)
+			for _ in $(seq 1 1200); do
+				[ "$(cat "$F/answered" 2>/dev/null)" = "$want" ] && break
+				sleep 0.1
+			done
+		fi
+		regs; exit 0 ;;
+	"$DB/hold_recovery") cat "$F/hold"; exit 0 ;;
+	"$DB/peek") [ -e "$R/peek" ] || { echo "cat: peek: No such file" >&2; exit 1; }; echo "${FAKE_PEEK:-reg 0x0694 0x00000000}"; exit 0 ;;
+	"$DB/kregnow") [ -e "$R/kregnow" ] || { echo "cat: kregnow: No such file" >&2; exit 1; }
+		printf '0x0c00 0x%08x\n0x0c04 0x00080000\nhost_irqs 0 extra 0 last 0x00000000 0x00000000 armed 0 saved 0x00000000 0x00000000\n' $(( $(cat "$F/bifctrl" 2>/dev/null || echo 0) )); exit 0 ;;
+	"$DB/alias_skip"|"$DB/render_pb_pages"|"$DB/render_rgn_arrays"|"$DB/render_tail_room") printf '0x%08x\n' $(( $(cat "$R/${2##*/}") )); exit 0 ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/render_rgn_arrays")
+		read -r v
+		echo "rgn $v" >> "$F/writes"
+		[ -n "${FAKE_RGN_STUCK:-}" ] && exit 0
+		case "$v" in 1|2|4) ;; *) v=0 ;; esac
+		echo "$v" > "$R/render_rgn_arrays"; exit 0 ;;
+	"$DB/hold_recovery")
+		read -r v
+		echo "hold $v" >> "$F/writes"
+		[ "$v" = Y ] && [ -n "${FAKE_HOLD_NOY:-}" ] && exit 0
+		case "$v" in Y|N) ;; *) v=N ;; esac
+		echo "$v" > "$F/hold"; exit 0 ;;
+	"$DB/kregnow")
+		read -r v
+		echo "kregnow $v" >> "$F/writes"
+		exec "${FAKE_PY:?}" -B "${FAKE_P:?}/worlds.py" kregnow "$v" ;;
+	"$DB/reset")
+		cat > /dev/null
+		echo "reset 1" >> "$F/writes"
+		echo "x" >> "$F/reset-tries"
+		if [ -n "${FAKE_RESET_FAIL_FROM:-}" ] && [ "$(grep -c . "$F/reset-tries")" -ge "$FAKE_RESET_FAIL_FROM" ]; then
+			echo "tee: reset: Connection timed out" >&2; exit 1
+		fi
+		echo "x" >> "$F/resets"
+		if [ -n "${FAKE_STUCK:-}" ]; then
+			echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 BIF_INT_STAT 0x80000 EVENT_STATUS 0x20000000/0x480" >> "$KMSG"
+			exit 0
+		fi
+		"${FAKE_PY:?}" -B "${FAKE_P:?}/worlds.py" reset; r=$?
+		[ $r = 0 ] || echo "tee: reset: Connection timed out" >&2
+		exit $r ;;
+	"$DB/"*) echo "${2##*/} ?" >> "$F/writes"; echo "${2##*/}" >> "$F/other-writes"; cat > /dev/null; exit 0 ;;
+	esac
+fi
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"
