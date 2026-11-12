@@ -1,0 +1,8 @@
+#!/bin/sh
+# fake df -Pk PATH for tests/run_mock.sh: the free KiB on ~ is FAKE_DF_KB (default 5000000); FAKE_DF_FROM=N: from the Nth call on
+# the free space is FAKE_DF_LOW_KB (default 1000), so a test can run out of space part way through a stage
+n=$(( $(cat "${FAKE_DIR:?}/df-calls" 2>/dev/null || echo 0) + 1 )); echo "$n" > "$FAKE_DIR/df-calls"
+kb=${FAKE_DF_KB:-5000000}
+[ -n "${FAKE_DF_FROM:-}" ] && [ "$n" -ge "$FAKE_DF_FROM" ] && kb=${FAKE_DF_LOW_KB:-1000}
+echo "Filesystem 1024-blocks Used Available Capacity Mounted on"
+echo "/dev/sda2 30000000 1000 $kb 1% /"

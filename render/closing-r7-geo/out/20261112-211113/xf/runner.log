@@ -1,0 +1,139 @@
+## stage xf
+## uname
+7.3.0-resgx545
+## firmware
+6a00268e9d4ca552c02e52651a42a2b4db3887d7fe626f209888369985162b0a  /lib/firmware/sgx545_ukernel.fw
+## installed module
+41E2F5C756F96D20F7109A4
+## loaded module
+41E2F5C756F96D20F7109A4
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tools
+e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## python3: Python 3.11.8
+## knobs at start (read only; must be the defaults of fork 3f0b3e74: nothing of an earlier session left)
+hold_recovery=N render_pb_pages=0x00000422 alias_skip=0x00000000 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+## free space on ~: 127308052 KiB (at least 204800 before each job)
+## work directory /home/jtorra/scratch/tmp/r7g.sCVycR
+## clock
+Thu Nov 12 21:11:19 CET 2026
+  kept begin.fill1.txt: 174 bytes raw, raw sha256 55cf4de4c672717765f755eef21686358fcc8a74d491446190d90d5563d6db6c
+  kept begin.health1.txt: 311 bytes raw, raw sha256 5f68774f6ac06bcd43068a18dc37d0491733673f40f75be887569eaec0bf28f1
+== xf-ctl-128x64-x10 set=control risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x10
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 521 us target: 128x64 hash 0xa817f56116104325 diff: 4096 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-ctl-128x64-x10.txt: 230 bytes raw, raw sha256 5864b3cc2a7f9beb391253402c797fb9f8cf33d37697e777a3ba7a2aae6fe031
+  kept xf-ctl-128x64-x10.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-ctl-128x64-x10.dmesg: 113 bytes raw, raw sha256 86a9892b506d740add3ea0d0f9d18ec80fb1bd1c63b50772398dae35952e40f9
+  kept xf-ctl-128x64-x10.snap0.regs: 6474 bytes raw, raw sha256 10595abc022dfcda5168da1a97ebe8ef17d28cf45f468a8808ed90c96cf32003
+  kept xf-ctl-128x64-x10.snap9.regs: 6474 bytes raw, raw sha256 695f54783b2931d5dbd124ca08bf8699f0ce51e35da14ebf0bc56378b69d486e
+  class ok
+  premise xf-ctl-128x64-x10 [hash]: hash=0xa817f56116104325
+== xf-base-128x64 set=control risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 0 job: ok job time: 419 us target: 128x64 hash 0xf7befd67a3c8e325 diff: 0 of 8192 pixels 
+  kept xf-base-128x64.txt: 176 bytes raw, raw sha256 624d58b581c519cbe41a64b9b3a24afafc45477a5e6931a0f63ce8c004c6d09c
+  kept xf-base-128x64.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-base-128x64.dmesg: 110 bytes raw, raw sha256 79e9e02a59ca6ff2cdb6687ae21df3f2666fcbfb044623baa95886997964bd5e
+  kept xf-base-128x64.snap0.regs: 6474 bytes raw, raw sha256 46ed5b57c1e98274861191cdc1bcf17f986485f4b712fe0cd0dc895061c0c703
+  kept xf-base-128x64.snap9.regs: 6474 bytes raw, raw sha256 f71839584821b37caf5b8af90d2fe9701b1dad59bcd5561bb2c842c45c4b39de
+  class ok
+  premise xf-base-128x64 [hash]: hash=0xf7befd67a3c8e325
+== xf-128x64-x10-y2000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x2010
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 418 us target: 128x64 hash 0x93da8f7201d3f325 diff: 6144 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x10-y2000.txt: 230 bytes raw, raw sha256 e159d0e5c9547422d291900b8448b7730e7a46d44bfc886661def65dfdec6014
+  kept xf-128x64-x10-y2000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x10-y2000.dmesg: 115 bytes raw, raw sha256 e27aaeff0907c8117f78c12714ed6e3217a10d9dbbf0d90d5304564c0f89250c
+  kept xf-128x64-x10-y2000.snap0.regs: 6474 bytes raw, raw sha256 12c8fb54024510321393c8a0c680185231fdb546e7b08eb425151c25993c26e2
+  kept xf-128x64-x10-y2000.snap9.regs: 6474 bytes raw, raw sha256 8b2cf658029d26a0ffcda8f70303c7ba7505933a54b18aea54e6e86d02d66a82
+  class ok
+== xf-128x64-x18-y3000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x3018
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 522 us target: 128x64 hash 0x93da8f7201d3f325 diff: 6144 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x18-y3000.txt: 230 bytes raw, raw sha256 2e4b0f3d9748b9e97e90512049b7aca17da8807064acf55d5907bdff09dd9db9
+  kept xf-128x64-x18-y3000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x18-y3000.dmesg: 115 bytes raw, raw sha256 89c074e165a6ee3160814f9c0505120addcfc3935405d8c96da4ffbb6b520fee
+  kept xf-128x64-x18-y3000.snap0.regs: 6474 bytes raw, raw sha256 3a8c3053b9bad152baf2195e35a9d00dd8510b3025e022a09897502620d851d9
+  kept xf-128x64-x18-y3000.snap9.regs: 6474 bytes raw, raw sha256 614d9c73b506d5d32deffc9360ae4b92e427b472c1783828c0e45025ce2b4dd6
+  class ok
+== xf-128x64-x10-y4000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x4010
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 586 us target: 128x64 hash 0x66c7472dedd3f325 diff: 6144 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x10-y4000.txt: 230 bytes raw, raw sha256 0328b5532db35338b2bb205d7eed4b35819eaa288e5ed541c94dbce9a11e599d
+  kept xf-128x64-x10-y4000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x10-y4000.dmesg: 115 bytes raw, raw sha256 170913ca61d10c9b6c5d90f100708e2aeeda1087dc74a37c0d9f6a2141cbd9e4
+  kept xf-128x64-x10-y4000.snap0.regs: 6474 bytes raw, raw sha256 8bd8be223aedf901cca2a132663078f84eff719cd99d82f7ab451ba7fa3b494d
+  kept xf-128x64-x10-y4000.snap9.regs: 6474 bytes raw, raw sha256 81a10cdd44fd57864c0393c008f9cf99f3e504cabfbe374951a21dfd8703560c
+  class ok
+== xf-128x64-x20-y2000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x2020
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 491 us target: 128x64 hash 0x4922c1e46003f325 diff: 6144 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x20-y2000.txt: 230 bytes raw, raw sha256 9fefcdfe8514d8cc17c05e1df9dd589e9e641171daef529c763c67236c60aae4
+  kept xf-128x64-x20-y2000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x20-y2000.dmesg: 115 bytes raw, raw sha256 32c322370d0db675a747939b3c37988f59236f5c5e9abff77577dcc53f337624
+  kept xf-128x64-x20-y2000.snap0.regs: 6474 bytes raw, raw sha256 9675142aeb2ea3c75b19771272c1925c84de52b0d02475c5718b9dd992fbff75
+  kept xf-128x64-x20-y2000.snap9.regs: 6474 bytes raw, raw sha256 364887637ebc8cf86892b423a6bfd2dc99a72faea2fbaf9d90007ec6411dcab3
+  class ok
+== xf-128x64-x28-y6000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x6028
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 413 us target: 128x64 hash 0x5544b027a6cdcb25 diff: 7168 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x28-y6000.txt: 230 bytes raw, raw sha256 4f25eea917c45133ce662eac2c34a41c85cc9ae7515f3de48551a5383c7300ca
+  kept xf-128x64-x28-y6000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x28-y6000.dmesg: 115 bytes raw, raw sha256 a45c7d45c0ca6f6a6967a577cc05e2c8e26e441c99b46b920dac8710f1928e9e
+  kept xf-128x64-x28-y6000.snap0.regs: 6474 bytes raw, raw sha256 6da6fed2357dffc1d9e015a3b71cbb8d60be818ab61206440c161ef7891535cc
+  kept xf-128x64-x28-y6000.snap9.regs: 6474 bytes raw, raw sha256 2a05e3941ec828c2c67fcf6abf7aa76ebcd24658ccfaee4acae182ca5f5f7bb5
+  class ok
+== xf-128x64-x30-y4000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x4030
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 400 us target: 128x64 hash 0xdb6ffcfa5fe5cb25 diff: 7168 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x30-y4000.txt: 230 bytes raw, raw sha256 059c5ec3f581a26faf9d28b65dd138bbe527df658f26de00ae90387a2411f716
+  kept xf-128x64-x30-y4000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x30-y4000.dmesg: 115 bytes raw, raw sha256 61bd79ecda7d92d569d098680a31b984a1e205dbe9d61c799c8bc5e64db25264
+  kept xf-128x64-x30-y4000.snap0.regs: 6474 bytes raw, raw sha256 78024e656beefc6516430be406e5f5ac85e00757ff60fb027fa2fbf923c0d053
+  kept xf-128x64-x30-y4000.snap9.regs: 6474 bytes raw, raw sha256 9f4127fa44a0f6efa90431e6d4a37d5216bf841897a49243cf9ac81e5e83057d
+  class ok
+== xf-128x64-x38-y2000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x2038
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 394 us target: 128x64 hash 0x873c0ba869e5cb25 diff: 7168 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x38-y2000.txt: 230 bytes raw, raw sha256 00ab087b9c6a4d92d16e643fb9606be4090082426339233264ff352a9a56ed3d
+  kept xf-128x64-x38-y2000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x38-y2000.dmesg: 115 bytes raw, raw sha256 7175d0f79a4da7e8946484bdf124a75d05c8d0ef03ab83f608b3035c0f9d4798
+  kept xf-128x64-x38-y2000.snap0.regs: 6474 bytes raw, raw sha256 b9a38e6a51dbbd210f9590ad3576108f6ffbfb6d8299b27c341f34e869fde7ae
+  kept xf-128x64-x38-y2000.snap9.regs: 6474 bytes raw, raw sha256 0f289319b467fb321d7b389da10abe2a7c5dd637132d686cd43169e7690d4cc7
+  class ok
+== xf-128x64-x20-y6000 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  snap 0: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  cmd: /home/jtorra/sgxfive-test-rgn4 fill --width 128 --height 64 --stride 512 --poke pds:pixev:12^=0x6020
+  snap 9: status 0x20000000 status2 0x00000400 bif_int 0x00080000 bif_fault 0x00000000
+  rc 1 job: ok job time: 521 us target: 128x64 hash 0x5544b027a6cdcb25 diff: 7168 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff336699 
+  kept xf-128x64-x20-y6000.txt: 230 bytes raw, raw sha256 6960b847e43d90bcb98d28a89841de5076e16394eac28a7f1d870def897e3e73
+  kept xf-128x64-x20-y6000.err: 0 bytes raw, raw sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  kept xf-128x64-x20-y6000.dmesg: 115 bytes raw, raw sha256 61f676d592f5ecf335a462ec7792bec6f91541eed475b90d4fdced7d0c238127
+  kept xf-128x64-x20-y6000.snap0.regs: 6474 bytes raw, raw sha256 e1f487dc296b5ec5c9823a09827a5f1305b101b91cc0beefd92948498c017973
+  kept xf-128x64-x20-y6000.snap9.regs: 6474 bytes raw, raw sha256 da3fd0799d3a23e0e679b98f0cfae13708d3ca73f1675c8f4834c54d0d2f5b89
+  class ok
+  kept end.fill2.txt: 174 bytes raw, raw sha256 937e265a58196c906768d16b55acf121c1fda35b88c004307f89b4461cd5cdb0
+  kept end.health2.txt: 311 bytes raw, raw sha256 e1818ef00b7f291b5c3c00e907c26b7762e663a3b862d4e9b83d844bd735f61d
+## end: 10 jobs of xf
+## exit: hold_recovery=N render_pb_pages=0x00000422 render_rgn_arrays=0x00000000 render_tail_room=0x00000000
+## kernel log (journalctl)
+## kernel log: 10 case markers kept in /home/jtorra/scratch/r7g/out/20261112-211113/xf/kernel.log

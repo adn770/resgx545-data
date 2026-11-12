@@ -1,0 +1,27 @@
+#stage tx
+#limit 1
+# Q283 (E725) and Q178 (E567, E894; R7-4): E725's map-texture fill (64 x 32, texel (x mod w, y mod h), dword i of the
+# texture 0xD0000000 | i) for types 1, 3, 4 at 4 x 16, 64 x 8, 128 x 8 and type 4 at 64 x 32, 128 x 32 (held out: RASTERW
+# for 1 and 3; S32 against SMAXW, S2WCAP, RASTERW, RASTER2W for 4), and type 5 at 8, 32, 64 (H-STEP against H-FIX16) with
+# two memory controls at 16 x 16 (the program zeroes / sets the texture's first 112 dwords before its sample; H-STEP: the
+# image does not change).  Controls that can fail: E725's ty3-32x16 program byte for byte (its kept image) and type 5 at
+# 16 x 16 (E894's image).  after: the health fill and triangle after every job (as E567's types-risky); no fault expected
+# (E725's 12 and E567's 15 risky jobs ran clean): any fault, hang or failure stops the stage (rc 4).
+tx-ctl-ty3-32x16|control|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty3-32x16.bin"
+tx-ty1-4x16|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty1-4x16.bin"
+tx-ty1-64x8|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty1-64x8.bin"
+tx-ty1-128x8|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty1-128x8.bin"
+tx-ty3-4x16|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty3-4x16.bin"
+tx-ty3-64x8|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty3-64x8.bin"
+tx-ty3-128x8|heldout|safe|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty3-128x8.bin"
+tx-ty4-4x16|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty4-4x16.bin"
+tx-ty4-64x8|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty4-64x8.bin"
+tx-ty4-128x8|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty4-128x8.bin"
+tx-ty4-64x32|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty4-64x32.bin"
+tx-ty4-128x32|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty4-128x32.bin"
+tx-ty5-16x16|control|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-16x16.bin"
+tx-ty5-8x8|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-8x8.bin"
+tx-ty5-32x32|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-32x32.bin"
+tx-ty5-64x64|heldout|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-64x64.bin"
+tx-ty5-16x16-zero|memory|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-16x16-zero.bin"
+tx-ty5-16x16-ones|memory|risky|after|t4|probe --temps 32 --coords --pixels "$S/r7g-ty5-16x16-ones.bin"
