@@ -1,0 +1,20 @@
+#stage addr4
+#limit 0
+# r13-tex addr4, Q177 (rank-round13.md section 2): T0 u address modes on twiddled textures at page 12 of a 32-page named
+# scratch (T2 0x5CAFC000). Swept u (r10-tex's form) at 32 x 64, 8 x 64 and 128 x 32 in modes 4 and 6, 32 x 64 in mode 7
+# and a 16-bit (u16) 32 x 64 in mode 4: H-MAX 8 max(W, H) + 52 against H-W and H-H (texels and dwords on the 16-bit
+# row). u and v in mode 5 swept past both ends at 64 x 16 and 16 x 64: per region IN / LR / AB with M, W or H, and the
+# corner bases CO-WH2 / CO-12M4 / CO-12W4 (gen/addr.py). Controls that can fail: E1000's 16 x 64 mode 4 and E565's
+# bd-uv5 16 x 16 rerun (their kept images). Stop: any fault or hang; the second row without its pixel rows.
+addr4-ctl|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-ctl.bin"
+addr4-bduv5|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/addr4-bduv5.bin"
+addr4-32x64-u4|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-32x64-u4.bin"
+addr4-32x64-u6|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-32x64-u6.bin"
+addr4-8x64-u4|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-8x64-u4.bin"
+addr4-8x64-u6|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-8x64-u6.bin"
+addr4-128x32-u4|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-128x32-u4.bin"
+addr4-128x32-u6|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-128x32-u6.bin"
+addr4-64x16-uv5|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-64x16-uv5.bin"
+addr4-16x64-uv5|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-16x64-uv5.bin"
+addr4-32x64-u7|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-32x64-u7.bin"
+addr4-32x64-u4-h16|heldout|safe|-|t10p|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr4-32x64-u4-h16.bin"

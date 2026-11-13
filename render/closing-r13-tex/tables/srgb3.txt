@@ -1,0 +1,17 @@
+#stage srgb3
+#limit 0
+# r13-tex srgb3, Q282 (rank-round13.md section 2): bilinear sRGB (T0 bit 27) in r10-tex's srgb2 forms. The x stage alone
+# (ky 0, kx 0 to 63: corners (0, 1) and (1, 0), and bytes 1 to 3), the y stage alone (kx 0), both stages on bytes 0 to 3, a
+# trilinear row on a twiddled 16 x 16 chain (LOD 1.25, bit 9). Frozen per pixel (gen/srgb.py, c2's rule_b.py pinned):
+# FTZ-OUT (tested) against FTZ-IN, R10-BF11 and FTZ-T64; TRI-OUT against TRI-NOFLUSH and TRI-LO. Controls that can
+# fail: E723's g-bl-st-a and p1132's an-t0b27 rerun (their kept images). End replicate: srgb3-x1r. Stop: any fault or
+# hang; the second row without its pixel rows.
+srgb3-ctl|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-ctl.bin"
+srgb3-an27|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-an27.bin"
+srgb3-x1|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-x1.bin"
+srgb3-x2|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-x2.bin"
+srgb3-y1|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-y1.bin"
+srgb3-y2|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-y2.bin"
+srgb3-sub2|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-sub2.bin"
+srgb3-tri|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-tri.bin"
+srgb3-x1r|replicate|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/srgb3-x1r.bin"
