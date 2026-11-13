@@ -1,0 +1,33 @@
+#stage q139
+#limit 0
+# Q139's write order (E907 R7-BLK's slots; the leftovers' P1, SEMI): the datasets' own command (ta/mtile-fields*,
+# r7-rp's q139 rows token for token) with --keep-going and --dump-render into the job's work directory, one
+# --kpoke-render of the stride word (ta:146) or a macrotile word, only inside the ranges that drew without a fault in
+# the kept data (256 x 256 strides 0 to 31, 640 x 480 strides 4 to 63; the residue jobs drew in their datasets): safe
+# class.  Controls (reads:hash,dump; the scorer reads the image and the header slots): the 256 x 256 and 640 x 480
+# baselines (exact image, one header a tile, slots as R7-BLK) and 256 x 256 stride 4 (its kept wrong set, 84 tiles).
+# Fit: 256 x 256 strides 1 and 2 (images kept, never dumped).  Held out: 256 x 256 strides 3, 5, 6, 7, 12, 20 and
+# 640 x 480 strides 5, 6, 7, 8, 12.  Frozen: block order (blkrow), the wrong-tile set and every header slot; rivals
+# raster (row order), blkdown (blocks by column), mtblk (macrotile, then block).  Residue (dumps only, scored
+# nothing): P1's four jobs no order gives.  needhash: the second row without a hash stops q139 (rc 24).
+# No fault expected: any fault or hang stops the stage (rc 4).
+q139-ctl-256x256|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-ctl-640x480|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-ctl-256x256-stride-4|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x4 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-fit-256x256-stride-1|fit|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x1 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-fit-256x256-stride-2|fit|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x2 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-3|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x3 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-5|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x5 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-6|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x6 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-7|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x7 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-12|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0xc --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-256x256-stride-20|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:146=0x14 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-640x480-stride-5|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:146=0x5 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-640x480-stride-6|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:146=0x6 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-640x480-stride-7|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:146=0x7 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-640x480-stride-8|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:146=0x8 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-h-640x480-stride-12|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:146=0xc --wait-ms 20000 --keep-going --dump-render "$W"
+q139-res-256x256-m1-B2-10|residue|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x0100a004 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-res-256x256-m1-B2-11|residue|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x0100b004 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-res-640x480-m1-B1-23|residue|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:143=0x85c10018 --wait-ms 20000 --keep-going --dump-render "$W"
+q139-res-1280x720-m2-B3p1|residue|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 1280 --height 720 --max-width 1280 --max-height 720 --kpoke-render 1:ta:144=0x03018025 --wait-ms 20000 --keep-going --dump-render "$W"

@@ -1,0 +1,179 @@
+#stage zs2
+#limit 0
+# Q260 (E914): vertices in 1/4096 pixel (--tri-unit 12), one vertex swept in five steps d = -2 .. +2 of 1/4096
+# across the 1/512 tie above a grid point, its edge aimed through a pixel centre C (E914's construction, gen/zsmodel.py).
+# (g) negative ties at other grid points, -1/256, -1.25, -17.75 and -200.5 (x) / -100.5 (y), aimed at the nearest
+# on-screen centre (pixel 0), 512 x 256; (l) long edges at -64.5 and +64.5, both axes, aimed 1 and 4 (at -64.5: 65
+# and 68, pixel 0 and 3, the nearest on screen), 100 and 300 (x) / 200 (y; +64.5 y: 190, the last on screen) pixels
+# away, 512 x 256; (t) the 100 and long aims again on 256 x 512 with the scene transposed.  Frozen: HA (half away from
+# zero; C flips between d = 0 and d = +1 at a negative tie, between -1 and 0 at a positive one, E914's step table)
+# against HU; H-SHORT (the image is HA's exactly where no edge reaches 250 pixels); H-BAND (elsewhere it differs from
+# HA's only within 6.4e-4 pixel of an edge of 250 pixels or more); H-YAXIS (misses on target y sweeps only, both
+# targets) against H-GEOM (misses follow the transposed scene to x on 256 x 512).  Controls (kept hashes, reads:hash):
+# E681's and E683's cases and three steps of E914's -0.5 x sweep (d -1, 0, +1).  needhash: the second row without a
+# hash stops zs2 (rc 24).  No fault expected (E914: 230 jobs clean): any fault stops the stage (rc 4) and the session.
+zs2-ctl-e681|control|safe|expectdiff needhash reads:hash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 890868,202752,890868,366592,1054708,284672 --pixels
+zs2-ctl-e683|control|safe|expectdiff needhash reads:hash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5304,63490,1280270,511961,1631067,187979 --pixels
+zs2-ctl-m0.5-x-dm1|control|safe|expectdiff needhash reads:hash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -2041,165888,10224,202752,174064,165888 --pixels
+zs2-ctl-m0.5-x-d0|control|safe|expectdiff needhash reads:hash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -2040,165888,10224,202752,174064,165888 --pixels
+zs2-ctl-m0.5-x-dp1|control|safe|expectdiff needhash reads:hash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -2039,165888,10224,202752,174064,165888 --pixels
+zs2-g-m1o256-x-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -10,165888,6160,202752,170000,165888 --pixels
+zs2-g-m1o256-x-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -9,165888,6160,202752,170000,165888 --pixels
+zs2-g-m1o256-x-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -8,165888,6160,202752,170000,165888 --pixels
+zs2-g-m1o256-x-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -7,165888,6160,202752,170000,165888 --pixels
+zs2-g-m1o256-x-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -6,165888,6160,202752,170000,165888 --pixels
+zs2-g-m1o256-y-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-10,202752,6160,165888,170000 --pixels
+zs2-g-m1o256-y-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-9,202752,6160,165888,170000 --pixels
+zs2-g-m1o256-y-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-8,202752,6160,165888,170000 --pixels
+zs2-g-m1o256-y-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-7,202752,6160,165888,170000 --pixels
+zs2-g-m1o256-y-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-6,202752,6160,165888,170000 --pixels
+zs2-g-m1.25-x-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5114,165888,16368,202752,180208,165888 --pixels
+zs2-g-m1.25-x-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5113,165888,16368,202752,180208,165888 --pixels
+zs2-g-m1.25-x-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5112,165888,16368,202752,180208,165888 --pixels
+zs2-g-m1.25-x-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5111,165888,16368,202752,180208,165888 --pixels
+zs2-g-m1.25-x-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -5110,165888,16368,202752,180208,165888 --pixels
+zs2-g-m1.25-y-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-5114,202752,16368,165888,180208 --pixels
+zs2-g-m1.25-y-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-5113,202752,16368,165888,180208 --pixels
+zs2-g-m1.25-y-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-5112,202752,16368,165888,180208 --pixels
+zs2-g-m1.25-y-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-5111,202752,16368,165888,180208 --pixels
+zs2-g-m1.25-y-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-5110,202752,16368,165888,180208 --pixels
+zs2-g-m17.75-x-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -72698,165888,151536,202752,315376,165888 --pixels
+zs2-g-m17.75-x-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -72697,165888,151536,202752,315376,165888 --pixels
+zs2-g-m17.75-x-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -72696,165888,151536,202752,315376,165888 --pixels
+zs2-g-m17.75-x-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -72695,165888,151536,202752,315376,165888 --pixels
+zs2-g-m17.75-x-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -72694,165888,151536,202752,315376,165888 --pixels
+zs2-g-m17.75-y-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-72698,202752,151536,165888,315376 --pixels
+zs2-g-m17.75-y-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-72697,202752,151536,165888,315376 --pixels
+zs2-g-m17.75-y-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-72696,202752,151536,165888,315376 --pixels
+zs2-g-m17.75-y-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-72695,202752,151536,165888,315376 --pixels
+zs2-g-m17.75-y-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-72694,202752,151536,165888,315376 --pixels
+zs2-g-m200.5-x-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -821242,165888,1648624,202752,1812464,165888 --pixels
+zs2-g-m200.5-x-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -821241,165888,1648624,202752,1812464,165888 --pixels
+zs2-g-m200.5-x-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -821240,165888,1648624,202752,1812464,165888 --pixels
+zs2-g-m200.5-x-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -821239,165888,1648624,202752,1812464,165888 --pixels
+zs2-g-m200.5-x-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -821238,165888,1648624,202752,1812464,165888 --pixels
+zs2-g-m100.5-y-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-411642,202752,829424,165888,993264 --pixels
+zs2-g-m100.5-y-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-411641,202752,829424,165888,993264 --pixels
+zs2-g-m100.5-y-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-411640,202752,829424,165888,993264 --pixels
+zs2-g-m100.5-y-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-411639,202752,829424,165888,993264 --pixels
+zs2-g-m100.5-y-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-411638,202752,829424,165888,993264 --pixels
+zs2-l-m64.5-x-a65-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264186,165888,534512,202752,698352,165888 --pixels
+zs2-l-m64.5-x-a65-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264185,165888,534512,202752,698352,165888 --pixels
+zs2-l-m64.5-x-a65-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264184,165888,534512,202752,698352,165888 --pixels
+zs2-l-m64.5-x-a65-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264183,165888,534512,202752,698352,165888 --pixels
+zs2-l-m64.5-x-a65-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264182,165888,534512,202752,698352,165888 --pixels
+zs2-l-m64.5-x-a68-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264186,165888,571376,202752,735216,165888 --pixels
+zs2-l-m64.5-x-a68-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264185,165888,571376,202752,735216,165888 --pixels
+zs2-l-m64.5-x-a68-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264184,165888,571376,202752,735216,165888 --pixels
+zs2-l-m64.5-x-a68-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264183,165888,571376,202752,735216,165888 --pixels
+zs2-l-m64.5-x-a68-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264182,165888,571376,202752,735216,165888 --pixels
+zs2-l-m64.5-x-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264186,165888,964592,534528,1128432,165888 --pixels
+zs2-l-m64.5-x-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264185,165888,964592,534528,1128432,165888 --pixels
+zs2-l-m64.5-x-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264184,165888,964592,534528,1128432,165888 --pixels
+zs2-l-m64.5-x-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264183,165888,964592,534528,1128432,165888 --pixels
+zs2-l-m64.5-x-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264182,165888,964592,534528,1128432,165888 --pixels
+zs2-l-m64.5-x-a300-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264186,165888,3422192,534528,3586032,165888 --pixels
+zs2-l-m64.5-x-a300-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264185,165888,3422192,534528,3586032,165888 --pixels
+zs2-l-m64.5-x-a300-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264184,165888,3422192,534528,3586032,165888 --pixels
+zs2-l-m64.5-x-a300-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264183,165888,3422192,534528,3586032,165888 --pixels
+zs2-l-m64.5-x-a300-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v -264182,165888,3422192,534528,3586032,165888 --pixels
+zs2-l-m64.5-y-a65-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264186,202752,534512,165888,698352 --pixels
+zs2-l-m64.5-y-a65-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264185,202752,534512,165888,698352 --pixels
+zs2-l-m64.5-y-a65-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264184,202752,534512,165888,698352 --pixels
+zs2-l-m64.5-y-a65-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264183,202752,534512,165888,698352 --pixels
+zs2-l-m64.5-y-a65-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264182,202752,534512,165888,698352 --pixels
+zs2-l-m64.5-y-a68-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264186,202752,571376,165888,735216 --pixels
+zs2-l-m64.5-y-a68-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264185,202752,571376,165888,735216 --pixels
+zs2-l-m64.5-y-a68-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264184,202752,571376,165888,735216 --pixels
+zs2-l-m64.5-y-a68-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264183,202752,571376,165888,735216 --pixels
+zs2-l-m64.5-y-a68-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264182,202752,571376,165888,735216 --pixels
+zs2-l-m64.5-y-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264186,534528,964592,165888,1128432 --pixels
+zs2-l-m64.5-y-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264185,534528,964592,165888,1128432 --pixels
+zs2-l-m64.5-y-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264184,534528,964592,165888,1128432 --pixels
+zs2-l-m64.5-y-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264183,534528,964592,165888,1128432 --pixels
+zs2-l-m64.5-y-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264182,534528,964592,165888,1128432 --pixels
+zs2-l-m64.5-y-a200-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264186,534528,2193392,165888,2357232 --pixels
+zs2-l-m64.5-y-a200-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264185,534528,2193392,165888,2357232 --pixels
+zs2-l-m64.5-y-a200-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264184,534528,2193392,165888,2357232 --pixels
+zs2-l-m64.5-y-a200-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264183,534528,2193392,165888,2357232 --pixels
+zs2-l-m64.5-y-a200-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,-264182,534528,2193392,165888,2357232 --pixels
+zs2-l-p64.5-x-a1-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264198,165888,276464,202752,440304,165888 --pixels
+zs2-l-p64.5-x-a1-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264199,165888,276464,202752,440304,165888 --pixels
+zs2-l-p64.5-x-a1-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264200,165888,276464,202752,440304,165888 --pixels
+zs2-l-p64.5-x-a1-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264201,165888,276464,202752,440304,165888 --pixels
+zs2-l-p64.5-x-a1-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264202,165888,276464,202752,440304,165888 --pixels
+zs2-l-p64.5-x-a4-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264198,165888,313328,202752,477168,165888 --pixels
+zs2-l-p64.5-x-a4-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264199,165888,313328,202752,477168,165888 --pixels
+zs2-l-p64.5-x-a4-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264200,165888,313328,202752,477168,165888 --pixels
+zs2-l-p64.5-x-a4-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264201,165888,313328,202752,477168,165888 --pixels
+zs2-l-p64.5-x-a4-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264202,165888,313328,202752,477168,165888 --pixels
+zs2-l-p64.5-x-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264198,165888,1492976,534528,1656816,165888 --pixels
+zs2-l-p64.5-x-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264199,165888,1492976,534528,1656816,165888 --pixels
+zs2-l-p64.5-x-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264200,165888,1492976,534528,1656816,165888 --pixels
+zs2-l-p64.5-x-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264201,165888,1492976,534528,1656816,165888 --pixels
+zs2-l-p64.5-x-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264202,165888,1492976,534528,1656816,165888 --pixels
+zs2-l-p64.5-x-a300-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264198,165888,3950576,534528,4114416,165888 --pixels
+zs2-l-p64.5-x-a300-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264199,165888,3950576,534528,4114416,165888 --pixels
+zs2-l-p64.5-x-a300-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264200,165888,3950576,534528,4114416,165888 --pixels
+zs2-l-p64.5-x-a300-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264201,165888,3950576,534528,4114416,165888 --pixels
+zs2-l-p64.5-x-a300-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 264202,165888,3950576,534528,4114416,165888 --pixels
+zs2-l-p64.5-y-a1-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264198,202752,276464,165888,440304 --pixels
+zs2-l-p64.5-y-a1-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264199,202752,276464,165888,440304 --pixels
+zs2-l-p64.5-y-a1-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264200,202752,276464,165888,440304 --pixels
+zs2-l-p64.5-y-a1-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264201,202752,276464,165888,440304 --pixels
+zs2-l-p64.5-y-a1-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264202,202752,276464,165888,440304 --pixels
+zs2-l-p64.5-y-a4-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264198,202752,313328,165888,477168 --pixels
+zs2-l-p64.5-y-a4-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264199,202752,313328,165888,477168 --pixels
+zs2-l-p64.5-y-a4-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264200,202752,313328,165888,477168 --pixels
+zs2-l-p64.5-y-a4-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264201,202752,313328,165888,477168 --pixels
+zs2-l-p64.5-y-a4-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264202,202752,313328,165888,477168 --pixels
+zs2-l-p64.5-y-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264198,534528,1492976,165888,1656816 --pixels
+zs2-l-p64.5-y-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264199,534528,1492976,165888,1656816 --pixels
+zs2-l-p64.5-y-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264200,534528,1492976,165888,1656816 --pixels
+zs2-l-p64.5-y-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264201,534528,1492976,165888,1656816 --pixels
+zs2-l-p64.5-y-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264202,534528,1492976,165888,1656816 --pixels
+zs2-l-p64.5-y-a190-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264198,534528,2598896,165888,2762736 --pixels
+zs2-l-p64.5-y-a190-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264199,534528,2598896,165888,2762736 --pixels
+zs2-l-p64.5-y-a190-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264200,534528,2598896,165888,2762736 --pixels
+zs2-l-p64.5-y-a190-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264201,534528,2598896,165888,2762736 --pixels
+zs2-l-p64.5-y-a190-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 512 --height 256 --tri-unit 12 --tri-v 165888,264202,534528,2598896,165888,2762736 --pixels
+zs2-t-m64.5-x-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264186,534528,964592,165888,1128432 --pixels
+zs2-t-m64.5-x-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264185,534528,964592,165888,1128432 --pixels
+zs2-t-m64.5-x-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264184,534528,964592,165888,1128432 --pixels
+zs2-t-m64.5-x-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264183,534528,964592,165888,1128432 --pixels
+zs2-t-m64.5-x-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264182,534528,964592,165888,1128432 --pixels
+zs2-t-m64.5-x-a300-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264186,534528,3422192,165888,3586032 --pixels
+zs2-t-m64.5-x-a300-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264185,534528,3422192,165888,3586032 --pixels
+zs2-t-m64.5-x-a300-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264184,534528,3422192,165888,3586032 --pixels
+zs2-t-m64.5-x-a300-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264183,534528,3422192,165888,3586032 --pixels
+zs2-t-m64.5-x-a300-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,-264182,534528,3422192,165888,3586032 --pixels
+zs2-t-m64.5-y-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264186,165888,964592,534528,1128432,165888 --pixels
+zs2-t-m64.5-y-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264185,165888,964592,534528,1128432,165888 --pixels
+zs2-t-m64.5-y-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264184,165888,964592,534528,1128432,165888 --pixels
+zs2-t-m64.5-y-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264183,165888,964592,534528,1128432,165888 --pixels
+zs2-t-m64.5-y-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264182,165888,964592,534528,1128432,165888 --pixels
+zs2-t-m64.5-y-a200-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264186,165888,2193392,534528,2357232,165888 --pixels
+zs2-t-m64.5-y-a200-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264185,165888,2193392,534528,2357232,165888 --pixels
+zs2-t-m64.5-y-a200-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264184,165888,2193392,534528,2357232,165888 --pixels
+zs2-t-m64.5-y-a200-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264183,165888,2193392,534528,2357232,165888 --pixels
+zs2-t-m64.5-y-a200-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v -264182,165888,2193392,534528,2357232,165888 --pixels
+zs2-t-p64.5-x-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264198,534528,1492976,165888,1656816 --pixels
+zs2-t-p64.5-x-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264199,534528,1492976,165888,1656816 --pixels
+zs2-t-p64.5-x-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264200,534528,1492976,165888,1656816 --pixels
+zs2-t-p64.5-x-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264201,534528,1492976,165888,1656816 --pixels
+zs2-t-p64.5-x-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264202,534528,1492976,165888,1656816 --pixels
+zs2-t-p64.5-x-a300-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264198,534528,3950576,165888,4114416 --pixels
+zs2-t-p64.5-x-a300-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264199,534528,3950576,165888,4114416 --pixels
+zs2-t-p64.5-x-a300-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264200,534528,3950576,165888,4114416 --pixels
+zs2-t-p64.5-x-a300-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264201,534528,3950576,165888,4114416 --pixels
+zs2-t-p64.5-x-a300-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 165888,264202,534528,3950576,165888,4114416 --pixels
+zs2-t-p64.5-y-a100-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264198,165888,1492976,534528,1656816,165888 --pixels
+zs2-t-p64.5-y-a100-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264199,165888,1492976,534528,1656816,165888 --pixels
+zs2-t-p64.5-y-a100-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264200,165888,1492976,534528,1656816,165888 --pixels
+zs2-t-p64.5-y-a100-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264201,165888,1492976,534528,1656816,165888 --pixels
+zs2-t-p64.5-y-a100-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264202,165888,1492976,534528,1656816,165888 --pixels
+zs2-t-p64.5-y-a190-dm2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264198,165888,2598896,534528,2762736,165888 --pixels
+zs2-t-p64.5-y-a190-dm1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264199,165888,2598896,534528,2762736,165888 --pixels
+zs2-t-p64.5-y-a190-d0|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264200,165888,2598896,534528,2762736,165888 --pixels
+zs2-t-p64.5-y-a190-dp1|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264201,165888,2598896,534528,2762736,165888 --pixels
+zs2-t-p64.5-y-a190-dp2|heldout|safe|expectdiff needhash|t4|tri --keep-overflow --wait-ms 20000 --width 256 --height 512 --tri-unit 12 --tri-v 264202,165888,2598896,534528,2762736,165888 --pixels
