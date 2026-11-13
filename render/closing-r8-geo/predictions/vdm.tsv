@@ -1,0 +1,22 @@
+case	quantity	value	model	set	source
+vdm-nat-n8-v4	job	ok	all	reference	E703: 10 of 10 forced jobs completed
+vdm-set-n8-v4	twin	vdm-nat-n8-v4	all	control	the natural job run before it
+vdm-set-n8-v4	vs_twin	same	H-FORCE-NEUTRAL	control	twin vdm-nat-n8-v4; gen/vdm.py
+vdm-set-n8-v4	job	ok	all	control	E703: 10 of 10 forced jobs completed
+vdm-nat-n2-v2	job	ok	all	reference	E703: 10 of 10 forced jobs completed
+vdm-set-n2-v2	twin	vdm-nat-n2-v2	all	control	the natural job run before it
+vdm-set-n2-v2	vs_twin	same	H-FORCE-NEUTRAL	control	twin vdm-nat-n2-v2; gen/vdm.py
+vdm-set-n2-v2	job	ok	all	control	E703: 10 of 10 forced jobs completed
+vdm-r3-n2-v2	twin	vdm-nat-n2-v2	all	heldout	the natural job run before it
+vdm-r3-n2-v2	vs_twin	same	H-COUNT	heldout	twin vdm-nat-n2-v2; gen/vdm.py
+vdm-r3-n2-v2	vs_twin	differs	H-LAYOUT	heldout	twin vdm-nat-n2-v2; gen/vdm.py
+vdm-r3-n2-v2	job	ok	all	heldout	E703: 10 of 10 forced jobs completed
+vdm-r3-n2-v2-r2	twin	vdm-nat-n2-v2	all	replicate	the natural job run before it
+vdm-r3-n2-v2-r2	vs_twin	same	H-COUNT	replicate	twin vdm-nat-n2-v2; gen/vdm.py
+vdm-r3-n2-v2-r2	vs_twin	differs	H-LAYOUT	replicate	twin vdm-nat-n2-v2; gen/vdm.py
+vdm-r3-n2-v2-r2	job	ok	all	replicate	E703: 10 of 10 forced jobs completed
+vdm-nat-n8-v8	job	ok	all	reference	E703: 10 of 10 forced jobs completed
+vdm-r2-n8-v8	twin	vdm-nat-n8-v8	all	explore	the natural job run before it
+vdm-r2-n8-v8	vs_twin	differs	H-COUNT	explore	twin vdm-nat-n8-v8; gen/vdm.py
+vdm-r2-n8-v8	vs_twin	differs	H-LAYOUT	explore	twin vdm-nat-n8-v8; gen/vdm.py
+vdm-r2-n8-v8	job	ok	all	explore	E703: 10 of 10 forced jobs completed

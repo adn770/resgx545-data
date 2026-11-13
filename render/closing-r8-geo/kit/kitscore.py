@@ -1,0 +1,97 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+"""kitscore.py: what a kit session's scorer reads (tools/closing/kit, HACKING.md "Session kit").
+Standard library only; the verdict rules stay in scorekit.py. A scorer imports both from the
+session's kit/ (byte copies, pinned by commit in FROZEN.commits).
+
+  table(kp, stage)        the rows of tables/STAGE.txt: dicts name, set, risk, knobs, tool, args,
+                          reads (the control's keys)
+  predictions(kp, stage)  {case: {quantity: {model: value}}} of predictions/STAGE.tsv
+  rows(d, name)           {name: row} of a kept cases.tsv or void.tsv (rc an int)
+  text(d, name)           a kept file, plain or gzipped, as text ("" when absent)
+  readings(d)             {control: {key: value}} of readings.tsv, the runner's premise readings
+  premise(kp, stage, d)   the STOP lines of the premise: every control row of the table must have
+                          run and read every key it declares (scorekit.premise_stops)
+  controls(kp, stage)     {name: (keys, row)} of the table's control rows, for
+                          scorekit.refuse_unreadable
+"""
+import gzip
+import os
+
+import scorekit
+
+COLUMNS = ("name", "stage", "set", "risk", "knobs", "tool", "args", "rc", "class", "fault_int",
+           "fault_word", "free_kb")
+
+
+def _read(path):
+    if os.path.exists(path + ".gz"):
+        with gzip.open(path + ".gz", "rb") as f:
+            return f.read()
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            return f.read()
+    return None
+
+
+def text(d, name):
+    b = _read(os.path.join(d, name))
+    return "" if b is None else b.decode(errors="replace")
+
+
+def table(kp, stage):
+    out = []
+    for ln in open(os.path.join(kp, "tables", stage + ".txt")).read().splitlines():
+        if not ln.strip() or ln.startswith("#"):
+            continue
+        name, sset, risk, knobs, tool, args = ln.split("|", 5)
+        words = knobs.split()
+        reads = ()
+        for w in words:
+            if w.startswith("reads:"):
+                reads = tuple(w[len("reads:"):].split(","))
+        out.append(dict(name=name, set=sset, risk=risk, knobs=words, tool=tool, args=args,
+                        reads=reads))
+    return out
+
+
+def predictions(kp, stage):
+    out = {}
+    lines = open(os.path.join(kp, "predictions", stage + ".tsv")).read().splitlines()
+    for ln in lines[1:]:
+        if not ln.strip():
+            continue
+        f = ln.split("\t")
+        out.setdefault(f[0], {}).setdefault(f[1], {})[f[3]] = f[2]
+    return out
+
+
+def rows(d, name="cases.tsv"):
+    out = {}
+    for ln in text(d, name).splitlines()[1:]:
+        f = ln.split("\t")
+        if len(f) < len(COLUMNS) or not f[0]:
+            continue
+        r = dict(zip(COLUMNS, f))
+        r["rc"] = int(r["rc"])
+        out[f[0]] = r
+    return out
+
+
+def readings(d):
+    out = {}
+    for ln in text(d, "readings.tsv").splitlines()[1:]:
+        f = ln.split("\t")
+        if f and f[0]:
+            r = f[2] if len(f) > 2 else ""
+            out[f[0]] = dict(w.split("=", 1) for w in r.split() if "=" in w)
+    return out
+
+
+def controls(kp, stage):
+    return {r["name"]: (r["reads"], r) for r in table(kp, stage) if r["set"] == "control"}
+
+
+def premise(kp, stage, d):
+    want = {n: keys for n, (keys, _) in controls(kp, stage).items()}
+    return scorekit.premise_stops(want, readings(d))

@@ -1,0 +1,114 @@
+## stage seam of r8g
+## uname
+7.3.0-resgx545
+## installed module
+37EC97AB0CB37213C42FCCC
+## loaded module
+37EC97AB0CB37213C42FCCC
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127236208 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r8g.zLVCr9
+## clock
+Fri Nov 13 02:00:30 CET 2026
+== ctl-a-m1-6-64x64 set=control risk=safe tool=t4 knobs=[expectdiff reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+  premise ctl-a-m1-6-64x64 [pixels]: pixels=64 
+== ctl-tf-64x64-m2-2 set=control risk=safe tool=t4 knobs=[expectdiff reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0x20000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+  premise ctl-tf-64x64-m2-2 [pixels]: pixels=64 
+== tf-96x64-m0-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 96 --height 64 --max-width 96 --max-height 64 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000000 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 96x64 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-96x64-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 96 --height 64 --max-width 96 --max-height 64 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 96x64 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-96x64-m1-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 96 --height 64 --max-width 96 --max-height 64 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 96x64 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-112x80-m0-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 112 --height 80 --max-width 112 --max-height 80 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000000 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 112x80 hash 0x4e2a08a2979aa725 diff: 8960 of 8960 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-112x80-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 112 --height 80 --max-width 112 --max-height 80 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 112x80 hash 0x4e2a08a2979aa725 diff: 8960 of 8960 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-112x80-m1-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 112 --height 80 --max-width 112 --max-height 80 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 112x80 hash 0x4e2a08a2979aa725 diff: 8960 of 8960 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-128x96-m0-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 128 --height 96 --max-width 128 --max-height 96 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000000 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 128x96 hash 0xffb5a93e7e526325 diff: 12288 of 12288 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-128x96-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 128 --height 96 --max-width 128 --max-height 96 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 128x96 hash 0xffb5a93e7e526325 diff: 12288 of 12288 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-128x96-m2-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 128 --height 96 --max-width 128 --max-height 96 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 128x96 hash 0xffb5a93e7e526325 diff: 12288 of 12288 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-64x96-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 96 --max-width 64 --max-height 96 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 64x96 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-64x96-m2-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 96 --max-width 64 --max-height 96 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 64x96 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-64x96-m0-a set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 64 --height 96 --max-width 64 --max-height 96 --pixels --poke cmd:1=0xa0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000000 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 64x96 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-80x48-m0-a set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 80 --height 48 --max-width 80 --max-height 48 --pixels --poke cmd:1=0xa0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000000 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 80x48 hash 0x377096476db13725 diff: 3840 of 3840 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-80x48-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 80 --height 48 --max-width 80 --max-height 48 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 80x48 hash 0x377096476db13725 diff: 3840 of 3840 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-96x64-m2-a set=twin risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 96 --height 64 --max-width 96 --max-height 64 --pixels --poke cmd:1=0xa0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 96x64 hash 0xb9721e99693a4325 diff: 6144 of 6144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== tf-128x96-m2-a set=twin risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --keep-going --wait-ms 20000 --width 128 --height 96 --max-width 128 --max-height 96 --pixels --poke cmd:1=0xa0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26
+  rc 1 job: rejected (Invalid argument) target: 128x96 hash 0xffb5a93e7e526325 diff: 12288 of 12288 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-a-64x64-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26 --tri-v 0,0,19456,0,0,9728 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-a-64x64-m2-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --tri-v 0,0,19456,0,0,9728 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-b-64x64-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26 --tri-v 0,0,6656,0,0,19968 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-b-64x64-m2-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --tri-v 0,0,6656,0,0,19968 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-c-128x64-m1-6 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --pixels --poke cmd:1=0x60000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000001 --poke cmd:16=0xeaa26e26 --tri-v 0,0,38400,0,0,19200 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 128x64 hash 0x5ec3ba0b1597a325 diff: 8192 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== sl-c-128x64-m2-e set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --pixels --poke cmd:1=0xe0000000 --poke cmd:10=0xeaa26e26 --poke cmd:13=0x80000002 --poke cmd:16=0xeaa26e26 --tri-v 0,0,38400,0,0,19200 --tri-z 0.5,0.5,0.5 --poke blk:2^=0x8
+  rc 1 job: rejected (Invalid argument) target: 128x64 hash 0x5ec3ba0b1597a325 diff: 8192 of 8192 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+## end: 24 jobs of seam
+## kernel log (journalctl)

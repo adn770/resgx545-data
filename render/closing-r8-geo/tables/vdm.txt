@@ -1,0 +1,16 @@
+#stage vdm
+#limit 0
+# R8-4, Q271: E703's capacity form with VDM word 7 SET (--vdm 7=V) instead of xored. Frozen (gen/vdm.py): forced =
+# natural leaves the image of its natural twin (H-FORCE-NEUTRAL; N = 8 V = 4, N = 2 V = 2); forced = natural + 1 at N = 2
+# V = 2: H-COUNT (same image) vs H-LAYOUT (changed), twice; forced below natural at N = 8 V = 8 a reading. The forced =
+# natural rows are the controls (they can fail: a forcing that breaks a job changes the image), each after its natural
+# twin (set reference). Risky as E703's 10 jobs (none hung): last stage, health after every job (after), any fault or
+# hang stops it.
+vdm-nat-n8-v4|reference|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0xc0000000 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c8.bin" "$S/bins/p1131-fmt-8__0.bin"
+vdm-set-n8-v4|control|risky|after reads:pixels|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0xc0000000 --vdm 7=0x03c00082 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c8.bin" "$S/bins/p1131-fmt-8__0.bin"
+vdm-nat-n2-v2|reference|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 6^=0xe0000000 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c2.bin" "$S/bins/p1131-fmt-2__0.bin"
+vdm-set-n2-v2|control|risky|after reads:pixels|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 6^=0xe0000000 --vdm 7=0x02c00082 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c2.bin" "$S/bins/p1131-fmt-2__0.bin"
+vdm-r3-n2-v2|heldout|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 6^=0xe0000000 --vdm 7=0x03c00082 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c2.bin" "$S/bins/p1131-fmt-2__0.bin"
+vdm-r3-n2-v2-r2|replicate|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 2 --vdm 6^=0xe0000000 --vdm 7=0x03c00082 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c2.bin" "$S/bins/p1131-fmt-2__0.bin"
+vdm-nat-n8-v8|reference|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x80000000 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c8.bin" "$S/bins/p1131-fmt-8__0.bin"
+vdm-r2-n8-v8|explore|risky|after|t4|probe --tri pixpds:12 --temps 32 --width 64 --height 64 --vertices 126 --vtx-coords 8 --vdm 6^=0x80000000 --vdm 7=0x02c00082 --pixels --dump-render "$W" --slot "pixel=$S/bins/pix_pa0.bin" --slot "vtxuse=$S/bins/vtx_c8.bin" "$S/bins/p1131-fmt-8__0.bin"
