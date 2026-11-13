@@ -1,0 +1,17 @@
+#stage xf
+#limit 4
+# xf (Q108, the transfer's requestors): the knob-free fill and copy (hashes as r7-rp's
+# health fill and copy-addresses), the address alone (flags 0: nothing logged, nothing
+# changes), isolation's READONLY write fault (E021 redone by the tool, 0x80020 at page
+# 0x3e200000 in render/client-jobs), then WO on a fill's destination (a write), CACHED on a
+# copy's read-only source, EDMPROT on a fill's destination, WO on the copy's source (RO|WO
+# 0x6, decision R8-6: a reading row), and the knob-free fill again.
+xf-c-fill|control|safe|reads:job,hash|t4|fill
+xf-c-copy|control|safe|reads:job,hash,src|t4|copy --print-addrs
+xf-c-addr|control|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0 after reads:job,hash|t4|fill
+xf-c-ro|control|medium|expectfault reads:ro,rostat|t4|isolation
+xf-wo-fill|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|fill
+xf-cc-copy|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectfault expectdiff after|t4|copy --print-addrs
+xf-edm-fill|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after|t4|fill
+xf-wo-copy|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|copy --print-addrs
+xf-c-end|control|safe|after reads:job,hash|t4|fill

@@ -1,0 +1,26 @@
+CONTROL tri-c: PASS (as frozen)
+CONTROL tri-c-end: PASS (as frozen)
+READ tri-wo-fb (WRITEONLY on write 0x3e001000): fault; job faulted hash 0x99385a04ee01c585 diff 0; PTE 0x3e001000 +0x5000 flags 0x2; faults 0x80020 at 0x3e0041f1
+ROW tri-wo-fb H-WO (frozen exact): FAILED
+ROW tri-wo-fb H-WO-NONE (frozen exact): FAILED
+ROW tri-wo-fb H-WO-ALL (frozen fault): held
+READ tri-cc-gen (CACHECONSISTENT on read 0x3e000000): exact; job ok hash 0x99385a04ee01c585 diff 0; PTE 0x3e000000 +0x1000 flags 0x8; faults none
+ROW tri-cc-gen H-CC-NEW (frozen exact): held
+ROW tri-cc-gen H-CC-STALE (frozen diff): FAILED
+READ tri-edm-fb (EDMPROTECT on write 0x3e001000): fault; job faulted hash 0xe4364b426cdce325 diff 4096; PTE 0x3e001000 +0x5000 flags 0x10; faults 0xa0020 at 0x3e001001
+ROW tri-edm-fb H-EDM-NONE (frozen exact): FAILED
+ROW tri-edm-fb H-EDM-CLIENT (frozen fault): held
+READ tri-edm-gen (EDMPROTECT on read 0x3e000000): exact; job ok hash 0x99385a04ee01c585 diff 0; PTE 0x3e000000 +0x1000 flags 0x10; faults none
+ROW tri-edm-gen H-EDM-NONE (frozen exact): held
+ROW tri-edm-gen H-EDM-CLIENT (frozen fault): FAILED
+READ tri-wo-gen (WRITEONLY on read 0x3e000000): fault; job faulted hash 0xe4364b426cdce325 diff 4096; PTE 0x3e000000 +0x1000 flags 0x2; faults 0x80008 at 0x3e000001
+ROW tri-wo-gen H-WO (frozen fault): held
+ROW tri-wo-gen H-WO-NONE (frozen exact): FAILED
+ROW tri-wo-gen H-WO-ALL (frozen fault): held
+SUMMARY: tri WRITEONLY H-WO: Q108 WRITEONLY, H-WO: WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: tri WRITEONLY H-WO-NONE: Q108 WRITEONLY, H-WO-NONE: WRITEONLY does nothing to a client's reads or writes (rival) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: tri WRITEONLY H-WO-ALL: Q108 WRITEONLY, H-WO-ALL: WRITEONLY faults every access (rival) (2 of 2 rows decided)
+SUMMARY: tri CACHECONSISTENT H-CC-NEW: Q108 CACHECONSISTENT, H-CC-NEW: a unit reads the host's writes made after the map (plan K2, frozen) (1 of 1 rows decided)
+SUMMARY: tri CACHECONSISTENT H-CC-STALE: Q108 CACHECONSISTENT, H-CC-STALE: a unit reads stale data (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri EDMPROTECT H-EDM-NONE: Q108 EDMPROTECT, H-EDM-NONE: EDMPROTECT has no effect on a client requestor (plan K2, rival) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: tri EDMPROTECT H-EDM-CLIENT: Q108 EDMPROTECT, H-EDM-CLIENT: EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2

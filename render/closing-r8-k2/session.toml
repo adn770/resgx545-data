@@ -1,0 +1,58 @@
+# session.toml: the env of r8-k2 (round 8, K2: Q108, the PTE flags WRITEONLY, CACHECONSISTENT and
+# EDMPROTECT), a closing session built with the session kit (HACKING.md, "Session kit").
+# kit/session.py writes run/session.env from it for the laptop. Plan: closing8/rank/rank-round8.md
+# section 3 (K2); decisions closing8/DECISIONS-R8.md R8-5 (the round 8 kernel) and R8-6 (RO|WO a
+# reading row).
+name = "r8-k2"
+prefix = "r8k"                 # laptop files under ~/scratch/r8k/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"   # the round 8 module (fork r8-kernel 2a650d74, vm_pte_flags)
+host_key_alias = "sgx-target"       # ssh HostKeyAlias; SGX_TARGET_HOST names the host
+job_timeout = 60                    # seconds one job may take (timeout -k 10): a fill, copy or 64 x 64
+                                    # triangle waits 10 s at most for its job (WAIT_NS), isolation 3 x
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # no row writes a file of its own
+extra_knobs = []                    # run/hooks.sh checks every row (job: ok, the knob's PTE line)
+forbid_options = ["--poke", "--kpoke-job", "--kpoke-render", "--scratch-at", "--low", "--late",
+                  "--tadata-fill-render", "--page-before", "--regs"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+
+# the debugfs knobs a row may write (dbg:NAME=V), restored after every job and by the exit trap.
+# vm_pte_flags: only bits of 0x1a (WO 0x2, CACHED 0x8, EDMPROT 0x10), one at a time here;
+# vm_pte_addr: the page a VM_MAP must start at to take them: 0x3e000000 (a render's GENERAL page:
+# its VDM stream, indices and vertices) or 0x3e001000 (a fill's destination, a copy's read-only
+# source, a triangle's colour target), the tool's own allocation order (README, "Addresses").
+[knobs]
+vm_pte_flags = { default = "0", values = ["0", "0x2", "0x8", "0x10"] }
+vm_pte_addr = { default = "0", values = ["0", "0x3e000000", "0x3e001000"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s). No stage gates another: each
+# stage's own controls gate its rows (score.py).
+[stages]
+xf = { alarm = 900 }
+tri = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "68b313611d704df69c91a796084a6cc3f5837c78"
+data = "1e83dc8685599824bbd6aa2fbfba8962634338b0"
+pins = [
+    # the hardware outputs the controls are frozen on (tests/test_score.py replays them)
+    "data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz",
+    "data:texture/copy-addresses/output.txt",
+    "data:render/client-jobs/output.txt",
+    # the vectors-table writer and reader the fold builds the replay table with, and the unit
+    # that will replay it (README, "Replay vectors")
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:crates/sgx-pipe/src/bif.rs",
+]
+
+# extra laptop files (globs), named in args as $S/PATH: none
+[files]
+laptop = []
