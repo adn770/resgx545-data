@@ -1,0 +1,30 @@
+#stage cube
+#limit 0
+# R8-2, Q284 (decision R8-4 (a)): TEXTYPE 2 sampled by smp3d in E726/E844's probe form (64 x 32 fill, scratch dword i =
+# 0xD0000000 | i). Frozen: gen/q284_rule.json (sha256 52162471..., fitted on E726, held out offline on E844 4090/4096) for
+# (a) 4 new off-axis programs at 16 x 16 and (b) 8 x 8 and 32 x 32 faces (T1 0x4c007007 / 0x4c01f01f, E725's size field;
+# faces N * N dwords apart), every pixel's dword in predictions/cube/NAME.txt, face ties and texel ties at a |ma| that is
+# no power of two "cannot tell". (c) exploratory readings: two face-tie sweeps (|w| = |u| in column 32) and four texel-tie
+# grids at |ma| 1.75, 1.625, 1.875, 0.90625. (d) bilinear (T0 0x07fe1400) at a face edge: H-CLAMP (G byte = own face) vs
+# H-SEAM (G != own face) on the "out" pixels, gated by the "in" pixels' blend. Control: E726's cu-xn program (its 2048
+# pixels known, E844 read them again byte for byte). Stop: any fault or hang (none in E726/E844's 11 cube jobs); the
+# second row without its pixel rows (hook_check).
+cube-ctl-xn|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ctl-xn.bin"
+cube-off-a1|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-off-a1.bin"
+cube-off-a2|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-off-a2.bin"
+cube-off-a3|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-off-a3.bin"
+cube-off-a4|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-off-a4.bin"
+cube-n8-b1|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n8-b1.bin"
+cube-n8-b2|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n8-b2.bin"
+cube-n8-b3|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n8-b3.bin"
+cube-n32-b1|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n32-b1.bin"
+cube-n32-b2|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n32-b2.bin"
+cube-n32-b3|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-n32-b3.bin"
+cube-ftie-fu|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ftie-fu.bin"
+cube-ftie-fn|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ftie-fn.bin"
+cube-ttie-t1750|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ttie-t1750.bin"
+cube-ttie-t1625|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ttie-t1625.bin"
+cube-ttie-t1875|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ttie-t1875.bin"
+cube-ttie-t0906|explore|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-ttie-t0906.bin"
+cube-edge-dx|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-edge-dx.bin"
+cube-edge-dz|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube-edge-dz.bin"

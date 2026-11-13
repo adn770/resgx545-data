@@ -1,0 +1,60 @@
+# session.toml: the env of r8-geo, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r8-geo"
+prefix = "r8g"                 # laptop files under ~/scratch/r8g/ (run, stage, out)
+srcversion = "37EC97AB0CB37213C42FCCC"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias; SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E726/E844 probes
+                                    # and E502/E504/E703 renders run in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--dump-render"]     # options naming a file the tool writes: its directory is made
+                                    # (vdm writes into "$W" itself, which the runner makes)
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R8-2 cube (19 jobs), R8-1 seam (24), R8-5 addr (9), R8-4 vdm (8, risky, last): 60 jobs. R8-3 (Q101,
+# 10 jobs) dropped by its check: the tool's --tri-z takes 0 to 1 only (sgxfive-test.c parse_tri_z).
+[stages]
+cube = { alarm = 1200 }
+seam = { alarm = 1500 }
+addr = { alarm = 900 }
+vdm = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "d97c47393531436306fd9797b54c81fc07b1ee7c"
+data = "d3afd435199f606cec6e7490e8536b55e5b18400"
+# every repository file the generator, the mock or the replays read (gen/make.py, gen/seam.py,
+# tests/): the p1141 template, the landed region model, the published programs and kept records
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/recompute/msaa_model.py",
+    "data:render/closing-r4-render4x/bins/p1141-cube__4.bin",
+    "data:render/closing-r4-render4x/gen/cubegen.py",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-h-cube/cu-xn.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-h-cube/cu-xp.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/msaa-b-te29/t29-m2-e0-64x64-ctl.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/msaa-b-te29/t29-m2-20-64x64-ctl.txt.gz",
+    "data:texture/p1132/tx-border/bd-u0.txt.gz",
+    "data:texture/p1132/tx-border/bd-v0.txt.gz",
+    "data:render/closing-s1/bins/pix_pa0.bin",
+    "data:render/closing-s1/bins/vtx_c8.bin",
+    "data:render/closing-s1/bins/vtx_c2.bin",
+    "data:render/closing-s1/bins/p1131-fmt-8__0.bin",
+    "data:render/closing-s1/bins/p1131-fmt-2__0.bin"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

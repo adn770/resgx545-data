@@ -1,0 +1,16 @@
+#stage addr
+#limit 0
+# R8-5, Q177: T0 address modes 4 to 7 on E565's 16 x 16 twiddled texture at page 12 of a 24-page named scratch (T2 word
+# 0x5CAFC000, --scratch-pages 24), u then v swept over 128 positions at one texel a step. Frozen rivals (gen/addr.py, no
+# fit): H-MASK-V, H-NOMASK-PAGE, H-BORDER; predictions/addr/NAME.MODEL.txt. Control that can fail: mode 0 on u (the
+# repeat image). Every read names its dword, so a row no rival takes is tabled per index. Stop: any fault or hang (none in
+# E565's 37 jobs); the second row without its pixel rows.
+addr-ctl-u0|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-ctl-u0.bin"
+addr-u4|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-u4.bin"
+addr-u5|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-u5.bin"
+addr-u6|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-u6.bin"
+addr-u7|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-u7.bin"
+addr-v4|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-v4.bin"
+addr-v5|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-v5.bin"
+addr-v6|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-v6.bin"
+addr-v7|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 24 "$S/bins/addr-v7.bin"
