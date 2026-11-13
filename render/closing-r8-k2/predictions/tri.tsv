@@ -1,0 +1,34 @@
+case	quantity	value	model	set	source
+tri-c	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c	hash	0x99385a04ee01c585	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c	fb	0x3e001000	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-wo-fb	map	0x3e001000+0x5000	KNOB	heldout	the tool's allocation order (README)
+tri-wo-fb	pte	0x2	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-wo-fb	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c)
+tri-wo-fb	outcome	exact	H-WO	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+tri-wo-fb	outcome	exact	H-WO-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+tri-wo-fb	outcome	fault	H-WO-ALL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+tri-cc-gen	map	0x3e000000+0x1000	KNOB	heldout	the tool's allocation order (README)
+tri-cc-gen	pte	0x8	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-cc-gen	access	read	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c)
+tri-cc-gen	outcome	exact	H-CC-NEW	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a unit reads the host's writes made after the map (plan K2, frozen)
+tri-cc-gen	outcome	diff	H-CC-STALE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a unit reads stale data (rival)
+tri-edm-fb	map	0x3e001000+0x5000	KNOB	heldout	the tool's allocation order (README)
+tri-edm-fb	pte	0x10	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-edm-fb	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c)
+tri-edm-fb	outcome	exact	H-EDM-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT has no effect on a client requestor (plan K2, rival)
+tri-edm-fb	outcome	fault	H-EDM-CLIENT	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival)
+tri-edm-gen	map	0x3e000000+0x1000	KNOB	heldout	the tool's allocation order (README)
+tri-edm-gen	pte	0x10	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-edm-gen	access	read	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c)
+tri-edm-gen	outcome	exact	H-EDM-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT has no effect on a client requestor (plan K2, rival)
+tri-edm-gen	outcome	fault	H-EDM-CLIENT	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival)
+tri-wo-gen	map	0x3e000000+0x1000	KNOB	heldout	the tool's allocation order (README)
+tri-wo-gen	pte	0x2	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-wo-gen	access	read	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c)
+tri-wo-gen	outcome	fault	H-WO	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+tri-wo-gen	outcome	exact	H-WO-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+tri-wo-gen	outcome	fault	H-WO-ALL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+tri-c-end	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c-end	hash	0x99385a04ee01c585	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c-end	fb	0x3e001000	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz

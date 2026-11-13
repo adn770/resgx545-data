@@ -1,0 +1,9 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+xf-c-fill	xf	control	safe	reads:job,hash	t4	fill	0	ok	-	-	127192496
+xf-c-copy	xf	control	safe	reads:job,hash,src	t4	copy --print-addrs	0	ok	-	-	127192452
+xf-c-addr	xf	control	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0 after reads:job,hash	t4	fill	0	ok	-	-	127192432
+xf-c-ro	xf	control	medium	expectfault reads:ro,rostat	t4	isolation	0	fault	0	0x00000000	127192404
+xf-wo-fill	xf	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	fill	1	fault	0	0x00000000	127192376
+xf-cc-copy	xf	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectfault expectdiff after	t4	copy --print-addrs	0	ok	-	-	127192340
+xf-edm-fill	xf	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after	t4	fill	1	fault	0	0x00000000	127192312
+xf-wo-copy	xf	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	copy --print-addrs	1	fault	0	0x00000000	127184080

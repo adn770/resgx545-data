@@ -1,0 +1,26 @@
+CONTROL xf-c-fill: PASS (as frozen)
+CONTROL xf-c-copy: PASS (as frozen)
+CONTROL xf-c-addr: PASS (as frozen)
+CONTROL xf-c-ro: PASS (as frozen)
+CONTROL xf-c-end: cannot tell (did not run)
+READ xf-wo-fill (WRITEONLY on write 0x3e001000): fault; job faulted hash 0xb60c6095080bd325 diff 0; PTE 0x3e001000 +0x3000 flags 0x2; faults 0x80020 at 0x3e0021f1
+ROW xf-wo-fill H-WO (frozen exact): FAILED
+ROW xf-wo-fill H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-fill H-WO-ALL (frozen fault): held
+READ xf-cc-copy (CACHECONSISTENT on read 0x3e001000): exact; job ok hash 0x9b1c0be484ac0d25 diff 0; PTE 0x3e001000 +0x3000 flags 0xc; faults none
+ROW xf-cc-copy H-CC-NEW (frozen exact): held
+ROW xf-cc-copy H-CC-STALE (frozen diff): FAILED
+READ xf-edm-fill (EDMPROTECT on write 0x3e001000): fault; job faulted hash 0xfc8ce806207f8325 diff 2048; PTE 0x3e001000 +0x3000 flags 0x10; faults 0xa0020 at 0x3e001001
+ROW xf-edm-fill H-EDM-NONE (frozen exact): FAILED
+ROW xf-edm-fill H-EDM-CLIENT (frozen fault): held
+READ xf-wo-copy (WRITEONLY on read 0x3e001000): fault; job faulted hash 0xfc8ce806207f8325 diff 2048; PTE 0x3e001000 +0x3000 flags 0x6; faults 0x80002 at 0x3e001001
+ROW xf-wo-copy H-WO (frozen fault): held
+ROW xf-wo-copy H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-copy H-WO-ALL (frozen fault): held
+SUMMARY: xf WRITEONLY H-WO: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf WRITEONLY H-WO-NONE: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf WRITEONLY H-WO-ALL: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf CACHECONSISTENT H-CC-NEW: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf CACHECONSISTENT H-CC-STALE: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf EDMPROTECT H-EDM-NONE: cannot tell: controls: xf-c-end: cannot tell
+SUMMARY: xf EDMPROTECT H-EDM-CLIENT: cannot tell: controls: xf-c-end: cannot tell

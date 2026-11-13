@@ -1,0 +1,85 @@
+xf: score output byte-identical to the kept one
+xf: 58 kept files logged, 0 differ from the laptop's sha256
+tri: score output byte-identical to the kept one
+tri: 57 kept files logged, 0 differ from the laptop's sha256
+== xf: knob rows
+xf-c-fill: class ok rc 0 (fault events 0 of #limit 4); job: ok; target: 64x32 hash 0xb60c6095080bd325; diff: 0 of 2048 pixels
+xf-c-copy: class ok rc 0 (fault events 0 of #limit 4); job: ok; target: 64x32 hash 0x9b1c0be484ac0d25; diff: 0 of 2048 pixels
+xf-c-addr: class ok rc 0 (fault events 0 of #limit 4); job: ok; target: 64x32 hash 0xb60c6095080bd325; diff: 0 of 2048 pixels
+  knob: fill-dst (write) 0x3e001000 +0x3000; kernel PTE lines []
+xf-c-ro: class fault rc 0 (fault events 1 of #limit 4); ; ; 
+  PASS kernel-heap-unmappable; PASS same-address-separate-vms; PASS other-vm-address-faults; PASS fault-recovered-quickly; PASS lost-context-cancelled; PASS other-context-survives; PASS queued-innocent-job-reruns; PASS read-only-faults; PASS faulting-file-banned
+  fault: BIF_INT_STAT 0x90020 (FAULT_REQ bit 5, FAULT_TYPE 1), BIF_FAULT 0x3e100001 (page 0x3e100000, SB 0, CID 1)
+  fault: BIF_INT_STAT 0x90020 (FAULT_REQ bit 5, FAULT_TYPE 1), BIF_FAULT 0x3e001002 (page 0x3e001000, SB 0, CID 2)
+  fault: BIF_INT_STAT 0x80020 (FAULT_REQ bit 5, FAULT_TYPE 0), BIF_FAULT 0x3e200002 (page 0x3e200000, SB 0, CID 2)
+xf-wo-fill: class fault rc 1 (fault events 2 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x32 hash 0xb60c6095080bd325; diff: 0 of 2048 pixels
+  knob: fill-dst (write) 0x3e001000 +0x3000; kernel PTE lines [('0x3e001000', '0x3000', '0x2')]
+  fault: BIF_INT_STAT 0x80020 (FAULT_REQ bit 5, FAULT_TYPE 0), BIF_FAULT 0x3e0021f1 (page 0x3e002000, SB 31, CID 1): page 1 of the mapping (the image's last)
+xf-cc-copy: class ok rc 0 (fault events 2 of #limit 4); job: ok; target: 64x32 hash 0x9b1c0be484ac0d25; diff: 0 of 2048 pixels
+  knob: copy-src (read) 0x3e001000 +0x3000; kernel PTE lines [('0x3e001000', '0x3000', '0xc')]
+xf-edm-fill: class fault rc 1 (fault events 3 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x32 hash 0xfc8ce806207f8325; diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff336699
+  knob: fill-dst (write) 0x3e001000 +0x3000; kernel PTE lines [('0x3e001000', '0x3000', '0x10')]
+  fault: BIF_INT_STAT 0xa0020 (FAULT_REQ bit 5, FAULT_TYPE 2), BIF_FAULT 0x3e001001 (page 0x3e001000, SB 0, CID 1): page 0 of the mapping (the image's first)
+xf-wo-copy: class fault rc 1 (fault events 4 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x32 hash 0xfc8ce806207f8325; diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xa5000000
+  knob: copy-src (read) 0x3e001000 +0x3000; kernel PTE lines [('0x3e001000', '0x3000', '0x6')]
+  fault: BIF_INT_STAT 0x80002 (FAULT_REQ bit 1, FAULT_TYPE 0), BIF_FAULT 0x3e001001 (page 0x3e001000, SB 0, CID 1): page 0 of the mapping (the image's first)
+  not run: ['xf-c-end']
+== xf: health after rows (the runner's kept fill and triangle)
+  begin fill try 1: diff: 0 of 2048 pixels
+  begin health try 1: diff: 0 of 4096 pixels
+  xf-c-addr fill try 2: diff: 0 of 2048 pixels
+  xf-c-addr health try 2: diff: 0 of 4096 pixels
+  xf-c-ro fill try 3: diff: 0 of 2048 pixels
+  xf-c-ro health try 3: diff: 0 of 4096 pixels
+  xf-cc-copy fill try 6: diff: 0 of 2048 pixels
+  xf-cc-copy health try 6: diff: 0 of 4096 pixels
+  xf-edm-fill fill try 7: diff: 0 of 2048 pixels
+  xf-edm-fill fill try 8: diff: 0 of 2048 pixels
+  xf-edm-fill health try 7: diff: 0 of 4096 pixels
+  xf-edm-fill health try 8: diff: 0 of 4096 pixels
+  xf-wo-copy fill try 9: diff: 0 of 2048 pixels
+  xf-wo-copy health try 9: diff: 0 of 4096 pixels
+  xf-wo-fill fill try 4: diff: 0 of 2048 pixels
+  xf-wo-fill fill try 5: diff: 0 of 2048 pixels
+  xf-wo-fill health try 4: diff: 0 of 4096 pixels
+  xf-wo-fill health try 5: diff: 0 of 4096 pixels
+== tri: knob rows
+tri-c: class ok rc 0 (fault events 0 of #limit 4); job: ok; target: 64x64 hash 0x99385a04ee01c585; diff: 0 of 4096 pixels
+tri-wo-fb: class fault rc 1 (fault events 1 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x64 hash 0x99385a04ee01c585; diff: 0 of 4096 pixels
+  knob: tri-fb (write) 0x3e001000 +0x5000; kernel PTE lines [('0x3e001000', '0x5000', '0x2')]
+  fault: BIF_INT_STAT 0x80020 (FAULT_REQ bit 5, FAULT_TYPE 0), BIF_FAULT 0x3e0041f1 (page 0x3e004000, SB 31, CID 1): page 3 of the mapping (the image's last)
+tri-cc-gen: class ok rc 0 (fault events 1 of #limit 4); job: ok; target: 64x64 hash 0x99385a04ee01c585; diff: 0 of 4096 pixels
+  knob: tri-gen (read) 0x3e000000 +0x1000; kernel PTE lines [('0x3e000000', '0x1000', '0x8')]
+tri-edm-fb: class fault rc 1 (fault events 2 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x64 hash 0xe4364b426cdce325; diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+  knob: tri-fb (write) 0x3e001000 +0x5000; kernel PTE lines [('0x3e001000', '0x5000', '0x10')]
+  fault: BIF_INT_STAT 0xa0020 (FAULT_REQ bit 5, FAULT_TYPE 2), BIF_FAULT 0x3e001001 (page 0x3e001000, SB 0, CID 1): page 0 of the mapping (the image's first)
+tri-edm-gen: class ok rc 0 (fault events 2 of #limit 4); job: ok; target: 64x64 hash 0x99385a04ee01c585; diff: 0 of 4096 pixels
+  knob: tri-gen (read) 0x3e000000 +0x1000; kernel PTE lines [('0x3e000000', '0x1000', '0x10')]
+tri-wo-gen: class fault rc 1 (fault events 3 of #limit 4); job: failed: job faulted, context lost (Input/output error); target: 64x64 hash 0xe4364b426cdce325; diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040
+  knob: tri-gen (read) 0x3e000000 +0x1000; kernel PTE lines [('0x3e000000', '0x1000', '0x2')]
+  fault: BIF_INT_STAT 0x80008 (FAULT_REQ bit 3, FAULT_TYPE 0), BIF_FAULT 0x3e000001 (page 0x3e000000, SB 0, CID 1): page 0 of the mapping
+tri-c-end: class ok rc 0 (fault events 3 of #limit 4); job: ok; target: 64x64 hash 0x99385a04ee01c585; diff: 0 of 4096 pixels
+  not run: none
+== tri: health after rows (the runner's kept fill and triangle)
+  begin fill try 1: diff: 0 of 2048 pixels
+  begin health try 1: diff: 0 of 4096 pixels
+  end fill try 11: diff: 0 of 2048 pixels
+  end health try 11: diff: 0 of 4096 pixels
+  tri-c-end fill try 10: diff: 0 of 2048 pixels
+  tri-c-end health try 10: diff: 0 of 4096 pixels
+  tri-cc-gen fill try 4: diff: 0 of 2048 pixels
+  tri-cc-gen health try 4: diff: 0 of 4096 pixels
+  tri-edm-fb fill try 5: diff: 0 of 2048 pixels
+  tri-edm-fb fill try 6: diff: 0 of 2048 pixels
+  tri-edm-fb health try 5: diff: 0 of 4096 pixels
+  tri-edm-fb health try 6: diff: 0 of 4096 pixels
+  tri-edm-gen fill try 7: diff: 0 of 2048 pixels
+  tri-edm-gen health try 7: diff: 0 of 4096 pixels
+  tri-wo-fb fill try 2: diff: 0 of 2048 pixels
+  tri-wo-fb fill try 3: diff: 0 of 2048 pixels
+  tri-wo-fb health try 2: diff: 0 of 4096 pixels
+  tri-wo-fb health try 3: diff: 0 of 4096 pixels
+  tri-wo-gen fill try 8: diff: 0 of 2048 pixels
+  tri-wo-gen fill try 9: diff: 0 of 2048 pixels
+  tri-wo-gen health try 8: diff: 0 of 4096 pixels
+  tri-wo-gen health try 9: diff: 0 of 4096 pixels
