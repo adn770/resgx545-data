@@ -1,0 +1,13 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+xf-c-fill	xf2	control	safe	reads:job,hash	t4	fill	0	ok	-	-	127162168
+xf-c-copy	xf2	control	safe	reads:job,hash,src	t4	copy --print-addrs	0	ok	-	-	127162124
+xf-c-addr	xf2	control	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0 after reads:job,hash	t4	fill	0	ok	-	-	127162104
+xf-c-ro	xf2	control	medium	expectfault reads:ro,rostat	t4	isolation	0	fault	0	0x00000000	127162076
+xf-wo-fill	xf2	repeat	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	fill	1	fault	0	0x00000000	127162048
+xf-cc-copy	xf2	repeat	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectfault expectdiff after	t4	copy --print-addrs	0	ok	-	-	127162012
+xf-edm-fill	xf2	repeat	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after	t4	fill	1	fault	0	0x00000000	127161984
+xf-wo-copy	xf2	repeat	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	copy --print-addrs	1	fault	0	0x00000000	127161944
+xf-c-end	xf2	control	safe	after reads:job,hash	t4	fill	0	ok	-	-	127161908
+xf-wo-fill-low	xf2	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	fill --width 64 --height 16 --y 16	1	fault	0	0x00000000	127161880
+xf-wo-fill-64	xf2	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	fill --width 64 --height 64	1	fault	0	0x00000000	127161844
+xf-edm-copy	xf2	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after	t4	copy --print-addrs	0	ok	-	-	127161804

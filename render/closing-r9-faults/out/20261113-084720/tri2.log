@@ -1,0 +1,50 @@
+## stage tri2 of r9f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127161628 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r9f.rBmbit
+## clock
+Fri Nov 13 08:50:04 CET 2026
+== tri-c set=control risk=safe tool=t4 knobs=[reads:job,hash,fb]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise tri-c [job hash fb]: job=ok hash=0x99385a04ee01c585 fb=0x3e001000 renders=1ok 
+== tri-c-depth set=control risk=safe tool=t4 knobs=[after reads:job,fb,dstore]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --depth --depth-store
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise tri-c-depth [job fb dstore]: job=ok hash=0x99385a04ee01c585 fb=0x3e029000 renders=1ok dstore=4096 
+== tri-woedm-fb set=heldout risk=medium tool=t4 knobs=[dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (a reading): events 1 of 5; reset, then strict health
+== tri-edm-dst set=heldout risk=medium tool=t4 knobs=[dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x10 expectfault expectdiff after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --depth --depth-store
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (a reading): events 2 of 5; reset, then strict health
+== tri-edm-dld set=reading risk=medium tool=t4 knobs=[dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --depth --depth-store
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== tri-wo-dst set=heldout risk=medium tool=t4 knobs=[dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x2 expectfault expectdiff after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --depth --depth-store
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0x927a9f8b8aa231a5 diff: 3584 of 4096 pixels, first (32, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (a reading): events 3 of 5; reset, then strict health
+== tri-c-end set=control risk=safe tool=t4 knobs=[after reads:job,hash,fb]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise tri-c-end [job hash fb]: job=ok hash=0x99385a04ee01c585 fb=0x3e001000 renders=1ok 
+## end: 7 jobs of tri2
+## kernel log (journalctl)

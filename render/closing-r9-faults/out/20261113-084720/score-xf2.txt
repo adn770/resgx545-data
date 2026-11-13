@@ -1,0 +1,53 @@
+CONTROL xf-c-fill: PASS (as frozen)
+CONTROL xf-c-copy: PASS (as frozen)
+CONTROL xf-c-addr: PASS (as frozen)
+CONTROL xf-c-ro: PASS (as frozen)
+CONTROL xf-c-end: PASS (as frozen)
+READ xf-wo-fill [repeat] (WRITEONLY on write 0x3e001000): fault@0x3e002000; job faulted hash 0xb60c6095080bd325 diff 0; PTE 0x3e001000 +0x3000 flags 0x2; faults 0x80020 at 0x3e0021f1
+ROW xf-wo-fill WRITEONLY H-WO (frozen exact): FAILED
+ROW xf-wo-fill WRITEONLY H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-fill WRITEONLY H-WO-ALL (frozen fault): held
+ROW xf-wo-fill WO-PAGE H-LASTROW (frozen fault@0x3e002000): held
+ROW xf-wo-fill WO-PAGE H-MAPEND (frozen fault@0x3e003000): FAILED
+ROW xf-wo-fill WO-PAGE H-FIRST (frozen fault@0x3e001000): FAILED
+READ xf-cc-copy [repeat] (CACHECONSISTENT on read 0x3e001000): exact; job ok hash 0x9b1c0be484ac0d25 diff 0; PTE 0x3e001000 +0x3000 flags 0xc; faults none
+ROW xf-cc-copy CACHECONSISTENT H-CC-NEW (frozen exact): held
+ROW xf-cc-copy CACHECONSISTENT H-CC-STALE (frozen diff): FAILED
+READ xf-edm-fill [repeat] (EDMPROTECT on write 0x3e001000): fault@0x3e001000; job faulted hash 0xfc8ce806207f8325 diff 2048; PTE 0x3e001000 +0x3000 flags 0x10; faults 0xa0020 at 0x3e001001
+ROW xf-edm-fill EDMPROTECT H-EDM-NONE (frozen exact): FAILED
+ROW xf-edm-fill EDMPROTECT H-EDM-CLIENT (frozen fault): held
+ROW xf-edm-fill EDM-XF H-EDM-WRITE (frozen fault): held
+ROW xf-edm-fill EDM-XF H-EDM-REQ (frozen fault): held
+READ xf-wo-copy [repeat] (WRITEONLY on read 0x3e001000): fault@0x3e001000; job faulted hash 0xfc8ce806207f8325 diff 2048; PTE 0x3e001000 +0x3000 flags 0x6; faults 0x80002 at 0x3e001001
+ROW xf-wo-copy WRITEONLY H-WO (frozen fault): held
+ROW xf-wo-copy WRITEONLY H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-copy WRITEONLY H-WO-ALL (frozen fault): held
+READ xf-wo-fill-low [heldout] (WRITEONLY on write 0x3e001000): fault@0x3e002000; job faulted hash 0x1b53c7736b16fb25 diff 0; PTE 0x3e001000 +0x3000 flags 0x2; faults 0x80020 at 0x3e0021f1
+ROW xf-wo-fill-low WRITEONLY H-WO (frozen exact): FAILED
+ROW xf-wo-fill-low WRITEONLY H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-fill-low WRITEONLY H-WO-ALL (frozen fault): held
+ROW xf-wo-fill-low WO-PAGE H-LASTROW (frozen fault@0x3e002000): held
+ROW xf-wo-fill-low WO-PAGE H-MAPEND (frozen fault@0x3e003000): FAILED
+ROW xf-wo-fill-low WO-PAGE H-FIRST (frozen fault@0x3e001000): FAILED
+READ xf-wo-fill-64 [heldout] (WRITEONLY on write 0x3e001000): fault@0x3e004000; job faulted hash 0xc3ac149063f58325 diff 0; PTE 0x3e001000 +0x5000 flags 0x2; faults 0x80020 at 0x3e0041f1
+ROW xf-wo-fill-64 WRITEONLY H-WO (frozen exact): FAILED
+ROW xf-wo-fill-64 WRITEONLY H-WO-NONE (frozen exact): FAILED
+ROW xf-wo-fill-64 WRITEONLY H-WO-ALL (frozen fault): held
+ROW xf-wo-fill-64 WO-PAGE H-LASTROW (frozen fault@0x3e004000): held
+ROW xf-wo-fill-64 WO-PAGE H-MAPEND (frozen fault@0x3e005000): FAILED
+ROW xf-wo-fill-64 WO-PAGE H-FIRST (frozen fault@0x3e001000): FAILED
+READ xf-edm-copy [heldout] (EDMPROTECT on read 0x3e001000): exact; job ok hash 0x9b1c0be484ac0d25 diff 0; PTE 0x3e001000 +0x3000 flags 0x14; faults none
+ROW xf-edm-copy EDM-XF H-EDM-WRITE (frozen exact): held
+ROW xf-edm-copy EDM-XF H-EDM-REQ (frozen fault): FAILED
+SUMMARY: xf2 WRITEONLY H-WO: Q108 WRITEONLY, H-WO: WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen) is not supported: 1 held, 3 FAILED, 0 cannot tell of 4
+SUMMARY: xf2 WRITEONLY H-WO-NONE: Q108 WRITEONLY, H-WO-NONE: WRITEONLY does nothing to a client's reads or writes (rival) is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: xf2 WRITEONLY H-WO-ALL: Q108 WRITEONLY, H-WO-ALL: WRITEONLY faults every access (rival) (4 of 4 rows decided)
+SUMMARY: xf2 WO-PAGE H-LASTROW: Q108 WO-PAGE, H-LASTROW: a WRITEONLY write faults at the page of the last pixel written (E946 post hoc: xf-wo-fill at 0x3e002000; E945 tri-wo-fb at 0x3e004000) (S9-k2, frozen) (2 of 2 rows decided)
+SUMMARY: xf2 WO-PAGE H-MAPEND: Q108 WO-PAGE, H-MAPEND: a WRITEONLY write faults at the flagged mapping's last page (rival) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: xf2 WO-PAGE H-FIRST: Q108 WO-PAGE, H-FIRST: a WRITEONLY write faults at the flagged mapping's first page (rival) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: xf2 CACHECONSISTENT H-CC-NEW: Q108 CACHECONSISTENT, H-CC-NEW: a unit reads the host's writes made after the map (plan K2, frozen) (1 of 1 rows decided)
+SUMMARY: xf2 CACHECONSISTENT H-CC-STALE: Q108 CACHECONSISTENT, H-CC-STALE: a unit reads stale data (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: xf2 EDMPROTECT H-EDM-NONE: Q108 EDMPROTECT, H-EDM-NONE: EDMPROTECT has no effect on a client requestor (plan K2, rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: xf2 EDMPROTECT H-EDM-CLIENT: Q108 EDMPROTECT, H-EDM-CLIENT: EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival) (1 of 1 rows decided)
+SUMMARY: xf2 EDM-XF H-EDM-WRITE: Q108 EDM-XF, H-EDM-WRITE: EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen) (1 of 1 rows decided)
+SUMMARY: xf2 EDM-XF H-EDM-REQ: Q108 EDM-XF, H-EDM-REQ: EDMPROTECT faults every access of the transfer's requestors, reads too (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1

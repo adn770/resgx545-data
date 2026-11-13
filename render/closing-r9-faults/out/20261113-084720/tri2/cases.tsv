@@ -1,0 +1,8 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+tri-c	tri2	control	safe	reads:job,hash,fb	t4	tri	0	ok	-	-	127161608
+tri-c-depth	tri2	control	safe	after reads:job,fb,dstore	t4	tri --depth --depth-store	0	ok	-	-	127161588
+tri-woedm-fb	tri2	heldout	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff after	t4	tri	1	fault	0	0x00000000	127161560
+tri-edm-dst	tri2	heldout	medium	dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x10 expectfault expectdiff after	t4	tri --depth --depth-store	1	fault	0	0x00000000	127161524
+tri-edm-dld	tri2	reading	medium	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after	t4	tri --depth --depth-store	0	ok	-	-	127161488
+tri-wo-dst	tri2	heldout	medium	dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x2 expectfault expectdiff after	t4	tri --depth --depth-store	1	fault	0	0x00000000	127161460
+tri-c-end	tri2	control	safe	after reads:job,hash,fb	t4	tri	0	ok	-	-	127161420

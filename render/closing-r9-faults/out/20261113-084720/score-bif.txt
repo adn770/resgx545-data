@@ -1,0 +1,36 @@
+CONTROL bif-c0: PASS (as frozen)
+CONTROL bif-c9: PASS (as frozen)
+CONTROL bif-c-ovf: PASS (as frozen)
+CONTROL bif-c1: PASS (as frozen)
+CONTROL bif-c0-end: PASS (as frozen)
+READ bif-1213 [heldout] (mask 0x3000: buffers 12,13 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-1213 H-ONLY09 (frozen exact): held
+ROW bif-1213 H-SET (frozen needed): FAILED
+READ bif-1214 [heldout] (mask 0x5000: buffers 12,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-1214 H-ONLY09 (frozen exact): held
+ROW bif-1214 H-SET (frozen needed): FAILED
+READ bif-1314 [heldout] (mask 0x6000: buffers 13,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-1314 H-ONLY09 (frozen exact): held
+ROW bif-1314 H-SET (frozen needed): FAILED
+READ bif-12to14 [heldout] (mask 0x7000: buffers 12,13,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-12to14 H-ONLY09 (frozen exact): held
+ROW bif-12to14 H-SET (frozen needed): FAILED
+READ bif-h32 [heldout] (mask 0x7dc0: buffers 6,7,8,10,11,12,13,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-h32 H-ONLY09 (frozen exact): held
+ROW bif-h32 H-SET (frozen needed): FAILED
+READ bif-most [heldout] (mask 0x7dfe: buffers 1,2,3,4,5,6,7,8,10,11,12,13,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-most H-ONLY09 (frozen exact): held
+ROW bif-most H-SET (frozen needed): FAILED
+READ bif-most-r2 [replicate] (mask 0x7dfe: buffers 1,2,3,4,5,6,7,8,10,11,12,13,14 left out): exact; jobs ok,ok; renders 2ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d; diffs 0,0; faults none
+ROW bif-most-r2 H-ONLY09 (frozen exact): held
+ROW bif-most-r2 H-SET (frozen needed): FAILED
+READ bif-most-3r [heldout] (mask 0x7dfe: buffers 1,2,3,4,5,6,7,8,10,11,12,13,14 left out): exact; jobs ok,ok,ok; renders 3ok; hashes 0x99385a04ee01c585,0xab267bd98022a81d,0x99385a04ee01c585; diffs 0,0,0; faults none
+ROW bif-most-3r H-ONLY09 (frozen exact): held
+ROW bif-most-3r H-SET (frozen needed): FAILED
+READ bif-most-ovf [heldout] (mask 0x7dfe: buffers 1,2,3,4,5,6,7,8,10,11,12,13,14 left out): exact; jobs overflowed,overflowed; renders 0of2ovf2; hashes 0xc9e301d225fe2325,0xed1bce7108aded25; diffs 0,0; faults none
+ROW bif-most-ovf H-ONLY09 (frozen exact): held
+ROW bif-most-ovf H-SET (frozen needed): FAILED
+REPLICATES bif-most H-ONLY09: held (bif-most, bif-most-r2)
+REPLICATES bif-most H-SET: refuted (bif-most, bif-most-r2)
+SUMMARY: bif H-ONLY09: Q076 alias_skip, H-ONLY09: a buffer is needed in the client directory only if leaving it out alone faults: of 0 to 14 only 0 and 9 (E457, E573, E745, E761: HI), so any mask without them renders exactly (frozen) (8 of 8 rows decided)
+SUMMARY: bif H-SET: Q076 alias_skip, H-SET: a set of buffers each unneeded alone is needed together: the mask's fault lies in a buffer it leaves out (HJ, rival) is not supported: 0 held, 8 FAILED, 0 cannot tell of 8

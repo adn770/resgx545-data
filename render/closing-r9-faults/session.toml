@@ -1,0 +1,109 @@
+# session.toml: the env of r9-faults (round 9, the two fault stages of the sitting: Q108's S9-k2
+# and Q076's bif), a closing session built with the session kit (HACKING.md, "Session kit").
+# kit/session.py writes run/session.env from it for the laptop. Plans: closing9/seeds/
+# exp-seeds-r9.md section 2 (S9-k2) and closing9/rank/rank-round9.md R9c-G (bif); decisions
+# closing9/DECISIONS-R9.md (S-6 (a), X-4 (a)).
+name = "r9-faults"
+prefix = "r9f"                 # laptop files under ~/scratch/r9f/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"   # the round 8 module (fork r8-kernel 2a650d74): vm_pte_*, alias_skip
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 60                    # seconds one job may take (timeout -k 10): a job waits 10 s
+                                    # (WAIT_NS) or 6 s a render (--wait-ms), isolation 3 x
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--poke", "--kpoke-job", "--kpoke-render", "--kpoke-render2", "--kreg-render",
+                  "--kreg-render2", "--scratch-at", "--low", "--late", "--tadata-fill-render",
+                  "--page-before", "--regs", "--fault", "--depth-base", "--depth-ctl"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# the debugfs knobs a row may write (dbg:NAME=V), restored after every job and by the exit trap.
+# vm_pte_flags: bits of 0x1a only (the fork's SGXFIVE_VM_PTE_KNOB; WO 0x2, CACHED 0x8, EDMPROT
+# 0x10, WO|EDMPROT 0x12); vm_pte_addr: the first page of the one mapping that takes them
+# (0x3e001000 a fill's destination, a copy's read-only source, a 64 x 64 colour target or the
+# depth buffer of tri --depth; 0x3e015000 the depth store's buffer; README "Addresses");
+# alias_skip: the firmware buffer ids a new render VM's alias leaves out (E457; bits 0 to 15);
+# render_pb_pages: 0x23 for the overflowing 1024 x 768 scene of E761, else the default 0x422.
+[knobs]
+vm_pte_flags = { default = "0", values = ["0", "0x2", "0x8", "0x10", "0x12"] }
+vm_pte_addr = { default = "0", values = ["0", "0x3e001000", "0x3e015000"] }
+alias_skip = { default = "0", values = ["0", "0x1", "0x200", "0x3000", "0x5000", "0x6000", "0x7000", "0x7dc0", "0x7dfe"] }
+render_pb_pages = { default = "0x422", values = ["0x422", "0x23"] }
+
+# the stages in run order (README "Order"): Q108's xf2 and tri2, then Q076's bif; alarm: the Mac's
+# bound on the stage (s). No stage gates another: each stage's own controls gate its rows.
+[stages]
+xf2 = { alarm = 900 }
+tri2 = { alarm = 900 }
+bif = { alarm = 1200 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "f32dfacc8db804f205fcd5b40c65e01ba0060306"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+pins = [
+    # the hardware outputs the controls are frozen on (tests/test_twin.py checks the values)
+    "data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz",
+    "data:texture/copy-addresses/output.txt",
+    "data:render/client-jobs/output.txt",
+    "data:render/closing-s1/out/p-f/f-12-r1.txt.gz",
+    "data:render/closing-s1/out/p-f/f-ctl0-r1.txt.gz",
+    "data:render/closing-s1/out/p-f/f-ctl0-r1.dmesg.gz",
+    "data:render/closing-s1b/out/p-f/f-dpm-0.txt.gz",
+    "data:render/closing-s1b/out/p-f/f-dpm-1e-r1.txt.gz",
+    "data:bif/render-directories/kernel.log",
+    "data:bif/alias-skip/dumps/bif-alias-safe/b76-control-1.layout.txt.gz",
+    # the kept records of E945 and E946 the scorer must hold on and fail on (tests/test_score.py)
+    "data:render/closing-r8-k2/out/20261113-032428/xf/cases.tsv",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/cases.tsv",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-fill.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-fill.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-copy.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-copy.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-addr.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-addr.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-ro.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-c-ro.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-wo-fill.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-wo-fill.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-cc-copy.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-cc-copy.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-edm-fill.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-edm-fill.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-wo-copy.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/xf/xf-wo-copy.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-c.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-c.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-c-end.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-c-end.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-wo-fb.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-wo-fb.dmesg.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-edm-fb.txt.gz",
+    "data:render/closing-r8-k2/out/20261113-032428/tri/tri-edm-fb.dmesg.gz",
+    "data:render/closing-s1/out/p-f/f-12-r1.dmesg.gz",
+    "data:render/closing-s1b/out/p-f/f-dpm-0.dmesg.gz",
+    "data:render/closing-s1b/out/p-f/f-dpm-1e-r1.dmesg.gz",
+    "data:bif/render-directories/output.txt",
+    # the vectors-table writer and reader the fold builds the replay tables with, and the units
+    # that will replay them (README, "Replay vectors")
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:crates/sgx-pipe/src/bif.rs",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

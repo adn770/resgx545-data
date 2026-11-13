@@ -1,0 +1,63 @@
+case	quantity	value	model	set	source
+xf-c-fill	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-c-fill	hash	0xb60c6095080bd325	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-c-copy	job	ok	H-CTL	control	data:texture/copy-addresses/output.txt
+xf-c-copy	hash	0x9b1c0be484ac0d25	H-CTL	control	data:texture/copy-addresses/output.txt
+xf-c-copy	src	0x3e001000	H-CTL	control	data:texture/copy-addresses/output.txt (0x3e002000 behind --page-before's page)
+xf-c-addr	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-c-addr	hash	0xb60c6095080bd325	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-c-ro	ro	PASS	H-CTL	control	data:render/client-jobs/output.txt
+xf-c-ro	rostat	0x80020	H-CTL	control	data:render/client-jobs/output.txt
+xf-c-ro	ropage	0x3e200000	H-CTL	control	data:render/client-jobs/output.txt
+xf-wo-fill	map	0x3e001000+0x3000	KNOB	repeat	the tool's allocation order (README)
+xf-wo-fill	pte	0x2	KNOB	repeat	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-wo-fill	access	write	KNOB	repeat	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-wo-fill	outcome:WRITEONLY	exact	H-WO	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+xf-wo-fill	outcome:WRITEONLY	exact	H-WO-NONE	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+xf-wo-fill	outcome:WRITEONLY	fault	H-WO-ALL	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+xf-wo-fill	page:WO-PAGE	fault@0x3e002000	H-LASTROW	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the page of the last pixel written (E946 post hoc: xf-wo-fill at 0x3e002000; E945 tri-wo-fb at 0x3e004000) (S9-k2, frozen)
+xf-wo-fill	page:WO-PAGE	fault@0x3e003000	H-MAPEND	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's last page (rival)
+xf-wo-fill	page:WO-PAGE	fault@0x3e001000	H-FIRST	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's first page (rival)
+xf-cc-copy	map	0x3e001000+0x3000	KNOB	repeat	the tool's allocation order (README)
+xf-cc-copy	pte	0xc	KNOB	repeat	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-cc-copy	access	read	KNOB	repeat	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-cc-copy	outcome:CACHECONSISTENT	exact	H-CC-NEW	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a unit reads the host's writes made after the map (plan K2, frozen)
+xf-cc-copy	outcome:CACHECONSISTENT	diff	H-CC-STALE	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a unit reads stale data (rival)
+xf-edm-fill	map	0x3e001000+0x3000	KNOB	repeat	the tool's allocation order (README)
+xf-edm-fill	pte	0x10	KNOB	repeat	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-edm-fill	access	write	KNOB	repeat	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-edm-fill	outcome:EDMPROTECT	exact	H-EDM-NONE	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT has no effect on a client requestor (plan K2, rival)
+xf-edm-fill	outcome:EDMPROTECT	fault	H-EDM-CLIENT	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival)
+xf-edm-fill	outcome:EDM-XF	fault	H-EDM-WRITE	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen)
+xf-edm-fill	outcome:EDM-XF	fault	H-EDM-REQ	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every access of the transfer's requestors, reads too (rival)
+xf-wo-copy	map	0x3e001000+0x3000	KNOB	repeat	the tool's allocation order (README)
+xf-wo-copy	pte	0x6	KNOB	repeat	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-wo-copy	access	read	KNOB	repeat	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-wo-copy	outcome:WRITEONLY	fault	H-WO	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+xf-wo-copy	outcome:WRITEONLY	exact	H-WO-NONE	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+xf-wo-copy	outcome:WRITEONLY	fault	H-WO-ALL	repeat	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+xf-c-end	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-c-end	hash	0xb60c6095080bd325	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.fill1.txt.gz
+xf-wo-fill-low	map	0x3e001000+0x3000	KNOB	heldout	the tool's allocation order (README)
+xf-wo-fill-low	pte	0x2	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-wo-fill-low	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-wo-fill-low	outcome:WRITEONLY	exact	H-WO	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+xf-wo-fill-low	outcome:WRITEONLY	exact	H-WO-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+xf-wo-fill-low	outcome:WRITEONLY	fault	H-WO-ALL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+xf-wo-fill-low	page:WO-PAGE	fault@0x3e002000	H-LASTROW	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the page of the last pixel written (E946 post hoc: xf-wo-fill at 0x3e002000; E945 tri-wo-fb at 0x3e004000) (S9-k2, frozen)
+xf-wo-fill-low	page:WO-PAGE	fault@0x3e003000	H-MAPEND	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's last page (rival)
+xf-wo-fill-low	page:WO-PAGE	fault@0x3e001000	H-FIRST	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's first page (rival)
+xf-wo-fill-64	map	0x3e001000+0x5000	KNOB	heldout	the tool's allocation order (README)
+xf-wo-fill-64	pte	0x2	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-wo-fill-64	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-wo-fill-64	outcome:WRITEONLY	exact	H-WO	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+xf-wo-fill-64	outcome:WRITEONLY	exact	H-WO-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+xf-wo-fill-64	outcome:WRITEONLY	fault	H-WO-ALL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+xf-wo-fill-64	page:WO-PAGE	fault@0x3e004000	H-LASTROW	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the page of the last pixel written (E946 post hoc: xf-wo-fill at 0x3e002000; E945 tri-wo-fb at 0x3e004000) (S9-k2, frozen)
+xf-wo-fill-64	page:WO-PAGE	fault@0x3e005000	H-MAPEND	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's last page (rival)
+xf-wo-fill-64	page:WO-PAGE	fault@0x3e001000	H-FIRST	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): a WRITEONLY write faults at the flagged mapping's first page (rival)
+xf-edm-copy	map	0x3e001000+0x3000	KNOB	heldout	the tool's allocation order (README)
+xf-edm-copy	pte	0x14	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+xf-edm-copy	access	read	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+xf-edm-copy	outcome:EDM-XF	exact	H-EDM-WRITE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen)
+xf-edm-copy	outcome:EDM-XF	fault	H-EDM-REQ	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every access of the transfer's requestors, reads too (rival)

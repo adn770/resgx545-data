@@ -1,0 +1,15 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+bif-c0	bif	control	medium	dbg:alias_skip=0 after reads:job,renders,hash,hash2	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161280
+bif-c9	bif	control	medium	dbg:alias_skip=0x200 expectfault reads:fstat,fpage	t4	tri -n 2 --keep-going --wait-ms 6000	1	fault	0	0x00000000	127161252
+bif-1213	bif	heldout	medium	dbg:alias_skip=0x3000 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161224
+bif-1214	bif	heldout	medium	dbg:alias_skip=0x5000 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161196
+bif-1314	bif	heldout	medium	dbg:alias_skip=0x6000 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161168
+bif-12to14	bif	heldout	medium	dbg:alias_skip=0x7000 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161140
+bif-h32	bif	heldout	medium	dbg:alias_skip=0x7dc0 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161112
+bif-most	bif	heldout	medium	dbg:alias_skip=0x7dfe expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161080
+bif-most-r2	bif	replicate	medium	dbg:alias_skip=0x7dfe expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127161052
+bif-most-3r	bif	heldout	medium	dbg:alias_skip=0x7dfe expectfault after	t4	tri -n 3 --keep-going --wait-ms 6000	0	ok	-	-	127161024
+bif-c-ovf	bif	control	medium	dbg:alias_skip=0 dbg:render_pb_pages=0x23 after reads:job,renders,hash,hash2	t4	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	-	-	127160996
+bif-most-ovf	bif	heldout	medium	dbg:alias_skip=0x7dfe dbg:render_pb_pages=0x23 expectfault after	t4	tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow	0	ok	-	-	127160964
+bif-c1	bif	control	medium	dbg:alias_skip=0x1 expectfault reads:fstat,fpage	t4	tri -n 2 --keep-going --wait-ms 6000	1	fault	0	0x00000000	127160936
+bif-c0-end	bif	control	medium	dbg:alias_skip=0 after reads:job,renders,hash,hash2	t4	tri -n 2 --keep-going --wait-ms 6000	0	ok	-	-	127160908

@@ -1,0 +1,233 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "pte",
+ "run": {
+  "session": "render/closing-r9-faults",
+  "stage": "tri2",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "replayed",
+  "test": "crates/sgx-pipe/tests/pte_table.rs::the_model_replays_every_modelled_row_of_the_pte_tables",
+  "model": "sgx-pipe bif::pte_access: WRITEONLY, CACHECONSISTENT and EDMPROTECT on the pixel write, the texture and stream reads and the ZLS store (E945, E946, E964, E965)"
+ },
+ "rows": [
+  {
+   "id": "tri-c",
+   "set": "control",
+   "knobs": "reads:job,hash,fb",
+   "args": "tri",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x99385a04ee01c585",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "tri2/tri-c.txt.gz",
+   "raw_sha256": "13d35174935bd81d69124a6839890ca4913dc5f1d2e5022c7d3d1c131449f439",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "tri2/tri-c.dmesg.gz",
+   "dmesg_sha256": "8cd32f8a48a7963cd537944a4d9fdadc027247d9feb494d86894efa5fb3b11b2"
+  },
+  {
+   "id": "tri-c-depth",
+   "set": "control",
+   "knobs": "after reads:job,fb,dstore",
+   "args": "tri --depth --depth-store",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x99385a04ee01c585",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "tri2/tri-c-depth.txt.gz",
+   "raw_sha256": "91b859406fd7d2dcb9d255a5b7a799a2a53c2edb964238f62b7aa3ba17640452",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "tri2/tri-c-depth.dmesg.gz",
+   "dmesg_sha256": "191e78f5992ff5036ca8b987c24c08b9c6d84c62de69a327d366e6675e95acab"
+  },
+  {
+   "id": "tri-woedm-fb",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff after",
+   "args": "tri",
+   "rc": 1,
+   "class": "fault",
+   "job": "failed",
+   "hash": "0xe4364b426cdce325",
+   "diff": [
+    4096,
+    4096
+   ],
+   "raw": "tri2/tri-woedm-fb.txt.gz",
+   "raw_sha256": "9750620887f167899893687247af4967bb115a1d73856083c5c3079d9dbf6f9a",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x12",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x5000",
+     "0x12"
+    ]
+   ],
+   "faults": [
+    [
+     "0xa0020",
+     "0x3e001001"
+    ]
+   ],
+   "fault_int": "0",
+   "fault_word": "0x00000000",
+   "checks": [],
+   "dmesg": "tri2/tri-woedm-fb.dmesg.gz",
+   "dmesg_sha256": "7ea9bcea3f0033def026a0b14fc27c4243859550f7ea481dfcc1baf4159020fb"
+  },
+  {
+   "id": "tri-edm-dst",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x10 expectfault expectdiff after",
+   "args": "tri --depth --depth-store",
+   "rc": 1,
+   "class": "fault",
+   "job": "failed",
+   "hash": "0xe4364b426cdce325",
+   "diff": [
+    4096,
+    4096
+   ],
+   "raw": "tri2/tri-edm-dst.txt.gz",
+   "raw_sha256": "c345dd69aa921c067123fc9f23d2108f93facf8d3841b87155a870dc96c2c990",
+   "pte_addr": "0x3e015000",
+   "pte_flags": "0x10",
+   "pte_lines": [
+    [
+     "0x3e015000",
+     "0x14000",
+     "0x10"
+    ]
+   ],
+   "faults": [
+    [
+     "0xa0200",
+     "0x3e015001"
+    ]
+   ],
+   "fault_int": "0",
+   "fault_word": "0x00000000",
+   "checks": [],
+   "dmesg": "tri2/tri-edm-dst.dmesg.gz",
+   "dmesg_sha256": "c9e5427607061ae0e21803df555cb12befdaa73cb50b3f1f136f5b95315683a9"
+  },
+  {
+   "id": "tri-edm-dld",
+   "set": "reading",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after",
+   "args": "tri --depth --depth-store",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x99385a04ee01c585",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "tri2/tri-edm-dld.txt.gz",
+   "raw_sha256": "02fc878a8e0530d91a3ff99dc48a3f45a43d923d7c3985b6830ceb71c74a807b",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x10",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x10"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "tri2/tri-edm-dld.dmesg.gz",
+   "dmesg_sha256": "e450fc32afde1c219cd2766babd4426f60aba2b67fbb25a973168e583aa0ab5d"
+  },
+  {
+   "id": "tri-wo-dst",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x2 expectfault expectdiff after",
+   "args": "tri --depth --depth-store",
+   "rc": 1,
+   "class": "fault",
+   "job": "failed",
+   "hash": "0x927a9f8b8aa231a5",
+   "diff": [
+    3584,
+    4096
+   ],
+   "raw": "tri2/tri-wo-dst.txt.gz",
+   "raw_sha256": "dc3f684933f06d8397a9635a945d0544059fc5843f635626281baa239fd0734a",
+   "pte_addr": "0x3e015000",
+   "pte_flags": "0x2",
+   "pte_lines": [
+    [
+     "0x3e015000",
+     "0x14000",
+     "0x2"
+    ]
+   ],
+   "faults": [
+    [
+     "0x80200",
+     "0x3e018001"
+    ]
+   ],
+   "fault_int": "0",
+   "fault_word": "0x00000000",
+   "checks": [],
+   "dmesg": "tri2/tri-wo-dst.dmesg.gz",
+   "dmesg_sha256": "6588fb850f029cae63c5dc62e972708bf754f4de5cab4b0566ed2b3c69343866"
+  },
+  {
+   "id": "tri-c-end",
+   "set": "control",
+   "knobs": "after reads:job,hash,fb",
+   "args": "tri",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x99385a04ee01c585",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "tri2/tri-c-end.txt.gz",
+   "raw_sha256": "6fd3d967fbb404944b7efebabfb421acea04ae48177393fd7dd37c4c631485d7",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "tri2/tri-c-end.dmesg.gz",
+   "dmesg_sha256": "ee3f301806320413a5d8524d21571d3ab208a703bc528e6d26cb9b575e6a09b6"
+  }
+ ],
+ "skipped": {}
+}
