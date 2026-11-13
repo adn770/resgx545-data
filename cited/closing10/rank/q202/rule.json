@@ -1,0 +1,16 @@
+{
+ "question": "Q202 clause 1: is E606's coverage rule exact on window x/w for perspective triangles (w != 1)?",
+ "declared_before_reading_images": "only the first background rows of b-01.txt.gz and the param buffer header of b-01 were glanced at while locating formats; no pixel mask was compared with any rival before this file was hashed",
+ "jobs": "g6-rwa (8 jobs) and g6-rw (106 jobs) of closing-r6-pixel out/20261112-142113; plus g5-rwa/g5-rw of closing-r5-pixel out/20261112-091752 if they hold images; vertices from the frozen designs rwdesign.py/rwdesign5.py/rwdesign6.py (VX,VY exact fractions, w=C*VX+D, scale S: o0=S*x, o1=S*y)",
+ "viewport": "window = 32 + 32 * (S*x) / w on a 64x64 target (spec 3d.md 9.1; rwdesign5.window); y not mirrored (checked against stored coordinates only after this file is hashed)",
+ "coverage_rule": "E606 as implemented in sgx-pipe isp.rs Tri::covers: integer vertices (1/256 px), centre (x+0.5,y+0.5), exact edge function, tie owned iff dy<0 or (dy==0 and dx>0) on the winding-normalised edge; image 0xff00ff00 = covered",
+ "snap": "E607: floor(c*256 + 1/2) (round half up) of the coordinate",
+ "rivals": {
+  "H-EXACT": "x/w and y/w exact (Fraction), window = 32+32*S*x/w exact, snapped by the snap above, then the coverage rule",
+  "H-F32": "float32 pipeline: xs=f32(S*x); q=f32(xs/w) (w float32 exact); win=f32(f32(32*q)+32); snapped by the snap above (computed from the float32 value exactly)",
+  "H-F32R": "float32 with reciprocal: r=f32(1/w); q=f32(xs*r); win=f32(f32(32*q)+32); snapped",
+  "H-STORED": "decode the 24-bit packed Y and X ((v+4096)*256, 80 bits per vertex from the packed block, after the 21 dwords PDS3,vertex 9,ISP2,prim1,lw1,fmt1,masks4) of the kept parameter buffer; E606 on those integers (no further snap)"
+ },
+ "scoring": "per job and per rival: pixels mismatched of 4096 (observed covered = 0xff00ff00), rows exact; discriminating pixel = a pixel where at least two rivals predict differently; a rival matching only where all rivals agree decides nothing",
+ "refutation": "E606-on-window-x/w is refuted for w != 1 if H-STORED (or any rival) is exact on a job where H-EXACT mispredicts a discriminating pixel, i.e. coverage follows something other than exact x/w; held out: E606 frozen 2026-11-09, jobs ran 2026-11-12"
+}
