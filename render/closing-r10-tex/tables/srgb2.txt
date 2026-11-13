@@ -1,0 +1,12 @@
+#stage srgb2
+#limit 0
+# S10-tex srgb2, Q282 (seeds plan section 1): bilinear sRGB (T0 bit 27) in E723's g-bl-st form, held out against
+# the frozen R10-BF11 (seeds q282_r10_rule.json, E982's rule): weights off the 1/64 grid (floor vs round vs exact),
+# k = 0 with B larger and smaller (bypass vs H-K0FLOOR), subnormal halves, two random rows. Control that can fail:
+# E723's g-bl-st-a rerun (its kept image). Stop: any fault or hang; the second row without its pixel rows.
+srgb2-ctl|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-ctl.bin"
+srgb2-offgrid|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-offgrid.bin"
+srgb2-k0b|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-k0b.bin"
+srgb2-sub|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-sub.bin"
+srgb2-rand1|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-rand1.bin"
+srgb2-rand2|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb2-rand2.bin"
