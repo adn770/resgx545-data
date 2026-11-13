@@ -1,0 +1,83 @@
+## stage zbits of r13z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127131232 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r13z.SSkUUL
+## clock
+Fri Nov 13 21:32:33 CET 2026
+== zbs-base set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/1-zbs-base/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zbs-base [drawn]: job=ok pixels=2048 drawn=1024 depth_changed=0 sst_changed=512 
+== zbs-q071 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0xf8e6a00e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/2-zbs-q071/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise zbs-q071 [drawn]: job=ok pixels=2048 drawn=2048 depth_changed=0 sst_changed=512 
+== zbr-ctl set=control risk=safe tool=t10 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/3-zbr-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+  premise zbr-ctl [depth_changed]: job=ok drawn=3200 depth_changed=4608 
+== zbs-c12 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017200e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/4-zbs-c12/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x0a90c429aefc2325 diff: 992 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-c16 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0016300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/5-zbs-c16/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-c20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0007300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/6-zbs-c20/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-c12-16 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0016200e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/7-zbs-c12-16/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x0a90c429aefc2325 diff: 992 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-c12-20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0007200e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/8-zbs-c12-20/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x0a90c429aefc2325 diff: 992 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-c16-20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0006300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/9-zbs-c16-20/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zbs-set set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0xf8f7b00e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/10-zbs-set/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zbr-c12 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00170014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/11-zbr-c12/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== zbr-c16 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00161014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/12-zbr-c16/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== zbr-c20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00071014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/13-zbr-c20/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== zbr-c12-16 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00160014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/14-zbr-c12-16/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== zbr-c12-20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00070014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/15-zbr-c12-20/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== zbr-c16-20 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00061014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r13z.SSkUUL/16-zbr-c16-20/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+## end: 16 jobs of zbits
+## kernel log (journalctl)
