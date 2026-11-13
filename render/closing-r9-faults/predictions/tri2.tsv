@@ -1,0 +1,33 @@
+case	quantity	value	model	set	source
+tri-c	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c	hash	0x99385a04ee01c585	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c	fb	0x3e001000	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c-depth	job	ok	H-CTL	control	tests/test_twin.py: the library mock of the tool's source (fb after the two depth buffers); doc/specs/3d.md section 11.6 (E465): 0x0017100c stores (th - 1)(G + 1) + tw = 8 tiles of 512 dwords at 64 x 64, G = 1
+tri-c-depth	fb	0x3e029000	H-CTL	control	tests/test_twin.py: the library mock of the tool's source (fb after the two depth buffers); doc/specs/3d.md section 11.6 (E465): 0x0017100c stores (th - 1)(G + 1) + tw = 8 tiles of 512 dwords at 64 x 64, G = 1
+tri-c-depth	dstore	4096	H-CTL	control	tests/test_twin.py: the library mock of the tool's source (fb after the two depth buffers); doc/specs/3d.md section 11.6 (E465): 0x0017100c stores (th - 1)(G + 1) + tw = 8 tiles of 512 dwords at 64 x 64, G = 1
+tri-woedm-fb	map	0x3e001000+0x5000	KNOB	heldout	the tool's allocation order (README)
+tri-woedm-fb	pte	0x12	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-woedm-fb	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+tri-woedm-fb	outcome:WO+EDM	fault	H-OR	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY and EDMPROTECT together fault the colour write, as each does alone (E945) (S9-k2, frozen)
+tri-woedm-fb	outcome:WO+EDM	exact	H-CANCEL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): the two flags together let the colour write through (rival)
+tri-woedm-fb	page:WO+EDM-PAGE	fault@0x3e001000	H-EDM-FIRST	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): together, the fault is EDMPROTECT's: at the target's first page, before the image is written (E945 tri-edm-fb at 0x3e001001) (rival, not favoured)
+tri-woedm-fb	page:WO+EDM-PAGE	fault@0x3e004000	H-WO-FIRST	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): together, the fault is WRITEONLY's: at the last pixel's page, after the image is written (E945 tri-wo-fb at 0x3e0041f1) (rival, not favoured)
+tri-edm-dst	map	0x3e015000+0x14000	KNOB	heldout	the tool's allocation order (README)
+tri-edm-dst	pte	0x10	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-edm-dst	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+tri-edm-dst	outcome:EDM-3D	fault	H-EDM-WRITE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen)
+tri-edm-dst	outcome:EDM-3D	exact	H-EDM-3D	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults only the pixel back end's colour write: the ZLS store and load pass (rival)
+tri-edm-dld	map	0x3e001000+0x14000	KNOB	reading	the tool's allocation order (README)
+tri-edm-dld	pte	0x10	KNOB	reading	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-edm-dld	access	none	KNOB	reading	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+tri-edm-dld	outcome:EDM-3D	exact	H-EDM-WRITE	reading	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen)
+tri-edm-dld	outcome:EDM-3D	exact	H-EDM-3D	reading	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): EDMPROTECT faults only the pixel back end's colour write: the ZLS store and load pass (rival)
+tri-wo-dst	map	0x3e015000+0x14000	KNOB	heldout	the tool's allocation order (README)
+tri-wo-dst	pte	0x2	KNOB	heldout	the fork's sgxfive_vm_pte_flags (RO the tool's own)
+tri-wo-dst	access	write	KNOB	heldout	the tool's source (cmd_fill, cmd_copy, render.c, depth_arm)
+tri-wo-dst	outcome:WRITEONLY	exact	H-WO	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen)
+tri-wo-dst	outcome:WRITEONLY	exact	H-WO-NONE	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY does nothing to a client's reads or writes (rival)
+tri-wo-dst	outcome:WRITEONLY	fault	H-WO-ALL	heldout	Q108; doc/specs/hw_spec.md section 4 (the GPL CE DDK's sgxmmu.h names): WRITEONLY faults every access (rival)
+tri-c-end	job	ok	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c-end	hash	0x99385a04ee01c585	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz
+tri-c-end	fb	0x3e001000	H-CTL	control	data:render/closing-r7-rp/out/20261112-205431/p7-rd/begin.health1.txt.gz

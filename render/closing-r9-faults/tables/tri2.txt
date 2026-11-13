@@ -1,0 +1,13 @@
+#stage tri2
+#limit 5
+# tri2 (Q108, the 3D's requestors): the knob-free 64 x 64 triangle and the same with a
+# depth buffer and a depth store (fb after them), WO|EDMPROT together (0x12) on the
+# colour target, EDMPROT on the ZLS store's buffer (a write) and on the depth buffer (no
+# load at control 0x0017100c: a reading), WO on the ZLS store's buffer, the triangle again.
+tri-c|control|safe|reads:job,hash,fb|t4|tri
+tri-c-depth|control|safe|after reads:job,fb,dstore|t4|tri --depth --depth-store
+tri-woedm-fb|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff after|t4|tri
+tri-edm-dst|heldout|medium|dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x10 expectfault expectdiff after|t4|tri --depth --depth-store
+tri-edm-dld|reading|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after|t4|tri --depth --depth-store
+tri-wo-dst|heldout|medium|dbg:vm_pte_addr=0x3e015000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|tri --depth --depth-store
+tri-c-end|control|safe|after reads:job,hash,fb|t4|tri

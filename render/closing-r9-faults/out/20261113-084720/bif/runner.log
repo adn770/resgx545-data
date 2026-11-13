@@ -1,0 +1,81 @@
+## stage bif of r9f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127161300 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r9f.23gK2k
+## clock
+Fri Nov 13 08:51:45 CET 2026
+== bif-c0 set=control risk=medium tool=t4 knobs=[dbg:alias_skip=0 after reads:job,renders,hash,hash2]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise bif-c0 [job renders hash hash2]: job=ok hash=0x99385a04ee01c585 hash2=0xab267bd98022a81d fb=0x3e001000 renders=2ok 
+== bif-c9 set=control risk=medium tool=t4 knobs=[dbg:alias_skip=0x200 expectfault reads:fstat,fpage]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (the control's reading, not counted against #limit)
+  fault (a reading): events 0 of 10; reset, then strict health
+  premise bif-c9 [fstat fpage]: job=faulted hash=0xe4364b426cdce325 fb=0x3e001000 renders=failed0 rostat=0x90400 fstat=0x90400 fpage=0x32004000 
+== bif-1213 set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x3000 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-1214 set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x5000 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-1314 set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x6000 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-12to14 set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x7000 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-h32 set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x7dc0 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-most set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x7dfe expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-most-r2 set=replicate risk=medium tool=t4 knobs=[dbg:alias_skip=0x7dfe expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-most-3r set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x7dfe expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 3 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== bif-c-ovf set=control risk=medium tool=t4 knobs=[dbg:alias_skip=0 dbg:render_pb_pages=0x23 after reads:job,renders,hash,hash2]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0xc9e301d225fe2325 diff: 0 of 786432 pixels 
+  class ok
+  premise bif-c-ovf [job renders hash hash2]: job=overflowed hash=0xc9e301d225fe2325 hash2=0xed1bce7108aded25 fb=0x3e001000 renders=0of2ovf2 
+== bif-most-ovf set=heldout risk=medium tool=t4 knobs=[dbg:alias_skip=0x7dfe dbg:render_pb_pages=0x23 expectfault after]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+  rc 0 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0xc9e301d225fe2325 diff: 0 of 786432 pixels 
+  class ok
+== bif-c1 set=control risk=medium tool=t4 knobs=[dbg:alias_skip=0x1 expectfault reads:fstat,fpage]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (the control's reading, not counted against #limit)
+  fault (a reading): events 0 of 10; reset, then strict health
+  premise bif-c1 [fstat fpage]: job=faulted hash=0xe4364b426cdce325 fb=0x3e001000 renders=failed0 rostat=0x91000 fstat=0x91000 fpage=0x3000b000 
+== bif-c0-end set=control risk=medium tool=t4 knobs=[dbg:alias_skip=0 after reads:job,renders,hash,hash2]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri -n 2 --keep-going --wait-ms 6000
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise bif-c0-end [job renders hash hash2]: job=ok hash=0x99385a04ee01c585 hash2=0xab267bd98022a81d fb=0x3e001000 renders=2ok 
+## end: 14 jobs of bif
+## kernel log (journalctl)

@@ -1,0 +1,20 @@
+#stage xf2
+#limit 8
+# xf2 (Q108, the transfer's requestors): E946's nine rows token for token (the knob-free
+# fill and copy, the address alone, isolation's READONLY fault: a control, not counted in
+# #limit), WO, CACHED, EDMPROT on a fill's destination and a copy's source, the fill
+# again), then WO on a fill that writes only the second page (y 16) and on a 64 x 64 fill
+# (the WO fault's page: last row, mapping end or first page), and EDMPROT on the copy's
+# read-only source (PTE 0x14: EDMPROTECT on a transfer read).
+xf-c-fill|control|safe|reads:job,hash|t4|fill
+xf-c-copy|control|safe|reads:job,hash,src|t4|copy --print-addrs
+xf-c-addr|control|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0 after reads:job,hash|t4|fill
+xf-c-ro|control|medium|expectfault reads:ro,rostat|t4|isolation
+xf-wo-fill|repeat|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|fill
+xf-cc-copy|repeat|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectfault expectdiff after|t4|copy --print-addrs
+xf-edm-fill|repeat|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after|t4|fill
+xf-wo-copy|repeat|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|copy --print-addrs
+xf-c-end|control|safe|after reads:job,hash|t4|fill
+xf-wo-fill-low|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|fill --width 64 --height 16 --y 16
+xf-wo-fill-64|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff after|t4|fill --width 64 --height 64
+xf-edm-copy|heldout|medium|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff after|t4|copy --print-addrs

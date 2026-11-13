@@ -1,0 +1,22 @@
+#stage bif
+#limit 10
+# bif (Q076, the client directory's alias of the firmware buffers): alias_skip leaves
+# buffers out of a new render VM's alias (E457's form). Controls: no mask (twice), TA3DCtl
+# left out (E457's fault 0x90400 at 0x32004000), buffer 0 left out (E745's 0x91000 at
+# 0x3000b000), the overflowing 1024 x 768 scene without a mask (E761). Held out: the
+# pairs and the three of 12 to 14, the 0x32 heap without TA3DCtl, every buffer but 0 and
+# 9 (two runs, three renders, and with both renders overflowing at render_pb_pages 0x23).
+bif-c0|control|medium|dbg:alias_skip=0 after reads:job,renders,hash,hash2|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-c9|control|medium|dbg:alias_skip=0x200 expectfault reads:fstat,fpage|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-1213|heldout|medium|dbg:alias_skip=0x3000 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-1214|heldout|medium|dbg:alias_skip=0x5000 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-1314|heldout|medium|dbg:alias_skip=0x6000 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-12to14|heldout|medium|dbg:alias_skip=0x7000 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-h32|heldout|medium|dbg:alias_skip=0x7dc0 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-most|heldout|medium|dbg:alias_skip=0x7dfe expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-most-r2|replicate|medium|dbg:alias_skip=0x7dfe expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-most-3r|heldout|medium|dbg:alias_skip=0x7dfe expectfault after|t4|tri -n 3 --keep-going --wait-ms 6000
+bif-c-ovf|control|medium|dbg:alias_skip=0 dbg:render_pb_pages=0x23 after reads:job,renders,hash,hash2|t4|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+bif-most-ovf|heldout|medium|dbg:alias_skip=0x7dfe dbg:render_pb_pages=0x23 expectfault after|t4|tri -n 2 --keep-going --wait-ms 6000 --width 1024 --height 768 --keep-overflow
+bif-c1|control|medium|dbg:alias_skip=0x1 expectfault reads:fstat,fpage|t4|tri -n 2 --keep-going --wait-ms 6000
+bif-c0-end|control|medium|dbg:alias_skip=0 after reads:job,renders,hash,hash2|t4|tri -n 2 --keep-going --wait-ms 6000

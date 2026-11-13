@@ -1,0 +1,47 @@
+files verified
+xf2: score output byte-identical to the kept one
+xf2: 94 kept files logged, 0 differ from the laptop's sha256
+xf2: kernel lines (BIF fault, recovery failed, banned):
+Nov 13 08:47:53 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90020 at 0x3e100001 (PD 0x6a59000) stalls job 511, recovering
+Nov 13 08:47:54 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90020 at 0x3e001002 (PD 0x73e3000) stalls job 513, recovering
+Nov 13 08:47:54 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80020 at 0x3e200002 (PD 0x7501000) stalls job 515, recovering
+Nov 13 08:47:54 cedar kernel: gma500 0000:00:02.0: [drm] sgxfive: 3 faults within a minute, file banned
+Nov 13 08:48:06 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80020 at 0x3e0021f1 (PD 0x6198000) stalls job 518, recovering
+Nov 13 08:48:31 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xa0020 at 0x3e001001 (PD 0x256af000) stalls job 526, recovering
+Nov 13 08:48:47 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80002 at 0x3e001001 (PD 0x5ed3000) stalls job 531, recovering
+Nov 13 08:49:12 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80020 at 0x3e0021f1 (PD 0x7a77000) stalls job 539, recovering
+Nov 13 08:49:28 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80020 at 0x3e0041f1 (PD 0x77e4000) stalls job 544, recovering
+SUMMARY: xf2 WRITEONLY H-WO: Q108 WRITEONLY, H-WO: WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen) is not supported: 1 held, 3 FAILED, 0 cannot tell of 4
+SUMMARY: xf2 WRITEONLY H-WO-NONE: Q108 WRITEONLY, H-WO-NONE: WRITEONLY does nothing to a client's reads or writes (rival) is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: xf2 WRITEONLY H-WO-ALL: Q108 WRITEONLY, H-WO-ALL: WRITEONLY faults every access (rival) (4 of 4 rows decided)
+SUMMARY: xf2 WO-PAGE H-LASTROW: Q108 WO-PAGE, H-LASTROW: a WRITEONLY write faults at the page of the last pixel written (E946 post hoc: xf-wo-fill at 0x3e002000; E945 tri-wo-fb at 0x3e004000) (S9-k2, frozen) (2 of 2 rows decided)
+SUMMARY: xf2 WO-PAGE H-MAPEND: Q108 WO-PAGE, H-MAPEND: a WRITEONLY write faults at the flagged mapping's last page (rival) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: xf2 WO-PAGE H-FIRST: Q108 WO-PAGE, H-FIRST: a WRITEONLY write faults at the flagged mapping's first page (rival) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: xf2 CACHECONSISTENT H-CC-NEW: Q108 CACHECONSISTENT, H-CC-NEW: a unit reads the host's writes made after the map (plan K2, frozen) (1 of 1 rows decided)
+SUMMARY: xf2 CACHECONSISTENT H-CC-STALE: Q108 CACHECONSISTENT, H-CC-STALE: a unit reads stale data (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: xf2 EDMPROTECT H-EDM-NONE: Q108 EDMPROTECT, H-EDM-NONE: EDMPROTECT has no effect on a client requestor (plan K2, rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: xf2 EDMPROTECT H-EDM-CLIENT: Q108 EDMPROTECT, H-EDM-CLIENT: EDMPROTECT faults a client requestor (the TA, the 3D, a transfer's pixel side) (plan K2, rival) (1 of 1 rows decided)
+SUMMARY: xf2 EDM-XF H-EDM-WRITE: Q108 EDM-XF, H-EDM-WRITE: EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen) (1 of 1 rows decided)
+SUMMARY: xf2 EDM-XF H-EDM-REQ: Q108 EDM-XF, H-EDM-REQ: EDMPROTECT faults every access of the transfer's requestors, reads too (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+tri2: score output byte-identical to the kept one
+tri2: 57 kept files logged, 0 differ from the laptop's sha256
+tri2: kernel lines (BIF fault, recovery failed, banned):
+Nov 13 08:50:28 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xa0020 at 0x3e001001 (PD 0x68e6000) stalls job 560, recovering
+Nov 13 08:50:44 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0xa0200 at 0x3e015001 (PD 0x4c6d000) stalls job 565, recovering
+Nov 13 08:51:09 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x80200 at 0x3e018001 (PD 0x7a31000) stalls job 573, recovering
+SUMMARY: tri2 WO+EDM H-OR: Q108 WO+EDM, H-OR: WRITEONLY and EDMPROTECT together fault the colour write, as each does alone (E945) (S9-k2, frozen) (1 of 1 rows decided)
+SUMMARY: tri2 WO+EDM H-CANCEL: Q108 WO+EDM, H-CANCEL: the two flags together let the colour write through (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri2 WO+EDM-PAGE H-EDM-FIRST: Q108 WO+EDM-PAGE, H-EDM-FIRST: together, the fault is EDMPROTECT's: at the target's first page, before the image is written (E945 tri-edm-fb at 0x3e001001) (rival, not favoured) (1 of 1 rows decided)
+SUMMARY: tri2 WO+EDM-PAGE H-WO-FIRST: Q108 WO+EDM-PAGE, H-WO-FIRST: together, the fault is WRITEONLY's: at the last pixel's page, after the image is written (E945 tri-wo-fb at 0x3e0041f1) (rival, not favoured) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri2 EDM-3D H-EDM-WRITE: Q108 EDM-3D, H-EDM-WRITE: EDMPROTECT faults every client write and no client read (E945: the colour write faulted, the VDM's reads did not) (S9-k2, frozen) (1 of 1 rows decided)
+SUMMARY: tri2 EDM-3D H-EDM-3D: Q108 EDM-3D, H-EDM-3D: EDMPROTECT faults only the pixel back end's colour write: the ZLS store and load pass (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri2 WRITEONLY H-WO: Q108 WRITEONLY, H-WO: WRITEONLY stops a read of the page (a fault naming it, like E021's READONLY write) and lets a write through (plan K2, frozen) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri2 WRITEONLY H-WO-NONE: Q108 WRITEONLY, H-WO-NONE: WRITEONLY does nothing to a client's reads or writes (rival) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: tri2 WRITEONLY H-WO-ALL: Q108 WRITEONLY, H-WO-ALL: WRITEONLY faults every access (rival) (1 of 1 rows decided)
+bif: score output byte-identical to the kept one
+bif: 102 kept files logged, 0 differ from the laptop's sha256
+bif: kernel lines (BIF fault, recovery failed, banned):
+Nov 13 08:52:05 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x90400 at 0x32004001 (PD 0x4d78000) stalls job 589, recovering
+Nov 13 08:53:50 cedar kernel: gma500 0000:00:02.0: [drm] *ERROR* sgxfive: BIF fault 0x91000 at 0x3000b021 (PD 0x5e37000) stalls job 633, recovering
+SUMMARY: bif H-ONLY09: Q076 alias_skip, H-ONLY09: a buffer is needed in the client directory only if leaving it out alone faults: of 0 to 14 only 0 and 9 (E457, E573, E745, E761: HI), so any mask without them renders exactly (frozen) (8 of 8 rows decided)
+SUMMARY: bif H-SET: Q076 alias_skip, H-SET: a set of buffers each unneeded alone is needed together: the mask's fault lies in a buffer it leaves out (HJ, rival) is not supported: 0 held, 8 FAILED, 0 cannot tell of 8
