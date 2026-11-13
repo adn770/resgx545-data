@@ -1,0 +1,10 @@
+#stage isp0x
+#limit 0
+# R10-E, Q241: z242-c-f0 with ISP word 0 bits 15, 16, 17 and ISP word 1 (blk:2) bits 3 and 23 flipped one at a time (bit 18:
+# not run, E065's fault). Frozen: H-NULL (E977's kept dump, drawn count and hash). Control that can fail: the unpoked rerun.
+x-ctl|control|safe|expectdiff reads:depth_changed|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+x-w0b15|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00408200
+x-w0b16|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00410200
+x-w0b17|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00420200
+x-w1b3|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:2^=0x8
+x-w1b23|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:2^=0x800000

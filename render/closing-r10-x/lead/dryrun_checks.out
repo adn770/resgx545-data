@@ -1,0 +1,166 @@
+## check 1 (R10-A dcmp): --tri-z 0,0,0 prints and runs (t = 0x0), a negative fill is taken
+### z0-neg25-m1
+tri: render context for targets up to 64x32
+depth: 0x3e001000 18 pages, fill 0xbe800000, base 0x3e000000, control 0x0017500e
+depth store: 0x3e013000 18 pages, fill 0xdeadbeef
+tri: triangle (0,0) (192,0) (0,96), depth 0 0 0
+job: ok
+depth #1: 18432 dwords, 0 changed, 1 distinct; 0xbe800000 x 18432
+pixel rows 32
+rc 0
+## check 2 (R10-E isp0x): blk:2 is ISP word 1
+103:	blk[i++] = 0x01d00200;		/* isp0 */
+104:	blk[i++] = 0x10f0;		/* isp1 */
+### z242-c with ISP word 1 bit 23 flipped (two pokes)
+tri: render context for targets up to 80x40
+depth: 0x3e001000 20 pages, fill 0xdeadbeef, base 0x3e000000, control 0x00171014
+tri: vertices256 0 0 40960 0 0 20480, depth 1 0 1
+job: ok
+depth #1: 20480 dwords, 0 changed, 1 distinct; 0xdeadbeef x 20480
+tri: 1 renders ok
+pixel rows 0
+rc 0
+## check 3 (R10-B win0): the probe's render and the knob; E502's bins
+### E502 form, mode 0, TE 0x20000000 (no knob needed)
+probe pos: tri 64x64 (command words 1 10 13 16), pixel pixpds replaced
+probe pos: triangle (0,0) (192,0) (0,192)
+probe pos: o0 0x44000000 (4096 of 4096)
+pixel rows 64
+rc 0
+### E502 form, mode 0, TE 0x60000000 (needs the knob: the library mock has no counterpart)
+probe pos: tri 64x64 (command words 1 10 13 16), pixel pixpds replaced
+probe pos: triangle (0,0) (192,0) (0,192)
+probe pos: failed: Invalid argument
+pixel rows 0
+rc 3
+mock-knob listed by t4: 0
+E502's own bins (p1126-pos-x__0, p1126-pos-y__0) in resgx545-data at 1324301bef136f1ada33dd3450c5665738bde435: 0
+## check 4 (R10-F sb): one E383 job (mode 8, bits 8:6 = 0, colour 0xc0804020) as a kit probe row
+### E383 0208__0
+probe c0: tri 64x64 (sideband 0x00000208), eot pixel replaced
+probe c0: o0 mixed 0xff203040 x2998 0xc0804020 x1098
+pixel rows 64
+rc 0
+### mode 20, bits 8:6 = 3
+probe c0: tri 64x64 (sideband 0x000002d4), eot pixel replaced
+probe c0: o0 mixed 0xff203040 x2998 0xc0804020 x1098
+pixel rows 64
+rc 0
+## check 5: every row of the tables on the library mock, with the kpoke file the depth rows write
+## (the kit's own libmock replay runs without it: a --depth row ends at 'kpoke: No such file',
+## rc 1, which it does not flag; and a TE_AA with bit 31 or 30 is refused by the library mock,
+## which has no counterpart of the knob: those rows are listed, not counted as passes)
+dcmp z243-ctl: rc 0, job: ok
+dcmp eq-m0: rc 0, job: ok
+dcmp eq-m1: rc 0, job: ok
+dcmp eq-m2: rc 0, job: ok
+dcmp eq-m3: rc 0, job: ok
+dcmp eq-m4: rc 0, job: ok
+dcmp eq-m5: rc 0, job: ok
+dcmp eq-m6: rc 0, job: ok
+dcmp eq-m7: rc 0, job: ok
+dcmp up1-m2: rc 0, job: ok
+dcmp up1-m3: rc 0, job: ok
+dcmp up1-m5: rc 0, job: ok
+dcmp up1-m6: rc 0, job: ok
+dcmp dn1-m2: rc 0, job: ok
+dcmp dn1-m3: rc 0, job: ok
+dcmp dn1-m5: rc 0, job: ok
+dcmp dn1-m6: rc 0, job: ok
+dcmp nan-m2: rc 0, job: ok
+dcmp nan-m3: rc 0, job: ok
+dcmp nan-m5: rc 0, job: ok
+dcmp nan-m6: rc 0, job: ok
+dcmp neg25-m1: rc 0, job: ok
+dcmp neg25-m4: rc 0, job: ok
+dcmp neg75-m1: rc 0, job: ok
+dcmp neg75-m4: rc 0, job: ok
+dcmp z0-neg25-m1: rc 0, job: ok
+dcmp z0-neg25-m2: rc 0, job: ok
+dcmp z0-neg25-m4: rc 0, job: ok
+dcmp z0-negz-m1: rc 0, job: ok
+dcmp z0-negz-m2: rc 0, job: ok
+dcmp z0-negz-m4: rc 0, job: ok
+isp0x x-ctl: rc 0, job: ok
+isp0x x-w0b15: rc 0, job: ok
+isp0x x-w0b16: rc 0, job: ok
+isp0x x-w0b17: rc 0, job: ok
+isp0x x-w1b3: rc 0, job: ok
+isp0x x-w1b23: rc 0, job: ok
+sb sb-ctl-0208-c0: rc 0, 64 rows
+sb sb-ctl-0208-c1: rc 0, 64 rows
+sb sb-m20-f0-c0: rc 0, 64 rows
+sb sb-m20-f0-c1: rc 0, 64 rows
+sb sb-m20-f1-c0: rc 0, 64 rows
+sb sb-m20-f1-c1: rc 0, 64 rows
+sb sb-m20-f2-c0: rc 0, 64 rows
+sb sb-m20-f2-c1: rc 0, 64 rows
+sb sb-m20-f3-c0: rc 0, 64 rows
+sb sb-m20-f3-c1: rc 0, 64 rows
+sb sb-m27-f0-c0: rc 0, 64 rows
+sb sb-m27-f0-c1: rc 0, 64 rows
+sb sb-m27-f1-c0: rc 0, 64 rows
+sb sb-m27-f1-c1: rc 0, 64 rows
+sb sb-m27-f2-c0: rc 0, 64 rows
+sb sb-m27-f2-c1: rc 0, 64 rows
+sb sb-m27-f3-c0: rc 0, 64 rows
+sb sb-m27-f3-c1: rc 0, 64 rows
+win0 w0-ctl-m1-tee0-64x64-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-ctl-m0-te20-64x64-x: rc 0, 64 rows
+win0 w0-te60-64x64-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-te60-64x64-y: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tea0-64x64-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tea0-64x64-y: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tee0-64x64-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tee0-64x64-y: rc 3, 0 rows, failed: Invalid argument
+win0 w0-te60-128x96-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-te60-128x96-y: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tea0-128x96-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tea0-128x96-y: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tee0-128x96-x: rc 3, 0 rows, failed: Invalid argument
+win0 w0-tee0-128x96-y: rc 3, 0 rows, failed: Invalid argument
+zbits zb-ctl-f0: rc 0, job: ok
+zbits zb-ctl-f1: rc 0, job: ok
+zbits zb-all-f0: rc 0, job: ok
+zbits zb-all-f1: rc 0, job: ok
+zbits zb-all-load: rc 0, job: ok
+zbits zb-set-f0: rc 0, job: ok
+zbits zb-clr-f0: rc 0, job: ok
+zbits zb-b0-f0: rc 0, job: ok
+zbits zb-b0-f1: rc 0, job: ok
+zbits zb-b0-f2: rc 0, job: ok
+zbits zb-b0-load: rc 0, job: ok
+zov zov-64x32-ctl: rc 0, job: ok
+zov zov-128x32-ctl: rc 0, job: ok
+zov zov-96x48-ctl: rc 0, job: ok
+zov zov-160x48-ctl: rc 0, job: ok
+zov zov-256x64-ctl: rc 0, job: ok
+zov zov-64x32-g0: rc 0, job: ok
+zov zov-128x32-g1: rc 0, job: ok
+zov zov-96x48-g1: rc 0, job: ok
+zov zov-160x48-g2: rc 0, job: ok
+zov zov-256x64-g3: rc 0, job: ok
+zov zov-64x32-g0-f1: rc 0, job: ok
+rows ending as the tool takes them: 78
+## check 6 (win0): the same rows on a copy of the library mock whose render check takes the knob
+## as the kernel does (fork 2a650d74 sgxfive_render_check: ms = ctx->aa_ms = aa4 || setting); the
+## copy is debug/tool4-knob (never staged); only the line of check_render below is changed
+756:	if (c->te_aa & 0xc0000000u && !ctx->aa4)
+756c756
+< 	if (c->te_aa & 0xc0000000u && !ctx->aa4)
+---
+> 	if (c->te_aa & 0xc0000000u && !ctx->aa4 && !getenv("R10X_KNOB"))
+win0 w0-ctl-m1-tee0-64x64-x (knob): rc 0, 64 rows
+win0 w0-ctl-m0-te20-64x64-x (knob): rc 0, 64 rows
+win0 w0-te60-64x64-x (knob): rc 0, 64 rows
+win0 w0-te60-64x64-y (knob): rc 0, 64 rows
+win0 w0-tea0-64x64-x (knob): rc 0, 64 rows
+win0 w0-tea0-64x64-y (knob): rc 0, 64 rows
+win0 w0-tee0-64x64-x (knob): rc 0, 64 rows
+win0 w0-tee0-64x64-y (knob): rc 0, 64 rows
+win0 w0-te60-128x96-x (knob): rc 0, 96 rows
+win0 w0-te60-128x96-y (knob): rc 0, 96 rows
+win0 w0-tea0-128x96-x (knob): rc 0, 96 rows
+win0 w0-tea0-128x96-y (knob): rc 0, 96 rows
+win0 w0-tee0-128x96-x (knob): rc 0, 96 rows
+win0 w0-tee0-128x96-y (knob): rc 0, 96 rows
