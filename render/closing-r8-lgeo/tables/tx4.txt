@@ -1,0 +1,35 @@
+#stage tx4
+#limit 0
+# Q283 type 4 past the first two 32 x 32 blocks (E910 post hoc: 32 x 32 blocks of 1024 dwords): the 64 x 32 window
+# moved over larger textures by the map axis's offset (texbuild.py axis_code ORs it in): 64 x 64 (2 windows), 128 x 64
+# (4), 128 x 128 (8), 256 x 32 (4), held out.  The tool's tag fill covers its whole scratch (sgxfive-test.c SCRATCH_FILL
+# over SCRATCH_PAGES: 16384 dwords by default, so 128 x 128 is tagged throughout); the held-out rows take --scratch-pages
+# 64 (256 KiB, 65536 dwords): H-BLKZ reads 256 x 32 up to dword 22527, and no rival reads past the fill (safe class);
+# the x0y0 windows repeat E910's blocks with it.  A row whose output names another scratch size cannot tell.  Frozen: H-BLKROW (blocks row by row) against H-BLKCOL and H-BLKZ; 128 x 64 parts all three.  Controls
+# (kept images, reads:rows): E910's type 4 64 x 32 and 4 x 16 programs byte for byte.  Soft, last: type 3 at 24 x 8 and
+# 40 x 8 through the linear axis (RASTERW against RASTERP2), with type 3 32 x 16 through the same axis as their bridge
+# (it must equal E725's map image, or the two rows cannot tell); the second soft failure in a row stops tx4 (rc 24).
+# No fault expected: any fault, hang or other failure stops the stage (rc 4) and the session.
+tx4-ctl-ty4-64x32|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty4-64x32.bin"
+tx4-ctl-ty4-4x16|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty4-4x16.bin"
+tx4-ty4-64x64-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-64x64-x0y0.bin"
+tx4-ty4-64x64-x0y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-64x64-x0y32.bin"
+tx4-ty4-128x64-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x64-x0y0.bin"
+tx4-ty4-128x64-x64y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x64-x64y0.bin"
+tx4-ty4-128x64-x0y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x64-x0y32.bin"
+tx4-ty4-128x64-x64y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x64-x64y32.bin"
+tx4-ty4-128x128-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x0y0.bin"
+tx4-ty4-128x128-x64y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x64y0.bin"
+tx4-ty4-128x128-x0y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x0y32.bin"
+tx4-ty4-128x128-x64y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x64y32.bin"
+tx4-ty4-128x128-x0y64|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x0y64.bin"
+tx4-ty4-128x128-x64y64|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x64y64.bin"
+tx4-ty4-128x128-x0y96|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x0y96.bin"
+tx4-ty4-128x128-x64y96|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-128x128-x64y96.bin"
+tx4-ty4-256x32-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-256x32-x0y0.bin"
+tx4-ty4-256x32-x64y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-256x32-x64y0.bin"
+tx4-ty4-256x32-x128y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-256x32-x128y0.bin"
+tx4-ty4-256x32-x192y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels --scratch-pages 64 "$S/bins/r8l-ty4-256x32-x192y0.bin"
+tx4-lin-ty3-32x16|bridge|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-lin-ty3-32x16.bin"
+tx4-lin-ty3-24x8|heldout|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-lin-ty3-24x8.bin"
+tx4-lin-ty3-40x8|heldout|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-lin-ty3-40x8.bin"

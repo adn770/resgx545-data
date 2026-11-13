@@ -1,0 +1,126 @@
+# session.toml: the env of r8-lgeo (round 8, round 7's leftovers session L2: Q283, Q178, Q260, Q139), a
+# closing session built with the session kit (HACKING.md, "Session kit"). kit/session.py writes run/session.env
+# from it for the laptop. Plan: closing8/leftovers/exp-leftovers-r8.md section 3; decisions DECISIONS-R8.md R8-8
+# (safe class only: no held reset, no planned fault, #limit 0 in every table).
+name = "r8-lgeo"
+prefix = "r8m"                 # laptop files under ~/scratch/r8m/ (run, stage, out)
+srcversion = "37EC97AB0CB37213C42FCCC"               # the gma500 module: loaded = installed = this build (before R8-5's boot)
+host_key_alias = "sgx-target"       # ssh HostKeyAlias; SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): the longest, q139's 1280 x 720 --pixels
+min_free_mb = 400                   # MiB free on ~ before each job (q139's 640 x 480 and 1280 x 720 dumps and text)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # --dump-render "$W" writes into the job's work directory, which exists
+extra_knobs = ["needhash", "needrows"]   # run/hooks.sh: the second row without a hash / pixel rows stops the stage
+forbid_options = ["--poke", "--kpoke-fill", "--tadata-fill-render", "--scratch-at", "--low", "--late"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap: none here
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); no stage is gated by another's controls
+[stages]
+tx3 = { alarm = 900 }
+tx4 = { alarm = 1200 }
+tx5 = { alarm = 1200 }
+zs2 = { alarm = 2400 }
+q139 = { alarm = 1200 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "91f21da60ba41207a32d3770649e2577c9e427d8"
+data = "1e83dc8685599824bbd6aa2fbfba8962634338b0"
+pins = [
+    # the assembler that made bins/ (debug/asm: git archive of this commit, tests/run_all.sh builds it)
+    "resgx545:tools/usse-asm/usse_main.c",
+    "resgx545:tools/usse-asm/asm.c",
+    "resgx545:tools/usse-asm/asm.h",
+    "resgx545:tools/usse-asm/Makefile",
+    "resgx545:tools/usse-dis/usse.c",
+    "resgx545:tools/usse-dis/usse.h",
+    "resgx545:tools/usse-dis/usse_form.c",
+    "resgx545:tools/usse-dis/usse_form.h",
+    "resgx545:tools/usse-dis/usse_table.inc",
+    "resgx545:tools/usse-dis/forms/float.inc",
+    "resgx545:tools/usse-dis/forms/intpack.inc",
+    "resgx545:tools/usse-dis/forms/memctl.inc",
+    "resgx545:tools/usse-dis/forms/misc.inc",
+    # the vectors-table writer and its reader the fold builds the replay tables with (README, replay vectors)
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:tools/usse-asm/pbdump.py",
+    "resgx545:tools/usse-asm/region_tiles.py",
+    # byte copies in gen/, score/ and templates/ (tests/test_gen.py checks each against its pin)
+    "data:render/closing-r7-geo/gen/texbuild.py",
+    "data:render/closing-r7-geo/gen/texcatalog.py",
+    "data:render/closing-r7-geo/templates/tx_map.s",
+    "data:render/closing-r7-rp/fold/q139_fit.py",
+    "data:render/closing-r7-rp/score/lib_dump.py",
+    "data:render/closing-r7-rp/score/pbdump_dump.py",
+    "data:render/closing-r7-rp/score/region_tiles_dump.py",
+    "data:texture/p1141/stage-bins/p1141-types__2.bin",
+    # what gen/lgen.py reads (gen/pins.txt)
+    "data:render/closing-r7-geo/bins/r7g-ty1-4x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty3-32x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty3-4x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty4-4x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty4-64x32.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty5-16x16-zero.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty5-16x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty5-8x8.bin",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ctl-ty3-32x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty1-4x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty3-4x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-4x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-64x32.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-16x16-zero.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-16x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-8x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/zs/zs-ctl-e681-1400606.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/zs/zs-ctl-e683-1401234.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/zs/zs-m0.5-x-+0.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/zs/zs-m0.5-x-+1.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/zs/zs-m0.5-x--1.txt.gz",
+    "data:render/closing-r7-geo/tables/zs.txt",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-4.txt.gz",
+    "data:ta/mtile-fields-risky/cases.tsv",
+    "data:ta/mtile-fields-risky/dumps/q100-256x256-m1-B2-10.txt.gz",
+    "data:ta/mtile-fields-risky/dumps/q100-256x256-m1-B2-11.txt.gz",
+    "data:ta/mtile-fields-risky/dumps/q100-256x256-stride-1.txt.gz",
+    "data:ta/mtile-fields-risky/dumps/q100-256x256-stride-2.txt.gz",
+    "data:ta/mtile-fields-risky/dumps/q100-640x480-m1-B1-23.txt.gz",
+    "data:ta/mtile-fields/cases.tsv",
+    "data:ta/mtile-fields/dumps/q100-1280x720-m2-B3p1.txt.gz",
+    # what tests/test_score.py replays (published kept files under this session's names)
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty3-64x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-128x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-16x16-ones.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-256x256-ctl.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-256x256-ctl.tri.param.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-256x256-ctl.tri.tadata.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-640x480-ctl.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-640x480-ctl.tri.param.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-c-640x480-ctl.tri.tadata.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-4.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-4.tri.param.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-4.tri.tadata.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-24.txt.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-24.tri.param.bin.gz",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/q139-h-256x256-stride-24.tri.tadata.bin.gz",
+    # what tests/test_models.py reads (r7-geo's tx images and zs predictions)
+    "data:render/closing-r7-geo/predictions/zs.tsv",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty1-64x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty1-128x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty3-128x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-64x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-128x32.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-32x32.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty5-64x64.txt.gz",
+]
+
+# extra laptop files (globs), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

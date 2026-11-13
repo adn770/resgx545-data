@@ -1,0 +1,19 @@
+#stage tx3
+#limit 0
+# Q283 below 8 wide (E725, E910): E725's map-texture fill (64 x 32 pixels, texel (x mod w, y mod h), dword i of the
+# texture 0xD0000000 | i).  Type 3 at 2 x 16, 4 x 8, 4 x 32, 2 x 8, 1 x 16 and type 1 at 2 x 16, 1 x 16, held out.
+# Frozen: type 3 H-MIN8 (rows max(8, w) dwords apart; E910's 4 x 16, post hoc) against H-2W (2 w) and RASTERW (w);
+# type 1 RASTERW against H-MIN8 and H-2W.  Controls that can fail (kept images, reads:rows): E725's type 3 32 x 16
+# program byte for byte, E910's type 3 and type 1 4 x 16 programs byte for byte.  after: the health fill and triangle
+# after every job (E725's and E910's practice).  needrows: the second row with no pixel rows stops tx3 (rc 24).
+# No fault expected (E910's 18 jobs clean): any fault, hang or failure stops the stage (rc 4) and the session.
+tx3-ctl-ty3-32x16|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-32x16.bin"
+tx3-ctl-ty3-4x16|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-4x16.bin"
+tx3-ctl-ty1-4x16|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty1-4x16.bin"
+tx3-ty3-2x16|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-2x16.bin"
+tx3-ty3-4x8|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-4x8.bin"
+tx3-ty3-4x32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-4x32.bin"
+tx3-ty3-2x8|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-2x8.bin"
+tx3-ty3-1x16|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty3-1x16.bin"
+tx3-ty1-2x16|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty1-2x16.bin"
+tx3-ty1-1x16|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r8l-ty1-1x16.bin"
