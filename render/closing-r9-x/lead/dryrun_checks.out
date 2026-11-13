@@ -1,0 +1,18 @@
+## check 1 (R9-D): ISP word 2 with the ZLS stencil buffers
+### tri with --isp2 (the plan's Q121 row): refused
+sgxfive-test: bad option --isp2
+rc 2
+### probe --tri with --stencil (the other way): refused
+usage: sgxfive-test [--mock[=rev1|harness|none]] [--mock-pb-pages=N]
+rc 2
+## check 2 (R9-E): --tri-unit 0 near 2^30, and the unit used
+### --tri-unit 0: refused
+sgxfive-test: bad option --tri-unit (5 to 20: --tri-v is in 1/2^K pixel)
+rc 2
+### --tri-unit 5, -2^30 (-2^25 pixels): taken, printed back
+tri: vertices32 1800 248 -1073741824 -268435456 1808 1784
+job: ok
+rc 1
+### --tri-unit 5, +2^30: refused
+sgxfive-test: bad option --tri-v (six integers, window coordinates in 1/256 pixel, comma separated)
+rc 2

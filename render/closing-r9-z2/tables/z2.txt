@@ -1,0 +1,17 @@
+#stage z2
+#limit 0
+# R9c-F / X-3, Q101: bit 19 with the integer stored formats at a negative depth. The depth is made negative by the
+# viewport's z offset (--poke blk:10, after the MTE's clip, E287), not by --tri-z outside [0, 1] (clipped away).
+# Ramps a (-0.25 to 0.25) and b (-0.75 to -0.25) at 256 x 128, G 7; frozen per dword from each ramp's format-0 dump:
+# H-ABS / H-CLAMP / H-WRAP / H-B19 (gen/z2.py). Controls that can fail: the two format-0 jobs (every dword of the
+# 64 tiles stored, E831). Stop: any fault or hang (none in E466/E490's format jobs).
+z2-a-f0|control|safe|expectdiff reads:depth_changed|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e800000
+z2-a-f1|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0117103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e800000
+z2-a-f1-b19|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x011f103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e800000
+z2-a-f2|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0217103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e800000
+z2-a-f2-b19|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x021f103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e800000
+z2-b-f0|control|safe|expectdiff reads:depth_changed|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0xbe800000
+z2-b-f1|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0117103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0xbe800000
+z2-b-f1-b19|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x011f103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0xbe800000
+z2-b-f2|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0217103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0xbe800000
+z2-b-f2-b19|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x021f103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0xbe800000

@@ -1,0 +1,22 @@
+ramp a: format 0 at y=0: 256 distinct, min 0.0005859375232830644 max 0.2994140386581421; x=0 0x3a19999a x=127 0x3e18ffff x=128 0x3e1a3333 x=255 0x3e994ccc
+  negative 0, zero 0 of 256
+  z2-a-f1: x 0,64,127,128,129,192,255: 0x002666 0x135999 0x263fff 0x268ccc 0x26d999 0x39bfff 0x4ca666
+  z2-a-f1-b19: x 0,64,127,128,129,192,255: 0x002666 0x135999 0x263fff 0x268ccc 0x26d999 0x39bfff 0x4ca666
+  f1 misses by the reference's sign: {'z0>0': 8803}
+  examples (z0, kept, H-CLAMP): [(0.004101562313735485, 68812, 68813), (0.0052734375931322575, 88473, 88474), (0.009960937313735485, 167116, 167117), (0.01113281212747097, 186777, 186778), (0.01582031138241291, 265420, 265421)]
+ramp b: format 0 at y=0: 1 distinct, min 0.0 max 0.0; x=0 0x00000000 x=127 0x00000000 x=128 0x00000000 x=255 0x00000000
+  negative 0, zero 256 of 256
+  z2-b-f1: x 0,64,127,128,129,192,255: 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000
+  z2-b-f1-b19: x 0,64,127,128,129,192,255: 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000
+z2-a-f1: floor rule 32768/32768 dwords; zero dwords 0
+z2-a-f1-b19: floor rule 32768/32768 dwords; zero dwords 0
+z2-a-f2: floor rule 16384/16384 dwords; zero dwords 0
+z2-a-f2-b19: floor rule 16384/16384 dwords; zero dwords 0
+z2-a-f1 == z2-a-f1-b19 byte for byte: True
+z2-a-f2 == z2-a-f2-b19 byte for byte: True
+z2-b-f1: floor rule 32768/32768 dwords; zero dwords 32768
+z2-b-f1-b19: floor rule 32768/32768 dwords; zero dwords 32768
+z2-b-f2: floor rule 16384/16384 dwords; zero dwords 16384
+z2-b-f2-b19: floor rule 16384/16384 dwords; zero dwords 16384
+z2-b-f1 == z2-b-f1-b19 byte for byte: True
+z2-b-f2 == z2-b-f2-b19 byte for byte: True
