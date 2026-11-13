@@ -1,0 +1,23 @@
+#stage t3b
+#limit 0
+# S10-tex t3b, Q078 (seeds plan section 4): T3 bit 14 on strided named memory (E566's tx_map form), six held-out
+# geometries (S 256, S 16 x H 64, u off the 1/128 grid, u from -0.5 to 1.5, v a ramp with u fixed, a 16-bit format),
+# each followed by its bit-clear reference; frozen per pixel R-4096 / R-4096TX / R-ROUND / H-U01 (+ H-UV, H-URAW on
+# their rows), gen/t3.py. Controls that can fail: E566's s64x32-ctl and s64x32-t3b14 (their kept images); replicate
+# E975's b14-u01. --scratch-pages holds every rival's reads plus a page. Stop: any fault or hang; the second row
+# without its pixel rows.
+t3b-ctl|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-ctl.bin"
+t3b-b14ref|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-b14ref.bin"
+t3b-u01|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-u01.bin"
+t3b-s256|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 19 "$S/bins/t3b-s256.bin"
+t3b-s256-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-s256-ref.bin"
+t3b-s16h64|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-s16h64.bin"
+t3b-s16h64-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-s16h64-ref.bin"
+t3b-offgrid|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-offgrid.bin"
+t3b-offgrid-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-offgrid-ref.bin"
+t3b-clamp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-clamp.bin"
+t3b-clamp-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-clamp-ref.bin"
+t3b-vramp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-vramp.bin"
+t3b-vramp-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-vramp-ref.bin"
+t3b-f16|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-f16.bin"
+t3b-f16-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/t3b-f16-ref.bin"

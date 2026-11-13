@@ -1,0 +1,21 @@
+## q071-b0 vs st1-b0
+q071-b0 ['depth: 0x3e001000 18 pages, fill 0x3f800000, base 0x3e000000, control 0xf8e6a00e', 'stencil: 0x3e013000 18 pages, fill bytes', 'stencil store: 0x3e025000 18 pages, fill 0xdeadbeef', 'tri: isp2 0x040501ff', 'job: ok', 'depth #1: 18432 dwords, 0 changed, 1 distinct; 0x3f800000 x 18432', 'stencil #1: 18432 dwords, 0 changed, 64 distinct; 0x03020100 x 288, 0x07060504 x 288, 0x0b0a0908 x 288, 0x0f0e0d0c x 288', 'stencil store #1: 18432 dwords, 512 changed, 2 distinct; 0xdeadbeef x 17920, 0xffffffff x 512', 'tri 64x32 #1: 2048 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0', 'tri 64x32 #1: 50138 us']
+st1-b0 ['depth: 0x3e001000 18 pages, fill 0x3f800000, base 0x3e000000, control 0x0017300e', 'stencil: 0x3e013000 18 pages, fill bytes', 'stencil store: 0x3e025000 18 pages, fill 0xdeadbeef', 'tri: isp2 0x040501ff', 'job: ok', 'depth #1: 18432 dwords, 0 changed, 1 distinct; 0x3f800000 x 18432', 'stencil #1: 18432 dwords, 0 changed, 64 distinct; 0x03020100 x 288, 0x07060504 x 288, 0x0b0a0908 x 288, 0x0f0e0d0c x 288', 'stencil store #1: 18432 dwords, 512 changed, 65 distinct; 0xdeadbeef x 17920, 0x2fd12dd3 x 8, 0xab55a957 x 8, 0x3fc13dc3 x 8', 'tri 64x32 #1: 1024 triangle, 1024 background, 0 other; wrong 1008 inside, 0 outside, 0 at edges; 945 if flipped; guard 0', 'tri 64x32 #1: 51881 us']
+drawn 2048 1024 only in q071 1024 only in base 0
+differing pixels by lane [(1, 512), (3, 512)]
+.stencil-store.1.bin dwords differ 512 of 18432 first [(0, 'ffffffff', 'ff01fd03'), (1, 'ffffffff', 'fb05f907'), (2, 'ffffffff', 'f709f50b'), (3, 'ffffffff', 'f30df10f')]
+.depth.1.bin dwords differ 0 of 18432 first []
+.stencil.1.bin dwords differ 0 of 18432 first []
+q071 drawn rows [0, 1, 2, 3, 4, 5, 6, 7] ... 32
+## q071-l1 vs st1-lane1
+q071-l1 ['depth: 0x3e001000 18 pages, fill 0x3f800000, base 0x3e000000, control 0xf8e6a00e', 'stencil: 0x3e013000 18 pages, fill 0x03020100', 'stencil store: 0x3e025000 18 pages, fill 0xdeadbeef', 'tri: isp2 0x040502ff', 'job: ok', 'depth #1: 18432 dwords, 0 changed, 1 distinct; 0x3f800000 x 18432', 'stencil #1: 18432 dwords, 0 changed, 1 distinct; 0x03020100 x 18432', 'stencil store #1: 18432 dwords, 512 changed, 2 distinct; 0xdeadbeef x 17920, 0xffffffff x 512', 'tri 64x32 #1: 2048 triangle, 0 background, 0 other; wrong 0 inside, 0 outside, 0 at edges; 0 if flipped; guard 0', 'tri 64x32 #1: 42997 us']
+st1-lane1 ['depth: 0x3e001000 18 pages, fill 0x3f800000, base 0x3e000000, control 0x0017300e', 'stencil: 0x3e013000 18 pages, fill 0x03020100', 'stencil store: 0x3e025000 18 pages, fill 0xdeadbeef', 'tri: isp2 0x040502ff', 'job: ok', 'depth #1: 18432 dwords, 0 changed, 1 distinct; 0x3f800000 x 18432', 'stencil #1: 18432 dwords, 0 changed, 1 distinct; 0x03020100 x 18432', 'stencil store #1: 18432 dwords, 512 changed, 2 distinct; 0xdeadbeef x 17920, 0x0302feff x 512', 'tri 64x32 #1: 1024 triangle, 1024 background, 0 other; wrong 992 inside, 0 outside, 0 at edges; 992 if flipped; guard 0', 'tri 64x32 #1: 48210 us']
+drawn 2048 1024 only in q071 1024 only in base 0
+differing pixels by lane [(2, 512), (3, 512)]
+.stencil-store.1.bin dwords differ 512 of 18432 first [(0, 'ffffffff', 'fffe0203'), (1, 'ffffffff', 'fffe0203'), (2, 'ffffffff', 'fffe0203'), (3, 'ffffffff', 'fffe0203')]
+.depth.1.bin dwords differ 0 of 18432 first []
+.stencil.1.bin dwords differ 0 of 18432 first []
+q071 drawn rows [0, 1, 2, 3, 4, 5, 6, 7] ... 32
+## q071 stores as H-NOLOAD (the ISP's stencil 0, inverted: 0xff) over the 4 tiles' 512 dwords
+q071-b0 0xffffffff dwords in the first 512: 512 rest at the fill: True
+q071-l1 0xffffffff dwords in the first 512: 512 rest at the fill: True

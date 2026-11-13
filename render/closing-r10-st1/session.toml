@@ -1,0 +1,52 @@
+# session.toml: the env of r10-st1, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r10-st1"
+prefix = "r10s"                 # laptop files under ~/scratch/r10s/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E978's stencil
+                                    # depth jobs ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R10-4 (a), R10-6 (a): st1 (Q121, Q071's stencil clause), 18 jobs (gen/make.py; README.md "Deviations")
+[stages]
+st1 = { alarm = 1200 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "287031c641024e126ae1fd33cf7d6a550cdef3b5"
+data = "1324301bef136f1ada33dd3450c5665738bde435"
+# every repository file the tests read: r9-x's zst table (the control word of E978's rows), sgx-pipe's
+# zls.rs (the in-tile order), libsgxfive's render.c (ISP word 0 with --isp2; unchanged from t10's
+# commit a581c06 to 287031c) and the tool's source (the option forms)
+pins = [
+    "data:render/closing-r9-x/tables/zst.txt",
+    "resgx545:crates/sgx-pipe/src/zls.rs",
+    "resgx545:userspace/libsgxfive/src/render.c",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

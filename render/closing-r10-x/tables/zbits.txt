@@ -1,0 +1,16 @@
+#stage zbits
+#limit 0
+# R10-D, Q071: E977's z242-c (80x40 G 2) and z243-ctl load rows with the inert control bits together (15, 21-23, 27-31 set;
+# 12, 16, 20 cleared), each half alone, and bit 0 with formats 0, 1, 2 and the load. Frozen: E977's kept dumps, drawn and hash
+# (H-INERT; bit 0 H-E665: no colour pixel, stores as without it). Controls that can fail: z242-c-f0, -f1 reruns. Stop: any fault.
+zb-ctl-f0|control|safe|expectdiff reads:depth_changed|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-ctl-f1|control|safe|expectdiff reads:depth_changed|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x01171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-all-f0|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0xf8e68014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-all-f1|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0xf9e68014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-all-load|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0xf8e6c00e --depth-fill 0x3f400000 --depth-store --depth-dump "$W" --poke blk:1=0x00400200 --pixels
+zb-set-f0|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0xf8f79014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-clr-f0|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00060014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-b0-f0|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171015 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-b0-f1|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x01171015 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-b0-f2|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x02171015 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200
+zb-b0-load|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500f --depth-fill 0x3f400000 --depth-store --depth-dump "$W" --poke blk:1=0x00400200 --pixels

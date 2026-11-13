@@ -1,0 +1,9 @@
+#stage zw
+#limit 0
+# R10-4 (a), Q101: state-block word 10 at 0.75, 1.0, 0.125 on r9-z2's ramp a (format 0). Frozen per dword where
+# x/512 + y/256 <= 0.5: H-LIN (1.6 w + 0.2) t, H-HYP 0.375 t / (0.875 - w), H-OFF t + w - 0.5. Control that can fail:
+# zw-c50 (word 10 = 0.5 explicit) byte for byte E977's kept z242-a-f0. Stop: any fault.
+zw-c50|control|safe|expectdiff reads:depth_changed|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3f000000
+zw-075|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3f400000
+zw-100|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3f800000
+zw-0125|heldout|safe|expectdiff|t9|tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --poke blk:10=0x3e000000

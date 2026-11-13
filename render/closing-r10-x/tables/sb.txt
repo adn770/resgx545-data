@@ -1,0 +1,23 @@
+#stage sb
+#limit 0
+# R10-F, Q046: E383's form (eot_plain, two colours whose bytes all differ, every pixel) in pack modes 20 and 27 with sideband
+# bits 8:6 at 0-3. Frozen per pixel from E383's kept images: H-LOW16 (mode 15's image) and H-M7 (mode 7's, field 0 and 1).
+# Controls that can fail: E383's mode 8 jobs at field 0 (0x208, both colours). Stop: any fault or hang.
+sb-ctl-0208-c0|control|safe|reads:pixels|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x208 "$S/bins/sb-c0.bin"
+sb-ctl-0208-c1|control|safe|reads:pixels|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x208 "$S/bins/sb-c1.bin"
+sb-m20-f0-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x214 "$S/bins/sb-c0.bin"
+sb-m20-f0-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x214 "$S/bins/sb-c1.bin"
+sb-m20-f1-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x254 "$S/bins/sb-c0.bin"
+sb-m20-f1-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x254 "$S/bins/sb-c1.bin"
+sb-m20-f2-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x294 "$S/bins/sb-c0.bin"
+sb-m20-f2-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x294 "$S/bins/sb-c1.bin"
+sb-m20-f3-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x2d4 "$S/bins/sb-c0.bin"
+sb-m20-f3-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x2d4 "$S/bins/sb-c1.bin"
+sb-m27-f0-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x21b "$S/bins/sb-c0.bin"
+sb-m27-f0-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x21b "$S/bins/sb-c1.bin"
+sb-m27-f1-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x25b "$S/bins/sb-c0.bin"
+sb-m27-f1-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x25b "$S/bins/sb-c1.bin"
+sb-m27-f2-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x29b "$S/bins/sb-c0.bin"
+sb-m27-f2-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x29b "$S/bins/sb-c1.bin"
+sb-m27-f3-c0|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x2db "$S/bins/sb-c0.bin"
+sb-m27-f3-c1|heldout|safe|-|t4|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x2db "$S/bins/sb-c1.bin"

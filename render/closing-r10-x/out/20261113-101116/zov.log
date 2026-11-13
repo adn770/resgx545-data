@@ -1,0 +1,65 @@
+## stage zov of r10x
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127158880 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10x.mQOSeg
+## clock
+Fri Nov 13 10:14:02 CET 2026
+== zov-64x32-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-v 0,0,32768,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x0017100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/1-zov-64x32-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise zov-64x32-ctl [depth_changed]: job=ok drawn=2048 depth_changed=2048 
+== zov-128x32-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 128 --height 32 --max-width 128 --max-height 32 --tri-v 0,0,65536,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x0017101c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/2-zov-128x32-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 128x32 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+  premise zov-128x32-ctl [depth_changed]: job=ok drawn=4096 depth_changed=4096 
+== zov-96x48-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 96 --height 48 --max-width 96 --max-height 48 --tri-v 0,0,49152,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/3-zov-96x48-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 96x48 hash 0xc4897c7f440a3325 diff: 0 of 4608 pixels 
+  class ok
+  premise zov-96x48-ctl [depth_changed]: job=ok drawn=4608 depth_changed=4608 
+== zov-160x48-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 160 --height 48 --max-width 160 --max-height 48 --tri-v 0,0,81920,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x00171024 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/4-zov-160x48-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 160x48 hash 0x37792e5ca34f9325 diff: 0 of 7680 pixels 
+  class ok
+  premise zov-160x48-ctl [depth_changed]: job=ok drawn=7680 depth_changed=7680 
+== zov-256x64-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 256 --height 64 --max-width 256 --max-height 64 --tri-v 0,0,131072,0,0,32768 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/5-zov-256x64-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 256x64 hash 0x1c9a7324d5942325 diff: 0 of 16384 pixels 
+  class ok
+  premise zov-256x64-ctl [depth_changed]: job=ok drawn=16384 depth_changed=16384 
+== zov-64x32-g0 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-v 0,0,32768,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x00171004 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/6-zov-64x32-g0/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zov-128x32-g1 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 128 --height 32 --max-width 128 --max-height 32 --tri-v 0,0,65536,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x0017100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/7-zov-128x32-g1/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 128x32 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+== zov-96x48-g1 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 96 --height 48 --max-width 96 --max-height 48 --tri-v 0,0,49152,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0017100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/8-zov-96x48-g1/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 96x48 hash 0xc4897c7f440a3325 diff: 0 of 4608 pixels 
+  class ok
+== zov-160x48-g2 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 160 --height 48 --max-width 160 --max-height 48 --tri-v 0,0,81920,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/9-zov-160x48-g2/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 160x48 hash 0x37792e5ca34f9325 diff: 0 of 7680 pixels 
+  class ok
+== zov-256x64-g3 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 256 --height 64 --max-width 256 --max-height 64 --tri-v 0,0,131072,0,0,32768 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0017101c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/10-zov-256x64-g3/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 256x64 hash 0x1c9a7324d5942325 diff: 0 of 16384 pixels 
+  class ok
+== zov-64x32-g0-f1 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-v 0,0,32768,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x01171004 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.mQOSeg/11-zov-64x32-g0-f1/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+## end: 11 jobs of zov
+## kernel log (journalctl)

@@ -1,0 +1,91 @@
+## stage st1 of r10s
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127141440 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10s.9ivQvZ
+## clock
+Fri Nov 13 10:39:36 CET 2026
+== st1-always set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x0e05ffff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/1-st1-always/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise st1-always [drawn]: job=ok pixels=2048 drawn=2048 depth_changed=0 sst_changed=512 
+== st1-never set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x0005ffff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/2-st1-never/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise st1-never [drawn]: job=ok pixels=2048 drawn=0 depth_changed=0 sst_changed=512 
+== st1-noisp set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/3-st1-noisp/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise st1-noisp [drawn]: job=ok pixels=2048 drawn=2048 depth_changed=0 sst_changed=512 
+== st1-b0 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/4-st1-b0/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040502ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/5-st1-b1/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x0a90c429aefc2325 diff: 992 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040504ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/6-st1-b2/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x7f52c234133de325 diff: 1008 of 2048 pixels, first (1, 2) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b3 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040508ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/7-st1-b3/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x7345b91b6aa5e325 diff: 992 of 2048 pixels, first (2, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b4 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040510ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/8-st1-b4/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xb2d643d2dd3de325 diff: 1008 of 2048 pixels, first (1, 4) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b5 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040520ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/9-st1-b5/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x6687ddb8eb8c6325 diff: 992 of 2048 pixels, first (4, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b6 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040540ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/10-st1-b6/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x888c8710713de325 diff: 1008 of 2048 pixels, first (1, 8) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-b7 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040580ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/11-st1-b7/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x6dc4f789384de325 diff: 992 of 2048 pixels, first (8, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-s1b1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes:1 --stencil-store --isp2 0x040502ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/12-st1-s1b1/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xc50a31cc727d6325 diff: 976 of 2048 pixels, first (2, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-lane0 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill 0x03020100 --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/13-st1-lane0/w --pixels
+  rc 1 job: ok target: 64x32 hash 0xfc7bf564ae3de325 diff: 1008 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-lane1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill 0x03020100 --stencil-store --isp2 0x040502ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/14-st1-lane1/w --pixels
+  rc 1 job: ok target: 64x32 hash 0x0a90c429aefc2325 diff: 992 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-e-b0 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 40 --height 20 --max-width 40 --max-height 20 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/15-st1-e-b0/w --pixels --depth-pages 16
+  rc 1 job: ok target: 40x20 hash 0xaf4214812b993a25 diff: 390 of 800 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== st1-e-b4 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 40 --height 20 --max-width 40 --max-height 20 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040510ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/16-st1-e-b4/w --pixels --depth-pages 16
+  rc 1 job: ok target: 40x20 hash 0x496c478d72e76c25 diff: 312 of 800 pixels, first (1, 4) 0xff203040 expected 0xff00ff00 
+  class ok
+== q071-b0 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0xf8e6a00e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/17-q071-b0/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== q071-l1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0xf8e6a00e --depth-fill 0x3f800000 --stencil --stencil-fill 0x03020100 --stencil-store --isp2 0x040502ff --depth-dump /home/jtorra/scratch/tmp/r10s.9ivQvZ/18-q071-l1/w --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+## end: 18 jobs of st1
+## kernel log (journalctl)
