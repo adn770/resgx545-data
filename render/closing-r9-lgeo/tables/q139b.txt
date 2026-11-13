@@ -1,0 +1,17 @@
+#stage q139b
+#limit 0
+# Q139's residue (E944; the round 9 seeds plan section 6, after E950's offline H-EVEN: a block row of the first
+# macrotile takes 8 floor(fx / 2) slots, R7-BLK 16 floor(fx / 4)). The datasets' own command (ta/mtile-fields, token
+# for token) with --keep-going and --dump-render into the job's work directory; every row drew without a fault in its
+# dataset (safe class). Controls (reads:hash,dump; the scorer reads the image and the headers): the unpoked 1280 x 720
+# and 768 x 640 baselines, exact image and one header with a stream for every target tile; they give the header base
+# E944 lacked at these sizes, and their slots are scored against H-EVEN (= R7-BLK there). Held out: 768 x 640
+# m2-B3p1 (its dataset's 24 wrong tiles; H-EVEN = R7-BLK = the round 8 rivals there, fx 8): the wrong-tile set and
+# every header slot. Residue (a reading, scored nothing): 1280 x 720 m2-B3p1 (52 wrong tiles in its dataset, 40
+# under every model: the last y bound 37, not a multiple of 4), its slots read after the run against the baseline.
+# needhash: the second row without a hash stops q139b (rc 24). No fault expected: any fault or hang stops the stage
+# (rc 4) and the session.
+q139b-ctl-1280x720|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 1280 --height 720 --max-width 1280 --max-height 720 --wait-ms 20000 --keep-going --dump-render "$W"
+q139b-ctl-768x640|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 768 --height 640 --max-width 768 --max-height 640 --wait-ms 20000 --keep-going --dump-render "$W"
+q139b-res-768x640-m2-B3p1|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 768 --height 640 --max-width 768 --max-height 640 --kpoke-render 1:ta:144=0x03018025 --wait-ms 20000 --keep-going --dump-render "$W"
+q139b-res-1280x720-m2-B3p1|residue|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 1280 --height 720 --max-width 1280 --max-height 720 --kpoke-render 1:ta:144=0x03018025 --wait-ms 20000 --keep-going --dump-render "$W"

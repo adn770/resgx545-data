@@ -1,0 +1,130 @@
+# session.toml: the env of r9-lgeo (round 9, session S9-lgeo: Q283, Q139), a closing session built with the
+# session kit (HACKING.md, "Session kit"). kit/session.py writes run/session.env from it for the laptop. Plan:
+# closing9/seeds/exp-seeds-r9.md sections 5 and 6 (S-4 (a)); decisions closing9/DECISIONS-R9.md (safe class
+# only: no held reset, no planned fault, #limit 0 in every table). zs3 (Q260) is not in this session.
+name = "r9-lgeo"
+prefix = "r9m"                 # laptop files under ~/scratch/r9m/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): the longest, q139b's 1280 x 720 --pixels
+min_free_mb = 400                   # MiB free on ~ before each job (q139b's 1280 x 720 dumps and text)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # --dump-render "$W" writes into the job's work directory, which exists
+extra_knobs = ["needhash", "needrows"]   # run/hooks.sh: the second row without a hash / pixel rows stops the stage
+forbid_options = ["--poke", "--kpoke-fill", "--tadata-fill-render", "--scratch-at", "--low", "--late", "--scratch-pages"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap: none here
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); no stage is gated by another's controls
+[stages]
+tx6 = { alarm = 900 }
+q139b = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "f32dfacc8db804f205fcd5b40c65e01ba0060306"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+pins = [
+    # the assembler and disassembler that made and check bins/ (debug/asm: git archive of this commit, tests/run_all.sh builds it)
+    "resgx545:tools/usse-asm/usse_main.c",
+    "resgx545:tools/usse-asm/asm.c",
+    "resgx545:tools/usse-asm/asm.h",
+    "resgx545:tools/usse-asm/Makefile",
+    "resgx545:tools/usse-dis/usse.c",
+    "resgx545:tools/usse-dis/usse.h",
+    "resgx545:tools/usse-dis/usse_form.c",
+    "resgx545:tools/usse-dis/usse_form.h",
+    "resgx545:tools/usse-dis/usse_table.inc",
+    "resgx545:tools/usse-dis/forms/float.inc",
+    "resgx545:tools/usse-dis/forms/intpack.inc",
+    "resgx545:tools/usse-dis/forms/memctl.inc",
+    "resgx545:tools/usse-dis/forms/misc.inc",
+    "resgx545:tools/usse-dis/Makefile",
+    # the vectors-table writer, its readers and the simulator's texture model the fold builds and replays the tables with (README)
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:tools/usse-asm/pbdump.py",
+    "resgx545:tools/usse-asm/region_tiles.py",
+    "resgx545:crates/sgx-sim/src/tex.rs",
+    # byte copies in gen/, score/, templates/ and tests/ (tests/test_gen.py checks each against its pin)
+    "data:render/closing-r8-lgeo/gen/texmodel.py",
+    "data:render/closing-r8-lgeo/gen/texcatalog.py",
+    "data:render/closing-r8-lgeo/gen/texbuild.py",
+    "data:render/closing-r8-lgeo/gen/q139model.py",
+    "data:render/closing-r8-lgeo/gen/q139_fit.py",
+    "data:render/closing-r8-lgeo/templates/tx_map.s",
+    "data:render/closing-r8-lgeo/score/lib_dump.py",
+    "data:render/closing-r8-lgeo/score/pbdump_dump.py",
+    "data:render/closing-r8-lgeo/score/region_tiles_dump.py",
+    "data:render/closing-r8-lgeo/tests/kept.py",
+    # what gen/lgen.py reads (gen/pins.txt)
+    "data:render/closing-r7-geo/bins/r7g-ty3-32x16.bin",
+    "data:render/closing-r7-geo/bins/r7g-ty4-64x32.bin",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ctl-ty3-32x16.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-64x32.txt.gz",
+    "data:ta/mtile-fields/cases.tsv",
+    "data:ta/mtile-fields/dumps/q100-1280x720-ctl-r1.txt.gz",
+    "data:ta/mtile-fields/dumps/q100-1280x720-m2-B3p1.txt.gz",
+    "data:ta/mtile-fields/dumps/q100-768x640-ctl-r1.txt.gz",
+    "data:ta/mtile-fields/dumps/q100-768x640-m2-B3p1.txt.gz",
+    # what tests/test_models.py and tests/test_score.py replay (published kept files)
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty4-128x8.txt.gz",
+    "data:render/closing-r7-geo/out/20261112-211113/tx/tx-ty3-64x8.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-64x64-x0y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-64x64-x0y32.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x64-x0y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x64-x64y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x64-x0y32.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x64-x64y32.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x0y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x64y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x0y32.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x64y32.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x0y64.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x64y64.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x0y96.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-128x128-x64y96.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-256x32-x0y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-256x32-x64y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-256x32-x128y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-ty4-256x32-x192y0.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-lin-ty3-32x16.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-lin-ty3-24x8.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/tx4/tx4-lin-ty3-40x8.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-640x480.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-640x480.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-640x480.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-11.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-11.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-11.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-640x480-m1-B1-23.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-640x480-m1-B1-23.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-640x480-m1-B1-23.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-1280x720-m2-B3p1.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-1280x720-m2-B3p1.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-1280x720-m2-B3p1.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/tables/q139.txt",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

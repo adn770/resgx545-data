@@ -1,0 +1,25 @@
+CONTROL tx6-ctl-ty4-64x32: read (kept image f5df25d6b044...): PASS
+CONTROL tx6-ctl-ty3-32x16: read (kept image a21335a28a3a...): PASS
+ROW tx6-ty4-48x64-x0y0 (heldout): image read; matches H-CEIL,H-P2
+ROW tx6-ty4-48x64-x0y32 (heldout): image read; matches H-CEIL,H-P2
+ROW tx6-ty4-96x32-x64y0 (heldout): image read; matches H-CEIL,H-P2,H-PACK
+ROW tx6-ty4-80x64-x0y0 (heldout): image read; matches H-CEIL,H-P2,H-PACK
+ROW tx6-ty4-80x64-x64y0 (heldout): image read; matches H-CEIL,H-P2
+ROW tx6-ty4-80x64-x0y32 (heldout): image read; matches H-CEIL
+ROW tx6-ty4-80x64-x64y32 (heldout): image read; matches H-CEIL
+ROW tx6-ty3-f5-4x8 (heldout): image read; matches H-TX8
+ROW tx6-ty3-f5-8x8 (heldout): image read; matches H-TX8,RASTERW
+READING tx6-ty3-f5-4x8: pixels are sgx-sim's widening of H-TX8; the high half first matches none; alpha bytes ff
+READING tx6-ty3-f5-8x8: pixels are sgx-sim's widening of H-TX8,RASTERW; the high half first matches none; alpha bytes ff
+ROW tx6-lin-ty1-32x16 (bridge): image read; matches kept
+BRIDGE tx6-lin-ty1-32x16 (type 1 through the linear axis gives E725's 32 x 16 image): held
+ROW tx6-lin-ty1-24x8 (heldout): image read; matches RASTERW
+ROW tx6-lin-ty1-40x8 (heldout): image read; matches RASTERW
+SUMMARY: Q283 type 4 past a multiple of 32: H-CEIL (ceil(w / 32) blocks a block row) held (7 of 7 rows decided)
+SUMMARY: Q283 type 4 rival: H-P2 held is not supported: 5 held, 2 FAILED, 0 cannot tell of 7
+SUMMARY: Q283 type 4 rival: H-PACK held is not supported: 2 held, 5 FAILED, 0 cannot tell of 7
+SUMMARY: Q283 type 3 padding at a 16-bit format: H-DW8 (rows max(8 dwords, w texels) apart) held is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: Q283 type 3 padding rival: H-TX8 held (2 of 2 rows decided)
+SUMMARY: Q283 type 3 padding rival: RASTERW held is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: Q283 type 1 at 24 and 40 wide (soft, bridge held): RASTERW held (2 of 2 rows decided)
+SUMMARY: Q283 type 1 at 24 and 40 wide (soft, bridge held): RASTERP2 held is not supported: 0 held, 2 FAILED, 0 cannot tell of 2

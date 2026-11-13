@@ -1,0 +1,28 @@
+#stage tx6
+#limit 0
+# Q283's remaining texture types (E910, E940, E941). Controls that can fail (kept images, reads:rows): E910's type 4
+# 64 x 32 and E725's type 3 32 x 16 map programs byte for byte. Held out: type 4 at 48 x 64 (windows y 0, 32), 96 x 32
+# (x 64) and 80 x 64 (x 0, 64 by y 0, 32) through the linear axis with offsets (texel ((x + xo) mod w, (y + yo) mod
+# h)); frozen H-CEIL (ceil(w / 32) blocks a block row, E941's rule) against H-P2 (the width rounded up to a power
+# of two) and H-PACK (a partial block (w mod 32) columns wide); 48 x 64 parts H-PACK, 80 x 64 at y 32 all three.
+# Type 3 at 4 x 8 and 8 x 8 of format 5 (16 bits, two texels a dword): rows of H-DW8 (max(16, w) texels: 8
+# dwords) against H-TX8 (max(8, w) texels) and RASTERW (w), read as 16-bit words. Soft, last: type 1 at 24 x 8 and
+# 40 x 8 through the linear axis (RASTERW against RASTERP2), their bridge type 1 32 x 16 through the same axis (it
+# must give E725's 32 x 16 image, or the two cannot tell); the second soft failure in a row stops tx6 (rc 24).
+# Every row at t4's default 16 scratch pages (64 KiB, 16384 dwords; no rival reads past 7151). after: the health
+# fill and triangle after every job. needrows: the second probe with no pixel rows stops tx6 (rc 24). No fault
+# expected: any fault, hang or other failure stops the stage (rc 4) and the session.
+tx6-ctl-ty4-64x32|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ctl-ty4-64x32.bin"
+tx6-ctl-ty3-32x16|control|safe|after needrows reads:rows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ctl-ty3-32x16.bin"
+tx6-ty4-48x64-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-48x64-x0y0.bin"
+tx6-ty4-48x64-x0y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-48x64-x0y32.bin"
+tx6-ty4-96x32-x64y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-96x32-x64y0.bin"
+tx6-ty4-80x64-x0y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-80x64-x0y0.bin"
+tx6-ty4-80x64-x64y0|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-80x64-x64y0.bin"
+tx6-ty4-80x64-x0y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-80x64-x0y32.bin"
+tx6-ty4-80x64-x64y32|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty4-80x64-x64y32.bin"
+tx6-ty3-f5-4x8|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty3-f5-4x8.bin"
+tx6-ty3-f5-8x8|heldout|safe|after needrows|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-ty3-f5-8x8.bin"
+tx6-lin-ty1-32x16|bridge|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-lin-ty1-32x16.bin"
+tx6-lin-ty1-24x8|heldout|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-lin-ty1-24x8.bin"
+tx6-lin-ty1-40x8|heldout|safe|after needrows soft|t4|probe --temps 32 --coords --pixels "$S/bins/r9l-lin-ty1-40x8.bin"
