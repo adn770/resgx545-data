@@ -1,0 +1,74 @@
+# session.toml: the env of r9-x, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r9-x"
+prefix = "r9x"                 # laptop files under ~/scratch/r9x/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E566/E723 probes,
+                                    # E466/E467/E831 depth renders and E684's far jobs ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]      # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R9-A t3 (19 jobs), R9-B srgb (8), R9-C zls (16), R9-D zst (12, Q120 only: Q121 dropped by its
+# check), R9-E far (11, new range, last): 66 jobs (gen/make.py; README.md "Deviations")
+[stages]
+t3 = { alarm = 900 }
+srgb = { alarm = 600 }
+zls = { alarm = 1200 }
+zst = { alarm = 900 }
+far = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "f32dfacc8db804f205fcd5b40c65e01ba0060306"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+# every repository file the generator (gen/), the scorer or the tests read
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/texmodel.py",
+    "data:texture/p1141/support/specs.json",
+    "data:texture/p1141/gen/cases.json",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-d-t0b27/g-bl-st-a.txt.gz",
+    "data:texture/p1141/stage-bins/p1141-t0b27__4.bin",
+    "data:texture/p1132/tx-t3/s64x32-ctl.txt.gz",
+    "data:texture/p1132/tx-t3/s64x32-t3b14.txt.gz",
+    "data:texture/p1132/tx-t3/s32x32-t3b14.txt.gz",
+    "data:texture/p1132/tx-t3/s64x16-ctl.txt.gz",
+    "data:texture/p1132/tx-t3/s64x32-t3b10.txt.gz",
+    "data:texture/p1132/tx-t3/s64x32-t3b11.txt.gz",
+    "data:texture/p1132/tx-t3/s64x32-t3b12.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-d-t0b27/g-bl-st-b.txt.gz",
+    "data:texture/p1132/tx-lod/an-ctl.txt.gz",
+    "data:texture/p1132/tx-lod/an-t3b11.txt.gz",
+    "data:texture/p1132/tx-lod/an-t3b12.txt.gz",
+    "data:texture/p1132-recomp/raw/tx-t3bits/bins/tx-t3bits__0.bin",
+    "data:texture/p1132-recomp/raw/tx-t3bits/bins/tx-t3bits__14.bin",
+    "data:isp/coverage-envelope/far/raw/1401720.txt.gz",
+    "data:isp/coverage-envelope/far/raw/1401724.txt.gz",
+    "resgx545:crates/sgx-pipe/src/zls.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

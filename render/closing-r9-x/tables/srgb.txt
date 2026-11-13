@@ -1,0 +1,13 @@
+#stage srgb
+#limit 0
+# R9-B, Q282: bilinear sRGB (T0 bit 27) in E723's g-bl-st form, each lerp stage alone (a: fy = 0, b: fx = 0) and both
+# (c, held out); frozen per pixel H-HALF2 (q282_rule.json) and H-BF11 (q282_rule3.json). Controls that can fail:
+# E723's g-bl-st-a rerun (its kept image) and eq (equal corners: every rival returns the decoded half). Stop: any fault.
+srgb-ctl|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-ctl.bin"
+srgb-eq|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-eq.bin"
+srgb-a1|fit|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-a1.bin"
+srgb-a2|fit|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-a2.bin"
+srgb-b1|fit|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-b1.bin"
+srgb-b2|fit|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-b2.bin"
+srgb-c1|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-c1.bin"
+srgb-c2|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/srgb-c2.bin"

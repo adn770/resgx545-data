@@ -1,0 +1,26 @@
+#stage t3
+#limit 0
+# R9-A, Q078: T3 bits 14, 11 and 12 in smp on named memory (E566's tx_map probes, scratch dword i = 0xD0000000 | i).
+# Bit 14: six held-out geometries (W != S, W 48, u off the texel centres, u past the texture); frozen per pixel
+# H-UCOL / H-U01 / H-URAW (gen/t3.py), each with its bit-14-clear reference (H-TEXMODEL). Bits 11, 12: E566's strided jobs (frozen: the control's image) and E564's
+# twiddled chain (replicates of E564's kept images). Controls that can fail: E566's s64x32-ctl and s64x32-t3b14,
+# E564's an-ctl (their kept images). --scratch-pages holds every rival's reads (check 3). Stop: any fault or hang.
+t3-ctl|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/t3-ctl.bin"
+t3-b14ref|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/t3-b14ref.bin"
+b14-w16s64|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w16s64.bin"
+b14-w16s64-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w16s64-ref.bin"
+b14-w32s128|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 19 "$S/bins/b14-w32s128.bin"
+b14-w32s128-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w32s128-ref.bin"
+b14-w32s32|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w32s32.bin"
+b14-w32s32-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w32s32-ref.bin"
+b14-w48s64|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w48s64.bin"
+b14-w48s64-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-w48s64-ref.bin"
+b14-u01|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-u01.bin"
+b14-u01-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-u01-ref.bin"
+b14-u02w16|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-u02w16.bin"
+b14-u02w16-ref|reference|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b14-u02w16-ref.bin"
+b11-s64x32|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b11-s64x32.bin"
+b12-s64x32|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/b12-s64x32.bin"
+an-ctl|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/an-ctl.bin"
+an-t3b11|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/an-t3b11.bin"
+an-t3b12|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/an-t3b12.bin"

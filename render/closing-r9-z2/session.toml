@@ -1,0 +1,47 @@
+# session.toml: the env of r9-z2, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r9-z2"
+prefix = "r9z"                 # laptop files under ~/scratch/r9z/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E466/E490 format
+                                    # jobs ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t9"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]      # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t9]
+path = "sgxfive-test-t9"
+sha256 = "7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce"
+built_from = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+recipe = "data:render/closing-r9-z2/lead/build_tool9.sh"
+source = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R9c-F / X-3 (Q101): 10 jobs (gen/z2.py)
+[stages]
+z2 = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "02ae0a0ec5e692d36eaab9876582dab158808101"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+# the layout the scorer copies (gen/z2.py; tests/test_gen.py checks the names it rests on)
+pins = [
+    "resgx545:crates/sgx-pipe/src/zls.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []
