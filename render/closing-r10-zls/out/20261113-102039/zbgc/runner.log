@@ -1,0 +1,27 @@
+## stage zbgc of r10z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127147084 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10z.WaNIQK
+## clock
+Fri Nov 13 10:23:04 CET 2026
+== zbg-c1 set=control risk=safe tool=t9 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,32768,0,0,16384 --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.WaNIQK/1-zbg-c1/w --poke blk:1=0x00400200 --kpoke-render 1:rd:16=0x3f800000
+  rc 0 job: ok target: 256x128 hash 0x543b682789283725 diff: 0 of 32768 pixels 
+  class ok
+  premise zbg-c1 [depth_changed]: job=ok drawn=4096 depth_changed=32768 
+== zbg-c25 set=control risk=safe tool=t9 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,32768,0,0,16384 --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.WaNIQK/2-zbg-c25/w --poke blk:1=0x00400200 --kpoke-render 1:rd:16=0x3e800000
+  rc 1 job: ok target: 256x128 hash 0xc69d4c3684b62325 diff: 3782 of 32768 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zbg-c25 [depth_changed]: job=ok drawn=0 depth_changed=32768 
+## end: 2 jobs of zbgc
+## kernel log (journalctl)

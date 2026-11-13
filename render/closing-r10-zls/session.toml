@@ -1,0 +1,74 @@
+# session.toml: the env of r10-zls, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r10-zls"
+prefix = "r10z"                 # laptop files under ~/scratch/r10z/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E978's and E981's
+                                    # depth jobs ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+[tools.t9]
+path = "sgxfive-test-t9"
+sha256 = "7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce"
+built_from = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+recipe = "data:render/closing-r9-k1/lead/build_tool9.sh"
+source = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R10-4 (a): zst2 (Q120, t4, 26 jobs), zbgc (Q101 controls, t9, 2), zbg (gated on zbgc, t9, 7), zw
+# (word 10, t9, 4): 39 jobs (gen/make.py; README.md "Deviations")
+[stages]
+zst2 = { alarm = 1500 }
+zbgc = { alarm = 600 }
+zbg = { alarm = 900, gate = true }
+zw = { alarm = 600 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "9849dab7540c005d32af3a328a08edbcdb11a90d"
+data = "1324301bef136f1ada33dd3450c5665738bde435"
+# every repository file the generator, scorer or tests read: E978's kept zst dumps (the scorer's
+# replicate reading, the tests' must-hold set), E977's z242-a-f0 (zw-c50's control), E981's z2-a-f0
+# (the tests), r9-x's zst and zls tables (the replicated rows), t9's recipe, sgx-pipe's zls.rs (the layouts and the fold's replay)
+pins = [
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-ctl-s.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-f3-s.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-f3-s.stencil.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-f4-s.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-f4-s.stencil.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zst/z120-f6-s.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-a-f0.depth.1.bin.gz",
+    "data:render/closing-r9-z2/out/20261113-082522/z2/z2-a-f0.depth.1.bin.gz",
+    "data:render/closing-r9-z2/out/20261113-082522/z2/z2-b-f0.depth.1.bin.gz",
+    "data:render/closing-r9-x/tables/zst.txt",
+    "data:render/closing-r9-x/tables/zls.txt",
+    "data:render/closing-r9-k1/lead/build_tool9.sh",
+    "resgx545:crates/sgx-pipe/src/zls.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

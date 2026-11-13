@@ -1,0 +1,34 @@
+## stage zw of r10z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127146712 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10z.CKGxKw
+## clock
+Fri Nov 13 10:24:26 CET 2026
+== zw-c50 set=control risk=safe tool=t9 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.CKGxKw/1-zw-c50/w --poke blk:1=0x00400200 --poke blk:10=0x3f000000
+  rc 0 job: ok target: 256x128 hash 0xb725612d27062325 diff: 0 of 32768 pixels 
+  class ok
+  premise zw-c50 [depth_changed]: job=ok drawn=32768 depth_changed=32768 
+== zw-075 set=heldout risk=safe tool=t9 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.CKGxKw/2-zw-075/w --poke blk:1=0x00400200 --poke blk:10=0x3f400000
+  rc 0 job: ok target: 256x128 hash 0xb725612d27062325 diff: 0 of 32768 pixels 
+  class ok
+== zw-100 set=heldout risk=safe tool=t9 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.CKGxKw/3-zw-100/w --poke blk:1=0x00400200 --poke blk:10=0x3f800000
+  rc 0 job: ok target: 256x128 hash 0xb725612d27062325 diff: 0 of 32768 pixels 
+  class ok
+== zw-0125 set=heldout risk=safe tool=t9 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-v 0,0,131072,0,0,65536 --tri-z 0,1,0 --depth --depth-ctl 0x0017103c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10z.CKGxKw/4-zw-0125/w --poke blk:1=0x00400200 --poke blk:10=0x3e000000
+  rc 0 job: ok target: 256x128 hash 0xb725612d27062325 diff: 0 of 32768 pixels 
+  class ok
+## end: 4 jobs of zw
+## kernel log (journalctl)
