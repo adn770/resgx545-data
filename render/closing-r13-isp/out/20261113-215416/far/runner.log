@@ -1,0 +1,49 @@
+## stage far of r13i
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127118900 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r13i.2cJVG6
+## clock
+Fri Nov 13 21:57:56 CET 2026
+== far-ctl set=control risk=safe tool=t10 knobs=[expectdiff reads:job,pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+  rc 0 job: ok target: 64x64 hash 0x72c607bcf3ce63c5 diff: 0 of 4096 pixels 
+  class ok
+  premise far-ctl [job pixels]: job=ok pixels=4096 hash=0x72c607bcf3ce63c5 diff=0 
+== far-x25n set=replicate risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268435456,1808,1784 --pixels
+  rc 0 job: ok target: 64x64 hash 0x87c8780e21c74f25 diff: 0 of 4096 pixels 
+  class ok
+== far-x26p set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,67108864,12286050 --pixels
+  rc 1 job: ok target: 64x64 hash 0x20becb8c3d2aaf10 diff: 419 of 4096 pixels, first (7, 9) 0xff00ff00 expected 0xff203040 
+  class ok
+== far-y26n set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,5863310,-67108864 --pixels
+  rc 1 job: ok target: 64x64 hash 0xb7e64ab2f0bdd145 diff: 74 of 4096 pixels, first (13, 0) 0xff00ff00 expected 0xff203040 
+  class ok
+== far-x28n set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 56,8,57,56,-268435456,-10195291 --pixels
+  rc 1 job: ok target: 64x64 hash 0x43ca689cff5bf705 diff: 65 of 4096 pixels, first (15, 0) 0xff203040 expected 0xff00ff00 
+  class ok
+== far-y28p set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,6,56,8,-31378593,268435456 --pixels
+  rc 1 job: ok target: 64x64 hash 0xbc902aa1b821dfa5 diff: 2 of 4096 pixels, first (52, 19) 0xff00ff00 expected 0xff203040 
+  class ok
+== far-x30p set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,1073741824,132369010 --pixels
+  rc 1 job: ok target: 64x64 hash 0x91abbd5e680d0085 diff: 2 of 4096 pixels, first (7, 9) 0xff00ff00 expected 0xff203040 
+  class ok
+== far-y30n set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,-114217597,-1073741824 --pixels
+  rc 1 job: ok target: 64x64 hash 0xc2e2575323c80ed0 diff: 1319 of 4096 pixels, first (3, 0) 0xff00ff00 expected 0xff203040 
+  class ok
+## end: 8 jobs of far
+## kernel log (journalctl)

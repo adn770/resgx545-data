@@ -1,0 +1,15 @@
+#stage far
+#limit 0
+# R13-2 (a) far, Q199 past 2^25 px (E979): one far vertex at 2^26, 2^28, 2^30 px in x and y (both signs on both axes),
+# ascending distance, --tri-unit 0 (whole pixels, int32), after E684's far21d0 (control) and E979's far-x25n (replicate).
+# Frozen per row: the clip family at E1012's survivors (G 16..22, a 8..32, g 8..32), H-EXACT, H-EXACT-BAND, H-F32 (the
+# float32 window vertex), H-SAT, H-WRAP (24.8), H-CULL. Untested range: the stage stops at the first job that is not
+# `job: ok` (any fault, hang or failure: #limit 0, kit rc 4; a job line other than ok: hook_check, rc 24). Last stage.
+far-ctl|control|safe|expectdiff reads:job,pixels|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+far-x25n|replicate|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268435456,1808,1784 --pixels
+far-x26p|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,67108864,12286050 --pixels
+far-y26n|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,5863310,-67108864 --pixels
+far-x28n|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 56,8,57,56,-268435456,-10195291 --pixels
+far-y28p|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,6,56,8,-31378593,268435456 --pixels
+far-x30p|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,1073741824,132369010 --pixels
+far-y30n|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,-114217597,-1073741824 --pixels
