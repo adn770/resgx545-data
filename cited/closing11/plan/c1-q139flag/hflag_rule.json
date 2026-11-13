@@ -1,0 +1,15 @@
+{
+ "question": "Q139: is region header flag bit 7 the end of the region list? (E959 post hoc reading, E1007 held out on r10-geo q139c)",
+ "held_out_set": "resgx545-data/render/closing-r7-rp/out/20261112-205431/q139/ (21 poked rows + 3 controls; cases.tsv read, no dump read before this freeze)",
+ "readable_row": "cases.tsv rc 0 or 1 (rc 1 = expectdiff: image differs from the unpoked baseline, E907) AND NAME.txt has 'job: ok' AND the --pixels image is whole (all rows, full width) AND NAME.tri.tadata.bin/.tri.param.bin exist AND a control of the same size passed baseline_layout (image exact, every target tile one header with a stream)",
+ "header_read": "lib/lib_dump.headers(tadata, base, stop_zero=2**30): slot i = 12 bytes from the first written page; flags = word0 >> 24; bit 7 = flags & 0x80; base from header_base()",
+ "rules": {
+  "H-LAST": "exactly one header in the dump has flag bit 7 set (slot F); a target tile is drawn iff a header with non-zero stream naming it (tile_of(col,row)) lies at slot <= F; pass per row iff exactly one bit-7 header and every target tile is right",
+  "H-FLAGSLOT": "exactly one bit-7 header, at the slot H-EVEN gives the last target tile in block order (key blkrow over ALL target tiles of the target; q139even.predict), and the wrong-tile set {tiles with no surviving header or header slot > that slot} equals the image's wrong-tile set; if that last tile's own header is overwritten (slot None) the row is 'undefined' (cannot tell, not held). Variant H-FLAGSLOT-R7 with R7-BLK (blkrow) slots, reported only",
+  "H-HIGHEST (rival, 3 forms)": "(a) dump: the bit-7 header is at the highest nonzero header slot of the dump; (b) model: at the highest slot any predicted header (target or not) takes under H-EVEN; (c) -T: at the highest slot of a header with a stream naming a target tile. Each passes a row iff exactly one bit-7 header at that slot"
+ },
+ "also_reported": "per row: bit-7 header count and slot, wrong tiles, H-EVEN and R7-BLK slot agreement (128/600 of tiles; slot_agree), rows where the flagged slot differs from each H-HIGHEST slot (where rivals part)",
+ "pass_criterion": "a rule holds iff every decided row in the set holds (strict: one failed row refutes); rows are reported per class: fit (E907 fit rows), heldout (E907 held-out), replicate (m1-B2-8 replicate of m1-B2-8 original), controls (unpoked, bit-7 count/slot only). Two rows (m2-B2-10 fit, part2-10_10_10 heldout) were re-dumped by q139c: replicate-class w.r.t. E1007",
+ "refutation": "any readable row with zero or two or more bit-7 headers, or a tile drawn with its only header past the flagged slot, or a target tile not drawn although a stream header for it lies at or before F; or flagged slot differing from H-EVEN's prediction (H-FLAGSLOT)",
+ "scorer": "hflag_score.py (sha256 in FREEZE.log), usage: python -I hflag_score.py KEPT_DIR"
+}
