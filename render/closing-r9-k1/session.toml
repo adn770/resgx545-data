@@ -1,0 +1,108 @@
+# session.toml: the env of r9-k1 (round 9, K1: Q190's layered background, Q066's explore rows), a
+# closing session built with the session kit (HACKING.md, "Session kit"). kit/session.py writes
+# run/session.env from it for the laptop. Plan: closing9/k1/exp-k1-r9.md (K-1..K-6 all (a));
+# decisions closing9/DECISIONS-R9.md (safe class: no planned fault, #limit 0 in every table).
+name = "r9-k1"
+prefix = "r9k"                 # laptop files under ~/scratch/r9k/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"   # fork 2a650d74: render_bg_layer, render_bg_src, bg:17-22
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 60                    # seconds one job may take (timeout -k 10): a 64 x 64 render
+                                    # waits 5 s at most (WAIT_NS)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle (layerless, knobs restored)
+# the files the tool reads: the knobs (it refuses a mismatch), kpoke (--kpoke-render), the dumps
+debugfs = ["render_bg_layer", "render_bg_src", "render_param", "render_tadata", "render_words",
+           "buf09"]
+outdir_opts = []                    # --dump-render and --words write into $W, which exists
+extra_knobs = []                    # run/hooks.sh reads $args and $dbgs only
+# options no row may use, besides the kit's (--kpoke, --kreg...): what the layer refuses or the
+# plan does not need (r8-k2's list without --poke and --kpoke-render, which the rows use)
+forbid_options = ["--kpoke-job", "--kpoke-render2", "--kreg-render", "--kreg-render2",
+                  "--scratch-at", "--scratch", "--low", "--late", "--tadata-fill-render",
+                  "--page-before", "--regs", "--tri-full", "--aa4", "--fault", "--ctx2",
+                  "--geometry", "--share-pb", "--emit-scene"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# t9: sgxfive-test with --bg-layer and --mock-knob (resgx545 97447b04, branch r9-k1-tool, merged in
+# d95a264), built on the build host by lead/build_tool9.sh; the lead stages it to
+# ~/sgxfive-test-t9 on the laptop. FROZEN.commits' `built` line binds the binary to its source.
+[tools.t9]
+path = "sgxfive-test-t9"
+sha256 = "7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce"
+built_from = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+recipe = "data:render/closing-r9-k1/lead/build_tool9.sh"
+source = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+
+# the debugfs knobs a row may write (dbg:NAME=V), restored after every job and by the exit trap.
+# render_bg_layer is a debugfs bool: it reads back Y or N, so the rows write Y and N (a "1" would
+# read back "Y" and stop the runner, rc 19); render_bg_src is an x32 (reads 0x%08x).
+[knobs]
+render_bg_layer = { default = "N", values = ["N", "Y"] }
+render_bg_src = { default = "0x0", values = ["0x0", "0x3e800000"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+[stages]
+s0t = { alarm = 600 }
+s0p = { alarm = 600, gate = true }
+s1n = { alarm = 600, gate = true }
+s1 = { alarm = 1500, gate = true }
+s2 = { alarm = 900, gate = true }
+s3 = { alarm = 900, gate = true }
+s4 = { alarm = 600, gate = true }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "d95a264690007cd4cc84f9d21a140e29de0ba458"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+pins = [
+    # the probe programs bins/ holds (gen/make.py assembles them; tests/test_gen.py checks the bytes)
+    "resgx545:probes/isp/templates/pds_bgl_raw.s",
+    "resgx545:probes/dpm/templates/pds_bg_pos.s",
+    "resgx545:probes/dpm/templates/pix_pa0.s",
+    "resgx545:probes/dpm/templates/pix_pa1.s",
+    # the assemblers that make them (debug/asm: git archive of this commit, tests/run_all.sh)
+    "resgx545:tools/usse-asm/Makefile",
+    "resgx545:tools/usse-asm/usse_main.c",
+    "resgx545:tools/usse-asm/pds_main.c",
+    "resgx545:tools/usse-asm/pds_forms.c",
+    "resgx545:tools/usse-asm/asm.c",
+    "resgx545:tools/usse-asm/asm.h",
+    "resgx545:tools/usse-asm/pds_asm.h",
+    "resgx545:tools/usse-dis/usse.c",
+    "resgx545:tools/usse-dis/usse.h",
+    "resgx545:tools/usse-dis/usse_form.c",
+    "resgx545:tools/usse-dis/usse_form.h",
+    "resgx545:tools/usse-dis/usse_table.inc",
+    "resgx545:tools/usse-dis/pds.c",
+    "resgx545:tools/usse-dis/pds.h",
+    "resgx545:tools/usse-dis/pds_table.inc",
+    "resgx545:tools/usse-dis/forms/float.inc",
+    "resgx545:tools/usse-dis/forms/intpack.inc",
+    "resgx545:tools/usse-dis/forms/memctl.inc",
+    "resgx545:tools/usse-dis/forms/misc.inc",
+    # the scored pixels (gen/bgmask.txt) and the vertex decoding gen/bgl_model.py copies (E590)
+    "data:isp/bg-object-pokes/dumps/bg-words-f1/b66f1-control-1.txt.gz",
+    "data:isp/bg-object-pokes/analysis/bg_geometry.py",
+    # the vectors-table writer and its readers the fold builds the tables with, and the nearest
+    # model (the transfer's one-layer object, which a replay would extend to a render) (README)
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:tools/usse-asm/pbdump.py",
+    "resgx545:crates/sgx-pipe/src/xfer.rs",
+]
+
+# extra laptop files (globs), named in args as $S/PATH: the four probe programs
+[files]
+laptop = ["bins/*.bin"]

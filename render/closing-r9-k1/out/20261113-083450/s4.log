@@ -1,0 +1,27 @@
+## stage s4 of r9k
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127162492 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r9k.LD8gRI
+## clock
+Fri Nov 13 08:46:27 CET 2026
+== c-tex2 set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r9k.LD8gRI/1-c-tex2/w --words /home/jtorra/scratch/tmp/r9k.LD8gRI/1-c-tex2/w
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+  premise c-tex2 [job diff inplace layer]: job=ok hash=0x8e0af46224a28907 diff=0 inplace=3034 layer=Y 
+== c-off2 set=control risk=safe tool=t9 knobs=[expectdiff reads:job,hash,diff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r9k.LD8gRI/2-c-off2/w --words /home/jtorra/scratch/tmp/r9k.LD8gRI/2-c-off2/w
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise c-off2 [job hash diff]: job=ok hash=0x99385a04ee01c585 diff=0 
+## end: 2 jobs of s4
+## kernel log (journalctl)
