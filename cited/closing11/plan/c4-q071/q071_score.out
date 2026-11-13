@@ -1,0 +1,30 @@
+ROW st1-b0 (control, E988 base): drawn 1024, store len 73728, loaded == fill pattern: True, store first 2048 all 0xff: False, store past 2048 all deadbeef: True
+   H-LINLOAD-A  pixels agree 1024/2048 (extra 512, missing 512); store bytes agree 73728/73728; FAIL
+   H-LINLOAD-B  pixels agree 1024/2048 (extra 512, missing 512); store bytes agree 73728/73728; FAIL
+   H-LINLOAD-C  pixels agree 1024/2048 (extra 0, missing 1024); store bytes agree 70688/73728; FAIL
+   H-ZEROLOAD   pixels agree 1024/2048 (extra 0, missing 1024); store bytes agree 71696/73728; FAIL
+   H-TWIDLOAD   pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 73728/73728; PASS
+ROW st1-lane1 (control, E988 base): drawn 1024, store len 73728, loaded == fill pattern: True, store first 2048 all 0xff: False, store past 2048 all deadbeef: True
+   H-LINLOAD-A  pixels agree 1024/2048 (extra 512, missing 512); store bytes agree 73728/73728; FAIL
+   H-LINLOAD-B  pixels agree 1024/2048 (extra 512, missing 512); store bytes agree 73728/73728; FAIL
+   H-LINLOAD-C  pixels agree 1024/2048 (extra 0, missing 1024); store bytes agree 70656/73728; FAIL
+   H-ZEROLOAD   pixels agree 1024/2048 (extra 0, missing 1024); store bytes agree 72192/73728; FAIL
+   H-TWIDLOAD   pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 73728/73728; PASS
+ROW q071-b0 (HELD-OUT): drawn 2048, store len 73728, loaded == fill pattern: True, store first 2048 all 0xff: True, store past 2048 all deadbeef: True
+   H-LINLOAD-A  pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 71696/73728; FAIL
+   H-LINLOAD-B  pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 71696/73728; FAIL
+   H-LINLOAD-C  pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 70176/73728; FAIL
+   H-ZEROLOAD   pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 73728/73728; PASS
+   H-TWIDLOAD   pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 71696/73728; FAIL
+ROW q071-l1 (HELD-OUT): drawn 2048, store len 73728, loaded == fill pattern: True, store first 2048 all 0xff: True, store past 2048 all deadbeef: True
+   H-LINLOAD-A  pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 72192/73728; FAIL
+   H-LINLOAD-B  pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 72192/73728; FAIL
+   H-LINLOAD-C  pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 70656/73728; FAIL
+   H-ZEROLOAD   pixels agree 2048/2048 (extra 0, missing 0); store bytes agree 73728/73728; PASS
+   H-TWIDLOAD   pixels agree 1024/2048 (extra 1024, missing 0); store bytes agree 72192/73728; FAIL
+
+VERDICT H-LINLOAD-A: held-out 0 held / 2 failed of 2; controls 0 of 2 held
+VERDICT H-LINLOAD-B: held-out 0 held / 2 failed of 2; controls 0 of 2 held
+VERDICT H-LINLOAD-C: held-out 0 held / 2 failed of 2; controls 0 of 2 held
+VERDICT H-ZEROLOAD: held-out 2 held / 0 failed of 2; controls 0 of 2 held
+VERDICT H-TWIDLOAD: held-out 0 held / 2 failed of 2; controls 2 of 2 held
