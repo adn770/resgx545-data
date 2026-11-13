@@ -1,0 +1,19 @@
+{
+  "name": "R10-BF11-FLOOR-RHU-W0",
+  "fit_on": ["srgb-a1", "srgb-a2", "srgb-b1", "srgb-b2"],
+  "fit_score": "16384 of 16384 halves, 8192 of 8192 pixels (4 x 2048)",
+  "decode": "sRGB byte -> linear (piecewise IEC) -> half, round to nearest even",
+  "stage": {
+    "inputs": "two half values A (weight 64-k) and B (weight k), k in 0..63, weights k/64 exact",
+    "k_zero": "k == 0: output = A unchanged",
+    "align": "e = max(frexp exponent of A, of B); grid g = 2^(e-11); A' = floor(A/g)*g, B' = floor(B/g)*g",
+    "lerp": "exact A' + (k/64)(B' - A') (no intermediate rounding)",
+    "output": "round to half, nearest, ties up (away from zero, values >= 0)"
+  },
+  "weights_for_unseen_jobs": "k = floor(64 * f) (exact when f is on the 1/64 grid)",
+  "two_stage_combinations_declared_before_scoring": {
+    "XY": "stage on x (corners 00,10 and 01,11, weight ix) -> two halves -> stage on y (weight iy); the first-stage outputs are halves, no further decode",
+    "YX": "stage on y (00,01 and 10,11, weight iy) -> two halves -> stage on x (weight ix)",
+    "headline": "XY (E720 two-stage form, x first); YX scored as the declared alternative"
+  }
+}
