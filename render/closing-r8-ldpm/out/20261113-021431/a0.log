@@ -1,0 +1,51 @@
+## stage a0 of r8l
+## uname
+7.3.0-resgx545
+## installed module
+37EC97AB0CB37213C42FCCC
+## loaded module
+37EC97AB0CB37213C42FCCC
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127234600 KiB (at least 600 MiB)
+## work directory: /home/jtorra/scratch/tmp/r8l.QUhVsc
+## clock
+Fri Nov 13 02:14:34 CET 2026
+== a0-cal-2048 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x162 expect:rc3-overflow reads:s2,s3,s4,s5,knob,gps_left ctl:gps_left=0x2]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render /home/jtorra/scratch/tmp/r8l.QUhVsc/1-a0-cal-2048/w /home/jtorra/scratch/r8l/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+  premise a0-cal-2048 [s2 s3 s4 s5 knob gps_left]: nparts=1 knob=0x140 gps_abort=0x5 gps_left=0x2 gmax=0x5 mono=1 runpeaks=0x140,0xe6 s2=0x51 s3=0x9d s4=0xe8 s5=0x132 
+== a0-cal-2048f set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:s2,s3,s4,s5,s6,s7,knob,need,nparts ctl:need=0x213 ctl:nparts=0]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render /home/jtorra/scratch/tmp/r8l.QUhVsc/2-a0-cal-2048f/w /home/jtorra/scratch/r8l/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise a0-cal-2048f [s2 s3 s4 s5 s6 s7 knob need nparts]: nparts=0 knob=0x400 need=0x213 gmax=0x7 mono=1 runpeaks=0x213 s2=0x51 s3=0x9d s4=0xe8 s5=0x132 s6=0x181 s7=0x1ca 
+== a0-c4-b5 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x104 expect:rc3-overflow reads:gps_left,knob ctl:gps_left=0x2]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render /home/jtorra/scratch/tmp/r8l.QUhVsc/3-a0-c4-b5/w /home/jtorra/scratch/r8l/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+  premise a0-c4-b5 [gps_left knob]: nparts=2 knob=0xe2 gps_abort=0x3 gps_left=0x2 gmax=0x5 mono=1 runpeaks=0xe2,0x102,0x9b s2=0x51 s3=0x9d 
+== a0-c4-b6 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x105 expect:rc3-overflow reads:gps_left,knob ctl:gps_left=0x1]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render /home/jtorra/scratch/tmp/r8l.QUhVsc/4-a0-c4-b6/w /home/jtorra/scratch/r8l/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+  premise a0-c4-b6 [gps_left knob]: nparts=2 knob=0xe3 gps_abort=0x3 gps_left=0x1 gmax=0x3 mono=1 runpeaks=0xe3,0xe3,0xe3 s2=0x51 s3=0x9d 
+== a0-t-s3m6 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0xb9 expect:rc3-overflow reads:gps_left,knob ctl:gps_left=0x1]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 probe --tri pixel --width 2048 --height 2048 --vertices 1500 --dump-render /home/jtorra/scratch/tmp/r8l.QUhVsc/5-a0-t-s3m6/w /home/jtorra/scratch/r8l/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+  premise a0-t-s3m6 [gps_left knob]: nparts=3 knob=0x97 gps_abort=0x2 gps_left=0x1 gmax=0x3 mono=1 runpeaks=0x97,0xb7,0xb7,0x96 s2=0x51 
+== a0-qf-0xa2 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0xa2 expectdiff reads:nparts,runpeaks,knob,gmax ctl:nparts=2 ctl:runpeaks=0x80,0xa0,0x2]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 4096 --height 4096 -n 1 --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.QUhVsc/6-a0-qf-0xa2/w --regs 0x0700-0x074c
+  rc 0 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 4096x4096 hash 0xe1ad328c485b0f25 diff: 4409730 of 16777216 pixels, first (513, 513) 0xff203040 expec
+  class ok
+  premise a0-qf-0xa2 [nparts runpeaks knob gmax]: nparts=2 knob=0x80 gps_abort=0x1 gps_left=0x1 gmax=0x1 mono=0 runpeaks=0x80,0xa0,0x2 
+## end: 6 jobs of a0
+## kernel log (journalctl)

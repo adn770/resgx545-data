@@ -1,0 +1,54 @@
+## stage u of r8l
+## uname
+7.3.0-resgx545
+## installed module
+37EC97AB0CB37213C42FCCC
+## loaded module
+37EC97AB0CB37213C42FCCC
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127224492 KiB (at least 600 MiB)
+## work directory: /home/jtorra/scratch/tmp/r8l.zObCHE
+## clock
+Fri Nov 13 02:42:21 CET 2026
+== u-c-s22 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff reads:need,nparts,knob ctl:need=0x4e ctl:nparts=0]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 2048 -n 1 --move 1:0,384 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/1-u-c-s22/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x2048 hash 0x70b275ded5c35725 diff: 0 of 4194304 pixels 
+  class ok
+  premise u-c-s22 [need nparts knob]: nparts=0 knob=0x400 need=0x4e gmax=0x1 mono=0 runpeaks=0x4e 
+== u-full-1024 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 1024 --height 768 -n 1 --tri-unit 12 --tri-v 0,0,8388608,0,0,6291456 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/2-u-full-1024/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 1024x768 hash 0xde0b9233c9822325 diff: 0 of 786432 pixels 
+  class ok
+== u-full-2048 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 2048 -n 1 --tri-unit 12 --tri-v 0,0,16777216,0,0,16777216 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/3-u-full-2048/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x2048 hash 0x6e20f935f6222325 diff: 0 of 4194304 pixels 
+  class ok
+== u-sliver set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 2048 -n 1 --tri-unit 12 --tri-v 32768,32768,8355840,8339456,8339456,8355840 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/4-u-sliver/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x2048 hash 0xe47ebe55215af505 diff: 0 of 4194304 pixels 
+  class ok
+== u-small20 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 2048 -n 1 --tri-unit 12 --tri-v 4096000,4096000,4177920,4112384,4112384,4177920 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/5-u-small20/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x2048 hash 0x401180abd5ebe425 diff: 0 of 4194304 pixels 
+  class ok
+== u-band40 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 4096 --height 2048 -n 1 --tri-unit 12 --tri-v 65536,4096000,16711680,4177920,8388608,4259840 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/6-u-band40/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 4096x2048 hash 0x60c63a0b7525bda5 diff: 0 of 8388608 pixels 
+  class ok
+== u-sliver-4096x2048 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 4096 --height 2048 -n 1 --tri-unit 12 --tri-v 32768,32768,16744448,8339456,16728064,8355840 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/7-u-sliver-4096x2048/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 4096x2048 hash 0x257c33521a85e705 diff: 0 of 8388608 pixels 
+  class ok
+== u-sliver-2048x4096 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 4096 -n 1 --tri-unit 12 --tri-v 32768,32768,8355840,16728064,8339456,16744448 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/8-u-sliver-2048x4096/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x4096 hash 0x367a229ae0d56305 diff: 0 of 8388608 pixels 
+  class ok
+== u-anti-2048 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0624-0x0628,0x0658,0x0660,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-rgn4 tri --width 2048 --height 2048 -n 1 --tri-unit 12 --tri-v 8355840,32768,49152,8355840,32768,8339456 --keep-going --keep-overflow --wait-ms 20000 --words /home/jtorra/scratch/tmp/r8l.zObCHE/9-u-anti-2048/w --regs 0x0700-0x074c
+  rc 0 job: ok target: 2048x2048 hash 0xb912cf6c9b691b45 diff: 0 of 4194304 pixels 
+  class ok
+## end: 9 jobs of u
+## kernel log (journalctl)

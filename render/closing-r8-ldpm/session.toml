@@ -1,0 +1,90 @@
+# session.toml: the env of r8-ldpm (round 8, session L1 of closing8/leftovers/exp-leftovers-r8.md:
+# Q210 and Q211, round 7's leftovers, safe class only), built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop. gen/plan.py writes
+# the tables and predictions; tests/test_plan.py holds extra_knobs and the knob values equal to them.
+name = "r8-ldpm"
+prefix = "r8l"                      # laptop files under ~/scratch/r8l/ (run, stage, out)
+srcversion = "37EC97AB0CB37213C42FCCC"   # the test module of fork 664fd0d0, loaded now
+host_key_alias = "sgx-target"       # ssh HostKeyAlias; SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10; R7-dpm's)
+min_free_mb = 600                   # MiB free on ~ before each job (dumps of up to 4.6 MB a job)
+health_tool = "t4"                  # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # every file the tool writes goes to "$W" itself
+forbid_options = ["--kpoke-render", "--kpoke-job", "--fault", "--poke", "--blk", "--cmd", "--vdm"]
+# the session's own knob words, read by run/hooks.sh: a control's frozen value (hook_check)
+extra_knobs = [
+    "ctl:gps_abort=0x3",
+    "ctl:gps_abort=0x4",
+    "ctl:gps_left=0x1",
+    "ctl:gps_left=0x2",
+    "ctl:need=0x13a",
+    "ctl:need=0x213",
+    "ctl:need=0x21a",
+    "ctl:need=0x305",
+    "ctl:need=0x4e",
+    "ctl:need=0x99",
+    "ctl:nparts=0",
+    "ctl:nparts=2",
+    "ctl:runpeaks=0x80,0xa0,0x2",
+]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+
+[tools.rt]                          # S1's regtimeline (tools/sweep/regtimeline.c), read-only
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+wraps = true
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+# P = thr0 + 0x22 of every row (gen/plan.py), default 0x422 (R5-dpm to R7-dpm)
+[knobs]
+render_pb_pages = { default = "0x422", values = ["0x24", "0x34", "0x3b", "0x3e", "0x46", "0x4c", "0x52", "0x57", "0x59", "0x5c", "0x69", "0x6a", "0x71", "0x82", "0x8c", "0xa2", "0xa4", "0xa5", "0xa6", "0xa7", "0xa8", "0xb2", "0xb5", "0xb9", "0xba", "0xbb", "0xc0", "0xc1", "0xc2", "0xdf", "0xe2", "0x104", "0x105", "0x10a", "0x10b", "0x110", "0x12a", "0x12b", "0x12c", "0x12d", "0x12e", "0x130", "0x142", "0x147", "0x148", "0x149", "0x14a", "0x14b", "0x14c", "0x14d", "0x14e", "0x14f", "0x150", "0x162", "0x16c", "0x1c2", "0x1e4", "0x1e5", "0x254", "0x255", "0x256", "0x257", "0x258", "0x2ab", "0x2ac", "0x2b4", "0x2b5", "0x2b6", "0x2b7", "0x2b8", "0x2bb", "0x2bc", "0x2bd", "0x2be", "0x2bf", "0x2d2", "0x2d3", "0x2d4", "0x2d5", "0x2d6", "0x2d7", "0x343", "0x344", "0x345", "0x346", "0x352", "0x353", "0x354", "0x355", "0x356", "0x357", "0x358", "0x383", "0x384", "0x385", "0x386", "0x387", "0x3f0", "0x3f1", "0x3f2", "0x3f3", "0x3f4", "0x3f5", "0x3f6", "0x3f7", "0x3f8", "0x3f9", "0x3fa", "0x422"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# (every stage after a0 opens only when a0's six controls passed)
+[stages]
+a0 = { alarm = 900 }
+sp = { alarm = 1500, gate = true }
+m6 = { alarm = 3600, gate = true }
+v = { alarm = 1200, gate = true }
+f9 = { alarm = 1500, gate = true }
+k = { alarm = 2400, gate = true }
+u = { alarm = 900, gate = true }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "91f21da60ba41207a32d3770649e2577c9e427d8"
+data = "ca742f30ed2c5415d053c9fee0368978809e8426"
+pins = [
+    "resgx545:probes/tsp/templates/vtx_coord4.s",
+    "resgx545:tools/usse-asm/pbdump.py",
+    "resgx545:tools/usse-asm/dpm_words.py",
+    "data:render/closing-r7-dpm/bins/p1139-green.bin",
+    "data:cited/closing6/dpm/offline/f3_streams.py",
+    "data:cited/closing6/dpm/offline/f1_brackets.py",
+    "data:cited/closing6/dpm/offline/r6lib.py",
+    "data:cited/closing6/dpm/offline/f5lib.py",
+    "data:cited/closing6/dpm/offline/f4_phase.py",
+    "data:cited/closing6/dpm/offline/f9_loss.py",
+    "data:cited/closing6/dpm/offline/f7_replay.py",
+    "data:cited/closing6/dpm/offline/FREEZE-f1.sha256",
+    "data:cited/closing6/dpm/offline/FREEZE-f4.sha256",
+    "data:cited/closing6/dpm/offline/FREEZE-f5.sha256",
+    "data:cited/closing6/dpm/offline/FREEZE-f7.sha256",
+    "data:cited/closing6/dpm/offline/FREEZE-f9.sha256",
+    "data:cited/closing7/b/offline/olib.py",
+    "data:cited/closing7/b/offline/g1_walk64.py",
+    "data:cited/closing7/b/offline/g2_replay64.py",
+    "data:cited/closing7/b/offline/g3_span.py",
+    "data:cited/closing7/b/offline/FREEZE-g1.sha256",
+    "data:cited/closing7/b/offline/FREEZE-g2.sha256",
+    "data:cited/closing7/b/offline/FREEZE-g3.sha256",
+    "data:render/closing-r5-dpm/gen/hu1.py",
+]
+
+# extra laptop files, named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
