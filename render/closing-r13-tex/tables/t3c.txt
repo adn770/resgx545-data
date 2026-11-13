@@ -1,0 +1,24 @@
+#stage t3c
+#limit 0
+# r13-tex t3c, Q078 (rank-round13.md section 2, closing11 c8's list): T3 bits 12:11 on twiddled chains with
+# smp2dreplace (bit 11 clear at LOD 0 to 6; bit 12 with T0's max level 3 and 5; bits 12:11 = 10; a 32 x 32 chain; mips
+# off), frozen per pixel from texmodel's level images (gen/t3.py): B11-LEVEL0 / B11-NORMAL / B11-BIAS, B12-CAPLVL /
+# CHAINLAST / ADDR / BIAS / NORMAL, AS-00 / 01 / 11. Bit 14 under a bilinear sample on a strided 64 x 32 (H-FOOT vs H-TAP)
+# followed by its bit-clear reference, which gates it. Control that can fail: E564's an-t3b11 rerun (its kept image).
+# Stop: any fault or hang; the second row without its pixel rows.
+t3c-ctl|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-ctl.bin"
+t3c-b11-l0|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l0.bin"
+t3c-b11-l1|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l1.bin"
+t3c-b11-l2|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l2.bin"
+t3c-b11-l3|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l3.bin"
+t3c-b11-l4|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l4.bin"
+t3c-b11-l5|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l5.bin"
+t3c-b11-l6|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-l6.bin"
+t3c-b12-m3|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b12-m3.bin"
+t3c-b12-m5|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b12-m5.bin"
+t3c-b10|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b10.bin"
+t3c-b11-32|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-32.bin"
+t3c-b12-32|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b12-32.bin"
+t3c-b11-nomip|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b11-nomip.bin"
+t3c-b14bl|heldout|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b14bl.bin"
+t3c-b14bl-ref|reference|safe|-|t10p|probe --temps 32 --coords --pixels "$S/bins/t3c-b14bl-ref.bin"
