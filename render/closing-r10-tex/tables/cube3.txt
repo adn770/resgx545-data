@@ -1,0 +1,25 @@
+#stage cube3
+#limit 0
+# S10-tex cube3, Q284 (seeds plan section 3): TEXTYPE 2 sampled by smp3d in E726's probe form, 16 x 16 faces. Ties:
+# 6 cc rows (both tied coordinates movs of +-0.75) and 6 rr rows (both the bit-identical fmad ramp or its negation),
+# 2048 two-axis tie pixels each, and r8-geo's a2 replayed byte for byte (78 tie pixels, 4 of the 7 kept lower reads):
+# H-HIGHAXIS (the higher tied axis everywhere), H-FMADNE (the replay repeats r8's image, cc and rr read high), H-THIRD
+# (lower reads in cc and rr). Edges +z/+x and -y/+x, bilinear, along coordinate 7.75 and 8.25: H-SEAM-FLOAT vs
+# H-SEAM-ADJ, out pixels within 1 a byte, gated by the in pixels. Control: E726's cu-xn program. Stop: any fault or
+# hang; the second row without its pixel rows.
+cube3-ctl-xn|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-ctl-xn.bin"
+cube3-cc-xy-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-xy-pn.bin"
+cube3-cc-xy-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-xy-pp.bin"
+cube3-cc-yz-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-yz-pn.bin"
+cube3-cc-yz-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-yz-pp.bin"
+cube3-cc-xz-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-xz-pn.bin"
+cube3-cc-xz-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-cc-xz-pp.bin"
+cube3-rr-xy-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-xy-pp.bin"
+cube3-rr-xy-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-xy-pn.bin"
+cube3-rr-yz-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-yz-pp.bin"
+cube3-rr-yz-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-yz-pn.bin"
+cube3-rr-xz-pp|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-xz-pp.bin"
+cube3-rr-xz-pn|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-rr-xz-pn.bin"
+cube3-a2-replay|replicate|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-a2-replay.bin"
+cube3-edge-zx|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-edge-zx.bin"
+cube3-edge-yx|heldout|safe|-|t4|probe --temps 32 --coords --pixels "$S/bins/cube3-edge-yx.bin"
