@@ -1,0 +1,30 @@
+== 1. zbase: the offset of each move
+zb-m1000: rd:12 move 0x1000: d [1024] (one offset)
+zb-m4000: rd:12 move 0x4000: d [4096] (one offset)
+zb-m10000: rd:12 move 0x10000: d [16384] (one offset)
+zb-mst: rd:12 move store base: d [0] (one offset)
+zb-m800: rd:12 move 0x800: d [512] (one offset)
+zb-m40: rd:12 move 0x40: d [16] (one offset)
+zb-m4: rd:12 move 0x4: d [0] (one offset)
+granules g (bytes, a power of two) with floor((0x1000 + m) / g) * g - 0x1000 = 4 d on every move: [8, 16, 32, 64]
+== 2. zbits: stencil store layout and load order (bytes explained of 2048)
+zbs-base: control 0x0017300e; drawn 1024; store depth / load depth 2048, store linear64 / load linear64 1024, store linear64 / load depth 16, store depth / load linear64 8
+zbs-q071: control 0xf8e6a00e; drawn 2048; store linear64 / load linear64 8, store linear64 / load depth 8, store depth / load linear64 8, store depth / load depth 8; every stored byte 0xff (the test read 0, stored inverted)
+zbs-c12: control 0x0017200e; drawn 1024; store depth / load linear64 2048, store linear64 / load linear64 16, store linear64 / load depth 16, store depth / load depth 8
+zbs-c16: control 0x0016300e; drawn 1024; store linear64 / load depth 2048, store depth / load linear64 16, store depth / load depth 16, store linear64 / load linear64 8
+zbs-c20: control 0x0007300e; drawn 1024; store depth / load depth 2048, store linear64 / load linear64 1024, store linear64 / load depth 16, store depth / load linear64 8
+zbs-c12-16: control 0x0016200e; drawn 1024; store linear64 / load linear64 2048, store depth / load depth 1024, store depth / load linear64 16, store linear64 / load depth 8
+zbs-c12-20: control 0x0007200e; drawn 1024; store depth / load linear64 2048, store linear64 / load linear64 16, store linear64 / load depth 16, store depth / load depth 8
+zbs-c16-20: control 0x0006300e; drawn 1024; store linear64 / load depth 2048, store depth / load linear64 16, store depth / load depth 16, store linear64 / load linear64 8
+zbs-set: control 0xf8f7b00e; drawn 2048; store linear64 / load linear64 8, store linear64 / load depth 8, store depth / load linear64 8, store depth / load depth 8; every stored byte 0xff (the test read 0, stored inverted)
+== 3. zfmt: zf-flat-f6 against F6C
+block 0 group 0: got  3f000000 009e0000 003f0000 3f000000 009e0000 000000c0 00003f00 00c0009e 000000c0 00003f00 00c0009e 3f000000
+                   F6C  3f000000 009e0000 003f0000 3f000000 003f0000 3f000000 009e0000 003f0000 009e0000 003f0000 3f000000 009e0000
+block 0 group 1: got  00003f00 00c0009e 3f000000 009e0000 00c0009e 3f000000 009e0000 000000c0 3f000000 009e0000 000000c0 00003f00
+                   F6C  3f000000 009e0000 003f0000 3f000000 003f0000 3f000000 009e0000 003f0000 009e0000 003f0000 3f000000 009e0000
+block 0 group 2: got  009e0000 000000c0 00003f00 00c0009e 000000c0 00003f00 00c0009e 3f000000 00003f00 00c0009e 3f000000 009e0000
+                   F6C  3f000000 009e0000 003f0000 3f000000 003f0000 3f000000 009e0000 003f0000 009e0000 003f0000 3f000000 009e0000
+block 0 group 3: got  00c0009e 3f000000 009e0000 000000c0 00000000 00000000 00000000 00000000 deadbeef deadbeef deadbeef deadbeef
+                   F6C  3f000000 009e0000 003f0000 3f000000 003f0000 3f000000 009e0000 003f0000 009e0000 003f0000 3f000000 009e0000
+changed dwords: 176 at [0, 1, 2, 3] blocks; offsets in the block [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+distinct values: ['00000000', '000000c0', '00003f00', '003f0000', '009e0000', '00c0009e', '3f000000']

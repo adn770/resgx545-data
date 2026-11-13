@@ -1,0 +1,12 @@
+#stage zfmt
+#limit 0
+# R13-1 (a), plan section 2 "zfmt", Q120: E1015's F7K at the stencil fills 0x3f and 0x1f (the markers) and F6C on a
+# 48 x 32 y ramp of another origin (its rows from zf-y48-f0, a reading) and on a flat 0.5 (every tile). Frozen: F7K and
+# F7K-FIX, F6C and F6RAW (c7_rule.py, pinned). Control that can fail: zf-y6-ctl (E986's z2y-f6, byte for byte). Stop:
+# any fault or hang.
+zf-y6-ctl|control|safe|expectdiff reads:depth_changed|t10|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.25,0.25,0.75 --depth --depth-ctl 0x0617300e --depth-fill 0xdeadbeef --stencil --stencil-fill index --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
+zf-7k-3f|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x0717300e --depth-fill 0xdeadbeef --stencil --stencil-fill 0x3f3f3f3f --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
+zf-7k-1f|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.25,0.75,0.25 --depth --depth-ctl 0x0717300e --depth-fill 0xdeadbeef --stencil --stencil-fill 0x1f1f1f1f --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
+zf-y48-f0|reading|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 48 --height 32 --max-width 48 --max-height 32 --tri-full --tri-z 0.375,0.375,0.875 --depth --depth-ctl 0x0017300e --depth-fill 0xdeadbeef --stencil --stencil-fill index --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
+zf-y48-f6|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 48 --height 32 --max-width 48 --max-height 32 --tri-full --tri-z 0.375,0.375,0.875 --depth --depth-ctl 0x0617300e --depth-fill 0xdeadbeef --stencil --stencil-fill index --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
+zf-flat-f6|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0617300e --depth-fill 0xdeadbeef --stencil --stencil-fill index --stencil-store --depth-dump "$W" --poke blk:1=0x00400200
