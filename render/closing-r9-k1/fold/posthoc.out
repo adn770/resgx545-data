@@ -1,0 +1,36 @@
+== 1. pixels outside [0, 1): clamp or repeat
+s1 (H-VM): 16367 pixels out of range, clamp gives 16367, repeat 0; 543 at an edge not read
+s2 (H-VPLANE): 1086 pixels out of range, clamp gives 1086, repeat 0; 2 at an edge not read
+== 2. s2 coverage
+v-b15-m  background pixels not a texel 0, triangle pixels 1062
+v-b15-x  background pixels not a texel 0, triangle pixels 1062
+v-b16-m  background pixels not a texel 0, triangle pixels 1062
+v-b16-x  background pixels not a texel 0, triangle pixels 1062
+v-b17-m  background pixels not a texel 0, triangle pixels 1062
+v-b17-x  background pixels not a texel 0, triangle pixels 1062
+v-b18-m  background pixels not a texel 0, triangle pixels 1062
+v-b18-x  background pixels not a texel 0, triangle pixels 1062
+v-b19-m  background pixels not a texel 0, triangle pixels 1062
+v-b19-x  background pixels not a texel 0, triangle pixels 1062
+v-b20-m  background pixels not a texel 0, triangle pixels 1062
+v-b20-x  background pixels not a texel 0, triangle pixels 1062
+v-b21-m  background pixels not a texel 0, triangle pixels 1062
+v-b21-x  background pixels not a texel 0, triangle pixels 1062
+v-b22-m  background pixels not a texel 0, triangle pixels 1062
+v-b22-x  background pixels not a texel 0, triangle pixels 1062
+v-tl     background pixels not a texel 0, triangle pixels 1062
+v-box80  background pixels not a texel 0, triangle pixels 1062
+v-u96    background pixels not a texel 0, triangle pixels 1062
+v-v96    background pixels not a texel 0, triangle pixels 1062
+== 3. the s3 rows that changed
+e-b11-ff  not a texel 0; 35 distinct texels, 1 tx values, 35 ty values; own texel 1 of 3034; top [((0, 63), 1629), ((0, 0), 64), ((0, 2), 64)]
+          tx = x at 64, ty = y at 49; tx = 0 at 3034, ty = 0 at 64
+e-b12-ff  not a texel 0; 64 distinct texels, 64 tx values, 1 ty values; own texel 64 of 3034; top [((0, 0), 64), ((1, 0), 64), ((2, 0), 64)]
+          tx = x at 3034, ty = y at 64; tx = 0 at 64, ty = 0 at 3034
+e-b14-ff  not a texel 0; 64 distinct texels, 1 tx values, 64 ty values; own texel 64 of 3034; top [((0, 0), 64), ((0, 1), 64), ((0, 2), 64)]
+          tx = x at 64, ty = y at 3034; tx = 0 at 3034, ty = 0 at 64
+e-b10-ff  not a texel 0; 1 distinct texels, 1 tx values, 1 ty values; own texel 1 of 3034; top [((0, 0), 3034)]
+          tx = x at 64, ty = y at 64; tx = 0 at 3034, ty = 0 at 3034
+e-rows0   not a texel 0; 143 distinct texels, 29 tx values, 24 ty values; own texel 74 of 3034; top [((24, 4), 95), ((28, 12), 63), ((4, 14), 62)]
+          tx = x at 278, ty = y at 633; tx = 0 at 107, ty = 0 at 162
+          tx - x from -47 to 46 (|d| <= 8 at 2651), ty - y from -7 to 12 (|d| <= 4 at 2958)

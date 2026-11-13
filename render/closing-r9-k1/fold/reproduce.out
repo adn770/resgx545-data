@@ -1,0 +1,56 @@
+files verified
+s0t: score output byte-identical to the kept one
+s0t: 37 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s0t: H-BUILT and H-TEX: the render's object is the 23-word one-layer form and its background samples the source's identity texels (3 of 3 rows decided)
+s0p: score output byte-identical to the kept one
+s0p: 24 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s0p: H-POS and H-ITER: the background primary works with the layer, and the layer's coordinate set iterates u = (x + 0.5) / 64, v = (y + 0.5) / 64 (4 of 4 rows decided)
+s1: score output byte-identical to the kept one
+s1: 312 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s1: H-VM + H-AFF: words 3-8 are (u, v) of TL, TR, BL, the plane at the pixel centre (30 of 30 rows decided)
+s2: score output byte-identical to the kept one
+s2: 144 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s2: H-VBOX: the plane is anchored at the render box, whatever words 15-22 say is not supported: 4 held, 16 FAILED, 0 cannot tell of 20
+s3: score output byte-identical to the kept one
+s3: 151 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s3: H-FMT0 (explore): words 9-14 and bgobj_words[1] at 0, 1 or 4 rows change nothing is not supported: 16 held, 5 FAILED, 0 cannot tell of 21
+s4: score output byte-identical to the kept one
+s4: 26 kept files logged, 0 differ from the laptop's sha256
+SUMMARY: s4: the end controls: the layer and the layerless render as at the start (2 of 2 rows decided)
+== post hoc (fold/posthoc.py)
+== 1. pixels outside [0, 1): clamp or repeat
+s1 (H-VM): 16367 pixels out of range, clamp gives 16367, repeat 0; 543 at an edge not read
+s2 (H-VPLANE): 1086 pixels out of range, clamp gives 1086, repeat 0; 2 at an edge not read
+== 2. s2 coverage
+v-b15-m  background pixels not a texel 0, triangle pixels 1062
+v-b15-x  background pixels not a texel 0, triangle pixels 1062
+v-b16-m  background pixels not a texel 0, triangle pixels 1062
+v-b16-x  background pixels not a texel 0, triangle pixels 1062
+v-b17-m  background pixels not a texel 0, triangle pixels 1062
+v-b17-x  background pixels not a texel 0, triangle pixels 1062
+v-b18-m  background pixels not a texel 0, triangle pixels 1062
+v-b18-x  background pixels not a texel 0, triangle pixels 1062
+v-b19-m  background pixels not a texel 0, triangle pixels 1062
+v-b19-x  background pixels not a texel 0, triangle pixels 1062
+v-b20-m  background pixels not a texel 0, triangle pixels 1062
+v-b20-x  background pixels not a texel 0, triangle pixels 1062
+v-b21-m  background pixels not a texel 0, triangle pixels 1062
+v-b21-x  background pixels not a texel 0, triangle pixels 1062
+v-b22-m  background pixels not a texel 0, triangle pixels 1062
+v-b22-x  background pixels not a texel 0, triangle pixels 1062
+v-tl     background pixels not a texel 0, triangle pixels 1062
+v-box80  background pixels not a texel 0, triangle pixels 1062
+v-u96    background pixels not a texel 0, triangle pixels 1062
+v-v96    background pixels not a texel 0, triangle pixels 1062
+== 3. the s3 rows that changed
+e-b11-ff  not a texel 0; 35 distinct texels, 1 tx values, 35 ty values; own texel 1 of 3034; top [((0, 63), 1629), ((0, 0), 64), ((0, 2), 64)]
+          tx = x at 64, ty = y at 49; tx = 0 at 3034, ty = 0 at 64
+e-b12-ff  not a texel 0; 64 distinct texels, 64 tx values, 1 ty values; own texel 64 of 3034; top [((0, 0), 64), ((1, 0), 64), ((2, 0), 64)]
+          tx = x at 3034, ty = y at 64; tx = 0 at 64, ty = 0 at 3034
+e-b14-ff  not a texel 0; 64 distinct texels, 1 tx values, 64 ty values; own texel 64 of 3034; top [((0, 0), 64), ((0, 1), 64), ((0, 2), 64)]
+          tx = x at 64, ty = y at 3034; tx = 0 at 3034, ty = 0 at 64
+e-b10-ff  not a texel 0; 1 distinct texels, 1 tx values, 1 ty values; own texel 1 of 3034; top [((0, 0), 3034)]
+          tx = x at 64, ty = y at 64; tx = 0 at 3034, ty = 0 at 3034
+e-rows0   not a texel 0; 143 distinct texels, 29 tx values, 24 ty values; own texel 74 of 3034; top [((24, 4), 95), ((28, 12), 63), ((4, 14), 62)]
+          tx = x at 278, ty = y at 633; tx = 0 at 107, ty = 0 at 162
+          tx - x from -47 to 46 (|d| <= 8 at 2651), ty - y from -7 to 12 (|d| <= 4 at 2958)

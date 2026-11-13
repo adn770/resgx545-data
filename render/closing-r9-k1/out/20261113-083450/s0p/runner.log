@@ -1,0 +1,37 @@
+## stage s0p of r9k
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127174720 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r9k.H4omi8
+## clock
+Fri Nov 13 08:35:34 CET 2026
+== c-pos-off set=control risk=safe tool=t9 knobs=[reads:rows]
+  cmd: /home/jtorra/sgxfive-test-t9 probe --tri bgpds:12 --slot bgpixel=/home/jtorra/scratch/r9k/stage/bins/r9k-pa0.bin --pixels /home/jtorra/scratch/r9k/stage/bins/r9k-pos.bin
+  rc 0 
+  class ok
+  premise c-pos-off [rows]: rows=64 
+== c-pos set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 reads:rows,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 probe --tri bgpds:12 --slot bgpixel=/home/jtorra/scratch/r9k/stage/bins/r9k-pa0.bin --bg-layer --pixels /home/jtorra/scratch/r9k/stage/bins/r9k-pos.bin
+  rc 0 
+  class ok
+  premise c-pos [rows layer]: layer=Y rows=64 
+== c-rawu set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 reads:rows,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 probe --tri bgpds:12 --slot bgpixel=/home/jtorra/scratch/r9k/stage/bins/r9k-pa0.bin --bg-layer --pixels /home/jtorra/scratch/r9k/stage/bins/r9k-raw.bin
+  rc 0 
+  class ok
+  premise c-rawu [rows layer]: layer=Y rows=64 
+== c-rawv set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 reads:rows,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 probe --tri bgpds:12 --slot bgpixel=/home/jtorra/scratch/r9k/stage/bins/r9k-pa1.bin --bg-layer --pixels /home/jtorra/scratch/r9k/stage/bins/r9k-raw.bin
+  rc 0 
+  class ok
+  premise c-rawv [rows layer]: layer=Y rows=64 
+## end: 4 jobs of s0p
+## kernel log (journalctl)
