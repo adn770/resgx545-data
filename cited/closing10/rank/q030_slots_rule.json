@@ -1,0 +1,16 @@
+{
+ "question": "Q030, last clause: are E281's sample slots (fitted in the first 16 x 16 tile) the slots in the tiles and windows past the first",
+ "data": "resgx545-data render/closing-r9-geo out/20261113-081038 seam1 and seam4: the kept --pixels images of the single-triangle rows sl-* (modes 1 and 2, TE 0x6/0xe windows) and the tri-full rows; E953/E954 scored them as sets under the landed region model (E281's slots everywhere) frozen before the run",
+ "pixels": "stored pixels of tiles other than (0, 0) only; the set the region model (msaa_model.py sha 1c0e8205...) predicts with slots S vs the kept image's triangle-colour set",
+ "rivals": {
+  "S-E281": "E281's slots (6,2) (14,6) (2,10) (10,14) in sixteenths, every tile",
+  "S-CENTRE": "every sample at the pixel centre (8, 8)",
+  "S-MIRX": "E281 mirrored in x (16 - x, y)",
+  "S-MIRY": "E281 mirrored in y (x, 16 - y)",
+  "S-TRANS": "E281 transposed (y, x)",
+  "S-SWAP": "E281's slot order swapped within a pair (slot 0 <-> 1, 2 <-> 3)"
+ },
+ "frozen_prediction": "S-E281 exact on every row's pixels past the first tile; each rival misses at least one pixel on some row (else the data cannot tell it, reported per rival)",
+ "refuted_by": "any pixel past the first tile off S-E281 on a row whose first tile is exact",
+ "status": "the S-E281 sets were frozen before the run (E953/E954, O8 table); the rivals are declared here before this script reads the kept images"
+}

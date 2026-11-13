@@ -1,0 +1,13 @@
+{
+ "question": "Q242, clause 'the values past the target in edge tiles for the integer formats'",
+ "data": "resgx545-data render/closing-r9-x out/20261113-081821/zls z242-c-f0/f1/f2 .depth.1.bin.gz (80 x 40, G 2, tile area 96 x 48); E977 scored only the 3200 in-target pixels",
+ "fit": "none: the in-target rule of E977 (H-FLOOR, E490 layout) is applied unchanged past the target",
+ "pixels": "every (x, y) of the 3 x 3 tiles with x >= 80 or y >= 40 (1408 pixels; format 2: the row pairs with x >= 80 or y >= 40, 704 dwords)",
+ "rivals": {
+  "H-EXT": "format 1 dword = min(floor(z0 * 2^24), 0xffffff), format 2 half = min(floor(z0 * 2^16), 0xffff) in E490's layout, z0 the format-0 float of the same pixel (E831 band stores past the target)",
+  "H-FILL": "the dword keeps the 0xdeadbeef fill (the integer store stops at the target)",
+  "H-ROUND": "round(z0 * 0xffffff) (and >> 8) past the target (a different converter on the band)"
+ },
+ "frozen_prediction": "H-EXT holds on every past-target dword of f1 and f2; H-FILL and H-ROUND fail",
+ "refuted_by": "any past-target dword of f1 or f2 off H-EXT"
+}
