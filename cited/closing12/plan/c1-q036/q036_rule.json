@@ -1,0 +1,22 @@
+{
+ "check": "c1-q036",
+ "format_probed": "render/closing-r5-dpm/out/d-a0/a0-cal-2048.txt.gz (header 'timeline: regs ...' then 'tl <ns> <hex per reg>'), and its .after.regs.txt.gz head (reg 0xADDR 0xVAL lines)",
+ "units": "a job = one out/**/<case>.txt.gz with a 'timeline: regs' header and 'tl ' lines (columns by header; 0x0710 and 0x0748 must be in the header); after-read = <case>.after.regs.txt.gz 'reg 0x071c 0x...' lines",
+ "G": "global page count of a job = max over its tl lines of (0x072c >> 16) if 0x072c is in the header (the high half step E873/E1013 bracket); fallback none (job excluded from the 6+ split, listed)",
+ "H0": "bits 31:16 of 0x0710 are 0 in every tl line of every job, and bits 31:16 of 0x071c are 0 in every after-read, whatever G. Pass: zero non-zero high halves. Refuted by one sample (report job, line, G).",
+ "H-TAIL": "once G >= 6 the 0x0710 (or 0x071c) high half is non-zero (holds the tail page or count) in some sample of the job; scored per job with G>=6 (pass if non-zero seen)",
+ "H-ANY": "some sample anywhere has a non-zero high half",
+ "bit2": {
+  "line_clear": "(0x0748 >> 2) & 1 == 0",
+  "per_job": "n = tl lines, c = lines with bit 2 clear, p = partial renders (number of separate stretches of 0x0658 bit0 set), has = c > 0",
+  "fit_rows": "sessions render/closing-r1-pixgeo, closing-r2-geo, closing-r3-geo, closing-r3-geo-c (earliest sessions that sample 0x0748)",
+  "held_out": "all jobs of closing-r5-dpm closing-r6-dpm closing-r7-dpm closing-r8-ldpm closing-r9-ldpm closing-r10-dpm closing-s1 closing-s1b (any session dir matching closing-r*/closing-s* not in fit rows) with 0x0748 in the header",
+  "R-LEN": "P(has) = 1-(1-q)^n, q = sum c / sum n over fit rows",
+  "R-PR": "P(has) = 1-exp(-r*p), r = sum c / sum p over fit rows (only fit jobs with p>0)",
+  "R-0x100": "P(has) = f100 if the job's cases.tsv/args or name contains '0x100' else f_other; f = fraction of fit jobs with has in that class",
+  "R-CONST": "P(has) = fraction of fit jobs with has (null)",
+  "probabilities clipped to [0.01,0.99]",
+  "score": "total log-loss and Brier on has over held-out jobs, split by max G <= 5 vs 6+; the lowest log-loss wins a split; if fit rows have no clear lines or no 6+ held-out jobs exist, report bit 2 as not cleanly scorable and give H0 alone"
+ },
+ "pass_H0": "zero non-zero high halves in 0x0710 samples and 0x071c after-reads over all sessions closing-r* and closing-s*"
+}
