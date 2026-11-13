@@ -1,0 +1,16 @@
+#stage q139c
+#limit 0
+# R10-3 (a) q139c, Q139: TA dumps of the four y-side macrotile words that drew whole and never faulted (gen/q139c.py
+# names the kept jobs: ta/mtile-fields-risky, render/closing-r7-rp q139), the datasets' command with --keep-going and
+# --dump-render "$W" (r9-lgeo's q139b form). Controls (reads:hash,dump): the 256 x 256 and 640 x 480 baselines, exact
+# image and one header with a stream a target tile (the header base). Replicates (E907's dumped words, fy 10): m2-B2-10,
+# part2-10_10_10; held out: m2-B2-11 (fy 11), 640 x 480 m2-B1-23 (fy 23). Frozen: every slot and wrong tile (H-EVEN =
+# R7-BLK here, and the round 8 orders), H-LAST (E959: a tile draws iff its header is at or before the one flag bit 7
+# header), H-FLAGSLOT (that header is the last target tile's in block order). needhash: the second row without a hash
+# stops the stage (24). Run last: any fault or hang stops it (#limit 0) and the session.
+q139c-ctl-256x256|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render "$W"
+q139c-ctl-640x480|control|safe|expectdiff needhash reads:hash,dump|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --wait-ms 20000 --keep-going --dump-render "$W"
+q139c-rep-256x256-m2-B2-10|replicate|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200a008 --wait-ms 20000 --keep-going --dump-render "$W"
+q139c-rep-256x256-part2-10_10_10|replicate|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0280a00a --wait-ms 20000 --keep-going --dump-render "$W"
+q139c-h-256x256-m2-B2-11|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200b008 --wait-ms 20000 --keep-going --dump-render "$W"
+q139c-h-640x480-m2-B1-23|heldout|safe|expectdiff needhash|t4|tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x05c10018 --wait-ms 20000 --keep-going --dump-render "$W"

@@ -1,0 +1,91 @@
+## stage bgw of r10g
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127142724 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10g.99ZdD7
+## clock
+Fri Nov 13 10:36:05 CET 2026
+== bgw-ctl set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/1-bgw-ctl/w
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+  premise bgw-ctl [job diff inplace layer]: job=ok pixels=4096 hash=0x8e0af46224a28907 diff=0 dump=24576 inplace=3034 layer=Y 
+== bgw-w12-0p25 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/2-bgw-w12-0p25/w --kpoke-render 1:bg:12=0x3e800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w12-0p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/3-bgw-w12-0p5/w --kpoke-render 1:bg:12=0x3f000000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w12-1p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/4-bgw-w12-1p5/w --kpoke-render 1:bg:12=0x3fc00000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w12-m1 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/5-bgw-w12-m1/w --kpoke-render 1:bg:12=0xbf800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w14-0p25 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/6-bgw-w14-0p25/w --kpoke-render 1:bg:14=0x3e800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w14-0p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/7-bgw-w14-0p5/w --kpoke-render 1:bg:14=0x3f000000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w14-1p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/8-bgw-w14-1p5/w --kpoke-render 1:bg:14=0x3fc00000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w14-m1 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/9-bgw-w14-m1/w --kpoke-render 1:bg:14=0xbf800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w11-0p25 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/10-bgw-w11-0p25/w --kpoke-render 1:bg:11=0x3e800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w11-0p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/11-bgw-w11-0p5/w --kpoke-render 1:bg:11=0x3f000000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w11-1p5 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/12-bgw-w11-1p5/w --kpoke-render 1:bg:11=0x3fc00000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w11-m1 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/13-bgw-w11-m1/w --kpoke-render 1:bg:11=0xbf800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w9-2 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/14-bgw-w9-2/w --kpoke-render 1:bg:9=0x40000000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w9-m1 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/15-bgw-w9-m1/w --kpoke-render 1:bg:9=0xbf800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w13-2 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/16-bgw-w13-2/w --kpoke-render 1:bg:13=0x40000000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-w13-m1 set=heldout risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/17-bgw-w13-m1/w --kpoke-render 1:bg:13=0xbf800000
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+== bgw-ctl-end set=control risk=safe tool=t9 knobs=[dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer]
+  cmd: /home/jtorra/sgxfive-test-t9 tri --bg-layer --pixels --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.99ZdD7/18-bgw-ctl-end/w
+  rc 0 job: ok target: 64x64 hash 0x8e0af46224a28907 diff: 0 of 4096 pixels 
+  class ok
+  premise bgw-ctl-end [job diff inplace layer]: job=ok pixels=4096 hash=0x8e0af46224a28907 diff=0 dump=24576 inplace=3034 layer=Y 
+## end: 18 jobs of bgw
+## kernel log (journalctl)

@@ -1,0 +1,43 @@
+## stage q139c of r10g
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## tool t9: 7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce /home/jtorra/sgxfive-test-t9
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127141852 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10g.WZJBIP
+## clock
+Fri Nov 13 10:38:10 CET 2026
+== q139c-ctl-256x256 set=control risk=safe tool=t4 knobs=[expectdiff needhash reads:hash,dump]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/1-q139c-ctl-256x256/w
+  rc 0 job: ok target: 256x256 hash 0x66648495c9ea2325 diff: 0 of 65536 pixels 
+  class ok
+  premise q139c-ctl-256x256 [hash dump]: job=ok pixels=65536 hash=0x66648495c9ea2325 diff=0 dump=24576 
+== q139c-ctl-640x480 set=control risk=safe tool=t4 knobs=[expectdiff needhash reads:hash,dump]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/2-q139c-ctl-640x480/w
+  rc 0 job: ok target: 640x480 hash 0xf19c7b73bb3ba325 diff: 0 of 307200 pixels 
+  class ok
+  premise q139c-ctl-640x480 [hash dump]: job=ok pixels=307200 hash=0xf19c7b73bb3ba325 diff=0 dump=40960 
+== q139c-rep-256x256-m2-B2-10 set=replicate risk=safe tool=t4 knobs=[expectdiff needhash]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200a008 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/3-q139c-rep-256x256-m2-B2-10/w
+  rc 1 job: ok target: 256x256 hash 0xc91fca2f2e04e325 diff: 12288 of 65536 pixels, first (128, 32) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== q139c-rep-256x256-part2-10_10_10 set=replicate risk=safe tool=t4 knobs=[expectdiff needhash]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0280a00a --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/4-q139c-rep-256x256-part2-10_10_10/w
+  rc 1 job: ok target: 256x256 hash 0xc91fca2f2e04e325 diff: 12288 of 65536 pixels, first (128, 32) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== q139c-h-256x256-m2-B2-11 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:144=0x0200b008 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/5-q139c-h-256x256-m2-B2-11/w
+  rc 1 job: ok target: 256x256 hash 0xcda4fcf770124325 diff: 18432 of 65536 pixels, first (128, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== q139c-h-640x480-m2-B1-23 set=heldout risk=safe tool=t4 knobs=[expectdiff needhash]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --tri-full --pixels --width 640 --height 480 --max-width 640 --max-height 480 --kpoke-render 1:ta:144=0x05c10018 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r10g.WZJBIP/6-q139c-h-640x480-m2-B1-23/w
+  rc 1 job: ok target: 640x480 hash 0x35d83b4018844325 diff: 92160 of 307200 pixels, first (256, 0) 0xdeadbeef expected 0xff00ff00 
+  class ok
+## end: 6 jobs of q139c
+## kernel log (journalctl)

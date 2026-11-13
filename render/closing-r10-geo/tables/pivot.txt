@@ -1,0 +1,44 @@
+#stage pivot
+#limit 0
+# R10-3 (a) pivot, Q261: E979's far-x23p, far-x24p and far-x25n (far vertex at 2^23, 2^24, -2^25 px, --tri-unit 5,
+# 64 x 64) with the far vertex's y moved by d = 0 .. -544 px (gen/pivot.py: the in-span band pixels flip together at
+# t* = 42.6, 51.4, 41.6 px; a row draws them iff d + D > t* under H-PIVOT). Frozen per pixel H-EXACT (no band) and
+# H-EXACT-BAND (E979's), per row the pixel intervals of H-PIVOT (one y displacement D of the far vertex per triangle).
+# Control that can fail: E684's far21d0 (E979's far-ctl). Stop: any fault or hang (#limit 0); a tri row without job: ok.
+piv-ctl|control|safe|expectdiff reads:job,pixels|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+piv-x23p-d0|replicate|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67108864,1872,1832 --pixels
+piv-x23p-m16|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67108352,1872,1832 --pixels
+piv-x23p-m32|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67107840,1872,1832 --pixels
+piv-x23p-m48|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67107328,1872,1832 --pixels
+piv-x23p-m64|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67106816,1872,1832 --pixels
+piv-x23p-m96|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67105792,1872,1832 --pixels
+piv-x23p-m128|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67104768,1872,1832 --pixels
+piv-x23p-m160|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67103744,1872,1832 --pixels
+piv-x23p-m224|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67101696,1872,1832 --pixels
+piv-x23p-m288|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67099648,1872,1832 --pixels
+piv-x23p-m416|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67095552,1872,1832 --pixels
+piv-x23p-m544|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1832,216,268435456,67091456,1872,1832 --pixels
+piv-x24p-d0|replicate|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134217728 --pixels
+piv-x24p-m16|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134217216 --pixels
+piv-x24p-m32|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134216704 --pixels
+piv-x24p-m48|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134216192 --pixels
+piv-x24p-m64|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134215680 --pixels
+piv-x24p-m96|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134214656 --pixels
+piv-x24p-m128|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134213632 --pixels
+piv-x24p-m160|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134212608 --pixels
+piv-x24p-m224|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134210560 --pixels
+piv-x24p-m288|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134208512 --pixels
+piv-x24p-m416|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134204416 --pixels
+piv-x24p-m544|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 200,296,304,1720,536870912,134200320 --pixels
+piv-x25n-d0|replicate|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268435456,1808,1784 --pixels
+piv-x25n-m16|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268435968,1808,1784 --pixels
+piv-x25n-m32|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268436480,1808,1784 --pixels
+piv-x25n-m48|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268436992,1808,1784 --pixels
+piv-x25n-m64|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268437504,1808,1784 --pixels
+piv-x25n-m96|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268438528,1808,1784 --pixels
+piv-x25n-m128|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268439552,1808,1784 --pixels
+piv-x25n-m160|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268440576,1808,1784 --pixels
+piv-x25n-m224|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268442624,1808,1784 --pixels
+piv-x25n-m288|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268444672,1808,1784 --pixels
+piv-x25n-m416|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268448768,1808,1784 --pixels
+piv-x25n-m544|heldout|safe|expectdiff|t4|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,-1073741824,-268452864,1808,1784 --pixels

@@ -1,0 +1,25 @@
+#stage bgw
+#limit 0
+# R10-3 (a) bgw, Q066: finite values in the layered background object's words 9 and 11 to 14 (r9-k1's s3 form, t9,
+# the layer's knobs). Frozen per background pixel (3034, gen/bgmask.txt): H-INERT (E973: finite values change nothing)
+# and H-SCALE0 (the word scales one coordinate, 0 read as 1; 12 v, 11 and 14 u; clamped outside [0, 1), E974).
+# Controls that can fail: the unpoked layer first and last (identity texels >= 3000 of 3034). Stop: any fault or hang;
+# a row without job: ok or without the tool's bg-layer line.
+bgw-ctl|control|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer|t9|tri --bg-layer --pixels --keep-going --dump-render $W
+bgw-w12-0p25|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3e800000
+bgw-w12-0p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3f000000
+bgw-w12-1p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3fc00000
+bgw-w12-m1|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0xbf800000
+bgw-w14-0p25|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3e800000
+bgw-w14-0p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3f000000
+bgw-w14-1p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3fc00000
+bgw-w14-m1|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0xbf800000
+bgw-w11-0p25|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3e800000
+bgw-w11-0p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3f000000
+bgw-w11-1p5|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3fc00000
+bgw-w11-m1|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0xbf800000
+bgw-w9-2|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:9=0x40000000
+bgw-w9-m1|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:9=0xbf800000
+bgw-w13-2|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:13=0x40000000
+bgw-w13-m1|heldout|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff|t9|tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:13=0xbf800000
+bgw-ctl-end|control|safe|dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer|t9|tri --bg-layer --pixels --keep-going --dump-render $W

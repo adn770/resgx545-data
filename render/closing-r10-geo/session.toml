@@ -1,0 +1,103 @@
+# session.toml: the env of r10-geo, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r10-geo"
+prefix = "r10g"                 # laptop files under ~/scratch/r10g/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): the longest,
+                                    # q139c's 640 x 480 --pixels with its dumps (r7-rp ran them)
+min_free_mb = 400                   # MiB free on ~ before each job: 640 x 480 text and dumps
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = ["render_bg_layer", "render_bg_src", "render_param", "render_tadata"]   # the layer's
+                                    # knobs (bgw) and the --dump-render files (bgw, q139c)
+outdir_opts = []                    # --dump-render writes into $W, which exists
+extra_knobs = ["needhash"]          # run/hooks.sh: the second q139c row without a hash stops it
+forbid_options = ["--poke", "--kpoke-fill", "--tadata-fill-render", "--scratch-at", "--scratch",
+                  "--low", "--late", "--scratch-pages", "--kpoke-job", "--kpoke-render2",
+                  "--kreg-render", "--kreg-render2", "--aa4", "--fault", "--ctx2", "--share-pb",
+                  "--words", "--geometry", "--emit-scene", "--page-before", "--regs"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+[tools.t9]
+path = "sgxfive-test-t9"
+sha256 = "7a28be3952fb310170e861da0622d890a2e215cb761d6f21bc9321223e1b40ce"
+built_from = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+recipe = "data:render/closing-r9-k1/lead/build_tool9.sh"
+source = "97447b04b38cadac7733f0cd12503e2ef207a3bf:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "5de429431a93ddbdcd9c20141f5c286dcc5cc72265f95d662279e09b655a3f50"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# bgw only: the layer (fork 2a650d74), as r9-k1 wrote them (t9 refuses a row whose option and
+# knobs disagree)
+render_bg_layer = { default = "N", values = ["N", "Y"] }
+render_bg_src = { default = "0x0", values = ["0x0", "0x3e800000"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R10-3 (a): pivot (37), bgw (18), q139c (6, last: its words drew whole twice at most, a fault
+# there stops the session): 61 jobs (gen/make.py; README.md "Deviations")
+[stages]
+pivot = { alarm = 1500 }
+bgw = { alarm = 900 }
+q139c = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "9849dab7540c005d32af3a328a08edbcdb11a90d"
+data = "1324301bef136f1ada33dd3450c5665738bde435"
+# every repository file the generator (gen/), the scorer or the tests read: the byte copies' sources
+# (r9-x gen/far.py; r9-lgeo gen/q139*.py, score/lib_dump.py and its two copies; r9-k1
+# gen/bgl_model.py, bgmask.txt), the dataset the q139c rows and their safety come from, r7-rp's
+# q139 cases (the two dumped words), the kept records the scorer's tests replay (E979's far rows,
+# E684/E979's control, r8-lgeo's q139 dumps, r9-k1's s0t/s3 rows), and what the replays read
+pins = [
+    "data:render/closing-r9-x/gen/far.py",
+    "data:render/closing-r9-lgeo/gen/q139even.py",
+    "data:render/closing-r9-lgeo/gen/q139model.py",
+    "data:render/closing-r9-lgeo/gen/q139_fit.py",
+    "data:render/closing-r9-lgeo/score/lib_dump.py",
+    "data:render/closing-r9-lgeo/score/pbdump_dump.py",
+    "data:render/closing-r9-lgeo/score/region_tiles_dump.py",
+    "data:render/closing-r9-k1/gen/bgl_model.py",
+    "data:render/closing-r9-k1/gen/bgmask.txt",
+    "data:ta/mtile-fields-risky/output.txt",
+    "data:ta/mtile-fields-risky/cases.tsv",
+    "data:render/closing-r7-rp/out/20261112-205431/q139/cases.tsv",
+    "data:render/closing-r7-rp/out/20261112-205431/q139.log",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-ctl.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x23p.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x24p.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x25n.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-ctl-256x256.tri.tadata.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.txt.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.tri.param.bin.gz",
+    "data:render/closing-r8-lgeo/out/20261113-024441/q139/q139-res-256x256-m1-B2-10.tri.tadata.bin.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s0t/c-tex.txt.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s0t/c-tex.tri.param.bin.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s3/e-b12-one.txt.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s3/e-b12-one.tri.param.bin.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s3/e-b12-ff.txt.gz",
+    "data:render/closing-r9-k1/out/20261113-083450/s3/e-b12-ff.tri.param.bin.gz",
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:crates/sgx-pipe/src/isp.rs",
+    "resgx545:crates/sgx-pipe/src/bglayer.rs",
+    "resgx545:crates/sgx-pipe/tests/bg_layer_table.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

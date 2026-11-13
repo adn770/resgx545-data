@@ -1,0 +1,1639 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "texture",
+ "run": {
+  "session": "render/closing-r10-geo",
+  "stage": "bgw",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "replayed",
+  "test": "crates/sgx-pipe/tests/bg_layer_table.rs::the_layer_model_replays_every_modelled_row_of_r10_geo",
+  "model": "bglayer.rs: the plane through words 3-8 read vertex by vertex, anchored at the vertices of words 15-22, the copy's stride texture point-sampled with clamping (E970-E974); words 9 and 11-14 at the finite values E973 and E1006 ran change nothing; other values refused (Q066)"
+ },
+ "rows": [
+  {
+   "id": "bgw-ctl",
+   "set": "control",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-ctl.txt.gz",
+   "raw_sha256": "3e3f0b988b9185044ff671945a934bcbc52c633307558403dea56a46348b9026",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w12-0p25",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3e800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w12-0p25.txt.gz",
+   "raw_sha256": "3ee8c7f245367ed791571e2455746793e14aadaf00c58ff4af57a6607491a497",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w12-0p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3f000000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w12-0p5.txt.gz",
+   "raw_sha256": "a8e95c514eb77a8b5445fd5a0544f847006b6ea7fb64a5ffcd14cd15cd3b3e2b",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w12-1p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0x3fc00000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w12-1p5.txt.gz",
+   "raw_sha256": "1e398080d5b96cb11a1d501bf6e5577dc5a19b33bb631b07f6f04ba9a9c78df1",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w12-m1",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:12=0xbf800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w12-m1.txt.gz",
+   "raw_sha256": "f2f10d2acfc6f11b10028c6f393d3f4686be90358fe167e455eacd6097dbabef",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w14-0p25",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3e800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w14-0p25.txt.gz",
+   "raw_sha256": "a0bbefbecc18244ef6c851f311db8852d465aee596a8739296ab464169e7b0c4",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w14-0p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3f000000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w14-0p5.txt.gz",
+   "raw_sha256": "e40357b87abae1c08cc2c99abede173655eb2824057853980df1ba6e5bb0e09e",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w14-1p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0x3fc00000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w14-1p5.txt.gz",
+   "raw_sha256": "01eb1be7a3d206ccdf28c5900cbfe54c8cd2c00c02621cd0c3f17c962c1de5b7",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w14-m1",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:14=0xbf800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w14-m1.txt.gz",
+   "raw_sha256": "c4bcbbc5f9d13ed03d0d27619ebc88cc04d02ebc05e6c1c8766cc7b910c8d458",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w11-0p25",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3e800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w11-0p25.txt.gz",
+   "raw_sha256": "1f25ed565d059d4d28dc6057b30cfc4fdbbe69d6ad25304777f060d7e19dc756",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w11-0p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3f000000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w11-0p5.txt.gz",
+   "raw_sha256": "9167fdd5039f75e133176d8c0e43e6908e290848549c75a28b2aa01ce01d275e",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w11-1p5",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0x3fc00000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w11-1p5.txt.gz",
+   "raw_sha256": "6155b24a0096b8db1b1a928de9e13049ac6545d345ce82e7ee8953a9da88dfc2",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w11-m1",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:11=0xbf800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w11-m1.txt.gz",
+   "raw_sha256": "0fe1f9f8519774fa0c1c453f49de9aa45c95ec51a29bb2b0dd34f17a3a54454e",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w9-2",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:9=0x40000000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w9-2.txt.gz",
+   "raw_sha256": "c871fcad409c931cea0fc3a2189812abe0bf290efe2166c56f4513551b861fae",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w9-m1",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:9=0xbf800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w9-m1.txt.gz",
+   "raw_sha256": "bbb773a08000382117ff98668b1ee438ee3c8acd561cd7a5e9e9766f3759a740",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w13-2",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:13=0x40000000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w13-2.txt.gz",
+   "raw_sha256": "91ca0ac5a3d8597426b74ad033f842c80626e8c6e42cefce6321f79e7d1b4ba3",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-w13-m1",
+   "set": "heldout",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W --kpoke-render 1:bg:13=0xbf800000",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-w13-m1.txt.gz",
+   "raw_sha256": "a40a851c7321dd2a797760d401fd2213cbafd2d767840f212e98a1c50fc55a8d",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  },
+  {
+   "id": "bgw-ctl-end",
+   "set": "control",
+   "knobs": "dbg:render_bg_layer=Y dbg:render_bg_src=0x3e800000 expectdiff reads:job,diff,inplace,layer",
+   "args": "tri --bg-layer --pixels --keep-going --dump-render $W",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x8e0af46224a28907",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "bgw/bgw-ctl-end.txt.gz",
+   "raw_sha256": "f9b033b21e0df94f4b93ee8ebe8c910b4967c7f6f3afeb3645f0d6dd5e7f4007",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "33bb1cbfd36197143921c6af84a440d2717ee676d32d3d35905e70ad1ed07dc8",
+    "distinct": 3035,
+    "values": [
+     [
+      "0xff00ff00",
+      1062
+     ],
+     [
+      "0x80000025",
+      1
+     ],
+     [
+      "0x80001024",
+      1
+     ],
+     [
+      "0x80002027",
+      1
+     ],
+     [
+      "0x80003026",
+      1
+     ],
+     [
+      "0x80004021",
+      1
+     ],
+     [
+      "0x80005020",
+      1
+     ],
+     [
+      "0x80006023",
+      1
+     ],
+     [
+      "0x80007022",
+      1
+     ],
+     [
+      "0x8000802d",
+      1
+     ],
+     [
+      "0x8000902c",
+      1
+     ],
+     [
+      "0x8000a02f",
+      1
+     ],
+     [
+      "0x8000b02e",
+      1
+     ],
+     [
+      "0x8000c029",
+      1
+     ],
+     [
+      "0x8000d028",
+      1
+     ],
+     [
+      "0x8000e02b",
+      1
+     ]
+    ]
+   },
+   "inputs": {}
+  }
+ ],
+ "skipped": {}
+}
