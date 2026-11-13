@@ -1,0 +1,41 @@
+## stage isp0x of r10x
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t4: e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a /home/jtorra/sgxfive-test-rgn4
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127158020 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r10x.5lZd9x
+## clock
+Fri Nov 13 10:16:26 CET 2026
+== x-ctl set=control risk=safe tool=t4 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/1-x-ctl/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+  premise x-ctl [depth_changed]: job=ok drawn=3200 depth_changed=4608 
+== x-w0b15 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/2-x-w0b15/w --poke blk:1=0x00408200
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== x-w0b16 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/3-x-w0b16/w --poke blk:1=0x00410200
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== x-w0b17 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/4-x-w0b17/w --poke blk:1=0x00420200
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== x-w1b3 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/5-x-w1b3/w --poke blk:1=0x00400200 --poke blk:2^=0x8
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+== x-w1b23 set=heldout risk=safe tool=t4 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-rgn4 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r10x.5lZd9x/6-x-w1b23/w --poke blk:1=0x00400200 --poke blk:2^=0x800000
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+## end: 6 jobs of isp0x
+## kernel log (journalctl)

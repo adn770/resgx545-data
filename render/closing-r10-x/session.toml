@@ -1,0 +1,83 @@
+# session.toml: the env of r10-x, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r10-x"
+prefix = "r10x"                 # laptop files under ~/scratch/r10x/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E977's depth renders,
+                                    # E383's and E502's probes ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]      # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# win0: every new render context takes a TE_AA with bit 31 or 30 and one region-header array
+# (fork 2a650d74 sgxfive_render_init: ctx->aa_ms = aa4 || setting; E502's condition)
+render_rgn_arrays = { default = "0", values = ["0", "1"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R10-2 (a) dcmp (31), zov (11), zbits (11), isp0x (6: bit 18 not run, E065's fault), R10-3 (a) sb
+# (18, the E383 replay passed), win0 (14) last (a kernel refusal of its knob stops the session);
+# R10-8 grad not built (its offline check failed): 91 jobs (gen/make.py; README.md "Deviations")
+[stages]
+dcmp = { alarm = 1500 }
+zov = { alarm = 900 }
+zbits = { alarm = 900 }
+isp0x = { alarm = 600 }
+sb = { alarm = 900 }
+win0 = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "dd2912899299368d0b4616de37a5d527f3ec4458"
+data = "1324301bef136f1ada33dd3450c5665738bde435"
+# every repository file the generator (gen/), the scorer or the tests read: E977's kept z242-c and
+# z243-ctl outputs and dumps (r9-x), E383's kept images (modes 8, 15, 7), E502's two kept controls,
+# the landed region model, the published program bins, sgx-pipe's region header order
+pins = [
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f0.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f1.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f2.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z243-ctl.depth.1.bin.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f0.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f1.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z242-c-f2.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z243-ctl.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/zls/z243-f1-less.txt.gz",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/raw.txt",
+    "data:pbe/sideband-channels/pbe-sideband-channels-020f/raw.txt",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0207/raw.txt",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0247/raw.txt",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/bins/eot_plain.bin",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/bins/pbe-sideband-channels-0208__0.bin",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/bins/pbe-sideband-channels-0208__1.bin",
+    "data:isp/msaa-ident/dumps/A-m1-tee0-64x64-x.txt.gz",
+    "data:isp/msaa-ident/dumps/A-m0-te20-64x64-x.txt.gz",
+    "data:isp/msaa-ident/dumps/A-m1-te60-64x64-x.txt.gz",
+    "data:dpm/partial-reload-pos/dpm-partial-reload-pos-pa0/bins/dpm-partial-reload-pos-pa0__0.bin",
+    "data:dpm/partial-reload-pos/dpm-partial-reload-pos-pa0/bins/pix_pa0.bin",
+    "data:dpm/partial-reload-pos/dpm-partial-reload-pos-pa1/bins/pix_pa1.bin",
+    "data:texture/p1141/recompute/msaa_model.py",
+    "resgx545:crates/sgx-pipe/src/ta.rs",
+    "resgx545:crates/sgx-pipe/src/zls.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
