@@ -1,0 +1,10 @@
+#stage f1
+#limit 2
+# r13-flag f1, Q078 T3 bit 14 on a twiddled 32 x 32 texture (rank-round13.md section 2 F1; PLANNED FAULTS, user OK R13-3 a). gen/f1.py.
+# Pair A: E566's tw32-ctl (control, its kept image) and tw32-t3b14 (u in (1, 2): move 4096; E566 faulted): H-TWIDX no fault (index + 4096, inside 16 pages) against H-TWX (fault at scratch + 0x40000), H-FAULTANY.
+# Pair B (held out): u = x / 4096 (move x texels), its bit-clear reference (control, the tile law): H-TWIDX / H-TWX / H-TWX-WRAP images, no fault; H-FAULTANY faults.
+# #limit 2 = the two planned bit-14 rows (expectfault); the controls do not expectfault (a fault there stops the stage, 4). Strict health after every fault; hook_fault stops on a fault without its kernel BIF line, a hang, or SGX recovery failed (24).
+f1-ref-a|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/f1-ref-a.bin"
+f1-tw32|replicate|risky|expectfault|t10p|probe --temps 32 --coords --pixels "$S/bins/f1-tw32.bin"
+f1-ref-b|control|safe|reads:pixels|t10p|probe --temps 32 --coords --pixels "$S/bins/f1-ref-b.bin"
+f1-small|heldout|risky|expectfault|t10p|probe --temps 32 --coords --pixels "$S/bins/f1-small.bin"

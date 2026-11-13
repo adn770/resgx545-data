@@ -1,0 +1,37 @@
+## stage f2 of r13f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t10p: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127118280 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r13f.xsjzmn
+## clock
+Fri Nov 13 22:10:27 CET 2026
+== f2-ctl set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --pixels --slot eot=/home/jtorra/scratch/r13f/stage/bins/eot_plain.bin --sideband 0x1200 /home/jtorra/scratch/r13f/stage/bins/sb-c0.bin
+  rc 0 
+  class ok
+  premise f2-ctl [pixels]: pixels=64 
+== f2-b11-m0 set=replicate risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --pixels --slot eot=/home/jtorra/scratch/r13f/stage/bins/eot_plain.bin --sideband 0xa00 /home/jtorra/scratch/r13f/stage/bins/sb-c0.bin
+  rc 3 
+  class fault
+  fault (a reading): events 1 of 3; reset, then strict health
+== f2-b11-m4 set=replicate risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --pixels --slot eot=/home/jtorra/scratch/r13f/stage/bins/eot_plain.bin --sideband 0xa04 /home/jtorra/scratch/r13f/stage/bins/sb-c0.bin
+  rc 3 
+  class fault
+  fault (a reading): events 2 of 3; reset, then strict health
+== f2-b11-m8 set=replicate risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --pixels --slot eot=/home/jtorra/scratch/r13f/stage/bins/eot_plain.bin --sideband 0xa08 /home/jtorra/scratch/r13f/stage/bins/sb-c0.bin
+  rc 3 
+  class fault
+  fault (a reading): events 3 of 3; reset, then strict health
+## end: 4 jobs of f2
+## kernel log (journalctl)
