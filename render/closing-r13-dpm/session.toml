@@ -1,0 +1,67 @@
+# session.toml: the env of r13-dpm (round 13, stage pr2: Q036, 0x0748 bit 2 against a controlled
+# partial-render count; closing13/plan/rank-round13.md sections 2 and 3), built with the session kit
+# (HACKING.md, "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r13-dpm"
+prefix = "r13d"                 # laptop files under ~/scratch/r13d/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = ["ctl:nparts=0"]      # read by run/hooks.sh (gen/plan.py)
+forbid_options = ["--kpoke-render", "--kpoke-job", "--fault", "--poke", "--blk", "--cmd", "--vdm", "--vtx-coords", "--slot"]
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.rt]
+wraps = true
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t10; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+render_pb_pages = { default = "0x422", values = ["0xe2", "0x1c2", "0x2b6", "0x422"] }   # P = thr0 + 0x22 (gen/plan.py)
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+[stages]
+pr2 = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "05b7039ee0211ac542109667f8693c061ddcde1d"
+data = "75d01ee203111b19c8b3cb607a555522b338591c"
+# every repository file the tests read: r8-ldpm's kept 3072x2048 jobs (the counts and clear lines
+# the reader and the awk twin are held to), the program binary, and the tool's source (options)
+pins = [
+    "data:render/closing-r9-ldpm/bins/p1139-green.bin",
+    "data:render/closing-r8-ldpm/out/20261113-021431/f9/f9-cal-c1208.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/f9/f9-c1208-0xc0.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/f9/f9-c1208-0x120.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/f9/f9-c1208-0x1a0.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/f9/f9-c1208-0x60.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/m6/m6-c1208-0x292.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/m6/m6-c1208-0x293.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/m6/m6-c1208-0x294.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/m6/m6-c1208-0x296.txt.gz",
+    "data:render/closing-r8-ldpm/out/20261113-021431/m6/m6-cal-c1208.txt.gz",
+    "data:render/closing-r8-ldpm/tables/m6.txt",
+    "data:render/closing-r8-ldpm/tables/f9.txt",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
