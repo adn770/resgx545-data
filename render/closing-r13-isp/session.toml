@@ -1,0 +1,81 @@
+# session.toml: the env of r13-isp, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r13-isp"
+prefix = "r13i"                 # laptop files under ~/scratch/r13i/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E979's far rows and
+                                    # E1010's probes ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--poke", "--kpoke-render", "--kpoke-fill", "--tadata-fill-render", "--scratch-at",
+                  "--scratch", "--scratch-pages", "--kpoke-job", "--kpoke-render2", "--kreg-render",
+                  "--kreg-render2", "--aa4", "--fault", "--ctx2", "--share-pb", "--depth", "--isp2",
+                  "--dump-render", "--blk", "--vdm", "--pbe", "--obj2", "--regs"]
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# R13-1 (a), R13-2 (a): q201 (23), q261 (16), far (8, last: the only safe row in an untested range,
+# ascending distance, stops at the first job that is not ok) = 47 jobs (gen/make.py; README.md)
+[stages]
+q201 = { alarm = 1200 }
+q261 = { alarm = 900 }
+far = { alarm = 600 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "05b7039ee0211ac542109667f8693c061ddcde1d"
+data = "75d01ee203111b19c8b3cb607a555522b338591c"
+# every repository file the generator (gen/), the scorer or the tests read: the program files
+# (bins/), the byte copies (gen/far.py r9-x, gen/pivot.py r10-geo, c6's engine and E1018's rule) with
+# their frozen hashes, c6's held-out vertices, E979's kept far rows (the controls' and the
+# replicate's images), the kept records the scorer's tests replay (E606's I1 case 1016 and its
+# case table, E1010's win0 rows), and what the replays read (sgx-pipe isp.rs, iter.rs, closing_tables.py)
+pins = [
+    "data:render/closing-r10-x/bins/pos.bin",
+    "data:render/closing-r7-geo/bins/p1138-it-a0__0.bin",
+    "data:render/closing-r10-x/bins/pix_pa0.bin",
+    "data:render/closing-r10-x/bins/pix_pa1.bin",
+    "data:pds/iteration-sources/pds-iteration-sources-iter-coords/bins/vtx_coords.bin",
+    "data:render/closing-r9-x/gen/far.py",
+    "data:render/closing-r10-geo/gen/pivot.py",
+    "data:cited/closing11/plan/c6-q261/q261_rule2.py",
+    "data:cited/closing11/plan/c6-q261/q261_rule2.sha256",
+    "data:cited/closing11/plan/c6-q261/q261_rule3.py",
+    "data:cited/closing11/plan/c6-q261/q261_rule3.sha256",
+    "data:cited/closing11/plan/c6-q261/q261_proposals.json",
+    "data:cited/closing11/plan/c6-q261/q261_heldout.out",
+    "data:cited/closing12/plan/c6-q201/sample0_rule.py",
+    "data:cited/closing12/plan/c6-q201/sample0_rule.sha256",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-ctl.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x24p.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x25n.txt.gz",
+    "data:render/closing-r9-x/out/20261113-081821/far/far-x23p.txt.gz",
+    "data:isp/arith-1138/main/I1/1016.txt.gz",
+    "data:render/closing-r10-x/out/20261113-101116/win0/w0-te60-64x64-x.txt.gz",
+    "data:render/closing-r10-x/out/20261113-101116/win0/w0-te60-64x64-y.txt.gz",
+    "resgx545:crates/sgx-pipe/src/isp.rs",
+    "resgx545:crates/sgx-pipe/src/iter.rs",
+    "resgx545:tools/usse-asm/closing_tables.py"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
