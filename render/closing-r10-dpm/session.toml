@@ -1,0 +1,53 @@
+# session.toml: the env of r10-dpm (round 10, session S10-dpm of closing10/seeds/exp-seeds-r10.md
+# section 10, decision R10-5 (a), safe class only), built with the session kit (HACKING.md, "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r10-dpm"
+prefix = "r10d"                 # laptop files under ~/scratch/r10d/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = ["ctl:gps_left=0x2", "ctl:need=0x213", "ctl:nparts=0"]   # read by run/hooks.sh (gen/plan.py)
+forbid_options = ["--kpoke-render", "--kpoke-job", "--fault", "--poke", "--blk", "--cmd", "--vdm", "--vtx-coords", "--slot"]
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+[tools.rt]                          # S1's regtimeline (tools/sweep/regtimeline.c), read-only
+wraps = true
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c, S1's binary): a read-only register sampler that wraps t4; the wrapped t4 command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+render_pb_pages = { default = "0x422", values = ["0x162", "0x422"] }   # P = thr0 + 0x22 (gen/plan.py)
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+[stages]
+s6rep = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "9849dab7540c005d32af3a328a08edbcdb11a90d"
+data = "1324301bef136f1ada33dd3450c5665738bde435"
+pins = [
+    "data:render/closing-r9-ldpm/gen/r9_tables.json",
+    "data:render/closing-r9-ldpm/score/read.py",
+    "data:render/closing-r9-ldpm/bins/p1139-green.bin",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
