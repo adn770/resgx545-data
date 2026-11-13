@@ -1,0 +1,20 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+f3-c-a	f3	prime	safe	-	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127118060
+f3-c-b	f3	control	risky	noreset expectfault reads:job	t10	tri --poke vdm:1^=0xa00	1	hang	-	-	127118040
+f3-v1c0	f3	heldout	risky	expectfault	t10	probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"	3	hang	-	-	127118012
+f3-v1c2-p	f3	prime	safe	-	t10	probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000c00 "$S/bins/p1131-blue__0.bin"	0	ok	-	-	127117984
+f3-v1c2	f3	heldout	risky	noreset expectfault	t10	probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"	3	hang	-	-	127117964
+f3-v1c5-p	f3	prime	safe	-	t10	probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000a00 "$S/bins/p1131-blue__0.bin"	0	ok	-	-	127117936
+f3-v1c5	f3	heldout	risky	noreset expectfault	t10	probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"	3	hang	-	-	127117916
+f3-shape-a	f3	prime	safe	-	t10	tri --width 128 --height 128 --poke vdm:1^=0xa00	0	ok	-	-	127117888
+f3-shape-b	f3	heldout	risky	noreset expectfault	t10	tri --width 128 --height 128 --poke vdm:1^=0xa00	1	hang	-	-	127117864
+f3-idle-a	f3	prime	safe	-	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127117832
+f3-idle-b	f3	heldout	risky	noreset idle:60 expectfault	t10	tri --poke vdm:1^=0xa00	1	hang	-	-	127117812
+f3-fill-a	f3	prime	safe	-	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127117784
+f3-fill-m	f3	between	safe	noreset	t10	fill	0	ok	-	-	127117764
+f3-fill-b	f3	heldout	risky	noreset expectfault	t10	tri --poke vdm:1^=0xa00	1	hang	-	-	127117744
+f3-rst-a	f3	prime	safe	-	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127117716
+f3-rst-m	f3	between	safe	-	t10	tri	0	ok	-	-	127117696
+f3-rst-b	f3	heldout	risky	noreset expectfault	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127117672
+f3-hl-a	f3	prime	safe	after	t10	tri --poke vdm:1^=0xa00	0	ok	-	-	127117652
+f3-hl-b	f3	heldout	risky	noreset expectfault	t10	tri --poke vdm:1^=0xa00	1	hang	-	-	127117624

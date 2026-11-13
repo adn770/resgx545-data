@@ -1,0 +1,86 @@
+# session.toml: the env of r13-flag, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r13-flag"
+prefix = "r13f"                 # laptop files under ~/scratch/r13f/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E566's probes, E383's
+                                    # probe --tri and E700's hangs (recovered in seconds) all
+                                    # ended well inside it
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# t10p: the same binary as t10 (one file on the laptop, one sha256), the name f1's probe-fill rows
+# use (r13-tex's deviation 1). The kit's library-mock replay cannot run them: libsgxfive's mock at
+# a581c06 runs a probe fill only with its own copy shader (mock.c: any other program is "an
+# unknown program", a fault), so every probe of a program of ours ends `failed: job faulted`
+# there, a limit of the mock and not a refusal of the tool or kernel. tests/test_libmock.py replays
+# every t10p row on the same library mock and requires exactly that end (the argv accepted, no
+# usage line, no `job: rejected`); README.md "Deviations".
+[tools.t10p]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+no_source = "t10's binary; the library mock runs no probe program of ours (mock.c: an unknown program faults): tests/test_libmock.py replays these rows and requires that end only"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# alarm: the Mac's bound on the stage (s)
+# the stages in run order (closing13/DECISIONS-R13.md: r13-flag last in the round, after every
+# safe session; F1 and F2 planned faults (R13-3 a), F3 the hang sequences last (R13-4 a)):
+# each stage has its own controls; the gates only skip a stage after a failed recovery
+[stages]
+f1 = { alarm = 900 }
+f2 = { alarm = 900, gate = true }    # closed after a failed recovery in f1 (score.py gate)
+f3 = { alarm = 2400, gate = true }   # closed after one in f1 or f2
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "0493e36a4691c93fb82574f490cec1beb0698f1b"
+data = "75d01ee203111b19c8b3cb607a555522b338591c"
+# every repository file the generator (gen/), the scorer or the tests read: the p1141 template,
+# builder, texmodel and specs (F1's programs), E566's kept tw32-ctl and published program, r10-tex's
+# generator files gen/ copies (pins.py, tex.py, addr.py's tile law), E383's programs, bit-12 mode 0
+# run and kernel log (F2), p1131-green's published program and the p1131 templates (F3)
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/texmodel.py",
+    "data:texture/p1141/support/specs.json",
+    "data:texture/p1132/tx-t3/tw32-ctl.txt.gz",
+    "data:texture/p1132-recomp/raw/tx-t3bits/bins/tx-t3bits__33.bin",
+    "data:render/closing-r10-tex/gen/pins.py",
+    "data:render/closing-r10-tex/gen/tex.py",
+    "data:render/closing-r10-tex/gen/addr.py",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/bins/eot_plain.bin",
+    "data:pbe/sideband-channels/pbe-sideband-channels-0208/bins/pbe-sideband-channels-0208__0.bin",
+    "data:pbe/sideband-channels/pbe-sideband-channels-bit12-1200/raw.txt",
+    "data:pbe/sideband-channels/kernel.log",
+    "data:render/closing-r6-render4x/bins/p1131-green__0.bin",
+    "resgx545:probes/ta/templates/pix_green.s",
+    "resgx545:probes/ta/templates/pix_op.s",
+    "resgx545:probes/ta/p1131-progs.toml"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

@@ -1,0 +1,24 @@
+#stage f3
+#limit 8
+# r13-flag f3, Q163 VDM_STATE1 bits 11:9 hang sequences (rank-round13.md section 2 F3; HANGS THE KERNEL RECOVERS, user OK R13-4 a). gen/f3.py. Kit words noreset and idle:S (0493e36).
+# Control first: E413's v = 7 pair (tri --poke vdm:1^=0xa00 twice: the second hangs; if it completes hook_check stops the stage). Then block-2 v = 1 at c = 0, 2, 5 (E700's two-block stream, grid bits 7:0 = 5), the 128 x 128 one-block pair, idle:60, a fill between, a reset row between, the health between.
+# #limit 8 = the eight planned rows (expectfault); the control's hang is not counted; the last planned row is the last row. Any other row that hangs stops the stage (4). hook_fault stops at the first failed recovery (SGX recovery failed), a hang without its kernel line, or a fault (24).
+f3-c-a|prime|safe|-|t10|tri --poke vdm:1^=0xa00
+f3-c-b|control|risky|noreset expectfault reads:job|t10|tri --poke vdm:1^=0xa00
+f3-v1c0|heldout|risky|expectfault|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"
+f3-v1c2-p|prime|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000c00 "$S/bins/p1131-blue__0.bin"
+f3-v1c2|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"
+f3-v1c5-p|prime|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000a00 "$S/bins/p1131-blue__0.bin"
+f3-v1c5|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 9^=0x00000600 "$S/bins/p1131-blue__0.bin"
+f3-shape-a|prime|safe|-|t10|tri --width 128 --height 128 --poke vdm:1^=0xa00
+f3-shape-b|heldout|risky|noreset expectfault|t10|tri --width 128 --height 128 --poke vdm:1^=0xa00
+f3-idle-a|prime|safe|-|t10|tri --poke vdm:1^=0xa00
+f3-idle-b|heldout|risky|noreset idle:60 expectfault|t10|tri --poke vdm:1^=0xa00
+f3-fill-a|prime|safe|-|t10|tri --poke vdm:1^=0xa00
+f3-fill-m|between|safe|noreset|t10|fill
+f3-fill-b|heldout|risky|noreset expectfault|t10|tri --poke vdm:1^=0xa00
+f3-rst-a|prime|safe|-|t10|tri --poke vdm:1^=0xa00
+f3-rst-m|between|safe|-|t10|tri
+f3-rst-b|heldout|risky|noreset expectfault|t10|tri --poke vdm:1^=0xa00
+f3-hl-a|prime|safe|after|t10|tri --poke vdm:1^=0xa00
+f3-hl-b|heldout|risky|noreset expectfault|t10|tri --poke vdm:1^=0xa00

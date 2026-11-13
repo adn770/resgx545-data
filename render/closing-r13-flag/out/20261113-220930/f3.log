@@ -1,0 +1,113 @@
+## stage f3 of r13f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t10p: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127118080 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r13f.80p3g5
+## clock
+Fri Nov 13 22:11:27 CET 2026
+== f3-c-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-c-b set=control risk=risky tool=t10 knobs=[noreset expectfault reads:job]
+  noreset: no reset before f3-c-b (the row before, f3-c-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 1 job: failed: job hung, context lost (Connection timed out) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class hang
+  hang (the control's reading, not counted against #limit)
+  hang (a reading): events 0 of 8; reset, then strict health
+  premise f3-c-b [job]: job=hung 
+== f3-v1c0 set=heldout risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r13f/stage/bins/p1131-green__0.bin --vdm 9^=0x00000600 /home/jtorra/scratch/r13f/stage/bins/p1131-blue__0.bin
+  rc 3 
+  class hang
+  hang (a reading): events 1 of 8; reset, then strict health
+== f3-v1c2-p set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r13f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000c00 /home/jtorra/scratch/r13f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== f3-v1c2 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-v1c2 (the row before, f3-v1c2-p, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r13f/stage/bins/p1131-green__0.bin --vdm 9^=0x00000600 /home/jtorra/scratch/r13f/stage/bins/p1131-blue__0.bin
+  rc 3 
+  class hang
+  hang (a reading): events 2 of 8; reset, then strict health
+== f3-v1c5-p set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r13f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000a00 /home/jtorra/scratch/r13f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== f3-v1c5 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-v1c5 (the row before, f3-v1c5-p, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r13f/stage/bins/p1131-green__0.bin --vdm 9^=0x00000600 /home/jtorra/scratch/r13f/stage/bins/p1131-blue__0.bin
+  rc 3 
+  class hang
+  hang (a reading): events 3 of 8; reset, then strict health
+== f3-shape-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 128 --height 128 --poke vdm:1^=0xa00
+  rc 0 job: ok target: 128x128 hash 0x4a18985ca7f4b4e5 diff: 0 of 16384 pixels 
+  class ok
+== f3-shape-b set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-shape-b (the row before, f3-shape-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 128 --height 128 --poke vdm:1^=0xa00
+  rc 1 job: failed: job hung, context lost (Connection timed out) target: 128x128 hash 0x4b26d8dca70d2325 diff: 16384 of 16384 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class hang
+  hang (a reading): events 4 of 8; reset, then strict health
+== f3-idle-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-idle-b set=heldout risk=risky tool=t10 knobs=[noreset idle:60 expectfault]
+  noreset: no reset before f3-idle-b (the row before, f3-idle-a, ended ok)
+  idle 60 s before f3-idle-b
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 1 job: failed: job hung, context lost (Connection timed out) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class hang
+  hang (a reading): events 5 of 8; reset, then strict health
+== f3-fill-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-fill-m set=between risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before f3-fill-m (the row before, f3-fill-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 fill
+  rc 0 job: ok job time: 466 us target: 64x32 hash 0xb60c6095080bd325 
+  class ok
+== f3-fill-b set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-fill-b (the row before, f3-fill-m, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 1 job: failed: job hung, context lost (Connection timed out) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class hang
+  hang (a reading): events 6 of 8; reset, then strict health
+== f3-rst-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-rst-m set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-rst-b set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-rst-b (the row before, f3-rst-m, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-hl-a set=prime risk=safe tool=t10 knobs=[after]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== f3-hl-b set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before f3-hl-b (the row before, f3-hl-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke vdm:1^=0xa00
+  rc 1 job: failed: job hung, context lost (Connection timed out) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class hang
+  hang (a reading): events 7 of 8; reset, then strict health
+## end: 19 jobs of f3
+## kernel log (journalctl)

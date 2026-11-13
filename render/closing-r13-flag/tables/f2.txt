@@ -1,0 +1,9 @@
+#stage f2
+#limit 3
+# r13-flag f2, Q046 sideband bit 11 (rank-round13.md section 2 F2; PLANNED FAULTS, user OK R13-3 a). gen/f2.py. E383's form, sideband 0x0a00 | mode in modes 0, 4, 8.
+# Control first: E383's bit-12 mode 0 (0x1200), inset >= 4055 of E383's words. Frozen: H-E383 (each faults), H-E383-PAGE (0x91000 at page 0x37001000), H-NOFAULT.
+# #limit 3 = the three planned rows; the third is the last row. hook_fault stops on a fault without its kernel BIF line, a hang, or SGX recovery failed (24).
+f2-ctl|control|safe|reads:pixels|t10|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0x1200 "$S/bins/sb-c0.bin"
+f2-b11-m0|replicate|risky|expectfault|t10|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0xa00 "$S/bins/sb-c0.bin"
+f2-b11-m4|replicate|risky|expectfault|t10|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0xa04 "$S/bins/sb-c0.bin"
+f2-b11-m8|replicate|risky|expectfault|t10|probe --tri pixel --pixels --slot eot="$S/bins/eot_plain.bin" --sideband 0xa08 "$S/bins/sb-c0.bin"

@@ -1,0 +1,33 @@
+== 1. f1: T3 bit 14 on the twiddled texture
+f1-ref-a: ok, scratch 0x3e003000 (+16 pages to 0x3e013000, coordinates to 0x3e016000)
+f1-tw32: fault, scratch 0x3e003000 (+16 pages to 0x3e013000, coordinates to 0x3e016000); BIF fault 0x90002 at 0x3e024001: page scratch + 0x21000, 14 pages past the coordinates' end, dword 33792 from the scratch's first
+f1-ref-b: ok, scratch 0x3e003000 (+16 pages to 0x3e013000, coordinates to 0x3e016000)
+f1-small: fault, scratch 0x3e003000 (+16 pages to 0x3e013000, coordinates to 0x3e016000); BIF fault 0x90002 at 0x3e043001: page scratch + 0x40000, 45 pages past the coordinates' end, dword 65536 from the scratch's first
+== 2. f2: the control's words against E383's bit-12 mode 0
+E383's two runs: equal on 4096 of 4096
+f2-ctl: 4096 pixels, inset 3900 (frozen >= 4055); equal to E383 on 3283; high 16 bits equal on 4096; of the 813 that differ, 813 in the low 16 bits only
+r13-tex sb12-rep-m0-c0: 4096 pixels, inset 3924 (frozen >= 4055); equal to E383 on 3297; high 16 bits equal on 4096; of the 799 that differ, 799 in the low 16 bits only
+f2-ctl against r13-tex's replicate: equal on 3974, high 16 bits on 4096
+f2-b11-m0: fault, BIF fault 0x91000 at 0x37001021 (page 0x37001000); E383 mode 0: 0x91000 at 0x3700103b; runner's latch after the job 0 0x00000000 [ungated]
+f2-b11-m4: fault, BIF fault 0x91000 at 0x37001011 (page 0x37001000); E383 mode 4: 0x91000 at 0x37001003; runner's latch after the job 0 0x00000000 [ungated]
+f2-b11-m8: fault, BIF fault 0x91000 at 0x37001011 (page 0x37001000); E383 mode 8: 0x91000 at 0x37001013; runner's latch after the job 0 0x00000000 [ungated]
+== 3. f3: ends and E700's c (M1) before each row
+f3-c-a: prime, blocks (7,), c 0 add 5: ok
+f3-c-b: control, blocks (7,), c 5 add 5: hang
+f3-v1c0: heldout, blocks (2, 1), c 0 add -1: hang
+f3-v1c2-p: prime, blocks (4, 2), c 0 add 2: ok
+f3-v1c2: heldout, blocks (2, 1), c 2 add -1: hang
+f3-v1c5-p: prime, blocks (7, 2), c 0 add 5: ok
+f3-v1c5: heldout, blocks (2, 1), c 5 add -1: hang
+f3-shape-a: prime, blocks (7,), c 0 add 5: ok
+f3-shape-b: heldout, blocks (7,), c 5 add 5: hang
+f3-idle-a: prime, blocks (7,), c 0 add 5: ok
+f3-idle-b: heldout, blocks (7,), c 5 add 5: hang
+f3-fill-a: prime, blocks (7,), c 0 add 5: ok
+f3-fill-m: between, blocks fill, c 5 add 0: ok
+f3-fill-b: heldout, blocks (7,), c 5 add 5: hang
+f3-rst-a: prime, blocks (7,), c 0 add 5: ok
+f3-rst-m: between, blocks plain, c 0 add 0: ok
+f3-rst-b: heldout, blocks (7,), c 0 add 5: ok
+f3-hl-a: prime, blocks (7,), c 0 add 5: ok
+f3-hl-b: heldout, blocks (7,), c 5 add 5: hang
