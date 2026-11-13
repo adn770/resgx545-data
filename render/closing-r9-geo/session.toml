@@ -1,0 +1,85 @@
+# session.toml: the env of r9-geo, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r9-geo"
+prefix = "r9g"                 # laptop files under ~/scratch/r9g/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E726/E930 probes
+                                    # and E502/E504/E828 renders run in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t4"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t4]
+path = "sgxfive-test-rgn4"
+sha256 = "e6951558a93b4b7bc750eeae302997992d7ec6e26719bc527ba1ffc9c6fb779a"
+built_from = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+recipe = "userspace/libsgxfive/Makefile"
+source = "4623753f2cc5b9a34b357736801a4c6e66138bf9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "703cbceaae8cdff3eda280b7ef89f3c5ef14ba7d378dd269bc66ef714aaead69"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# seam1: the 4x context's region headers forced to one array (E502's condition; E828's j6r ran 1)
+render_rgn_arrays = { default = "0", values = ["0", "1"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate
+# S9-geo (decision R9-3 (a) of the seeds plan, user's DECISIONS-R9.md): seam1 (24), seam4 (25),
+# cube2 (17), addr2 (11): 77 jobs, safe class
+[stages]
+seam1 = { alarm = 1500 }
+seam4 = { alarm = 1500 }
+cube2 = { alarm = 1200 }
+addr2 = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "f32dfacc8db804f205fcd5b40c65e01ba0060306"
+data = "2d666bfafa21c4d0de0e1e5e87c10dada15b7e45"
+# every repository file the generator, the mock or the tests read (gen/make.py, gen/seam.py,
+# gen/cube.py, tests/): the p1141 template, the landed region model, E726's and E502's kept records,
+# r8-geo's published generator inputs (q284_rule.json, the O8 table) and kept rows (E930, E931,
+# E932), E828's j1r output
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/recompute/msaa_model.py",
+    "data:render/closing-r4-render4x/bins/p1141-cube__4.bin",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-h-cube/cu-xn.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/tex-h-cube/cu-xp.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/msaa-b-te29/t29-m2-e0-64x64-ctl.txt.gz",
+    "data:texture/p1141/out-hw/p1141tex-dumps/msaa-b-te29/t29-m2-20-64x64-ctl.txt.gz",
+    "data:isp/msaa-ident/dumps/A-m1-te60-64x64-x.txt.gz",
+    "data:texture/p1132/tx-border/bd-u0.txt.gz",
+    "data:texture/p1132/tx-border/bd-v0.txt.gz",
+    "data:render/closing-r3-rgn4/out/rgn4/j1r-aa4-auto.out",
+    "data:render/closing-r8-geo/gen/q284_rule.json",
+    "data:render/closing-r8-geo/gen/o8/q141_r8pred.tsv",
+    "data:render/closing-r8-geo/gen/o8/q141_r8pred_cases.json",
+    "data:render/closing-r8-geo/gen/o8/q141_r8pred_sets.json",
+    "data:render/closing-r8-geo/gen/o8/q141_r8pred.py",
+    "data:render/closing-r8-geo/gen/o8/q141_r8pred.sha256",
+    "data:render/closing-r8-geo/bins/addr-ctl-u0.bin",
+    "data:render/closing-r8-geo/bins/addr-u4.bin",
+    "data:render/closing-r8-geo/bins/addr-u5.bin",
+    "data:render/closing-r8-geo/out/20261113-015842/cube/cube-n32-b1.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/cube/cube-n32-b2.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/cube/cube-n32-b3.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/cube/cube-edge-dz.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/cube/cube-edge-dx.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/addr/addr-u4.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/addr/addr-u5.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/addr/addr-ctl-u0.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/seam/ctl-tf-64x64-m2-2.txt.gz",
+    "data:render/closing-r8-geo/out/20261113-015842/seam/ctl-a-m1-6-64x64.txt.gz"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

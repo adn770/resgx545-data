@@ -1,0 +1,19 @@
+#stage addr2
+#limit 0
+# S9-geo addr2, Q177 (seeds plan section 4): T0 address modes on twiddled 32-bit textures at page 12 of a 32-page named
+# scratch (T2 0x5CAFC000, --scratch-pages 32 on every row), the swept axis over 128 positions at one texel a step.
+# Frozen, nothing fitted (gen/addr.py): u modes 4 and 6 at 8 x 8 and 32 x 32, H-OFF180 vs H-OFFSCALE, H-OFFNONE; u mode 4
+# at 16 x 16 with T3 0, 0x800 and 0x800000, the null H-T3-INERT; u and v mode 4 together, H-OFF180 vs H-OFF360, H-MASK-V;
+# replicates of E932's addr-u4 (+180) and addr-u5 (its per-position read). Control: mode 0 on u (the repeat image). Stop:
+# any fault or hang (none in E565's or E932's jobs); the second row without its pixel rows.
+addr-ctl-u0|control|safe|reads:pixels|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-ctl-u0.bin"
+addr-u4-rep|replicate|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-rep.bin"
+addr-u4-n8|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-n8.bin"
+addr-u6-n8|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u6-n8.bin"
+addr-u4-n32|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-n32.bin"
+addr-u6-n32|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u6-n32.bin"
+addr-u4-t3-00000000|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-t3-00000000.bin"
+addr-u4-t3-00000800|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-t3-00000800.bin"
+addr-u4-t3-00800000|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u4-t3-00800000.bin"
+addr-uv4|heldout|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-uv4.bin"
+addr-u5-rep|replicate|safe|-|t4|probe --temps 32 --coords --pixels --scratch-pages 32 "$S/bins/addr-u5-rep.bin"
