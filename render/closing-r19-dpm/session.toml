@@ -1,0 +1,98 @@
+# session.toml: the env of r19-dpm, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r19-dpm"
+prefix = "r19d"                 # laptop files under ~/scratch/r19d/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = ["render_param", "render_tadata", "render_words", "tadata_fill"]   # --dump-render, --words, ld's --tadata-fill-render
+outdir_opts = []                    # --dump-render, --words and --depth-dump write into $W, which exists
+extra_knobs = ["ctl:diff=0", "ctl:ovf1=0", "ctl:ovf1=1", "ctl:ovf2=0", "ctl:sidx=0", "ctl:sidx=1", "ctl:thr=0xde"]   # read by run/hooks.sh (gen/plan.py)
+forbid_options = ["--ctx2", "--fault", "--cmd", "--vdm", "--slot", "--kpoke-job", "--refill"]   # none of this session's premises
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t18b]
+path = "sgxfive-test-t18b"
+sha256 = "58e7985504d0d3311155d94627da8b8473335d9a843f5610e44731864315b21e"
+built_from = "ec50498e6b5cbf3ebff07233da508023dd28f4a2:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "70aa910e14ae8040072b8c2cde5991830c4dcfe6bcd35ccf722c080ee9f38e29"
+recipe = "data:render/closing-r19-k0/lead/build_tool18b.sh"
+source = "ec50498e6b5cbf3ebff07233da508023dd28f4a2:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "70aa910e14ae8040072b8c2cde5991830c4dcfe6bcd35ccf722c080ee9f38e29"
+
+[tools.rt]
+wraps = true
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t10 and t18b; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# render_pb_pages: the P of the geometry kick, or of the -n 1 job (E625: P = thr0 + 0x22); the final
+# render's N is the tool's --final-pb-pages, which writes render_final_pb_pages itself (declared at
+# 0, only 0: the preflight checks the module has it, the trap puts it back)
+render_pb_pages = { default = "0x422", values = ["0x28", "0x2c", "0x30", "0x40", "0x60", "0x80", "0xa0", "0xc0", "0x100", "0x422"] }
+render_final_pb_pages = { default = "0", values = ["0"] }
+# dz-c's layered background (r9-k1's binding)
+render_bg_layer = { default = "N", values = ["N", "Y"] }
+render_bg_src = { default = "0x0", values = ["0x0", "0x3e800000"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round19 section 3, in its order; dz and zs split by the dumps their rows write (gen/plan.py
+# tables()); S1's f0 gates this session as a whole: the lead runs it only if f0-same and f0-up
+# passed
+ld = { alarm = 900 }
+ldb = { alarm = 1200 }
+dzl = { alarm = 300 }
+dza = { alarm = 900, gate = true }   # E628's dl controls (dzl) gate it
+dzc = { alarm = 600 }
+dzo = { alarm = 600 }
+zsc = { alarm = 300 }
+zs = { alarm = 900, gate = true }    # the -n 1 pair (zsc) gates it
+rd = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "50606dc1cd1272ada446ac439befa8074f425c69"
+data = "95df71e98c9575b7a135ff0b38ae5d58adc5ddee"
+# every repository file the scorer and the tests read: q107_rule.py (zs, frozen in closing12),
+# dpm_raise.py (runs(), twinned), the kept dumps the scorer must hold on and fail on (E628, E627,
+# E1020, E489), t10's recipe
+pins = [
+    "data:cited/closing12/plan/c3-q107/q107_rule.py",
+    "data:vdm/verification-1141ta/recompute/dpm_raise.py",
+    "data:zls/store-layout-dumps/dumps/fit-1024x768-G1-rampx.bin.gz",
+    "data:zls/store-layout-dumps/dumps/fit-1024x768-G33-rampx.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/cases.tsv",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/dl-z05-noload-0x422.txt.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/dl-z05-load-0x422.txt.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/dl-z05-noload-0x28.txt.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/dp-ramp-g1-0x28-r1.depth.1.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c26/dp-ramp-g33-0x28-r1.depth.1.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x28-r1.txt.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x28-r1.tri.1.tadata.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x28-r1.ta3d.1.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x30-r1.txt.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x30-r1.tri.1.tadata.bin.gz",
+    "data:dpm/partial-model-batch/dumps/depth-safe.c1/dp-z05-g1-0x30-r1.ta3d.1.bin.gz",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

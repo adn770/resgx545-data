@@ -1,0 +1,34 @@
+## stage dzo of r19d
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t18b: 58e7985504d0d3311155d94627da8b8473335d9a843f5610e44731864315b21e /home/jtorra/sgxfive-test-t18b
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126958736 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r19d.mwxAxY
+## clock
+Sat Nov 14 20:05:15 CET 2026
+== dz-ov-far28 set=fit risk=safe tool=rt knobs=[dbg:render_pb_pages=0x28 expectdiff ctl:ovf1=1 ctl:ovf2=0 ctl:thr=0xde]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 2 --geometry 1 --final-pb-pages 0x100 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r19d.mwxAxY/1-dz-ov-far28/w --dump-each --words /home/jtorra/scratch/tmp/r19d.mwxAxY/1-dz-ov-far28/w --regs 0x0600-0x0750 --move 2:-96,0 --tri-z 0.25,0.75,0.25 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-ctl-next 0x17110c --depth-fill 0xd0190009 --depth-dump /home/jtorra/scratch/tmp/r19d.mwxAxY/1-dz-ov-far28/w
+  rc 1 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0x1a1e80e565302a05 diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0x
+  class ok
+== dz-ov-near28 set=fit risk=safe tool=rt knobs=[dbg:render_pb_pages=0x28 expectdiff ctl:ovf1=1 ctl:ovf2=0 ctl:thr=0xde]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 2 --geometry 1 --final-pb-pages 0x100 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r19d.mwxAxY/2-dz-ov-near28/w --dump-each --words /home/jtorra/scratch/tmp/r19d.mwxAxY/2-dz-ov-near28/w --regs 0x0600-0x0750 --move 2:96,0 --tri-z 0.25,0.75,0.25 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-ctl-next 0x17110c --depth-fill 0xd019000a --depth-dump /home/jtorra/scratch/tmp/r19d.mwxAxY/2-dz-ov-near28/w
+  rc 1 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0x1a1e80e565302a05 diff: 44191 of 786432 pixels, first (130, 97) 0xff203040 expected 0x
+  class ok
+== dz-ov-far30 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x30 expectdiff ctl:ovf1=1 ctl:ovf2=0 ctl:thr=0xde]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 2 --geometry 1 --final-pb-pages 0x100 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r19d.mwxAxY/3-dz-ov-far30/w --dump-each --words /home/jtorra/scratch/tmp/r19d.mwxAxY/3-dz-ov-far30/w --regs 0x0600-0x0750 --move 2:-96,0 --tri-z 0.25,0.75,0.25 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-ctl-next 0x17110c --depth-fill 0xd019000b --depth-dump /home/jtorra/scratch/tmp/r19d.mwxAxY/3-dz-ov-far30/w
+  rc 1 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0x19f12f2630e9cbc5 diff: 70600 of 786432 pixels, first (0, 0) 0xbf800000 expected 0xff2
+  class ok
+== dz-ov-near30 set=heldout risk=safe tool=rt knobs=[dbg:render_pb_pages=0x30 expectdiff ctl:ovf1=1 ctl:ovf2=0 ctl:thr=0xde]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 2 --geometry 1 --final-pb-pages 0x100 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r19d.mwxAxY/4-dz-ov-near30/w --dump-each --words /home/jtorra/scratch/tmp/r19d.mwxAxY/4-dz-ov-near30/w --regs 0x0600-0x0750 --move 2:96,0 --tri-z 0.25,0.75,0.25 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-ctl-next 0x17110c --depth-fill 0xd019000c --depth-dump /home/jtorra/scratch/tmp/r19d.mwxAxY/4-dz-ov-near30/w
+  rc 1 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0x19f12f2630e9cbc5 diff: 70600 of 786432 pixels, first (0, 0) 0xbf800000 expected 0xff2
+  class ok
+## end: 4 jobs of dzo
+## kernel log (journalctl)
