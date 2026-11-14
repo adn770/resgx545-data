@@ -1,0 +1,11 @@
+#stage own2
+#limit 0
+# r19-own own2, Q192 (E1084): does the store that follows the second context's render replace the state page a partial-render owner left, and what does it write? A 1024x768 owner on P pages (partial renders), kept, closed early; the TA data copied after the close (kept.closed.1.bin) and after the second context's render (kept.1.bin).
+# Frozen: H-RSTORE (closed copy: the owner's lists, 18 non-zero dwords at 0x28 (E464, E631's solo); after copy: 0) against H-EARLY (the closed copy already 0: the close or the second context's creation) and H-LATE (both copies hold the lists: the zero of E631 comes after the second render, at its close). Held out: P 0x30, 0x24, 2048x1536 (state page 0x12000).
+# Control o2-c-a (reads ovf,kept,size): the first render overflowed (1), both copies made (2), 69632 bytes each (the 1024x768 TA data); hook_check stops the stage (24) on any row whose copies were not both made. Safe: render_keep reads back Y before each row (rc 19).
+o2-c-a|control|safe|dbg:render_keep=1 dbg:render_pb_pages=0x28 reads:ovf,kept,size|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o2-c-b|fit|safe|dbg:render_keep=1 dbg:render_pb_pages=0x28|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o2-4|fit|safe|dbg:render_keep=1 dbg:render_pb_pages=0x28|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0x4
+o2-p30|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x30|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o2-p24|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x24|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o2-2k|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x28|t18b|tri --width 2048 --height 1536 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc

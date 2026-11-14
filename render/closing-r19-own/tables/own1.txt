@@ -1,0 +1,11 @@
+#stage own1
+#limit 0
+# r19-own own1, Q191 (E1085): are the kept owner words (control 0x00200047, OTPM 0x04000417, state 0x00020001 and 2) stored by the second context's render or at the first context's close, and do the state words count the owner's pages?
+# Frozen: (a) H-RENDER (64x64, 0xc: none in kept.closed.1.bin, all four in kept.1.bin) against H-CLOSE (all four already in the closed copy); (b) 1024x768 at P 0x422 (no partial render): H-COUNT (state words (U << 16 | head), tail with U the owner's pages, 0x11 to 0x15) against H-CONST (0x00020001, 2) and H-NONE (0, 0); (c) P 0x200 held out.
+# Control o1-4 (reads ovf,kept,size; flag 0x4: E631's no-word case): no overflow (0), both copies (2), 24576 bytes; the scorer fails it if any owner word shows in either copy.
+o1-4|control|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422 reads:ovf,kept,size|t18b|tri --width 64 --height 64 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0x4
+o1-c-a|fit|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422|t18b|tri --width 64 --height 64 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o1-c-b|fit|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422|t18b|tri --width 64 --height 64 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o1-big-a|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o1-big-b|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422|t18b|tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+o1-p200|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x200|t18b|tri --width 64 --height 64 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
