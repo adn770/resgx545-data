@@ -1,0 +1,67 @@
+## stage zpass of r15z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127090788 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r15z.rgKMFP
+## clock
+Sat Nov 14 07:38:29 CET 2026
+== zp-c-id set=control risk=safe tool=t10 knobs=[expectdiff reads:dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/1-zp-c-id/w --poke blk:1=0x00000200 --pixels --kpoke-render 1:rd:12=0x1000
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zp-c-id [dst_changed]: job=ok pixels=2048 drawn=0 depth_changed=0 dst_changed=2048 
+== zp-c-467 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 256 --height 128 --max-width 256 --max-height 128 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017503e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 40 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/2-zp-c-467/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 256x128 hash 0x95d73236adde2325 diff: 16129 of 32768 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zp-c-467 [drawn dst_changed]: job=ok pixels=32768 drawn=16384 depth_changed=0 dst_changed=32768 
+== zp-c-band set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 34 --height 18 --max-width 34 --max-height 18 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017100c --depth-fill bit:3 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/3-zp-c-band/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 34x18 hash 0x94625faece208e45 diff: 0 of 612 pixels 
+  class ok
+  premise zp-c-band [drawn dst_changed]: job=ok pixels=612 drawn=612 depth_changed=0 dst_changed=2048 
+== zp-e-dp set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 34 --height 18 --max-width 34 --max-height 18 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill bit:3 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/4-zp-e-dp/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 34x18 hash 0x8b42701975188845 diff: 289 of 612 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-19-nv set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x001f500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/5-zp-19-nv/w --poke blk:1=0x00000200 --pixels
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-19-ls set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x001f500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/6-zp-19-ls/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 64x32 hash 0xa5be13ad96bde325 diff: 961 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-f1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.375,0.375,0.375 --depth --depth-ctl 0x0117500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/7-zp-f1/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 64x32 hash 0xa5be13ad96bde325 diff: 961 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-f2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.375,0.375,0.375 --depth --depth-ctl 0x0217500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/8-zp-f2/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 64x32 hash 0xa5be13ad96bde325 diff: 961 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-z0 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0,0,0 --depth --depth-ctl 0x0017500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/9-zp-z0/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zp-z125 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.125,0.125,0.125 --depth --depth-ctl 0x0017500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/10-zp-z125/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zp-z75 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.75,0.75,0.75 --depth --depth-ctl 0x0017500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/11-zp-z75/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zp-z1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 1,1,1 --depth --depth-ctl 0x0017500e --depth-fill bit:9 --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.rgKMFP/12-zp-z1/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+## end: 12 jobs of zpass
+## kernel log (journalctl)

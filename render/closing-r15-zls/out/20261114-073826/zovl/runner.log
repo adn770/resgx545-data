@@ -1,0 +1,83 @@
+## stage zovl of r15z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127088924 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r15z.pKZKup
+## clock
+Sat Nov 14 07:42:22 CET 2026
+== zv-c-ov set=control risk=safe tool=t10 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-v 0,0,32768,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x00171004 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/1-zv-c-ov/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise zv-c-ov [depth_changed]: job=ok drawn=2048 depth_changed=1536 
+== zv-ov-64-f2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-v 0,0,32768,0,0,16384 --tri-z 0,0.015625,1 --depth --depth-ctl 0x02171004 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/2-zv-ov-64-f2/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-ov-160-f2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 160 --height 48 --max-width 160 --max-height 48 --tri-v 0,0,81920,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x02171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/3-zv-ov-160-f2/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 160x48 hash 0x37792e5ca34f9325 diff: 0 of 7680 pixels 
+  class ok
+== zv-ov-65-f1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 65 --height 33 --max-width 65 --max-height 33 --tri-v 0,0,33280,0,0,16896 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0117100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/4-zv-ov-65-f1/w --poke blk:1=0x00400200 --depth-pages 20
+  rc 0 job: ok target: 65x33 hash 0x335b23cd8081f1ed diff: 0 of 2145 pixels 
+  class ok
+== zv-ov-640-f1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 640 --height 480 --max-width 640 --max-height 480 --tri-v 0,0,327680,0,0,245760 --tri-z 0,0.0009765625,1 --depth --depth-ctl 0x01171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/5-zv-ov-640-f1/w --poke blk:1=0x00400200
+  rc 0 job: ok target: 640x480 hash 0xf19c7b73bb3ba325 diff: 0 of 307200 pixels 
+  class ok
+== zv-c-075 set=control risk=safe tool=t10 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0117100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/6-zv-c-075/w --poke blk:1=0x01c00200 --poke blk:10=0x3f400000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+  premise zv-c-075 [depth_changed]: job=ok drawn=2048 depth_changed=2048 
+== zv-r-hi set=reading risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/7-zv-r-hi/w --poke blk:1=0x01c00200 --poke blk:10=0x3fa00000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-i125-f1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0117100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/8-zv-i125-f1/w --poke blk:1=0x01c00200 --poke blk:10=0x3fa00000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-i125-f2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0217100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/9-zv-i125-f2/w --poke blk:1=0x01c00200 --poke blk:10=0x3fa00000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-im25-f1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0117100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/10-zv-im25-f1/w --poke blk:1=0x01c00200 --poke blk:10=0xbe800000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-im25-f2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0217100c --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/11-zv-im25-f2/w --poke blk:1=0x01c00200 --poke blk:10=0xbe800000
+  rc 0 job: ok target: 64x32 hash 0xfc73845f9e506325 diff: 0 of 2048 pixels 
+  class ok
+== zv-c-g3 set=control risk=safe tool=t10 knobs=[expectdiff reads:depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017101c --depth-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/12-zv-c-g3/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+  premise zv-c-g3 [depth_changed]: job=ok drawn=4096 depth_changed=4096 
+== zv-b25 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0217100c --depth-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/13-zv-b25/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+== zv-g5 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017102c --depth-fill 0xdeadbeef --depth-pages 24 --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/14-zv-g5/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+== zv-g9 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017104c --depth-fill 0xdeadbeef --depth-pages 32 --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/15-zv-g9/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+== zv-g17 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017108c --depth-fill 0xdeadbeef --depth-pages 44 --depth-dump /home/jtorra/scratch/tmp/r15z.pKZKup/16-zv-g17/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+## end: 16 jobs of zovl
+## kernel log (journalctl)

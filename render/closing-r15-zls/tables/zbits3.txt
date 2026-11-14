@@ -1,0 +1,18 @@
+#stage zbits3
+#limit 0
+# R15-1 (a), plan section 2 "zbits3", Q071 (E1053): E988's st1-b0 form with bit 15 alone at 96 x 32 G 2 and under
+# the reference flipped (H15-FAIL, H15-READFF), bit 23 alone at 96 x 32 G 2 and over the index fill (H23-MOD16,
+# H23-LOADED), bits 21 + 23 and 22 + 23 (H-PAIR-23, -ZERO, -BASE); E1050's stencil edge row zp-e-st last (34 x 18).
+# Controls that can fail: zb3-c-base, zb3-c-set, zb3-c-b23 (E1042's kept stores), zb3-c-ref1 (E988 against reference
+# 1). Stop: any fault or hang.
+zb3-c-base|control|safe|expectdiff reads:drawn|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-c-set|control|safe|expectdiff reads:drawn,sst_changed|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0xf8f7b00e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-c-b23|control|safe|expectdiff reads:drawn|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0097300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-c-ref1|control|safe|expectdiff reads:drawn|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels --poke blk:1^=0x1
+zb3-b15-96|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 96 --height 32 --max-width 96 --max-height 32 --depth --depth-ctl 0x0017b016 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-b15-r1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0017b00e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels --poke blk:1^=0x1
+zb3-b23-96|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 96 --height 32 --max-width 96 --max-height 32 --depth --depth-ctl 0x00973016 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-b23-idx|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x0097300e --depth-fill 0x3f800000 --stencil --stencil-fill index --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-p21-23|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x00b7300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zb3-p22-23|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 64 --height 32 --max-width 64 --max-height 32 --depth --depth-ctl 0x00d7300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zp-e-st|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 34 --height 18 --max-width 34 --max-height 18 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels --depth-pages 16
