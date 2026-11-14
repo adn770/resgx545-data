@@ -1,0 +1,13 @@
+#stage pr3
+#limit 0
+# pr3 (10): one scene (3072x2048, 1500 vertices) at partial-render counts 0, 1, 4, 7 (2, 2, 3, 3 rows; thr0 0x400, 0x294, 0xc0, 0x60), 0x0748 sampled alone (about 0.46 us a sample against 7.5 us in r13-dpm): clear events against the count; the PR 0 rows are the controls
+pr3-c0-1|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:clr,short ctl:short=1|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c1-1|heldout|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c4-1|heldout|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c7-1|heldout|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c1-2|heldout|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c0-2|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:clr,short ctl:short=1|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c7-2|heldout|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c4-2|heldout|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c7-3|heldout|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+pr3-c4-3|heldout|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.3 0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
