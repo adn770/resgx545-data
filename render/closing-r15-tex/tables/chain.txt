@@ -1,0 +1,28 @@
+#stage chain
+#limit 0
+# r15-tex chain, Q104 (rank-round15.md section 2): E562's generator (the scratch as the texture, each texel naming its
+# dword; level 0 at dword 0) on chains E562 did not reach: a side of 1 (1 x 32, 32 x 1; bias field 0x33), a 16-bit format
+# (u16 32 x 16 and 16 x 64; MIPFILTER at f 32), long sides (64 x 32, 256 x 32) and, last, a 1D texture (smp1dreplace on
+# 64 x 1; maximum field 3). u = v = the diagonal (32 x + 17) / 2048 (1/2 on a side of 1), LOD = (y >> 2) + c down the rows.
+# Frozen per pixel (gen/chain.py): chain=A (tested; E562) against B and D (not D on 256 x 32: past 64 pages), on u16 rows
+# A-TX (tested) against A-DW, B-TX, D-TX and the blends -BL8 (tested) and -BL16. Controls that can fail: E562's
+# shp-32x16-l5 and shp-128x16-l7-x0 rerun (published programs, kept images). Stop: any fault or hang; the second row
+# without its pixel rows.
+chain-ctl32|control|safe|reads:pixels|t10|probe --temps 32 --coords --pixels "$S/bins/chain-ctl32.bin"
+chain-ctl128|control|safe|reads:pixels|t10|probe --temps 32 --coords --pixels "$S/bins/chain-ctl128.bin"
+chain-1x32-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-1x32-lw.bin"
+chain-1x32-lh|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-1x32-lh.bin"
+chain-32x1-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-32x1-lw.bin"
+chain-32x1-lh|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-32x1-lh.bin"
+chain-32x1-b33|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-32x1-b33.bin"
+chain-h32x16-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-h32x16-lw.bin"
+chain-h32x16-lh|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-h32x16-lh.bin"
+chain-h16x64-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-h16x64-lw.bin"
+chain-h16x64-lh|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-h16x64-lh.bin"
+chain-h32x16-mf|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-h32x16-mf.bin"
+chain-64x32-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-64x32-lw.bin"
+chain-256x32-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-256x32-lw.bin"
+chain-256x32-lb|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-256x32-lb.bin"
+chain-1d-lw|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-1d-lw.bin"
+chain-1d-lh|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-1d-lh.bin"
+chain-1d-max3|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/chain-1d-max3.bin"

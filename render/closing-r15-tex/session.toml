@@ -1,0 +1,79 @@
+# session.toml: the env of r15-tex, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r15-tex"
+prefix = "r15t"                 # laptop files under ~/scratch/r15t/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); r14-tex's probes
+                                    # ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# R15-1 (a), DECISIONS-R15.md: chain (18), ty (15): 33 jobs, safe class, tool t10 only; each
+# stage has its own controls (no gate)
+[stages]
+chain = { alarm = 900 }
+ty = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "158bdc5455b233016959a5c7897235ae499c4cdb"
+data = "cddc7b60b8edc3cdc40a7d7c21e065b1577fd7f6"
+# every repository file the generator (gen/), the scorer or the tests read: the p1141 template,
+# builder, specs and texmodel; E562's two control programs and the kept images the tests replay the
+# chain model on; E1000's and E1039's control programs and kept images; E567's kept type images;
+# r14-tex's kept type rows (the name map fitted before the freeze) and its fold's types_post.py
+pins = [
+    "data:render/closing-r10-tex/out/20261113-102730/addr3/addr3-16x64-u4.txt.gz",
+    "data:render/closing-r14-tex/bins/addr5-ctl.bin",
+    "data:render/closing-r14-tex/bins/addr5-ty1-u4.bin",
+    "data:render/closing-r14-tex/fold/types_post.py",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty1-u4.txt.gz",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty3-u4.txt.gz",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty4-u4.txt.gz",
+    "data:texture/p1132-recomp/raw/tx-shapes/bins/tx-shapes__29.bin",
+    "data:texture/p1132-recomp/raw/tx-shapes/bins/tx-shapes__5.bin",
+    "data:texture/p1132/tx-fields/fld-128x16-bias33.txt.gz",
+    "data:texture/p1132/tx-fields/fld-128x16-max8.txt.gz",
+    "data:texture/p1132/tx-fields/fld-128x16-mf750.txt.gz",
+    "data:texture/p1132/tx-fields/fld-32x16-max3.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-128x16-l7-x0.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-128x16-l8-x64.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-16x32-l6.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-32x16-l5.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-32x32-l3.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-64x4-l7.txt.gz",
+    "data:texture/p1132/tx-shapes/shp-8x64-l7-y32.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt1-2d.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt4-2d.txt.gz",
+    "data:texture/p1132/tx-types/ty3-2d.txt.gz",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/specs.json",
+    "data:texture/p1141/support/texmodel.py",
+    "data:texture/p1141/templates/tx_map.s"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

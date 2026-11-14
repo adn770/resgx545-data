@@ -1,0 +1,1500 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "texture",
+ "run": {
+  "session": "render/closing-r15-tex",
+  "stage": "chain",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "refused",
+  "reason": "sgx-sim tex.rs models the chains E1052 held out (a side of 1, 64 x 1 read 1D, u16 at 32 x 16 and 16 x 64 in texels with its 16-bit MIPFILTER lerp, 64 x 32 and 256 x 32) and its unit test e1052_chains_of_a_side_of_1_1d_u16_and_long_sides_read_as_e562s holds eight kept pixels of every held-out row; this table is not replayed row by row: refused"
+ },
+ "rows": [
+  {
+   "id": "chain-ctl32",
+   "set": "control",
+   "knobs": "reads:pixels",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-ctl32.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-ctl32.txt.gz",
+   "raw_sha256": "d48e2ab86c41be4fccd4ddac5dc9b0f6ffd878ec53e1fc15a82c9433404965c4",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "178507692c331611f9da6896c59f36d499852696a979a94f9764dd691d0213fb",
+    "distinct": 1,
+    "values": [
+     [
+      "0xd00002aa",
+      2048
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-ctl32.bin": "ad27b92ba179a25556d6fe12ae947a2336e0915a1716bb654f7f240f5dfb96d3"
+   }
+  },
+  {
+   "id": "chain-ctl128",
+   "set": "control",
+   "knobs": "reads:pixels",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-ctl128.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-ctl128.txt.gz",
+   "raw_sha256": "ce595a406ca6b71ed1e2f2ee454a2dd4df7179ac7ffe1b1be8359d49b1488e53",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "3e55b917eda0d5d9e9fdf14819993de253007bd55bd369ccd84507a279594535",
+    "distinct": 1,
+    "values": [
+     [
+      "0xd0000aae",
+      2048
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-ctl128.bin": "a62d537f64f8f18704152a760786cf27720a48a16de1a6eaa845d607194a3f52"
+   }
+  },
+  {
+   "id": "chain-1x32-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-1x32-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-1x32-lw.txt.gz",
+   "raw_sha256": "264ed7b31e70eea5c6fe9109fd7938d2afbb63a7eb15da56cfd3d8022f54d97f",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "f7b3fba257e0227f33540f2fe13922bd4d5259a9b9c8ea23ed7d2d765656f823",
+    "distinct": 63,
+    "values": [
+     [
+      "0xd000003e",
+      768
+     ],
+     [
+      "0xd000003c",
+      128
+     ],
+     [
+      "0xd000003d",
+      128
+     ],
+     [
+      "0xd0000038",
+      64
+     ],
+     [
+      "0xd0000039",
+      64
+     ],
+     [
+      "0xd000003a",
+      64
+     ],
+     [
+      "0xd000003b",
+      64
+     ],
+     [
+      "0xd0000030",
+      32
+     ],
+     [
+      "0xd0000031",
+      32
+     ],
+     [
+      "0xd0000032",
+      32
+     ],
+     [
+      "0xd0000033",
+      32
+     ],
+     [
+      "0xd0000034",
+      32
+     ],
+     [
+      "0xd0000035",
+      32
+     ],
+     [
+      "0xd0000036",
+      32
+     ],
+     [
+      "0xd0000037",
+      32
+     ],
+     [
+      "0xd0000020",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-1x32-lw.bin": "54884343dd591b605fe0b1b06872404a647d51dc94166fbb1f166a3b0d2ddf25"
+   }
+  },
+  {
+   "id": "chain-1x32-lh",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-1x32-lh.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-1x32-lh.txt.gz",
+   "raw_sha256": "1e5c16f3994d51f6df4371479306ebbd97bbeedb275a2376a563f8cad8c8bbe8",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "85ef0b87b99f143ffd3a6787752e1d44e8628bc88c5eb6a0dba76abb6a1654a7",
+    "distinct": 31,
+    "values": [
+     [
+      "0xd000003e",
+      1024
+     ],
+     [
+      "0xd000003c",
+      128
+     ],
+     [
+      "0xd000003d",
+      128
+     ],
+     [
+      "0xd0000038",
+      64
+     ],
+     [
+      "0xd0000039",
+      64
+     ],
+     [
+      "0xd000003a",
+      64
+     ],
+     [
+      "0xd000003b",
+      64
+     ],
+     [
+      "0xd0000030",
+      32
+     ],
+     [
+      "0xd0000031",
+      32
+     ],
+     [
+      "0xd0000032",
+      32
+     ],
+     [
+      "0xd0000033",
+      32
+     ],
+     [
+      "0xd0000034",
+      32
+     ],
+     [
+      "0xd0000035",
+      32
+     ],
+     [
+      "0xd0000036",
+      32
+     ],
+     [
+      "0xd0000037",
+      32
+     ],
+     [
+      "0xd0000020",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-1x32-lh.bin": "4776706dbc31836b3fc13fa2605fbaf1b341b909f24b9ffda4fd4c190ca6623a"
+   }
+  },
+  {
+   "id": "chain-32x1-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-32x1-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-32x1-lw.txt.gz",
+   "raw_sha256": "0137f3989cbc8a156d8a0e7ee18c4e2521adf9757efa40e6cfd3712ced2c3cf3",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "f7b3fba257e0227f33540f2fe13922bd4d5259a9b9c8ea23ed7d2d765656f823",
+    "distinct": 63,
+    "values": [
+     [
+      "0xd000003e",
+      768
+     ],
+     [
+      "0xd000003c",
+      128
+     ],
+     [
+      "0xd000003d",
+      128
+     ],
+     [
+      "0xd0000038",
+      64
+     ],
+     [
+      "0xd0000039",
+      64
+     ],
+     [
+      "0xd000003a",
+      64
+     ],
+     [
+      "0xd000003b",
+      64
+     ],
+     [
+      "0xd0000030",
+      32
+     ],
+     [
+      "0xd0000031",
+      32
+     ],
+     [
+      "0xd0000032",
+      32
+     ],
+     [
+      "0xd0000033",
+      32
+     ],
+     [
+      "0xd0000034",
+      32
+     ],
+     [
+      "0xd0000035",
+      32
+     ],
+     [
+      "0xd0000036",
+      32
+     ],
+     [
+      "0xd0000037",
+      32
+     ],
+     [
+      "0xd0000020",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-32x1-lw.bin": "fffc3347ca4ab9d45de2af4252e99ef479bdc9a138d4d811f175f54835362c49"
+   }
+  },
+  {
+   "id": "chain-32x1-lh",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-32x1-lh.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-32x1-lh.txt.gz",
+   "raw_sha256": "e8f9823e399676a2634b064d84fcdbf890e0dac3a70c0f94de3167913243e19f",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "85ef0b87b99f143ffd3a6787752e1d44e8628bc88c5eb6a0dba76abb6a1654a7",
+    "distinct": 31,
+    "values": [
+     [
+      "0xd000003e",
+      1024
+     ],
+     [
+      "0xd000003c",
+      128
+     ],
+     [
+      "0xd000003d",
+      128
+     ],
+     [
+      "0xd0000038",
+      64
+     ],
+     [
+      "0xd0000039",
+      64
+     ],
+     [
+      "0xd000003a",
+      64
+     ],
+     [
+      "0xd000003b",
+      64
+     ],
+     [
+      "0xd0000030",
+      32
+     ],
+     [
+      "0xd0000031",
+      32
+     ],
+     [
+      "0xd0000032",
+      32
+     ],
+     [
+      "0xd0000033",
+      32
+     ],
+     [
+      "0xd0000034",
+      32
+     ],
+     [
+      "0xd0000035",
+      32
+     ],
+     [
+      "0xd0000036",
+      32
+     ],
+     [
+      "0xd0000037",
+      32
+     ],
+     [
+      "0xd0000020",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-32x1-lh.bin": "742c5f807f85e41a10ff57a773c4679ce025577f74f9cd585758b893085cd99c"
+   }
+  },
+  {
+   "id": "chain-32x1-b33",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-32x1-b33.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-32x1-b33.txt.gz",
+   "raw_sha256": "99a8736cef7be2dcfbeec8274824a7f80c2cc88deeacf4110214f6d5be5db537",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "ddd10d45bd2fef496717ec15b68e33b3e85b7b8995b21cb031ee34811af02eaf",
+    "distinct": 63,
+    "values": [
+     [
+      "0xd000003e",
+      512
+     ],
+     [
+      "0xd000003c",
+      128
+     ],
+     [
+      "0xd000003d",
+      128
+     ],
+     [
+      "0xd0000038",
+      64
+     ],
+     [
+      "0xd0000039",
+      64
+     ],
+     [
+      "0xd000003a",
+      64
+     ],
+     [
+      "0xd000003b",
+      64
+     ],
+     [
+      "0xd0000030",
+      32
+     ],
+     [
+      "0xd0000031",
+      32
+     ],
+     [
+      "0xd0000032",
+      32
+     ],
+     [
+      "0xd0000033",
+      32
+     ],
+     [
+      "0xd0000034",
+      32
+     ],
+     [
+      "0xd0000035",
+      32
+     ],
+     [
+      "0xd0000036",
+      32
+     ],
+     [
+      "0xd0000037",
+      32
+     ],
+     [
+      "0xd0000000",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-32x1-b33.bin": "318f1e7a00feed7cd4b74de4dd0dd78022e83e4d579655bd111f4584464e0062"
+   }
+  },
+  {
+   "id": "chain-h32x16-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-h32x16-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-h32x16-lw.txt.gz",
+   "raw_sha256": "53d70187cfd7b3f51b898a0f103379d528cc121674f0880dbd0e49ed89871ae9",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "3a292fb3b0f8625ee9005ba3558da830ec7f3ab1f3ccc6a9fe4029e7073dbf1e",
+    "distinct": 33,
+    "values": [
+     [
+      "0x00000155",
+      768
+     ],
+     [
+      "0x0000d000",
+      640
+     ],
+     [
+      "0x00000154",
+      128
+     ],
+     [
+      "0x00000150",
+      64
+     ],
+     [
+      "0x00000151",
+      64
+     ],
+     [
+      "0x00000140",
+      32
+     ],
+     [
+      "0x00000141",
+      32
+     ],
+     [
+      "0x0000014a",
+      32
+     ],
+     [
+      "0x0000014b",
+      32
+     ],
+     [
+      "0x00000100",
+      16
+     ],
+     [
+      "0x00000101",
+      16
+     ],
+     [
+      "0x00000112",
+      16
+     ],
+     [
+      "0x00000113",
+      16
+     ],
+     [
+      "0x00000128",
+      16
+     ],
+     [
+      "0x00000129",
+      16
+     ],
+     [
+      "0x0000013a",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-h32x16-lw.bin": "0d0677e712f604c2fa644edf0f93d6a64c4b2341ada8868cdd5923d4b19fef22"
+   }
+  },
+  {
+   "id": "chain-h32x16-lh",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-h32x16-lh.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-h32x16-lh.txt.gz",
+   "raw_sha256": "62871c561d542db4c0bd9db983e063534e5f307814d76c27b7aa48bf0a047f4f",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "bc970eab5423925cd08391d4de200ac1b4df2be75a84916e671c463088a899c0",
+    "distinct": 17,
+    "values": [
+     [
+      "0x00000155",
+      1024
+     ],
+     [
+      "0x0000d000",
+      512
+     ],
+     [
+      "0x00000154",
+      128
+     ],
+     [
+      "0x00000150",
+      64
+     ],
+     [
+      "0x00000151",
+      64
+     ],
+     [
+      "0x00000140",
+      32
+     ],
+     [
+      "0x00000141",
+      32
+     ],
+     [
+      "0x0000014a",
+      32
+     ],
+     [
+      "0x0000014b",
+      32
+     ],
+     [
+      "0x00000100",
+      16
+     ],
+     [
+      "0x00000101",
+      16
+     ],
+     [
+      "0x00000112",
+      16
+     ],
+     [
+      "0x00000113",
+      16
+     ],
+     [
+      "0x00000128",
+      16
+     ],
+     [
+      "0x00000129",
+      16
+     ],
+     [
+      "0x0000013a",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-h32x16-lh.bin": "2897991fd46714ab53996d9f8a2f5387fc2f7612f8e2906e357eff5e427c0b2b"
+   }
+  },
+  {
+   "id": "chain-h16x64-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-h16x64-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-h16x64-lw.txt.gz",
+   "raw_sha256": "629086ff1a786dee0c5bdfa8823068fcefc8b4b344a7f9aca75cfa735360db41",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "b25a2ea54dfab664f3f10498ac7bdab18fd0c72a5b6df239145473d8d7a3c983",
+    "distinct": 65,
+    "values": [
+     [
+      "0x0000d000",
+      768
+     ],
+     [
+      "0x000002ab",
+      512
+     ],
+     [
+      "0x000002aa",
+      128
+     ],
+     [
+      "0x000002a8",
+      64
+     ],
+     [
+      "0x000002a9",
+      64
+     ],
+     [
+      "0x000002a0",
+      32
+     ],
+     [
+      "0x000002a2",
+      32
+     ],
+     [
+      "0x000002a5",
+      32
+     ],
+     [
+      "0x000002a7",
+      32
+     ],
+     [
+      "0x00000280",
+      16
+     ],
+     [
+      "0x00000282",
+      16
+     ],
+     [
+      "0x00000289",
+      16
+     ],
+     [
+      "0x0000028b",
+      16
+     ],
+     [
+      "0x00000294",
+      16
+     ],
+     [
+      "0x00000296",
+      16
+     ],
+     [
+      "0x0000029d",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-h16x64-lw.bin": "ca505e04e18206900a624d4c6e09365e3f275dbb3461b690ba6e9a04528a9df8"
+   }
+  },
+  {
+   "id": "chain-h16x64-lh",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-h16x64-lh.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-h16x64-lh.txt.gz",
+   "raw_sha256": "bf1325ac7f4975e044898f85bcacffe2e480ec0177daa19dfbf5139078b2867c",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "96e81f53ac71bc64c59eecbb549507b4216dd816b8406c2e377425d920c34af7",
+    "distinct": 33,
+    "values": [
+     [
+      "0x000002ab",
+      768
+     ],
+     [
+      "0x0000d000",
+      640
+     ],
+     [
+      "0x000002aa",
+      128
+     ],
+     [
+      "0x000002a8",
+      64
+     ],
+     [
+      "0x000002a9",
+      64
+     ],
+     [
+      "0x000002a0",
+      32
+     ],
+     [
+      "0x000002a2",
+      32
+     ],
+     [
+      "0x000002a5",
+      32
+     ],
+     [
+      "0x000002a7",
+      32
+     ],
+     [
+      "0x00000280",
+      16
+     ],
+     [
+      "0x00000282",
+      16
+     ],
+     [
+      "0x00000289",
+      16
+     ],
+     [
+      "0x0000028b",
+      16
+     ],
+     [
+      "0x00000294",
+      16
+     ],
+     [
+      "0x00000296",
+      16
+     ],
+     [
+      "0x0000029d",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-h16x64-lh.bin": "dcadf0edf14e5f0de8e2c396b4737410562140289506794280425f820deb4dd7"
+   }
+  },
+  {
+   "id": "chain-h32x16-mf",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-h32x16-mf.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-h32x16-mf.txt.gz",
+   "raw_sha256": "a02d1ed9ae730a2b2c230d3392322daa474b0156f6411cc0c7793f3ed5894faf",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "dbe5b5e9b4f608b310e2f03abb12b9bd17b50c8d85830908824405f35e557580",
+    "distinct": 37,
+    "values": [
+     [
+      "0x00000155",
+      896
+     ],
+     [
+      "0x0000d000",
+      320
+     ],
+     [
+      "0x000068ab",
+      128
+     ],
+     [
+      "0x00000152",
+      64
+     ],
+     [
+      "0x00000153",
+      64
+     ],
+     [
+      "0x000068a6",
+      64
+     ],
+     [
+      "0x000068a9",
+      64
+     ],
+     [
+      "0x00000148",
+      32
+     ],
+     [
+      "0x00000149",
+      32
+     ],
+     [
+      "0x0000688a",
+      32
+     ],
+     [
+      "0x0000689e",
+      32
+     ],
+     [
+      "0x000068a1",
+      32
+     ],
+     [
+      "0x000068a5",
+      32
+     ],
+     [
+      "0x00000120",
+      16
+     ],
+     [
+      "0x00000121",
+      16
+     ],
+     [
+      "0x00000139",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-h32x16-mf.bin": "8a350ad60dd7d33450f53d60d9ea155c687d026dbb55b61beece15f9f74e949d"
+   }
+  },
+  {
+   "id": "chain-64x32-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-64x32-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-64x32-lw.txt.gz",
+   "raw_sha256": "b0e7de7bd9e684e6a23520e992c291acc6274e594561135ca66aecaf69ac0aa8",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "6c9234a39d175f6136b715bea186f9030906d42ae0243f56392e7e761cee3bb3",
+    "distinct": 127,
+    "values": [
+     [
+      "0xd0000aaa",
+      512
+     ],
+     [
+      "0xd0000aa8",
+      128
+     ],
+     [
+      "0xd0000aa9",
+      128
+     ],
+     [
+      "0xd0000aa0",
+      64
+     ],
+     [
+      "0xd0000aa2",
+      64
+     ],
+     [
+      "0xd0000aa5",
+      64
+     ],
+     [
+      "0xd0000aa7",
+      64
+     ],
+     [
+      "0xd0000a80",
+      32
+     ],
+     [
+      "0xd0000a82",
+      32
+     ],
+     [
+      "0xd0000a89",
+      32
+     ],
+     [
+      "0xd0000a8b",
+      32
+     ],
+     [
+      "0xd0000a94",
+      32
+     ],
+     [
+      "0xd0000a96",
+      32
+     ],
+     [
+      "0xd0000a9d",
+      32
+     ],
+     [
+      "0xd0000a9f",
+      32
+     ],
+     [
+      "0xd0000a00",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-64x32-lw.bin": "7f787e794858d812460f9ff8795c5b4c12213a6768bdc09b7989e29edc6a685a"
+   }
+  },
+  {
+   "id": "chain-256x32-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-256x32-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-256x32-lw.txt.gz",
+   "raw_sha256": "34bac386bd189e39bde12b8ed322057c761ab2313a1efefdb6128fe7c1ccb27f",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "5edbf08880e57627a014a342725c0a37ea76ab77887cf882f7d090d8821b424d",
+    "distinct": 254,
+    "values": [
+     [
+      "0xd0002aac",
+      128
+     ],
+     [
+      "0xd0002aad",
+      128
+     ],
+     [
+      "0xd0002aa8",
+      64
+     ],
+     [
+      "0xd0002aa9",
+      64
+     ],
+     [
+      "0xd0002aaa",
+      64
+     ],
+     [
+      "0xd0002aab",
+      64
+     ],
+     [
+      "0xd0002aa0",
+      32
+     ],
+     [
+      "0xd0002aa1",
+      32
+     ],
+     [
+      "0xd0002aa2",
+      32
+     ],
+     [
+      "0xd0002aa3",
+      32
+     ],
+     [
+      "0xd0002aa4",
+      32
+     ],
+     [
+      "0xd0002aa5",
+      32
+     ],
+     [
+      "0xd0002aa6",
+      32
+     ],
+     [
+      "0xd0002aa7",
+      32
+     ],
+     [
+      "0xd0002a80",
+      16
+     ],
+     [
+      "0xd0002a82",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-256x32-lw.bin": "8570f115d0c9a875d7e9d9a66036c89b6c98bc1c889b900cff337997d150ea88"
+   }
+  },
+  {
+   "id": "chain-256x32-lb",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-256x32-lb.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-256x32-lb.txt.gz",
+   "raw_sha256": "72c9e796de5286754eeebb274eb799badecbbb9ffaa0a58d97c708b8660f8ea6",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "6d8e26e0f2eb2d884f83682c1cb9017de219543f970e64a7b5f0a0f942b28b57",
+    "distinct": 127,
+    "values": [
+     [
+      "0xd0002aae",
+      512
+     ],
+     [
+      "0xd0002aac",
+      128
+     ],
+     [
+      "0xd0002aad",
+      128
+     ],
+     [
+      "0xd0002aa8",
+      64
+     ],
+     [
+      "0xd0002aa9",
+      64
+     ],
+     [
+      "0xd0002aaa",
+      64
+     ],
+     [
+      "0xd0002aab",
+      64
+     ],
+     [
+      "0xd0002aa0",
+      32
+     ],
+     [
+      "0xd0002aa1",
+      32
+     ],
+     [
+      "0xd0002aa2",
+      32
+     ],
+     [
+      "0xd0002aa3",
+      32
+     ],
+     [
+      "0xd0002aa4",
+      32
+     ],
+     [
+      "0xd0002aa5",
+      32
+     ],
+     [
+      "0xd0002aa6",
+      32
+     ],
+     [
+      "0xd0002aa7",
+      32
+     ],
+     [
+      "0xd0002a80",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-256x32-lb.bin": "d7f5f71db2e6f8781787be01c39dd42146e4a05c947eac22ed52fe922d710dec"
+   }
+  },
+  {
+   "id": "chain-1d-lw",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-1d-lw.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-1d-lw.txt.gz",
+   "raw_sha256": "dd231ebf1b6bf922f0023bf05fe9d639a4dd3a886336bc0b08622e476cf011f3",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "bb017d098ae765b86978fb3c9ee86e162432284a733b6a61991a97659089ea8e",
+    "distinct": 127,
+    "values": [
+     [
+      "0xd000007e",
+      512
+     ],
+     [
+      "0xd000007c",
+      128
+     ],
+     [
+      "0xd000007d",
+      128
+     ],
+     [
+      "0xd0000078",
+      64
+     ],
+     [
+      "0xd0000079",
+      64
+     ],
+     [
+      "0xd000007a",
+      64
+     ],
+     [
+      "0xd000007b",
+      64
+     ],
+     [
+      "0xd0000070",
+      32
+     ],
+     [
+      "0xd0000071",
+      32
+     ],
+     [
+      "0xd0000072",
+      32
+     ],
+     [
+      "0xd0000073",
+      32
+     ],
+     [
+      "0xd0000074",
+      32
+     ],
+     [
+      "0xd0000075",
+      32
+     ],
+     [
+      "0xd0000076",
+      32
+     ],
+     [
+      "0xd0000077",
+      32
+     ],
+     [
+      "0xd0000060",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-1d-lw.bin": "24b90c8ed66fdc9e1b040a06a83124b32c112f7c1c4a771e70c3a0c35d0fd059"
+   }
+  },
+  {
+   "id": "chain-1d-lh",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-1d-lh.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-1d-lh.txt.gz",
+   "raw_sha256": "46b026e79b6bdf740e597199ad74911d976c4e123053a1fe44ce29353ae0a6f7",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "ee3256414c9725db59a499ccc6de895d1b3386e1dbdcc5342489013ab0d6e744",
+    "distinct": 63,
+    "values": [
+     [
+      "0xd000007e",
+      768
+     ],
+     [
+      "0xd000007c",
+      128
+     ],
+     [
+      "0xd000007d",
+      128
+     ],
+     [
+      "0xd0000078",
+      64
+     ],
+     [
+      "0xd0000079",
+      64
+     ],
+     [
+      "0xd000007a",
+      64
+     ],
+     [
+      "0xd000007b",
+      64
+     ],
+     [
+      "0xd0000070",
+      32
+     ],
+     [
+      "0xd0000071",
+      32
+     ],
+     [
+      "0xd0000072",
+      32
+     ],
+     [
+      "0xd0000073",
+      32
+     ],
+     [
+      "0xd0000074",
+      32
+     ],
+     [
+      "0xd0000075",
+      32
+     ],
+     [
+      "0xd0000076",
+      32
+     ],
+     [
+      "0xd0000077",
+      32
+     ],
+     [
+      "0xd0000060",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-1d-lh.bin": "90b080c3dab824c838d5361ec05a12541adf65baadf9c2882b76a03c0d8e4212"
+   }
+  },
+  {
+   "id": "chain-1d-max3",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --temps 32 --coords --pixels \"$S/bins/chain-1d-max3.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "chain/chain-1d-max3.txt.gz",
+   "raw_sha256": "c4aa18b5e18e15fcee6dc08f82c0437ad30c65196611bb6eead4bdea648764ee",
+   "pixels": {
+    "width": 64,
+    "height": 32,
+    "words": 2048,
+    "sha256": "1175effdf4d7e6b4616110abbd7c3765e987469303bd03a3ce2b4cde3721fd1f",
+    "distinct": 120,
+    "values": [
+     [
+      "0xd0000070",
+      160
+     ],
+     [
+      "0xd0000071",
+      160
+     ],
+     [
+      "0xd0000072",
+      160
+     ],
+     [
+      "0xd0000073",
+      160
+     ],
+     [
+      "0xd0000074",
+      160
+     ],
+     [
+      "0xd0000075",
+      160
+     ],
+     [
+      "0xd0000076",
+      160
+     ],
+     [
+      "0xd0000077",
+      160
+     ],
+     [
+      "0xd0000060",
+      16
+     ],
+     [
+      "0xd0000061",
+      16
+     ],
+     [
+      "0xd0000062",
+      16
+     ],
+     [
+      "0xd0000063",
+      16
+     ],
+     [
+      "0xd0000064",
+      16
+     ],
+     [
+      "0xd0000065",
+      16
+     ],
+     [
+      "0xd0000066",
+      16
+     ],
+     [
+      "0xd0000067",
+      16
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/chain-1d-max3.bin": "b8ef4322ce2c1bacbef49b77dde16df5a80c18773767d6ef5f1df241ab4455c7"
+   }
+  }
+ ],
+ "skipped": {}
+}
