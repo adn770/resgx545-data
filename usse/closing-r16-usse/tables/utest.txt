@@ -1,0 +1,30 @@
+#stage utest
+#limit 0
+# r16-usse utest, Q137 (rank-round16.md section 2, R16-5 a): the class 9 test field, one form and one join a program,
+# fields 0-15 packed one bit a field (`p0 or`) with the value of the operation, six input pairs whose results cover zero,
+# positive and negative (or #7: no zero result is possible); shl, shr, asr with registers, or and rol with #7, iadd32 and
+# iaddu32 sums, each with the a join and the o join; then the lane operations iadd8 and iadd16 on one pair of distinct
+# bytes, chan0-or02 by the nine fields the assembler names, the a join, and last the o join (the E530 family with lanes).
+# Frozen: H-RULE (E499/E529/E530 as sgx-sim gives it) against H-SETAND (a), H-AJOIN, H-ORFALSE, H-SETOR (o), H-CHAN0
+# (lanes). Controls that can fail: E499's and E529's kept tables (rawcond, rawjoin-o), replicated.
+# Stop: any fault or hang (#limit 0, safe class); the second row without its scratch readout.
+t-ctl-and-a|control|safe|reads:scratch|t10|probe --temps 32 "$S/bins/t-ctl-and-a.bin"
+t-ctl-and-o|control|safe|reads:scratch|t10|probe --temps 32 "$S/bins/t-ctl-and-o.bin"
+t-shl-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-shl-a.bin"
+t-shl-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-shl-o.bin"
+t-shr-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-shr-a.bin"
+t-shr-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-shr-o.bin"
+t-asr-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-asr-a.bin"
+t-asr-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-asr-o.bin"
+t-or7-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-or7-a.bin"
+t-or7-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-or7-o.bin"
+t-rol7-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-rol7-a.bin"
+t-rol7-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-rol7-o.bin"
+t-iadd32-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd32-a.bin"
+t-iadd32-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd32-o.bin"
+t-iaddu32-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iaddu32-a.bin"
+t-iaddu32-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iaddu32-o.bin"
+t-iadd8-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd8-a.bin"
+t-iadd16-a|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd16-a.bin"
+t-iadd8-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd8-o.bin"
+t-iadd16-o|heldout|safe|-|t10|probe --temps 32 "$S/bins/t-iadd16-o.bin"

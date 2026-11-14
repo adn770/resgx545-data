@@ -1,0 +1,82 @@
+# session.toml: the env of r16-usse, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r16-usse"
+prefix = "r16u"                 # laptop files under ~/scratch/r16u/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E597/E599's
+                                    # client fills ran in under 10 ms
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# R16-1 (a), R16-5 (a), DECISIONS-R16.md: uadd (7, Q126), utest (20, Q137; the lane rows with the o join
+# last), urpt (3, Q126's write mask on the test: a field no job ran, so the session's last stage): 30
+# jobs, safe class, tool t10 only; each stage has its own controls (no gate)
+[stages]
+uadd = { alarm = 900 }
+utest = { alarm = 1200 }
+urpt = { alarm = 600, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b5288c82ed2217ae6c7fa5cb7d4674c8008873"
+data = "62cb03b369ca5fabedf3dc83cee43e79e2283968"
+# every repository file the generator (gen/), the scorer or the tests read: the kept vector files the
+# controls replicate and the sim replays (E499, E529, E530, E521, E498), the sim and assembler
+# sources the generator builds from `git archive` of this commit (gen/pins.py) and the tool's source
+pins = [
+    "data:vectors/nokernel/usse/iaddu32-pairs/usse-iaddu32-pairs-iaddu32-testnat.vec.json",
+    "data:vectors/nokernel/usse/iaddu32-pairs/usse-iaddu32-pairs-iaddu32-testpat.vec.json",
+    "data:vectors/nokernel/usse/iaddu32-pairs/usse-iaddu32-pairs-iaddu32-testtanz.vec.json",
+    "data:vectors/nokernel/usse/iaddu32-pairs/usse-iaddu32-pairs-iaddu32-testtaz.vec.json",
+    "data:vectors/nokernel/usse/rawchan-1/usse-rawchan-1-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-2/usse-rawchan-2-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-3/usse-rawchan-3-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-4/usse-rawchan-4-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-5/usse-rawchan-5-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-6/usse-rawchan-6-and.vec.json",
+    "data:vectors/nokernel/usse/rawchan-7/usse-rawchan-7-and.vec.json",
+    "data:vectors/nokernel/usse/rawcond/usse-rawcond-and-codes.vec.json",
+    "data:vectors/nokernel/usse/rawcond2/usse-rawcond2-and-imm.vec.json",
+    "data:vectors/nokernel/usse/rawcond2/usse-rawcond2-or-reg.vec.json",
+    "data:vectors/nokernel/usse/rawcond2/usse-rawcond2-rol-reg.vec.json",
+    "data:vectors/nokernel/usse/rawcond2/usse-rawcond2-xor-imm.vec.json",
+    "data:vectors/nokernel/usse/rawcond2/usse-rawcond2-xor-reg.vec.json",
+    "data:vectors/nokernel/usse/rawjoin-o/usse-rawjoin-o-and.vec.json",
+    "data:vectors/nokernel/usse/rawjoin-o2-and7/usse-rawjoin-o2-and7-fields.vec.json",
+    "data:vectors/nokernel/usse/rawjoin-o2-or/usse-rawjoin-o2-or-fields.vec.json",
+    "data:vectors/nokernel/usse/rawjoin-o2-xor/usse-rawjoin-o2-xor-fields.vec.json",
+    "data:vectors/usse/decoder-vectors/usse-decoder-vectors-iaddu32-taz.vec.json",
+    "data:vectors/usse/integer/usse-integer-iaddu32-value.vec.json",
+    "resgx545:crates/sgx-sim/src/usse.rs",
+    "resgx545:crates/sgx-sim/src/vectors.rs",
+    "resgx545:crates/sgx-tools/src/bin/sgx-sim.rs",
+    "resgx545:crates/sgx-tools/src/bin/usse-asm.rs",
+    "resgx545:crates/usse-isa/src/kinds.rs",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
