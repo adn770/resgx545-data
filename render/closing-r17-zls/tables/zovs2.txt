@@ -1,0 +1,9 @@
+#stage zovs2
+#limit 0
+# R17-1 (a), R17-5 (a), plan section 2 "zovp2", Q299 (E1068): the stencil load pass over overlapping tiles with edge
+# tiles (E988's st1 form at 65 x 33 G 1 and 63 x 31 G 0: H-OVL-PASS-EDGE, H-EDGE-SKIP, H-EDGE-EXT, H-EDGE-CLIP).
+# Control that can fail: zo2-c-s160 (E1064's zo-s-160, kept stencil store byte for byte). Stop: any fault or hang; a
+# row without job: ok or without its --depth-pages (24).
+zo2-c-s160|control|safe|expectdiff reads:drawn,sst_changed|t10|tri --keep-going --wait-ms 20000 --tri-full --width 160 --height 48 --max-width 160 --max-height 48 --depth --depth-ctl 0x00173016 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump "$W" --pixels
+zo2-s-65|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 65 --height 33 --max-width 65 --max-height 33 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-pages 20 --depth-dump "$W" --pixels
+zo2-s-63|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --tri-full --width 63 --height 31 --max-width 63 --max-height 31 --depth --depth-ctl 0x00173006 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-pages 20 --depth-dump "$W" --pixels

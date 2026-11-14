@@ -1,0 +1,32 @@
+twin records per slot [44, 44, 44, 44, 44, 44, 44, 0, 44]
+row written 396 2048 2443
+  packed record 0 (dwords 2048): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 1 (dwords 2092): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 2 (dwords 2136): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 3 (dwords 2180): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 4 (dwords 2224): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 5 (dwords 2268): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 6 (dwords 2312): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 7 (dwords 2356): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+  packed record 8 (dwords 2400): twin slot [0, 1, 2, 3, 4, 5, 6, 8]
+twin concat equals the run minus the extra record at k=7: True ; run[:308] == twin[:308]: True
+record 7 values vs record 6: True vs record 8: True
+record 7 first values ['0x3f000000', '0x9e0000', '0x3f0000', '0x3f000000', '0x9e0000', '0xc0']
+twin slot 7 non-fill 0 twin blocks beyond slot 8 44
+tile (c=1, r=2) is slot 7
+zo2-s-65: bytes off PASS-EDGE 363
+ owner tile (0, 2) {'loaded': 352, 'inverted': 128}
+    loaded 352 of them consistent with the test (bit 0 of the load 0 <=> inverted): 256 rows x range [33, 35, 37] [0, 1, 2]
+    inverted 128 of them consistent with the test (bit 0 of the load 0 <=> inverted): 128 rows x range [34, 36, 38] [0, 1, 2]
+ owner tile (1, 2) {'loaded': 352, 'inverted': 128}
+    loaded 352 of them consistent with the test (bit 0 of the load 0 <=> inverted): 256 rows x range [33, 35, 37] [32, 33, 34]
+    inverted 128 of them consistent with the test (bit 0 of the load 0 <=> inverted): 128 rows x range [34, 36, 38] [32, 33, 34]
+ owner tile (2, 2) {'inverted': 84, 'loaded': 427}
+    inverted 84 of them consistent with the test (bit 0 of the load 0 <=> inverted): 84 rows x range [32, 34, 36] [64, 65, 66]
+    loaded 427 of them consistent with the test (bit 0 of the load 0 <=> inverted): 256 rows x range [32, 33, 34] [64, 65, 66]
+zo2-s-65: H-OVL-PASS-EDGE with the pixels beyond the band (x + 0.5 < 1.25 W, y + 0.5 < 1.25 H) keeping their load: 3584/3584 bytes
+zo2-s-63: H-OVL-PASS-EDGE with the pixels beyond the band (x + 0.5 < 1.25 W, y + 0.5 < 1.25 H) keeping their load: 1536/1536 bytes
+zb20-b-6-96: twin's non-fill dwords 396 in slots [0, 1, 2, 3, 4, 5, 6, 8, 10]; row's run 2048..2443 (396), equal to the twin's dwords in address order from 2048: True
+zb20-b-6-128: twin's non-fill dwords 704 in slots [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; row's run 2048..2751 (704), equal to the twin's dwords in address order from 2048: True
+zb20-b-7-96: twin's non-fill dwords 108 in slots [0, 1, 2, 3, 4, 5]; row's run 2048..2155 (108), equal to the twin's dwords in address order from 2048: True
+zb20-b-7-128: twin's non-fill dwords 192 in slots [0, 1, 2, 3, 4, 5, 6, 7]; row's run 2048..2239 (192), equal to the twin's dwords in address order from 2048: True
