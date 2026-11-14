@@ -1,0 +1,23 @@
+#stage srgb4
+#limit 0
+# r14-tex srgb4, Q282 (rank-round14.md section 2): the trilinear sRGB level lerp (T0 0x0FFC1600: bit 27, bit 9;
+# smp2dreplace) on srgb3-tri's 16 x 16 counting chain at LOD 1.125, 1.5, 1.75, 1.984375, 0.25 and 1.2 (Q-FLOOR against
+# Q-NEAR) and on a dark 4 x 4 chain (LOD 0.125); frozen per pixel (gen/srgb4.py, c2's rule_b.py pinned): TRI-RNTU (tested;
+# -NF its third result unflushed) against TRI-G15 (-NF), TRI-RNE, TRI-BF11, TRI-OUT. Bytes 2 and 3 (tx_map_r11.s: the
+# sample's second dword) on the x stage alone, the y stage alone and both: B2-FTZ-OUT (low half), A-LIN against A-SRGB
+# and A-BYTE (high half). Controls that can fail: E723's g-bl-st-a, srgb3-tri rerun (kept images), the r11 program on
+# srgb3-x1's texture with byte 2 = byte 0 (srgb3-x1's kept low halves). Stop: any fault or hang; the second row
+# without its pixel rows.
+srgb4-ctl|control|safe|reads:pixels|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-ctl.bin"
+srgb4-trir|control|safe|reads:pixels|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-trir.bin"
+srgb4-b2x1|control|safe|reads:pixels|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-b2x1.bin"
+srgb4-t1125|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t1125.bin"
+srgb4-t15|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t15.bin"
+srgb4-t175|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t175.bin"
+srgb4-t1984|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t1984.bin"
+srgb4-t025|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t025.bin"
+srgb4-t12|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-t12.bin"
+srgb4-tdark|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-tdark.bin"
+srgb4-ax|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-ax.bin"
+srgb4-ay|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-ay.bin"
+srgb4-axy|heldout|safe|-|t10|probe --temps 32 --coords --pixels "$S/bins/srgb4-axy.bin"
