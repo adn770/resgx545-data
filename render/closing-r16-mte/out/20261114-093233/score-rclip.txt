@@ -1,0 +1,21 @@
+CONTROL g-clear-64: G 4096 B 0 S 0 X 0 (gate: E348's clear clip of the whole 64 x 64 target, equal to the no-clip image): PASS
+CONTROL g-twin-64: G 4096 B 0 S 0 X 0 (the gate's no-clip twin (block 0xdf43)): PASS
+ROW vp64-e348: G 1536 B 2560 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p64-c0-r23: G 1024 B 3072 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p64-c01-r0: G 1024 B 3072 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p128-c12-r12: G 2048 B 14336 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p128-c3-r04: G 2560 B 13824 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW e128-on-full: G 16384 B 0 S 0 X 0: held; rivals allowing it: FLIP+BG+EN, NOCLIP+BG+EN, TILECLIP+UNTOUCHED+EN, TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW e128-off: G 16384 B 0 S 0 X 0: held; rivals allowing it: EXCL+BG+EN, FLIP+BG+EN, FLIPEXCL+BG+EN, PIXEL+BG+EN, PIXEXCL+BG+EN, PIXFLIP+BG+EN, PIXFLIPEXCL+BG+EN, NOCLIP+BG+EN, TILECLIP+UNTOUCHED+EN
+ROW s128-tri: G 1728 B 14656 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p256-c2-r39: G 3584 B 61952 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW p256-c56-r1015: G 6144 B 59392 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW m256-c34-r59: G 5120 B 60416 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW e100x60-c23-r23: G 1008 B 4992 S 0 X 0: held; rivals allowing it: TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+ROW z128-empty: G 0 B 16384 S 0 X 0: held; rivals allowing it: EXCL+BG+EN, FLIPEXCL+BG+EN, PIXEL+BG+EN, PIXEXCL+BG+EN, PIXFLIP+BG+EN, PIXFLIPEXCL+BG+EN, TILECLIP+BG+ALWAYS, TILECLIP+BG+OFFDROP
+READING rclip: 1 of 54 combinations allowed by every decided row: TILECLIP+BG+EN
+READING rclip form: H-TILECLIP
+READING rclip outside: H-BG
+READING rclip enable: H-EN
+RETIRE rclip: yes: one form (H-TILECLIP), one outside (H-BG), one enable (H-EN) on 15 decided rows, both controls PASS
+SUMMARY: rclip: Q116: the region clip keeps whole 32 x 16 tiles, first to last inclusive, rows from memory row 0; the background writes the rest; bit 31 clear turns it off (H-TILECLIP + H-BG + H-EN) (13 of 13 rows decided)

@@ -1,0 +1,26 @@
+#stage rclip
+#limit 0
+# R16-4 (a) rclip, Q116 (E347, E348): the MTE state's region clip (presence bit 7, two words) added to the probe triangle's
+# block by t10's `--blk-add 7=C0,C1` (0xdf43 -> 0xdfc3, the closed driver's own triangle-with-clip block), never run before.
+# One program on every row: pix_green.bin (0xff00ff00), the background object 0xff203040, the target's sentinel 0xdeadbeef.
+# Frozen (gen/model.py): H-TILECLIP (E348: 32 x 16 tiles, inclusive, rows from the window's y = 0 = memory row 0 under the
+# tool's positive y scale) + H-BG (outside: the background) + H-EN (bit 31 clear: no clip); rivals H-EXCL, H-FLIP (rows from
+# the last tile row), H-PIXEL (bounds in pixels) and their mixes, H-NOCLIP, H-UNTOUCHED, H-ALWAYS, H-OFFDROP.
+# Gate first: E348's clear clip of the whole 64 x 64 target (0x80000001, 0x00000003 = its formula), then its no-clip twin.
+# The empty-clip row last (on_stop = "end"). Stop: any fault or hang (#limit 0); hook_check: a row without its W x H pixels,
+# a value other than the three, or a gate row whose image is not all 0xff00ff00.
+g-clear-64|control|safe|reads:pixels,o0|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000003 "$S/bins/pix_green.bin"
+g-twin-64|control|safe|reads:pixels,o0|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full "$S/bins/pix_green.bin"
+vp64-e348|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80010001,0x00010003 "$S/bins/pix_green.bin"
+p64-c0-r23|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000000,0x00020003 "$S/bins/pix_green.bin"
+p64-c01-r0|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000000 "$S/bins/pix_green.bin"
+p128-c12-r12|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80010002,0x00010002 "$S/bins/pix_green.bin"
+p128-c3-r04|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80030003,0x00000004 "$S/bins/pix_green.bin"
+e128-on-full|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80000003,0x00000007 "$S/bins/pix_green.bin"
+e128-off|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x00010002,0x00020004 "$S/bins/pix_green.bin"
+s128-tri|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80000001,0x00010003 "$S/bins/pix_green.bin"
+p256-c2-r39|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80020002,0x00030009 "$S/bins/pix_green.bin"
+p256-c56-r1015|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80050006,0x000a000f "$S/bins/pix_green.bin"
+m256-c34-r59|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80030004,0x00050009 "$S/bins/pix_green.bin"
+e100x60-c23-r23|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 100 --height 60 --tri-full --blk-add 7=0x80020003,0x00020003 "$S/bins/pix_green.bin"
+z128-empty|heldout|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80030003,0x00040007 "$S/bins/pix_green.bin"
