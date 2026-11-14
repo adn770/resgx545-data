@@ -1,0 +1,58 @@
+## stage clipr of r14i
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127094096 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r14i.v884aF
+## clock
+Sat Nov 14 06:03:57 CET 2026
+== clipr-ctl-far21 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+  rc 0 job: ok target: 64x64 hash 0x72c607bcf3ce63c5 diff: 0 of 4096 pixels 
+  class ok
+  premise clipr-ctl-far21 [job pixels]: job=ok drawn=208 pixels=4096 hash=0x72c607bcf3ce63c5 diff=0 
+== clipr-tie-a set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,10637,4096,6669,4198400,5901 --pixels
+  rc 0 job: ok target: 64x64 hash 0x45b38b25809b53a5 diff: 0 of 4096 pixels 
+  class ok
+== clipr-tie-b set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,11900,4096,9980,4198400,13308 --pixels
+  rc 0 job: ok target: 64x64 hash 0x727bbf01c2701df0 diff: 0 of 4096 pixels 
+  class ok
+== clipr-tie-c set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,1234,4096,7245,36864,-2541 --pixels
+  rc 0 job: ok target: 64x64 hash 0xc9b60bb9203bd165 diff: 0 of 4096 pixels 
+  class ok
+== clipr-w4-d set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 9 --tri-v 1024,2292,1024,3852,2560000,2313 --pixels
+  rc 0 job: ok target: 4096x16 hash 0x9daf407d5b176850 diff: 0 of 65536 pixels 
+  class ok
+== clipr-w4-e set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 9 --tri-v 2096128,516,2096128,2052,-512000,-3 --pixels
+  rc 0 job: ok target: 4096x16 hash 0xb9a574c6e827ba30 diff: 0 of 65536 pixels 
+  class ok
+== clipr-w4-f set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 5 --tri-v 136,145,216,367,536870912,-4449 --pixels
+  rc 1 job: ok target: 4096x16 hash 0xa9dc65e2bbd887a5 diff: 371 of 65536 pixels, first (3725, 4) 0xff00ff00 expected 0xff203040 
+  class ok
+== clipr-ctl-x30p set=control risk=safe tool=t10 knobs=[expectdiff reads:job,pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,1073741824,132369010 --pixels
+  rc 1 job: ok target: 64x64 hash 0x91abbd5e680d0085 diff: 2 of 4096 pixels, first (7, 9) 0xff00ff00 expected 0xff203040 
+  class ok
+  premise clipr-ctl-x30p [job pixels]: job=ok drawn=2492 pixels=4096 hash=0x91abbd5e680d0085 diff=2 
+== clipr-i32-x set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,2147483647,-316842494 --pixels
+  rc 1 job: ok target: 64x64 hash 0xe583e67f10db09f0 diff: 1215 of 4096 pixels, first (63, 1) 0xff00ff00 expected 0xff203040 
+  class ok
+== clipr-i32-y set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,-104242616,-2147483648 --pixels
+  rc 1 job: ok target: 64x64 hash 0x7af4bb96dde384d0 diff: 1492 of 4096 pixels, first (4, 0) 0xff00ff00 expected 0xff203040 
+  class ok
+## end: 10 jobs of clipr
+## kernel log (journalctl)

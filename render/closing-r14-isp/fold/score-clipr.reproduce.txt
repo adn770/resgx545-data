@@ -1,0 +1,30 @@
+CONTROL clipr-ctl-far21 (64x64): kept image held; H-VP held; H-TGT held; H-MAX4 held; H-MIN4 held; H-ABS held; H-EXACT held; bound:pos-x fits [64..96]: PASS
+ROW clipr-tie-a (heldout, 64x64): CLIP-HU held; CLIP-HA held; CLIP-RNE FAILED; CLIP-TR FAILED; H-EXACT FAILED; decisive pixels 2: CLIP-HU 2, CLIP-HA 2, CLIP-RNE 0, CLIP-TR 0
+ROW clipr-tie-b (heldout, 64x64): CLIP-HU held; CLIP-HA held; CLIP-RNE held; CLIP-TR FAILED; H-EXACT FAILED; decisive pixels 5: CLIP-HU 5, CLIP-HA 5, CLIP-RNE 5, CLIP-TR 0
+ROW clipr-tie-c (heldout, 64x64): CLIP-HU FAILED; CLIP-HA held; CLIP-RNE held; CLIP-TR FAILED; H-EXACT FAILED; decisive pixels 1: CLIP-HU 0, CLIP-HA 1, CLIP-RNE 1, CLIP-TR 0
+ROW clipr-w4-d (heldout, 4096x16): IN-E607 held; IN-HU held; IN-RNE FAILED; IN-TR FAILED; H-MIN4 FAILED; H-ABS held; decisive pixels 280: IN-E607 280, IN-HU 280, IN-RNE 0, IN-TR 0
+ROW clipr-w4-e (heldout, 4096x16): IN-E607 held; IN-HU FAILED; IN-RNE held; IN-TR FAILED; H-MIN4 FAILED; H-ABS FAILED; decisive pixels 16: IN-E607 16, IN-HU 0, IN-RNE 16, IN-TR 0
+ROW clipr-w4-f (heldout, 4096x16): H-VP held; H-TGT held; H-MAX4 held; H-MIN4 FAILED; H-ABS held; H-EXACT FAILED; bound:pos-x fits [5120]
+CONTROL clipr-ctl-x30p (64x64): kept image held; H-VP held; H-TGT held; H-MAX4 held; H-MIN4 held; H-ABS held; H-EXACT held; bound:pos-x fits [64, 67, 69, 71, 73, 76, 78, 80, 85, 87, 89, 92, 94, 96]: PASS
+ROW clipr-i32-x (heldout, 64x64): H-VP held; H-TGT held; H-MAX4 held; H-MIN4 held; H-ABS held; H-EXACT FAILED; H-SAT FAILED; H-WRAP FAILED; H-CULL FAILED; bound:pos-x fits [71, 80, 93]
+ROW clipr-i32-y (heldout, 64x64): H-VP held; H-TGT held; H-MAX4 held; H-MIN4 held; H-ABS held; H-EXACT FAILED; H-SAT FAILED; H-WRAP FAILED; H-CULL FAILED; bound:neg-y fits [-30, -28, -23, -21, -16, -14, -9, -7, -2, 0]
+SUMMARY: clipr: CLIP-HU: CLIP-HU: H-HALFUP-CLIP: a clip-made vertex is rounded half up (floor(256 x + 1/2)) is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: clipr: CLIP-HA: CLIP-HA: H-HAZ-CLIP: half away from zero (3 of 3 rows decided)
+SUMMARY: clipr: CLIP-RNE: CLIP-RNE: H-RNE-CLIP: half to even is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: clipr: CLIP-TR: CLIP-TR: H-TRUNC-CLIP: toward zero is not supported: 0 held, 3 FAILED, 0 cannot tell of 3
+SUMMARY: clipr: H-EXACT: H-EXACT: no clip: the exact triangle is not supported: 0 held, 6 FAILED, 0 cannot tell of 6
+SUMMARY: clipr: IN-E607: IN-E607: a vertex inside the guard rounds as E607 (half up) and E943 (below 0 away from zero) (2 of 2 rows decided)
+SUMMARY: clipr: IN-HU: IN-HU: a vertex inside the guard rounds half up at both signs is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: clipr: IN-RNE: IN-RNE: a vertex inside the guard rounds half to even is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: clipr: IN-TR: IN-TR: a vertex inside the guard rounds toward zero is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: clipr: H-MIN4: H-MIN4: the guard is a quarter of min(W, H) past each edge is not supported: 2 held, 3 FAILED, 0 cannot tell of 5
+SUMMARY: clipr: H-ABS: H-ABS: the guard is fixed in pixels (x >= -16, y in [-16, 80]) is not supported: 4 held, 1 FAILED, 0 cannot tell of 5
+SUMMARY: clipr: H-VP: H-VP: the guard is a quarter of the viewport past each edge (clip x, y within 1.5 w) (3 of 3 rows decided)
+SUMMARY: clipr: H-TGT: H-TGT: the guard is a quarter of the target past each edge (3 of 3 rows decided)
+SUMMARY: clipr: H-MAX4: H-MAX4: the guard is a quarter of max(W, H) past each edge (3 of 3 rows decided)
+SUMMARY: clipr: H-SAT: H-SAT: the far vertex saturates a 24.8 word is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: clipr: H-WRAP: H-WRAP: the far vertex wraps a 24.8 word is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: clipr: H-CULL: H-CULL: the triangle is removed is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+READING clipr family 4096x16 bound:pos-x: [5120] over 1 rows
+READING clipr family 64x64 bound:neg-y: [-30, -28, -23, -21, -16, -14, -9, -7, -2, 0] over 1 rows
+READING clipr family 64x64 bound:pos-x: [71, 80, 93] over 1 rows
