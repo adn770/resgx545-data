@@ -1,0 +1,22 @@
+#stage tw16
+#limit 0
+# r16-tw tw16, Q078 T3 bit 14 on twiddled textures: E1049's post hoc bilinear form held out (inside, left edge, right edge, v edge, H 16) and point reads at H 8, 16 and 64 (rank-round16.md section 2 r16-tw; SAFE CLASS, R16-2 a). gen/tw16.py. t14: probe --scratch-pages 256 (1 MiB = dwords 0 to 262143).
+# Rows in ascending reach (the farthest dword of every frozen model, gen/tw16.py reach(); the largest 224351, tests/test_gen.py); the H 64 rows last. The H 16 rows print their sentinel dword (run/hooks.sh, tests) or hook_check stops the stage before any farther row.
+# #limit 0, no expectfault: any fault or hang stops the stage (4); session.toml's on_stop = end ends the session on a hook stop (24): an ok row without its 32 pixel rows, its 1024 KiB scratch line or (H 16 rows) its sentinel.
+ref32h8|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/ref32h8.bin"
+ref16h64|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/ref16h64.bin"
+pt128h8|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt128h8.bin"
+pt128h16|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt128h16.bin"
+pt32h8|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt32h8.bin"
+pt32h16|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt32h16.bin"
+bl16h16in|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl16h16in.bin"
+bl64left|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl64left.bin"
+bl128h16right|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl128h16right.bin"
+bl128vedge|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl128vedge.bin"
+bl64in|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl64in.bin"
+bl32r|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl32r.bin"
+bl128right|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl128right.bin"
+pt16h64u0|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt16h64u0.bin"
+pt16h64u1|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt16h64u1.bin"
+pt64h64u0|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt64h64u0.bin"
+pt64h64u1|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt64h64u1.bin"

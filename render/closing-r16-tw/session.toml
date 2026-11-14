@@ -1,0 +1,83 @@
+# session.toml: the env of r16-tw, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r16-tw"
+prefix = "r16w"                 # laptop files under ~/scratch/r16w/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): E1049's probes
+                                    # at 256 scratch pages ended well inside it
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--poke", "--kpoke-fill", "--tadata-fill-render", "--scratch-at", "--scratch",
+                  "--low", "--late", "--kpoke-job", "--kpoke-render", "--kpoke-render2", "--refill",
+                  "--scratch-heap", "--pds", "--use", "--stamp"]   # tw16 sets only
+                                    # --scratch-pages (and the probe's --temps, --coords, --pixels)
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t14]
+path = "sgxfive-test-t14"
+sha256 = "aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859"
+built_from = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+recipe = "data:render/closing-r14-flag/lead/build_tool14.sh"
+source = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# closing16/DECISIONS-R16.md R16-2 (a): one stage, the round's last session; any fault or hang
+# stops it (#limit 0, rc 4, which ends the session), and its rc 24 (hook_check: an ok row without
+# its 32 pixel rows, its 1024 KiB scratch line, or an H 16 row without its sentinel) ends the
+# session too (on_stop = "end"): no row past it runs.
+[stages]
+tw16 = { alarm = 900, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b5288c82ed2217ae6c7fa5cb7d4674c8008873"
+data = "62cb03b369ca5fabedf3dc83cee43e79e2283968"
+# every repository file the generator (gen/), the scorer or the tests read: p1141's template,
+# builder and texmodel (the programs); r15-tw's published generator files gen/ copies, its tw.py
+# (E1049's rows and reach), its tw-bl32 program (bl32r) and E1049's kept images
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/texmodel.py",
+    "data:render/closing-r15-tw/gen/tw.py",
+    "data:render/closing-r15-tw/gen/law.py",
+    "data:render/closing-r15-tw/gen/pins.py",
+    "data:render/closing-r15-tw/gen/tex.py",
+    "data:render/closing-r15-tw/lead/build_tool14.sh",
+    "data:render/closing-r15-tw/fold/bilin_forms.py",
+    "data:render/closing-r15-tw/bins/tw-bl32.bin",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/cases.tsv",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw-bl32.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw-bl16.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw16-u0.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw16-u1.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw64-u0.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw64-u2.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw128-u0.txt.gz",
+    "data:render/closing-r15-tw/out/20261114-074356/tw14/tw128-u2.txt.gz"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
