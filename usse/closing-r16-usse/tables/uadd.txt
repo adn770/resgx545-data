@@ -1,0 +1,15 @@
+#stage uadd
+#limit 0
+# r16-usse uadd, Q126 (rank-round16.md section 2, R16-5 a): iaddu32 over eight (r1, source 2) pairs a program, each
+# result stored to its own scratch dword (E599's pattern, client fills); r1's low half 0x8000-0xffff in seven pairs, 0x7fff
+# in one (both extensions agree there). Forms not run before: source 2 #1, #127 and c56 (0xffffffff), the destinations i0
+# and sa0 (read back by mov). Frozen: H-ZX (E521; sgx-sim) against H-SX. The write masks are stage urpt, the session's last.
+# Controls that can fail: E521's pairs and E498's iaddu32 tests over two pairs, replicated (kept readbacks).
+# Stop: any fault or hang (#limit 0, safe class); the second row without its scratch readout.
+u-ctl-e521|control|safe|reads:scratch|t10|probe --temps 32 "$S/bins/u-ctl-e521.bin"
+u-ctl-e498|control|safe|reads:scratch|t10|probe --temps 32 "$S/bins/u-ctl-e498.bin"
+u-imm1|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-imm1.bin"
+u-imm127|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-imm127.bin"
+u-c56|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-c56.bin"
+u-i0|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-i0.bin"
+u-sa0|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-sa0.bin"

@@ -1,0 +1,11 @@
+#stage urpt
+#limit 0
+# r16-usse urpt, Q126's repeat (rank-round16.md section 2, R16-5 a): iaddu32 r10.xy and r10.xyzw (the write mask of the
+# test, a field no job ran on a class 9 word; sgx-sim refuses it), sources r1 + k and r5 + k, r10-r13 preset to markers, the
+# same eight pairs as uadd's. Frozen: H-ZX-ADV (component k writes d + k from the sources advanced by k, as the other
+# forms' masks, with E521's extension) against H-SX, H-NOREP (only d written) and H-NOADV (every component d's value).
+# Control that can fail: E521's pairs again, first. The session's last stage (on_stop = "end").
+# Stop: any fault or hang (#limit 0, safe class); the second row without its scratch readout.
+u-ctl-rpt|control|safe|reads:scratch|t10|probe --temps 32 "$S/bins/u-ctl-rpt.bin"
+u-rpt2|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-rpt2.bin"
+u-rpt4|heldout|safe|-|t10|probe --temps 32 "$S/bins/u-rpt4.bin"
