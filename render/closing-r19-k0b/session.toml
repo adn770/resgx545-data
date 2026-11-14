@@ -1,0 +1,93 @@
+# session.toml: the env of r19-k0 (round 19 S1, closing19/plan/rank-round19.md section 2: the
+# E0CC4027 module's own controls, stages k0 and f0, records E1077 and E1078), built with the session
+# kit (HACKING.md, "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r19-k0b"
+prefix = "r19k2"                # laptop files under ~/scratch/r19k2/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = ["render_param", "render_tadata", "render_words", "buf09"]   # --dump-render, --words
+outdir_opts = ["--dump-render", "--words", "--depth-dump"]   # every one writes into $W itself
+# read by run/hooks.sh: ctl:KEY=V a control's frozen reading (hook_check stops the stage on
+# another), stop:jobfail a final ending neither ok nor overflowed stops the stage (f0-down)
+extra_knobs = ["ctl:drawn=2048", "ctl:dsha=92f04c7ca9c6de01", "ctl:dst=2048", "ctl:knob=0x294",
+               "ctl:knob=0x6", "ctl:nparts=1", "ctl:ovf1=0", "ctl:ovf1=1", "ctl:ovf2=0",
+               "ctl:pmask=ed097a084afcb70a", "ctl:tadata=ddf914f07fc9cda1", "ctl:thr2=0x1de",
+               "ctl:thr2=0xde", "stop:jobfail"]
+forbid_options = ["--fault", "--scratch-at", "--kpoke-job", "--kpoke-fill", "--kpoke-render2",
+                  "--tadata-fill-render", "--refill", "--low", "--late", "--ctx2", "--kreg-render",
+                  "--share-pb"]     # the rows' only pokes are zb-c-ctl's (README.md)
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t18b]
+path = "sgxfive-test-t18b"
+sha256 = "58e7985504d0d3311155d94627da8b8473335d9a843f5610e44731864315b21e"
+built_from = "ec50498e6b5cbf3ebff07233da508023dd28f4a2:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "70aa910e14ae8040072b8c2cde5991830c4dcfe6bcd35ccf722c080ee9f38e29"
+recipe = "data:render/closing-r19-k0b/lead/build_tool18b.sh"
+source = "ec50498e6b5cbf3ebff07233da508023dd28f4a2:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "70aa910e14ae8040072b8c2cde5991830c4dcfe6bcd35ccf722c080ee9f38e29"
+
+[tools.rt]
+wraps = true
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t10 or t18b; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+# render_pb_pages: P (gen/plan.py; thr0 = P - 0x22); render_final_pb_pages: t18b's
+# --final-pb-pages writes it itself (the kernel's next context takes it once), declared at 0 only
+[knobs]
+render_pb_pages = { default = "0x422", values = ["0x2b6", "0xe2", "0x162", "0x28", "0x30", "0x24", "0x100", "0x422"] }
+render_final_pb_pages = { default = "0", values = ["0"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# R19-1 a: k0 or kg off stops the round (end); kg gated on k0's controls, f0 on k0's and kg's;
+# k0 and kg are the plan's stage k0 (E1077), split so that each stage's rows keep the same files
+[stages]
+k0 = { alarm = 900, on_stop = "end" }
+kg = { alarm = 600, gate = true, on_stop = "end" }
+f0 = { alarm = 900, gate = true, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "50606dc1cd1272ada446ac439befa8074f425c69"
+data = "95df71e98c9575b7a135ff0b38ae5d58adc5ddee"
+# every repository file the generator, reader or tests read: the kept twins of k0's rows, the
+# program, r10-dpm's timeline reader (score/r10read.py is its byte copy), the round 18 recipe
+pins = [
+    "data:render/closing-r13-dpm/bins/p1139-green.bin",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-2.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-2.txt.gz",
+    "data:render/closing-r10-dpm/out/20261113-102513/s6rep/a0-cal-2048.txt.gz",
+    "data:render/closing-r10-dpm/out/20261113-102513/s6rep/a0-cal-2048.p1139-green.param.bin.gz",
+    "data:render/closing-r10-dpm/out/20261113-102513/s6rep/a0-cal-2048.p1139-green.tadata.bin.gz",
+    "data:render/closing-r9-ldpm/out/20261113-082650/a0/a0-cal-2048.p1139-green.param.bin.gz",
+    "data:render/closing-r9-ldpm/out/20261113-082650/a0/a0-cal-2048.p1139-green.tadata.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-ctl.txt.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-ctl.depth-store.1.bin.gz",
+    "data:render/closing-r10-dpm/score/read.py",
+    "data:render/closing-r13-dpm/tables/pr2.txt",
+    "data:render/closing-r10-dpm/tables/s6rep.txt",
+    "data:render/closing-r13-zls/tables/zbase.txt",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
