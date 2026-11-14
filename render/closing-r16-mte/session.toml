@@ -1,0 +1,65 @@
+# session.toml: the env of r16-mte, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r16-mte"
+prefix = "r16m"                 # laptop files under ~/scratch/r16m/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); r3k-regress's
+                                    # probe --tri --tri-full rows up to 256 x 256 ran in seconds
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--poke", "--kpoke-render", "--kpoke-fill", "--kpoke-job", "--kreg-render",
+                  "--scratch", "--scratch-pages", "--scratch-at", "--aa4", "--fault", "--ctx2",
+                  "--share-pb", "--depth", "--isp2", "--dump-render", "--blk", "--vdm", "--pbe",
+                  "--obj2", "--regs", "--cmd", "--slot", "--vertices", "--tri-v"]
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# R16-4 (a): rclip (Q116, E1060), 15 jobs, the gate row first, the empty-clip row last; never run
+# before, so its stop ends the session (gen/make.py; README.md)
+rclip = { alarm = 900, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b5288c82ed2217ae6c7fa5cb7d4674c8008873"
+data = "62cb03b369ca5fabedf3dc83cee43e79e2283968"
+# every repository file the generator, the scorer or the tests read: the program (bins/), the
+# kept r3k-regress full-triangle probes (128 x 128, 256 x 256: all 0xff00ff00, the scorer's hold
+# case), r13-flag's kept default 128 x 128 triangle (diff 0, "2709 if flipped": the coverage
+# model and the frame), the tool's source and render.c (the --blk-add parse, the block and the
+# CPU reference), and what the replay will read (sgx-pipe mte.rs, closing_tables.py)
+pins = [
+    "data:render/closing-r3k-regress/bins/pix_green.bin",
+    "data:render/closing-r3k-regress/out/20261110-222647/rg-ctl/ctl-green-128x128.txt.gz",
+    "data:render/closing-r3k-regress/out/20261110-222647/rg-ctl/ctl-green-256x256.txt.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f3/f3-shape-a.txt.gz",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c",
+    "resgx545:userspace/libsgxfive/src/render.c",
+    "resgx545:userspace/libsgxfive/src/tri_probe.c",
+    "resgx545:crates/sgx-pipe/src/mte.rs",
+    "resgx545:tools/usse-asm/closing_tables.py"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

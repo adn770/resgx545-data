@@ -1,0 +1,494 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "texture",
+ "run": {
+  "session": "render/closing-r16-mte",
+  "stage": "rclip",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "replayed",
+  "test": "crates/sgx-pipe/tests/mte_region_clip.rs::r16_mte_rclip_the_region_clip_keeps_whole_tiles_on_every_pixel",
+  "model": "mte.rs region_clip: presence bit 7's two words keep the object in whole 32 x 16 tiles, first to last inclusive, rows from memory row 0, the background object writing the rest; bit 31 clear keeps all (E348's layout, E1060); the default triangle's coverage is isp::Tri::covers (E606)"
+ },
+ "rows": [
+  {
+   "id": "g-clear-64",
+   "set": "control",
+   "knobs": "reads:pixels,o0",
+   "args": "probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000003 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/g-clear-64.txt.gz",
+   "raw_sha256": "ed131c5788375383d8ff266c17c5698192b7eb80110e62fc9ef4446b77bd4414",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "c9d8a7e10239d1e215d967ef3407aa0fef9b51de9030427023d8fa5945959ecc",
+    "distinct": 1,
+    "values": [
+     [
+      "0xff00ff00",
+      4096
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "g-twin-64",
+   "set": "control",
+   "knobs": "reads:pixels,o0",
+   "args": "probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/g-twin-64.txt.gz",
+   "raw_sha256": "811f01b2ee7a9ae3e3a2c006d159c40db2ce1f6f5c4fbaad6b54c3883d290a72",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "c9d8a7e10239d1e215d967ef3407aa0fef9b51de9030427023d8fa5945959ecc",
+    "distinct": 1,
+    "values": [
+     [
+      "0xff00ff00",
+      4096
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "vp64-e348",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80010001,0x00010003 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/vp64-e348.txt.gz",
+   "raw_sha256": "f1d0c12b506a24d22264fd4338f6d28fa3a692945b36628c77afa964c54294df",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "f277cc5a1fc2b0e73781dbd3a41a71d32458c273f14a835efd3eb18f98668ef5",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      2560
+     ],
+     [
+      "0xff00ff00",
+      1536
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p64-c0-r23",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000000,0x00020003 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p64-c0-r23.txt.gz",
+   "raw_sha256": "c12a17e46511869d5c5a4c0860f5558c4f76d2ce1c1d94cfff8b96fea428bf5e",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "f55c6427de8b73b3d2b603bdaa9806af77f9ccdc05c9d1e39a10b2b7cf88d412",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      3072
+     ],
+     [
+      "0xff00ff00",
+      1024
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p64-c01-r0",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000000 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p64-c01-r0.txt.gz",
+   "raw_sha256": "6acbd9bfbe8db4c661510ccda936d9bc02b69165d89a227001f474c6384e7865",
+   "pixels": {
+    "width": 64,
+    "height": 64,
+    "words": 4096,
+    "sha256": "a52ec507f22b234ba611423609600e1150a1d7b70d169f47ed10c7efc706dc51",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      3072
+     ],
+     [
+      "0xff00ff00",
+      1024
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p128-c12-r12",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80010002,0x00010002 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p128-c12-r12.txt.gz",
+   "raw_sha256": "59f90721494ab1fc49308e5b9b2a210edf385e21ad4696f8b9d1a0a192902797",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "c7a51746a4d87b3218b46aa6cc05bb4e94a7f4183fa3022fa2be7592a020da72",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      14336
+     ],
+     [
+      "0xff00ff00",
+      2048
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p128-c3-r04",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80030003,0x00000004 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p128-c3-r04.txt.gz",
+   "raw_sha256": "d2207f45cfc804a48175f7fdaf7aaca4189589264e465924b324bb12ae9c293b",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "052fda42fff132ccd019c5d8c7352685193b39aa02df532590fc55f20e60a593",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      13824
+     ],
+     [
+      "0xff00ff00",
+      2560
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "e128-on-full",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80000003,0x00000007 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/e128-on-full.txt.gz",
+   "raw_sha256": "cd3027756dfa23a910189d6b5dd19623f16b78569d06400ecd0b80cfec5f77ff",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "461049e30c10c3b108d50204c2de381cf102473bdc7ef4da2b3483a9bac5fa9c",
+    "distinct": 1,
+    "values": [
+     [
+      "0xff00ff00",
+      16384
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "e128-off",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x00010002,0x00020004 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/e128-off.txt.gz",
+   "raw_sha256": "cd3027756dfa23a910189d6b5dd19623f16b78569d06400ecd0b80cfec5f77ff",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "461049e30c10c3b108d50204c2de381cf102473bdc7ef4da2b3483a9bac5fa9c",
+    "distinct": 1,
+    "values": [
+     [
+      "0xff00ff00",
+      16384
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "s128-tri",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80000001,0x00010003 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/s128-tri.txt.gz",
+   "raw_sha256": "5938058930cfdfeaf45f3bde26bc52dfffad529a8599bcec7554c5fc1a08c9de",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "babef9f6798e35957a12895cde38174ada76822b56ad3d34728dfe6296162818",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      14656
+     ],
+     [
+      "0xff00ff00",
+      1728
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p256-c2-r39",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80020002,0x00030009 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p256-c2-r39.txt.gz",
+   "raw_sha256": "fd722ab6ffc97af0ea29b59568f17d77c190d577d2a5480b77f91c7161ae06fe",
+   "pixels": {
+    "width": 256,
+    "height": 256,
+    "words": 65536,
+    "sha256": "86bec5bca34b11c15c0e49a05f589de3dd32e7d393dc4e9556b7532dbfcc44e6",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      61952
+     ],
+     [
+      "0xff00ff00",
+      3584
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "p256-c56-r1015",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80050006,0x000a000f \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/p256-c56-r1015.txt.gz",
+   "raw_sha256": "ae1bb370bbddb2ff7b0d11487b9732c3832eb06f8f23621c27dbde54248fc898",
+   "pixels": {
+    "width": 256,
+    "height": 256,
+    "words": 65536,
+    "sha256": "aa3161a4ae9dbe2b50c3a442b9e8481e9b3337b3f2863bcfc05a1eb669cb5381",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      59392
+     ],
+     [
+      "0xff00ff00",
+      6144
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "m256-c34-r59",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80030004,0x00050009 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/m256-c34-r59.txt.gz",
+   "raw_sha256": "ac056e9044bf14c3a3baa5e38c69cc5482917ef07f3d3ae548933e02c8a3ccc3",
+   "pixels": {
+    "width": 256,
+    "height": 256,
+    "words": 65536,
+    "sha256": "ba7a7be5bafa9f12f65173da30f7f244d3d6074c7087786a59396f1f238b694f",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      60416
+     ],
+     [
+      "0xff00ff00",
+      5120
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "e100x60-c23-r23",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 100 --height 60 --tri-full --blk-add 7=0x80020003,0x00020003 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/e100x60-c23-r23.txt.gz",
+   "raw_sha256": "ff8d896f26011941b10bb218d0b017a22831fb034eabd0a85ed90e02ab7305d7",
+   "pixels": {
+    "width": 100,
+    "height": 60,
+    "words": 6000,
+    "sha256": "9b0b2127c88019de50c1a9f4910f890e34e219dc33b5c2daa785a1fd0b223124",
+    "distinct": 2,
+    "values": [
+     [
+      "0xff203040",
+      4992
+     ],
+     [
+      "0xff00ff00",
+      1008
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  },
+  {
+   "id": "z128-empty",
+   "set": "heldout",
+   "knobs": "-",
+   "args": "probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80030003,0x00040007 \"$S/bins/pix_green.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "rclip/z128-empty.txt.gz",
+   "raw_sha256": "002334d6437e93b865ff137022e629808310be64c9bc8136e8ebbafa4e431554",
+   "pixels": {
+    "width": 128,
+    "height": 128,
+    "words": 16384,
+    "sha256": "c8cff804f3307d6f9a8b9e22af03a340db1dd86b65ea64cc537450198e01824c",
+    "distinct": 1,
+    "values": [
+     [
+      "0xff203040",
+      16384
+     ]
+    ]
+   },
+   "inputs": {
+    "bins/pix_green.bin": "dae26442aa046ecb83e8ae72ccd7ac67061b3b2aabc7bfbeaff2efe2ceada4cb"
+   }
+  }
+ ],
+ "skipped": {}
+}

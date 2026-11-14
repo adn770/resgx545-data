@@ -1,0 +1,78 @@
+## stage rclip of r16m
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127082940 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r16m.tHidPl
+## clock
+Sat Nov 14 09:32:36 CET 2026
+== g-clear-64 set=control risk=safe tool=t10 knobs=[reads:pixels,o0]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000003 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+  premise g-clear-64 [pixels o0]: pixels=4096 o0=0xff00ff00 
+== g-twin-64 set=control risk=safe tool=t10 knobs=[reads:pixels,o0]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+  premise g-twin-64 [pixels o0]: pixels=4096 o0=0xff00ff00 
+== vp64-e348 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80010001,0x00010003 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p64-c0-r23 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000000,0x00020003 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p64-c01-r0 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --tri-full --blk-add 7=0x80000001,0x00000000 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p128-c12-r12 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80010002,0x00010002 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p128-c3-r04 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80030003,0x00000004 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== e128-on-full set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x80000003,0x00000007 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== e128-off set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --tri-full --blk-add 7=0x00010002,0x00020004 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== s128-tri set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80000001,0x00010003 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p256-c2-r39 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80020002,0x00030009 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== p256-c56-r1015 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80050006,0x000a000f /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== m256-c34-r59 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 256 --height 256 --tri-full --blk-add 7=0x80030004,0x00050009 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== e100x60-c23-r23 set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 100 --height 60 --tri-full --blk-add 7=0x80020003,0x00020003 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+== z128-empty set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 128 --height 128 --blk-add 7=0x80030003,0x00040007 /home/jtorra/scratch/r16m/stage/bins/pix_green.bin
+  rc 0 
+  class ok
+## end: 15 jobs of rclip
+## kernel log (journalctl)
