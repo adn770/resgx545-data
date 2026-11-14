@@ -1,0 +1,96 @@
+# session.toml: the env of r18-flag, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r18-flag"
+prefix = "r18f"                 # laptop files under ~/scratch/r18f/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): E1035's hangs and
+                                    # E509's faults were recovered well inside it
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = ["render_param", "render_tadata"]   # tri --dump-render (s0 f2-ctl-256, f3)
+outdir_opts = ["--depth-dump", "--dump-render"]   # both write into $W, which exists
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--scratch-at", "--kpoke-job", "--kpoke-fill", "--kpoke-render2",
+                  "--tadata-fill-render", "--refill", "--low", "--late"]   # nothing else of ours
+                                    # touches the GPU: the rows' only pokes are listed in README.md
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t14]
+path = "sgxfive-test-t14"
+sha256 = "aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859"
+built_from = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+recipe = "data:render/closing-r14-flag/lead/build_tool14.sh"
+source = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+# f2 (Q108): r14-bif's words (E964: the flags on the whole mapping whose first page is the
+# address; the fork takes bits of 0x1a); WRITEONLY 0x2, EDMPROTECT 0x10, on the depth buffer
+# (0x3e001000, rf-c-depth's) or the probe's scratch (0x3e003000, f1-ref-a's)
+[knobs]
+vm_pte_addr = { default = "0", values = ["0", "0x3e001000", "0x3e003000"] }
+vm_pte_flags = { default = "0", values = ["0", "0x2", "0x10"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# closing18/DECISIONS-R18.md (R18 a, the user present): s0's safe references first, then the
+# flagged stages in the plan's order. Each flagged stage is gated (score.py gate: its own s0
+# controls passed, and no `SGX recovery failed` line in any kept file of an earlier stage of the
+# attempt) and ends the session on its rc 24 (hook_fault: a failed recovery, an end of the wrong
+# kind, a fault without its BIF line; its #limit), so no later stage runs after such a stop.
+# Strict health after every fault and hang is the kit's (a health draw failing stops it, 16/5).
+[stages]
+s0 = { alarm = 900 }
+f1 = { alarm = 600, gate = true, on_stop = "end" }
+f2 = { alarm = 600, gate = true, on_stop = "end" }
+f3 = { alarm = 600, gate = true, on_stop = "end" }
+f4 = { alarm = 600, gate = true, on_stop = "end" }
+h1 = { alarm = 600, gate = true, on_stop = "end" }
+h2 = { alarm = 900, gate = true, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "2c0fe18e46d063f9d6740fe496349a27f3a44ab1"
+data = "45423fbc317b7d6e6f65e2fb1c2bbb7fa253f47e"
+# every repository file the generator (gen/make.py), the offline fit (fit/o18_1.py) or the tests
+# read: the kept records the s0 controls are frozen on, the programs bins/ copies, E509's cases
+# and kernel logs (O18-1)
+pins = [
+    "data:render/closing-r15-zls/out/20261114-073826/zovl/zv-c-g3.depth.1.bin.gz",
+    "data:render/closing-r15-zls/out/20261114-073826/zovl/zv-c-g3.txt.gz",
+    "data:render/closing-r15-zls/out/20261114-073826/zovl/zv-g5.depth.1.bin.gz",
+    "data:render/closing-r15-zls/out/20261114-073826/zovl/zv-g5.txt.gz",
+    "data:render/closing-r14-bif/out/20261114-055414/refill/rf-c-depth.depth-store.1.bin.gz",
+    "data:render/closing-r14-bif/out/20261114-055414/refill/rf-c-depth.txt.gz",
+    "data:render/closing-r14-flag/out/20261114-060824/f1/f1-ref-a.txt.gz",
+    "data:render/closing-r14-flag/out/20261114-060824/f2/f2-ctl-256.txt.gz",
+    "data:render/closing-r10-x/out/20261113-101116/isp0x/x-ctl.depth.1.bin.gz",
+    "data:render/closing-r10-x/out/20261113-101116/isp0x/x-ctl.txt.gz",
+    "data:render/closing-s1b/out/g-e4w/ix32-n-r1.txt.gz",
+    "data:render/closing-s1b/out/g-e4w/ix-c.txt.gz",
+    "data:render/closing-r14-flag/bins/f1-ref-a.bin",
+    "data:render/closing-s1b/bins/p1139-green.bin",
+    "data:render/closing-r13-flag/bins/p1131-green__0.bin",
+    "data:render/closing-r13-flag/bins/p1131-blue__0.bin",
+    "data:ta/mtile-fields/cases.tsv",
+    "data:ta/mtile-fields/kernel.log",
+    "data:ta/mtile-fields-risky/cases.tsv",
+    "data:ta/mtile-fields-risky/kernel.log"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

@@ -1,0 +1,26 @@
+## stage f1 of r18f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127079484 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r18f.UDCqa8
+## clock
+Sat Nov 14 13:36:38 CET 2026
+== q299-g3 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017101c --depth-fill 0xdeadbeef --depth-pages 16 --depth-dump /home/jtorra/scratch/tmp/r18f.UDCqa8/1-q299-g3/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 0 job: ok target: 64x64 hash 0xd0530839d87ea325 diff: 0 of 4096 pixels 
+  class ok
+== q299-g5 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017102c --depth-fill 0xdeadbeef --depth-pages 16 --depth-dump /home/jtorra/scratch/tmp/r18f.UDCqa8/2-q299-g5/w --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0x4c63ee457dbcc2a5 diff: 2848 of 4096 pixels, first (32, 16) 0xdeadbeef expected 0xff00ff00 
+  class fault
+  fault (a reading): events 1 of 2; reset, then strict health
+## end: 2 jobs of f1
+## kernel log (journalctl)

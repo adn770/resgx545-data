@@ -1,0 +1,6 @@
+#stage f4
+#limit 2
+# r18-flag f4, Q241 bit 18 (E1072): ISP word 0 bit 18 alone on E065's library triangle and on E977's 80 x 40 ramp with its depth buffer loaded and stored (E998's isp0x form, t10). PLANNED FAULTS (user OK); the last fault stage.
+# Frozen: H-FAULT-ANY (both fault with one FAULT_REQ bit) against H-NEEDS-BUF (the ramp draws, the library row faults) [infer, weak]. #limit 2.
+b18-lib|heldout|risky|expectfault expectdiff|t10|tri --poke blk:1^=0x00040000
+b18-ramp|heldout|risky|expectfault expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00440200

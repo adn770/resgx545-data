@@ -1,0 +1,12 @@
+CONTROL f2-ctl-256: every frozen key read (hash, job, tadata): PASS
+READING f3-k4: {'end': 'fault', 'fstat': '0x90004', 'fpage': '0x20008000'}
+ROW f3-k4 H-KIND: (frozen {'end': 'fault', 'fstat': '0x90004'}): held
+ROW f3-k4 H-ONE-KIND: (frozen {'end': 'fault', 'fstat': '0x90100'}): FAILED
+ROW f3-k4 H-PAGE-END: (frozen {'end': 'fault', 'fpage': '0x20006000'}): FAILED
+READING f3-k100: {'end': 'fault', 'fstat': '0x90100', 'fpage': '0x10000000'}
+ROW f3-k100 H-KIND: (frozen {'end': 'fault', 'fstat': '0x90100'}): held
+ROW f3-k100 H-ONE-KIND: (frozen {'end': 'fault', 'fstat': '0x90100'}): held
+ROW f3-k100 H-PAGE-END: (frozen {'end': 'fault', 'fpage': '0x10000000'}): held
+SUMMARY: f3: H-KIND: O18-1's kind: an empty axis faults 0x90004 (the TA), other words 0x90100 (the 3D) (2 of 2 rows decided)
+SUMMARY: f3: H-ONE-KIND: every faulting word faults 0x90100 is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: f3: H-PAGE-END: f3's faults at the TA data's first unmapped page (0x20006) and the parameter heap's (0x10000) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2

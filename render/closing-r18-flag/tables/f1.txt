@@ -1,0 +1,6 @@
+#stage f1
+#limit 2
+# r18-flag f1, Q299 (E1070): E411's G 3 and G 5 stores (E1051's zv- form, t10) with a 16-page depth buffer. PLANNED FAULT (user OK, DECISIONS-R18). Premise read from the kept outputs (README.md deviation 1): the colour buffer follows the depth buffer (fb = depth + pages, 5 pages with its guard), so G 3's pages 16 and 18 land in it and G 5's page 21 is the first unmapped one.
+# Frozen: H-PAST-FAULT (g3 ok, g5 faults at depth + 0x15000), H-PAST-ANY (any store past the buffer faults: g3 at +0x10000, g5 at +0x12000), H-DROP (both ok). #limit 2 = both rows (expectfault); hook_fault stops on a hang, a fault without its BIF line or SGX recovery failed (24, on_stop end).
+q299-g3|heldout|risky|expectfault expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017101c --depth-fill 0xdeadbeef --depth-pages 16 --depth-dump "$W" --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000
+q299-g5|heldout|risky|expectfault expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017102c --depth-fill 0xdeadbeef --depth-pages 16 --depth-dump "$W" --poke blk:1=0x00400200 --kpoke-render 1:rd:13=0xd000

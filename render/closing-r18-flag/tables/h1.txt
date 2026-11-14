@@ -1,0 +1,5 @@
+#stage h1
+#limit 1
+# r18-flag h1, Q112 (E1075): VDM index-list header bit 24 alone over E756's 32-bit list (--index-width 32 sets bit 25, --vdm 2^=0x03000000 clears it and sets 24; t10). PLANNED HANG (user OK).
+# Frozen: H-B24-HANG (it hangs as over 16 bits, E737) against H-B24-W32 (bit 24 selects 32-bit indices: E414's object, ix-c's pixels). #limit 1; a fault instead of the hang stops the stage (24, on_stop end).
+b24-w32|heldout|risky|expectfault|t10|probe --tri pixel --vertices 15 --copy-depth --pixels --index-width 32 --vdm 2^=0x03000000 "$S/bins/p1139-green.bin"

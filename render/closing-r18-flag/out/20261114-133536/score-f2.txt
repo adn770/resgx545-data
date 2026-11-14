@@ -1,0 +1,18 @@
+CONTROL rf-c-depth: every frozen key read (depthat, job, zstore): PASS
+CONTROL f1-ref-a: every frozen key read (image, pixels, scratchat): PASS
+READING q108-edm-load: {'end': 'ok', 'fb': '0x3e029000', 'diff': '1953'}
+ROW q108-edm-load H-EDM-READ: (frozen {'end': 'ok'}): held
+ROW q108-edm-load H-EDM-ZLS: (frozen {'end': 'fault', 'fstat': '0xa0200', 'fpage': '0x3e001000'}): FAILED
+READING q108-edm-tex: {'end': 'ok', 'image': '182d6d0a321d88b2c6b28f3f6211b212549d136b6fb0df5f44373cb73515c617', 'o0': 'mixed 0xd0000000 x2 0xd0000002 x2 0xd0000008 x2 0xd000000a x2 other x2040'}
+ROW q108-edm-tex H-EDM-READ: (frozen {'end': 'ok', 'image': '182d6d0a321d88b2c6b28f3f6211b212549d136b6fb0df5f44373cb73515c617'}): held
+ROW q108-edm-tex H-EDM-TEX: (frozen {'end': 'fault', 'fstat': '0xa0002', 'fpage': '0x3e003000'}): FAILED
+READING q108-wo-load: {'end': 'fault', 'fstat': '0x80200', 'fpage': '0x3e001000'}
+ROW q108-wo-load H-WO-ALL: (frozen {'end': 'fault', 'fstat': '0x80200', 'fpage': '0x3e001000'}): held
+ROW q108-wo-load H-WO-LOAD-OK: (frozen {'end': 'ok'}): FAILED
+READING q108-wo-tex: {'end': 'fault', 'fstat': '0x80002', 'fpage': '0x3e003000'}
+ROW q108-wo-tex H-WO-ALL: (frozen {'end': 'fault', 'fstat': '0x80002', 'fpage': '0x3e003000'}): held
+SUMMARY: f2: H-EDM-READ: EDMPROTECT lets the ZLS load and the texture read through (2 of 2 rows decided)
+SUMMARY: f2: H-EDM-TEX: EDMPROTECT stops the texture read (0xa0002) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: f2: H-EDM-ZLS: EDMPROTECT stops the ZLS load (0xa0200) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: f2: H-WO-ALL: WRITEONLY faults a read: the ZLS load (0x80200) and the texture read (0x80002) (2 of 2 rows decided)
+SUMMARY: f2: H-WO-LOAD-OK: WRITEONLY does not stop the ZLS load is not supported: 0 held, 1 FAILED, 0 cannot tell of 1

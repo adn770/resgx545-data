@@ -1,0 +1,6 @@
+#stage f3
+#limit 2
+# r18-flag f3, Q139 (E1074): two CR_TE_MTILE1 words never run at 384 x 256 (n = 2, E1048's form, t10), held out on O18-1's kind form (E1073, fit/o18_1.out: H-KIND 162 of 162 of E509's faulting cases, H-ONE-KIND 155). PLANNED FAULTS (user OK).
+# f3-k4 (B2 = 0, an empty x axis): H-KIND 0x90004 (the TA's header write) at TA data page 0x20006 (H-PAGE-END, the first page past the kernel's 0x6000) against H-ONE-KIND 0x90100 at 0x10000; f3-k100 (fx 6, a second macrotile inside): 0x90100 at 0x10000 under both. #limit 2.
+f3-k4|heldout|risky|expectfault expectdiff|t10|tri --tri-full --pixels --width 384 --height 256 --max-width 384 --max-height 256 --kpoke-render 1:ta:143=0x00c00005 --wait-ms 20000 --keep-going --dump-render "$W"
+f3-k100|heldout|risky|expectfault expectdiff|t10|tri --tri-full --pixels --width 384 --height 256 --max-width 384 --max-height 256 --kpoke-render 1:ta:143=0x00406001 --wait-ms 20000 --keep-going --dump-render "$W"

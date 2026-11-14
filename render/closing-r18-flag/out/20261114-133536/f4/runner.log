@@ -1,0 +1,27 @@
+## stage f4 of r18f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127078940 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r18f.l6eapk
+## clock
+Sat Nov 14 13:38:56 CET 2026
+== b18-lib set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --poke blk:1^=0x00040000
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x64 hash 0xe4364b426cdce325 diff: 4096 of 4096 pixels, first (0, 0) 0xdeadbeef expected 0xff203040 
+  class fault
+  fault (a reading): events 1 of 2; reset, then strict health
+== b18-ramp set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r18f.l6eapk/2-b18-ramp/w --poke blk:1=0x00440200
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 80x40 hash 0xd73c160502cc0925 diff: 3200 of 3200 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class fault
+  fault (a reading): events 2 of 2; reset, then strict health
+## end: 2 jobs of f4
+## kernel log (journalctl)

@@ -1,0 +1,35 @@
+## stage f2 of r18f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127079356 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r18f.PcURUx
+## clock
+Sat Nov 14 13:37:16 CET 2026
+== q108-edm-load set=heldout risk=risky tool=t14 knobs=[dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t14 tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r18f.PcURUx/1-q108-edm-load/w --poke blk:1=0x00000200
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== q108-edm-tex set=heldout risk=risky tool=t14 knobs=[dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x10 expectfault]
+  cmd: /home/jtorra/sgxfive-test-t14 probe --temps 32 --coords --pixels --scratch-pages 256 /home/jtorra/scratch/r18f/stage/bins/f1-ref-a.bin
+  rc 0 
+  class ok
+== q108-wo-load set=heldout risk=risky tool=t14 knobs=[dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t14 tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r18f.PcURUx/3-q108-wo-load/w --poke blk:1=0x00000200
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 64x32 hash 0xfc8ce806207f8325 diff: 2048 of 2048 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+  class fault
+  fault (a reading): events 1 of 4; reset, then strict health
+== q108-wo-tex set=heldout risk=risky tool=t14 knobs=[dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x2 expectfault]
+  cmd: /home/jtorra/sgxfive-test-t14 probe --temps 32 --coords --pixels --scratch-pages 256 /home/jtorra/scratch/r18f/stage/bins/f1-ref-a.bin
+  rc 3 
+  class fault
+  fault (a reading): events 2 of 4; reset, then strict health
+## end: 4 jobs of f2
+## kernel log (journalctl)

@@ -1,0 +1,9 @@
+CONTROL x-ctl: every frozen key read (hash, job, zdump): PASS
+READING b18-lib: {'end': 'fault', 'fstat': '0xd0400', 'fpage': '0x0'}
+ROW b18-lib H-FAULT-ANY: (frozen {'end': 'fault'}): held
+ROW b18-lib H-NEEDS-BUF: (frozen {'end': 'fault'}): held
+READING b18-ramp: {'end': 'fault', 'fstat': '0xd0400', 'fpage': '0x0'}
+ROW b18-ramp H-FAULT-ANY: (frozen {'end': 'fault'}): held
+ROW b18-ramp H-NEEDS-BUF: (frozen {'end': 'ok'}): FAILED
+SUMMARY: f4: H-FAULT-ANY: ISP word 0 bit 18 faults both jobs, through one requestor (2 of 2 rows decided)
+SUMMARY: f4: H-NEEDS-BUF: bit 18 needs a buffer E065's job lacked: the ramp draws, the library row faults is not supported: 1 held, 1 FAILED, 0 cannot tell of 2

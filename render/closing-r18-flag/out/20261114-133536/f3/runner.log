@@ -1,0 +1,29 @@
+## stage f3 of r18f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127079076 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r18f.3xboa4
+## clock
+Sat Nov 14 13:38:12 CET 2026
+== f3-k4 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 384 --height 256 --max-width 384 --max-height 256 --kpoke-render 1:ta:143=0x00c00005 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r18f.3xboa4/1-f3-k4/w
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 384x256 hash 0xfd4c68c955a42325 diff: 98304 of 98304 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+grep: write error: Broken pipe
+  class fault
+  fault (a reading): events 1 of 2; reset, then strict health
+== f3-k100 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 384 --height 256 --max-width 384 --max-height 256 --kpoke-render 1:ta:143=0x00406001 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r18f.3xboa4/2-f3-k100/w
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 384x256 hash 0x7ba20737cf45e325 diff: 94208 of 98304 pixels, first (128, 0) 0xdeadbeef expected 0xff00ff00 
+grep: write error: Broken pipe
+  class fault
+  fault (a reading): events 2 of 2; reset, then strict health
+## end: 2 jobs of f3
+## kernel log (journalctl)

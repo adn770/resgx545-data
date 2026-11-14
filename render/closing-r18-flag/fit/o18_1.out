@@ -1,0 +1,9 @@
+O18-1 on data 45423fbc3: 329 cases, 162 faulting (first fault line each)
+observed kinds: 0x90004 x 7, 0x90100 x 155
+0x90004 pages (W, H, page): 256x256 0x20008, 256x256 0x20010, 640x480 0x2000a, 640x480 0x20010
+H-KIND: 162 of 162 kinds (100.0 %)
+H-ONE-KIND: 155 of 162 kinds (95.7 %) misses q100-256x256-m1-B2-0, q100-256x256-m2-B2-0, q100-256x256-part1-0_0_0, q100-256x256-part2-0_0_0, q100-640x480-stride-256, q100-640x480-part1-0_0_0, q100-640x480-part2-0_0_0
+rule: a form fits at least 95 % of the faulting cases' kinds: yes, H-KIND (f3 is built)
+f3 f3-k4 384x256 --kpoke-render 1:ta:143=0x00c00005: H-KIND 0x90004, H-ONE-KIND 0x90100
+f3 f3-k100 384x256 --kpoke-render 1:ta:143=0x00406001: H-KIND 0x90100, H-ONE-KIND 0x90100
+form file sha256 b1829c2c958fa67b72c05e0d0cf36186f568660f79de9ca239d88082bd823cb1

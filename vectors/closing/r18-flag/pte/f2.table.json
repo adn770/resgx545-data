@@ -1,0 +1,147 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "pte",
+ "run": {
+  "session": "render/closing-r18-flag",
+  "stage": "f2",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "replayed",
+  "test": "crates/sgx-pipe/tests/pte_table.rs::the_model_replays_every_modelled_row_of_the_pte_tables",
+  "model": "sgx-pipe bif::pte_access (E1071)"
+ },
+ "rows": [
+  {
+   "id": "q108-edm-load",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "f2/q108-edm-load.txt.gz",
+   "raw_sha256": "6e225d7d2217c5d65e08ab842bfe497410d7ac3fbbf82bbed7d0855e8f4cb4f3",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x10",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x10"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "f2/q108-edm-load.dmesg.gz",
+   "dmesg_sha256": "a148e511f4dd2e4c173244b5e00f75362b4745bf9214dd20139cf1dd857648c2"
+  },
+  {
+   "id": "q108-edm-tex",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x10 expectfault",
+   "args": "probe --temps 32 --coords --pixels --scratch-pages 256 \"$S/bins/f1-ref-a.bin\"",
+   "rc": 0,
+   "class": "ok",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "f2/q108-edm-tex.txt.gz",
+   "raw_sha256": "e5e13738f280c33ac987cb9d8bb8a396417bf43dbc28e36e63244ef58d1e8aff",
+   "pte_addr": "0x3e003000",
+   "pte_flags": "0x10",
+   "pte_lines": [
+    [
+     "0x3e003000",
+     "0x100000",
+     "0x10"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "f2/q108-edm-tex.dmesg.gz",
+   "dmesg_sha256": "af1aef3f9eeda24f6fe44a41af61e7f070de5d23ecb10ae1a28a3c9e3ed65c80"
+  },
+  {
+   "id": "q108-wo-load",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200",
+   "rc": 1,
+   "class": "fault",
+   "job": "failed",
+   "hash": "0xfc8ce806207f8325",
+   "diff": [
+    2048,
+    2048
+   ],
+   "raw": "f2/q108-wo-load.txt.gz",
+   "raw_sha256": "77d7f2a9b974aa094a363c35693a1feb532755028b9f021a4a343f473d607638",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x2",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x2"
+    ]
+   ],
+   "faults": [
+    [
+     "0x80200",
+     "0x3e001001"
+    ]
+   ],
+   "fault_int": "0",
+   "fault_word": "0x00000000",
+   "checks": [],
+   "dmesg": "f2/q108-wo-load.dmesg.gz",
+   "dmesg_sha256": "34a946f539e22d02308be1b3dae34438cb34b9c3aab2af25032e0dd0aa652fc9"
+  },
+  {
+   "id": "q108-wo-tex",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x2 expectfault",
+   "args": "probe --temps 32 --coords --pixels --scratch-pages 256 \"$S/bins/f1-ref-a.bin\"",
+   "rc": 3,
+   "class": "fault",
+   "job": null,
+   "hash": null,
+   "diff": null,
+   "raw": "f2/q108-wo-tex.txt.gz",
+   "raw_sha256": "9285332f8b1c8a0c784b2e55a166ede8cc9c0e009d33379280049714082c5640",
+   "pte_addr": "0x3e003000",
+   "pte_flags": "0x2",
+   "pte_lines": [
+    [
+     "0x3e003000",
+     "0x100000",
+     "0x2"
+    ]
+   ],
+   "faults": [
+    [
+     "0x80002",
+     "0x3e003001"
+    ]
+   ],
+   "fault_int": "0",
+   "fault_word": "0x00000000",
+   "checks": [],
+   "dmesg": "f2/q108-wo-tex.dmesg.gz",
+   "dmesg_sha256": "38263af41a52e54cbf0378a53d24bb97d87fda90d7fad8dd81702e99baa1ba98"
+  }
+ ],
+ "skipped": {}
+}

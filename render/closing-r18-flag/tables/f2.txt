@@ -1,0 +1,8 @@
+#stage f2
+#limit 4
+# r18-flag f2, Q108 (E1071): WRITEONLY (0x2) and EDMPROTECT (0x10) alone on a mapping only read: the ZLS load of r14-bif's rf-c-depth (depth buffer 0x3e001000, t14) and E566's texture read of the probe's scratch (0x3e003000, t14). PLANNED FAULTS (user OK). EDMPROTECT rows first.
+# Frozen: H-WO-ALL (wo-load 0x80200 at 0x3e001000, wo-tex 0x80002 at 0x3e003000) with H-EDM-READ (both edm rows complete, the control's store and image); rivals H-WO-LOAD-OK, H-EDM-ZLS (0xa0200), H-EDM-TEX (0xa0002). #limit 4 = the four rows (expectfault); 2 planned.
+q108-edm-load|heldout|risky|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x10 expectfault expectdiff|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+q108-edm-tex|heldout|risky|dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x10 expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"
+q108-wo-load|heldout|risky|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x2 expectfault expectdiff|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+q108-wo-tex|heldout|risky|dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x2 expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"

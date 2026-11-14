@@ -1,0 +1,24 @@
+CONTROL h2-c-b: {'end': 'ok', 'o0': 'mixed 0xff203040 x2404 0xff00ff00 x1054 0xff0000ff x638'} (frozen end ok, o0 present): PASS
+READING h2-c-a: {'end': 'ok', 'o0': 'mixed 0xff203040 x2404 0xff00ff00 x1054 0xff0000ff x638'}
+READING h2-c-b: {'end': 'ok', 'o0': 'mixed 0xff203040 x2404 0xff00ff00 x1054 0xff0000ff x638'}
+READING h2-a1: {'end': 'ok', 'o0': 'mixed 0xff203040 x2998 0xff0000ff x1098'}
+READING h2-a2: {'end': 'ok', 'o0': 'mixed 0xff203040 x2998 0xff0000ff x1098'}
+ROW h2-a2 H-ALT: (frozen {'end': 'hang'}): FAILED
+ROW h2-a2 H-SCALE: (frozen {'end': 'ok'}): held
+ROW h2-a2 M1-SHAPE: (frozen {'end': 'ok'}): held
+READING h2-a3: {'end': 'hang'}
+ROW h2-a3 H-ALT: (frozen {'end': 'ok'}): FAILED
+ROW h2-a3 H-SCALE: (frozen {'end': 'ok'}): FAILED
+ROW h2-a3 M1-SHAPE: (frozen {'end': 'hang'}): held
+READING h2-b1: {'end': 'ok', 'o0': 'mixed 0xff203040 x5287 0xff00ff00 x2219 0xff0000ff x686'}
+READING h2-b2: {'end': 'ok', 'o0': 'mixed 0xff203040 x5287 0xff00ff00 x2219 0xff0000ff x686'}
+ROW h2-b2 H-ALT: (frozen {'end': 'hang'}): FAILED
+ROW h2-b2 H-SCALE: (frozen {'end': 'ok'}): held
+ROW h2-b2 M1-SHAPE: (frozen {'end': 'ok'}): held
+READING h2-b3: {'end': 'hang'}
+ROW h2-b3 H-ALT: (frozen {'end': 'ok'}): FAILED
+ROW h2-b3 H-SCALE: (frozen {'end': 'ok'}): FAILED
+ROW h2-b3 M1-SHAPE: (frozen {'end': 'hang'}): held
+SUMMARY: h2: H-ALT: E413's alternation (each second row hangs) is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: h2: H-SCALE: the threshold scales with the stream (no row hangs) is not supported: 2 held, 2 FAILED, 0 cannot tell of 4
+SUMMARY: h2: M1-SHAPE: E700's counter M1 on two new shapes (each third row at c = 8 + 4 hangs) (4 of 4 rows decided)

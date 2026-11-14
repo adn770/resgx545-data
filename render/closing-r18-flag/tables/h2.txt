@@ -1,0 +1,12 @@
+#stage h2
+#limit 4
+# r18-flag h2, Q163 (E1076): E700's counter M1 (a job adds the sum of v - 2 over its blocks, hangs iff c + add > 8) on two new stream shapes, block 1 at v = 6 (add 4): ok, ok (c = 8), hang. PLANNED HANGS (user OK). Kit word noreset.
+# Control first: E700's shape, the triple's first two rows (both complete under M1; the second has no expectfault, so a hang there stops the stage, 4). Shape A: 24 vertices, one object, 8 temporaries, 64 x 64; shape B: 48 vertices, two objects, 16 temporaries, 128 x 64. Frozen: M1-SHAPE (each third row hangs) against H-ALT (E413's alternation: each second row hangs) and H-SCALE (no row hangs) [infer]. #limit 4 = rows 2 and 3 of each shape (expectfault); 2 planned, the last row is one.
+h2-c-a|prime|safe|-|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-c-b|control|safe|noreset reads:o0|t10|probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-a1|prime|safe|-|t10|probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-a2|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-a3|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-b1|prime|safe|-|t10|probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-b2|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"
+h2-b3|heldout|risky|noreset expectfault|t10|probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel "$S/bins/p1131-green__0.bin" --vdm 1^=0x00000800 "$S/bins/p1131-blue__0.bin"

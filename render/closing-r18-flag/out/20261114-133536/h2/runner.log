@@ -1,0 +1,57 @@
+## stage h2 of r18f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127078708 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r18f.RMIbly
+## clock
+Sat Nov 14 13:40:13 CET 2026
+== h2-c-a set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r18f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== h2-c-b set=control risk=safe tool=t10 knobs=[noreset reads:o0]
+  noreset: no reset before h2-c-b (the row before, h2-c-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 32 --pixels --width 64 --height 64 --vertices 12 --obj2 6 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r18f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+  premise h2-c-b [o0]: pixels=64 scratchat=0x3e00e000 bg=2404 o0=present 
+== h2-a1 set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== h2-a2 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before h2-a2 (the row before, h2-a1, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== h2-a3 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before h2-a3 (the row before, h2-a2, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 8 --pixels --width 64 --height 64 --vertices 24 --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 3 
+  class hang
+  hang (a reading): events 1 of 4; reset, then strict health
+== h2-b1 set=prime risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r18f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== h2-b2 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before h2-b2 (the row before, h2-b1, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r18f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 0 
+  class ok
+== h2-b3 set=heldout risk=risky tool=t10 knobs=[noreset expectfault]
+  noreset: no reset before h2-b3 (the row before, h2-b2, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --temps 16 --pixels --width 128 --height 64 --vertices 48 --obj2 24 --obj2-blk 6=0x42400000 --obj2-blk 2=0x000020f0 --obj2-pixel /home/jtorra/scratch/r18f/stage/bins/p1131-green__0.bin --vdm 1^=0x00000800 /home/jtorra/scratch/r18f/stage/bins/p1131-blue__0.bin
+  rc 3 
+  class hang
+  hang (a reading): events 2 of 4; reset, then strict health
+## end: 8 jobs of h2
+## kernel log (journalctl)

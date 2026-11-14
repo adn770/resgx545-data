@@ -1,0 +1,18 @@
+CONTROL zv-c-g3: every frozen key read (depthat, fb, job, zdump): PASS
+CONTROL zv-g5-24: every frozen key read (depthat, fb, job, zdump): PASS
+READING q299-g3: {'end': 'ok', 'fb': '0x3e011000', 'diff': '0'}
+ROW q299-g3 H-DROP: (frozen {'end': 'ok'}): held
+ROW q299-g3 H-PAST-ANY: (frozen {'end': 'fault'}): FAILED
+ROW q299-g3 H-PAST-ANY-PAGE: (frozen {'end': 'fault', 'fpage': '0x3e011000', 'fstat': '0x90200'}): FAILED
+ROW q299-g3 H-PAST-FAULT: (frozen {'end': 'ok'}): held
+READING q299-g5: {'end': 'fault', 'fstat': '0x90200', 'fpage': '0x3e016000'}
+ROW q299-g5 H-DROP: (frozen {'end': 'ok'}): FAILED
+ROW q299-g5 H-PAST-ANY: (frozen {'end': 'fault'}): held
+ROW q299-g5 H-PAST-ANY-PAGE: (frozen {'end': 'fault', 'fpage': '0x3e013000', 'fstat': '0x90200'}): FAILED
+ROW q299-g5 H-PAST-FAULT: (frozen {'end': 'fault'}): held
+ROW q299-g5 H-PAST-FAULT-PAGE: (frozen {'end': 'fault', 'fpage': '0x3e016000', 'fstat': '0x90200'}): held
+SUMMARY: f1: H-DROP: ZLS stores past the mapping are dropped (both complete) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: f1: H-PAST-ANY: any ZLS store past its buffer faults (G 3 at +0x10000, G 5 at +0x12000) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: f1: H-PAST-ANY-PAGE: the stores fault 0x90200 at their first page past the buffer is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: f1: H-PAST-FAULT: a ZLS store faults at its first unmapped page and lands on a mapped one (G 3 ok, G 5 at +0x15000) (2 of 2 rows decided)
+SUMMARY: f1: H-PAST-FAULT-PAGE: G 5 faults 0x90200 at depth + 0x15000, its first unmapped page (1 of 1 rows decided)
