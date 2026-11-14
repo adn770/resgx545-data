@@ -1,0 +1,19 @@
+#stage tw14
+#limit 0
+# r15-tw tw14, Q078 T3 bit 14 on twiddled W x 32 textures at W 16, 64, 128 (u past 1), a u16 32 x 32 and two bilinear rows (rank-round15.md section 2 r15-tw; SAFE CLASS, R15-2 a). gen/tw.py. t14: probe --scratch-pages 256 (1 MiB = dwords 0 to 262143).
+# Rows in ascending reach (the farthest dword of every frozen model, gen/tw.py reach(); the largest 134143, tests/test_gen.py): the four bit-clear references and tw-zero (E1047's f1-zero rerun) first, the controls every held-out row is gated by.
+# #limit 0, no expectfault: any fault or hang stops the stage (4); session.toml's on_stop = end ends the session on a hook stop (24): an ok row without its 32 pixel rows or its 1024 KiB scratch line.
+tw-ref16|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-ref16.bin"
+tw-refu16|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-refu16.bin"
+tw-ref64|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-ref64.bin"
+tw-ref128|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-ref128.bin"
+tw-zero|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-zero.bin"
+tw-u16|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-u16.bin"
+tw16-u0|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw16-u0.bin"
+tw-bl16|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-bl16.bin"
+tw16-u1|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw16-u1.bin"
+tw-bl32|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw-bl32.bin"
+tw64-u0|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw64-u0.bin"
+tw128-u0|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw128-u0.bin"
+tw64-u2|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw64-u2.bin"
+tw128-u2|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/tw128-u2.bin"
