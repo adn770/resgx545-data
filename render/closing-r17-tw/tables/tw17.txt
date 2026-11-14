@@ -1,0 +1,19 @@
+#stage tw17
+#limit 0
+# r17-tw tw17, Q078 T3 bit 14 under a bilinear sample at a twiddled texture's left and right edges, on and off the 1/4096 grid, and off-grid point reads (rank-round17.md section 2 r17-tw; SAFE CLASS, R17-1..4 a). gen/tw17.py. t14: probe --scratch-pages 256 (1 MiB = dwords 0 to 262143).
+# Rows in the plan's order: E1058's bl64left rerun, the W <= 128 rows, then the bit-clear references of the new widths before their rows, the widths 256, 512 and 2048 last. Every frozen form's farthest dword is below 150000 (tests/test_gen.py). A reference prints its sentinel dword (run/hooks.sh) or hook_check stops the stage before its width's rows.
+# #limit 0, no expectfault: any fault or hang stops the stage (4); session.toml's on_stop = end ends the session on a hook stop (24): an ok row without its 32 pixel rows, its 1024 KiB scratch line or (references) its sentinel.
+bl64leftr|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl64leftr.bin"
+bl16left|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl16left.bin"
+bl64grid|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl64grid.bin"
+bl128off3|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl128off3.bin"
+pt128off|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt128off.bin"
+ref256|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/ref256.bin"
+ref512h16|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/ref512h16.bin"
+pt256off|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt256off.bin"
+pt512off|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/pt512off.bin"
+bl256edge|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl256edge.bin"
+bl512edge|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl512edge.bin"
+bl256corner|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl256corner.bin"
+ref2048h16|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/ref2048h16.bin"
+bl2048edge|heldout|safe|-|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/bl2048edge.bin"
