@@ -1,0 +1,26 @@
+CONTROL zb4-c-base: drawn 1024 (frozen 1024); depth True, stencil store True byte for byte the kept zb2-c-base: PASS
+CONTROL zb4-c-b23: drawn 1536 (frozen 1536); depth True, stencil store True byte for byte the kept zb2-b23: PASS
+CONTROL zb4-c-f6: depth_changed 176 (frozen 176); depth True, stencil store True byte for byte the kept zf-flat-f6: PASS
+ROW zb4-b0-st: H-B0 depth True, stencil True as zb2-c-base; drawn 0/0; H-B0-NOSTORE depth fill True, stencil fill False; drawn 0/0: held H-B0
+ROW zb4-b0-f6: H-B0 depth True, stencil True as zf-flat-f6; drawn 0/0; H-B0-NOSTORE depth fill False, stencil fill True; drawn 0/0: held H-B0
+ROW zb4-b0-f7: H-B0 depth True, stencil True as zf-7k-3f; drawn 0/0; H-B0-NOSTORE depth fill False, stencil fill True; drawn 0/0: held H-B0
+ROW zb4-b0-c16: H-B0 depth True, stencil True as zbs-c16; drawn 0/0; H-B0-NOSTORE depth fill True, stencil fill False; drawn 0/0: held H-B0
+ROW zb4-20-f6: H-INERT20 dep False, sst True as zf-flat-f6; drawn 2048/2048: no frozen model
+ROW zb4-20-f7: H-INERT20 dep False, sst True as zf-7k-3f; drawn 2048/2048: no frozen model
+ROW zo-s-64: H-OVL-PASS 1536/1536, drawn 1024/1024; H-OVL-SKIP 1028/1536, drawn 1024/1536: held H-OVL-PASS
+ROW zo-s-160: H-OVL-PASS 5632/5632, drawn 3840/3840; H-OVL-SKIP 3600/5632, drawn 3840/5888: held H-OVL-PASS
+READING zb4-23-ref: drawn 1536; the read byte by x mod 16 0:0x3f 1:0x80 2:0x0 3:0x0 4:0x80 5:0x0 6:0x0 7:0x3f 8:0x0 9:0x0 10:0x3f 11:0x80 12:0x0 13:0x3f 14:0x80 15:0x0
+ROW zb4-23-ref: H23-FIXED 2048/2048, drawn 1536/1536; H23-REF 0 read bytes not COL23; H23-MASK 2048/2048, drawn 1536/1536; H23-BG 2048/2048, drawn 1536/1536: held H23-FIXED, H23-MASK, H23-BG
+READING zb4-23-msk: drawn 1024; the read byte by x mod 16 0:0x3f 1:0x80 2:0x0 3:0x0 4:0x80 5:0x0 6:0x0 7:0x3f 8:0x0 9:0x0 10:0x3f 11:0x80 12:0x0 13:0x3f 14:0x80 15:0x0
+ROW zb4-23-msk: H23-FIXED 2048/2048, drawn 1024/1024; H23-REF 2048/2048, drawn 1024/1024; H23-MASK 0 read bytes not COL23; H23-BG 2048/2048, drawn 1024/1024: held H23-FIXED, H23-REF, H23-BG
+READING zb4-23-bg: drawn 1536; the read byte by x mod 16 0:0x3f 1:0x80 2:0x0 3:0x0 4:0x80 5:0x0 6:0x0 7:0x3f 8:0x0 9:0x0 10:0x3f 11:0x80 12:0x0 13:0x3f 14:0x80 15:0x0
+ROW zb4-23-bg: H23-FIXED 2048/2048, drawn 1536/1536; H23-REF 2048/2048, drawn 1536/1536; H23-MASK 2048/2048, drawn 1536/1536; H23-BG 0 read bytes not COL23: held H23-FIXED, H23-REF, H23-MASK
+SUMMARY: zbits4: H-B0 (4 of 4 rows decided)
+SUMMARY: zbits4: H-B0-NOSTORE is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: zbits4: H-INERT20 is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: zbits4: H-OVL-PASS (2 of 2 rows decided)
+SUMMARY: zbits4: H-OVL-SKIP is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: zbits4: H23-BG is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: zbits4: H23-FIXED (3 of 3 rows decided)
+SUMMARY: zbits4: H23-MASK is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: zbits4: H23-REF is not supported: 2 held, 1 FAILED, 0 cannot tell of 3

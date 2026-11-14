@@ -1,0 +1,89 @@
+# session.toml: the env of r16-zls, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r16-zls"
+prefix = "r16z"                 # laptop files under ~/scratch/r16z/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); r15-zls's jobs,
+                                    # 640 x 480 included, ran in under 3 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]                  # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# R16-1 (a), plan sections 2 and 3: zpass2 (Q297, 15 jobs), zbits4 (Q071 and E1064's stencil
+# overlap rows, 14), zovp (Q299 and E1063's d12 row, 10), zoff (Q069 after OQ069, and E1063's 640
+# row, 10): 49 jobs (gen/make.py; README.md "Deviations"). zoff's stop ends the session.
+[stages]
+zpass2 = { alarm = 900 }
+zbits4 = { alarm = 900 }
+zovp = { alarm = 900 }
+zoff = { alarm = 1200, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b5288c82ed2217ae6c7fa5cb7d4674c8008873"
+data = "62cb03b369ca5fabedf3dc83cee43e79e2283968"
+pins = [
+    "data:render/closing-r15-zls/out/20261114-073826/zpass/zp-z125.depth-store.1.bin.gz",
+    "data:render/closing-r15-zls/out/20261114-073826/zpass/zp-c-467.depth-store.1.bin.gz",
+    "data:render/closing-r15-zls/out/20261114-073826/zpass/zp-f1.depth-store.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zbits2/zb2-c-base.stencil-store.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zbits2/zb2-c-base.depth.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zbits2/zb2-c-base.txt.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zbits2/zb2-b23.stencil-store.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zbits2/zb2-b23.depth.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-flat-f6.stencil-store.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-flat-f6.depth.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-flat-f6.txt.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-7k-3f.stencil-store.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-7k-3f.depth.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zfmt/zf-7k-3f.txt.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbits/zbs-c16.stencil-store.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbits/zbs-c16.depth.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbits/zbs-c16.txt.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zgran/zb2-d12.depth-store.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zgran/zb2-d12.txt.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zodd/zo-640-f0.depth.1.bin.gz",
+    "data:render/closing-r14-zls/out/20261114-054846/zodd/zo-640-f0.txt.gz",
+    "data:render/closing-r10-x/out/20261113-101116/zov/zov-64x32-ctl.depth.1.bin.gz",
+    "data:render/closing-r10-x/out/20261113-101116/zov/zov-160x48-ctl.depth.1.bin.gz",
+    "data:render/closing-r10-x/out/20261113-101116/zov/zov-64x32-g0.depth.1.bin.gz",
+    "data:render/closing-r10-zls/out/20261113-102039/zw/zw-0125.depth.1.bin.gz",
+    "data:render/closing-r9-z2/out/20261113-082522/z2/z2-a-f0.depth.1.bin.gz",
+    "data:render/closing-r15-zls/tables/zpass.txt",
+    "data:render/closing-r14-zls/tables/zbits2.txt",
+    "data:render/closing-r14-zls/tables/zgran.txt",
+    "data:render/closing-r14-zls/tables/zodd.txt",
+    "data:render/closing-r13-zls/tables/zfmt.txt",
+    "data:render/closing-r13-zls/tables/zbits.txt",
+    "data:render/closing-r10-zls/tables/zw.txt",
+    "data:render/closing-r9-z2/tables/z2.txt",
+    "data:render/closing-r10-x/tables/zov.txt",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+    "resgx545:crates/sgx-pipe/src/zls.rs",
+    "resgx545:crates/sgx-pipe/src/isp.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []
