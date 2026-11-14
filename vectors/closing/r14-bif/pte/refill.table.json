@@ -1,0 +1,187 @@
+{
+ "format": "sgx545-tables",
+ "version": 1,
+ "kind": "pte",
+ "run": {
+  "session": "render/closing-r14-bif",
+  "stage": "refill",
+  "tool": "closing_tables.py 1"
+ },
+ "note": "per job, what the kept files say: measurements of the hardware, not a simulator prediction and not a rule",
+ "replay": {
+  "status": "replayed",
+  "test": "crates/sgx-pipe/tests/pte_table.rs::the_model_replays_every_modelled_row_of_the_pte_tables",
+  "model": "sgx-pipe bif::pte_access: WRITEONLY, CACHECONSISTENT and EDMPROTECT on the pixel write, the texture and stream reads, the ZLS store and the ZLS load (E945, E946, E964, E965, E1046)"
+ },
+ "rows": [
+  {
+   "id": "rf-c-plain",
+   "set": "control",
+   "knobs": "reads:job,renders,dst1,dst2",
+   "args": "tri -n 2 --depth --depth-store --depth-dump \"$W\"",
+   "rc": 0,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x99385a04ee01c585",
+   "diff": [
+    0,
+    4096
+   ],
+   "raw": "refill/rf-c-plain.txt.gz",
+   "raw_sha256": "ad7ae32f6ea17002d6f9deb46fc235805bd171bb21754b21bc10e565e57d4799",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-c-plain.dmesg.gz",
+   "dmesg_sha256": "a12a044bdeed9ec70227bee46210d88c8ffc5c67a04d1af98ff77ffe37fc6cbd"
+  },
+  {
+   "id": "rf-c-depth",
+   "set": "control",
+   "knobs": "expectdiff reads:job,dst1,dst2",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "refill/rf-c-depth.txt.gz",
+   "raw_sha256": "ef16b682feb94ec03ea4cdf8b81eb8ad7178ede3560f3dc82b238dad3672dc2c",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-c-depth.dmesg.gz",
+   "dmesg_sha256": "481dd67e8f36255e911d43375acf5fbad0840e52ef8a3e780ca7731e92b464e1"
+  },
+  {
+   "id": "rf-c-unread",
+   "set": "control",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff reads:job,dst1,dst2,dep2",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017100c --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200 --depth-ctl-next 0x0017500e --refill 2:depth=0x3f400000",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "refill/rf-c-unread.txt.gz",
+   "raw_sha256": "d9528e32784129d9a3af1fe8acae522f9273d5f8c1649a9aaa2be534d31e878e",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x8",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x8"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-c-unread.dmesg.gz",
+   "dmesg_sha256": "d20fc47f5f762f02e5a1a9975185e50aa7d7f793d108aaff7353bbe459593237"
+  },
+  {
+   "id": "rf-cc-keep",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "refill/rf-cc-keep.txt.gz",
+   "raw_sha256": "ac77e5069961fa9e6182820d3569e55228d39b381667281de7301f9852c86e76",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x8",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x8"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-cc-keep.dmesg.gz",
+   "dmesg_sha256": "e3dc3fb9e948704b8b5960bccb714096ea9bbb156098147dd3d03e267568b602"
+  },
+  {
+   "id": "rf-cc-refill",
+   "set": "heldout",
+   "knobs": "dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200 --refill 2:depth=0x3f400000",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "refill/rf-cc-refill.txt.gz",
+   "raw_sha256": "11c39df562b622aa2136a1495e7946279c7ad152d98ab8c3ea77b72df3086581",
+   "pte_addr": "0x3e001000",
+   "pte_flags": "0x8",
+   "pte_lines": [
+    [
+     "0x3e001000",
+     "0x14000",
+     "0x8"
+    ]
+   ],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-cc-refill.dmesg.gz",
+   "dmesg_sha256": "92948ff932c64761a05b00db03a34dac8823189b1335d3423b14684a411d7d4f"
+  },
+  {
+   "id": "rf-nc-refill",
+   "set": "heldout",
+   "knobs": "expectdiff after",
+   "args": "tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump \"$W\" --poke blk:1=0x00000200 --refill 2:depth=0x3f400000",
+   "rc": 1,
+   "class": "ok",
+   "job": "ok",
+   "hash": "0x96387ccaf42b6325",
+   "diff": [
+    1953,
+    2048
+   ],
+   "raw": "refill/rf-nc-refill.txt.gz",
+   "raw_sha256": "ff98a846823caeed2684da99a14c6e3df263ae6a9f5232fdeeeb543447b617ea",
+   "pte_addr": null,
+   "pte_flags": null,
+   "pte_lines": [],
+   "faults": [],
+   "fault_int": "-",
+   "fault_word": "-",
+   "checks": [],
+   "dmesg": "refill/rf-nc-refill.dmesg.gz",
+   "dmesg_sha256": "22daf17c620d9cab6718c306ef0013cd8a3e75d54a056462312e44c5849251d7"
+  }
+ ],
+ "skipped": {}
+}

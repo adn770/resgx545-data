@@ -1,0 +1,16 @@
+#stage refill
+#limit 0
+# R14-4 (a), plan section 2 "r14-bif", Q108's stale-data clause (CACHECONSISTENT on data cached before the host's
+# write): E1029's zb-c-id form (64 x 32, depth test never, the store holds the load) run twice on one context; render 1
+# loads the index, the host refills the depth buffer with 0x3f400000 (--refill 2:depth=V, t14) and render 2 loads it
+# again, with CACHECONSISTENT (vm_pte_flags 0x8) on the depth buffer's mapping and without. Frozen per refill row (store
+# 2): H-CC-COHERENT / H-CC-STALE, H-NC-COHERENT / H-NC-STALE; H-CC-NOOP without a refill. Controls that can fail:
+# rf-c-plain, rf-c-depth (both stores E1029's zb-c-id), rf-c-unread (render 1 never loads: store 2 must be V). Stop: any
+# fault or hang (4); hook_check (24): a job line not ok, other buffer addresses, no kernel PTE line on a knob row, no
+# refill line on a refill row.
+rf-c-plain|control|safe|reads:job,renders,dst1,dst2|t14|tri -n 2 --depth --depth-store --depth-dump "$W"
+rf-c-depth|control|safe|expectdiff reads:job,dst1,dst2|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+rf-c-unread|control|safe|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff reads:job,dst1,dst2,dep2|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017100c --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200 --depth-ctl-next 0x0017500e --refill 2:depth=0x3f400000
+rf-cc-keep|heldout|safe|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+rf-cc-refill|heldout|safe|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x8 expectdiff|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200 --refill 2:depth=0x3f400000
+rf-nc-refill|heldout|safe|expectdiff after|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200 --refill 2:depth=0x3f400000

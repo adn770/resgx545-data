@@ -1,0 +1,66 @@
+# session.toml: the env of r14-bif, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r14-bif"
+prefix = "r14b"                 # laptop files under ~/scratch/r14b/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10); E1029's and
+                                    # E965's depth jobs ran in under 2 s
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t14"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = ["--depth-dump"]      # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t14]
+path = "sgxfive-test-t14"
+sha256 = "aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859"
+built_from = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+recipe = "data:render/closing-r14-bif/lead/build_tool14.sh"
+source = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+
+# the debugfs knobs a row may write (dbg:NAME=V), restored after every job and by the exit trap.
+# vm_pte_flags: CACHECONSISTENT 0x8 only (the fork's SGXFIVE_VM_PTE_KNOB takes bits of 0x1a);
+# vm_pte_addr: the first page of the one mapping that takes them, the depth buffer of
+# tri --depth --depth-pages 20 (0x3e001000, E1029, E965)
+[knobs]
+vm_pte_flags = { default = "0", values = ["0", "0x8"] }
+vm_pte_addr = { default = "0", values = ["0", "0x3e001000"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# R14-4 (a), plan sections 2 and 3: refill (Q108's stale-data clause, E1046), 6 jobs (gen/make.py)
+[stages]
+refill = { alarm = 600 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "c58f9f9c87aa3f8370d2b66917898550d86f6879"
+data = "3309b5fd9bd71d6de63315c2a1729586fb5e0d5d"
+# every repository file the generator, scorer or tests read: E1029's kept zb-c-id and zb-c-off
+# stores (the controls' byte-for-byte references) with their texts and table, E965's tri-c-depth
+# (rf-c-plain's frozen count) and E964/E965's PTE line, t14's source (the option forms) and recipe,
+# and what the fold's replay will read (README "Replay vectors")
+pins = [
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-id.depth-store.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-id.txt.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-off.depth-store.1.bin.gz",
+    "data:render/closing-r13-zls/out/20261113-213117/zbase/zb-c-off.txt.gz",
+    "data:render/closing-r13-zls/tables/zbase.txt",
+    "data:render/closing-r9-faults/out/20261113-084720/tri2/tri-c-depth.txt.gz",
+    "data:render/closing-r9-faults/out/20261113-084720/tri2/tri-edm-dld.dmesg.gz",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c",
+    "resgx545:tools/usse-asm/closing_tables.py",
+    "resgx545:tools/usse-asm/closing_vectors.py",
+    "resgx545:crates/sgx-pipe/src/bif.rs",
+    "resgx545:crates/sgx-pipe/tests/pte_table.rs"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []
