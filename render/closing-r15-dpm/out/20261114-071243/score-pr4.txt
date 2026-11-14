@@ -1,0 +1,28 @@
+CONTROL pr4-c0-1: clr 0 pulses 0 period 1655 ns short 1 (frozen clr 0, short 1): PASS
+CONTROL pr4-c0-2: clr 0 pulses 0 period 1666 ns short 1 (frozen clr 0, short 1): PASS
+ROW pr4-c1-1 [R-PULSE, heldout]: FAILED: pulses 0 (frozen >=1; PR 1, clr 0)
+ROW pr4-c4-1 [R-PULSE, heldout]: FAILED: pulses 3 (frozen >=4; PR 4, clr 3)
+ROW pr4-c7-1 [R-PULSE, heldout]: FAILED: pulses 5 (frozen >=7; PR 7, clr 5)
+ROW pr4-c1-2 [R-PULSE, heldout]: held: pulses 1 (frozen >=1; PR 1, clr 1)
+ROW pr4-c7-2 [R-PULSE, heldout]: FAILED: pulses 3 (frozen >=7; PR 7, clr 3)
+ROW pr4-c4-2 [R-PULSE, heldout]: FAILED: pulses 0 (frozen >=4; PR 4, clr 0)
+ROW pr4-c7-3 [R-PULSE, heldout]: FAILED: pulses 3 (frozen >=7; PR 7, clr 3)
+ROW pr4-c4-3 [R-PULSE, heldout]: FAILED: pulses 2 (frozen >=4; PR 4, clr 2)
+ROW all [R-RARE-TOTAL, heldout]: FAILED: total pulses 17 (frozen 1-8)
+READING pr4-c0-1: PR 0 lines 131 clr 0 pulses 0 period 1655 ns widths(ns) -
+READING pr4-c1-1: PR 1 lines 135 clr 0 pulses 0 period 1667 ns widths(ns) -
+READING pr4-c4-1: PR 4 lines 175 clr 3 pulses 3 period 1678 ns widths(ns) 3960,3965,4085
+READING pr4-c7-1: PR 7 lines 225 clr 5 pulses 5 period 1690 ns widths(ns) 3940,3954,3995,3995,3995
+READING pr4-c1-2: PR 1 lines 172 clr 1 pulses 1 period 1669 ns widths(ns) 3995
+READING pr4-c0-2: PR 0 lines 113 clr 0 pulses 0 period 1666 ns widths(ns) -
+READING pr4-c7-2: PR 7 lines 219 clr 3 pulses 3 period 1700 ns widths(ns) 3890,3915,4090
+READING pr4-c4-2: PR 4 lines 151 clr 0 pulses 0 period 1671 ns widths(ns) -
+READING pr4-c7-3: PR 7 lines 207 clr 3 pulses 3 period 1692 ns widths(ns) 3930,3970,3974
+READING pr4-c4-3: PR 4 lines 165 clr 2 pulses 2 period 1684 ns widths(ns) 3920,3925
+MODEL R-PULSE: 1 held, 7 FAILED, 0 cannot tell of 8
+MODEL R-RARE-TOTAL: 0 held, 1 FAILED, 0 cannot tell of 1
+MODEL log-loss: R-PULSE 9.29, R-RARE 6.80, R-CONST 7.25
+SUMMARY: pr4: the PR 0 rows read no bit 2 clear and a short sampling period (1 of 1 rows decided)
+SUMMARY: pr4: R-PULSE: R-PULSE holds is not supported: 1 held, 7 FAILED, 0 cannot tell of 8
+SUMMARY: pr4: R-RARE-TOTAL: R-RARE-TOTAL holds is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: pr4: DECISION: R-PULSE FAILS (a clear event per partial render at the short period, 1 held, 7 FAILED, 0 cannot tell of 8); ranking: NO RANKING
