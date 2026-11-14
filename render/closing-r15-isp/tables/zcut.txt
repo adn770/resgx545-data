@@ -1,0 +1,21 @@
+#stage zcut
+#limit 0
+# R15 zcut, Q241 (E1045, E287, E606, E1037, E065): E1045's form (80 x 40, CR_ISP_ZLSCTL 0x00171014, the depth
+# dumped, compare always with writes 0x01c00200, --pixels) on six triangles with one vertex depth 1.25 (cut at 1) or
+# -0.25 (cut at 0) whose cut line passes within 1/512 px of 6 to 20 pixel centres (gen/zcut.py): H-PIXCUT (a pixel
+# removed iff its depth is past [0, 1]) against H-POLYCLIP (the MTE clips the polygon, made vertices rounded half away
+# from zero to 1/256, E1037's CLIP-HA) and H-POLYCLIP-NR (unrounded); E065's 64 x 64 library triangle with ISP word 0
+# bit 15 (E065's 48 pixels, the control) and bits 16, 17 each alone (H-EQUIV: the pixels bit 15 leaves; H-NONE: none).
+# Controls that can fail: E1045's wind-zhi and wind-zlo replicated, E065's bit 15 replicate. Stop: any fault or hang
+# (#limit 0); a row without job: ok or without its whole image (hook_check, rc 24); the session's only stage.
+zcut-ctl-zhi|control|safe|expectdiff reads:job,drawn,depth_changed|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1.25,0.25,1.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-ctl-zlo|control|safe|expectdiff reads:job,drawn,depth_changed|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 0.25,-0.75,0.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-ctl-b15|control|safe|expectdiff reads:job,drawn,hash|t10|tri --keep-going --wait-ms 20000 --poke 'blk:1^=0x8000' --pixels
+zcut-hi1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 16256,4480,-1407,-1665,19329,12160 --tri-z 1.25,0.5,0.5 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-hi2|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 10880,7808,-3455,7808,18560,1665 --tri-z 1.25,0.25,0.5 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-hi3|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 9344,7808,20865,897,-3969,5761 --tri-z 1.25,0.5,0.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-lo1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 3456,2176,4481,11393,24960,1153 --tri-z -0.25,0.75,0.75 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-lo2|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 4992,1152,22913,2433,-1152,10369 --tri-z -0.25,1,0.5 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-lo3|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 15488,6528,17024,11647,-2943,7295 --tri-z -0.25,0.25,0.5 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+zcut-b16|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --poke 'blk:1^=0x10000' --pixels
+zcut-b17|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --poke 'blk:1^=0x20000' --pixels
