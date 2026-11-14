@@ -1,0 +1,29 @@
+## stage zovs2 of r17z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127080752 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r17z.JiBceK
+## clock
+Sat Nov 14 10:47:01 CET 2026
+== zo2-c-s160 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,sst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 160 --height 48 --max-width 160 --max-height 48 --depth --depth-ctl 0x00173016 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-dump /home/jtorra/scratch/tmp/r17z.JiBceK/1-zo2-c-s160/w --pixels
+  rc 1 job: ok target: 160x48 hash 0xacdcd180052a3325 diff: 3816 of 7680 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zo2-c-s160 [drawn sst_changed]: job=ok pixels=7680 drawn=3840 depth_changed=0 sst_changed=1408 
+== zo2-s-65 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 65 --height 33 --max-width 65 --max-height 33 --depth --depth-ctl 0x0017300e --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.JiBceK/2-zo2-s-65/w --pixels
+  rc 1 job: ok target: 65x33 hash 0x87333175fd4b10ed diff: 1024 of 2145 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== zo2-s-63 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --tri-full --width 63 --height 31 --max-width 63 --max-height 31 --depth --depth-ctl 0x00173006 --depth-fill 0x3f800000 --stencil --stencil-fill bytes --stencil-store --isp2 0x040501ff --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.JiBceK/3-zo2-s-63/w --pixels
+  rc 1 job: ok target: 63x31 hash 0xea20d5d767999f48 diff: 930 of 1953 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+## end: 3 jobs of zovs2
+## kernel log (journalctl)

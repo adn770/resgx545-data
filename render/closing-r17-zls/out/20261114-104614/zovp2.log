@@ -1,0 +1,39 @@
+## stage zovp2 of r17z
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127081008 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r17z.O5JBT3
+## clock
+Sat Nov 14 10:46:17 CET 2026
+== zo2-c-160 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 160 --height 48 --max-width 160 --max-height 48 --tri-v 0,0,81920,0,0,24576 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x00175016 --depth-fill 0x3e4ccccd --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.O5JBT3/1-zo2-c-160/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 160x48 hash 0x3f26b47c76bfbf25 diff: 4609 of 7680 pixels, first (1, 19) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise zo2-c-160 [drawn dst_changed]: job=ok pixels=7680 drawn=3040 depth_changed=0 dst_changed=5632 
+== zo2-c-65 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 65 --height 33 --max-width 65 --max-height 33 --tri-v 0,0,33280,0,0,16896 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0017100c --depth-fill 0x3e4ccccd --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.O5JBT3/2-zo2-c-65/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 65x33 hash 0x335b23cd8081f1ed diff: 0 of 2145 pixels 
+  class ok
+  premise zo2-c-65 [drawn dst_changed]: job=ok pixels=2145 drawn=2145 depth_changed=0 dst_changed=3584 
+== zo2-c-63 set=control risk=safe tool=t10 knobs=[expectdiff reads:drawn,dst_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 63 --height 31 --max-width 63 --max-height 31 --tri-v 0,0,32256,0,0,15872 --tri-z 0,0.015625,1 --depth --depth-ctl 0x00171004 --depth-fill 0x3e4ccccd --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.O5JBT3/3-zo2-c-63/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 63x31 hash 0x2129b30605f53bed diff: 0 of 1953 pixels 
+  class ok
+  premise zo2-c-63 [drawn dst_changed]: job=ok pixels=1953 drawn=1953 depth_changed=0 dst_changed=1536 
+== zo2-p-65 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 65 --height 33 --max-width 65 --max-height 33 --tri-v 0,0,33280,0,0,16896 --tri-z 0,0.0078125,1 --depth --depth-ctl 0x0017500e --depth-fill 0x3e4ccccd --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.O5JBT3/4-zo2-p-65/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 65x33 hash 0x0e857dd1033264ed diff: 1279 of 2145 pixels, first (1, 13) 0xff203040 expected 0xff00ff00 
+  class ok
+== zo2-p-63 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 63 --height 31 --max-width 63 --max-height 31 --tri-v 0,0,32256,0,0,15872 --tri-z 0,0.015625,1 --depth --depth-ctl 0x00175006 --depth-fill 0x3e4ccccd --depth-store --depth-store-fill 0xdeadbeef --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r17z.O5JBT3/5-zo2-p-63/w --poke blk:1=0x00400200 --pixels
+  rc 1 job: ok target: 63x31 hash 0x66df523b7282f248 diff: 1177 of 1953 pixels, first (1, 12) 0xff203040 expected 0xff00ff00 
+  class ok
+## end: 5 jobs of zovp2
+## kernel log (journalctl)
