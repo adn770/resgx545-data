@@ -1,0 +1,70 @@
+# session.toml: the env of r16-tex, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r16-tex"
+prefix = "r16t"                 # laptop files under ~/scratch/r16t/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = []                 # options no row may use, besides the kit's
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+ty = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b5288c82ed2217ae6c7fa5cb7d4674c8008873"
+data = "62cb03b369ca5fabedf3dc83cee43e79e2283968"
+pins = [
+    "data:render/closing-r10-tex/out/20261113-102730/addr3/addr3-16x64-u4.txt.gz",
+    "data:render/closing-r14-tex/bins/addr5-ty1-u4.bin",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty1-u4.txt.gz",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty3-u4.txt.gz",
+    "data:render/closing-r14-tex/out/20261114-054258/addr5/addr5-ty4-u4.txt.gz",
+    "data:render/closing-r15-tex/bins/ty-ty1u4r.bin",
+    "data:render/closing-r15-tex/fold/types_post.py",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty1-u5.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty1-u6.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty1-u7.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty4-u5.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty4-u6.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-16-ty4-u7.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty1-u0.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty1-u4.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty3-u0.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty3-u4.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty4-u0.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-32-ty4-u4.txt.gz",
+    "data:render/closing-r15-tex/out/20261114-073318/ty/ty-ty1u4r.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt1-2d.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt4-2d.txt.gz",
+    "data:texture/p1132/tx-types/ty3-2d.txt.gz",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/specs.json",
+    "data:texture/p1141/templates/tx_map.s"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
