@@ -1,0 +1,17 @@
+#stage clipr
+#limit 0
+# R14-1 (a), R14-3 (a) clipr, Q199 (E1012, E1024, E607, E914, E943): the rounding of a clip-made vertex on 1/512 ties at
+# H-VP's x = 80 on 64 x 64 (HU, HA, RNE, TR), vertices inside the guard of 4096 x 16 on a y tie (x 5000 and -1000) and a
+# far vertex at 2^24 px along +x there, E684's far21d0 first and E1024's far-x30p replicate (controls that can fail).
+# LAST (R14-3 a): the int32 ends at --tri-unit 0 (x = 2^31 - 1, y = -2^31) on 64 x 64. The session's last stage: it stops
+# at the first job that is not ok (any fault or hang: #limit 0; a job line other than ok: hook_check, rc 24).
+clipr-ctl-far21|control|safe|expectdiff reads:job,pixels|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+clipr-tie-a|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,10637,4096,6669,4198400,5901 --pixels
+clipr-tie-b|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,11900,4096,9980,4198400,13308 --pixels
+clipr-tie-c|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4096,1234,4096,7245,36864,-2541 --pixels
+clipr-w4-d|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 9 --tri-v 1024,2292,1024,3852,2560000,2313 --pixels
+clipr-w4-e|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 9 --tri-v 2096128,516,2096128,2052,-512000,-3 --pixels
+clipr-w4-f|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 4096 --height 16 --max-width 4096 --max-height 16 --tri-unit 5 --tri-v 136,145,216,367,536870912,-4449 --pixels
+clipr-ctl-x30p|control|safe|expectdiff reads:job,pixels|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,1073741824,132369010 --pixels
+clipr-i32-x|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 6,9,10,54,2147483647,-316842494 --pixels
+clipr-i32-y|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 0 --tri-v 7,58,57,55,-104242616,-2147483648 --pixels

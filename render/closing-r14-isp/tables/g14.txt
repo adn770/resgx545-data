@@ -1,0 +1,29 @@
+#stage g14
+#limit 0
+# R14-1 (a), R14-2 (a) g14, Q261 (E1023, E1024): the quarter-target guard held out: H-VP (a quarter of the viewport past
+# each edge, clip x, y within 1.5 w) against H-TGT (of the target), H-MAX4, H-MIN4, H-ABS, H-EXACT, and per row the side's
+# bound as a family; 64 x 64 along -x (a 9 or 16), 128 x 128 (+x 147/160/173/186, -x, -y, +y), 256 x 256, 128 x 64 and
+# 64 x 128; --tri-unit 5. Controls that can fail: E979's far-ctl first, E1023's t128-1 replicate after the in-range rows.
+# LAST (R14-2 a): three poked-viewport rows (--poke blk:6..9 = 32.0 on 128 x 128, 64.0 on 64 x 64). Stop: any fault or
+# hang (#limit 0); the first job that is not `job: ok` (hook_check, rc 24).
+g14-ctl-far21|control|safe|expectdiff reads:job,pixels|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+g14-64-nx-1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,1808,1784,-480186976,-42739067 --pixels
+g14-64-nx-2|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,1808,1784,-218741474,-60596017 --pixels
+g14-128-px-1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,461074016,85124685 --pixels
+g14-128-px-2|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,525150321,-100027964 --pixels
+g14-128-nx-1|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 3600,496,3616,3568,-405349956,-24076842 --pixels
+g14-128-nx-2|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 3600,496,3616,3568,-483616856,-95137954 --pixels
+g14-128-ny|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 432,3728,3664,3504,-36489836,-456165248 --pixels
+g14-128-py|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 464,400,3600,496,63287087,535502594 --pixels
+g14-256-px|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 800,1184,1216,6880,492435559,-15344790 --pixels
+g14-256-nx|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 7200,992,7232,7136,-273150273,15138310 --pixels
+g14-256-py|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 928,800,7200,992,-22909573,253325485 --pixels
+g14-256-ny|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 864,7456,7328,7008,40209459,-314746258 --pixels
+g14-128x64-px|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --tri-unit 5 --tri-v 400,296,608,1720,368457845,114724546 --pixels
+g14-128x64-py|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --tri-unit 5 --tri-v 464,200,3600,248,-25440650,400697753 --pixels
+g14-64x128-px|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 128 --max-width 64 --max-height 128 --tri-unit 5 --tri-v 200,592,304,3440,242775664,-95205472 --pixels
+g14-64x128-py|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 128 --max-width 64 --max-height 128 --tri-unit 5 --tri-v 232,400,1800,496,819984,297819651 --pixels
+g14-ctl-t128|control|safe|expectdiff reads:job,pixels|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,257450388,31020207 --pixels
+g14-vp64-px|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,268435456,16777216 --poke blk:6=0x42000000 --poke blk:7=0x42000000 --poke blk:8=0x42000000 --poke blk:9=0x42000000 --pixels
+g14-vp64-py|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 464,400,3600,496,16777216,268435456 --poke blk:6=0x42000000 --poke blk:7=0x42000000 --poke blk:8=0x42000000 --poke blk:9=0x42000000 --pixels
+g14-vp128-px|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 100,148,152,860,149700885,-59439137 --poke blk:6=0x42800000 --poke blk:7=0x42800000 --poke blk:8=0x42800000 --poke blk:9=0x42800000 --pixels

@@ -1,0 +1,51 @@
+## stage wind of r14i
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127103188 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r14i.CtesoP
+## clock
+Sat Nov 14 06:01:02 CET 2026
+== wind-ctl-rev set=control risk=safe tool=t10 knobs=[expectdiff reads:job,drawn,depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/1-wind-ctl-rev/w --poke blk:1=0x00400200 --pixels
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+  premise wind-ctl-rev [job drawn depth_changed]: job=ok drawn=3200 pixels=3200 hash=0xafb12e5a2a9a6725 diff=0 depth_changed=4608 
+== wind-ctl-b15 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,drawn,depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/2-wind-ctl-b15/w --poke blk:1=0x00408200 --pixels
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise wind-ctl-b15 [job drawn depth_changed]: job=ok drawn=0 pixels=3200 hash=0x56053161ef809725 diff=3080 depth_changed=4608 
+== wind-ctl-always set=control risk=safe tool=t10 knobs=[expectdiff reads:job,drawn,depth_changed]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/3-wind-ctl-always/w --poke blk:1=0x01c00200 --pixels
+  rc 0 job: ok target: 80x40 hash 0xafb12e5a2a9a6725 diff: 0 of 3200 pixels 
+  class ok
+  premise wind-ctl-always [job drawn depth_changed]: job=ok drawn=3200 pixels=3200 hash=0xafb12e5a2a9a6725 diff=0 depth_changed=4608 
+== wind-rev-b15 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/4-wind-rev-b15/w --poke blk:1=0x00408200 --pixels
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== wind-rev-b16 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/5-wind-rev-b16/w --poke blk:1=0x00410200 --pixels
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== wind-rev-b17 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/6-wind-rev-b17/w --poke blk:1=0x00420200 --pixels
+  rc 1 job: ok target: 80x40 hash 0x56053161ef809725 diff: 3080 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== wind-zhi set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1.25,0.25,1.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/7-wind-zhi/w --poke blk:1=0x01c00200 --pixels
+  rc 1 job: ok target: 80x40 hash 0x1ae0dc9078287f25 diff: 1521 of 3200 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+== wind-zlo set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 0.25,-0.75,0.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump /home/jtorra/scratch/tmp/r14i.CtesoP/8-wind-zlo/w --poke blk:1=0x01c00200 --pixels
+  rc 1 job: ok target: 80x40 hash 0xead5832ba1f27f25 diff: 1559 of 3200 pixels, first (40, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+## end: 8 jobs of wind
+## kernel log (journalctl)

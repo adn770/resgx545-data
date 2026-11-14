@@ -1,0 +1,15 @@
+#stage wind
+#limit 0
+# R14-1 (a) wind, Q241 (E998, E977, E287, E981): E998's form (E977's z242-c-f0 ramp, 80 x 40, compare less with writes),
+# ISP word 0 bits 15, 16, 17 each alone on the triangle with its vertex order reversed (H-CULL: E977's ramp; H-KILL: no
+# pixel), and a vertex depth above 1 (zhi) or below 0 (zlo) under the compare always with writes (H-CLAMP, H-ZCLIP, H-RAW,
+# H-ABS per dword and pixel). Controls that can fail: the reversed triangle unpoked, E998's bit 15 replicate, the
+# compare always at E977's depths. First stage, in range. Stop: any fault or hang (#limit 0); a row without job: ok.
+wind-ctl-rev|control|safe|expectdiff reads:job,drawn,depth_changed|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00400200 --pixels
+wind-ctl-b15|control|safe|expectdiff reads:job,drawn,depth_changed|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00408200 --pixels
+wind-ctl-always|control|safe|expectdiff reads:job,drawn,depth_changed|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1,0,1 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+wind-rev-b15|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00408200 --pixels
+wind-rev-b16|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00410200 --pixels
+wind-rev-b17|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,0,20480,40960,0 --tri-z 1,1,0 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x00420200 --pixels
+wind-zhi|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 1.25,0.25,1.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels
+wind-zlo|heldout|safe|expectdiff|t10|tri --keep-going --wait-ms 20000 --width 80 --height 40 --max-width 80 --max-height 40 --tri-v 0,0,40960,0,0,20480 --tri-z 0.25,-0.75,0.25 --depth --depth-ctl 0x00171014 --depth-fill 0xdeadbeef --depth-dump "$W" --poke blk:1=0x01c00200 --pixels

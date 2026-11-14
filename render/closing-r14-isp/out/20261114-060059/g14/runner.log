@@ -1,0 +1,102 @@
+## stage g14 of r14i
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127102872 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r14i.iiYqo1
+## clock
+Sat Nov 14 06:01:59 CET 2026
+== g14-ctl-far21 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 8 --tri-v 4066,8385,7356,9765,536870912,11776 --pixels
+  rc 0 job: ok target: 64x64 hash 0x72c607bcf3ce63c5 diff: 0 of 4096 pixels 
+  class ok
+  premise g14-ctl-far21 [job pixels]: job=ok drawn=208 pixels=4096 hash=0x72c607bcf3ce63c5 diff=0 
+== g14-64-nx-1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,1808,1784,-480186976,-42739067 --pixels
+  rc 0 job: ok target: 64x64 hash 0xd814fac6d84e5da5 diff: 0 of 4096 pixels 
+  class ok
+== g14-64-nx-2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 1800,248,1808,1784,-218741474,-60596017 --pixels
+  rc 0 job: ok target: 64x64 hash 0x60245e92b781b5b0 diff: 0 of 4096 pixels 
+  class ok
+== g14-128-px-1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,461074016,85124685 --pixels
+  rc 1 job: ok target: 128x128 hash 0x30aee9788ad9b7e5 diff: 1 of 16384 pixels, first (77, 30) 0xff00ff00 expected 0xff203040 
+  class ok
+== g14-128-px-2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,525150321,-100027964 --pixels
+  rc 0 job: ok target: 128x128 hash 0x1c90ddd94654ba65 diff: 0 of 16384 pixels 
+  class ok
+== g14-128-nx-1 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 3600,496,3616,3568,-405349956,-24076842 --pixels
+  rc 0 job: ok target: 128x128 hash 0x3d951cfac41015c5 diff: 0 of 16384 pixels 
+  class ok
+== g14-128-nx-2 set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 3600,496,3616,3568,-483616856,-95137954 --pixels
+  rc 0 job: ok target: 128x128 hash 0x644249416db02c65 diff: 0 of 16384 pixels 
+  class ok
+== g14-128-ny set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 432,3728,3664,3504,-36489836,-456165248 --pixels
+  rc 1 job: ok target: 128x128 hash 0xea7ca5eefaceea05 diff: 2 of 16384 pixels, first (106, 9) 0xff203040 expected 0xff00ff00 
+  class ok
+== g14-128-py set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 464,400,3600,496,63287087,535502594 --pixels
+  rc 0 job: ok target: 128x128 hash 0x796fc92dd056a7d0 diff: 0 of 16384 pixels 
+  class ok
+== g14-256-px set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 800,1184,1216,6880,492435559,-15344790 --pixels
+  rc 1 job: ok target: 256x256 hash 0xd5633d124e980c45 diff: 2 of 65536 pixels, first (201, 31) 0xff203040 expected 0xff00ff00 
+  class ok
+== g14-256-nx set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 7200,992,7232,7136,-273150273,15138310 --pixels
+  rc 0 job: ok target: 256x256 hash 0x6b3bf54bda902825 diff: 0 of 65536 pixels 
+  class ok
+== g14-256-py set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 928,800,7200,992,-22909573,253325485 --pixels
+  rc 0 job: ok target: 256x256 hash 0x7d5a0a49bd12d370 diff: 0 of 65536 pixels 
+  class ok
+== g14-256-ny set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 256 --height 256 --max-width 256 --max-height 256 --tri-unit 5 --tri-v 864,7456,7328,7008,40209459,-314746258 --pixels
+  rc 0 job: ok target: 256x256 hash 0xfa82cdc6c2aa5dc5 diff: 0 of 65536 pixels 
+  class ok
+== g14-128x64-px set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --tri-unit 5 --tri-v 400,296,608,1720,368457845,114724546 --pixels
+  rc 0 job: ok target: 128x64 hash 0x43f3460fead50db0 diff: 0 of 8192 pixels 
+  class ok
+== g14-128x64-py set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 64 --max-width 128 --max-height 64 --tri-unit 5 --tri-v 464,200,3600,248,-25440650,400697753 --pixels
+  rc 1 job: ok target: 128x64 hash 0x6ba471920c71c005 diff: 2 of 8192 pixels, first (111, 23) 0xff00ff00 expected 0xff203040 
+  class ok
+== g14-64x128-px set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 128 --max-width 64 --max-height 128 --tri-unit 5 --tri-v 200,592,304,3440,242775664,-95205472 --pixels
+  rc 0 job: ok target: 64x128 hash 0x9189b361d82da730 diff: 0 of 8192 pixels 
+  class ok
+== g14-64x128-py set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 128 --max-width 64 --max-height 128 --tri-unit 5 --tri-v 232,400,1800,496,819984,297819651 --pixels
+  rc 0 job: ok target: 64x128 hash 0x45a9c8c9c5b4f3e5 diff: 0 of 8192 pixels 
+  class ok
+== g14-ctl-t128 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,257450388,31020207 --pixels
+  rc 0 job: ok target: 128x128 hash 0x0c81aff83df5f590 diff: 0 of 16384 pixels 
+  class ok
+  premise g14-ctl-t128 [job pixels]: job=ok drawn=9901 pixels=16384 hash=0x0c81aff83df5f590 diff=0 
+== g14-vp64-px set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 400,592,608,3440,268435456,16777216 --poke blk:6=0x42000000 --poke blk:7=0x42000000 --poke blk:8=0x42000000 --poke blk:9=0x42000000 --pixels
+  rc 1 job: ok target: 128x128 hash 0xf0689f180d7320b0 diff: 793 of 16384 pixels, first (6, 9) 0xff00ff00 expected 0xff203040 
+  class ok
+== g14-vp64-py set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 128 --height 128 --max-width 128 --max-height 128 --tri-unit 5 --tri-v 464,400,3600,496,16777216,268435456 --poke blk:6=0x42000000 --poke blk:7=0x42000000 --poke blk:8=0x42000000 --poke blk:9=0x42000000 --pixels
+  rc 1 job: ok target: 128x128 hash 0x2726322d659112f0 diff: 756 of 16384 pixels, first (7, 6) 0xff00ff00 expected 0xff203040 
+  class ok
+== g14-vp128-px set=heldout risk=safe tool=t10 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --keep-going --wait-ms 20000 --width 64 --height 64 --max-width 64 --max-height 64 --tri-unit 5 --tri-v 100,148,152,860,149700885,-59439137 --poke blk:6=0x42800000 --poke blk:7=0x42800000 --poke blk:8=0x42800000 --poke blk:9=0x42800000 --pixels
+  rc 1 job: ok target: 64x64 hash 0x05f38f003c6c9d05 diff: 686 of 4096 pixels, first (17, 0) 0xff203040 expected 0xff00ff00 
+  class ok
+## end: 21 jobs of g14
+## kernel log (journalctl)
