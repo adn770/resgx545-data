@@ -1,0 +1,11 @@
+#stage f1
+#limit 3
+# r14-flag f1, Q078 T3 bit 14 on a twiddled 32 x 32 texture with the reach mapped (rank-round14.md section 2 F1; PLANNED FAULTS, user OK R14-5 a). gen/f1.py. t14: probe --scratch-pages 256 (1 MiB: E1033's fault pages + 0x21000 and + 0x40000 inside it).
+# Controls first in each pair: f1-ref-a (E566's tw32-ctl, its kept image), f1-ref-b (u = x / 4096 bit clear, the tile law's column 0). Planned: f1-tw32 (E566's tw32-t3b14), f1-small (u = x / 4096), f1-zero (u = 0, held out).
+# Frozen: H-TWP4096, H-TWP4128, H-TWP4096-NS (post hoc on E1033's two pages: an image each), H-FAULTANY (a fault each), H-MOVE0 (f1-zero: the bit-clear image).
+# #limit 3 = the three planned bit-14 rows (expectfault); the controls do not expectfault (a fault there stops the stage, 4). Strict health after every fault; hook_fault stops on a fault without its kernel BIF line, a hang, or SGX recovery failed (24), and session.toml's on_stop = end ends the session there.
+f1-ref-a|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"
+f1-tw32|replicate|risky|expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-tw32.bin"
+f1-ref-b|control|safe|reads:pixels|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-b.bin"
+f1-small|replicate|risky|expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-small.bin"
+f1-zero|heldout|risky|expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-zero.bin"

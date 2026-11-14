@@ -1,0 +1,43 @@
+## stage f2 of r14f
+## uname
+7.3.0-resgx545
+## installed module
+B60AB0B475DD1E8972419B5
+## loaded module
+B60AB0B475DD1E8972419B5
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 127093440 KiB (at least 400 MiB)
+## work directory: /home/jtorra/scratch/tmp/r14f.LZxl9T
+## clock
+Sat Nov 14 06:09:10 CET 2026
+== f2-ctl-256 set=control risk=safe tool=t10 knobs=[expectdiff reads:hash,dump]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/1-f2-ctl-256/w
+  rc 0 job: ok target: 256x256 hash 0x66648495c9ea2325 diff: 0 of 65536 pixels 
+  class ok
+  premise f2-ctl-256 [hash dump]: job=ok pixels=65536 hash=0x66648495c9ea2325 diff=0 dump=24576 
+== f2-h-256-fx14 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x0100e004 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/2-f2-h-256-fx14/w
+  rc 1 job: ok target: 256x256 hash 0xbc451f508bf40325 diff: 14336 of 65536 pixels, first (0, 64) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== f2-h-256-fx15 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --kpoke-render 1:ta:143=0x0100f004 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/3-f2-h-256-fx15/w
+  rc 1 job: ok target: 256x256 hash 0x77ae4a34735b9325 diff: 15360 of 65536 pixels, first (0, 64) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== f2-ctl-768 set=control risk=safe tool=t10 knobs=[expectdiff reads:hash,dump]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 768 --height 640 --max-width 768 --max-height 640 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/4-f2-ctl-768/w
+  rc 0 job: ok target: 768x640 hash 0x4bff21460f7e2325 diff: 0 of 491520 pixels 
+  class ok
+  premise f2-ctl-768 [hash dump]: job=ok pixels=491520 hash=0x4bff21460f7e2325 diff=0 dump=69632 
+== f2-h-768-fx26 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 768 --height 640 --max-width 768 --max-height 640 --kpoke-render 1:ta:143=0x86810018 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/5-f2-h-768-fx26/w
+  rc 1 job: ok target: 768x640 hash 0x4a9dd6a6ca002325 diff: 294912 of 491520 pixels, first (0, 64) 0xdeadbeef expected 0xff00ff00 
+  class ok
+== f2-h-768-fx27 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 768 --height 640 --max-width 768 --max-height 640 --kpoke-render 1:ta:143=0x86c10018 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r14f.LZxl9T/6-f2-h-768-fx27/w
+  rc 1 job: ok target: 768x640 hash 0x4a9dd6a6ca002325 diff: 294912 of 491520 pixels, first (0, 64) 0xdeadbeef expected 0xff00ff00 
+  class ok
+## end: 6 jobs of f2
+## kernel log (journalctl)

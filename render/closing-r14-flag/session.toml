@@ -1,0 +1,96 @@
+# session.toml: the env of r14-flag, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r14-flag"
+prefix = "r14f"                 # laptop files under ~/scratch/r14f/ (run, stage, out)
+srcversion = "B60AB0B475DD1E8972419B5"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): E1033's probes and
+                                    # E959's 768 x 640 --pixels dumps ended well inside it
+min_free_mb = 400                   # MiB free on ~ before each job: 768 x 640 text and dumps
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = ["render_param", "render_tadata"]   # f2: tri --dump-render reads them
+outdir_opts = []                    # --dump-render writes into $W, which exists
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--poke", "--kpoke-fill", "--tadata-fill-render", "--scratch-at", "--scratch",
+                  "--low", "--late", "--kpoke-job", "--kpoke-render2", "--refill"]   # nothing else
+                                    # of ours touches the GPU: f1 sets only --scratch-pages, f2
+                                    # only CR_TE_MTILE1 (--kpoke-render 1:ta:143)
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t14]
+path = "sgxfive-test-t14"
+sha256 = "aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859"
+built_from = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+recipe = "data:render/closing-r14-flag/lead/build_tool14.sh"
+source = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# closing14/DECISIONS-R14.md R14-5 (a): F1 then F2, after every safe session, user present; no F3.
+# f1's rc 24 (hook_fault: a failed recovery, a hang, a fault without its kernel line; hook_check: a
+# row without its pixels) ends the session (the lead's condition: a stop in F1 ends it); f2 runs
+# only after f1 ended 0.
+[stages]
+f1 = { alarm = 900, on_stop = "end" }
+f2 = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "c58f9f9c87aa3f8370d2b66917898550d86f6879"
+data = "3309b5fd9bd71d6de63315c2a1729586fb5e0d5d"
+# every repository file the generator (gen/), the scorer or the tests read: p1141's template,
+# builder, texmodel and specs (F1's programs), E566's kept tw32-ctl and published program, r10-tex's
+# generator files gen/ copies, E1033's kept f1 rows (r13-flag), r10-geo's Q139 readers gen/ and
+# score/ copy byte for byte, E1007's and E959's kept baselines, the two macrotile datasets
+pins = [
+    "data:texture/p1141/templates/tx_map.s",
+    "data:texture/p1141/support/build.py",
+    "data:texture/p1141/support/texmodel.py",
+    "data:texture/p1141/support/specs.json",
+    "data:texture/p1132/tx-t3/tw32-ctl.txt.gz",
+    "data:texture/p1132-recomp/raw/tx-t3bits/bins/tx-t3bits__33.bin",
+    "data:render/closing-r10-tex/gen/pins.py",
+    "data:render/closing-r10-tex/gen/tex.py",
+    "data:render/closing-r10-tex/gen/addr.py",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/cases.tsv",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-ref-a.txt.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-ref-b.txt.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-tw32.txt.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-tw32.dmesg.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-small.txt.gz",
+    "data:render/closing-r13-flag/out/20261113-220930/f1/f1-small.dmesg.gz",
+    "data:render/closing-r10-geo/gen/q139_fit.py",
+    "data:render/closing-r10-geo/gen/q139model.py",
+    "data:render/closing-r10-geo/gen/q139even.py",
+    "data:render/closing-r10-geo/score/lib_dump.py",
+    "data:render/closing-r10-geo/score/pbdump_dump.py",
+    "data:render/closing-r10-geo/score/region_tiles_dump.py",
+    "data:render/closing-r10-geo/out/20261113-103256/q139c/q139c-ctl-256x256.txt.gz",
+    "data:render/closing-r10-geo/out/20261113-103256/q139c/q139c-ctl-256x256.tri.param.bin.gz",
+    "data:render/closing-r10-geo/out/20261113-103256/q139c/q139c-ctl-256x256.tri.tadata.bin.gz",
+    "data:render/closing-r9-lgeo/out/20261113-080029/q139b/q139b-ctl-768x640.txt.gz",
+    "data:render/closing-r9-lgeo/out/20261113-080029/q139b/q139b-ctl-768x640.tri.param.bin.gz",
+    "data:render/closing-r9-lgeo/out/20261113-080029/q139b/q139b-ctl-768x640.tri.tadata.bin.gz",
+    "data:ta/mtile-fields/output.txt",
+    "data:ta/mtile-fields-risky/output.txt"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
