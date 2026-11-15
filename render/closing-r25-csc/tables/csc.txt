@@ -1,0 +1,24 @@
+#stage csc
+#limit 0
+# csc (Q181, rank-round24.md 2.2, R24 all a): does a fill's transfer command load colour-space set 0? Per format 28, 29
+# (E568's fy-F-p0 on t22): E037's UYVY copy loading set 0 with zeros (control: black), the fill unpoked (control:
+# black), poked with BT.601 (fit), unpoked (fit); E037's copy loading BT.601 (control: E037's hash), the fill unpoked
+# (control: E1097's conversion), poked with zeros (held out), unpoked (held out). Frozen H-FILLLOAD (poked fills load
+# the set; the next fill keeps it) against H-FILLIGNORE (the fills read the copy's set). In table order, no health job
+# between rows. Stop: a probe row whose echo count is not its poke count (run/hooks.sh), any fault or hang.
+y28-zc|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+y28-a|control|safe|reads:o0|t22|probe --temps 32 --coords --pixels "$S/bins/y28-a.bin"
+y28-b|fit|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/y28-b.bin"
+y28-c|fit|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/y28-c.bin"
+y28-bc|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0
+y28-d|control|safe|reads:o0|t22|probe --temps 32 --coords --pixels "$S/bins/y28-d.bin"
+y28-e|heldout|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0 "$S/bins/y28-e.bin"
+y28-f|heldout|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/y28-f.bin"
+y29-zc|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+y29-a|control|safe|reads:o0|t22|probe --temps 32 --coords --pixels "$S/bins/y29-a.bin"
+y29-b|fit|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/y29-b.bin"
+y29-c|fit|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/y29-c.bin"
+y29-bc|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0
+y29-d|control|safe|reads:o0|t22|probe --temps 32 --coords --pixels "$S/bins/y29-d.bin"
+y29-e|heldout|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0 "$S/bins/y29-e.bin"
+y29-f|heldout|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/y29-f.bin"

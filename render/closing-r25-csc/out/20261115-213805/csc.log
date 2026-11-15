@@ -1,0 +1,89 @@
+## stage csc of r25c
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126880836 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r25c.TNoghV
+## clock
+Sun Nov 15 18:48:13 CET 2026
+== y28-zc set=control risk=safe tool=t22 knobs=[expectdiff reads:hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+  rc 1 job: ok job time: 536 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise y28-zc [hash]: hash=0xd3522437a14b6325 
+== y28-a set=control risk=safe tool=t22 knobs=[reads:o0]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y28-a.bin
+  rc 0 
+  class ok
+  premise y28-a [o0]: echo=0/0 o0=0xff000000 
+== y28-b set=fit risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 /home/jtorra/scratch/r25c/stage/bins/y28-b.bin
+  rc 0 
+  class ok
+== y28-c set=fit risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y28-c.bin
+  rc 0 
+  class ok
+== y28-bc set=control risk=safe tool=t22 knobs=[expectdiff reads:hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0
+  rc 1 job: ok job time: 408 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise y28-bc [hash]: hash=0xb6067a95fa98de2d 
+== y28-d set=control risk=safe tool=t22 knobs=[reads:o0]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y28-d.bin
+  rc 0 
+  class ok
+  premise y28-d [o0]: echo=0/0 o0=mixed 
+== y28-e set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0 /home/jtorra/scratch/r25c/stage/bins/y28-e.bin
+  rc 0 
+  class ok
+== y28-f set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y28-f.bin
+  rc 0 
+  class ok
+== y29-zc set=control risk=safe tool=t22 knobs=[expectdiff reads:hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+  rc 1 job: ok job time: 504 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise y29-zc [hash]: hash=0xd3522437a14b6325 
+== y29-a set=control risk=safe tool=t22 knobs=[reads:o0]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y29-a.bin
+  rc 0 
+  class ok
+  premise y29-a [o0]: echo=0/0 o0=0xff000000 
+== y29-b set=fit risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 /home/jtorra/scratch/r25c/stage/bins/y29-b.bin
+  rc 0 
+  class ok
+== y29-c set=fit risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y29-c.bin
+  rc 0 
+  class ok
+== y29-bc set=control risk=safe tool=t22 knobs=[expectdiff reads:hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0
+  rc 1 job: ok job time: 409 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise y29-bc [hash]: hash=0xb6067a95fa98de2d 
+== y29-d set=control risk=safe tool=t22 knobs=[reads:o0]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y29-d.bin
+  rc 0 
+  class ok
+  premise y29-d [o0]: echo=0/0 o0=mixed 
+== y29-e set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0 /home/jtorra/scratch/r25c/stage/bins/y29-e.bin
+  rc 0 
+  class ok
+== y29-f set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels /home/jtorra/scratch/r25c/stage/bins/y29-f.bin
+  rc 0 
+  class ok
+## end: 16 jobs of csc
+## kernel log (journalctl)

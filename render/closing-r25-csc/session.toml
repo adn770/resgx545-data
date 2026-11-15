@@ -1,0 +1,66 @@
+# session.toml: the env of r25-csc, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r25-csc"
+prefix = "r25c"                 # laptop files under ~/scratch/r25c/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place"]   # none of this session's premises
+
+[tools.t22]
+path = "sgxfive-test-t22"
+sha256 = "9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee"
+built_from = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+recipe = "data:render/closing-r23-pk/lead/build_tool22_laptop.sh"
+source = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round24.md 2.2 and 5 (R24 all a): one stage, rows in table order with no health job
+# between them (the kit's health runs at the stage's ends and after a fault, which stops it)
+csc = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "7f214e511d6aff163f87af793fb073f9a7e2e7f8"
+data = "40050d0aca6baa3b6a731d98786a2eb3e018a5ed"
+# E568's fy-28/29-p0 programs as r23-pk ran them, r23-pk's kept fills of E1097 (the conversion
+# the H-CONV pixel sha256 is frozen from) and its copies, the two tool recipes
+pins = [
+    "data:render/closing-r23-pk/bins/fy-28-p0-csc.bin",
+    "data:render/closing-r23-pk/bins/fy-29-p0-csc.bin",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/fy-28-p0-csc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/fy-29-p0-csc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/c-copy-csc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/c-copy-none.txt.gz",
+    "data:render/closing-r23-pk/tables/q181.txt",
+    "data:render/closing-r23-pk/lead/build_tool22_laptop.sh",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
