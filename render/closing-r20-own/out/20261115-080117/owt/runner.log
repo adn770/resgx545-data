@@ -1,0 +1,27 @@
+## stage owt of r20o
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t18b: 58e7985504d0d3311155d94627da8b8473335d9a843f5610e44731864315b21e /home/jtorra/sgxfive-test-t18b
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126953596 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r20o.lP5j3t
+## clock
+Sun Nov 15 05:12:16 CET 2026
+== owt-a set=control risk=safe tool=rt knobs=[dbg:render_keep=1 dbg:render_pb_pages=0x422 reads:ovf,kept,size]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x062c,0x0634,0x0694,0x0698 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy /home/jtorra/scratch/tmp/r20o.lP5j3t/1-owt-a/w --words /home/jtorra/scratch/tmp/r20o.lP5j3t/1-owt-a/w --kpoke-render 1:ta:7^=0xc
+  rc 0 job: ok job: ok target: 1024x768 hash 0xc9e301d225fe2325 
+  class ok
+  premise owt-a [ovf kept size]: ovf=0 kept=2 size=69632 
+== owt-b set=heldout risk=safe tool=rt knobs=[dbg:render_keep=1 dbg:render_pb_pages=0x422]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x062c,0x0634,0x0694,0x0698 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy /home/jtorra/scratch/tmp/r20o.lP5j3t/2-owt-b/w --words /home/jtorra/scratch/tmp/r20o.lP5j3t/2-owt-b/w --kpoke-render 1:ta:7^=0xc
+  rc 0 job: ok job: ok target: 1024x768 hash 0xc9e301d225fe2325 
+  class ok
+## end: 2 jobs of owt
+## kernel log (journalctl)

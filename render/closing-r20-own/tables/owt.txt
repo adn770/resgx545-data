@@ -1,0 +1,6 @@
+#stage owt
+#limit 0
+# r20-own owt (E1091, Q191 which kick, a reading [infer]): regtimeline on 0x062c, 0x0634, 0x0694, 0x0698 only. H-TA: 0x062c takes the owner's state base (words.101 rtds:11) with a task write (0x0694 or 0x0698 changing) after the second context's first other state base and before its last task write; H-END: after its last task write; none seen: cannot tell.
+# Control owt-a (also a fit row; reads ovf,kept,size): 0, 2, 69632, pages 4 to 6 E1087's.
+owt-a|control|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422 reads:ovf,kept,size|rt|0 0.3 0x062c,0x0634,0x0694,0x0698 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+owt-b|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x422|rt|0 0.3 0x062c,0x0634,0x0694,0x0698 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc

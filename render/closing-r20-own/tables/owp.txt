@@ -1,0 +1,10 @@
+#stage owp
+#limit 0
+# r20-own owp (E1092, Q192): the owner's state page after the second render by the owner's regime (raised iff ta3d.101.bin dword 38 is non-zero, E625, read per row).
+# Frozen H-REGIME: zero when raised; not raised, non-zero lists in E627's format, and at P 0x30 unmoved E1084's o2-p30 10 dwords exactly (a repeat). owp-30m (owner moved -112,-80): H-SECOND (o2-p30's dwords) against H-OWNER (other lists, within the moved cover).
+# Control owp-30-a (also a fit row; reads ovf,kept,size): 1, 2, 69632 and its page 6 E1084's o2-p30 exactly.
+owp-30-a|control|safe|dbg:render_keep=1 dbg:render_pb_pages=0x30 reads:ovf,kept,size|rt|0 0.3 0x0620-0x0634,0x0658,0x065c,0x0674,0x0694,0x0698,0x0700-0x0728 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+owp-30-b|fit|safe|dbg:render_keep=1 dbg:render_pb_pages=0x30|rt|0 0.3 0x0620-0x0634,0x0658,0x065c,0x0674,0x0694,0x0698,0x0700-0x0728 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+owp-30m|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x30|rt|0 0.3 0x0620-0x0634,0x0658,0x065c,0x0674,0x0694,0x0698,0x0700-0x0728 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc --move 1:-112,-80
+owp-2c|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x2c|rt|0 0.3 0x0620-0x0634,0x0658,0x065c,0x0674,0x0694,0x0698,0x0700-0x0728 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
+owp-34|heldout|safe|dbg:render_keep=1 dbg:render_pb_pages=0x34|rt|0 0.3 0x0620-0x0634,0x0658,0x065c,0x0674,0x0694,0x0698,0x0700-0x0728 -- "$HOME/sgxfive-test-t18b" tri --width 1024 --height 768 -n 1 --keep-overflow --wait-ms 20000 --ctx2 --close-first-early --kept-copy "$W" --words "$W" --kpoke-render 1:ta:7^=0xc
