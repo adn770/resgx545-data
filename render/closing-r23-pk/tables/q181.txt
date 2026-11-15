@@ -1,0 +1,14 @@
+#stage q181
+#limit 0
+# q181 (Q181, rank-round22.md 2.1): E568's YUV fills on t22 with the echo (fy-28/29 p0 csc and nocsc, p1 csc held out)
+# and E037's copy as the copy control (set 0 loaded: 0xb6067a95fa98de2d; not loaded: black). Frozen per fill H-NOLOAD
+# (E568's black) against H-LOAD (E568's declared E037 conversion). Gate: pk's controls. Stop: a poke row without its
+# echo, any fault or hang.
+c-copy-csc|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0
+c-copy-none|control|safe|expectdiff reads:hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+fy-28-p0-csc|fit|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/fy-28-p0-csc.bin"
+fy-29-p0-csc|fit|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/fy-29-p0-csc.bin"
+fy-28-p0-nocsc|fit|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/fy-28-p0-nocsc.bin"
+fy-29-p0-nocsc|fit|safe|-|t22|probe --temps 32 --coords --pixels "$S/bins/fy-29-p0-nocsc.bin"
+fy-28-p1-csc|heldout|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/fy-28-p1-csc.bin"
+fy-29-p1-csc|heldout|safe|-|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/fy-29-p1-csc.bin"

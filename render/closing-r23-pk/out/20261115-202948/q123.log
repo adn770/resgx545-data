@@ -1,0 +1,47 @@
+## stage q123 of r23p
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126881208 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r23p.ZACsOU
+## clock
+Sun Nov 15 17:45:01 CET 2026
+== c-run set=control risk=safe tool=t22 knobs=[reads:o0,placed o0:b000024e]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x40000=/home/jtorra/scratch/r23p/stage/bins/c-run.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+  premise c-run [o0 placed]: echo=0/0 o0=0xb000024e placed=600/600 
+== c-lapc set=control risk=safe tool=t22 knobs=[reads:o0,placed o0:b000024e]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x40000=/home/jtorra/scratch/r23p/stage/bins/c-lapc.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+  premise c-lapc [o0 placed]: echo=0/0 o0=0xb000024e placed=600/600 
+== x18-b16 set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x80040=/home/jtorra/scratch/r23p/stage/bins/x18-b16.bin --place-form exe18 /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+== b16-run set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x7fe00=/home/jtorra/scratch/r23p/stage/bins/b16-run.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+== b16-ba set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x7fe00=/home/jtorra/scratch/r23p/stage/bins/b16-ba.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+== b16-lapc set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x7fe00=/home/jtorra/scratch/r23p/stage/bins/b16-lapc.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+== b16-long set=heldout risk=safe tool=t22 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --place 0x78000=/home/jtorra/scratch/r23p/stage/bins/b16-long.bin --place-form cbase /home/jtorra/scratch/r23p/stage/bins/q123-base.bin
+  rc 0 
+  class ok
+## end: 7 jobs of q123
+## kernel log (journalctl)

@@ -1,0 +1,11 @@
+#stage pk
+#limit 0
+# pk (R22-4 a, rank-round22.md 2.1): t22's poke echo. One repeat each of E391 (attribute-room case 0: 0 rows, attributes
+# 0-15), E125 (douta secattr-rows-4 case 0: 4 rows, markers A) and E568 (fy-28-p0-csc), each a control whose reading is
+# its `probe NAME: poked SPACE:N 0xOLD -> 0xNEW` lines (H-ECHO: every poke echoed, the sent word the poke's), and pk-none
+# (E391's program unpoked: no echo line). Each repeat is also scored against its record (H-E391, H-E125, H-NOLOAD /
+# H-LOAD). Stop: a poke row whose echo count is not its poke count (run/hooks.sh), any fault or hang; on_stop end.
+pk-e391|control|safe|reads:echo|t22|probe --temps 32 --pds 36 --use "$S/bins/sa64_dump.bin" --poke bg:1=0x30000 "$S/bins/pk-e391.bin"
+pk-e125|control|safe|reads:echo|t22|probe --temps 32 --pds 36 --use "$S/bins/sa_dump.bin" --poke bg:1=0x130000 "$S/bins/pk-e125.bin"
+pk-e568|control|safe|reads:echo|t22|probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 "$S/bins/pk-e568.bin"
+pk-none|control|safe|reads:echo|t22|probe --temps 32 --pds 36 --use "$S/bins/sa64_dump.bin" "$S/bins/pk-none.bin"

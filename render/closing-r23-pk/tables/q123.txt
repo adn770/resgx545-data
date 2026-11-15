@@ -1,0 +1,15 @@
+#stage q123
+#limit 0
+# q123 (Q123, rank-round22.md 2.2, R22-2 a): placed programs of up to 8192 words, every word not in the program a pad that
+# ends the task with its own word number (0xb0000000 | k), the probe's own program at the heap base 256 pads
+# (0xc0de0000 | k): every landing is mapped and names itself. The in-step controls first (0x40000, 600 words: a run and a
+# lapc to word 590), then the exe18 start at 0x80040 (H-EXE18 against H-EXE16), then the bit-16 crossings at 0x7fe00 and
+# 0x78000 (8192 words): H-CARRY18 against H-WRAP. Stop: a control off its frozen o0, placed words not read back as built,
+# any fault or hang (on_stop end).
+c-run|control|safe|reads:o0,placed o0:b000024e|t22|probe --temps 32 --place 0x40000="$S/bins/c-run.bin" --place-form cbase "$S/bins/q123-base.bin"
+c-lapc|control|safe|reads:o0,placed o0:b000024e|t22|probe --temps 32 --place 0x40000="$S/bins/c-lapc.bin" --place-form cbase "$S/bins/q123-base.bin"
+x18-b16|heldout|safe|-|t22|probe --temps 32 --place 0x80040="$S/bins/x18-b16.bin" --place-form exe18 "$S/bins/q123-base.bin"
+b16-run|heldout|safe|-|t22|probe --temps 32 --place 0x7fe00="$S/bins/b16-run.bin" --place-form cbase "$S/bins/q123-base.bin"
+b16-ba|heldout|safe|-|t22|probe --temps 32 --place 0x7fe00="$S/bins/b16-ba.bin" --place-form cbase "$S/bins/q123-base.bin"
+b16-lapc|heldout|safe|-|t22|probe --temps 32 --place 0x7fe00="$S/bins/b16-lapc.bin" --place-form cbase "$S/bins/q123-base.bin"
+b16-long|heldout|safe|-|t22|probe --temps 32 --place 0x78000="$S/bins/b16-long.bin" --place-form cbase "$S/bins/q123-base.bin"

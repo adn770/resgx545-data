@@ -1,0 +1,37 @@
+## stage pk of r23p
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126882696 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r23p.orWAbJ
+## clock
+Sun Nov 15 17:39:59 CET 2026
+== pk-e391 set=control risk=safe tool=t22 knobs=[reads:echo]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --pds 36 --use /home/jtorra/scratch/r23p/stage/bins/sa64_dump.bin --poke bg:1=0x30000 /home/jtorra/scratch/r23p/stage/bins/pk-e391.bin
+  rc 0 
+  class ok
+  premise pk-e391 [echo]: echo=1/1 o0=mixed 
+== pk-e125 set=control risk=safe tool=t22 knobs=[reads:echo]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --pds 36 --use /home/jtorra/scratch/r23p/stage/bins/sa_dump.bin --poke bg:1=0x130000 /home/jtorra/scratch/r23p/stage/bins/pk-e125.bin
+  rc 0 
+  class ok
+  premise pk-e125 [echo]: echo=1/1 o0=0x0da7a000 
+== pk-e568 set=control risk=safe tool=t22 knobs=[reads:echo]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --coords --pixels --poke xfer:17^=0x1 --poke xfer:18=0x00950095 --poke xfer:19=0x00000095 --poke xfer:20=0x010203ce --poke xfer:21=0x039800cc --poke xfer:22=0 /home/jtorra/scratch/r23p/stage/bins/pk-e568.bin
+  rc 0 
+  class ok
+  premise pk-e568 [echo]: echo=6/6 o0=mixed 
+== pk-none set=control risk=safe tool=t22 knobs=[reads:echo]
+  cmd: /home/jtorra/sgxfive-test-t22 probe --temps 32 --pds 36 --use /home/jtorra/scratch/r23p/stage/bins/sa64_dump.bin /home/jtorra/scratch/r23p/stage/bins/pk-none.bin
+  rc 0 
+  class ok
+  premise pk-none [echo]: echo=0/0 o0=0x0da7a000 
+## end: 4 jobs of pk
+## kernel log (journalctl)

@@ -1,0 +1,8 @@
+#stage q123h
+#limit 0
+# q123h (Q123, rank-round22.md 2.2): index bit 17, exe18 at 0xffe00 (index 0x1ffc0, the step at word 64): a run, a ba and
+# a lapc. Gate (score.py gate): q123's controls passed, every bit-16 crossing carried and the exe18 start was honoured, so
+# the only landings left are 0x100000 (H-CARRY18) or the heap base (a 17-bit wrap), both mapped. Stop: any fault or hang.
+b17-run|heldout|safe|-|t22|probe --temps 32 --place 0xffe00="$S/bins/b17-run.bin" --place-form exe18 "$S/bins/q123-base.bin"
+b17-ba|heldout|safe|-|t22|probe --temps 32 --place 0xffe00="$S/bins/b17-ba.bin" --place-form exe18 "$S/bins/q123-base.bin"
+b17-lapc|heldout|safe|-|t22|probe --temps 32 --place 0xffe00="$S/bins/b17-lapc.bin" --place-form exe18 "$S/bins/q123-base.bin"

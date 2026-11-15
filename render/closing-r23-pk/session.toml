@@ -1,0 +1,120 @@
+# session.toml: the env of r23-pk, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r23-pk"
+prefix = "r23p"                 # laptop files under ~/scratch/r23p/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = ["o0:b000024e"]       # q123's controls' frozen o0, read by run/hooks.sh hook_check
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault"]   # none of this session's premises
+
+[tools.t22]
+path = "sgxfive-test-t22"
+sha256 = "9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee"
+built_from = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+recipe = "data:render/closing-r23-pk/lead/build_tool22_laptop.sh"
+source = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round22.md section 6, R22-2 a: pk gates q019 and q181 (gen/make.py, score.py GATES); q123's
+# in-step controls first, a control off its frozen o0 ends the session; q123h on score.py's q123 gate
+pk = { alarm = 600, on_stop = "end" }
+q019 = { alarm = 2400, gate = true }
+q181 = { alarm = 900, gate = true }
+q123 = { alarm = 900, on_stop = "end" }
+q123h = { alarm = 600, gate = true }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b6bc0d44fc8a85c2cd8894e161e18dbcc004c1"
+data = "40abeab5a215dff1344f763d77f77c37b0d55e61"
+# the repository files the generator and the tests read: E391's 40 programs and its raw output, E125's case 0, E568's
+# YUV tables, template and declared predictions and its kept fy outputs, t10's recipe
+pins = [
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__0.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__1.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__2.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__3.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__4.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__5.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__6.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__7.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__8.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__9.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__10.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__11.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__12.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__13.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__14.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__15.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__16.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__17.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__18.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__19.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__20.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__21.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__22.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__23.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__24.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__25.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__26.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__27.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__28.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__29.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__30.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__31.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__32.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__33.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__34.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__35.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__36.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__37.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__38.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/pds-attribute-room-rows__39.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/bins/sa64_dump.bin",
+    "data:pds/attribute-room/pds-attribute-room-rows/raw.txt",
+    "data:followup/pds/douta/pds-douta-secattr-rows-4/bins/pds-douta-secattr-rows-4__0.bin",
+    "data:followup/pds/douta/pds-douta-secattr-rows-4/bins/sa_dump.bin",
+    "data:followup/pds/douta/pds-douta-secattr-rows-4/raw.txt",
+    "resgx545:probes/pds/templates/douta_words.s",
+    "resgx545:probes/pds/attribute-room.toml",
+    "resgx545:probes/pds/douta.toml",
+    "resgx545:probes/texture/tx-formats-yuv-csc.toml",
+    "resgx545:probes/texture/tx-formats-yuv-nocsc.toml",
+    "resgx545:probes/texture/templates/tx_map.s",
+    "resgx545:tools/texture/p1132/predictions-declared.tsv",
+    "data:texture/p1132/tx-formats/fy-28-p0-csc.txt.gz",
+    "data:texture/p1132/tx-formats/fy-29-p0-csc.txt.gz",
+    "data:texture/p1132/tx-formats/fy-28-p0-nocsc.txt.gz",
+    "data:texture/p1132/tx-formats/fy-29-p0-nocsc.txt.gz",
+    "data:texture/p1132/tx-formats/fy-28-p1-csc.txt.gz",
+    "data:texture/p1132/tx-formats/fy-29-p1-csc.txt.gz",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
