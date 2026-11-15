@@ -1,0 +1,72 @@
+# session.toml: the env of r26-vol, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r26-vol"
+prefix = "r26v"                 # laptop files under ~/scratch/r26v/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place", "--poke", "--scratch-pages"]   # none of this session's premises
+
+[tools.t24]
+path = "sgxfive-test-t24"
+sha256 = "fd15fce4ca75b3868fd42b7e5d639ae8a3096fc895543e25a707bac9fb5db040"
+built_from = "134103452432f328eac27ec148499cc3149cf83b:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "df2e8b82d089fe6d91e4a72f46ccfb22127a167a4008a529b398c4dfba14b13b"
+recipe = "data:render/closing-r25-sa64/lead/build_tool24_laptop.sh"
+source = "134103452432f328eac27ec148499cc3149cf83b:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "df2e8b82d089fe6d91e4a72f46ccfb22127a167a4008a529b398c4dfba14b13b"
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round26.md 2.1 and 4 (R26-2 a): vc's controls gate vb (score.py GATES); a vc stop ends the session
+vc = { alarm = 600, on_stop = "end" }
+vb = { alarm = 2400, gate = true }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "95445c7de9fd5a54d462122101ad3bd2bc63b277"
+data = "e639458f08ca14d38e6f1f23059d7211554f4bbb"
+# E567's case tables and template (the programs), its kept control programs (the byte-for-byte
+# check) and kept images (the controls' frozen pixel sha256, the mock's images), the tool recipes
+pins = [
+    "resgx545:probes/texture/tx-types.toml",
+    "resgx545:probes/texture/tx-types-risky.toml",
+    "resgx545:probes/texture/templates/tx_map.s",
+    "data:texture/p1132-recomp/raw/tx-types/bins/tx-types__1.bin",
+    "data:texture/p1132-recomp/raw/tx-types/bins/tx-types__4.bin",
+    "data:texture/p1132-recomp/raw/tx-types-risky/bins/tx-types-risky__4.bin",
+    "data:texture/p1132-recomp/raw/tx-types-risky/bins/tx-types-risky__5.bin",
+    "data:texture/p1132/tx-types/ty0-3d-w0.txt.gz",
+    "data:texture/p1132/tx-types/ty0-3d-w15.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt2-3d-w5.txt.gz",
+    "data:texture/p1132/tx-types-risky/rt2-3d-w15.txt.gz",
+    "data:texture/p1132/tx-types/ind-t0b27.txt.gz",
+    "data:texture/p1132/tx-types/ind-t0b30.txt.gz",
+    "data:render/closing-r25-sa64/lead/build_tool24_laptop.sh",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
