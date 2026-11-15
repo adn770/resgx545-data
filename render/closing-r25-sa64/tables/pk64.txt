@@ -1,0 +1,9 @@
+#stage pk64
+#limit 0
+# pk64 (rank-round24.md 5, R24-1 a): E1096's pk-e391 (E391 case 0: 0 rows, attributes 0-15, sa64_dump.bin) and pk-e125
+# (E125 case 0: 4 rows, sa_dump.bin) on t24 with --scratch-show 64. Controls: the echo (H-ECHO), sa0-sa15 their markers
+# (H-E391, H-E125, as E1096), the print (H-SHOW: pk-e391 64 scratch lines and no `more changed` line, pk-e125 16).
+# Gates q019. Stop: a poke row whose echo count is not its poke count, a print capped below 64 (run/hooks.sh), any fault
+# or hang; on_stop end.
+pk-e391|control|safe|reads:echo,shown|t24|probe --temps 32 --pds 36 --use "$S/bins/sa64_dump.bin" --scratch-show 64 --poke bg:1=0x30000 "$S/bins/pk-e391.bin"
+pk-e125|control|safe|reads:echo,shown|t24|probe --temps 32 --pds 36 --use "$S/bins/sa_dump.bin" --scratch-show 64 --poke bg:1=0x130000 "$S/bins/pk-e125.bin"
