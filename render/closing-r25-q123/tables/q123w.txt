@@ -1,0 +1,18 @@
+#stage q123w
+#limit 0
+# q123w (Q123, rank-round24.md 2.3, R24-4 a): indices 256 to 8191 held out. E1098's c-lapc first (control, 600 words at
+# 0x40000, word 590), then an 8192-word program at 0x40000 (in step) with a lapc (six) or a ba (four) to target words
+# drawn by seed 0x25123 from 256 to 8191 (both included); every other word a pad naming itself, the heap base 256 pads
+# (0xc0de0000 | word). Frozen H-INDEX (the target word) against H-WRAP256 (the heap base's word t & 0xff).
+# Stop: a control off its frozen o0, placed words not read back as built, any fault or hang (on_stop end).
+c-lapc|control|safe|reads:o0,placed o0:b000024e|t22|probe --temps 32 --place 0x40000="$S/bins/c-lapc.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-8191|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-8191.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-5712|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-5712.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-3958|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-3958.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-6608|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-6608.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-0394|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-0394.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-lapc-6365|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-lapc-6365.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-ba-5072|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-ba-5072.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-ba-0256|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-ba-0256.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-ba-5652|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-ba-5652.bin" --place-form cbase "$S/bins/q123-base.bin"
+w-ba-3595|heldout|safe|-|t22|probe --temps 32 --place 0x40000="$S/bins/w-ba-3595.bin" --place-form cbase "$S/bins/q123-base.bin"

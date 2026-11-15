@@ -1,0 +1,17 @@
+#stage q123s
+#limit 0
+# q123s (Q123, rank-round24.md 2.3, R24-4 a): the code step held out. E492's read and jump programs byte for byte, then
+# pads (0xb0000000 | word), at E492's 0x300008 (controls first, link 0x3, as E492) and at 0x0c3010, 0x2ca7f8, 0x3d0100,
+# 0x1c8008, chosen so that 0x20000, 0x40000, 0x100000 (each fitting five or more of E476's and E492's ten links) and no
+# step at all predict another link. Frozen H-STEP80000 (o0 = (X mod 0x80000) / 8 + 2, read and jump) against each.
+# Stop: a control off its frozen o0, placed words not read back as built, any fault or hang (on_stop end).
+c-read-300008|control|safe|reads:o0,placed o0:00000003|t22|probe --temps 32 --place 0x300008="$S/bins/e492-read.bin" --place-form cbase "$S/bins/q123-base.bin"
+c-jump-300008|control|safe|reads:o0,placed o0:00000003|t22|probe --temps 32 --place 0x300008="$S/bins/e492-jump.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-read-0c3010|heldout|safe|-|t22|probe --temps 32 --place 0xc3010="$S/bins/e492-read.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-jump-0c3010|heldout|safe|-|t22|probe --temps 32 --place 0xc3010="$S/bins/e492-jump.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-read-2ca7f8|heldout|safe|-|t22|probe --temps 32 --place 0x2ca7f8="$S/bins/e492-read.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-jump-2ca7f8|heldout|safe|-|t22|probe --temps 32 --place 0x2ca7f8="$S/bins/e492-jump.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-read-3d0100|heldout|safe|-|t22|probe --temps 32 --place 0x3d0100="$S/bins/e492-read.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-jump-3d0100|heldout|safe|-|t22|probe --temps 32 --place 0x3d0100="$S/bins/e492-jump.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-read-1c8008|heldout|safe|-|t22|probe --temps 32 --place 0x1c8008="$S/bins/e492-read.bin" --place-form cbase "$S/bins/q123-base.bin"
+s-jump-1c8008|heldout|safe|-|t22|probe --temps 32 --place 0x1c8008="$S/bins/e492-jump.bin" --place-form cbase "$S/bins/q123-base.bin"
