@@ -1,0 +1,12 @@
+#stage us
+#limit 0
+# us (Q126 clause 2, rank-round26.md 2.2): six held-out rows, one writer quad alone writes sa0 (iaddu32.testtaz.chan0 sa0,
+# then mov r3, sa0 and the store, eight pairs): quad (0, 0) with E1061's pairs (twice) and eight new pairs (twice), quad
+# (62, 30) (the plan's (63, 31): E513's branch is decided by the quad's top-left lane) with each set once. Frozen: H-ZX
+# against H-SX and H-MIX (per row, per dword). Stop: the second row without its scratch readout, any fault or hang.
+s-00-a|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-00-a.bin"
+s-00-b|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-00-b.bin"
+s-6331-a|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-6331-a.bin"
+s-new-a|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-new-a.bin"
+s-new-b|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-new-b.bin"
+s-new-6331|heldout|safe|-|t24|probe --coords --temps 32 "$S/bins/s-new-6331.bin"
