@@ -1,0 +1,12 @@
+#stage vc
+#limit 0
+# vc (Q114, rank-round26.md 2.1, R26-2 a): E567's programs on t24 (probe --temps 32 --coords --pixels), each reading E567's
+# kept pixel sha256 (H-E567): c-w0 and c-w15 (ty0-3d-w0 and -w15, twiddled 16 x 16, w ignored), c-cube-w5 and
+# c-cube-w15 (rt2-3d-w5 and -w15, TEXTYPE 2: two different images, the control that a w that acts is seen), c-w0b
+# (c-w0 again: no state left by the jobs moves the image). Gates vb. Stop: a probe row without its 32 pixel rows
+# (run/hooks.sh), any fault or hang; on_stop end.
+c-w0|control|safe|reads:o0,rows|t24|probe --temps 32 --coords --pixels "$S/bins/c-w0.bin"
+c-w15|control|safe|reads:o0,rows|t24|probe --temps 32 --coords --pixels "$S/bins/c-w15.bin"
+c-cube-w5|control|safe|reads:o0,rows|t24|probe --temps 32 --coords --pixels "$S/bins/c-cube-w5.bin"
+c-cube-w15|control|safe|reads:o0,rows|t24|probe --temps 32 --coords --pixels "$S/bins/c-cube-w15.bin"
+c-w0b|control|safe|reads:o0,rows|t24|probe --temps 32 --coords --pixels "$S/bins/c-w0b.bin"
