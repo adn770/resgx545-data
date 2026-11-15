@@ -1,0 +1,33 @@
+## stage zc of r20z
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t18b: 58e7985504d0d3311155d94627da8b8473335d9a843f5610e44731864315b21e /home/jtorra/sgxfive-test-t18b
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126952828 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r20z.cEnAxk
+## clock
+Sun Nov 15 05:17:13 CET 2026
+== zc-geo set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x28 expectdiff ctl:ovf1=1 ctl:ovf2=0 ctl:thr=0xde ctl:ssame=1 ctl:nparts=1 reads:ovf1,ovf2,thr,ssame,nparts]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74,0x0480-0x0490 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 2 --geometry 1 --final-pb-pages 0x100 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r20z.cEnAxk/1-zc-geo/w --dump-each --words /home/jtorra/scratch/tmp/r20z.cEnAxk/1-zc-geo/w --regs 0x0600-0x0750 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-ctl-next 0x17110c --depth-fill index --depth-dump /home/jtorra/scratch/tmp/r20z.cEnAxk/1-zc-geo/w --depth-store --depth-store-fill 0xd0190003
+  rc 1 job: failed: scene overflowed the parameter buffer, context kept (No space left on device) target: 1024x768 hash 0x4a4b1d3d0b81c125 diff: 225174 of 786432 pixels, first (0, 0) 0x00000000 expected 0xff
+  class ok
+  premise zc-geo [ovf1 ovf2 thr ssame nparts]: ovf1=1 ovf2=0 thr=0xde sidx=1 ssame=1 diff=225174 nparts=1 peak=0x13 
+== zc-nl set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff ctl:ovf1=0 ctl:sidx=0 reads:ovf1,sidx]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74,0x0480-0x0490 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r20z.cEnAxk/2-zc-nl/w --dump-each --words /home/jtorra/scratch/tmp/r20z.cEnAxk/2-zc-nl/w --regs 0x0600-0x0750 --poke blk:1=0x00400200 --depth --depth-ctl 0x17110c --depth-fill index --depth-dump /home/jtorra/scratch/tmp/r20z.cEnAxk/2-zc-nl/w --depth-store --depth-store-fill 0xd0200001
+  rc 1 job: ok target: 1024x768 hash 0xabb2e0564f362325 diff: 19968 of 786432 pixels, first (0, 0) 0x3f800000 expected 0xff203040 
+  class ok
+  premise zc-nl [ovf1 sidx]: ovf1=0 thr=0x400 sidx=0 diff=19968 nparts=0 peak=0x13 
+== zc-ld set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expectdiff ctl:ovf1=0 ctl:sidx=1 reads:ovf1,sidx]
+  cmd: /home/jtorra/regtimeline 0 0.3 0x012c,0x0620-0x0628,0x0658,0x0660,0x0668,0x0700,0x070c-0x0710,0x0720-0x0734,0x0748,0x0a74,0x0480-0x0490 -- /home/jtorra/sgxfive-test-t18b tri --width 1024 --height 768 -n 1 --keep-going --keep-overflow --wait-ms 20000 --dump-render /home/jtorra/scratch/tmp/r20z.cEnAxk/3-zc-ld/w --dump-each --words /home/jtorra/scratch/tmp/r20z.cEnAxk/3-zc-ld/w --regs 0x0600-0x0750 --poke blk:1=0x00400200 --depth --depth-ctl 0x17510e --depth-fill index --depth-dump /home/jtorra/scratch/tmp/r20z.cEnAxk/3-zc-ld/w --depth-store --depth-store-fill 0xd0200002
+  rc 1 job: ok target: 1024x768 hash 0xecfe179b217b4925 diff: 225174 of 786432 pixels, first (0, 0) 0x00000000 expected 0xff203040 
+  class ok
+  premise zc-ld [ovf1 sidx]: ovf1=0 thr=0x400 sidx=1 diff=225174 nparts=0 peak=0x13 
+## end: 3 jobs of zc
+## kernel log (journalctl)
