@@ -1,0 +1,98 @@
+# session.toml: the env of r23-dpm, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r23-dpm"
+prefix = "r23d"                 # laptop files under ~/scratch/r23d/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "sgx-target"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"             # the tool of the health fill and triangle (as every round since 10)
+debugfs = ["render_param", "render_tadata", "render_words", "buf09", "kpoke", "render_kept"]   # --dump-render, --words,
+                                    # --depth's and --kpoke-render's pokes, --kept-copy (og)
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = ["ctl:ovf1=0", "ctl:ovf1=1", "ctl:ovf2=0", "ctl:refill=1", "ctl:thr=0xde"]   # read by run/hooks.sh (gen/plan.py)
+forbid_options = ["--fault", "--cmd", "--vdm", "--slot", "--kpoke-job", "--kpoke-fill", "--kpoke-render2",
+                  "--bg-layer", "--tadata-fill-render", "--kreg-render", "--kreg-render2", "--overlap",
+                  "--share-pb", "--scratch-at", "--low", "--late", "--fb-fill"]   # none of this session's premises
+
+[tools.t22b]
+path = "sgxfive-test-t22b"
+sha256 = "2ae2800aa8a0c37dea6e36aaf011d3e707b53831d6a16d2c8a859d4d2640c6ac"
+built_from = "b2b6bc0d44fc8a85c2cd8894e161e18dbcc004c1:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "e0c5ae5b607e21601c99245fa6b90966223a85f358045cebc8ec8f9c3997082b"
+recipe = "data:render/closing-r23-dpm/lead/build_tool22b_laptop.sh"
+source = "b2b6bc0d44fc8a85c2cd8894e161e18dbcc004c1:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "e0c5ae5b607e21601c99245fa6b90966223a85f358045cebc8ec8f9c3997082b"
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.rt]
+wraps = true
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t22b; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# render_pb_pages: the P of the geometry kick, of rl-c1's -n 1 job and of og's both contexts (E625:
+# P = thr0 + 0x22); the final render's N is the tool's --final-pb-pages, which writes
+# render_final_pb_pages itself (declared at 0, only 0: the preflight checks the module has it, the
+# trap puts it back). render_keep (E591, og only): the next render context closed keeps its
+# mappings, slot and TA data, once.
+render_pb_pages = { default = "0x422", values = ["0x28", "0x2c", "0x2e", "0x30", "0x32", "0x34", "0x200", "0x422"] }
+render_final_pb_pages = { default = "0", values = ["0"] }
+render_keep = { default = "0", values = ["0", "1"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round22 section 6's r23-dpm, in its order; no stage gates another (a FAILED control voids
+# its own stage's headlines), every stop goes on to the next stage
+rl = { alarm = 1200 }
+og = { alarm = 600 }
+zn = { alarm = 900 }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "b2b6bc0d44fc8a85c2cd8894e161e18dbcc004c1"
+data = "40abeab5a215dff1344f763d77f77c37b0d55e61"
+pins = [
+    # E442's reload programs (bins/ holds byte copies)
+    "data:dpm/partial-reload/dpm-partial-reload-green/bins/bg_reload_1024.bin",
+    "data:dpm/partial-reload/dpm-partial-reload-green/bins/pds_bg_pos.bin",
+    # E1089's zm (rl's form, rl-c2's colours, the regimes, the hooks' twin)
+    "data:render/closing-r20-zls/tables/zm.txt",
+    "data:render/closing-r20-zls/out/20261115-080705/zm/zm-28.txt.gz",
+    "data:render/closing-r20-zls/out/20261115-080705/zm/zm-30.txt.gz",
+    "data:render/closing-r20-zls/out/20261115-080705/zm/zm-28.ta3d.1.bin.gz",
+    "data:render/closing-r20-zls/out/20261115-080705/zm/zm-30.ta3d.1.bin.gz",
+    # E1087's own1 (og's form and owner words)
+    "data:render/closing-r19-own1b/tables/own1.txt",
+    "data:render/closing-r19-own1b/out/20261114-230658/own1/o1-c-a.txt.gz",
+    "data:render/closing-r19-own1b/out/20261114-230658/own1/o1-4.txt.gz",
+    "data:render/closing-r19-own1b/out/20261114-230658/own1/o1-c-a.kept.1.bin.gz",
+    "data:render/closing-r19-own1b/out/20261114-230658/own1/o1-c-a.kept.closed.1.bin.gz",
+    "data:render/closing-r19-own1b/out/20261114-230658/own1/o1-4.kept.1.bin.gz",
+    # E1093's zl (zn's form, H-LOADNODRAW frozen from zl-2e-ld, zn-c's form from zl-2e-nl)
+    "data:render/closing-r21-zls/tables/zl.txt",
+    "data:render/closing-r21-zls/out/20261115-140052/zl/zl-2e-ld.txt.gz",
+    "data:render/closing-r21-zls/out/20261115-140052/zl/zl-2e-ld.ta3d.1.bin.gz",
+    "data:render/closing-r21-zls/out/20261115-140052/zl/zl-2e-ld.depth-store.2.bin.gz",
+    "data:render/closing-r21-zls/out/20261115-140052/zl/zl-2e-nl.depth-store.2.bin.gz",
+    # t10's recipe (the health pair)
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]       # E442's reload programs (rl), byte copies of the data pins
