@@ -1,0 +1,68 @@
+# session.toml: the env of r25-q123, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r25-q123"
+prefix = "r25q"                 # laptop files under ~/scratch/r25q/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"                # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = ["o0:00000003", "o0:b000024e"]   # the controls' frozen o0, read by run/hooks.sh hook_check
+forbid_options = ["--kpoke", "--poke", "--low", "--late", "--scratch-heap", "--tri", "--fault"]   # none of this session's premises
+
+[tools.t22]
+path = "sgxfive-test-t22"
+sha256 = "9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee"
+built_from = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+recipe = "data:render/closing-r23-pk/lead/build_tool22_laptop.sh"
+source = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+[stages]
+# rank-round24.md 2.3 and 5 (R24-4 a): each stage's controls first; a control off its frozen o0
+# (run/hooks.sh) ends the session; no gate (the two stages answer separate clauses of Q123)
+q123s = { alarm = 900, on_stop = "end" }
+q123w = { alarm = 900, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "7f214e511d6aff163f87af793fb073f9a7e2e7f8"
+data = "40050d0aca6baa3b6a731d98786a2eb3e018a5ed"
+# E492's read and jump programs (placed byte for byte), E492's and E1098's kept outputs the tests
+# score, E1098's c-lapc and heap-base programs (repeated byte for byte), t10's recipe
+pins = [
+    "data:usse/place-more/usse-place-more-read-300008/bins/p25_link_read.bin",
+    "data:usse/place-more/usse-place-more-jump-300008/bins/p25_link_jump.bin",
+    "data:usse/place-more/usse-place-more-read-300008/raw.txt",
+    "data:usse/place-more/usse-place-more-jump-300008/raw.txt",
+    "data:usse/place-more/usse-place-more-read-2ff000/raw.txt",
+    "data:render/closing-r23-pk/bins/c-lapc.bin",
+    "data:render/closing-r23-pk/bins/q123-base.bin",
+    "data:render/closing-r23-pk/out/20261115-202948/q123/c-lapc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q123/b16-ba.txt.gz",
+    "data:render/closing-r10-st1/lead/build_tool10.sh",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
