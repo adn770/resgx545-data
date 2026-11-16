@@ -1,0 +1,11 @@
+#stage c5
+#limit 0
+# c5 (8, a transfer kick): t10's default fill (64 x 32), whose kick the kernel sends with INVAL_DATA (bit 3) and no TA. Frozen from the kit's kept snapshots (post hoc: 0x0804 0x0000ffff before and 0x1000ffff after a plain fill, r8-k2 and r9-faults xf-c-fill, r30-pde s0-pfill, r14-bif refill, r13-flag f3-fill-a): H-CC-XFER (one change, as a triangle's) against H-CC-TA (no change: only a TA kick sets the bit); c2's and c3's models and H-CCFIRST held out on a fill. Stop as c2 (the fill must say `fill: ok` and draw exactly).
+c5-c1|control|safe|reads:diff,ivl,cache,idle,se16,bif0|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-01|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-02|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-03|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-04|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-05|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-06|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill
+c5-c2|control|safe|reads:diff,ivl,cache,idle,se16,bif0|rt|1.5 0.5 0x012c,0x0804,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" fill

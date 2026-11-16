@@ -1,0 +1,15 @@
+#stage c3
+#limit 0
+# c3 (12, the change against CR_BIF_CTRL): the firmware's kick pass tests the command's cache control bits 0 and 1 (a BIF routine each) before bit 3's CR_CACHE_CTRL |= 0x10000000 (E013's dataflow, doc/specs/edm_dataflow.md COMMAND+0x004; the kernel's TA kick carries 0xb). Frozen: H-BIF-FIRST (a CR_BIF_CTRL word other than its first shows in the 30 us before the change: the firmware's response precedes it, H-CC-FW) against H-BIF-LATER (only in the 15 us after it, H-CC-HW); a row with no such word, or one only in the change's own sample, cannot tell. Stage: H-BIF-HIDDEN (no row decides; E258 never saw 0x0c00 move at about 15 us a sample) against H-BIF-VISIBLE (1 or more). Stop as c1.
+c3-c1|control|safe|reads:diff,ivl,cache,bif0|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-01|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-02|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-03|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-04|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-05|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-06|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-07|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-08|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-09|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-10|held|safe|-|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c3-c2|control|safe|reads:diff,ivl,cache,bif0|rt|1.5 0.5 0x0804,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64

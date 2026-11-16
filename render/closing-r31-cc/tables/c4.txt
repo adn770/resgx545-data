@@ -1,0 +1,13 @@
+#stage c4
+#limit 0
+# c4 (10, the kick's order): CR_EVENT_STATUS, CR_CACHE_CTRL, CR_DMS_CTRL, CR_USE0_SERV_EVENT and CR_BIF_CTRL. Frozen: c2's and c3's models; H-CC-ONE; H-CCFIRST (the change before every CR_EVENT_STATUS event, E1120 24 of 24); H-CC-26 (bit 26 15 to 120 us after the change where it precedes the render end, E1120 19.6 to 106.6); H-DMS (CR_DMS_CTRL written 20 to 70 us after the change, E1120 e3 31.1 to 48.6); H-WAIT (after bit 26's first rise) against H-NOWAIT (before it) [infer: the firmware waits for the invalidation before the TA path]; H-IDLE. Stop as c2.
+c4-c1|control|safe|reads:diff,ivl,cache,idle,se16,bif0,dms0|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-01|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-02|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-03|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-04|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-05|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-06|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-07|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-08|held|safe|-|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+c4-c2|control|safe|reads:diff,ivl,cache,idle,se16,bif0,dms0|rt|1.5 0.5 0x012c,0x0804,0x0a74,0x0b14,0x0c00 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
