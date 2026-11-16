@@ -1,0 +1,9 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+rf-c-depth	s0	control	safe	expectdiff reads:job,zstore,depthat	t14	tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200	1	ok	-	-	126855432
+f1-ref-a	s0	control	safe	reads:pixels,scratchat	t14	probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"	0	ok	-	-	126855320
+f2-ctl-256	s0	control	safe	expectdiff reads:job,hash,tadata	t10	tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render "$W"	0	ok	-	-	126855300
+c-512	s0	control	safe	expectdiff reads:job,tadata	t10	tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --wait-ms 20000 --keep-going --dump-render "$W"	0	ok	-	-	126855268
+c10-zc	s0	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0	1	ok	-	-	126855228
+c10-zn	s0	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90	1	ok	-	-	126855208
+c10-bc	s0	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0	1	ok	-	-	126855188
+c10-bn	s0	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90	1	ok	-	-	126855168

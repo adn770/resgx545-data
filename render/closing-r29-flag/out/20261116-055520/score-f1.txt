@@ -1,0 +1,13 @@
+CONTROL rf-c-depth: every frozen key read (depthat, job, zstore): PASS
+CONTROL f1-ref-a: every frozen key read (image, pixels, scratchat): PASS
+READING q108-both-load: {'end': 'fault', 'fstat': '0x80200', 'fpage': '0x3e001000'}
+ROW q108-both-load H-EDM-TYPE: (frozen {'end': 'fault', 'fstat': '0xa0200', 'fpage': '0x3e001000'}): FAILED
+ROW q108-both-load H-PASS: (frozen {'end': 'ok'}): FAILED
+ROW q108-both-load H-WO-READ: (frozen {'end': 'fault', 'fstat': '0x80200', 'fpage': '0x3e001000'}): held
+READING q108-both-tex: {'end': 'fault', 'fstat': '0x80002', 'fpage': '0x3e003000'}
+ROW q108-both-tex H-EDM-TYPE: (frozen {'end': 'fault', 'fstat': '0xa0002', 'fpage': '0x3e003000'}): FAILED
+ROW q108-both-tex H-PASS: (frozen {'end': 'ok', 'image': '182d6d0a321d88b2c6b28f3f6211b212549d136b6fb0df5f44373cb73515c617'}): FAILED
+ROW q108-both-tex H-WO-READ: (frozen {'end': 'fault', 'fstat': '0x80002', 'fpage': '0x3e003000'}): held
+SUMMARY: f1: H-EDM-TYPE: with both flags a read faults with EDMPROTECT's type (0xa0200, 0xa0002), as a write is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: f1: H-PASS: with both flags the ZLS load and the texture read complete is not supported: 0 held, 2 FAILED, 0 cannot tell of 2
+SUMMARY: f1: H-WO-READ: WRITEONLY with EDMPROTECT faults a read as WRITEONLY alone (0x80200 load, 0x80002 texture) (2 of 2 rows decided)

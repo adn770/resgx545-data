@@ -1,0 +1,58 @@
+## stage s0 of r29f
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126855452 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r29f.a6gKQg
+## clock
+Mon Nov 16 03:05:29 CET 2026
+== rf-c-depth set=control risk=safe tool=t14 knobs=[expectdiff reads:job,zstore,depthat]
+  cmd: /home/jtorra/sgxfive-test-t14 tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump /home/jtorra/scratch/tmp/r29f.a6gKQg/1-rf-c-depth/w --poke blk:1=0x00000200
+  rc 1 job: ok target: 64x32 hash 0x96387ccaf42b6325 diff: 1953 of 2048 pixels, first (1, 1) 0xff203040 expected 0xff00ff00 
+  class ok
+  premise rf-c-depth [job zstore depthat]: job=ok hash=0x96387ccaf42b6325 depthat=0x3e001000 zstore=ca4cf128a194c9bb3dfd34e39556cf4cceb8b1f89be0ccff931e029da31f561d 
+== f1-ref-a set=control risk=safe tool=t14 knobs=[reads:pixels,scratchat]
+  cmd: /home/jtorra/sgxfive-test-t14 probe --temps 32 --coords --pixels --scratch-pages 256 /home/jtorra/scratch/r29f/stage/bins/f1-ref-a.bin
+  rc 0 
+  class ok
+  premise f1-ref-a [pixels scratchat]: pixels=32 scratchat=0x3e003000 o0=present 
+== f2-ctl-256 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,hash,tadata]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r29f.a6gKQg/3-f2-ctl-256/w
+  rc 0 job: ok target: 256x256 hash 0x66648495c9ea2325 diff: 0 of 65536 pixels 
+  class ok
+  premise f2-ctl-256 [job hash tadata]: job=ok hash=0x66648495c9ea2325 tadata=24576 pixels=256 
+== c-512 set=control risk=safe tool=t10 knobs=[expectdiff reads:job,tadata]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r29f.a6gKQg/4-c-512/w
+  rc 0 job: ok target: 512x512 hash 0x0ee326a99b422325 diff: 0 of 262144 pixels 
+  class ok
+  premise c-512 [job tadata]: job=ok hash=0x0ee326a99b422325 tadata=32768 pixels=512 
+== c10-zc set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+  rc 1 job: ok job time: 402 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise c10-zc [job hash]: job=ok hash=0xd3522437a14b6325 pixels=32 
+== c10-zn set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 516 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise c10-zn [job hash]: job=ok hash=0xd3522437a14b6325 pixels=32 
+== c10-bc set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 405 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise c10-bc [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+== c10-bn set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 417 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise c10-bn [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+## end: 8 jobs of s0
+## kernel log (journalctl)

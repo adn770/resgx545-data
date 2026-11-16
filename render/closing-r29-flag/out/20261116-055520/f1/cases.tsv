@@ -1,0 +1,3 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+q108-both-load	f1	heldout	risky	dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff	t14	tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200	1	fault	0	0x00000000	126855052
+q108-both-tex	f1	heldout	risky	dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x12 expectfault	t14	probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"	3	fault	0	0x00000000	126854992

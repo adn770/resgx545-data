@@ -1,0 +1,12 @@
+#stage s0
+#limit 0
+# r29-flag s0: the safe references (rank-round29.md section 3), each gating only its own stage (score.py GATES): rf-c-depth (E1046's kept store, the depth buffer at 0x3e001000) and f1-ref-a (E1047's kept image, the scratch at 0x3e003000) gate f1; f2-ctl-256 (E1048's hash, TA data 24576 bytes) and c-512 (512 x 512 unpoked: job ok, TA data 32768 bytes, the kernel's layout, the premise of f2's H-SIZE) gate f2; the four copies c10-zc, c10-zn, c10-bc, c10-bn (E1103's and E1097's forms on t22: a load of zeros then no load read black 0xd3522437a14b6325, a load of BT.601 then no load read E037's 0xb6067a95fa98de2d) gate h1.
+# Safe class: no expectfault, #limit 0; any fault or hang stops the session (4). A control without its reading stops it (25); a reading that differs closes its stage's gate only.
+rf-c-depth|control|safe|expectdiff reads:job,zstore,depthat|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+f1-ref-a|control|safe|reads:pixels,scratchat|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"
+f2-ctl-256|control|safe|expectdiff reads:job,hash,tadata|t10|tri --tri-full --pixels --width 256 --height 256 --max-width 256 --max-height 256 --wait-ms 20000 --keep-going --dump-render "$W"
+c-512|control|safe|expectdiff reads:job,tadata|t10|tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --wait-ms 20000 --keep-going --dump-render "$W"
+c10-zc|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+c10-zn|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+c10-bc|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+c10-bn|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90

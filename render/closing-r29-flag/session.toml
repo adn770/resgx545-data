@@ -1,0 +1,113 @@
+# session.toml: the env of r29-flag, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r29-flag"
+prefix = "r29f"                 # laptop files under ~/scratch/r29f/ (run, stage, out)
+srcversion = "E0CC40275493F8AEAD8180B"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): E1071's, E1074's
+                                    # faults and E1035's, E1075's, E1076's hangs recovered well inside it
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = ["render_param", "render_tadata"]   # tri --dump-render (s0 f2-ctl-256, c-512, f2)
+outdir_opts = ["--depth-dump", "--dump-render"]   # both write into $W, which exists
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--scratch-at", "--kpoke-job", "--kpoke-fill", "--kpoke-render2",
+                  "--tadata-fill-render", "--refill", "--low", "--late", "--index-width"]   # none of
+                                    # this session's premises: the rows' only pokes are in README.md
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t14]
+path = "sgxfive-test-t14"
+sha256 = "aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859"
+built_from = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+recipe = "data:render/closing-r14-flag/lead/build_tool14.sh"
+source = "c58f9f9c87aa3f8370d2b66917898550d86f6879:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "9cef7a202fc8267fa04ab6986145b69fd4ab18beafbe6fdb5e65dd009a00b612"
+
+[tools.t22]
+path = "sgxfive-test-t22"
+sha256 = "9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee"
+built_from = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+recipe = "data:render/closing-r23-pk/lead/build_tool22_laptop.sh"
+source = "3c68e8de6bdfeecd37b97e2d6095fef932e0e6d9:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "396252bdb513282a17ed9c17446754c6478984fc423fba55236b6865bfb023c0"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+# f1 (Q108): r14-bif's knobs (E964: the flags on the whole mapping whose first page is the
+# address; fork 456404fc sgxfive_debug.c takes 0x2, 0x8, 0x10 and their sums): WRITEONLY 0x2 and
+# EDMPROTECT 0x10 together (0x12), on the depth buffer (0x3e001000, rf-c-depth's) or the probe's
+# scratch (0x3e003000, f1-ref-a's)
+[knobs]
+vm_pte_addr = { default = "0", values = ["0", "0x3e001000", "0x3e003000"] }
+vm_pte_flags = { default = "0", values = ["0", "0x12"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next")
+# closing29/DECISIONS-R29.md (R29-1 to R29-6 a, the user present): s0's safe references first,
+# then the flagged stages. f3 (Q241) and f4 (Q112) are not built (README.md deviations 1 and 2).
+# Each flagged stage is gated (score.py gate: its own s0 references passed, and no `SGX recovery
+# failed` line in any kept file of an earlier stage of the attempt) and ends the session on its
+# rc 24 (hook_fault: a failed recovery, an end of the wrong kind, a fault without its BIF line, a
+# hang without its hung line; its #limit). Strict health after every fault and hang is the kit's.
+[stages]
+s0 = { alarm = 900 }
+f1 = { alarm = 600, gate = true, on_stop = "end" }
+f2 = { alarm = 600, gate = true, on_stop = "end" }
+h1 = { alarm = 600, gate = true, on_stop = "end" }
+h2 = { alarm = 900, gate = true, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "c0571816c4ff5756af85f2192b02b4a84acdb6ef"
+data = "73e058d51b5e284460e079f73323dcbf50b6e10a"
+# every repository file the generator (gen/make.py), the offline fits (fit/o29_1.py, O29-1;
+# fit/o29_2.py, O29-2) or the tests read: the kept records the s0 controls are frozen on, the
+# programs bins/ copies, E1072's outputs (O29-1), the block-2 v = 1 jobs of E545, E701, E1035
+# (O29-2), E1071's and E1074's kernel lines (tests/test_score.py), the library source (O29-1)
+pins = [
+    "data:render/closing-r14-bif/out/20261114-055414/refill/rf-c-depth.depth-store.1.bin.gz",
+    "data:render/closing-r14-bif/out/20261114-055414/refill/rf-c-depth.txt.gz",
+    "data:render/closing-r14-flag/out/20261114-060824/f1/f1-ref-a.txt.gz",
+    "data:render/closing-r14-flag/out/20261114-060824/f2/f2-ctl-256.txt.gz",
+    "data:render/closing-r25-csc/out/20261115-213805/csc/y28-zc.txt.gz",
+    "data:render/closing-r25-csc/out/20261115-213805/csc/y28-bc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/c-copy-csc.txt.gz",
+    "data:render/closing-r23-pk/out/20261115-202948/q181/c-copy-none.txt.gz",
+    "data:render/closing-r14-flag/bins/f1-ref-a.bin",
+    "data:render/closing-s1b/bins/p1139-green.bin",
+    "data:render/closing-r13-flag/bins/p1131-green__0.bin",
+    "data:render/closing-r13-flag/bins/p1131-blue__0.bin",
+    "data:render/closing-r18-flag/out/20261114-133536/f4/b18-lib.txt.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f4/b18-ramp.txt.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f4/b18-lib.dmesg.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f4/b18-ramp.dmesg.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f2/q108-wo-load.dmesg.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f2/q108-wo-tex.dmesg.gz",
+    "data:render/closing-r18-flag/out/20261114-133536/f3/f3-k4.dmesg.gz",
+    "data:vdm/state-units/cases.tsv",
+    "data:vdm/state-units/output.txt",
+    "data:vdm/state-units/kernel.log",
+    "data:vdm/verification-1141ta/out-hw/p1141ta-dumps/vdm-series-b-all/cases.tsv",
+    "data:vdm/verification-1141ta/out-hw/p1141ta-dumps/vdm-series-b-all/kernel.log",
+    "data:render/closing-r13-flag/tables/f3.txt",
+    "data:render/closing-r13-flag/out/20261113-220930/f3/cases.tsv",
+    "resgx545:userspace/libsgxfive/src/render.c",
+    "resgx545:userspace/libsgxfive/tools/sgxfive-test.c"
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

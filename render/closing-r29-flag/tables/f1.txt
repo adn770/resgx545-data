@@ -1,0 +1,6 @@
+#stage f1
+#limit 2
+# r29-flag f1, Q108 (E1108): WRITEONLY and EDMPROTECT together (vm_pte_flags 0x12) on a mapping only read: r14-bif's ZLS load of the depth buffer (0x3e001000) and E566's texture read of the probe's scratch (0x3e003000), both t14. PLANNED FAULTS (user OK, DECISIONS-R29).
+# Frozen: H-WO-READ (as WRITEONLY alone, E1071: 0x80200 at 0x3e001000, 0x80002 at 0x3e003000) against H-EDM-TYPE (EDMPROTECT's type takes over as on writes, E965: 0xa0200, 0xa0002) and H-PASS (both complete, E1046's store, E1047's image). #limit 2 = both rows (expectfault); hook_fault stops on a hang, a fault without its BIF line or SGX recovery failed (24, on_stop end).
+q108-both-load|heldout|risky|dbg:vm_pte_addr=0x3e001000 dbg:vm_pte_flags=0x12 expectfault expectdiff|t14|tri -n 2 --keep-going --wait-ms 20000 --width 64 --height 32 --max-width 64 --max-height 32 --tri-full --tri-z 0.5,0.5,0.5 --depth --depth-ctl 0x0017500e --depth-fill index --depth-store --depth-store-fill 0x3e800000 --depth-pages 20 --depth-dump "$W" --poke blk:1=0x00000200
+q108-both-tex|heldout|risky|dbg:vm_pte_addr=0x3e003000 dbg:vm_pte_flags=0x12 expectfault|t14|probe --temps 32 --coords --pixels --scratch-pages 256 "$S/bins/f1-ref-a.bin"

@@ -1,0 +1,13 @@
+CONTROL f2-ctl-256: every frozen key read (hash, job, tadata): PASS
+CONTROL c-512: every frozen key read (job, tadata): PASS
+READING f2-x512: {'end': 'fault', 'fstat': '0x90004', 'fpage': '0x20008000'}
+ROW f2-x512 H-AXIS: (frozen {'end': 'fault', 'fpage': '0x20008000'}): held
+ROW f2-x512 H-KIND: (frozen {'end': 'fault', 'fstat': '0x90004'}): held
+ROW f2-x512 H-SIZE: (frozen {'end': 'fault', 'fpage': '0x2000a000'}): FAILED
+READING f2-y512: {'end': 'fault', 'fstat': '0x90004', 'fpage': '0x20008000'}
+ROW f2-y512 H-AXIS: (frozen {'end': 'fault', 'fpage': '0x20010000'}): FAILED
+ROW f2-y512 H-KIND: (frozen {'end': 'fault', 'fstat': '0x90004'}): held
+ROW f2-y512 H-SIZE: (frozen {'end': 'fault', 'fpage': '0x20012000'}): FAILED
+SUMMARY: f2: H-AXIS: the TA's empty-axis write faults at a page fixed by the axis (x 0x20008, y 0x20010) is not supported: 1 held, 1 FAILED, 0 cannot tell of 2
+SUMMARY: f2: H-KIND: E1073's kind: an empty-axis macrotile word faults 0x90004 (the TA's header write) (2 of 2 rows decided)
+SUMMARY: f2: H-SIZE: the TA's empty-axis write moves with the TA data's end (x end + 2 pages, y end + 10) is not supported: 0 held, 2 FAILED, 0 cannot tell of 2

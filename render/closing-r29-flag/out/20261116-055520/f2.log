@@ -1,0 +1,31 @@
+## stage f2 of r29f
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t14: aa550b94585aaf6eb5d9b7927d320ad31ea8d1e206b8c5e99e4435c7f0a83859 /home/jtorra/sgxfive-test-t14
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126854904 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r29f.wlCkPZ
+## clock
+Mon Nov 16 03:07:29 CET 2026
+== f2-x512 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --kpoke-render 1:ta:143=0x02000008 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r29f.wlCkPZ/1-f2-x512/w
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 512x512 hash 0xe3397d06b2d22325 diff: 262144 of 262144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+grep: write error: Broken pipe
+  class fault
+  fault (a reading): events 1 of 2; reset, then strict health
+== f2-y512 set=heldout risk=risky tool=t10 knobs=[expectfault expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --kpoke-render 1:ta:144=0x04000010 --wait-ms 20000 --keep-going --dump-render /home/jtorra/scratch/tmp/r29f.wlCkPZ/2-f2-y512/w
+  rc 1 job: failed: job faulted, context lost (Input/output error) target: 512x512 hash 0xe3397d06b2d22325 diff: 262144 of 262144 pixels, first (0, 0) 0xdeadbeef expected 0xff00ff00 
+grep: write error: Broken pipe
+  class fault
+  fault (a reading): events 2 of 2; reset, then strict health
+## STOP: the health fill or triangle failed after f2-y512 (strict): recovery, then stop
+## abort: no recovery
+## kernel log (journalctl)

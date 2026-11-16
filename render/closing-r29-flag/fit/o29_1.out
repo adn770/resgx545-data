@@ -1,0 +1,13 @@
+O29-1 on data 73e058d51, tool source c057181
+E1072's faults: b18-lib 0xd0400 at 0x1, b18-ramp 0xd0400 at 0x1
+state block (blk:N), zero words and address words:
+  blk:3 = sec_ptr(l) /*  */: non-zero, an address
+  blk:5 = pri_ptr(l, SGXFIVE_TRI_PP_PRIM) /*  */: non-zero, an address
+  blk:12 = 0 /* wrap */: zero, no address role
+  blk:16 = 0 /* coordsize */: zero, no address role
+  blk:17 = 0 /* coordfmt */: zero, no address role
+render cmd: 26 words assigned, zero among them: none; address words (pds_exec, stream base, bg pointers) non-zero
+render details: b18-lib has no depth buffer (False); b18-ramp's depth 0x3e001000 base 0x3e000000 (rd:1, rd:12, rd:13 non-zero in it, depth_poke: 6 rd words) and it faulted alike: the ZLS words are out; rd:14, rd:15 (stencil) are 0 in both but ZLS addresses (FAULT_REQ bit 9, E965, E1070), not bit 10's requestor
+bit 10's requestor fetches low memory with no word of the job holding the address (E363: a data-rows flip of the background pointer faults at 0x1f000) [infer]
+candidates (zero in both jobs, an address role, read by bit 10's requestor): none
+rule: at most two candidates frozen by name with a scale: no (f3 is not built)

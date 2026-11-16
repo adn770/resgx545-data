@@ -1,0 +1,6 @@
+#stage f2
+#limit 2
+# r29-flag f2, Q139 (E1109): an empty-axis CR_TE_MTILE1 (x) and CR_TE_MTILE2 (y) word at 512 x 512 (n = 2, TA data 0x8000 bytes by the kernel's layout; 256 x 256 and 384 x 256 have 0x6000), E1074's form on t10, words never run. PLANNED FAULTS (user OK).
+# Kind: E1073's H-KIND 0x90004 on both (third and fourth held-out words). Page: H-AXIS (fixed by the axis at n = 2: x 0x20008, y 0x20010, E509 E1074) against H-SIZE (it moves with the TA data's end: x end + 2 pages 0x2000a, y end + 10 pages 0x20012) [infer]. #limit 2.
+f2-x512|heldout|risky|expectfault expectdiff|t10|tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --kpoke-render 1:ta:143=0x02000008 --wait-ms 20000 --keep-going --dump-render "$W"
+f2-y512|heldout|risky|expectfault expectdiff|t10|tri --tri-full --pixels --width 512 --height 512 --max-width 512 --max-height 512 --kpoke-render 1:ta:144=0x04000010 --wait-ms 20000 --keep-going --dump-render "$W"
