@@ -1,0 +1,20 @@
+CONTROL m2-c1: diff=0 ivl=856 mi=1 kicks=2: PASS
+ROW m2-c1 [held] H-CC-FW ccfirst=0x0000ffff (frozen 0x0000ffff): held
+ROW m2-c1 [held] H-CC-HW ccfirst=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m2-c1 [held] H-CC-LAT ccstart=24.41 (frozen 10..40): held
+READ m2-c1: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=155 ivl=856 ccfirst=0x0000ffff ccn=1 ccword=0x1000ffff ccstart=24.41
+ROW m2-01 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m2-01 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m2-01 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m2-01 [held] H-MI-LAT mius=148 (frozen 100..400): held
+ROW m2-01 [held] H-CC-FW ccfirst=0x0000ffff (frozen 0x0000ffff): held
+ROW m2-01 [held] H-CC-HW ccfirst=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m2-01 [held] H-CC-ONE ccn=1 (frozen 1): held
+ROW m2-01 [held] H-CC-ONE ccword=0x1000ffff (frozen 0x1000ffff): held
+ROW m2-01 [held] H-CC-LAT ccstart=25.15 (frozen 10..40): held
+READ m2-01: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=148 ivl=852 ccfirst=0x0000ffff ccn=1 ccword=0x1000ffff ccstart=25.15
+SUMMARY: m2 H-CC-FW [held]: CR_CACHE_CTRL stays 0x0000ffff after a served GETMISCINFO without INVAL_DATA (bit 28 is not set by any served kick) (3 of 3 rows decided)
+SUMMARY: m2 H-CC-HW [held]: a served GETMISCINFO without INVAL_DATA sets CR_CACHE_CTRL bit 28 (any served kick sets it) is not supported: 0 held, 3 FAILED, 0 cannot tell of 3
+SUMMARY: m2 H-CC-LAT [held]: the triangle's change comes 10 to 40 ms after the tool starts, as without the read (2 of 2 rows decided)
+SUMMARY: m2 H-CC-ONE [held]: the triangle after the read still leaves CR_CACHE_CTRL 0x1000ffff (one change) (3 of 3 rows decided)
+SUMMARY: m2 H-MI-LAT [held]: the word's GETMISCINFO is answered in 100 to 400 us, as the boot's (1 of 1 rows decided)

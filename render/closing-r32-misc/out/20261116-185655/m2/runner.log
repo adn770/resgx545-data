@@ -1,0 +1,28 @@
+## stage m2 of r32m
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 120373264 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r32m.8JDOeZ
+## clock
+Mon Nov 16 18:58:01 CET 2026
+== m2-c1 set=control risk=safe tool=rt knobs=[pre:miscinfo reads:diff,ivl,mi,kicks]
+  miscinfo before m2-c1: served, GETMISCINFO answered after 155 us
+  cmd: /home/jtorra/regtimeline 1.5 0.5 0x0804,0x0b14 -- /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise m2-c1 [diff ivl mi kicks]: diff=0 ivl=856 cache=0x0000ffff cache9=0x1000ffff kicks=2 mi=1 
+== m2-01 set=held risk=safe tool=rt knobs=[pre:miscinfo]
+  miscinfo before m2-01: served, GETMISCINFO answered after 148 us
+  cmd: /home/jtorra/regtimeline 1.5 0.5 0x0804,0x0b14 -- /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+## end: 2 jobs of m2
+## kernel log (journalctl)

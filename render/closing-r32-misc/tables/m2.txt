@@ -1,0 +1,5 @@
+#stage m2
+#limit 0
+# m2 (2, regtimeline 0x0804,0x0b14 from 0.5 s before the triangle): both with pre:miscinfo; the timeline's first sample after the read (H-CC-FW against H-CC-HW again), one change to 0x1000ffff (H-CC-ONE), 10 to 40 ms after the tool starts as without the read (H-CC-LAT, E1122). Stop as m1, and a missing or cut timeline or regtimeline's rc not 0.
+m2-c1|control|safe|pre:miscinfo reads:diff,ivl,mi,kicks|rt|1.5 0.5 0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+m2-01|held|safe|pre:miscinfo|rt|1.5 0.5 0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64

@@ -1,0 +1,43 @@
+CONTROL m1-c1: diff=0 cache=0x0000ffff cache9=0x1000ffff kicks=1: PASS
+READ m1-c1: cache=0x0000ffff cache9=0x1000ffff
+ROW m1-01 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-01 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-01 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-01 [held] H-MI-LAT mius=159 (frozen 100..400): held
+READ m1-01: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=159
+ROW m1-02 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-02 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-02 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-02 [held] H-MI-LAT mius=157 (frozen 100..400): held
+READ m1-02: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=157
+ROW m1-03 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-03 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-03 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-03 [held] H-MI-LAT mius=160 (frozen 100..400): held
+READ m1-03: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=160
+CONTROL m1-c2: diff=0 mi=1 kicks=2: PASS
+ROW m1-c2 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-c2 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-c2 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+READ m1-c2: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=157
+ROW m1-04 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-04 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-04 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-04 [held] H-MI-LAT mius=154 (frozen 100..400): held
+READ m1-04: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=154
+ROW m1-05 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-05 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-05 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-05 [held] H-MI-LAT mius=161 (frozen 100..400): held
+READ m1-05: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=161
+ROW m1-06 [held] H-CC-FW cache=0x0000ffff (frozen 0x0000ffff): held
+ROW m1-06 [held] H-CC-HW cache=0x0000ffff (frozen 0x1000ffff): FAILED
+ROW m1-06 [held] H-CC-ONE cache9=0x1000ffff (frozen 0x1000ffff): held
+ROW m1-06 [held] H-MI-LAT mius=157 (frozen 100..400): held
+READ m1-06: cache=0x0000ffff cache9=0x1000ffff mi=1 mius=157
+CONTROL m1-c3: diff=0 cache=0x0000ffff cache9=0x1000ffff kicks=1: PASS
+READ m1-c3: cache=0x0000ffff cache9=0x1000ffff
+SUMMARY: m1 H-CC-FW [held]: CR_CACHE_CTRL stays 0x0000ffff after a served GETMISCINFO without INVAL_DATA (bit 28 is not set by any served kick) (7 of 7 rows decided)
+SUMMARY: m1 H-CC-HW [held]: a served GETMISCINFO without INVAL_DATA sets CR_CACHE_CTRL bit 28 (any served kick sets it) is not supported: 0 held, 7 FAILED, 0 cannot tell of 7
+SUMMARY: m1 H-CC-ONE [held]: the triangle after the read still leaves CR_CACHE_CTRL 0x1000ffff (one change) (7 of 7 rows decided)
+SUMMARY: m1 H-MI-LAT [held]: the word's GETMISCINFO is answered in 100 to 400 us, as the boot's (6 of 6 rows decided)

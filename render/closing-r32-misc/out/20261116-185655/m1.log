@@ -1,0 +1,63 @@
+## stage m1 of r32m
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 120373596 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r32m.Y7JOfj
+## clock
+Mon Nov 16 18:56:55 CET 2026
+== m1-c1 set=control risk=safe tool=t10 knobs=[reads:diff,cache,cache9,kicks]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise m1-c1 [diff cache cache9 kicks]: diff=0 cache=0x0000ffff cache9=0x1000ffff kicks=1 
+== m1-01 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-01: served, GETMISCINFO answered after 159 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-02 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-02: served, GETMISCINFO answered after 157 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-03 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-03: served, GETMISCINFO answered after 160 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-c2 set=control risk=safe tool=t10 knobs=[pre:miscinfo reads:diff,mi,kicks]
+  miscinfo before m1-c2: served, GETMISCINFO answered after 157 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise m1-c2 [diff mi kicks]: diff=0 cache=0x0000ffff cache9=0x1000ffff kicks=2 mi=1 
+== m1-04 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-04: served, GETMISCINFO answered after 154 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-05 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-05: served, GETMISCINFO answered after 161 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-06 set=held risk=safe tool=t10 knobs=[pre:miscinfo]
+  miscinfo before m1-06: served, GETMISCINFO answered after 157 us
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== m1-c3 set=control risk=safe tool=t10 knobs=[reads:diff,cache,cache9,kicks]
+  cmd: /home/jtorra/sgxfive-test-t10 tri --width 64 --height 64
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+  premise m1-c3 [diff cache cache9 kicks]: diff=0 cache=0x0000ffff cache9=0x1000ffff kicks=1 
+## end: 9 jobs of m1
+## kernel log (journalctl)

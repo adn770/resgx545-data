@@ -1,0 +1,17 @@
+case	quantity	value	model	set	source
+m2-c1	diff	0	H-DRAW	control	E1122, E1123 (52 of 52 jobs drew exactly)
+m2-c1	ivl	400..3000	H-RATE	control	E1122 (849 to 864 ns a sample with 2 registers)
+m2-c1	mi	1	H-MI	control	the kit: a read not served stops the stage before the job (rc 19), so a served read is the premise
+m2-c1	kicks	2	H-KICKS	control	the boot's GETMISCINFO (sgxfive_ident_ask) and the word's, each logs `SGX firmware: core`
+m2-01	cache	0x0000ffff	H-CC-FW	held	E1123 [infer: the firmware's | 0x10000000 at INVAL_DATA, E013]; r31-cc 52 of 52 snap0 0x0000ffff after the boot's own served GETMISCINFO (kernel.log)
+m2-01	cache	0x1000ffff	H-CC-HW	held	the design closing29/r31-cc/fold/next-miscinfo.md: any served kick sets bit 28
+m2-01	cache9	0x1000ffff	H-CC-ONE	held	E1122, E1123: a triangle's kick leaves 0x1000ffff (r31-cc 52 of 52 snap9)
+m2-01	mius	100..400	H-MI-LAT	held	r31-cc kernel.log: the boot's answers 130 to 285 us (post hoc)
+m2-01	ccfirst	0x0000ffff	H-CC-FW	held	E1123 [infer: the firmware's | 0x10000000 at INVAL_DATA, E013]; r31-cc 52 of 52 snap0 0x0000ffff after the boot's own served GETMISCINFO (kernel.log)
+m2-01	ccfirst	0x1000ffff	H-CC-HW	held	the design closing29/r31-cc/fold/next-miscinfo.md: any served kick sets bit 28
+m2-01	ccn	1	H-CC-ONE	held	E1122 (28 of 28)
+m2-01	ccword	0x1000ffff	H-CC-ONE	held	E1122 (28 of 28)
+m2-01	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms, 28 of 28) post hoc
+m2-c1	ccfirst	0x0000ffff	H-CC-FW	held	E1123 [infer: the firmware's | 0x10000000 at INVAL_DATA, E013]; r31-cc 52 of 52 snap0 0x0000ffff after the boot's own served GETMISCINFO (kernel.log)
+m2-c1	ccfirst	0x1000ffff	H-CC-HW	held	the design closing29/r31-cc/fold/next-miscinfo.md: any served kick sets bit 28
+m2-c1	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms) post hoc

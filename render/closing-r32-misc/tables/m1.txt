@@ -1,0 +1,12 @@
+#stage m1
+#limit 0
+# m1 (9, no timeline): three controls (c1, c3 without the word: the boot's kick alone; c2 with it: the read served), 6 rows with pre:miscinfo held out. snap0 reads CR_CACHE_CTRL after a served GETMISCINFO without INVAL_DATA: H-CC-FW 0x0000ffff against H-CC-HW 0x1000ffff; snap9 after the triangle 0x1000ffff (H-CC-ONE, each row's positive control); the read answered in 100 to 400 us (H-MI-LAT). Stop: a row that does not draw exactly or lacks `tri: 1 renders ok`; a read not served (the kit, rc 19); the session ends.
+m1-c1|control|safe|reads:diff,cache,cache9,kicks|t10|tri --width 64 --height 64
+m1-01|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-02|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-03|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-c2|control|safe|pre:miscinfo reads:diff,mi,kicks|t10|tri --width 64 --height 64
+m1-04|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-05|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-06|held|safe|pre:miscinfo|t10|tri --width 64 --height 64
+m1-c3|control|safe|reads:diff,cache,cache9,kicks|t10|tri --width 64 --height 64
