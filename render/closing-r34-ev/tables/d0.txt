@@ -1,0 +1,5 @@
+#stage d0
+#limit 0
+# d0 (2, calibration of 0x0660 + 0x0748; Q036): two ovf at 0x422, controls as e0's (0x0660's first sample = snap0, 0x0748's = 0x1f). Gates d1 (also on a median of at most 3500 ns: E1057's bit 2 pulse is about 4 us).
+d0-o1|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,r0748,img|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d0-o2|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,r0748,img|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

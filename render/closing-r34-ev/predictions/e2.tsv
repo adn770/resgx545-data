@@ -1,0 +1,43 @@
+case	quantity	value	model	set	source
+e2-c0	reg:0x012c	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+e2-c0	reg:0x0118	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+e2-c0	img	1748705	H-CTL	control	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+e2-c0	ivl	@cal:e2c	H-CTL	control	the calibration stage's measured job-window interval for the exact register set (T1)
+e2-c0	thr	0	H-THR-NEVER	held	no kept sample sets bit 3 (DPM_REACHED_MEM_THRESH): E547, E771, r13-dpm pr2 (8 of 8)
+e2-c0	oom	0	H-PR0-QUIET	held	r13-dpm pr2 c0 rows (no overflow): no bit 1 or 2 (2 of 2)
+e2-p1	img	1675156	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+e2-p1	oom	1..1000000	H-OOM-SET	held	E547 kept partial jobs (tl-partial, 1024x768 -n 2 --keep-overflow): bit 1 in 3 of 5 at 3.7 us a sample, 0 of 5 at 5.5 us; r13-dpm pr2 (7.5 us): bit 1 in 1 of 6 overflowing rows
+e2-p1	oom	0	H-OOM-NONE	held	the alternative: the firmware acknowledges both OOM bits within one sample
+e2-p1	gbl	0	H-OOM-MT	held	every kept OOM sample is bit 1 (DPM_OUT_OF_MEMORY_MT), never bit 2 (E547 partial, r13-dpm pr2): the global list is not what runs out [infer]
+e2-p1	gbl	1..1000000	H-OOM-GBL	held	the alternative: bit 2 (DPM_OUT_OF_MEMORY_GBL) shows in an overflowing job
+e2-p1	s2	1..1000000	H-S2-SET	held	E547 kept partial jobs: STATUS2 bit 12 (OTPM_MEM_CLEARED) in 3 of 10; E547's DPM_TA_FREE_LOAD (bit 0) in some partial jobs
+e2-p1	s2	0	H-S2-NONE	held	the alternative: STATUS2 keeps its idle word through an overflowing job
+e2-p1	thr	0	H-THR-NEVER	held	no kept sample sets bit 3 (DPM_REACHED_MEM_THRESH): E547, E771, r13-dpm pr2 (8 of 8)
+e2-p4	img	1667517	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+e2-p4	oom	1..1000000	H-OOM-SET	held	E547 kept partial jobs (tl-partial, 1024x768 -n 2 --keep-overflow): bit 1 in 3 of 5 at 3.7 us a sample, 0 of 5 at 5.5 us; r13-dpm pr2 (7.5 us): bit 1 in 1 of 6 overflowing rows
+e2-p4	oom	0	H-OOM-NONE	held	the alternative: the firmware acknowledges both OOM bits within one sample
+e2-p4	gbl	0	H-OOM-MT	held	every kept OOM sample is bit 1 (DPM_OUT_OF_MEMORY_MT), never bit 2 (E547 partial, r13-dpm pr2): the global list is not what runs out [infer]
+e2-p4	gbl	1..1000000	H-OOM-GBL	held	the alternative: bit 2 (DPM_OUT_OF_MEMORY_GBL) shows in an overflowing job
+e2-p4	s2	1..1000000	H-S2-SET	held	E547 kept partial jobs: STATUS2 bit 12 (OTPM_MEM_CLEARED) in 3 of 10; E547's DPM_TA_FREE_LOAD (bit 0) in some partial jobs
+e2-p4	s2	0	H-S2-NONE	held	the alternative: STATUS2 keeps its idle word through an overflowing job
+e2-p4	thr	0	H-THR-NEVER	held	no kept sample sets bit 3 (DPM_REACHED_MEM_THRESH): E547, E771, r13-dpm pr2 (8 of 8)
+e2-cpc	reg:0x012c	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+e2-cpc	reg:0x0118	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+e2-cpc	diff	0	H-CTL	control	the copy's own per-dword check (`copy: ok`), E547's copies and r34-q010's
+e2-cpc	ivl	@cal:e2c	H-CTL	control	the calibration stage's measured job-window interval for the exact register set (T1)
+e2-cpc	e18	0	H-COPY	held	E547's kept copies (10 of 10 at 1.7 and 3.7 us): bits 14 with 31, once 26, never 18 or 0; a fill shows 18 (7 of 10); E1123: the copy's kick sets bit 26 too
+e2-cpc	e0	0	H-COPY	held	E547's kept copies (10 of 10 at 1.7 and 3.7 us): bits 14 with 31, once 26, never 18 or 0; a fill shows 18 (7 of 10); E1123: the copy's kick sets bit 26 too
+e2-cpc	e18	1..1000000	H-COPY-END	held	the alternative: a copy ends with PIXELBE_END_RENDER (bit 18) as a fill does
+e2-cpc	s2words	1	H-S2-COPYIDLE	held	E547's kept copies: STATUS2 0x400 (DCU_INVAL_COMPLETE) in every sample (10 of 10)
+e2-cp1	e18	0	H-COPY	held	E547's kept copies (10 of 10 at 1.7 and 3.7 us): bits 14 with 31, once 26, never 18 or 0; a fill shows 18 (7 of 10); E1123: the copy's kick sets bit 26 too
+e2-cp1	e0	0	H-COPY	held	E547's kept copies (10 of 10 at 1.7 and 3.7 us): bits 14 with 31, once 26, never 18 or 0; a fill shows 18 (7 of 10); E1123: the copy's kick sets bit 26 too
+e2-cp1	e18	1..1000000	H-COPY-END	held	the alternative: a copy ends with PIXELBE_END_RENDER (bit 18) as a fill does
+e2-cp1	s2words	1	H-S2-COPYIDLE	held	E547's kept copies: STATUS2 0x400 (DCU_INVAL_COMPLETE) in every sample (10 of 10)
+e2-p7	img	1669806	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+e2-p7	oom	1..1000000	H-OOM-SET	held	E547 kept partial jobs (tl-partial, 1024x768 -n 2 --keep-overflow): bit 1 in 3 of 5 at 3.7 us a sample, 0 of 5 at 5.5 us; r13-dpm pr2 (7.5 us): bit 1 in 1 of 6 overflowing rows
+e2-p7	oom	0	H-OOM-NONE	held	the alternative: the firmware acknowledges both OOM bits within one sample
+e2-p7	gbl	0	H-OOM-MT	held	every kept OOM sample is bit 1 (DPM_OUT_OF_MEMORY_MT), never bit 2 (E547 partial, r13-dpm pr2): the global list is not what runs out [infer]
+e2-p7	gbl	1..1000000	H-OOM-GBL	held	the alternative: bit 2 (DPM_OUT_OF_MEMORY_GBL) shows in an overflowing job
+e2-p7	s2	1..1000000	H-S2-SET	held	E547 kept partial jobs: STATUS2 bit 12 (OTPM_MEM_CLEARED) in 3 of 10; E547's DPM_TA_FREE_LOAD (bit 0) in some partial jobs
+e2-p7	s2	0	H-S2-NONE	held	the alternative: STATUS2 keeps its idle word through an overflowing job
+e2-p7	thr	0	H-THR-NEVER	held	no kept sample sets bit 3 (DPM_REACHED_MEM_THRESH): E547, E771, r13-dpm pr2 (8 of 8)

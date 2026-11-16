@@ -1,0 +1,47 @@
+## stage e2 of r34e
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 114004376 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r34e.xMsjrv
+## clock
+Tue Nov 17 00:14:26 CET 2026
+== e2-c0 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,r0118,img]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34e/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise e2-c0 [ivl r012c r0118 img]: img=1748705 ivl=4095 r012c=0x20000000 r0118=0x00000400 
+== e2-p1 set=held risk=safe tool=rt knobs=[dbg:render_pb_pages=0x2b6 expect:rc3-overflow]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34e/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+== e2-p4 set=held risk=safe tool=rt knobs=[dbg:render_pb_pages=0xe2 expect:rc3-overflow]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34e/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+== e2-cpc set=control risk=safe tool=rt knobs=[reads:ivl,r012c,r0118,diff]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t30 copy
+  rc 0 job: ok job time: 657 us target: 64x32 hash 0x9b1c0be484ac0d25 
+  class ok
+  premise e2-cpc [ivl r012c r0118 diff]: diff=0 ivl=4129 r012c=0x20000000 r0118=0x00000400 
+== e2-cp1 set=held risk=safe tool=rt knobs=[-]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t30 copy
+  rc 0 job: ok job time: 704 us target: 64x32 hash 0x9b1c0be484ac0d25 
+  class ok
+== e2-p7 set=held risk=safe tool=rt knobs=[dbg:render_pb_pages=0x82 expect:rc3-overflow]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c,0x0118 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34e/stage/bins/p1139-green.bin
+  rc 3 
+  expected end: rc3-overflow (rc 3)
+  class ok
+## end: 6 jobs of e2
+## kernel log (journalctl)
