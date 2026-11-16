@@ -1,0 +1,194 @@
+case	quantity	value	model	set	source
+t1-c1	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c1	ivl	3500..6500	H-RATE	control	E1131 post hoc: TOTAL / samples 4061 to 4992 ns over 11 rows (the job's spacing: the window is almost all job time)
+t1-c1	ten	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c1	ten0	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap0
+t1-c1	ten9	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap9
+t1-c1	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-c1	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-c1	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c1	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-c1	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c1	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-c1	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c1	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c1	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c1	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c1	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c1	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c1	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-c1	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c1	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c1	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-01	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-01	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-01	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-01	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-01	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-01	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-01	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-01	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-01	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-01	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-01	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-01	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-01	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-01	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-01	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-01	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-02	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-02	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-02	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-02	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-02	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-02	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-02	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-02	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-02	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-02	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-02	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-02	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-02	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-02	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-02	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-02	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-03	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-03	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-03	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-03	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-03	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-03	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-03	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-03	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-03	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-03	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-03	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-03	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-03	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-03	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-03	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-03	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-04	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-04	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-04	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-04	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-04	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-04	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-04	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-04	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-04	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-04	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-04	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-04	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-04	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-04	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-04	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-04	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-c2	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c2	ivl	3500..6500	H-RATE	control	E1131 post hoc: TOTAL / samples 4061 to 4992 ns over 11 rows (the job's spacing: the window is almost all job time)
+t1-c2	ten	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c2	ten0	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap0
+t1-c2	ten9	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap9
+t1-c2	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-c2	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-c2	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c2	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-c2	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c2	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-c2	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c2	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c2	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c2	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c2	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c2	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c2	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-c2	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c2	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c2	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-05	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-05	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-05	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-05	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-05	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-05	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-05	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-05	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-05	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-05	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-05	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-05	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-05	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-05	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-05	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-05	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-06	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-06	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-06	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-06	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-06	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-06	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-06	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-06	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-06	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-06	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-06	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-06	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-06	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-06	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-06	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-06	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-07	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-07	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-07	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-07	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-07	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-07	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-07	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-07	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-07	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-07	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-07	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-07	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-07	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-07	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-07	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-07	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-08	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-08	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-08	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-08	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-08	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-08	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-08	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-08	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-08	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-08	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-08	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-08	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-08	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-08	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-08	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-08	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-c3	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c3	ivl	3500..6500	H-RATE	control	E1131 post hoc: TOTAL / samples 4061 to 4992 ns over 11 rows (the job's spacing: the window is almost all job time)
+t1-c3	ten	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c3	ten0	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap0
+t1-c3	ten9	1	H-TIM-EN	control	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751; snap9
+t1-c3	lead	1100..1500	H-SPACING	held	E1131 post hoc: 1213 to 1283 ns (11 rows); E1120's 1.45 us for four registers
+t1-c3	job	3500..7500	H-SPACING	held	E1131 post hoc: 4592 to 5714 ns (t1), 5218 to 6190 ns (t1d) [infer: the CPU shared with t10]
+t1-c3	tnoen	0	H-TIM-EN	held	E1131 post hoc: bit 24 alone in 31:24 in every sample of 15 of 15 rows and every snapshot; E008, E746, E751
+t1-c3	tover	0	H-TIM-RANGE	held	E1131 post hoc: no sample above 400000 in 15 rows, one of exactly 400000 (t1-c2); hw_spec 12.2 (E746, E751)
+t1-c3	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c3	tmax	399500..400000	H-TIM-RELOAD	held	E1131 post hoc: largest count 399960 to 400000 in 15 rows; E008, E532: the boot loads 0x61a80 | bit 24
+t1-c3	rate	398.9..399.1	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c3	rate	399.5..400.5	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c3	period	1002.4..1002.65	H-TIM-399	held	E1131 post hoc: 398.96 to 399.01 counts/us and 1002.497 to 1002.535 us in 15 of 15 rows; E009 via hw_spec 12: 997.46 Hz x 400000 = 398.98
+t1-c3	period	998.8..1001.2	H-TIM-400	held	the alternative: the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1)
+t1-c3	ccn	1	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c3	ccword	0x1000ffff	H-CC-ONE	held	E1131 post hoc (11 of 11), E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff
+t1-c3	ccstart	18..27	H-CC-LAT	held	E1131 post hoc: 22.93 to 24.10 ms; E1122 18.3 to 25.2 ms; E1127 24.4 and 25.2 ms
+t1-c3	as120	0..400	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c3	wmed	0..800	H-TIM-LINE	held	E1131 post hoc: on the line fitted before the change, the 120 to 300 us median within 93 counts in 10 of 11 rows and 347 in t1-c2; the window's median within 28 to 633 (a +568 to +633 step 18 to 40 us after the change in 5 rows, gone by 120 us [infer: the host's read timing]); hw_spec 12.2: the firmware writes the timer only at boot and resume
+t1-c3	as120	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass writes, reloads or stops the timer, which leaves the count off its line after the window
+t1-all	tccspread	100000..400000	H-TIM-ASYNC	held	E1131 post hoc: the line's count at the change 7389 to 384863 over 11 rows; E746, E747: a kick at any phase
+t1-all	tccspread	0..20000	H-TIM-SYNC	held	the alternative: the kick pass runs at a fixed phase of the tick

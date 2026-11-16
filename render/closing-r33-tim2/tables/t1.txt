@@ -1,0 +1,14 @@
+#stage t1
+#limit 0
+# t1 (11, regtimeline 0x012c,0x0804,0x0acc for 60 ms from 5 ms before the triangle; the rerun of r33-tim, E1131): three controls (diff, the interval as E1131 measured it in the job, every 0x0acc sample a running count up to 400000; snap0 and snap9 0x0acc the same, scored), 8 rows held out. The sample spacing before and in the job (H-SPACING); the timer over the whole timeline: bit 24 set (H-TIM-EN), bits 23:0 up to 400000 (H-TIM-RANGE), a reload to 400000 (H-TIM-RELOAD), 399 counts/us and a 1002.5 us period (H-TIM-399 against H-TIM-400); against the line fitted on the 1 ms before CR_CACHE_CTRL's change, the window to bit 26's fall and the 120 to 300 us after it stay near the line (H-TIM-LINE against H-TIM-WRITE); the line's count at the change spread over the period across rows (H-TIM-ASYNC against H-TIM-SYNC). Stop: a row that does not draw exactly, lacks `tri: 1 renders ok`, or has no whole timeline with rc 0; the session ends.
+t1-c1|control|safe|reads:diff,ivl,ten|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-01|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-02|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-03|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-04|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-c2|control|safe|reads:diff,ivl,ten|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-05|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-06|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-07|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-08|held|safe|-|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+t1-c3|control|safe|reads:diff,ivl,ten|rt|0.06 0.005 0x012c,0x0804,0x0acc -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
