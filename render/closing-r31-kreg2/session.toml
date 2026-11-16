@@ -1,0 +1,69 @@
+# session.toml: the env of r31-kreg2, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r31-kreg2"
+prefix = "r31k"                 # laptop files under ~/scratch/r31k/ (run, stage, out)
+srcversion = "7CE8E38EDB97FC5EA4F6C90"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): six 256x256
+                                    # renders took about 0.4 s in E396 and E1114
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--poke", "--kpoke", "--kpoke-render", "--kpoke-job", "--kpoke-fill",
+                  "--kreg-render", "--kreg-render2", "--scratch-at", "--refill", "--geometry",
+                  "--final-pb-pages", "--aa4", "--ctx2", "--depth", "--dump-render", "--blk",
+                  "--cmd", "--vdm", "--pbe", "--obj2", "--slot", "--copy-depth"]
+                                    # nothing of ours touches the GPU but the kreg word
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+"0x0a78" = { values = ["0x00", "0x01", "0x02", "0x03", "0x04", "0x05", "0x06", "0x07", "0x08", "0x09", "0x0a", "0x0b", "0x0c", "0x0d", "0x0e", "0x0f", "0x10", "0x11", "0x12", "0x13", "0x14", "0x15", "0x16", "0x17", "0x18", "0x19", "0x1a", "0x1b", "0x1c", "0x1d", "0x1e", "0x1f", "0x20", "0x21", "0x22", "0x23", "0x24", "0x25", "0x26", "0x27", "0x28", "0x29", "0x2a", "0x2b", "0x2c", "0x2d", "0x2e", "0x2f", "0x30", "0x31", "0x32", "0x33", "0x34", "0x35", "0x36", "0x37", "0x38", "0x39", "0x3a", "0x3b", "0x3c", "0x3d", "0x3e", "0x3f"] }
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+[stages]
+s0 = { alarm = 1200, on_stop = "end" }
+k1 = { alarm = 7200, gate = true, class = "flagged", on_stop = "end" }
+k2 = { alarm = 7200, gate = true, class = "flagged", on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "2ffa9a93727d833017eb9b447cba46fa970820e3"
+data = "dc838e60f4bba066df7a6d378a3255bb85f7dd22"
+pins = ["data:pds/reg-0a78-timing/output.txt",       # E396's timings: tests/ replay them
+        "data:render/closing-s1b/bins/p1139-green.bin",   # k2's pixel program (bins/)
+        "data:render/closing-r29-kreg/fold/posthoc.txt"]  # E1114's renders: tests/ replay them
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]

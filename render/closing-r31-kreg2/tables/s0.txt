@@ -1,0 +1,24 @@
+#stage s0
+#limit 0
+# s0 (safe): no register write. c0-tri, an exact 64x64 triangle (the core draws). r1-r8: L1, the
+# 256x256 triangle six renders a job (t10); v1-v8: L2, 500 small triangles six renders a job
+# (t30, probe --tri --vertices 1500, the program given six times). Both at the register's reset
+# value (0x2c, the preflight's read): the references k1's and k2's 0x2c controls are held to, and
+# v1-v8's spread fixes k2's bound (gen/gen.py, frozen). Readings: the median of renders 2-6.
+c0-tri|control|safe|reads:diff|t10|tri --width 64 --height 64
+r1|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r2|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r3|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r4|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r5|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r6|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r7|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r8|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+v1|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v2|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v3|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v4|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v5|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v6|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v7|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
+v8|control|safe|reads:img,us|t30|probe --tri pixel --width 64 --height 64 --vertices 1500 "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin" "$S/bins/p1139-green.bin"
