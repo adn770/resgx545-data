@@ -1,0 +1,163 @@
+## stage c of r34q
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 115349520 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r34q.HxZ4bc
+## clock
+Mon Nov 16 23:10:18 CET 2026
+== z0-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+  rc 1 job: ok job time: 527 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise z0-ld [job hash]: job=ok hash=0xd3522437a14b6325 
+== z0-rd set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 399 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise z0-rd [job hash]: job=ok hash=0xd3522437a14b6325 
+== t0a-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 475 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t0a-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t0a-rd set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 412 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t0a-rd [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t1a-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 670 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t1a-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t1a-xf set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 fill
+  rc 0 job: ok job time: 701 us target: 64x32 hash 0xb60c6095080bd325 
+  class ok
+== t1a-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 616 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t2a-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 479 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t2a-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t2a-xt set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== t2a-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 484 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+== t3a-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 496 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t3a-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t3a-xc set=between risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels
+  rc 0 job: ok job time: 731 us target: 64x32 hash 0x88c655df5891e325 
+  class ok
+== t3a-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 675 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t4-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 443 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t4-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t4-rd set=heldout risk=safe tool=t30 knobs=[expectdiff idle:60]
+  idle 60 s before t4-rd
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 525 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t5-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 417 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t5-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t5-rd set=heldout risk=safe tool=t30 knobs=[expectdiff idle:120]
+  idle 120 s before t5-rd
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 586 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t6-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 439 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t6-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t6-xf set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 fill
+  rc 0 job: ok job time: 472 us target: 64x32 hash 0xb60c6095080bd325 
+  class ok
+== t6-xt set=between risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before t6-xt (the row before, t6-xf, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== t6-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 641 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+== t3b-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 612 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t3b-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t3b-xc set=between risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels
+  rc 0 job: ok job time: 541 us target: 64x32 hash 0x88c655df5891e325 
+  class ok
+== t3b-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 576 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t2b-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 573 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t2b-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t2b-xt set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== t2b-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 665 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+== t1b-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 450 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t1b-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t1b-xf set=between risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 fill
+  rc 0 job: ok job time: 464 us target: 64x32 hash 0xb60c6095080bd325 
+  class ok
+== t1b-rd set=heldout risk=safe tool=t30 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 544 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+== t0b-ld set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 555 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t0b-ld [job hash]: job=ok hash=0xb6067a95fa98de2d 
+== t0b-rd set=control risk=safe tool=t30 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 561 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise t0b-rd [job hash]: job=ok hash=0xb6067a95fa98de2d 
+## end: 32 jobs of c
+## kernel log (journalctl)

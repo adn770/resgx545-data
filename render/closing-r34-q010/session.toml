@@ -1,0 +1,72 @@
+# session.toml: the env of r34-q010, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r34-q010"
+prefix = "r34q"                 # laptop files under ~/scratch/r34q/ (run, stage, out)
+srcversion = "7CE8E38EDB97FC5EA4F6C90"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--scratch-at", "--kpoke", "--kpoke-job", "--kpoke-fill",
+                  "--kpoke-render", "--kpoke-render2", "--kreg-render", "--kreg-render2",
+                  "--refill", "--vdm", "--cmd", "--pbe", "--src-addr", "--dst-addr",
+                  "--large-copy", "--final-pb-pages", "--ctx2"]   # copies, the health pair's
+                                    # argv and a plain copy only: nothing else touches the GPU
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+[stages]
+# one safe stage: 32 jobs, two idle waits (180 s); a stop ends the session (there is no other stage)
+c = { alarm = 1800, on_stop = "end" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "5745c8dc1a8dccac055debfc177c6106fd0b7031"
+data = "8e59b150be5f106159651df3883bd06785697fae"
+# the kept r29-flag2 rows (E1112) the frozen hashes, the mock and the tests come from (gen/make.py KEPT)
+pins = [
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/q010-pre.txt.gz",
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/q010-af.txt.gz",
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/q010-ld2.txt.gz",
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/q010-p1.txt.gz",
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/begin.fill1.txt.gz",
+    "data:render/closing-r29-flag2/out/20261116-073242/h1/begin.health1.txt.gz",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []

@@ -1,0 +1,41 @@
+#stage c
+#limit 0
+# r34-q010 c (Q010, rank-round34.md 3.1; safe: no expectfault, #limit 0, no kreg, no knob): which job clears
+# colour-space set 0? z0-ld/z0-rd: a zeros load, then the copy without the load reads black (references of this
+# session). Triples L (load BT.601, control: E037's hash), X (the job under test), R (the copy without the load:
+# KEPT 0xb6067a95fa98de2d or CLEARED 0xd3522437a14b6325). T0 no X (control), T1 t10 fill, T2 t10 tri, T3 t30 plain
+# copy, T4 idle 60 s, T5 idle 120 s, T6 fill then tri (noreset, the health pair); T3-T0 again reversed.
+# Frozen: H-FILL, H-TRI, H-BOTH, H-NONE (every R row), H-IDLE (T4, T5), H-COPYNL (T3). Stop: any fault or hang (4), a
+# control without job/hash (25), a row without its job line, target hash or draw (hook_check, 24).
+z0-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+z0-rd|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t0a-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t0a-rd|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t1a-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t1a-xf|between|safe|-|t10|fill
+t1a-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t2a-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t2a-xt|between|safe|-|t10|tri
+t2a-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t3a-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t3a-xc|between|safe|expectdiff|t30|copy --every-value --pixels
+t3a-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t4-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t4-rd|heldout|safe|expectdiff idle:60|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t5-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t5-rd|heldout|safe|expectdiff idle:120|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t6-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t6-xf|between|safe|-|t10|fill
+t6-xt|between|safe|noreset|t10|tri
+t6-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t3b-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t3b-xc|between|safe|expectdiff|t30|copy --every-value --pixels
+t3b-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t2b-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t2b-xt|between|safe|-|t10|tri
+t2b-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t1b-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t1b-xf|between|safe|-|t10|fill
+t1b-rd|heldout|safe|expectdiff|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+t0b-ld|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+t0b-rd|control|safe|expectdiff reads:job,hash|t30|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
