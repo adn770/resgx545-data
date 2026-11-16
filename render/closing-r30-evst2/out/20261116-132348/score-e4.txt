@@ -1,0 +1,21 @@
+CONTROL e4-c1: diff=0 idle=0x20000000 idle2=0x00000400 cache=0x0000ffff se16=1 ivl=1406: PASS
+ROW e4-01 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e4-01 [held] H-SW swmaster=1 (frozen 1): held
+ROW e4-01 [held] H-IDLE outside=0 (frozen 0): held
+ROW e4-01 [held] H-NARROW4 b26first=5.0 (frozen 3..12): held
+ROW e4-01 [held] H-CC-KICK ccword=0x1000ffff (frozen 0x1000ffff): held
+ROW e4-01 [held] H-CC-KICK ccback=0 (frozen 0): held
+ROW e4-01 [held] H-CC-KICK cc26=20.2 (frozen 15..60): held
+ROW e4-01 [held] H-CC-FLAT ccchg=525 (frozen 0): FAILED
+ROW e4-01 [held] H-SE-EVENTS seextra=10 (frozen 7..13): held
+ROW e4-01 [held] H-SE-TICKS seextra=10 (frozen -1..1): FAILED
+READ e4-01: ivl=1406 b26n=1 b26word=0x24000000 b26width=[5.0] b26first=5.0 b26lead=108.3 endclusters=1 bits=[13,14,18,26,31] st2=0 ccchg=525 ccword=0x1000ffff ccback=0 cc26=20.2 tickrate=1.0 seextra=10 se16clr=1
+STAGE e4 H-IDLE tickrate=1.0 (frozen 0.9..1.1): held
+SUMMARY: e4 H-ALONE [held]: bit 26 shows as the word 0x24000000 alone (1 of 1 rows decided)
+SUMMARY: e4 H-CC-FLAT [held]: CR_CACHE_CTRL reads its idle value throughout is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: e4 H-CC-KICK [held]: CR_CACHE_CTRL goes from 0x0000ffff to 0x1000ffff 15 to 60 us before bit 26 and stays (3 of 3 rows decided)
+SUMMARY: e4 H-IDLE [held]: CR_EVENT_STATUS reads 0x20000000 outside the job (2 of 2 rows decided)
+SUMMARY: e4 H-NARROW4 [held]: bit 26's first episode is 3 to 12 us with four registers sampled (1 of 1 rows decided)
+SUMMARY: e4 H-SE-EVENTS [held]: CR_USE0_SERV_EVENT counts the served events beyond the ticks (1 of 1 rows decided)
+SUMMARY: e4 H-SE-TICKS [held]: CR_USE0_SERV_EVENT counts ticks only is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: e4 H-SW [held]: SW_EVENT and MASTER_INTERRUPT rise and fall together (1 of 1 rows decided)

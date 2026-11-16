@@ -1,0 +1,29 @@
+CONTROL e5-c1: diff=0 idle=0x20000000 ivl=544: PASS
+ROW e5-01 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e5-01 [held] H-SW swmaster=1 (frozen 1): held
+ROW e5-01 [held] H-IDLE outside=0 (frozen 0): held
+READ e5-01: ivl=548 b26n=1 b26word=0x24000000 b26width=[76.5] b26first=76.5 b26lead=94.5 endclusters=3 bits=[10,13,14,18,26,31]
+ROW e5-02 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e5-02 [held] H-SW swmaster=1 (frozen 1): held
+ROW e5-02 [held] H-IDLE outside=0 (frozen 0): held
+READ e5-02: ivl=545 b26n=2 b26word=0x24000000 b26width=[5.9,4.2] b26first=5.9 b26lead=-5259.3 endclusters=3 bits=[0,6,9,13,14,18,26,31]
+ROW e5-03 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e5-03 [held] H-SW swmaster=1 (frozen 1): held
+ROW e5-03 [held] H-IDLE outside=0 (frozen 0): held
+READ e5-03: ivl=543 b26n=2 b26word=0x24000000 b26width=[53.5,5.9] b26first=53.5 b26lead=131.9 endclusters=3 bits=[0,10,13,14,18,26,31]
+ROW e5-04 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e5-04 [held] H-SW swmaster=1 (frozen 1): held
+ROW e5-04 [held] H-IDLE outside=0 (frozen 0): held
+READ e5-04: ivl=545 b26n=3 b26word=0x24000000 b26width=[67.4,4.1,4.1] b26first=67.4 b26lead=93.6 endclusters=3 bits=[0,13,14,18,26,31]
+ROW e5-05 [held] H-ALONE b26word=0x24000000 (frozen 0x24000000): held
+ROW e5-05 [held] H-SW swmaster=1 (frozen 1): held
+ROW e5-05 [held] H-IDLE outside=0 (frozen 0): held
+READ e5-05: ivl=542 b26n=2 b26word=0x24000000 b26width=[54.8,4.2] b26first=54.8 b26lead=128.5 endclusters=3 bits=[0,14,18,26,31]
+CONTROL e5-c2: diff=0 idle=0x20000000 ivl=543: PASS
+STAGE e5 H-ONCE multi=4 (frozen 0..2): FAILED
+STAGE e5 H-EACH each=1 (frozen 3..5): FAILED
+SUMMARY: e5 H-ALONE [held]: bit 26 shows as the word 0x24000000 alone (5 of 5 rows decided)
+SUMMARY: e5 H-EACH [held]: 3 or more -n 3 jobs show bit 26 once a render is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: e5 H-IDLE [held]: CR_EVENT_STATUS reads 0x20000000 outside the job (5 of 5 rows decided)
+SUMMARY: e5 H-ONCE [held]: at most 2 of 5 -n 3 jobs show bit 26 twice or more is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: e5 H-SW [held]: SW_EVENT and MASTER_INTERRUPT rise and fall together (5 of 5 rows decided)
