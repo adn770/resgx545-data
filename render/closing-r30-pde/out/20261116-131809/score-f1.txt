@@ -1,0 +1,58 @@
+CONTROL s0-pcopy-1: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kcopy-1: every frozen key read (changed, diff, end, job, large, table, tags): PASS
+CONTROL s0-pfill-1: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kfill-1: every frozen key read (changed, diff, end, job, large, table): PASS
+CONTROL s0-pcopy-2: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kcopy-2: every frozen key read (changed, diff, end, job, large, table, tags): PASS
+CONTROL s0-pfill-2: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kfill-2: every frozen key read (changed, diff, end, job, large, table): PASS
+WARM s0-warm: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '0', 'tags': 'x', 'large': 'c5.l0.o10', 'table': 'intact', 'changed': 'none'}: held
+READING c1-a: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c1.l0.o4', 'table': 'intact', 'changed': 'none'}
+ROW c1-a H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c1-a H-DENSE: (frozen {'end': 'ok', 'tags': '1:2,1:3,2:0,2:1'}): FAILED
+ROW c1-a H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c1-a H-SECTION: (frozen {'end': 'ok', 'tags': '0:2,0:3,1:0,1:1'}): FAILED
+READING c1-b: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c1.l0.o4', 'table': 'intact', 'changed': 'none'}
+ROW c1-b H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c1-b H-DENSE: (frozen {'end': 'ok', 'tags': '2:2,2:3,3:0,3:1'}): FAILED
+ROW c1-b H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c1-b H-SECTION: (frozen {'end': 'ok', 'tags': '1:2,1:3,2:0,2:1'}): FAILED
+READING c1-f: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'large': 'c1.l0.o4', 'table': 'intact', 'changed': '3:0'}
+ROW c1-f H-4K: (frozen {'end': 'ok', 'changed': '3:0'}): held
+ROW c1-f H-DENSE: (frozen {'end': 'ok', 'changed': '1:2,1:3,2:0,2:1'}): FAILED
+ROW c1-f H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c1-f H-SECTION: (frozen {'end': 'ok', 'changed': '0:2,0:3,1:0,1:1'}): FAILED
+READING c2-a: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c2.l0.o6', 'table': 'intact', 'changed': 'none'}
+ROW c2-a H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c2-a H-DENSE: (frozen {'end': 'ok', 'tags': '1:14,1:15,2:0,2:1'}): FAILED
+ROW c2-a H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c2-a H-SECTION: (frozen {'end': 'ok', 'tags': '0:14,0:15,1:0,1:1'}): FAILED
+READING c2-b: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c2.l0.o6', 'table': 'intact', 'changed': 'none'}
+ROW c2-b H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c2-b H-DENSE: (frozen {'end': 'ok', 'tags': '2:14,2:15,3:0,3:1'}): FAILED
+ROW c2-b H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c2-b H-SECTION: (frozen {'end': 'ok', 'tags': '1:14,1:15,2:0,2:1'}): FAILED
+READING c2-f: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'large': 'c2.l0.o6', 'table': 'intact', 'changed': '3:0'}
+ROW c2-f H-4K: (frozen {'end': 'ok', 'changed': '3:0'}): held
+ROW c2-f H-DENSE: (frozen {'end': 'ok', 'changed': '1:14,1:15,2:0,2:1'}): FAILED
+ROW c2-f H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c2-f H-SECTION: (frozen {'end': 'ok', 'changed': '0:14,0:15,1:0,1:1'}): FAILED
+READING c3-a: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c3.l0.o8', 'table': 'intact', 'changed': 'none'}
+ROW c3-a H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c3-a H-DENSE: (frozen {'end': 'ok', 'tags': '1:62,1:63,2:0,2:1'}): FAILED
+ROW c3-a H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c3-a H-SECTION: (frozen {'end': 'ok', 'tags': '0:62,0:63,1:0,1:1'}): FAILED
+READING c3-b: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '3:0,3:0,3:0,3:0', 'large': 'c3.l0.o8', 'table': 'intact', 'changed': 'none'}
+ROW c3-b H-4K: (frozen {'end': 'ok', 'tags': '3:0,3:0,3:0,3:0'}): held
+ROW c3-b H-DENSE: (frozen {'end': 'ok', 'tags': '2:62,2:63,3:0,3:1'}): FAILED
+ROW c3-b H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c3-b H-SECTION: (frozen {'end': 'ok', 'tags': '1:62,1:63,2:0,2:1'}): FAILED
+READING c3-f: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'large': 'c3.l0.o8', 'table': 'intact', 'changed': '3:0'}
+ROW c3-f H-4K: (frozen {'end': 'ok', 'changed': '3:0'}): held
+ROW c3-f H-DENSE: (frozen {'end': 'ok', 'changed': '1:62,1:63,2:0,2:1'}): FAILED
+ROW c3-f H-FAULT: (frozen {'end': 'fault'}): FAILED
+ROW c3-f H-SECTION: (frozen {'end': 'ok', 'changed': '0:62,0:63,1:0,1:1'}): FAILED
+SUMMARY: f1: H-4K: the size field is ignored: 4 KiB entries, entry va / 4 KiB (9 of 9 rows decided)
+SUMMARY: f1: H-DENSE: a PDE of size S translates: entry va / S of its table, the entry's address masked to S is not supported: 0 held, 9 FAILED, 0 cannot tell of 9
+SUMMARY: f1: H-FAULT: the BIF does not take the entry: the job faults (or hangs, recovered) is not supported: 0 held, 9 FAILED, 0 cannot tell of 9
+SUMMARY: f1: H-SECTION: the PDE names the data itself (no table) is not supported: 0 held, 9 FAILED, 0 cannot tell of 9

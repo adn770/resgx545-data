@@ -1,0 +1,11 @@
+#stage f45
+#limit 6
+# f45 (FLAGGED, planned faults): the 4 MiB regions (order 10): code 4 (1M) as f1 and f2, code 5 (4M) dense: copy a [4M - 16K, 4M - 8K) fit, copy b [4M - 8K, 4M) and the fill [4M - 16K, 4M) held out. Rows soft (an -ENOMEM voids one; two in a row stop). Gated also on s0-warm's 4 MiB region. #limit 6 of 8.
+c4-a|fit|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=4 dbg:vm_pde_layout=0|t30|copy --src-addr 0x600fe000 --height 64 --large-copy "$W"
+c4-b|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=4 dbg:vm_pde_layout=0|t30|copy --src-addr 0x601fe000 --height 64 --large-copy "$W"
+c4-f|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=4 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x600fe000 --height 64 --large-copy "$W"
+c5-a|fit|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0|t30|copy --src-addr 0x603fc000 --height 32 --large-copy "$W"
+c5-b|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0|t30|copy --src-addr 0x603fe000 --height 32 --large-copy "$W"
+c5-f|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x603fc000 --height 64 --large-copy "$W"
+c4-m|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=4 dbg:vm_pde_layout=2|t30|copy --src-addr 0x600fe000 --height 64 --large-copy "$W"
+c4-o|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=4 dbg:vm_pde_layout=3|t30|copy --src-addr 0x600fe000 --height 64 --large-copy "$W"

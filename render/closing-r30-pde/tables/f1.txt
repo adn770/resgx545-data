@@ -1,0 +1,12 @@
+#stage f1
+#limit 6
+# f1 (FLAGGED, planned faults): codes 1-3 (16K, 64K, 256K), dense table: copy a over large page 0's end into page 1 (fit), copy b over page 1's end into page 2 (held out), the fill over page 0's end (held out). Frozen H-DENSE (index va / S, entry masked to S) against H-4K (the size field ignored), H-SECTION (no table) and H-FAULT. #limit 6 of 9 rows; hook_fault ends the session on a hang, a fault without its BIF line or a failed recovery; hook_check on a changed page outside the readings or a changed table.
+c1-a|fit|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=1 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60002000 --height 64 --large-copy "$W"
+c1-b|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=1 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60006000 --height 64 --large-copy "$W"
+c1-f|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=1 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x60002000 --height 64 --large-copy "$W"
+c2-a|fit|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=2 dbg:vm_pde_layout=0|t30|copy --src-addr 0x6000e000 --height 64 --large-copy "$W"
+c2-b|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=2 dbg:vm_pde_layout=0|t30|copy --src-addr 0x6001e000 --height 64 --large-copy "$W"
+c2-f|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=2 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x6000e000 --height 64 --large-copy "$W"
+c3-a|fit|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=3 dbg:vm_pde_layout=0|t30|copy --src-addr 0x6003e000 --height 64 --large-copy "$W"
+c3-b|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=3 dbg:vm_pde_layout=0|t30|copy --src-addr 0x6007e000 --height 64 --large-copy "$W"
+c3-f|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=3 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x6003e000 --height 64 --large-copy "$W"

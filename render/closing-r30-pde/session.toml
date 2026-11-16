@@ -1,0 +1,84 @@
+# session.toml: the env of r30-pde, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r30-pde"
+prefix = "r30p"                 # laptop files under ~/scratch/r30p/ (run, stage, out)
+srcversion = "7CE8E38EDB97FC5EA4F6C90"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): r29-flag's faults and
+                                    # hangs recovered well inside it
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle (as every round since 10)
+debugfs = ["vm_large"]              # the fork's read-out of the live large mapping (--large-copy)
+outdir_opts = ["--large-copy"]      # writes $W/vm_large.txt; $W exists
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--poke", "--kpoke-render", "--kpoke-job", "--kpoke-fill",
+                  "--kreg-render", "--kreg-render2", "--scratch-at", "--refill", "--low", "--late",
+                  "--page-before", "--every-value", "--ramp", "--emit-scene", "--regs", "--x",
+                  "--y", "--width", "--stride", "--src-stride", "--dst-stride", "--sx", "--sy",
+                  "--dx", "--dy"]   # every row is a 64-pixel-wide copy or fill at the default
+                                    # stride of 256 bytes, aimed by --src-addr or --dst-addr only
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+# t30: sgxfive-test of resgx545 main 42c4de7 (copy --src-addr, fill --dst-addr, --large-copy;
+# 9379de7), built on the laptop by lead/build_tool30_laptop.sh. Its sha256 is the build's
+# (lead/TOOL30.built): 0 x 64 until the lead builds it, and the freeze waits for it (README.md)
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+# the linux fork's large-page knobs (branch r30-kernel 8bc0877e8603, sgxfive_debug.c): the slot,
+# the PDE's size code (0-7) and the table's layout (0 dense, 2 misalign, 3 ptoff; pt4k unused);
+# a pair the fork makes no region for is refused at the map (-EINVAL), never written
+[knobs]
+vm_pde_addr = { default = "0", values = ["0", "0x60000000"] }
+vm_pde_size = { default = "0", values = ["0", "1", "2", "3", "4", "5", "6", "7"] }
+vm_pde_layout = { default = "0", values = ["0", "2", "3"] }
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+# closing29/kernel/plan-kernel.md 2.3 (N-4 a, the full flagged session, user 2026-11-16): s0's safe
+# references first, then the flagged stages, each gated (score.py gate: s0's eight controls; f45
+# and f67 also s0-warm's 4 MiB region; no `SGX recovery failed` kept earlier) and ending the
+# session on its rc 24 (hook_fault, hook_check, its #limit). f67, the unnamed codes, last.
+[stages]
+s0 = { alarm = 900 }
+f1 = { alarm = 900, gate = true, on_stop = "end", class = "flagged" }
+f2 = { alarm = 600, gate = true, on_stop = "end", class = "flagged" }
+f45 = { alarm = 900, gate = true, on_stop = "end", class = "flagged" }
+f67 = { alarm = 600, gate = true, on_stop = "end", class = "flagged" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "42c4de7855d6f310321cc03fa0780b698a735e4d"
+data = "2da506767cf61aa00822169aed12d9716ee2aea9"
+# the tool source t30 is built from (the `tags:` and --large-copy formats score.py and run/hooks.sh
+# read); gen/pde.py ports the linux fork's functions, which no repository here pins (README.md)
+pins = ["resgx545:userspace/libsgxfive/tools/sgxfive-test.c"]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["gen/allowed.tsv"]        # run/hooks.sh: a fill row's allowed changed pages

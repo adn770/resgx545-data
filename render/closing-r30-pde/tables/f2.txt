@@ -1,0 +1,9 @@
+#stage f2
+#limit 4
+# f2 (FLAGGED, planned faults): codes 1-3, the table's address bits: the misalign copy (entry k = block k + 4 KiB: H-MASK-S, the entry masked to S, against H-MASK4K) and the ptoff copy (the table at + 0x400 named by the PDE's bits 11:4, a rotated decoy at + 0: H-PTOFF-IGN against H-PTOFF-USE), over page 0's end into page 1, held out. #limit 4 of 6.
+c1-m|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=1 dbg:vm_pde_layout=2|t30|copy --src-addr 0x60002000 --height 64 --large-copy "$W"
+c1-o|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=1 dbg:vm_pde_layout=3|t30|copy --src-addr 0x60002000 --height 64 --large-copy "$W"
+c2-m|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=2 dbg:vm_pde_layout=2|t30|copy --src-addr 0x6000e000 --height 64 --large-copy "$W"
+c2-o|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=2 dbg:vm_pde_layout=3|t30|copy --src-addr 0x6000e000 --height 64 --large-copy "$W"
+c3-m|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=3 dbg:vm_pde_layout=2|t30|copy --src-addr 0x6003e000 --height 64 --large-copy "$W"
+c3-o|heldout|risky|expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=3 dbg:vm_pde_layout=3|t30|copy --src-addr 0x6003e000 --height 64 --large-copy "$W"

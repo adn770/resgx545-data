@@ -1,0 +1,28 @@
+CONTROL s0-pcopy-1: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kcopy-1: every frozen key read (changed, diff, end, job, large, table, tags): PASS
+CONTROL s0-pfill-1: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kfill-1: every frozen key read (changed, diff, end, job, large, table): PASS
+CONTROL s0-pcopy-2: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kcopy-2: every frozen key read (changed, diff, end, job, large, table, tags): PASS
+CONTROL s0-pfill-2: every frozen key read (diff, end, job, large): PASS
+CONTROL s0-kfill-2: every frozen key read (changed, diff, end, job, large, table): PASS
+WARM s0-warm: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '0', 'tags': 'x', 'large': 'c5.l0.o10', 'table': 'intact', 'changed': 'none'}: held
+READING c6-u1: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '0:4,0:5,0:6,0:7', 'large': 'c6.l0.o10', 'table': 'intact', 'changed': 'none'}
+ROW c6-u1 H-ALIAS: (frozen {'end': 'ok', 'tags': '0:4,0:5,0:6,0:7'}): held
+ROW c6-u1 H-ALIAS16: (frozen {'end': 'ok', 'tags': 'x,0:1,0:2,0:3'}): FAILED
+ROW c6-u1 H-FAULT: (frozen {'end': 'fault'}): FAILED
+READING c7-u1: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '0:4,0:5,0:6,0:7', 'large': 'c7.l0.o10', 'table': 'intact', 'changed': 'none'}
+ROW c7-u1 H-ALIAS: (frozen {'end': 'ok', 'tags': '0:4,0:5,0:6,0:7'}): held
+ROW c7-u1 H-ALIAS16: (frozen {'end': 'ok', 'tags': 'x,0:1,0:2,0:3'}): FAILED
+ROW c7-u1 H-FAULT: (frozen {'end': 'fault'}): FAILED
+READING c6-u2: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '0:4,0:5,0:6,0:7', 'large': 'c6.l0.o10', 'table': 'intact', 'changed': 'none'}
+ROW c6-u2 H-ALIAS: (frozen {'end': 'ok', 'tags': '0:4,0:5,0:6,0:7'}): held
+ROW c6-u2 H-ALIAS16: (frozen {'end': 'ok', 'tags': 'x,0:1,0:2,0:3'}): FAILED
+ROW c6-u2 H-FAULT: (frozen {'end': 'fault'}): FAILED
+READING c7-u2: {'end': 'ok', 'bif': '0x00080000/0x00000000', 'job': 'ok', 'diff': '4096', 'tags': '0:4,0:5,0:6,0:7', 'large': 'c7.l0.o10', 'table': 'intact', 'changed': 'none'}
+ROW c7-u2 H-ALIAS: (frozen {'end': 'ok', 'tags': '0:4,0:5,0:6,0:7'}): held
+ROW c7-u2 H-ALIAS16: (frozen {'end': 'ok', 'tags': 'x,0:1,0:2,0:3'}): FAILED
+ROW c7-u2 H-FAULT: (frozen {'end': 'fault'}): FAILED
+SUMMARY: f67: H-ALIAS: the unnamed code is taken as a size (any but 16 KiB, or 4 KiB entries) (4 of 4 rows decided)
+SUMMARY: f67: H-ALIAS16: the unnamed code is taken as 16 KiB is not supported: 0 held, 4 FAILED, 0 cannot tell of 4
+SUMMARY: f67: H-FAULT: the BIF does not take the entry: the job faults (or hangs, recovered) is not supported: 0 held, 4 FAILED, 0 cannot tell of 4

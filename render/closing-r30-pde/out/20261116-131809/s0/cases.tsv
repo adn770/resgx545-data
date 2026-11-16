@@ -1,0 +1,10 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+s0-warm	s0	fit	safe	soft dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0	t30	copy --src-addr 0x5ffff000 --height 16 --large-copy "$W"	0	ok	-	-	120425984
+s0-pcopy-1	s0	control	safe	reads:job,diff,large	t30	copy --src-addr 0x60000000 --height 64 --large-copy "$W"	0	ok	-	-	120425960
+s0-kcopy-1	s0	control	safe	expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0	t30	copy --src-addr 0x60000000 --height 64 --large-copy "$W"	1	ok	-	-	120425908
+s0-pfill-1	s0	control	safe	reads:job,diff,large	t30	fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"	0	ok	-	-	120425884
+s0-kfill-1	s0	control	safe	expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0	t30	fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"	1	ok	-	-	120425860
+s0-pcopy-2	s0	control	safe	reads:job,diff,large	t30	copy --src-addr 0x60000000 --height 64 --large-copy "$W"	0	ok	-	-	120425836
+s0-kcopy-2	s0	control	safe	expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0	t30	copy --src-addr 0x60000000 --height 64 --large-copy "$W"	1	ok	-	-	120425812
+s0-pfill-2	s0	control	safe	reads:job,diff,large	t30	fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"	0	ok	-	-	120425788
+s0-kfill-2	s0	control	safe	expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0	t30	fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"	1	ok	-	-	120425756
