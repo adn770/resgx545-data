@@ -1,0 +1,15 @@
+#stage s0
+#limit 0
+# s0 (safe): no register write. c0-tri, an exact 64x64 triangle (the core draws); r1-r8, the
+# 256x256 triangle six renders a job at the register's reset value (0x2c by the preflight's read):
+# the references k1's 0x2c controls are held to (within 1 percent) and REF for the hooks' wedge
+# rule (a render mean above twice the stage's first timed row stops the stage).
+c0-tri|control|safe|reads:diff|t10|tri --width 64 --height 64
+r1|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r2|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r3|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r4|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r5|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r6|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r7|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
+r8|control|safe|reads:diff,us|t10|tri --width 256 --height 256 -n 6
