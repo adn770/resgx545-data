@@ -1,0 +1,45 @@
+## stage h1 of r29g
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126840788 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r29g.ofjf5H
+## clock
+Mon Nov 16 04:43:31 CET 2026
+== q010-af set=heldout risk=safe tool=t22 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 392 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+== q010-ld2 set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 402 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise q010-ld2 [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+== q010-pre set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 407 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise q010-pre [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+== q010-h1 set=heldout risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 /home/jtorra/scratch/r29g/stage/bins/p1139-green.bin
+  rc 3 
+  class hang
+  hang (a reading): events 1 of 2; reset, then strict health
+== q010-p1 set=heldout risk=safe tool=t22 knobs=[expectdiff]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 379 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+== q010-h2 set=heldout risk=risky tool=t10 knobs=[expectfault]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 /home/jtorra/scratch/r29g/stage/bins/p1139-green.bin
+  rc 3 
+  class hang
+  hang (a reading): events 2 of 2; reset, then strict health
+## end: 6 jobs of h1
+## kernel log (journalctl)

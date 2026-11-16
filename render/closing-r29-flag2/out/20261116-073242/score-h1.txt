@@ -1,0 +1,25 @@
+CONTROL c10-zc: every frozen key read (hash, job): PASS
+CONTROL c10-zn: every frozen key read (hash, job): PASS
+CONTROL c10-bc: every frozen key read (hash, job): PASS
+CONTROL c10-bn: every frozen key read (hash, job): PASS
+CONTROL c10-zc: every frozen key read (hash, job): PASS
+CONTROL c10-zn: every frozen key read (hash, job): PASS
+CONTROL c10-bc: every frozen key read (hash, job): PASS
+CONTROL c10-bn: every frozen key read (hash, job): PASS
+CONTROL q010-ld2: {'job': 'ok', 'hash': '0xb6067a95fa98de2d', 'pixels': '32'} (frozen {'job': 'ok', 'hash': '0xb6067a95fa98de2d'}): PASS
+CONTROL q010-pre: {'job': 'ok', 'hash': '0xb6067a95fa98de2d', 'pixels': '32'} (frozen {'job': 'ok', 'hash': '0xb6067a95fa98de2d'}): PASS
+READING q010-af: {'end': 'ok', 'image': 'a8d4e082fa0f0a1813b4eeb970440dffa438da998b0abaf3ef0a042ed5d8d8dc', 'hash': '0xd3522437a14b6325', 'job': 'ok'}
+PREMISE q010-af: its recovery's stage not kept
+ROW q010-af H-KEEP: (frozen {'end': 'ok', 'hash': '0xb6067a95fa98de2d'}): cannot tell
+ROW q010-af H-RECOV-CLR: (frozen {'end': 'ok', 'hash': '0xd3522437a14b6325'}): cannot tell
+READING q010-h1: {'end': 'hang'}
+ROW q010-h1 H-B24-HANG: (frozen {'end': 'hang'}): held
+READING q010-p1: {'end': 'ok', 'image': 'a8d4e082fa0f0a1813b4eeb970440dffa438da998b0abaf3ef0a042ed5d8d8dc', 'hash': '0xd3522437a14b6325', 'job': 'ok'}
+PREMISE q010-p1: after its recovery
+ROW q010-p1 H-KEEP: (frozen {'end': 'ok', 'hash': '0xb6067a95fa98de2d'}): FAILED
+ROW q010-p1 H-RECOV-CLR: (frozen {'end': 'ok', 'hash': '0xd3522437a14b6325'}): held
+READING q010-h2: {'end': 'hang'}
+ROW q010-h2 H-B24-HANG: (frozen {'end': 'hang'}): held
+SUMMARY: h1: H-B24-HANG: VDM index list header bit 24 alone hangs E414's job (E737) (2 of 2 rows decided)
+SUMMARY: h1: H-KEEP: no recovered fault or hang clears colour-space set 0 (a copy without the load reads the last set) is not supported: 0 held, 1 FAILED, 1 cannot tell of 2
+SUMMARY: h1: H-RECOV-CLR: a recovered fault or hang clears colour-space set 0 to zeros (1 of 2 rows decided)

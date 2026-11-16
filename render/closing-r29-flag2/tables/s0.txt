@@ -1,0 +1,8 @@
+#stage s0
+#limit 0
+# r29-flag2 s0: the safe references of h1 (r29-flag's s0 rows c10-zc, c10-zn, c10-bc, c10-bn, unchanged: E1103's and E1097's copy forms on t22: a load of zeros then no load read black 0xd3522437a14b6325, a load of BT.601 then no load read E037's 0xb6067a95fa98de2d). h2 has its own control.
+# Safe class: no expectfault, #limit 0; any fault or hang stops the session (4). A control without its reading stops it (25); a reading that differs closes h1's gate only.
+c10-zc|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+c10-zn|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+c10-bc|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+c10-bn|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90

@@ -1,0 +1,37 @@
+## stage s0 of r29g
+## uname
+7.3.0-resgx545
+## installed module
+E0CC40275493F8AEAD8180B
+## loaded module
+E0CC40275493F8AEAD8180B
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t22: 9b62d31539564b0ca9e949aa1b44e325455b485a985fdfa65976684888d219ee /home/jtorra/sgxfive-test-t22
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 126840968 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r29g.XGOncl
+## clock
+Mon Nov 16 04:42:51 CET 2026
+== c10-zc set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0 --poke xfer:19=0 --poke xfer:20=0 --poke xfer:21=0 --poke xfer:22=0
+  rc 1 job: ok job time: 418 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise c10-zc [job hash]: job=ok hash=0xd3522437a14b6325 pixels=32 
+== c10-zn set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 443 us target: 64x32 hash 0xd3522437a14b6325 
+  class ok
+  premise c10-zn [job hash]: job=ok hash=0xd3522437a14b6325 pixels=32 
+== c10-bc set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+  rc 1 job: ok job time: 444 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise c10-bc [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+== c10-bn set=control risk=safe tool=t22 knobs=[expectdiff reads:job,hash]
+  cmd: /home/jtorra/sgxfive-test-t22 copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+  rc 1 job: ok job time: 584 us target: 64x32 hash 0xb6067a95fa98de2d 
+  class ok
+  premise c10-bn [job hash]: job=ok hash=0xb6067a95fa98de2d pixels=32 
+## end: 4 jobs of s0
+## kernel log (journalctl)

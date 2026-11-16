@@ -1,0 +1,7 @@
+name	stage	set	risk	knobs	tool	args	rc	class	fault_int	fault_word	free_kb
+q010-af	h1	heldout	safe	expectdiff	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90	1	ok	-	-	126840768
+q010-ld2	h1	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0	1	ok	-	-	126840748
+q010-pre	h1	control	safe	expectdiff reads:job,hash	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90	1	ok	-	-	126840728
+q010-h1	h1	heldout	risky	expectfault	t10	probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 "$S/bins/p1139-green.bin"	3	hang	-	-	126840708
+q010-p1	h1	heldout	safe	expectdiff	t22	copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90	1	ok	-	-	126840680
+q010-h2	h1	heldout	risky	expectfault	t10	probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 "$S/bins/p1139-green.bin"	3	hang	-	-	126840660

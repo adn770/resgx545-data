@@ -1,0 +1,34 @@
+CONTROL h2-c-b: {'end': 'ok', 'o0': 'present'} (frozen end ok, o0 present): PASS
+CONTROL c10-zc: every frozen key read (hash, job): PASS
+CONTROL c10-zn: every frozen key read (hash, job): PASS
+CONTROL c10-bc: every frozen key read (hash, job): PASS
+CONTROL c10-bn: every frozen key read (hash, job): PASS
+CONTROL q010-ld2: {'job': 'ok', 'hash': '0xb6067a95fa98de2d', 'pixels': '32'} (frozen {'job': 'ok', 'hash': '0xb6067a95fa98de2d'}): PASS
+CONTROL q010-pre: {'job': 'ok', 'hash': '0xb6067a95fa98de2d', 'pixels': '32'} (frozen {'job': 'ok', 'hash': '0xb6067a95fa98de2d'}): PASS
+READING q010-p2: {'end': 'ok', 'image': 'a8d4e082fa0f0a1813b4eeb970440dffa438da998b0abaf3ef0a042ed5d8d8dc', 'hash': '0xd3522437a14b6325', 'job': 'ok'}
+PREMISE q010-p2: after its recovery
+ROW q010-p2 H-KEEP: (frozen {'end': 'ok', 'hash': '0xb6067a95fa98de2d'}): FAILED
+ROW q010-p2 H-RECOV-CLR: (frozen {'end': 'ok', 'hash': '0xd3522437a14b6325'}): held
+READING h2-a3: {'end': 'ok', 'o0': 'present'}
+ROW h2-a3 D-C: (frozen {'end': 'ok'}): held
+ROW h2-a3 D-PREVADD: (frozen {'end': 'ok'}): held
+ROW h2-a3 H-ALWAYS: (frozen {'end': 'hang'}): FAILED
+ROW h2-a3 H-PREV16: (frozen {'end': 'ok'}): held
+READING h2-b3: {'end': 'hang'}
+ROW h2-b3 D-C: (frozen {'end': 'ok'}): FAILED
+ROW h2-b3 D-PREVADD: (frozen {'end': 'ok'}): FAILED
+ROW h2-b3 H-ALWAYS: (frozen {'end': 'hang'}): held
+ROW h2-b3 H-PREV16: (frozen {'end': 'hang'}): held
+READING h2-c3: {'end': 'hang'}
+ROW h2-c3 D-C: (frozen {'end': 'ok'}): FAILED
+ROW h2-c3 D-PREVADD: (frozen {'end': 'ok'}): FAILED
+ROW h2-c3 H-ALWAYS: (frozen {'end': 'hang'}): held
+ROW h2-c3 H-PREV16: (frozen {'end': 'hang'}): held
+SUMMARY: h2: D-C: a block-2 v = 1 job hangs iff E700's c is 0 or 5 (fitted lookup) is not supported: 1 held, 2 FAILED, 0 cannot tell of 3
+SUMMARY: h2: D-PREVADD: a block-2 v = 1 job completes iff the job before it completed with a non-zero add is not supported: 1 held, 2 FAILED, 0 cannot tell of 3
+SUMMARY: h2: H-ALWAYS: every block-2 v = 1 job hangs on this module family is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: h2: H-KEEP: no recovered fault or hang clears colour-space set 0 (a copy without the load reads the last set) is not supported: 0 held, 1 FAILED, 0 cannot tell of 1
+SUMMARY: h2: H-PREV16: a block-2 v = 1 job completes iff the job before it completed with a block at v 1 or 6 (3 of 3 rows decided)
+SUMMARY: h2: H-RECOV-CLR: a recovered fault or hang clears colour-space set 0 to zeros (1 of 1 rows decided)
+Q010 RULE: controls 6 of 6 passed; copies q010-af none, q010-p1 H-RECOV-CLR, q010-p2 H-RECOV-CLR: not one hypothesis: narrow only
+Q010 RULE OVER THE HANGS ONLY (not R29-3 a; the lead's decision): q010-p1 and q010-p2 read H-RECOV-CLR

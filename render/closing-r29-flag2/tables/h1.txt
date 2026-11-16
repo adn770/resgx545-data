@@ -1,0 +1,10 @@
+#stage h1
+#limit 2
+# r29-flag2 h1 = r29-flag's h1 unchanged (r29-flag2: no fault precedes q010-af here; f1, f2 ran in r29-flag). r29-flag h1, Q010 (E1112): does a recovered fault or hang clear colour-space set 0? E1103's copies on t22 (no load: the set last loaded). q010-af is the first copy after f1's and f2's recovered faults (the last load c10-bc in s0); q010-ld2 loads BT.601 (control), q010-pre reads it back (control); then E737's bit-24 hang (t10, PLANNED HANG, user OK) and a copy after it, twice (the second copy is h2's first row).
+# Frozen: H-KEEP (each held-out copy reads 0xb6067a95fa98de2d) against H-RECOV-CLR (0xd3522437a14b6325). #limit 2 = the two hangs (expectfault, the last row); a fault instead stops the stage (24, on_stop end).
+q010-af|heldout|safe|expectdiff|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+q010-ld2|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90 --poke xfer:17^=0x1 --poke xfer:18=0x950095 --poke xfer:19=0x95 --poke xfer:20=0x10203ce --poke xfer:21=0x39800cc --poke xfer:22=0
+q010-pre|control|safe|expectdiff reads:job,hash|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+q010-h1|heldout|risky|expectfault|t10|probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 "$S/bins/p1139-green.bin"
+q010-p1|heldout|safe|expectdiff|t22|copy --every-value --pixels --poke tex:1=0x7d03f01f --poke tex:0^=0x90
+q010-h2|heldout|risky|expectfault|t10|probe --tri pixel --vertices 15 --copy-depth --pixels --vdm 2^=0x01000000 "$S/bins/p1139-green.bin"
