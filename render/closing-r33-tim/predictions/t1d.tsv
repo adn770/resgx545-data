@@ -1,0 +1,38 @@
+case	quantity	value	model	set	source
+t1d-c1	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1d-c1	ivl	400..1200	H-RATE	control	E1115, E1122 (540 to 542 ns with one register)
+t1d-c1	ten	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1d-c1	ten0	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap0
+t1d-c1	ten9	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap9
+t1d-c1	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1d-c1	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1d-c1	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1d-c1	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1d-c1	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-c1	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-c1	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-c1	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-01	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1d-01	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1d-01	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1d-01	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1d-01	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-01	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-01	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-01	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-02	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1d-02	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1d-02	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1d-02	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1d-02	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-02	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-02	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-02	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-03	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1d-03	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1d-03	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1d-03	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1d-03	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-03	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1d-03	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1d-03	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us

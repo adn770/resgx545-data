@@ -1,0 +1,183 @@
+case	quantity	value	model	set	source
+t1-c1	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c1	ivl	700..2000	H-RATE	control	E1122 (849 to 864 ns with 2 registers), E1120 (about 1470 ns with 4); every sample stored with 0x0acc in the set [infer]
+t1-c1	ten	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c1	ten0	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap0
+t1-c1	ten9	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap9
+t1-c1	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c1	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-c1	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c1	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-c1	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c1	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c1	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c1	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c1	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c1	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c1	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-c1	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c1	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c1	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c1	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-01	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-01	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-01	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-01	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-01	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-01	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-01	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-01	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-01	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-01	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-01	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-01	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-01	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-01	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-01	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-02	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-02	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-02	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-02	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-02	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-02	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-02	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-02	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-02	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-02	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-02	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-02	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-02	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-02	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-02	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-03	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-03	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-03	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-03	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-03	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-03	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-03	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-03	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-03	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-03	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-03	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-03	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-03	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-03	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-03	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-04	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-04	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-04	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-04	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-04	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-04	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-04	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-04	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-04	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-04	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-04	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-04	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-04	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-04	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-04	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-c2	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c2	ivl	700..2000	H-RATE	control	E1122 (849 to 864 ns with 2 registers), E1120 (about 1470 ns with 4); every sample stored with 0x0acc in the set [infer]
+t1-c2	ten	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c2	ten0	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap0
+t1-c2	ten9	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap9
+t1-c2	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c2	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-c2	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c2	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-c2	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c2	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c2	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c2	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c2	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c2	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c2	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-c2	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c2	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c2	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c2	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-05	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-05	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-05	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-05	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-05	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-05	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-05	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-05	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-05	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-05	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-05	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-05	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-05	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-05	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-05	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-06	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-06	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-06	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-06	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-06	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-06	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-06	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-06	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-06	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-06	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-06	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-06	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-06	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-06	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-06	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-07	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-07	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-07	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-07	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-07	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-07	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-07	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-07	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-07	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-07	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-07	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-07	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-07	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-07	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-07	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-08	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-08	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-08	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-08	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-08	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-08	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-08	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-08	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-08	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-08	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-08	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-08	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-08	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-08	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-08	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-c3	diff	0	H-DRAW	control	E1122, E1123, E1126 (every plain triangle drew exactly)
+t1-c3	ivl	700..2000	H-RATE	control	E1122 (849 to 864 ns with 2 registers), E1120 (about 1470 ns with 4); every sample stored with 0x0acc in the set [infer]
+t1-c3	ten	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c3	ten0	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap0
+t1-c3	ten9	1	H-TIM-EN	control	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc); snap9
+t1-c3	tnoen	0	H-TIM-EN	held	E008, E746, E751 (bit 24 set, counting); kit snapshots r30-evst2, r31-cc, r32-misc: 208 of 208 bit 24 set, bits 23:0 below 400000 (post hoc)
+t1-c3	tover	0	H-TIM-RANGE	held	hw_spec 12.2 (E746, E751; 18 of 18 stop samples below 400000, E813-E830); 208 of 208 kit snapshots (post hoc)
+t1-c3	tover	1..100000000	H-TIM-24	held	the alternative: a free 24-bit counter (pds_isa 8.9's 25-bit load, E146's VALUE 23:0)
+t1-c3	tmax	398500..399999	H-TIM-RELOAD	held	E008, E532 correction: the boot loads 0x61a80 | bit 24 (400000), a tick served at once samples 0x061a70
+t1-c3	rate	398.5..399.5	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c3	rate	399.5..400.5	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c3	period	1001.2..1003.8	H-TIM-399	held	E009 via hw_spec 12 and boot_sequence 2.1: the tick at 997.46 Hz x 400000 clocks = 398.98 counts/us; 25000 CR_TIMER units a tick at 1/16 (E746, E751)
+t1-c3	period	998.8..1001.2	H-TIM-400	held	the DDK's SYS_SGX_CLOCK_SPEED 400 MHz (boot_sequence 2.1): 400 counts/us
+t1-c3	ccn	1	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c3	ccword	0x1000ffff	H-CC-ONE	held	E1122, E1123, E1127: one change 0x0000ffff -> 0x1000ffff a triangle (44 of 44)
+t1-c3	ccstart	10..40	H-CC-LAT	held	E1122 (18.3 to 25.2 ms), E1127 (24.4, 25.2 ms) after the tool starts
+t1-c3	wres	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c3	wtail	0..300	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c3	wfit	0.9..1	H-TIM-FREE	held	hw_spec 12.2 / E010: the firmware writes EVENT_TIMER only at boot and POWER resume, so nothing in a kick pass moves it [infer]; E746, E747: a kick's pa2 is the timer as sampled, agreeing with the CR_TIMER stamps within 5.3 units
+t1-c3	wtail	2000..200000	H-TIM-WRITE	held	the alternative: the kick pass (E1130) writes or reloads EVENT_TIMER in the window
+t1-all	tccspread	100000..400000	H-TIM-ASYNC	held	E746 (a kick read at three phases gave three values), E747 (138 events any value): a kick is not served on the tick's phase
+t1-all	tccspread	0..20000	H-TIM-SYNC	held	the alternative: the kick pass runs at a fixed phase of the tick
