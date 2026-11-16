@@ -1,0 +1,135 @@
+case	quantity	value	model	set	source
+nra-w	sa	0x5a0c0a01	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+nra-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+nra-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+nra-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+nra-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rsa-w	sa	0x5a0c0a02	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+rsa-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+rsa-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rsa-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rsa-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rsa-r	cat	!M	H-RESET	heldout	the debugfs reset replaces sa0
+i10a-w	sa	0x5a0c0a03	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i10a-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i10a-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i10a-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i10a-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i10a-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+i60a-w	sa	0x5a0c0a04	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i60a-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i60a-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i60a-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i60a-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i60a-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+i120a-w	sa	0x5a0c0a05	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i120a-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i120a-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i120a-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i120a-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i120a-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+k3a-w	sa	0x5a0c0a06	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+k3a-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+k3a-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+k3a-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+k3a-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+k3a-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+k3a-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+fla-w	sa	0x5a0c0a07	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+fla-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+fla-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+fla-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+fla-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+tra-w	sa	0x5a0c0a08	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+tra-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+tra-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+tra-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+tra-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rra-w	sa	0x5a0c0a09	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+rra-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+rra-r1	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rra-r1	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rra-r1	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rra-r2	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rra-r2	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rra-r2	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+ptra-p	cat	PREV	H-PREV	fit	pa0 reads the colour the job before it output (E496 [infer], E484)
+ptra-p	cat	TRI	H-FIXED	fit	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pk3a-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+pk3a-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+pk3a-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pk3a-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pfla-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pfla-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pk3ra-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+pk3ra-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+pk3ra-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pk3ra-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pk3ra-p	cat	!PREV	H-RESETP	heldout	the debugfs reset replaces what pa0 reads
+pk3rb-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+pk3rb-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+pk3rb-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pk3rb-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pk3rb-p	cat	!PREV	H-RESETP	heldout	the debugfs reset replaces what pa0 reads
+pflb-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pflb-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+pk3b-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+pk3b-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+pk3b-p	cat	PREV	H-PREV	heldout	pa0 reads the colour the job before it output (E496 [infer], E484)
+pk3b-p	cat	TRI	H-FIXED	heldout	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+ptrb-p	cat	PREV	H-PREV	fit	pa0 reads the colour the job before it output (E496 [infer], E484)
+ptrb-p	cat	TRI	H-FIXED	fit	pa0 reads the 0xff00ff00 and 0xff203040 mixture whatever ran before it
+rrb-w	sa	0x5a0c0b09	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+rrb-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+rrb-r1	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rrb-r1	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rrb-r1	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rrb-r2	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rrb-r2	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rrb-r2	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+trb-w	sa	0x5a0c0b08	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+trb-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+trb-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+trb-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+trb-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+flb-w	sa	0x5a0c0b07	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+flb-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+flb-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+flb-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+flb-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+k3b-w	sa	0x5a0c0b06	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+k3b-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+k3b-x	sa	0xc0de0a03	H-REF	control	this program's own stored constant
+k3b-x	top	0xc0de0a03	H-REF	control	this program's own o0 constant
+k3b-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+k3b-r	cat	PREV	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+k3b-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i120b-w	sa	0x5a0c0b05	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i120b-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i120b-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i120b-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i120b-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i120b-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+i60b-w	sa	0x5a0c0b04	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i60b-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i60b-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i60b-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i60b-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i60b-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+i10b-w	sa	0x5a0c0b03	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+i10b-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+i10b-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+i10b-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+i10b-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+i10b-r	cat	!M	H-IDLE	heldout	sa0 is lost over the idle time
+rsb-w	sa	0x5a0c0b02	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+rsb-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+rsb-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+rsb-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+rsb-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)
+rsb-r	cat	!M	H-RESET	heldout	the debugfs reset replaces sa0
+nrb-w	sa	0x5a0c0b01	H-REF	control	E1106/E521 [HW]: iaddu32 writes (r1 & 0xffff) + r2 into sa0, read back in the same job (E496 job 7); this program's own constants
+nrb-w	top	0xc0de0a01	H-REF	control	this program's own o0 constant
+nrb-r	cat	M	H-PERSIST	heldout	sa0 keeps M across every job, reset and idle of the stage
+nrb-r	cat	M	H-ONEJOB	heldout	E484's sa rule: read by the next job only; a job between replaces it with that job's colour
+nrb-r	cat	PREV	H-COLOUR	heldout	sa0 never persists: the reader reads the colour the job before it output (E496's job 8 read as the colour rule)

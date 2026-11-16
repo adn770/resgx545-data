@@ -1,0 +1,71 @@
+#stage s
+#limit 0
+# r34-sa0 s (Q136, rank-round34.md 3.6; safe: no expectfault, #limit 0, no kreg, no dbg knob): how long does an sa0
+# write last across jobs, and is pa0's 0xff00ff00/0xff203040 mixture the colour the job before left? Every probe is a
+# plain t30 fill. W (control): iaddu32 writes a per-row marker M to sa0 in every instance, reads it back (dword 0 = M)
+# and outputs K1. R (held out): reads sa0, o0 = sa0 ^ K2. K (control): a job writing no sa/pa, o0 = K3. P: reads pa0,
+# o0 = pa0 ^ K4. X: t10 fill / tri (the health pair's argv). Groups nr (noreset), rs (reset), i10/i60/i120 (noreset
+# idle), k3, fl, tr (a job between, noreset), rr (two readers), ptr (fit), pk3, pfl, pk3r (clause b); second
+# replicate reversed. Frozen: H-PERSIST, H-ONEJOB, H-COLOUR (every R), H-RESET (rs), H-IDLE (idle); H-PREV against
+# H-FIXED (every P), H-RESETP (pk3r). Stop: any fault or hang (4); a control without its reading (25); a probe
+# without its o0 line, a W or K without its dword 0, a fill without `fill: ok`, a tri not drawn exactly (24, end).
+nra-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a01.bin"
+nra-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+rsa-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a02.bin"
+rsa-r|heldout|safe|-|t30|probe --temps 32 "$S/bins/r.bin"
+i10a-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a03.bin"
+i10a-r|heldout|safe|noreset idle:10|t30|probe --temps 32 "$S/bins/r.bin"
+i60a-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a04.bin"
+i60a-r|heldout|safe|noreset idle:60|t30|probe --temps 32 "$S/bins/r.bin"
+i120a-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a05.bin"
+i120a-r|heldout|safe|noreset idle:120|t30|probe --temps 32 "$S/bins/r.bin"
+k3a-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a06.bin"
+k3a-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+k3a-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+fla-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a07.bin"
+fla-x|between|safe|noreset|t10|fill
+fla-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+tra-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a08.bin"
+tra-x|between|safe|noreset|t10|tri
+tra-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+rra-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0a09.bin"
+rra-r1|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+rra-r2|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+ptra-x|between|safe|-|t10|tri
+ptra-p|fit|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+pk3a-x|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+pk3a-p|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+pfla-x|between|safe|-|t10|fill
+pfla-p|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+pk3ra-x|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+pk3ra-p|heldout|safe|-|t30|probe --temps 32 "$S/bins/p.bin"
+pk3rb-x|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+pk3rb-p|heldout|safe|-|t30|probe --temps 32 "$S/bins/p.bin"
+pflb-x|between|safe|-|t10|fill
+pflb-p|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+pk3b-x|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+pk3b-p|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+ptrb-x|between|safe|-|t10|tri
+ptrb-p|fit|safe|noreset|t30|probe --temps 32 "$S/bins/p.bin"
+rrb-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b09.bin"
+rrb-r1|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+rrb-r2|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+trb-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b08.bin"
+trb-x|between|safe|noreset|t10|tri
+trb-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+flb-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b07.bin"
+flb-x|between|safe|noreset|t10|fill
+flb-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+k3b-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b06.bin"
+k3b-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 "$S/bins/k.bin"
+k3b-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
+i120b-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b05.bin"
+i120b-r|heldout|safe|noreset idle:120|t30|probe --temps 32 "$S/bins/r.bin"
+i60b-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b04.bin"
+i60b-r|heldout|safe|noreset idle:60|t30|probe --temps 32 "$S/bins/r.bin"
+i10b-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b03.bin"
+i10b-r|heldout|safe|noreset idle:10|t30|probe --temps 32 "$S/bins/r.bin"
+rsb-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b02.bin"
+rsb-r|heldout|safe|-|t30|probe --temps 32 "$S/bins/r.bin"
+nrb-w|control|safe|reads:sa,top|t30|probe --temps 32 "$S/bins/w-5a0c0b01.bin"
+nrb-r|heldout|safe|noreset|t30|probe --temps 32 "$S/bins/r.bin"
