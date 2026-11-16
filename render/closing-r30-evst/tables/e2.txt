@@ -1,0 +1,15 @@
+#stage e2
+#limit 0
+# e2 (12, the read rule's other registers): CR_EVENT_STATUS2, CR_CACHE_CTRL and CR_USE0_SERV_EVENT beside CR_EVENT_STATUS. Frozen: e1's bit 26 models, H-ST2 (0x0118 0x400 throughout, E547), H-CC-FLAT (0x0804 0x1000ffff throughout, E258) against H-CC-SEEN, H-SE-EVENTS (0x0b14 counts 3 or more beyond the ticks over the job) against H-SE-TICKS (within 1). Stop as e1, and a tick stop (0x0b14 bit 16 clear in the last sample, or under half a count a ms): the session ends.
+e2-c1|control|safe|reads:diff,idle,ivl,idle2,cache,se16|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-01|fit|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-02|fit|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-03|fit|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-04|fit|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-05|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-06|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-07|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-08|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-09|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-10|held|safe|-|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
+e2-c2|control|safe|reads:diff,idle,ivl,idle2,cache,se16|rt|1.5 0.5 0x0118,0x012c,0x0804,0x0b14 -- "$HOME/sgxfive-test-t10" tri --width 64 --height 64
