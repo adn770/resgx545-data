@@ -1,0 +1,13 @@
+#stage s0
+#limit 0
+# r34-q044 s0, Q044 (rank-round34.md 3.2, R34-1 (a)): the controls every later stage is gated on (score.py GATES), each a
+# kept image that can fail: E268's mode 0 at 0x80, at bit 25 and at bit 11 (colour form), E031's mode 4 (colour), E385's
+# mode 4 at 0x80 and at bit 25 and mode 8 at bit 25 (ramp form). Stop: any fault or hang; a control without its rows (25);
+# the second row without its 64 pixel rows (24). A stop here ends the session (on_stop = "end").
+s0-m00-w080|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m00-b25|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x02000080 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m00-w880|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000880 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m04-w080|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000204 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m04r-w080|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x00000204 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp.bin"
+s0-m04r-b25|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x02000080 --sideband 0x00000204 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp.bin"
+s0-m08r-b25|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x02000080 --sideband 0x00000208 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp.bin"
