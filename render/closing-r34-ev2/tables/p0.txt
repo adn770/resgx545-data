@@ -1,0 +1,5 @@
+#stage p0
+#limit 0
+# p0 (2, calibration of CR_DPM_3D_PAGE_COUNTS 0x0660 alone; Q036): ovf at 0x422, controls (the first sample = snap0, the kept image); gates p1.
+p0-o1|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,img|rt|0 0.005 0x0660 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+p0-o2|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,img|rt|0 0.005 0x0660 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

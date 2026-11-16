@@ -1,0 +1,33 @@
+#stage e1
+#limit 0
+# e1 (30, 0x012c alone; Q111): ovf at 0x422 first and last (controls), four new rows at each of 0x2b6, 0x1c2, 0xe2, 0x82 in a frozen shuffle; six plain and six large copies, three after every four probes. H-OOM-SMALL (bit 1 at 0xe2 and 0x82 in every row, at 0x2b6 and 0x1c2 in none) against H-OOM-CHANCE (bit 1 at any size: 2 or more rows at 0x2b6 and 0x1c2); H-C18-LARGE (bit 18 in 5 or 6 large copies, at most 3 plain) against H-C18-ANY (2 to 6 of each form, within 2 of each other); H-THR-NEVER, H-IMG.
+e1-c0a|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p11|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p41|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p21|held|safe|dbg:render_pb_pages=0x1c2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p71|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-cp1|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-lc1|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-lc2|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-p72|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p22|held|safe|dbg:render_pb_pages=0x1c2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p42|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p12|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-cp2|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-cp3|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-lc3|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-p43|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p13|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p73|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p23|held|safe|dbg:render_pb_pages=0x1c2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-lc4|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-cp4|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-cp5|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-p24|held|safe|dbg:render_pb_pages=0x1c2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p74|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p14|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-p44|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e1-lc5|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-lc6|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e1-cp6|held|safe|-|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e1-c0b|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

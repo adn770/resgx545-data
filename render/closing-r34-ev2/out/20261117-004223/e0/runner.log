@@ -1,0 +1,48 @@
+## stage e0 of r34f
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 114002160 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r34f.olPPq9
+## clock
+Tue Nov 17 00:42:23 CET 2026
+== e0-o1 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34f/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise e0-o1 [ivl r012c img]: img=1748705 ivl=3810 r012c=0x20000000 
+== e0-c1 set=control risk=safe tool=rt knobs=[reads:ivl,r012c,diff]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t30 copy
+  rc 0 job: ok job time: 619 us target: 64x32 hash 0x9b1c0be484ac0d25 
+  class ok
+  premise e0-c1 [ivl r012c diff]: diff=0 ivl=3386 r012c=0x20000000 
+== e0-l1 set=control risk=safe tool=rt knobs=[reads:ivl,r012c,diff]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t30 copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+  rc 0 job: ok job time: 790 us target: 256x256 hash 0xa0bffa52e1aa2325 
+  class ok
+  premise e0-l1 [ivl r012c diff]: diff=0 ivl=3771 r012c=0x20000000 
+== e0-l2 set=control risk=safe tool=rt knobs=[reads:ivl,r012c,diff]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t30 copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+  rc 0 job: ok job time: 785 us target: 256x256 hash 0xa0bffa52e1aa2325 
+  class ok
+  premise e0-l2 [ivl r012c diff]: diff=0 ivl=3635 r012c=0x20000000 
+== e0-c2 set=control risk=safe tool=rt knobs=[reads:ivl,r012c,diff]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t30 copy
+  rc 0 job: ok job time: 464 us target: 64x32 hash 0x9b1c0be484ac0d25 
+  class ok
+  premise e0-c2 [ivl r012c diff]: diff=0 ivl=3195 r012c=0x20000000 
+== e0-o2 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x012c -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34f/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise e0-o2 [ivl r012c img]: img=1748705 ivl=3890 r012c=0x20000000 
+## end: 6 jobs of e0
+## kernel log (journalctl)

@@ -1,0 +1,182 @@
+# session.toml: the env of r34-ev2, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r34-ev2"
+prefix = "r34f"                 # laptop files under ~/scratch/r34f/ (run, stage, out)
+srcversion = "7CE8E38EDB97FC5EA4F6C90"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"                   # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 120                   # seconds one job may take (timeout -k 10): the overflow
+                                    # probe ran 1.2 to 1.6 s under regtimeline (E1032, E1057)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t10"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--fault", "--poke", "--kpoke", "--kpoke-job", "--kpoke-fill",
+                  "--kpoke-render", "--kpoke-render2", "--kreg-render", "--kreg-render2",
+                  "--scratch-at", "--refill", "--geometry", "--final-pb-pages", "--ctx2",
+                  "--depth", "--dump-render", "--blk", "--cmd", "--vdm", "--pbe", "--slot",
+                  "--src-addr", "--dst-addr", "--large-copy", "--regs", "--aa4"]
+                                    # the overflow probe, plain copies and the health pair only
+
+[tools.t10]
+path = "sgxfive-test-t10"
+sha256 = "9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb"
+built_from = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+recipe = "data:render/closing-r10-st1/lead/build_tool10.sh"
+source = "a581c06bb24d2f77e03d9b64f7ca1b2d5487b59f:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "23e1fa76d10bb4e7cfadb0985ac110d4681e4113f2f55f17dd81bdd4b2fe183b"
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+[tools.rt]
+path = "regtimeline"
+wraps = true
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t10 and t30; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+# the PB of the probe's render context (E1032, E1057: 0x422 no partial render, 0x2b6 one, 0x1c2
+# two, 0xe2 four, 0x82 seven); 0x422 is the module's SGX_RENDER_PB_PAGES (fork sgx_render.h)
+render_pb_pages = { default = "0x422", values = ["0x82", "0xe2", "0x1c2", "0x2b6", "0x422"] }
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+[stages]
+# in this order (README "What runs"); every stage safe, #limit 0, read only (regtimeline through
+# /dev/mem). Q111: e0 calibrates 0x012c alone in the three job forms, e1 (gated) the PB-size rows
+# and the copies. Q036: c0 calibrates 0x0748 alone; exactly one of d1 (median at most 3890 ns,
+# E1057's narrowest bit 2 pulse) and d1s (median above it: the rows whose readings do not need
+# every 4 us pulse) opens; p0 calibrates CR_DPM_3D_PAGE_COUNTS (0x0660) alone, p1 (gated) its rows
+e0 = { alarm = 900 }
+e1 = { alarm = 2400, gate = true }
+c0 = { alarm = 600 }
+d1 = { alarm = 1500, gate = true }
+d1s = { alarm = 1500, gate = true }
+p0 = { alarm = 600 }
+p1 = { alarm = 1500, gate = true }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "c60afd788d2c8aaf0061d8b9f59d07a93273a9de"
+data = "0aeeedfd71447c0141033afa3c259010017bf748"
+# the program the overflow probe draws with (r13-dpm, r15-dpm), and the kept rows gen/fit.py
+# reads (the fit of every hypothesis) and the tests replay the scorer and the hooks on: r13-dpm
+# pr2 (E1032: 0x012c, 0x0660 and 0x0748 in the same overflow form, with snap0), r15-dpm pr4
+# (E1057: 0x0748 alone), E547's event timelines (copies, fills, partial jobs), r34-ev's kept
+# rows (E1137, E1138)
+pins = [
+    "data:render/closing-s1b/bins/p1139-green.bin",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c0-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c2-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-1.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-2.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c0-2.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-2.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c2-2.txt.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c0-1.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-1.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c2-1.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-1.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c1-2.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c0-2.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c4-2.snap0.regs.gz",
+    "data:render/closing-r13-dpm/out/20261113-212348/pr2/pr2-c2-2.snap0.regs.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c0-1.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c1-1.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c4-1.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c7-1.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c1-2.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c0-2.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c7-2.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c4-2.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c7-3.txt.gz",
+    "data:render/closing-r15-dpm/out/20261114-071243/pr4/pr4-c4-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r2-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r2-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r2-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r2-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r2-5.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r7-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r7-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r7-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r7-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-copy-r7-5.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r2-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r2-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r2-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r2-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r2-5.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r7-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r7-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r7-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r7-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-fill-r7-5.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r2-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r2-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r2-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r2-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r2-5.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r7-1.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r7-2.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r7-3.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r7-4.txt.gz",
+    "data:platform/event-bits/dumps/event-timelines/tl-partial-r7-5.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-o1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-c1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-l1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-l2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-c2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e0/e0-o2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-c0a.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p1a.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p2a.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p4a.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p7a.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-cpc.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-cp1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-lcc.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-lc1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-lc2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-cp2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p7b.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p4b.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p2b.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-p1b.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e1/e1-c0b.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2c/e2c-o1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2c/e2c-c1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2c/e2c-c2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2c/e2c-o2.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-c0.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-p1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-p4.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-cpc.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-cp1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/e2/e2-p7.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/d0/d0-o1.txt.gz",
+    "data:render/closing-r34-ev/out/20261117-001058/d0/d0-o2.txt.gz",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
