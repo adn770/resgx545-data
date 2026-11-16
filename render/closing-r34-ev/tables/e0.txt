@@ -1,0 +1,9 @@
+#stage e0
+#limit 0
+# e0 (6, calibration of 0x012c alone; Q111): two of each form (ovf at 0x422, copy, lcopy), every row a control: the job's output (the kept image, or the copy's own check), 0x012c's first sample = the row's snap0, and the job window's interval (ivl), whose median and +-25 % window per form gate e1 (score.py gate). Stop: a row without its whole timeline, the overflow's or the copy's line (hook_check).
+e0-o1|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e0-c1|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e0-l1|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e0-l2|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy --width 256 --height 256 --src-stride 1024 --dst-stride 1024
+e0-c2|control|safe|reads:ivl,r012c,diff|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t30" copy
+e0-o2|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,img|rt|0 0.005 0x012c -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

@@ -1,0 +1,11 @@
+#stage d1
+#limit 0
+# d1 (8, 0x0660 + 0x0748; Q036): ovf at 0x422 (2 controls, which must read no bit 2 clear: E1057's control) and at 0x2b6, 0x1c2, 0xe2 (two), 0x82 (two). 0x0748 bit by bit: H-B2PR against H-B2-NONE, H-B4-ONE against H-B4-PR, H-B4-LEN, H-B1-PR, H-B3-LONG against H-B3-SHORT, H-B0-N; CR_DPM_3D_PAGE_COUNTS: H-PC-ONCE against H-PC-RENDER (a word per render), H-PC-FIN (the final word of each PB size). Stop as e0.
+d1-c0a|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,r0748,img,b2n|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p1|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p2|held|safe|dbg:render_pb_pages=0x1c2 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p4a|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p7a|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p7b|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-p4b|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+d1-c0b|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0660,r0748,img,b2n|rt|0 0.005 0x0660,0x0748 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

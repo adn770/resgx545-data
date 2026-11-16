@@ -1,0 +1,9 @@
+#stage e2
+#limit 0
+# e2 (6, 0x012c + 0x0118; Q111): ovf at 0x422 (control), 0x2b6, 0xe2, 0x82; copy (a control and one held). H-OOM-SET against H-OOM-NONE again; H-S2-SET against H-S2-NONE (CR_EVENT_STATUS2 bit 12 or 0 in an overflowing job); H-S2-COPYIDLE (STATUS2 keeps its idle word in a copy). Stop as e0.
+e2-c0|control|safe|dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r012c,r0118,img|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e2-p1|held|safe|dbg:render_pb_pages=0x2b6 expect:rc3-overflow|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e2-p4|held|safe|dbg:render_pb_pages=0xe2 expect:rc3-overflow|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"
+e2-cpc|control|safe|reads:ivl,r012c,r0118,diff|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t30" copy
+e2-cp1|held|safe|-|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t30" copy
+e2-p7|held|safe|dbg:render_pb_pages=0x82 expect:rc3-overflow|rt|0 0.005 0x012c,0x0118 -- "$HOME/sgxfive-test-t10" probe --tri pixel --width 3072 --height 2048 --vertices 1500 "$S/bins/p1139-green.bin"

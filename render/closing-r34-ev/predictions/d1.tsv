@@ -1,0 +1,105 @@
+case	quantity	value	model	set	source
+d1-c0a	reg:0x0660	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+d1-c0a	reg:0x0748	0x1f	H-CTL	control	0x0748 is not in the kit's snapshot (sessioncheck.SNAP_REGS): 0x1f, the first sample of 18 of 18 kept overflow rows (E1032 pr2, E1057 pr4) and E358's idle value
+d1-c0a	img	1748705	H-CTL	control	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-c0a	ivl	@cal:d0	H-CTL	control	the calibration stage's measured job-window interval for the exact register set (T1)
+d1-c0a	b2n	0	H-CTL	control	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide (E1057's PR 0 control)
+d1-c0a	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-c0a	b4ms	15..26	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-c0a	b1n	0..4	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-c0a	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-c0a	b3max	0..10000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-c0a	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-c0a	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-c0a	pcfin	0x70305	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-p1	img	1675156	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p1	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p1	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p1	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p1	b4ms	110..175	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p1	b1n	2..8	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p1	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p1	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p1	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p1	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p1	pcfin	0x60294	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-p2	img	1666112	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p2	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p2	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p2	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p2	b4ms	120..200	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p2	b1n	3..12	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p2	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p2	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p2	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p2	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p2	pcfin	0x401a0	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-p4a	img	1667517	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p4a	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p4a	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p4a	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p4a	b4ms	135..215	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p4a	b1n	5..14	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p4a	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p4a	b3max	20000..60000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-p4a	b3max	0..10000	H-B3-SHORT	held	the alternative: bit 3's clears stay short (under 10 us) at PR 4 and 7
+d1-p4a	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p4a	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p4a	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p4a	pcfin	0x200c0	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-p7a	img	1669806	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p7a	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p7a	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p7a	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p7a	b4ms	150..240	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p7a	b1n	10..28	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p7a	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p7a	b3max	20000..60000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-p7a	b3max	0..10000	H-B3-SHORT	held	the alternative: bit 3's clears stay short (under 10 us) at PR 4 and 7
+d1-p7a	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p7a	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p7a	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p7a	pclo	0x60	H-PC-FIN	held	[infer] from the four kept sizes: the low half 0x82 - 0x22 = 0x60, the high half 0 to 2 (the kept high halves 7, 6, 4, 2 fall with the size; E358 reads 0 and 1 at 2 to 5 pages)
+d1-p7a	pchi	0..2	H-PC-FIN	held	[infer] from the four kept sizes: the low half 0x82 - 0x22 = 0x60, the high half 0 to 2 (the kept high halves 7, 6, 4, 2 fall with the size; E358 reads 0 and 1 at 2 to 5 pages)
+d1-p7b	img	1669806	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p7b	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p7b	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p7b	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p7b	b4ms	150..240	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p7b	b1n	10..28	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p7b	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p7b	b3max	20000..60000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-p7b	b3max	0..10000	H-B3-SHORT	held	the alternative: bit 3's clears stay short (under 10 us) at PR 4 and 7
+d1-p7b	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p7b	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p7b	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p7b	pclo	0x60	H-PC-FIN	held	[infer] from the four kept sizes: the low half 0x82 - 0x22 = 0x60, the high half 0 to 2 (the kept high halves 7, 6, 4, 2 fall with the size; E358 reads 0 and 1 at 2 to 5 pages)
+d1-p7b	pchi	0..2	H-PC-FIN	held	[infer] from the four kept sizes: the low half 0x82 - 0x22 = 0x60, the high half 0 to 2 (the kept high halves 7, 6, 4, 2 fall with the size; E358 reads 0 and 1 at 2 to 5 pages)
+d1-p4b	img	1667517	H-IMG	held	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-p4b	b2wmax	0..7000	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide
+d1-p4b	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-p4b	b4n	2..1000	H-B4-PR	held	the alternative: bit 4 clears once per render (two or more clears in an overflowing job)
+d1-p4b	b4ms	135..215	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-p4b	b1n	5..14	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-p4b	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-p4b	b3max	20000..60000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-p4b	b3max	0..10000	H-B3-SHORT	held	the alternative: bit 3's clears stay short (under 10 us) at PR 4 and 7
+d1-p4b	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-p4b	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-p4b	pcn	2..1000	H-PC-RENDER	held	the alternative (plan's H-HI3D): a word a render, two or more changes in an overflowing job
+d1-p4b	pcfin	0x200c0	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-c0b	reg:0x0660	@snap0	H-CTL	control	@snap0: r13-dpm pr2 kept rows (E1032), 6 of 6: the first sample of 0x012c, 0x0118 and 0x0660 equals the row's snap0 (0x0660 holds the row before's final word: not reset)
+d1-c0b	reg:0x0748	0x1f	H-CTL	control	0x0748 is not in the kit's snapshot (sessioncheck.SNAP_REGS): 0x1f, the first sample of 18 of 18 kept overflow rows (E1032 pr2, E1057 pr4) and E358's idle value
+d1-c0b	img	1748705	H-CTL	control	r13-dpm pr2 and r15-dpm pr4 kept outputs (E1032, E1057): the same count in every row of a size
+d1-c0b	ivl	@cal:d0	H-CTL	control	the calibration stage's measured job-window interval for the exact register set (T1)
+d1-c0b	b2n	0	H-CTL	control	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide (E1057's PR 0 control)
+d1-c0b	b4n	1	H-B4-ONE	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages
+d1-c0b	b4ms	15..26	H-B4-LEN	held	r15-dpm pr4 kept rows (gen/fit.py, gen/fit.txt): bit 4 clears once a job (10 of 10), 20 ms at PR 0, 138 ms at PR 1, 170 ms at PR 4, 190 ms at PR 7; E358: bit 4 while the TA takes pages; PR 2 between PR 1 and 4 [infer]
+d1-c0b	b1n	0..4	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees; PR 2 between PR 1 and 4 [infer]
+d1-c0b	b1wmax	0..7000	H-B1-PR	held	r15-dpm pr4 kept rows: bit 1 clears 1-2 at PR 0, 4 at PR 1, 7-10 at PR 4, 14-21 at PR 7, each 3.9 to 4.9 us; E358: before each page the 3D frees
+d1-c0b	b3max	0..10000	H-B3-LONG	held	r15-dpm pr4 kept rows: bit 3's longest clear is 26 to 30 us at PR 4 and 7 (6 of 6), 4.2 to 7.9 us at PR 0 and 1 (4 of 4)
+d1-c0b	b0n	30..90	H-B0-N	held	r15-dpm pr4 kept rows: bit 0 clears 44 to 68 times a job (10 of 10)
+d1-c0b	pcn	0..1	H-PC-ONCE	held	r13-dpm pr2 kept rows (E1032, 7.5 us): CR_DPM_3D_PAGE_COUNTS changes once a job, from the row before's word to its own (8 of 8); edm_dataflow: one EDM write site
+d1-c0b	pcfin	0x70305	H-PC-FIN	held	r13-dpm pr2 kept rows: 0x70305 at 0x422, 0x60294 at 0x2b6, 0x401a0 at 0x1c2, 0x200c0 at 0xe2 (2 of 2 each): the low half P - 0x22 when the job overflows
+d1-all	b2tot	1..60	H-B2PR	held	E1057 (r15-dpm pr4, 0x0748 alone at 1.7 us): bit 2 clears 0 times at PR 0 (2 of 2), 17 times in the 8 rows with a partial render, each 3.9 to 4.1 us wide (summed over PR 1-7)
+d1-all	b2tot	0	H-B2-NONE	held	the alternative: no bit 2 clear in any overflowing row (as E1032's 7.5 us sampler saw)

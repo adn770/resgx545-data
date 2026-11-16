@@ -1,0 +1,56 @@
+CONTROL e2-c0: reg:0x012c=0x20000000(ok) reg:0x0118=0x00000400(ok) img=1748705(ok) ivl=4095(ok): PASS
+ROW e2-c0 [held] H-THR-NEVER thr=0 (frozen 0): held
+ROW e2-c0 [held] H-PR0-QUIET oom=0 (frozen 0): held
+READ e2-c0: ivl=4095 r012c=0x20000000 r0118=0x00000400 img=1748705 ovl=0 bits=0,18 oom=0 mt=0 gbl=0 thr=0 e0=1 e14=0 e18=1 w0max=120752 w1max=0 w13max=0 w18max=120752 s2=0 s2words=1
+ROW e2-p1 [held] H-IMG img=1675156 (frozen 1675156): held
+ROW e2-p1 [held] H-OOM-SET oom=0 (frozen 1..1000000): FAILED
+ROW e2-p1 [held] H-OOM-NONE oom=0 (frozen 0): held
+ROW e2-p1 [held] H-OOM-MT gbl=0 (frozen 0): held
+ROW e2-p1 [held] H-OOM-GBL gbl=0 (frozen 1..1000000): FAILED
+ROW e2-p1 [held] H-S2-SET s2=0 (frozen 1..1000000): FAILED
+ROW e2-p1 [held] H-S2-NONE s2=0 (frozen 0): held
+ROW e2-p1 [held] H-THR-NEVER thr=0 (frozen 0): held
+READ e2-p1: ivl=4160 r012c=0x20000000 r0118=0x00000400 img=1675156 ovl=1 bits=0,18,26 oom=0 mt=0 gbl=0 thr=0 e0=1 e14=0 e18=2 w0max=4607 w1max=0 w13max=0 w18max=4607 s2=0 s2words=2
+ROW e2-p4 [held] H-IMG img=1667517 (frozen 1667517): held
+ROW e2-p4 [held] H-OOM-SET oom=2 (frozen 1..1000000): held
+ROW e2-p4 [held] H-OOM-NONE oom=2 (frozen 0): FAILED
+ROW e2-p4 [held] H-OOM-MT gbl=0 (frozen 0): held
+ROW e2-p4 [held] H-OOM-GBL gbl=0 (frozen 1..1000000): FAILED
+ROW e2-p4 [held] H-S2-SET s2=0 (frozen 1..1000000): FAILED
+ROW e2-p4 [held] H-S2-NONE s2=0 (frozen 0): held
+ROW e2-p4 [held] H-THR-NEVER thr=0 (frozen 0): held
+READ e2-p4: ivl=4116 r012c=0x20000000 r0118=0x00000400 img=1667517 ovl=1 bits=0,1,12,14,18,26,31 oom=2 mt=2 gbl=0 thr=0 e0=5 e14=1 e18=1 w0max=4792 w1max=4335 w13max=0 w18max=4386 s2=0 s2words=1
+CONTROL e2-cpc: reg:0x012c=0x20000000(ok) reg:0x0118=0x00000400(ok) diff=0(ok) ivl=4129(ok): PASS
+ROW e2-cpc [held] H-COPY e18=1 (frozen 0): FAILED
+ROW e2-cpc [held] H-COPY e0=0 (frozen 0): held
+ROW e2-cpc [held] H-COPY-END e18=1 (frozen 1..1000000): held
+ROW e2-cpc [held] H-S2-COPYIDLE s2words=1 (frozen 1): held
+READ e2-cpc: ivl=4129 r012c=0x20000000 r0118=0x00000400 diff=0 cok=1 bits=18 oom=0 mt=0 gbl=0 thr=0 e0=0 e14=0 e18=1 w0max=0 w1max=0 w13max=0 w18max=73254 s2=0 s2words=1
+ROW e2-cp1 [held] H-COPY e18=1 (frozen 0): FAILED
+ROW e2-cp1 [held] H-COPY e0=0 (frozen 0): held
+ROW e2-cp1 [held] H-COPY-END e18=1 (frozen 1..1000000): held
+ROW e2-cp1 [held] H-S2-COPYIDLE s2words=1 (frozen 1): held
+READ e2-cp1: ivl=3835 r012c=0x20000000 r0118=0x00000400 diff=0 cok=1 bits=18 oom=0 mt=0 gbl=0 thr=0 e0=0 e14=0 e18=1 w0max=0 w1max=0 w13max=0 w18max=65424 s2=0 s2words=1
+ROW e2-p7 [held] H-IMG img=1669806 (frozen 1669806): held
+ROW e2-p7 [held] H-OOM-SET oom=2 (frozen 1..1000000): held
+ROW e2-p7 [held] H-OOM-NONE oom=2 (frozen 0): FAILED
+ROW e2-p7 [held] H-OOM-MT gbl=0 (frozen 0): held
+ROW e2-p7 [held] H-OOM-GBL gbl=0 (frozen 1..1000000): FAILED
+ROW e2-p7 [held] H-S2-SET s2=0 (frozen 1..1000000): FAILED
+ROW e2-p7 [held] H-S2-NONE s2=0 (frozen 0): held
+ROW e2-p7 [held] H-THR-NEVER thr=0 (frozen 0): held
+READ e2-p7: ivl=4108 r012c=0x20000000 r0118=0x00000400 img=1669806 ovl=1 bits=0,1,12,14,18,31 oom=2 mt=2 gbl=0 thr=0 e0=5 e14=1 e18=4 w0max=4787 w1max=4356 w13max=0 w18max=5028 s2=0 s2words=1
+CAL e2c copy: median 4021.0 ns over 2 rows, window (3016, 5026)
+CAL e2c ovf: median 4100.5 ns over 2 rows, window (3075, 5126)
+SUMMARY: e2 H-COPY [held]: a copy shows no bit 18 and no bit 0 is not supported: 2 held, 2 FAILED, 0 cannot tell of 4
+SUMMARY: e2 H-COPY-END [held]: a copy shows bit 18 (PIXELBE_END_RENDER) as a fill does (2 of 2 rows decided)
+SUMMARY: e2 H-IMG [held]: the probe draws the kept image of its PB size (3 of 3 rows decided)
+SUMMARY: e2 H-OOM-GBL [held]: bit 2 (GBL) shows in an overflowing job is not supported: 0 held, 3 FAILED, 0 cannot tell of 3
+SUMMARY: e2 H-OOM-MT [held]: the out-of-memory bit is never bit 2 (GBL) (3 of 3 rows decided)
+SUMMARY: e2 H-OOM-NONE [held]: an overflowing job shows neither bit 1 nor bit 2 is not supported: 1 held, 2 FAILED, 0 cannot tell of 3
+SUMMARY: e2 H-OOM-SET [held]: an overflowing job shows CR_EVENT_STATUS bit 1 or 2 (DPM out of memory) is not supported: 2 held, 1 FAILED, 0 cannot tell of 3
+SUMMARY: e2 H-PR0-QUIET [held]: a job that does not overflow shows no out-of-memory bit (1 of 1 rows decided)
+SUMMARY: e2 H-S2-COPYIDLE [held]: CR_EVENT_STATUS2 keeps one word through a copy (2 of 2 rows decided)
+SUMMARY: e2 H-S2-NONE [held]: CR_EVENT_STATUS2 keeps its word through an overflowing job (3 of 3 rows decided)
+SUMMARY: e2 H-S2-SET [held]: an overflowing job shows CR_EVENT_STATUS2 bit 12 or bit 0 is not supported: 0 held, 3 FAILED, 0 cannot tell of 3
+SUMMARY: e2 H-THR-NEVER [held]: bit 3 (REACHED_MEM_THRESH) never shows (4 of 4 rows decided)
