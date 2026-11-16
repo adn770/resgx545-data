@@ -1,0 +1,10 @@
+#stage pw
+#limit 0
+# r34-q044 pw, Q044 (b): bit 25 in modes 12 and 13, which write past the target into the scratch (E031: no fault in two
+# runs), last so that an unplanned end costs nothing else; colour form, `xor` H-INV25 (0xff000000) against H-SUBSET (0).
+# Control that can fail: E268's mode 0 image. Gate: s0.
+pw-ctl-m00|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m12-ref|replicate|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m12-b25|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x02000080 --sideband 0x0000020c --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m13-ref|replicate|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m13-b25|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x02000080 --sideband 0x0000020d --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
