@@ -1,0 +1,61 @@
+## stage s0 of r30p
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 120426004 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r30p.wAdZvX
+## clock
+Mon Nov 16 13:18:09 CET 2026
+== s0-warm set=fit risk=safe tool=t30 knobs=[soft dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --src-addr 0x5ffff000 --height 16 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/1-s0-warm/w
+  rc 0 job: ok job time: 547 us target: 64x16 hash 0x451622bfbf442725 
+  class ok
+== s0-pcopy-1 set=control risk=safe tool=t30 knobs=[reads:job,diff,large]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --src-addr 0x60000000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/2-s0-pcopy-1/w
+  rc 0 job: ok job time: 538 us target: 64x64 hash 0xb22a44f4be5b0525 
+  class ok
+  premise s0-pcopy-1 [job diff large]: job=ok diff=0 large=none tags=x,x,x,x 
+== s0-kcopy-1 set=control risk=safe tool=t30 knobs=[expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --src-addr 0x60000000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/3-s0-kcopy-1/w
+  rc 1 job: ok job time: 522 us target: 64x64 hash 0xb23abc1da9a67725 
+  class ok
+  premise s0-kcopy-1 [job diff large tags table changed]: job=ok diff=4096 large=c0.l0.o3 table=intact changed=none tags=1:0,2:0,3:0,7:0 
+== s0-pfill-1 set=control risk=safe tool=t30 knobs=[reads:job,diff,large]
+  cmd: /home/jtorra/sgxfive-test-t30 fill --dst-addr 0x603fe000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/4-s0-pfill-1/w
+  rc 0 job: ok job time: 513 us target: 64x64 hash 0xc3ac149063f58325 
+  class ok
+  premise s0-pfill-1 [job diff large]: job=ok diff=0 large=none 
+== s0-kfill-1 set=control risk=safe tool=t30 knobs=[expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0]
+  cmd: /home/jtorra/sgxfive-test-t30 fill --dst-addr 0x603fe000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/5-s0-kfill-1/w
+  rc 1 job: ok job time: 543 us target: 64x64 hash 0x9db5c3d154693325 
+  class ok
+  premise s0-kfill-1 [job diff large table changed]: job=ok diff=2048 large=c0.l0.o3 table=intact changed=7:0 
+== s0-pcopy-2 set=control risk=safe tool=t30 knobs=[reads:job,diff,large]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --src-addr 0x60000000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/6-s0-pcopy-2/w
+  rc 0 job: ok job time: 629 us target: 64x64 hash 0xb22a44f4be5b0525 
+  class ok
+  premise s0-pcopy-2 [job diff large]: job=ok diff=0 large=none tags=x,x,x,x 
+== s0-kcopy-2 set=control risk=safe tool=t30 knobs=[expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0]
+  cmd: /home/jtorra/sgxfive-test-t30 copy --src-addr 0x60000000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/7-s0-kcopy-2/w
+  rc 1 job: ok job time: 553 us target: 64x64 hash 0xb23abc1da9a67725 
+  class ok
+  premise s0-kcopy-2 [job diff large tags table changed]: job=ok diff=4096 large=c0.l0.o3 table=intact changed=none tags=1:0,2:0,3:0,7:0 
+== s0-pfill-2 set=control risk=safe tool=t30 knobs=[reads:job,diff,large]
+  cmd: /home/jtorra/sgxfive-test-t30 fill --dst-addr 0x603fe000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/8-s0-pfill-2/w
+  rc 0 job: ok job time: 558 us target: 64x64 hash 0xc3ac149063f58325 
+  class ok
+  premise s0-pfill-2 [job diff large]: job=ok diff=0 large=none 
+== s0-kfill-2 set=control risk=safe tool=t30 knobs=[expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0]
+  cmd: /home/jtorra/sgxfive-test-t30 fill --dst-addr 0x603fe000 --height 64 --large-copy /home/jtorra/scratch/tmp/r30p.wAdZvX/9-s0-kfill-2/w
+  rc 1 job: ok job time: 513 us target: 64x64 hash 0x9db5c3d154693325 
+  class ok
+  premise s0-kfill-2 [job diff large table changed]: job=ok diff=2048 large=c0.l0.o3 table=intact changed=7:0 
+## end: 9 jobs of s0
+## kernel log (journalctl)

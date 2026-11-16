@@ -1,0 +1,7 @@
+#stage f67
+#limit 4
+# f67 (FLAGGED, planned faults, last): the unnamed codes 6 and 7, copies only over [16K, 32K), each twice. Frozen H-FAULT (the BIF does not take the code: a fault, or a hang the kernel recovers, with the kernel's BIF line and registers) against H-ALIAS and H-ALIAS16 (taken as a size). Soft (order 10). #limit 4 of 4.
+c6-u1|fit|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=6 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60004000 --height 64 --large-copy "$W"
+c7-u1|fit|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=7 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60004000 --height 64 --large-copy "$W"
+c6-u2|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=6 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60004000 --height 64 --large-copy "$W"
+c7-u2|heldout|risky|soft expectfault expectdiff dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=7 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60004000 --height 64 --large-copy "$W"

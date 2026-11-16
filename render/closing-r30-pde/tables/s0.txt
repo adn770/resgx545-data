@@ -1,0 +1,12 @@
+#stage s0
+#limit 0
+# s0: safe references (Q109, r30-pde). The warm row maps the slot with vm_pde_size 5 (a 4 MiB region, order 10, right after the boot) while its copy reads the page before the slot only. The controls: the knobs off (a plain buffer at the slot: exact, vm_large none) and vm_pde_size 0 (4 KiB entries over the tagged region: the copy's tags and the fill's changed page are H-4K's, the table intact), each twice. They gate every flagged stage. Safe class: no expectfault, #limit 0; any fault or hang stops the session.
+s0-warm|fit|safe|soft dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=5 dbg:vm_pde_layout=0|t30|copy --src-addr 0x5ffff000 --height 16 --large-copy "$W"
+s0-pcopy-1|control|safe|reads:job,diff,large|t30|copy --src-addr 0x60000000 --height 64 --large-copy "$W"
+s0-kcopy-1|control|safe|expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60000000 --height 64 --large-copy "$W"
+s0-pfill-1|control|safe|reads:job,diff,large|t30|fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"
+s0-kfill-1|control|safe|expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"
+s0-pcopy-2|control|safe|reads:job,diff,large|t30|copy --src-addr 0x60000000 --height 64 --large-copy "$W"
+s0-kcopy-2|control|safe|expectdiff reads:job,diff,large,tags,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0|t30|copy --src-addr 0x60000000 --height 64 --large-copy "$W"
+s0-pfill-2|control|safe|reads:job,diff,large|t30|fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"
+s0-kfill-2|control|safe|expectdiff reads:job,diff,large,table,changed dbg:vm_pde_addr=0x60000000 dbg:vm_pde_size=0 dbg:vm_pde_layout=0|t30|fill --dst-addr 0x603fe000 --height 64 --large-copy "$W"
