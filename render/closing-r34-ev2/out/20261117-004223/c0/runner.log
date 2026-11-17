@@ -1,0 +1,33 @@
+## stage c0 of r34f
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## tool rt: 079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803 /home/jtorra/regtimeline
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 114001112 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r34f.yfAvBn
+## clock
+Tue Nov 17 00:46:24 CET 2026
+== c0-o1 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0748,img,b2n]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x0748 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34f/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise c0-o1 [ivl r0748 img b2n]: img=1748705 ivl=3806 r0748=0x0000001f b0n=49 b1n=4 b2n=0 b3n=13 b4n=1 
+== c0-o2 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0748,img,b2n]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x0748 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34f/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise c0-o2 [ivl r0748 img b2n]: img=1748705 ivl=3762 r0748=0x0000001f b0n=46 b1n=0 b2n=0 b3n=11 b4n=1 
+== c0-o3 set=control risk=safe tool=rt knobs=[dbg:render_pb_pages=0x422 expect:rc3-overflow reads:ivl,r0748,img,b2n]
+  cmd: /home/jtorra/regtimeline 0 0.005 0x0748 -- /home/jtorra/sgxfive-test-t10 probe --tri pixel --width 3072 --height 2048 --vertices 1500 /home/jtorra/scratch/r34f/stage/bins/p1139-green.bin
+  rc 0 
+  class ok
+  premise c0-o3 [ivl r0748 img b2n]: img=1748705 ivl=3761 r0748=0x0000001f b0n=40 b1n=5 b2n=0 b3n=16 b4n=1 
+## end: 3 jobs of c0
+## kernel log (journalctl)
