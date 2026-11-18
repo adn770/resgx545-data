@@ -1,0 +1,137 @@
+case	quantity	value	model	set	source
+c0a-k	sa	0xc0de0a03	H-REF	control	this program's own constant (dword 0)
+c0a-k	top	0xc0de0a03	H-REF	control	this program's own constant (o0)
+c0a-k	rows	32	H-REF	control	t30's --pixels: 32 rows of 64 pixels (D1: the position decode on K3)
+c1a-c	rows	32	H-REF	control	t30's --pixels: 32 rows of 64 pixels (D1: the decode on (y << 16) | x, t30's coord_texel, scored per pixel by score.py)
+f0a-w	count	4	H-FOUR	fit	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+f0a-w	count	!4	H-OTHERN	fit	another number of odd pixels than 4 per sa written
+f0a-w	pos	S0	H-FIXED4	fit	the same 4 positions for every n, both replicates (S0: f0a's)
+f0a-w	pos	S0+0d	H-SHIFT	fit	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+f1a-w	count	4	H-FOUR	fit	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+f1a-w	count	!4	H-OTHERN	fit	another number of odd pixels than 4 per sa written
+f1a-w	pos	S0	H-FIXED4	fit	the same 4 positions for every n, both replicates (S0: f0a's)
+f1a-w	pos	S0+1d	H-SHIFT	fit	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+c2a-w	sa	0x5a350305	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+c2a-w	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+c2a-r	sa	0x5a350305	H-REF	control	D1: E1140's reader form on sa5 reads the writer's marker right after it
+c2a-r	top	0x5a350305	H-REF	control	the same, as o0 (E484: 2048 of 2048)
+h2a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h2a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h2a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h2a-w	pos	S0+2d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h3a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h3a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h3a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h3a-w	pos	S0+3d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h4a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h4a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h4a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h4a-w	pos	S0+4d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h5a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h5a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h5a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h5a-w	pos	S0+5d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h6a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h6a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h6a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h6a-w	pos	S0+6d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h7a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h7a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h7a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h7a-w	pos	S0+7d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h8a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h8a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h8a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h8a-w	pos	S0+8d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h9a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h9a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h9a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h9a-w	pos	S0+9d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h10a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h10a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h10a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h10a-w	pos	S0+10d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h11a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h11a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h11a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h11a-w	pos	S0+11d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h12a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h12a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h12a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h12a-w	pos	S0+12d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h13a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h13a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h13a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h13a-w	pos	S0+13d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h14a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h14a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h14a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h14a-w	pos	S0+14d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h15a-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h15a-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h15a-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h15a-w	pos	S0+15d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h157a-w	count	12	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h157a-w	count	!12	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h157a-w	pos	W1|W5|W7	H-UNION	heldout	E484's 12 = the union of W_1's, W_5's and W_7's positions (same replicate)
+pa-w	sa	0x5a351305	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+pa-w	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+pa-x	sa	0x5a351401	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+pa-x	top	0xc0de0a02	H-REF	control	this program's own constant (o0)
+pa-r	cat	PREV	H-ONEJOB	heldout	E1140's rule for sa0 on sa5: any job between replaces it with that job's output, also one that writes another sa
+pa-r	cat	M	H-UNTILWRITE	heldout	a job between that writes an sa (X_1: sa1) leaves sa5 as written; a job writing no sa replaces it with its output (E484, the fit q)
+qa-w	sa	0x5a351505	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+qa-w	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+qa-x	sa	0xc0de0a03	H-REF	control	this program's own constant (dword 0)
+qa-x	top	0xc0de0a03	H-REF	control	this program's own constant (o0)
+qa-r	cat	PREV	H-ONEJOB	fit	E1140's rule for sa0 on sa5: any job between replaces it with that job's output, also one that writes another sa
+qa-r	cat	PREV	H-UNTILWRITE	fit	a job between that writes an sa (X_1: sa1) leaves sa5 as written; a job writing no sa replaces it with its output (E484, the fit q)
+pb-w	sa	0x5a351605	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+pb-w	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+pb-x	sa	0x5a351701	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+pb-x	top	0xc0de0a02	H-REF	control	this program's own constant (o0)
+pb-r	cat	PREV	H-ONEJOB	heldout	E1140's rule for sa0 on sa5: any job between replaces it with that job's output, also one that writes another sa
+pb-r	cat	M	H-UNTILWRITE	heldout	a job between that writes an sa (X_1: sa1) leaves sa5 as written; a job writing no sa replaces it with its output (E484, the fit q)
+h157b-w	count	12	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h157b-w	count	!12	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h157b-w	pos	W1|W5|W7	H-UNION	heldout	E484's 12 = the union of W_1's, W_5's and W_7's positions (same replicate)
+h157b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+h15b-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h15b-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h15b-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h15b-w	pos	S0+15d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h15b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+h7b-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h7b-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h7b-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h7b-w	pos	S0+7d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h7b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+h5b-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h5b-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h5b-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h5b-w	pos	S0+5d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h5b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+h3b-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h3b-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h3b-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h3b-w	pos	S0+3d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h3b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+h2b-w	count	4	H-FOUR	heldout	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+h2b-w	count	!4	H-OTHERN	heldout	another number of odd pixels than 4 per sa written
+h2b-w	pos	S0	H-FIXED4	heldout	the same 4 positions for every n, both replicates (S0: f0a's)
+h2b-w	pos	S0+2d	H-SHIFT	heldout	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+h2b-w	rep	!same	H-VAR	heldout	the positions differ between the two replicates of one n
+c2b-w	sa	0x5a351e05	H-REF	control	E1106 [HW]: iaddu32 writes (r1 & 0xffff) + r2, read back in the job; this program's own constant
+c2b-w	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+c2b-r	sa	0x5a351e05	H-REF	control	D1: E1140's reader form on sa5 reads the writer's marker right after it
+c2b-r	top	0x5a351e05	H-REF	control	the same, as o0 (E484: 2048 of 2048)
+f1b-w	count	4	H-FOUR	fit	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+f1b-w	count	!4	H-OTHERN	fit	another number of odd pixels than 4 per sa written
+f1b-w	pos	S0	H-FIXED4	fit	the same 4 positions for every n, both replicates (S0: f0a's)
+f1b-w	pos	S0+1d	H-SHIFT	fit	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+f1b-w	rep	!same	H-VAR	fit	the positions differ between the two replicates of one n
+f0b-w	count	4	H-FOUR	fit	E484/E1139: exactly 4 pixels per sa written show its marker, the rest K1
+f0b-w	count	!4	H-OTHERN	fit	another number of odd pixels than 4 per sa written
+f0b-w	pos	S0	H-FIXED4	fit	the same 4 positions for every n, both replicates (S0: f0a's)
+f0b-w	pos	S0+0d	H-SHIFT	fit	sa0's positions (f0a) shifted by n d pixel indices, d fitted on f1a
+f0b-w	rep	!same	H-VAR	fit	the positions differ between the two replicates of one n

@@ -1,0 +1,50 @@
+#stage a
+#limit 0
+# r35-sa a (Q129, rank-round35.md 3.2; safe: no expectfault, #limit 0, no kreg, no dbg knob): which pixels of a fill
+# that writes sa_n show the marker, and does sa5 survive a job between that writes another sa? Every probe is a t30
+# fill with --pixels (c1: --coords). c0 (K) and c1 (o0 = pa0 = (y << 16) | x) are the position decode's controls (D1);
+# c2 (W_5, R_5) the reader form's on sa5. f (fit: W_0, W_1) and h (held out: W_2..W_15, W_157 = sa1, sa5 and sa7)
+# write a per-row marker with iaddu32 and output K1. p (W_5, X_1 writing sa1, R_5) is clause (b); q (W_5, K, R_5) is
+# E484's form (fit). Second replicate: the two-replicate groups reversed. Frozen: H-FOUR/H-OTHERN, H-FIXED4/H-SHIFT,
+# H-VAR, H-UNION (positions), H-ONEJOB/H-UNTILWRITE (p, q). Stop: any fault or hang (4); a control without its
+# reading (25); a probe without its o0 line, its 32 pixel rows or (a writer, K, X) its dword 0 (24).
+c0a-k|control|safe|reads:sa,top,rows|t30|probe --temps 32 --pixels "$S/bins/k.bin"
+c1a-c|control|safe|reads:rows|t30|probe --temps 32 --coords --pixels "$S/bins/c.bin"
+f0a-w|fit|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350100.bin"
+f1a-w|fit|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350201.bin"
+c2a-w|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/w-5a350305.bin"
+c2a-r|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/r5.bin"
+h2a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350402.bin"
+h3a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350503.bin"
+h4a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350604.bin"
+h5a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350705.bin"
+h6a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350806.bin"
+h7a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350907.bin"
+h8a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350a08.bin"
+h9a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350b09.bin"
+h10a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350c0a.bin"
+h11a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350d0b.bin"
+h12a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350e0c.bin"
+h13a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a350f0d.bin"
+h14a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a35100e.bin"
+h15a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a35110f.bin"
+h157a-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w157-5a351200.bin"
+pa-w|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/w-5a351305.bin"
+pa-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/x-5a351401.bin"
+pa-r|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/r5.bin"
+qa-w|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/w-5a351505.bin"
+qa-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/k.bin"
+qa-r|fit|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/r5.bin"
+pb-w|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/w-5a351605.bin"
+pb-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/x-5a351701.bin"
+pb-r|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/r5.bin"
+h157b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w157-5a351800.bin"
+h15b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a35190f.bin"
+h7b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a351a07.bin"
+h5b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a351b05.bin"
+h3b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a351c03.bin"
+h2b-w|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a351d02.bin"
+c2b-w|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/w-5a351e05.bin"
+c2b-r|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/r5.bin"
+f1b-w|fit|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a351f01.bin"
+f0b-w|fit|safe|-|t30|probe --temps 32 --pixels "$S/bins/w-5a352000.bin"

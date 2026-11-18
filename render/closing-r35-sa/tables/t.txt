@@ -1,0 +1,32 @@
+#stage t
+#limit 0
+# r35-sa t (Q193, rank-round35.md 3.4; safe: no expectfault, #limit 0, no kreg, no dbg knob): which earlier job's
+# value does an unwritten r20 read, per pixel? T writes a per-row marker to r20 and outputs K1; U reads r20 without
+# writing it (o0 = dword 0 = r20). c (T, U) is the reader's control (D1); t1 (K between), t2 (the t10 triangle
+# between), t3 (a debugfs reset between), t4 (a --temps 8 writer of r0-r5 between); second replicate reversed, t4
+# once. Frozen: H-LASTWRITER, H-LASTJOB, H-SPLIT (every U), H-TRI1536 (t2), H-RESETCLR (t3). Stop: any fault or hang
+# (4); a control without its reading (25); a probe without its o0 line, its 32 pixel rows or (T, T8, K) its dword 0,
+# the triangle not drawn exactly (24, end).
+ca-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000114.bin"
+ca-u|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t1a-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000214.bin"
+t1a-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/k.bin"
+t1a-u|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t2a-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000314.bin"
+t2a-x|between|safe|noreset|t10|tri
+t2a-u|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t3a-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000414.bin"
+t3a-u|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t4a-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000514.bin"
+t4a-x|control|safe|noreset reads:sa,top|t30|probe --temps 8 --pixels "$S/bins/t8-7e080600.bin"
+t4a-u|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t3b-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000714.bin"
+t3b-u|heldout|safe|-|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t2b-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000814.bin"
+t2b-x|between|safe|noreset|t10|tri
+t2b-u|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+t1b-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000914.bin"
+t1b-x|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/k.bin"
+t1b-u|heldout|safe|noreset|t30|probe --temps 32 --pixels "$S/bins/u.bin"
+cb-t|control|safe|reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/t-7e000a14.bin"
+cb-u|control|safe|noreset reads:sa,top|t30|probe --temps 32 --pixels "$S/bins/u.bin"

@@ -1,0 +1,54 @@
+case	quantity	value	model	set	source
+ca-t	sa	0x7e000114	H-REF	control	this program's own constant (r20 stored, dword 0)
+ca-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+ca-u	sa	0x7e000114	H-REF	control	D1: the unwritten r20 read right after its writer (E593's first order, E484's r40: 2048 of 2048)
+ca-u	top	0x7e000114	H-REF	control	the same, as o0
+t1a-t	sa	0x7e000214	H-REF	control	this program's own constant (r20 stored, dword 0)
+t1a-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t1a-x	sa	0xc0de0a03	H-REF	control	this program's own constant (dword 0)
+t1a-x	top	0xc0de0a03	H-REF	control	this program's own constant (o0)
+t1a-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t1a-u	cat	LASTJOB	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t1a-u	cat	SPLIT	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t2a-t	sa	0x7e000314	H-REF	control	this program's own constant (r20 stored, dword 0)
+t2a-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t2a-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t2a-u	cat	LASTJOB	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t2a-u	cat	SPLIT	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t2a-u	cat	TRI1536	H-TRI1536	heldout	the triangle overwrites the slots of its instances: two values, 1536 and 512 pixels (the E496/E1140 counts)
+t3a-t	sa	0x7e000414	H-REF	control	this program's own constant (r20 stored, dword 0)
+t3a-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t3a-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t3a-u	cat	M	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t3a-u	cat	M	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t3a-u	cat	!M	H-RESETCLR	heldout	the debugfs reset replaces r20 (E593 [infer]: it does not)
+t4a-t	sa	0x7e000514	H-REF	control	this program's own constant (r20 stored, dword 0)
+t4a-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t4a-x	sa	0x7e080600	H-REF	control	this program's own constant (r0 stored, dword 0)
+t4a-x	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t4a-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t4a-u	cat	LASTJOB	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t4a-u	cat	SPLIT	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t3b-t	sa	0x7e000714	H-REF	control	this program's own constant (r20 stored, dword 0)
+t3b-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t3b-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t3b-u	cat	M	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t3b-u	cat	M	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t3b-u	cat	!M	H-RESETCLR	heldout	the debugfs reset replaces r20 (E593 [infer]: it does not)
+t2b-t	sa	0x7e000814	H-REF	control	this program's own constant (r20 stored, dword 0)
+t2b-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t2b-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t2b-u	cat	LASTJOB	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t2b-u	cat	SPLIT	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+t2b-u	cat	TRI1536	H-TRI1536	heldout	the triangle overwrites the slots of its instances: two values, 1536 and 512 pixels (the E496/E1140 counts)
+t1b-t	sa	0x7e000914	H-REF	control	this program's own constant (r20 stored, dword 0)
+t1b-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+t1b-x	sa	0xc0de0a03	H-REF	control	this program's own constant (dword 0)
+t1b-x	top	0xc0de0a03	H-REF	control	this program's own constant (o0)
+t1b-u	cat	M	H-LASTWRITER	heldout	every pixel reads the last job that wrote r20 (E484's r40 after a gap job)
+t1b-u	cat	LASTJOB	H-LASTJOB	heldout	every pixel reads what the last job left, whatever it wrote: no r20 marker after a job between
+t1b-u	cat	SPLIT	H-SPLIT	heldout	pixels split between an r20 marker and other values by instance slots after a job between (E593's 1536/512)
+cb-t	sa	0x7e000a14	H-REF	control	this program's own constant (r20 stored, dword 0)
+cb-t	top	0xc0de0a01	H-REF	control	this program's own constant (o0)
+cb-u	sa	0x7e000a14	H-REF	control	D1: the unwritten r20 read right after its writer (E593's first order, E484's r40: 2048 of 2048)
+cb-u	top	0x7e000a14	H-REF	control	the same, as o0

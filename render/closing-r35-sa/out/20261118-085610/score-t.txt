@@ -1,0 +1,59 @@
+CONTROL ca-t: sa 0x7e000114, top 0xc0de0a01: PASS
+CONTROL ca-u: sa 0x7e000114, top 0x7e000114: PASS
+CONTROL t1a-t: sa 0x7e000214, top 0xc0de0a01: PASS
+CONTROL t1a-x: sa 0xc0de0a03, top 0xc0de0a03: PASS
+CONTROL t2a-t: sa 0x7e000314, top 0xc0de0a01: PASS
+CONTROL t3a-t: sa 0x7e000414, top 0xc0de0a01: PASS
+CONTROL t4a-t: sa 0x7e000514, top 0xc0de0a01: PASS
+CONTROL t4a-x: sa 0x7e080600, top 0xc0de0a01: PASS
+CONTROL t3b-t: sa 0x7e000714, top 0xc0de0a01: PASS
+CONTROL t2b-t: sa 0x7e000814, top 0xc0de0a01: PASS
+CONTROL t1b-t: sa 0x7e000914, top 0xc0de0a01: PASS
+CONTROL t1b-x: sa 0xc0de0a03, top 0xc0de0a03: PASS
+CONTROL cb-t: sa 0x7e000a14, top 0xc0de0a01: PASS
+CONTROL cb-u: sa 0x7e000a14, top 0x7e000a14: PASS
+FORM ca-u: U right after T reads 0x7e000114 x2048: 0x7e000114 x2024 0x0000200f x24: FAILED
+FORM cb-u: U right after T reads 0x7e000a14 x2048: 0x7e000a14 x2024 0x0000200f x24: FAILED
+READING t1a-u: cannot tell: form control
+ROW t1a-u (heldout) H-LASTJOB: frozen LASTJOB: cannot tell
+ROW t1a-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t1a-u (heldout) H-SPLIT: frozen SPLIT: cannot tell
+READING t2a-u: cannot tell: form control
+ROW t2a-u (heldout) H-LASTJOB: frozen LASTJOB: cannot tell
+ROW t2a-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t2a-u (heldout) H-SPLIT: frozen SPLIT: cannot tell
+ROW t2a-u (heldout) H-TRI1536: frozen TRI1536: cannot tell
+READING t3a-u: cannot tell: form control
+ROW t3a-u (heldout) H-LASTJOB: frozen M: cannot tell
+ROW t3a-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t3a-u (heldout) H-RESETCLR: frozen !M: cannot tell
+ROW t3a-u (heldout) H-SPLIT: frozen M: cannot tell
+READING t4a-u: cannot tell: form control
+ROW t4a-u (heldout) H-LASTJOB: frozen LASTJOB: cannot tell
+ROW t4a-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t4a-u (heldout) H-SPLIT: frozen SPLIT: cannot tell
+READING t3b-u: cannot tell: form control
+ROW t3b-u (heldout) H-LASTJOB: frozen M: cannot tell
+ROW t3b-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t3b-u (heldout) H-RESETCLR: frozen !M: cannot tell
+ROW t3b-u (heldout) H-SPLIT: frozen M: cannot tell
+READING t2b-u: cannot tell: form control
+ROW t2b-u (heldout) H-LASTJOB: frozen LASTJOB: cannot tell
+ROW t2b-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t2b-u (heldout) H-SPLIT: frozen SPLIT: cannot tell
+ROW t2b-u (heldout) H-TRI1536: frozen TRI1536: cannot tell
+READING t1b-u: cannot tell: form control
+ROW t1b-u (heldout) H-LASTJOB: frozen LASTJOB: cannot tell
+ROW t1b-u (heldout) H-LASTWRITER: frozen M: cannot tell
+ROW t1b-u (heldout) H-SPLIT: frozen SPLIT: cannot tell
+SUMMARY: t: H-LASTJOB: cannot tell: no row decided
+SUMMARY: t: H-LASTWRITER: cannot tell: no row decided
+SUMMARY: t: H-RESETCLR: cannot tell: no row decided
+SUMMARY: t: H-SPLIT: cannot tell: no row decided
+SUMMARY: t: H-TRI1536: cannot tell: no row decided
+Q193 RULE (a) t1: controls 4 of 4 passed, form NOT passed; H-LASTWRITER 0 held, 0 FAILED, 2 cannot tell of 2; H-LASTJOB 0 held, 0 FAILED, 2 cannot tell of 2; H-SPLIT 0 held, 0 FAILED, 2 cannot tell of 2: not decided
+Q193 RULE (a) t2: controls 2 of 2 passed, form NOT passed; H-LASTWRITER 0 held, 0 FAILED, 2 cannot tell of 2; H-LASTJOB 0 held, 0 FAILED, 2 cannot tell of 2; H-SPLIT 0 held, 0 FAILED, 2 cannot tell of 2; H-TRI1536 0 held, 0 FAILED, 2 cannot tell of 2: not decided
+Q193 RULE (a) t3: controls 2 of 2 passed, form NOT passed; H-LASTWRITER 0 held, 0 FAILED, 2 cannot tell of 2; H-LASTJOB 0 held, 0 FAILED, 2 cannot tell of 2; H-SPLIT 0 held, 0 FAILED, 2 cannot tell of 2; H-RESETCLR 0 held, 0 FAILED, 2 cannot tell of 2: not decided
+Q193 RULE (a) t4: controls 2 of 2 passed, form NOT passed; H-LASTWRITER 0 held, 0 FAILED, 1 cannot tell of 1; H-LASTJOB 0 held, 0 FAILED, 1 cannot tell of 1; H-SPLIT 0 held, 0 FAILED, 1 cannot tell of 1: not decided
+Q193 RULE (b): another context: decided by construction (every row is its own process with its own VM and context, t30's side_init); a power cycle and a module reload: open (R35-5a)
+Q193 RULE: NARROW: clause (a) decided for no group of t1, t2, t3, t4; the power cycle and module reload clauses stay open
