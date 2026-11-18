@@ -1,0 +1,47 @@
+## stage pw of r35p
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 113979608 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r35p.WFP3Ua
+## clock
+Wed Nov 18 09:08:34 CET 2026
+== pw-m00-ref set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x00000200 --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin --slot pixpds=/home/jtorra/scratch/r35p/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35p/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35p/stage/bins/ramp_xy.bin
+  rc 0 
+  class ok
+  premise pw-m00-ref [pixels]: pixels=64 
+== pw-m12-col set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin /home/jtorra/scratch/r35p/stage/bins/colour.bin
+  rc 0 
+  class ok
+  premise pw-m12-col [pixels]: pixels=64 
+== pw-m13-col set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin /home/jtorra/scratch/r35p/stage/bins/colour.bin
+  rc 0 
+  class ok
+  premise pw-m13-col [pixels]: pixels=64 
+== pw-m12-a set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin --slot pixpds=/home/jtorra/scratch/r35p/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35p/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35p/stage/bins/ramp_xy.bin
+  rc 0 
+  class ok
+== pw-m13-a set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin --slot pixpds=/home/jtorra/scratch/r35p/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35p/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35p/stage/bins/ramp_xy.bin
+  rc 0 
+  class ok
+== pw-m13-b set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin --slot pixpds=/home/jtorra/scratch/r35p/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35p/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35p/stage/bins/ramp_xy.bin
+  rc 0 
+  class ok
+== pw-m12-b set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot=/home/jtorra/scratch/r35p/stage/bins/eot_plain.bin --slot pixpds=/home/jtorra/scratch/r35p/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35p/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35p/stage/bins/ramp_xy.bin
+  rc 0 
+  class ok
+## end: 7 jobs of pw
+## kernel log (journalctl)

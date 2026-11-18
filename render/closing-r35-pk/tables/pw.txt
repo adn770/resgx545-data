@@ -1,0 +1,14 @@
+#stage pw
+#limit 0
+# r35-pk pw, Q302 (a) and (b): the ramp in modes 12 and 13, which write past the target into the tool's 64 KiB
+# scratch (E031: no fault in two runs, r34-q044 again), two replicates each, last so that an unplanned end costs
+# nothing else: whole H-WHOLE (target and scratch) against H-NARROW; the scratch layout is a reading. Controls that
+# can fail: the stage's mode 0 reference (H-RAMP), E031's kept images of modes 12 and 13. Mode 14 never runs. Gate:
+# s0.
+pw-m00-ref|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+pw-m12-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m13-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+pw-m12-a|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+pw-m13-a|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+pw-m13-b|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020d --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+pw-m12-b|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x0000020c --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
