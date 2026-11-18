@@ -1,0 +1,135 @@
+## stage t of r35s
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t30: b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5 /home/jtorra/sgxfive-test-t30
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 113983000 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r35s.e9SNqF
+## clock
+Wed Nov 18 08:59:14 CET 2026
+== ca-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000114.bin
+  rc 0 
+  class ok
+  premise ca-t [sa top]: sa=0x7e000114 top=0xc0de0a01 rows=32 
+== ca-u set=control risk=safe tool=t30 knobs=[noreset reads:sa,top]
+  noreset: no reset before ca-u (the row before, ca-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+  premise ca-u [sa top]: sa=0x7e000114 top=0x7e000114 rows=32 
+== t1a-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000214.bin
+  rc 0 
+  class ok
+  premise t1a-t [sa top]: sa=0x7e000214 top=0xc0de0a01 rows=32 
+== t1a-x set=control risk=safe tool=t30 knobs=[noreset reads:sa,top]
+  noreset: no reset before t1a-x (the row before, t1a-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/k.bin
+  rc 0 
+  class ok
+  premise t1a-x [sa top]: sa=0xc0de0a03 top=0xc0de0a03 rows=32 
+== t1a-u set=heldout risk=safe tool=t30 knobs=[noreset]
+  noreset: no reset before t1a-u (the row before, t1a-x, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t2a-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000314.bin
+  rc 0 
+  class ok
+  premise t2a-t [sa top]: sa=0x7e000314 top=0xc0de0a01 rows=32 
+== t2a-x set=between risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before t2a-x (the row before, t2a-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== t2a-u set=heldout risk=safe tool=t30 knobs=[noreset]
+  noreset: no reset before t2a-u (the row before, t2a-x, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t3a-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000414.bin
+  rc 0 
+  class ok
+  premise t3a-t [sa top]: sa=0x7e000414 top=0xc0de0a01 rows=32 
+== t3a-u set=heldout risk=safe tool=t30 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t4a-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000514.bin
+  rc 0 
+  class ok
+  premise t4a-t [sa top]: sa=0x7e000514 top=0xc0de0a01 rows=32 
+== t4a-x set=control risk=safe tool=t30 knobs=[noreset reads:sa,top]
+  noreset: no reset before t4a-x (the row before, t4a-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 8 --pixels /home/jtorra/scratch/r35s/stage/bins/t8-7e080600.bin
+  rc 0 
+  class ok
+  premise t4a-x [sa top]: sa=0x7e080600 top=0xc0de0a01 rows=32 
+== t4a-u set=heldout risk=safe tool=t30 knobs=[noreset]
+  noreset: no reset before t4a-u (the row before, t4a-x, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t3b-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000714.bin
+  rc 0 
+  class ok
+  premise t3b-t [sa top]: sa=0x7e000714 top=0xc0de0a01 rows=32 
+== t3b-u set=heldout risk=safe tool=t30 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t2b-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000814.bin
+  rc 0 
+  class ok
+  premise t2b-t [sa top]: sa=0x7e000814 top=0xc0de0a01 rows=32 
+== t2b-x set=between risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before t2b-x (the row before, t2b-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 tri
+  rc 0 job: ok target: 64x64 hash 0x99385a04ee01c585 diff: 0 of 4096 pixels 
+  class ok
+== t2b-u set=heldout risk=safe tool=t30 knobs=[noreset]
+  noreset: no reset before t2b-u (the row before, t2b-x, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== t1b-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000914.bin
+  rc 0 
+  class ok
+  premise t1b-t [sa top]: sa=0x7e000914 top=0xc0de0a01 rows=32 
+== t1b-x set=control risk=safe tool=t30 knobs=[noreset reads:sa,top]
+  noreset: no reset before t1b-x (the row before, t1b-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/k.bin
+  rc 0 
+  class ok
+  premise t1b-x [sa top]: sa=0xc0de0a03 top=0xc0de0a03 rows=32 
+== t1b-u set=heldout risk=safe tool=t30 knobs=[noreset]
+  noreset: no reset before t1b-u (the row before, t1b-x, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+== cb-t set=control risk=safe tool=t30 knobs=[reads:sa,top]
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/t-7e000a14.bin
+  rc 0 
+  class ok
+  premise cb-t [sa top]: sa=0x7e000a14 top=0xc0de0a01 rows=32 
+== cb-u set=control risk=safe tool=t30 knobs=[noreset reads:sa,top]
+  noreset: no reset before cb-u (the row before, cb-t, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t30 probe --temps 32 --pixels /home/jtorra/scratch/r35s/stage/bins/u.bin
+  rc 0 
+  class ok
+  premise cb-u [sa top]: sa=0x7e000a14 top=0x7e000a14 rows=32 
+## end: 23 jobs of t
+## kernel log (journalctl)
