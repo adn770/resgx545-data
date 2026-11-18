@@ -1,0 +1,151 @@
+## stage o of r35o
+## uname
+7.3.0-resgx545
+## installed module
+7CE8E38EDB97FC5EA4F6C90
+## loaded module
+7CE8E38EDB97FC5EA4F6C90
+## debugfs directory: /sys/kernel/debug/dri/0/sgx
+## tool t10: 9bedc2d6db70b2691698478572e311cf2b9b54acfaf8d714ed4db47852e322eb /home/jtorra/sgxfive-test-t10
+## knobs at start (their defaults: nothing of an earlier session left)
+## free space on ~: 113985140 KiB (at least 300 MiB)
+## work directory: /home/jtorra/scratch/tmp/r35o.e1dHHO
+## clock
+Wed Nov 18 08:51:28 CET 2026
+== c0a-a64 set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise c0a-a64 [pixels]: pixels=64 
+== c0a-a128 set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise c0a-a128 [pixels]: pixels=128 
+== c1a-k set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/k.bin
+  rc 0 
+  class ok
+  premise c1a-k [pixels]: pixels=64 
+== c1a-p set=control risk=safe tool=t10 knobs=[noreset reads:pixels]
+  noreset: no reset before c1a-p (the row before, c1a-k, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+  premise c1a-p [pixels]: pixels=64 
+== h1a-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h1a-a [pixels]: pixels=64 
+== h1a-p set=fit risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h1a-p (the row before, h1a-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h2a-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h2a-a [pixels]: pixels=128 
+== h2a-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h2a-p (the row before, h2a-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h3a-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h3a-a [pixels]: pixels=64 
+== h3a-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h3a-p (the row before, h3a-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h4a-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h4a-a [pixels]: pixels=64 
+== h4a-p set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h5a-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h5a-a [pixels]: pixels=64 
+== h5a-f set=between risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h5a-f (the row before, h5a-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 fill
+  rc 0 job: ok job time: 410 us target: 64x32 hash 0xb60c6095080bd325 
+  class ok
+== h5a-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h5a-p (the row before, h5a-f, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h4b-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h4b-a [pixels]: pixels=64 
+== h4b-p set=heldout risk=safe tool=t10 knobs=[-]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h3b-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h3b-a [pixels]: pixels=64 
+== h3b-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h3b-p (the row before, h3b-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h2b-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h2b-a [pixels]: pixels=128 
+== h2b-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h2b-p (the row before, h2b-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== h1b-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h1b-a [pixels]: pixels=64 
+== h1b-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h1b-p (the row before, h1b-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+== c1b-k set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/k.bin
+  rc 0 
+  class ok
+  premise c1b-k [pixels]: pixels=64 
+== c1b-p set=control risk=safe tool=t10 knobs=[noreset reads:pixels]
+  noreset: no reset before c1b-p (the row before, c1b-k, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+  premise c1b-p [pixels]: pixels=64 
+== h1c-a set=control risk=safe tool=t10 knobs=[reads:pixels]
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds=/home/jtorra/scratch/r35o/stage/bins/pds_iter_xy.bin:12 --slot vtxuse=/home/jtorra/scratch/r35o/stage/bins/vtx_coords.bin /home/jtorra/scratch/r35o/stage/bins/a.bin
+  rc 0 
+  class ok
+  premise h1c-a [pixels]: pixels=64 
+== h1c-p set=heldout risk=safe tool=t10 knobs=[noreset]
+  noreset: no reset before h1c-p (the row before, h1c-a, ended ok)
+  cmd: /home/jtorra/sgxfive-test-t10 probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 /home/jtorra/scratch/r35o/stage/bins/p.bin
+  rc 0 
+  class ok
+## end: 27 jobs of o
+## kernel log (journalctl)

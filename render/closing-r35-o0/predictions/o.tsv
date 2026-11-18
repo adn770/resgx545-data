@@ -1,0 +1,48 @@
+case	quantity	value	model	set	source
+c0a-a64	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+c0a-a128	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+c1a-k	image	0xff00ff00	H-REF	control	by construction: k.bin's constant on every non-background pixel (E417 job A)
+c1a-p	image	0xff00ff00	H-REF	control	E417 [HW]: the pass-through after a constant colour shows that colour on part of the triangle, the background elsewhere (390 to 450 of 1062 at 64 x 64)
+h1a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1a-p	cat	SAMEPIX	H-SAMEPIX	fit	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h1a-p	cat	SLOTMAP	H-SLOTMAP	fit	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h1a-p	cat	OTHER	H-OTHER	fit	no named map: values not of A' or a map that does not repeat
+h2a-a	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h2a-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h2a-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h2a-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
+h2a-p	cat	TILESLOT	H-TILESLOT	heldout	the pixel of the same 32 x 16 tile index in drawing order (tiles row by row, W / 32 a row) [infer]
+h3a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h3a-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h3a-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h3a-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
+h3a-p	cat	TILESLOT	H-TILESLOT	heldout	the pixel of the same 32 x 16 tile index in drawing order (tiles row by row, W / 32 a row) [infer]
+h4a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h4a-p	life	KEEP	H-RESETKEEP	heldout	a debugfs reset between keeps A' values (E1140 kept sa0 and pa0 over a reset)
+h4a-p	life	CLEAR	H-RESETCLEAR	heldout	a debugfs reset between leaves no A' value
+h5a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h5a-p	life	FILL	H-FILLREPLACE	heldout	the t10 fill between replaces it: every non-background pixel is the fill's colour
+h5a-p	life	AKEEP	H-TRIONLY	heldout	A' values survive a fill between (only triangle jobs replace it)
+h4b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h4b-p	life	KEEP	H-RESETKEEP	heldout	a debugfs reset between keeps A' values (E1140 kept sa0 and pa0 over a reset)
+h4b-p	life	CLEAR	H-RESETCLEAR	heldout	a debugfs reset between leaves no A' value
+h3b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h3b-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h3b-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h3b-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
+h3b-p	cat	TILESLOT	H-TILESLOT	heldout	the pixel of the same 32 x 16 tile index in drawing order (tiles row by row, W / 32 a row) [infer]
+h2b-a	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h2b-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h2b-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h2b-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
+h2b-p	cat	TILESLOT	H-TILESLOT	heldout	the pixel of the same 32 x 16 tile index in drawing order (tiles row by row, W / 32 a row) [infer]
+h1b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1b-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h1b-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h1b-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
+c1b-k	image	0xff00ff00	H-REF	control	by construction: k.bin's constant on every non-background pixel (E417 job A)
+c1b-p	image	0xff00ff00	H-REF	control	E417 [HW]: the pass-through after a constant colour shows that colour on part of the triangle, the background elsewhere (390 to 450 of 1062 at 64 x 64)
+h1c-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1c-p	cat	SAMEPIX	H-SAMEPIX	heldout	every non-background pixel (x, y) reads A'(x, y) of its group's A' row
+h1c-p	cat	SLOTMAP	H-SLOTMAP	heldout	every non-background pixel reads A' of another pixel by the map fitted on h1a (not the identity)
+h1c-p	cat	OTHER	H-OTHER	heldout	no named map: values not of A' or a map that does not repeat
