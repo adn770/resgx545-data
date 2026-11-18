@@ -1,0 +1,41 @@
+1. r3 mode 4 (alpha bit against the pixel's alpha; low 15 bits against r3-m04-ref)
+   r3-m04-w02000040-a: clear alphas 192..255 (3295 px), set 0..191 (801 px); low 15 bits as the reference 4096/4096; image = reference: False; tail sentinel True
+   r3-m04-w020000c0-a: clear alphas 64..255 (3828 px), set 0..63 (268 px); low 15 bits as the reference 4096/4096; image = reference: False; tail sentinel True
+   r3-m04-w02000040-b: clear alphas 192..255 (3295 px), set 0..191 (801 px); low 15 bits as the reference 4096/4096; image = reference: False; tail sentinel True
+   r3-m04-w020000c0-b: clear alphas 64..255 (3828 px), set 0..63 (268 px); low 15 bits as the reference 4096/4096; image = reference: False; tail sentinel True
+   r3-m04-ref (0x80): clear 0..127, set 128..255
+2. layout of modes 9, 10, 12, 13 (dword index -> pixel x, y of the colour it holds)
+   r1-m09-a: 1024 dwords written, steps [1], 120 hold a triangle colour; first [(136, (8, 8)), (137, (9, 8)), (152, (8, 9)), (153, (9, 9))]; last [(591, (15, 36)), (607, (15, 37))]
+      maps: {'i = y*64 + x': 0, 'i = (y//4)*64 + x (rows 4n)': 30, 'i = (y//2)*64 + x': 0, 'i = y*64 + 2x': 0, 'i = y*64 + 4x': 0}
+      pixel rows stored in the target: [8, 9, 10, 11, 12, 13, 14, 15]...[34, 35, 36, 37] (30)
+   r1-m10-a: 2048 dwords written, steps [1], 714 hold a triangle colour; first [(264, (8, 8)), (265, (9, 8)), (296, (8, 9)), (297, (9, 9))]; last [(1717, (21, 53)), (1748, (20, 54))]
+      maps: {'i = y*64 + x': 0, 'i = (y//4)*64 + x (rows 4n)': 0, 'i = (y//2)*64 + x': 354, 'i = y*64 + 2x': 0, 'i = y*64 + 4x': 0}
+      pixel rows stored in the target: [8, 9, 10, 11, 12, 13, 14, 15]...[51, 52, 53, 54] (47)
+   pw-m12-a: 2048 dwords written, steps [2], 714 hold a triangle colour; first [(1040, (8, 8)), (1042, (9, 8)), (1168, (8, 9)), (1170, (9, 9))]; last [(4052, (42, 31)), (4054, (43, 31))]
+      maps: {'i = y*64 + x': 0, 'i = (y//4)*64 + x (rows 4n)': 0, 'i = (y//2)*64 + x': 0, 'i = y*64 + 2x': 0, 'i = y*64 + 4x': 0}
+      pixel rows stored in the target: [8, 9, 10, 11, 12, 13, 14, 15]...[28, 29, 30, 31] (24)
+      scratch: 1536 dwords, offsets 0x0..0x2ff8, steps [8], 152 triangle colours; first [(128, (16, 40)), (136, (17, 40)), (144, (18, 40))]
+      pixel rows in the scratch: [40, 41, 42, 43]...[51, 52, 53, 54] (15)
+   pw-m13-a: 1024 dwords written, steps [4], 120 hold a triangle colour; first [(2080, (8, 8)), (2084, (9, 8)), (2336, (8, 9)), (2340, (9, 9))]; last [(3984, (36, 15)), (3988, (37, 15))]
+      maps: {'i = y*64 + x': 0, 'i = (y//4)*64 + x (rows 4n)': 0, 'i = (y//2)*64 + x': 0, 'i = y*64 + 2x': 0, 'i = y*64 + 4x': 0}
+      pixel rows stored in the target: [8, 9, 10, 11, 12, 13, 14, 15]...[12, 13, 14, 15] (8)
+      scratch: 2816 dwords, offsets 0x0..0xaff0, steps [16], 792 triangle colours; first [(176, (11, 20)), (192, (12, 20)), (208, (13, 20))]
+      pixel rows in the scratch: [20, 21, 22, 23]...[51, 52, 53, 54] (35)
+3. replicates (a against b), dword for dword
+   r1-m03: equal
+   r1-m04: equal
+   r1-m05: equal
+   r1-m06: equal
+   r1-m09: equal
+   r1-m10: equal
+   r1-m11: equal
+   r3-m00-w02000040: equal
+   r3-m00-w020000c0: equal
+   r3-m04-w02000040: equal
+   r3-m04-w020000c0: equal
+   r3-m05-w02000040: equal
+   r3-m05-w020000c0: equal
+   r3-m06-w02000040: equal
+   r3-m06-w020000c0: equal
+   pw-m12: equal
+   pw-m13: equal

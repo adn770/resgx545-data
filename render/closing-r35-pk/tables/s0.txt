@@ -1,0 +1,16 @@
+#stage s0
+#limit 0
+# r35-pk s0, Q302 (rank-round35.md 3.3, R35-1 (a)): the known-value controls of every decoder form, gating every
+# later stage (score.py GATES): the ramp in mode 0 at 0x80 (its image by construction: the o0 decoder), the ramp in
+# mode 4 (E1136's alpha split at 0x80: 127 clear, 128 set), E031's kept colour images of modes 3, 4, 5, 6, 7, 9, 10
+# (each mode's layout). Stop: any fault or hang; a control without its rows (25); the second row without its 64 pixel
+# rows (24). A stop here ends the session (on_stop = "end").
+s0-m00-ref|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x00000200 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+s0-m04-ramp|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --vtx-coords 2 --cmd 11=0x00000080 --sideband 0x00000204 --slot eot="$S/bins/eot_plain.bin" --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/ramp_xy.bin"
+s0-m03-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000203 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m04-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000204 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m05-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000205 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m06-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000206 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m07-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000207 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m09-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x00000209 --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
+s0-m10-col|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --cmd 11=0x00000080 --sideband 0x0000020a --slot eot="$S/bins/eot_plain.bin" "$S/bins/colour.bin"
