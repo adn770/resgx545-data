@@ -1,0 +1,72 @@
+# session.toml: the env of r37-n3b-b, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r37-n3b-b"
+prefix = "r37b"                 # laptop files under ~/scratch/r37b/ (run, stage, out)
+# the r37-kernel module (fork 4f35fc20ffa9), built on the laptop 2026-11-18 (kernel37/deliver)
+# after the build and the one-shot boot, then freezes again (a placeholder never matches)
+srcversion = "77917296568EB311B89B0DA"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"       # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 60                    # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t30"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place",
+                  "--poke", "--pds", "--use", "--slot", "--scratch-at", "--refill", "--ctx2"]
+                                    # post runs the health pair's bare argv only
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+# owntask = { blob = "NAME", arm = "slots=0x1 entry=0" }: a stage of one of our own firmware
+# tasks (flagged only; its rows `name|set|risk|-|owntask|{"cmd": 1, "params": {}, "timeout_ms":
+# 100}`, its blob owntask/NAME.blob, the sha256 asm/fwtask/fwtask.map gives NAME; HACKING.md)
+[stages]
+# own: N3b step B (closing29/n3b/design.md §1.3, §1.4), emitsb with the crumb image (pds=crumb:
+# three movs tim breadcrumbs, each stopping the EDM tick by design until the next reset; approved
+# by the user), one row with ticks; any stop ends the session. post: the stock firmware's triangle
+# and fill after the disarm (its reset restarts tim), 2 jobs. Both flagged.
+own = { alarm = 600, class = "flagged", on_stop = "end", owntask = { blob = "emitsb", arm = "slots=0x1 entry=0 pds=crumb" } }
+post = { alarm = 600, class = "flagged" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "7925c98712605b009c44e473febfe95d80ceb944"
+data = "fb461acfffa8788118f6844de9633f097d9135cb"
+# emitsb.s: the result slots and markers the scorer and hooks read (tests/test_gen.py); a kept
+# snap0 of r35-sa (E1144, module 7CE8E38E): TA3DCtl dwords 0-3, the hooks' fallback for a snap0
+# without ta3dctl lines (the kit mock's fake regs); E1148's kept register snapshots (r36-n3): the
+# shape of the scorer's test attempts (tests/attempt.py)
+pins = [
+    "resgx545:asm/fwtask/emitsb.s",
+    "data:render/closing-r35-sa/out/20261118-085610/a/c0a-k.snap0.regs.gz",
+    "data:render/closing-r36-n3/out/20261118-152130/own/e1-a.snap0.regs.gz",
+    "data:render/closing-r36-n3/out/20261118-152130/own/e1-a.snap9.regs.gz",
+    "data:render/closing-r36-n3/out/20261118-152130/own/e1-a.stop0-regs.txt.gz",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = []
