@@ -1,0 +1,42 @@
+#stage o
+#limit 0
+# r35-o0b o, the corrected rerun of r35-o0 (E1143), Q073 (rank-round35.md 3.1; SAFE: no expectfault, #limit 0, no kreg,
+# no dbg knob): what does o0 hold at the start of an opaque pass's pixel shader? A' (control): o0 = a value unique per
+# pixel (pa0/pa1 top halves, E081). K (control): 0xff00ff00. P: o0 = o0 (E417), after its group's A' with noreset.
+# Groups c0 (A' 64, 128), c1 (K ; P), h1 (A' 64 ; P 64), h2 (A' 128 ; P 64), h3 (A' 64 ; P 128), h4 (A' 64 ;
+# reset ; P 64), h5 (A' 64 ; t10 fill ; P 64); replicate b reversed, h1 x4. Frozen (fit: E1143's post hoc readings):
+# H-OFFSETS / H-SAMEPIX / H-OTHER (h1), H-SIZENONE / H-SIZEKEEP (h2), H-OFFSETS128 / H-SAMEPIX (h3), H-RESETKEEP /
+# CLEAR (h4), H-FILLREPLACE / H-TRIONLY (h5). Stop: any fault or hang (4, 6); a control without its pixel rows (25);
+# a probe without its H pixel rows or with a failed line, a fill without `fill: ok` (24, ends).
+c0a-a64|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+c0a-a128|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+c1a-k|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/k.bin"
+c1a-p|control|safe|noreset reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h1a-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h1a-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h2a-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h2a-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h3a-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h3a-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h4a-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h4a-p|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h5a-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h5a-f|between|safe|noreset|t10|fill
+h5a-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h5b-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h5b-f|between|safe|noreset|t10|fill
+h5b-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h4b-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h4b-p|heldout|safe|-|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h3b-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h3b-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h2b-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 128 --height 128 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h2b-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h1b-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h1b-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+c1b-k|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/k.bin"
+c1b-p|control|safe|noreset reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h1c-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h1c-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"
+h1d-a|control|safe|reads:pixels|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 --vtx-coords 2 --slot pixpds="$S/bins/pds_iter_xy.bin:12" --slot vtxuse="$S/bins/vtx_coords.bin" "$S/bins/a.bin"
+h1d-p|heldout|safe|noreset|t10|probe --temps 32 --pixels --tri pixel --width 64 --height 64 --max-width 128 --max-height 128 "$S/bins/p.bin"

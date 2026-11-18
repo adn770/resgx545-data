@@ -1,0 +1,47 @@
+case	quantity	value	model	set	source
+c0a-a64	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+c0a-a128	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+c1a-k	image	0xff00ff00	H-REF	control	by construction: k.bin's constant on every non-background pixel (E417 job A)
+c1a-p	image	0xff00ff00	H-REF	control	E417 [HW]: the pass-through after a constant colour shows that colour on part of the triangle, the background elsewhere (390 to 450 of 1062 at 64 x 64)
+h1a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1a-p	cat	OFFSETS	H-OFFSETS	heldout	every kept pixel reads A' at an offset of OFFSETS64 or a value of an earlier row of the stage (fit: E1143's post hoc readings, h1 and h4)
+h1a-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel (x, y) reads A'(x, y) (r35-o0's frozen first hypothesis)
+h1a-p	cat	OTHER	H-OTHER	heldout	neither
+h2a-a	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h2a-p	size	NONE	H-SIZENONE	heldout	a 64 x 64 pass-through after a 128 x 128 job keeps no pixel (fit: E1143, 2 of 2)
+h2a-p	size	KEEP	H-SIZEKEEP	heldout	it keeps some pixel
+h3a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h3a-p	cat	OFFSETS128	H-OFFSETS128	heldout	every kept pixel that reads a value of A' reads it at an offset of OFFSETS128 (fit: E1143, h3a and h3b)
+h3a-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel that reads a value of A' reads A'(x, y)
+h4a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h4a-p	life	KEEP	H-RESETKEEP	heldout	a debugfs reset between keeps A' values (E1140 kept sa0 and pa0 over a reset)
+h4a-p	life	CLEAR	H-RESETCLEAR	heldout	a debugfs reset between leaves no A' value
+h5a-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h5a-p	life	FILL	H-FILLREPLACE	heldout	the t10 fill between replaces it: every non-background pixel is the fill's colour
+h5a-p	life	AKEEP	H-TRIONLY	heldout	A' values survive a fill between (only triangle jobs replace it)
+h5b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h5b-p	life	FILL	H-FILLREPLACE	heldout	the t10 fill between replaces it: every non-background pixel is the fill's colour
+h5b-p	life	AKEEP	H-TRIONLY	heldout	A' values survive a fill between (only triangle jobs replace it)
+h4b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h4b-p	life	KEEP	H-RESETKEEP	heldout	a debugfs reset between keeps A' values (E1140 kept sa0 and pa0 over a reset)
+h4b-p	life	CLEAR	H-RESETCLEAR	heldout	a debugfs reset between leaves no A' value
+h3b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h3b-p	cat	OFFSETS128	H-OFFSETS128	heldout	every kept pixel that reads a value of A' reads it at an offset of OFFSETS128 (fit: E1143, h3a and h3b)
+h3b-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel that reads a value of A' reads A'(x, y)
+h2b-a	image	A:128	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h2b-p	size	NONE	H-SIZENONE	heldout	a 64 x 64 pass-through after a 128 x 128 job keeps no pixel (fit: E1143, 2 of 2)
+h2b-p	size	KEEP	H-SIZEKEEP	heldout	it keeps some pixel
+h1b-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1b-p	cat	OFFSETS	H-OFFSETS	heldout	every kept pixel reads A' at an offset of OFFSETS64 or a value of an earlier row of the stage (fit: E1143's post hoc readings, h1 and h4)
+h1b-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel (x, y) reads A'(x, y) (r35-o0's frozen first hypothesis)
+h1b-p	cat	OTHER	H-OTHER	heldout	neither
+c1b-k	image	0xff00ff00	H-REF	control	by construction: k.bin's constant on every non-background pixel (E417 job A)
+c1b-p	image	0xff00ff00	H-REF	control	E417 [HW]: the pass-through after a constant colour shows that colour on part of the triangle, the background elsewhere (390 to 450 of 1062 at 64 x 64)
+h1c-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1c-p	cat	OFFSETS	H-OFFSETS	heldout	every kept pixel reads A' at an offset of OFFSETS64 or a value of an earlier row of the stage (fit: E1143's post hoc readings, h1 and h4)
+h1c-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel (x, y) reads A'(x, y) (r35-o0's frozen first hypothesis)
+h1c-p	cat	OTHER	H-OTHER	heldout	neither
+h1d-a	image	A:64	H-REF	control	by construction: every non-background pixel (x, y) = (pa0 & 0xffff0000) | (pa1 >> 16), pa = (c + 0.5) * 2 / n - 1 (E081's oreg images, 1062 of 1062)
+h1d-p	cat	OFFSETS	H-OFFSETS	heldout	every kept pixel reads A' at an offset of OFFSETS64 or a value of an earlier row of the stage (fit: E1143's post hoc readings, h1 and h4)
+h1d-p	cat	SAMEPIX	H-SAMEPIX	heldout	every kept pixel (x, y) reads A'(x, y) (r35-o0's frozen first hypothesis)
+h1d-p	cat	OTHER	H-OTHER	heldout	neither
