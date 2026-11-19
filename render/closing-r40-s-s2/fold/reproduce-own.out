@@ -1,0 +1,20 @@
+ROW c1-a: page own_res.json; run id 1; X0 0x5a5a3303; S1 0xdeadc0de; M4 0xdeadc0de 0xdeadc0de; state 0; T 0x0104f772 0x01037967; K0 cmd 1 slot 1 0xdeadc0de; ticks from the kick 7; ticks 16 (window 252.5 ms); alive false
+CONTROL c1-a:PG: PASS
+CONTROL c1-a:K0: PASS
+CONTROL c1-a:K1: PASS
+CONTROL c1-a:T0: PASS
+CONTROL c1-a:B: PASS
+OUTCOME c1-a S2-DONE: FAILED
+OUTCOME c1-a S2-E1: FAILED
+OUTCOME c1-a S2-NEVER: held
+OUTCOME c1-a S2-T1: FAILED
+OUTCOME c1-a S2-T2: FAILED
+OUTCOME c1-a S2-T3: FAILED
+SUMMARY: own: controls: every control passed
+ARM (printed, not scored): emit image 0x30011100 pds=crumb3 pdsat=fw14 pds2=req form=own
+Q128-S2 RULE: S2-NEVER: the program never started (T running, S1 fill): with the kick and s2 = 0x00020000, #14's sideband is needed
+X0 qualifier: 0x5a5a3303 (the issuer went on past the emit)
+TICK: T1 stops the tick by design: the tick readings say nothing about what stopped it whenever T1 ran; only the S2-NEVER row (T running) reads as R4's M-NEVER
+TICK: Δtick 7 from the kick (K0) to 30 ms after the window; 16 from the command write (252.5 ms); 9 between the command write and K0
+KICK (printed, not scored): miscinfo {"lines": 22, "ms": 3.6583060000339174, "text": "GETMISCINFO answered after 202 us\ncore rev         0x0001000d ok\ncore id          0x01150000 ok\nddk version      0x00010711 ok\nddk build        0x000d2aaa ok\ncore id sw       0x00000221 ok\ncore rev sw      0x0001000d ok\nbuild options    0x00060
+SIGNATURE (printed, not scored): snap0: bit 16 1, count - tick 5; snap9: bit 16 1, count - tick 6; stop0-regs: bit 16 1, count - tick 6
