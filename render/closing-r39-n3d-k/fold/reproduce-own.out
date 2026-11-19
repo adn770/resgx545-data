@@ -1,0 +1,20 @@
+ROW c1-a: page own_res.json; run id 1; X0 0x5a5a3303; S1 0xdeadc0de; M4 0xdeadc0de 0xdeadc0de; state 0; T 0x0101ecfd 0x0100b3fe; K0 cmd 1 slot 1 0xdeadc0de; ticks from the kick 7; ticks 15 (window 248.1 ms); alive false
+CONTROL c1-a:PG: PASS
+CONTROL c1-a:K0: PASS
+CONTROL c1-a:K1: PASS
+CONTROL c1-a:T0: PASS
+CONTROL c1-a:B: PASS
+OUTCOME c1-a K-DONE: FAILED
+OUTCOME c1-a K-E1: FAILED
+OUTCOME c1-a K-NEVER: FAILED
+OUTCOME c1-a K-T1: FAILED
+OUTCOME c1-a K-T2: FAILED
+OUTCOME c1-a K-T3: FAILED
+SUMMARY: own: controls: every control passed
+ARM (printed, not scored): emit image 0x30011100 pds=crumb3 pdsat=fw14
+N3d-K RULE: CANNOT TELL (no frozen outcome holds)
+X0 qualifier: 0x5a5a3303 (the issuer went on past the emit)
+TICK: T1 stops the tick by design: the tick readings say nothing about what stopped it whenever T1 ran; only the K-NEVER row (T running) reads as R4's M-NEVER
+TICK: Δtick 7 from the kick (K0) to 30 ms after the window; 15 from the command write (248.1 ms); 8 between the command write and K0
+KICK (printed, not scored): miscinfo {"lines": 22, "ms": 3.6468950002017664, "text": "GETMISCINFO answered after 203 us\ncore rev         0x0001000d ok\ncore id          0x01150000 ok\nddk version      0x00010711 ok\nddk build        0x000d2aaa ok\ncore id sw       0x00000221 ok\ncore rev sw      0x0001000d ok\nbuild options    0x00060
+SIGNATURE (printed, not scored): snap0: bit 16 1, count - tick 6; snap9: bit 16 1, count - tick 6; stop0-regs: bit 16 1, count - tick 6
