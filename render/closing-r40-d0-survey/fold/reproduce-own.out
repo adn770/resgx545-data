@@ -1,0 +1,29 @@
+ROW c1-a: page own_res.json; run id 1; X0 0x5a5a3303; S1 0x5a5a3304; M4 0x5a5a3302 0x00000001; state 2; T 0x005a3305; ticks 8 (window 37.9 ms); alive ?
+CONTROL c1-a:PG: PASS
+CONTROL c1-a:E0: PASS
+CONTROL c1-a:T0: PASS
+CONTROL c1-a:B: PASS
+CONTROL c1-a:P0: PASS
+CONTROL c1-a:P1: PASS
+OUTCOME c1-a D0-E1: FAILED
+OUTCOME c1-a D0-HID: held
+OUTCOME c1-a D0-NEVER: FAILED
+OUTCOME c1-a D0-PA: FAILED
+OUTCOME c1-a D0-SHIFT: FAILED
+OUTCOME c1-a D0-STIR: FAILED
+OUTCOME c1-a D0-T1: FAILED
+OUTCOME c1-a D0-T2: FAILED
+OUTCOME c1-a D0-T3: FAILED
+SUMMARY: own: controls: every control passed
+ARM (printed, not scored): emit image 0x30011100 pds=crumb3 pdsat=fw14 pds2=0 form=fw14
+Q128-D0 RULE: D0-HID: all ran; landing HID: post sa4-sa31 = pre and no V0 or V2 in pa0-pa15: the douta landed nowhere D0 can see (sa0/sa2 own values) [predicted: held]
+X0 qualifier: 0x5a5a3303 (the issuer went on past the emit)
+TICK: T1 stops the tick by design: the tick readings say nothing about what stopped it whenever T1 ran; only the D0-NEVER row (T running) reads as R4's M-NEVER
+TICK: Δtick 8 from the command write to 30 ms after the window (37.9 ms; printed, not scored; no kick in this row)
+SIGNATURE (printed, not scored): snap0: bit 16 1, count - tick 5; snap9: bit 16 1, count - tick 6
+LANDING (one exploratory row, not N3's rule): pa0-pa3 0x00000000 0x00043000 0x3727c5ac 0x01555620; sa0-sa3 0x32004000 0x32005000 0x32002000 0x00000000; V0-V3 0x32004000 0x32005000 0x32002000 0x00000000; pa0 = V0 no, pa2 = V2 no
+SURVEY (printed, not scored): land HID; pre/post sa differ at none
+SURVEY sa20-sa31 pre: 0x00000000 0x00000000 0x32000000 0x05f17000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+SURVEY sa20-sa31 post: 0x00000000 0x00000000 0x32000000 0x05f17000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+SURVEY sa0-sa19 pre: 0x32004000 0x32005000 0x32002000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+SURVEY pa0-pa15 post: 0x00000000 0x00043000 0x3727c5ac 0x01555620 0x00000000 0x00000000 0xd0030000 0x03c3cdac 0x00000023 0xdc531a54 0xd51e0705 0x5d50716f 0x00010022 0x82e151b5 0xb08219d1 0x11b5d77a
