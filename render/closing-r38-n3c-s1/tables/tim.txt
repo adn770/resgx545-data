@@ -1,0 +1,7 @@
+#stage tim
+#limit 0
+# tim: N3c row R2 th, the instrument: the stock firmware runs the recorded
+# pds-timer-tim-host probe (movs tim with 0x00abcde0, bit 24 clear: the EDM tick stops
+# by design until the next reset) under regtimeline on 0x0acc; the stage's last reset
+# restarts the counter.
+th|held|flagged|-|rt|0.06 0.005 0x0acc -- "$HOME/sgxfive-test-t30" probe --temps 32 --pds 36 --use $S/bins/sa_dump.bin $S/bins/pds-timer-tim-host__0.bin

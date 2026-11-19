@@ -1,0 +1,83 @@
+# session.toml: the env of r38-n3c-s1, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r38-n3c-s1"
+prefix = "r38s"                 # laptop files under ~/scratch/r38s/ (run, stage, out)
+srcversion = "77917296568EB311B89B0DA"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"            # ssh HostKeyAlias, unless SGX_TARGET_HOST_KEY_ALIAS or the
+                                    # HostKeyAlias of SGX_TARGET_SSH_OPTS names one;
+                                    # SGX_TARGET_HOST names the host
+job_timeout = 60                    # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t30"            # the tool of the health fill and triangle
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes: its directory is made
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place",
+                  "--poke", "--slot", "--scratch-at", "--refill", "--ctx2"]
+                                    # r37's list less --pds and --use: th runs the recorded PDS
+                                    # probe; post runs the health pair's bare argv only
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+[tools.rt]
+path = "regtimeline"
+sha256 = "079f63590ce87ff2a1ac5499291e52340ff448d9c5e41942a9420264764de803"
+wraps = true
+no_source = "regtimeline (tools/sweep/regtimeline.c): a read-only register sampler that wraps t30; the wrapped command is replayed"
+
+# a debugfs knob a row may write (dbg:NAME=V), restored after the job and by the exit trap:
+#   NAME = { default = "0", values = ["0", "1"] }
+[knobs]
+
+# a register a flagged stage's rows may write (kreg:OFF=V), on the kit's allow-list only
+# (KREG_ALLOWED: 0x0a78 up to 0x3f), restored to the kit's default (0x2c) after each job and by
+# the exit trap:
+#   "0x0a78" = { values = ["0x00", "0x01"] }
+[kregs]
+
+# the stages in run order; alarm: the Mac's bound on the stage (s); gate = true: score.py gate;
+# on_stop = "end": the stage's rc 24 (stopped by its rule) ends the session (default "next");
+# class = "flagged": a stage of planned faults, hangs or kreg writes, after every safe stage
+# owntask = { blob = "NAME", arm = "slots=0x1 entry=0" }: a stage of one of our own firmware
+# tasks (flagged only; its rows `name|set|risk|-|owntask|{"cmd": 1, "params": {}, "timeout_ms":
+# 100}`, its blob owntask/NAME.blob, the sha256 asm/fwtask/fwtask.map gives NAME; HACKING.md)
+[stages]
+# own: N3c row R1 n0 (closing29/n3c/design.md §2.1), emitsn with no pds= word (the module's
+# default image, unused: emitsn has no emit), one row with ticks; any stop ends the session.
+# tim: row R2 th, the instrument (the recorded pds-timer-tim-host probe under regtimeline on
+# 0x0acc; the EDM tick stops by design until the stage's last reset). post: the stock firmware's
+# triangle and fill after it, 2 jobs. All flagged.
+own = { alarm = 600, class = "flagged", on_stop = "end", owntask = { blob = "emitsn", arm = "slots=0x1 entry=0" } }
+tim = { alarm = 600, class = "flagged" }
+post = { alarm = 600, class = "flagged" }
+
+# the commits the kit copies and every pinned input are frozen against (never the working tree)
+[freeze]
+resgx545 = "2ce7fc71a1f82b9d9b448b8c62a7fe25bff44618"
+data = "31ec9b2f210f4535926a33f69babdecb2a915db6"
+# emitsn.s: what the task stores where (tests/test_gen.py); r37 A's kept registers (E1149, the
+# same module and job): the shape of the scorer's own attempts (tests/attempt.py); the recorded
+# probe and its USE program (staged as bins/, tests/test_gen.py); E1133's kept t1d timelines (the
+# running count the th scorer must read as running, tests/test_score_tim.py)
+pins = [
+    "resgx545:asm/fwtask/emitsn.s",
+    "data:render/closing-r37-n3b-a/out/20261118-212949/own/c1-a.snap0.regs.gz",
+    "data:render/closing-r37-n3b-a/out/20261118-212949/own/c1-a.snap9.regs.gz",
+    "data:render/closing-r37-n3b-a/out/20261118-212949/own/c1-a.stop0-regs.txt.gz",
+    "data:pds/timer/pds-timer-tim-host/bins/pds-timer-tim-host__0.bin",
+    "data:pds/timer/pds-timer-tim-host/bins/sa_dump.bin",
+    "data:pds/timer/pds-timer-tim-host/raw.txt",
+    "data:render/closing-r33-tim2/out/20261116-213803/t1d/t1d-c1.txt.gz",
+    "data:render/closing-r33-tim2/out/20261116-213803/t1d/t1d-01.txt.gz",
+]
+
+# extra laptop files (globs, e.g. "bins/*.bin"), named in args as $S/PATH
+[files]
+laptop = ["bins/*.bin"]
