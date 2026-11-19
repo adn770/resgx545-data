@@ -1,0 +1,84 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# fake sudo of the kit's mock (session.py mock). The mock debugfs directory $KIT_DEBUGFS is mode
+# 000: only through this shim (as on the laptop, where debugfs is root only) does a path in it
+# reach the real files in $FAKE_DBGREAL. regs and reset act on the fake GPU state in
+# $FAKE_DIR/state ("idle", or "INT WORD": a latched fault). A leading `timeout [-k K] N` is
+# stripped. Every debugfs write is logged in $FAKE_DIR/writes ("NAME VALUE"). dmesg reads the
+# fake kernel log $KIT_KMSG; journalctl fails (the runner falls back to dmesg). FAKE_RESET_FAIL:
+# every reset fails; FAKE_SNAP_FAIL: regs unreadable. kreg takes `OFF=VALUE` as the kernel does
+# (logged "kreg OFF=VALUE", the file's "OFF 0x%08x" line set, the kernel's line in the log); in a
+# world with the token kregstuck the write is taken but the register keeps its value. A reset
+# leaves kreg as it is: the kit must not lean on a reset to put it back. A reset logs the boot's
+# lines as the fork's does, its own GETMISCINFO answer last (sgxfive_ident_ask). miscinfo
+# answers as the kernel's sgxfive_miscinfo (fork 8bc0877e8603) does, its kernel line in the log;
+# world token miscinfobad: a MISMATCH (status 0), miscinfofail: the read fails (status 1).
+# regs shows CR_CACHE_CTRL (0x0804) as the laptop's snapshots read it: 0x0000ffff after a reset,
+# 0x1000ffff once a tool ran ($FAKE_DIR/cc).
+# `python3 .../kit/fwtask_run.py SUB JSON` (the kit's owntask_call) runs fake/fwtask.py, the fake
+# of the own-task runner; a reset disarms its task and logs "kit reset" in $FAKE_DIR/own.log.
+[ "${1:-}" = "-n" ] && shift
+DB=${KIT_DEBUGFS:?}; R=${FAKE_DBGREAL:?}; F=${FAKE_DIR:?}
+if [ "$1" = timeout ]; then shift; [ "$1" = "-k" ] && shift 2; shift; fi
+if [ "$1" = env ]; then shift; while [[ ${1:-} == [A-Z_]*=* ]]; do export "$1"; shift; done; fi
+case "$1" in dmesg) cat "${KIT_KMSG:?}"; exit 0 ;; journalctl) exit 1 ;; esac
+if [ "$1" = python3 ]; then
+	case "${2:-}" in */kit/fwtask_run.py) shift 2; exec "${KIT_PY:?}" "${KIT_FAKE:?}/fwtask.py" "$@" ;; esac
+fi
+regs() {
+	local w=0 a=0
+	read -r st aa < "$F/state"
+	[ "$st" = idle ] || { w=$st; a=$aa; }
+	printf 'sgxfive regs 1\nreg 0x0000 0x0000a6aa\nreg 0x0804 %s\nreg 0x0c00 0x00000000\nreg 0x0c04 0x%08x\nreg 0x0c08 0x%08x\n' \
+		"$(cat "$F/cc" 2>/dev/null || echo 0x0000ffff)" $(( w | 0x80000 )) $(( a ))
+}
+if [ "$1" = cat ]; then
+	case "$2" in
+	"$DB/regs") [ -n "${FAKE_SNAP_FAIL:-}" ] && { echo "cat: regs: Input/output error" >&2; exit 1; }
+		regs; exit 0 ;;
+	"$DB/miscinfo")
+		case ",${FAKE_WORLD:-}," in *,miscinfofail,*) echo "cat: miscinfo: Connection timed out" >&2; exit 1 ;; esac
+		echo "gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 142 us" >> "$KIT_KMSG"
+		echo "GETMISCINFO answered after 142 us"
+		case ",${FAKE_WORLD:-}," in
+		*,miscinfobad,*) printf '%-16s %#010x %s\n%-16s expected %#010x\nMISMATCHES\n' "core rev" 65548 MISMATCH "" 65549 ;;
+		*) printf '%-16s %#010x %s\n%s\n' "core rev" 65549 ok "all values match" ;;
+		esac
+		exit 0 ;;
+	"$DB/"*) cat "$R/${2##*/}"; exit $? ;;
+	esac
+fi
+if [ "$1" = tee ]; then
+	case "$2" in
+	"$DB/reset")
+		cat > /dev/null
+		echo "reset 1" >> "$F/writes"
+		[ -n "${FAKE_RESET_FAIL:-}" ] && { echo "tee: reset: Connection timed out" >&2; exit 1; }
+		{
+			echo "gma500 0000:00:02.0: [drm] SGX reset: BIF_FAULT 0x0 BIF_INT_STAT 0x80000"
+			echo "gma500 0000:00:02.0: [drm] SGX boot: kicking the EDM"
+			echo "gma500 0000:00:02.0: [drm] SGX boot: EDM up after 150 us"
+			echo "gma500 0000:00:02.0: [drm] SGX firmware: core 545 rev 0x1000d, DDK 1.7.17 build 862890, answered after 142 us"
+		} >> "$KIT_KMSG"
+		echo idle > "$F/state"
+		echo 0x0000ffff > "$F/cc"
+		rm -f "$F/own"; echo "kit reset" >> "$F/own.log"
+		exit 0 ;;
+	"$DB/kreg")
+		read -r v; echo "kreg $v" >> "$F/writes"
+		off=${v%%=*}; val=${v#*=}
+		case ",${FAKE_WORLD:-}," in *,kregstuck,*) exit 0 ;; esac
+		new=$(printf '0x%08x' $(( val )))
+		awk -v o="$off" -v n="$new" '$1 == o { $2 = n } { print }' "$R/kreg" > "$R/kreg.new" && mv "$R/kreg.new" "$R/kreg"
+		echo "gma500 0000:00:02.0: [drm] sgxfive: kreg $off: -> $new, reads $new" >> "$KIT_KMSG"
+		exit 0 ;;
+	"$DB/"*) read -r v; echo "${2##*/} $v" >> "$F/writes"; echo "$v" > "$R/${2##*/}"; exit 0 ;;
+	esac
+fi
+# a tool's job (a command under the fake home) sets CR_CACHE_CTRL bit 28, as a kick with
+# INVAL_DATA does on the laptop (E1122); a reset puts the reset word back
+case "$1" in "${KIT_FAKE_HOME:-/nonexistent}"/*) echo 0x1000ffff > "$F/cc" ;; esac
+new=()
+for a in "$@"; do new+=("${a//$DB/$R}"); done
+exec "${new[@]}"
