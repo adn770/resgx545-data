@@ -1,0 +1,26 @@
+ROW c1-a: page own_res.json; run id 1; X0 0x5a5a3303; S1 0xdeadc0de; M4 0xdeadc0de 0xdeadc0de; state 0; T 0x0105227e 0x01010611; ticks 9 (window 237.4 ms); alive false
+CONTROL c1-a:PG: PASS
+CONTROL c1-a:E0: PASS
+CONTROL c1-a:T0: PASS
+CONTROL c1-a:B: PASS
+OUTCOME c1-a B10-DONE: FAILED
+OUTCOME c1-a B10-E1: FAILED
+OUTCOME c1-a B10-NEVER: held
+OUTCOME c1-a B10-T1: FAILED
+OUTCOME c1-a B10-T2: FAILED
+OUTCOME c1-a B10-T3: FAILED
+SUMMARY: own: controls: every control passed
+ARM (printed, not scored): emit image 0x30011100 pds=crumb3 pdsat=fw14 pds2=0 form=sb800
+Q128-B10 RULE: B10-NEVER: the program never started (T running, S1 fill) (sideband 0x800 reads NEVER; H-DM predicts NEVER; H-ALL predicts NEVER)
+H-DM: predicted NEVER, read NEVER: held
+H-ALL: predicted NEVER, read NEVER: held
+X0 qualifier: 0x5a5a3303 (the issuer went on past the emit)
+TICK: T1 stops the tick by design: the tick readings say nothing about what stopped it whenever T1 ran; only the B10-NEVER row (T running) reads as R4's M-NEVER
+TICK: Δtick 9 from the command write to 30 ms after the window (237.4 ms; printed, not scored; no kick in this row)
+SIGNATURE (printed, not scored): snap0: bit 16 1, count - tick 6; snap9: bit 16 1, count - tick 5; stop0-regs: bit 16 1, count - tick 5
+SURVEY (printed, not scored): land STIR; pre/post sa differ at sa0 0x32004000->0xdeadc0de, sa1 0x32005000->0xdeadc0de, sa2 0x32002000->0xdeadc0de, sa3 0x00000000->0xdeadc0de, sa4 0x00000000->0xdeadc0de, sa5 0x00000000->0xdeadc0de, sa6 0x00000000->0xdeadc0de, sa7 0x00000000->0xdeadc0de, sa8 0x00000000->0xdeadc0de, sa9 0x00000000->0xdeadc0de, sa10 0x00000000->0xdeadc0de, sa11 0x00000000->0xdeadc0de, sa12 0x00000000->0xdeadc0de, sa13 0x00000000->0xdeadc0de, sa14 0x00000000->0xdeadc0de, sa15 0x00000000->0xdeadc0de, sa16 0x00000000->0xdeadc0de, sa17 0x00000000->0xdeadc0de, sa18 0x00000000->0xdeadc0de, sa19 0x00000000->0xdeadc0de, sa20 0x00000000->0xdeadc0de, sa21 0x00000000->0xdeadc0de, sa22 0x32000000->0xdeadc0de, sa23 0x03ed8000->0xdeadc0de, sa24 0x00000000->0xdeadc0de, sa25 0x00000000->0xdeadc0de, sa26 0x00000000->0xdeadc0de, sa27 0x00000000->0xdeadc0de, sa28 0x00000000->0xdeadc0de, sa29 0x00000000->0xdeadc0de, sa30 0x00000000->0xdeadc0de, sa31 0x00000000->0xdeadc0de
+SURVEY sa20-sa31 pre: 0x00000000 0x00000000 0x32000000 0x03ed8000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+SURVEY sa20-sa31 post: 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de
+SURVEY sa0-sa19 pre: 0x32004000 0x32005000 0x32002000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+SURVEY pa0-pa15 post: 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de 0xdeadc0de
+SURVEY controls (printed, not scored): P0 PASS; P1 PASS
