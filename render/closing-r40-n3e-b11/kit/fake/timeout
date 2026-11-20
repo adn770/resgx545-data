@@ -1,0 +1,7 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Josep Torra
+# fake timeout [-k KILL] DURATION COMMAND... of the kit's mock: the command's own exit status (a
+# world that freezes a job answers rc 124 itself; the mock keeps no clock)
+[ "$1" = "-k" ] && shift 2
+shift; exec "$@"
