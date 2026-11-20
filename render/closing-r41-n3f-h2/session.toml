@@ -1,0 +1,73 @@
+# session.toml: the env of r41-n3f-h2, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r41-n3f-h2"
+prefix = "r41h2"                  # laptop files under ~/scratch/r41h2/ (run, stage, out)
+# the installed r40-kernel module (fork r40-kernel 423b436e7f80; round 40 ran B0-B11 and L on it):
+# no rebuild, no boot
+srcversion = "83FBFD860D4E0D4CE691F48"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"       # ssh HostKeyAlias, unless SGX_TARGET_SSH_OPTS names one
+job_timeout = 60                    # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t30"            # the tool of the health fill and triangle and the gate
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place",
+                  "--poke", "--pds", "--use", "--slot", "--scratch-at", "--refill", "--ctx2"]
+                                    # no stage runs a tool row: every row is an owntask row
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+[knobs]
+
+[kregs]
+
+# the stages in run order; every one flagged, on_stop "end" (any stop ends the session);
+# on_gate_fail = "score": the gate's failure (rc 16) is the session's planned, scored end;
+# gate_order = "tri,fill": the gate's triangle first (round 41, K2, K4)
+[stages]
+# y: N3f row Y, emitsb_sb403s (emitsb_sb403 with the cmd 6 after-read), crumb3 at pdsat=fw14, form=sb403; 2 jobs in one row
+y = { alarm = 600, class = "flagged", on_stop = "end", on_gate_fail = "score", owntask = { blob = "emitsb_sb403s", arm = "slots=0x1 entry=0 pds=crumb3 pdsat=fw14 form=sb403" } }
+
+# the commits the kit copies and every pinned input are frozen against
+[freeze]
+resgx545 = "e516a7aa628bb0311d3c3a43b94e771f5a6d56bd"
+data = "b5b95bff2da7549aa501f06cda0e0d070b4244f1"
+# the blobs' and their bases' sources (tests/test_gen.py); r35-sa's kept snap0 (E1144): the
+# hooks' V0-V3 fallback; round 40's kept attempts B11 (both), B0 and L: the bases of the
+# scorer's test attempts (tests/attempt.py)
+pins = [
+    "resgx545:asm/fwtask/emitsb_sb403s.s",
+    "resgx545:asm/fwtask/emitsb_sb403.s",
+    "data:render/closing-r35-sa/out/20261118-085610/a/c0a-k.snap0.regs.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-074024/own/c1-a.own_res.json.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-074024/own/c1-a.txt.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-074024/own/c1-a.snap0.regs.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-074024/own/c1-a.snap9.regs.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-074024/own/kernel.log",
+    "data:render/closing-r40-n3e-b11/out/20261120-084102/own/c1-a.own_res.json.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-084102/own/c1-a.txt.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-084102/own/c1-a.snap0.regs.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-084102/own/c1-a.snap9.regs.gz",
+    "data:render/closing-r40-n3e-b11/out/20261120-084102/own/kernel.log",
+    "data:render/closing-r40-n3e-b0/out/20261119-230303/own/c1-a.own_res.json.gz",
+    "data:render/closing-r40-n3e-b0/out/20261119-230303/own/c1-a.txt.gz",
+    "data:render/closing-r40-n3e-b0/out/20261119-230303/own/c1-a.snap0.regs.gz",
+    "data:render/closing-r40-n3e-b0/out/20261119-230303/own/c1-a.snap9.regs.gz",
+    "data:render/closing-r40-n3e-b0/out/20261119-230303/own/kernel.log",
+    "data:render/closing-r40-n3e-l/out/20261119-230429/own/c1-a.own_res.json.gz",
+    "data:render/closing-r40-n3e-l/out/20261119-230429/own/c1-a.txt.gz",
+    "data:render/closing-r40-n3e-l/out/20261119-230429/own/c1-a.snap0.regs.gz",
+    "data:render/closing-r40-n3e-l/out/20261119-230429/own/c1-a.snap9.regs.gz",
+    "data:render/closing-r40-n3e-l/out/20261119-230429/own/kernel.log",
+]
+
+[files]
+laptop = []
