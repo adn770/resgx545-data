@@ -1,0 +1,22 @@
+case	quantity	value	model	set	source
+m1-a	postpa1	0x005d3000	M-PA	fit	n3g design §3.2 (M): job 1's post pa1 = M13 0x005d3000 (attribute 13 -> pa 13 - 12) [predicted: held]
+m1-a	after2sa13	0x005d3000	M-SA13	fit	n3g design §3.2 (M): job 2's after sa13 = M13 [predicted: held]
+m1-a	after2sa1	0x005d1000	M-SA1	fit	n3g design §3.2 (M): job 2's after sa1 = M1 0x005d1000 (H-BLOCK; failed under H-COPY) [predicted: held]
+m1-a	j2	done	M-REBASE	fit	n3g design §3.2 (M): job 2's after = job 1's post in all 32 (E1174) [predicted: held]
+m1-a	after2	REBASE	M-REBASE	fit	n3g design §3.2 (M): job 2's after = job 1's post in all 32 (E1174) [predicted: held]
+m1-a	gate1page	cid15 page 0x005d3000	M-FILL	fit	n3g design §3.2 (M): the gate's fill faults, CID 15, at page 0x005d3000 (= M13) [predicted: held]
+m1-a	gate1page	cid15 page 0x00043000	M-FILL43	fit	n3g design §3.2 (M): the fill faults at page 0x00043000 with sa13 = M13 (the page is not sa13) [predicted: failed]
+m1-a	after2sa13	0x005d3000	M-FILL43	fit	n3g design §3.2 (M): the fill faults at page 0x00043000 with sa13 = M13 (the page is not sa13) [predicted: failed]
+m1-a	gate1page	cid15 page 0x005d1000	M-FILLM1	fit	n3g design §3.2 (M): the fill faults at page 0x005d1000 (= M1: sa1 read first) [predicted: failed]
+m1-a	gate1	exact	M-FILLOK	fit	n3g design §3.2 (M): the gate's fill exact [predicted: failed]
+m1-a	j2	notdone	M-NOKICK	fit	n3g design §3.2 (M): job 2 not done 200 ms after its kick [predicted: failed]
+m1-a	res:0x0	0x4e574f53	CTL	fit	n3g design §3.2 (M) PG: the page is ours and was read
+m1-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3g design §3.2 (M) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+m1-a	j1rec:slot1	@runid1	CTL	fit	n3g design §3.2 (M) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+m1-a	j1rec:cmd	0x0	CTL	fit	n3g design §3.2 (M) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+m1-a	snap0:0x0acc	running	CTL	fit	n3g design §3.2 (M) T0: the tick's timer running before the command
+m1-a	snap9:0x0c08	0x0	CTL	fit	n3g design §3.2 (M) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+m1-a	j1	DONE	CTL	fit	n3g design §3.2 (M) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+m1-a	j2rec:done	done	CTL	fit	n3g design §3.2 (M) J2: job 2 done (its record)
+m1-a	j2rec:slot0	0x5a5a3306	CTL	fit	n3g design §3.2 (M) J2: job 2's slot 6 marker M6 (its record)
+m1-a	j2rec:slot1	@runid2	CTL	fit	n3g design §3.2 (M) J2: job 2's slot 6 run id (its record)
