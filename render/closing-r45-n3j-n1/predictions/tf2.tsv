@@ -1,0 +1,15 @@
+case	quantity	value	model	set	source
+tf21-a	postsa1	0x02400000	TF2-SAME	fit	n3j design §3.2 (TF2): 0x02400000 (TF's read, E1195) [HW once; H-TRI, H-FIRST] [predicted: held]
+tf21-a	postsa1	0x08000010	TF2-FILL	fit	n3j design §3.2 (TF2): 0x08000010 (the fill's 3:4 at K 8) [infer; H-RACE allows it] [predicted: failed]
+tf21-a	postsa1	0x005d1000	TF2-KEEP	fit	n3j design §3.2 (TF2): M1 [infer] [predicted: failed]
+tf21-a	postsa1	@notany:0x02400000,0x08000010,0x005d1000	TF2-OTHER	fit	n3j design §3.2 (TF2): any other word [predicted: printed]
+tf21-a	snap9:0x0c08	0x0	X-QUIET	fit	n3j design §3.2 (TF2): snap9 BIF_FAULT 0 (control B as a scored outcome) [predicted: held]
+tf21-a	res:0x0	0x4e574f53	CTL	fit	n3j design §3.2 (TF2) PG: the page is ours and was read
+tf21-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3j design §3.2 (TF2) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+tf21-a	j1rec:slot1	@runid1	CTL	fit	n3j design §3.2 (TF2) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+tf21-a	j1rec:cmd	0x0	CTL	fit	n3j design §3.2 (TF2) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+tf21-a	snap0:0x0acc	running	CTL	fit	n3j design §3.2 (TF2) T0: the tick's timer running before the command
+tf21-a	snap9:0x0c08	0x0	CTL	fit	n3j design §3.2 (TF2) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+tf21-a	j1	DONE	CTL	fit	n3j design §3.2 (TF2) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+tf21-a	dr	ok	CTL	fit	n3j design §3.2 (TF2) DR: the declared begin draws ran at try 1, each exact, no other draw between the begin reset and the arm
+tf21-a	dk	ok	CTL	fit	n3j design §3.2 (TF2) DK: the begin command count (ccb_sent, arm minus begin load) is 2 + 2 x fills + 6 x tris, no retry (K9)
