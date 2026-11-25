@@ -1,0 +1,20 @@
+case	quantity	value	model	set	source
+q1-a	j1	DONE	Q-WRITE	fit	n3j design §9.5 (Q): job 1 done; post sa0 = 0x005d2000, sa1 = 0x005d1000 [infer; LV E1183] [predicted: held]
+q1-a	postsa0	0x005d2000	Q-WRITE	fit	n3j design §9.5 (Q): job 1 done; post sa0 = 0x005d2000, sa1 = 0x005d1000 [infer; LV E1183] [predicted: held]
+q1-a	postsa1	0x005d1000	Q-WRITE	fit	n3j design §9.5 (Q): job 1 done; post sa0 = 0x005d2000, sa1 = 0x005d1000 [infer; LV E1183] [predicted: held]
+q1-a	j2	notdone	Q-SA0	fit	n3j design §9.5 (Q): job 2 not done; K5 BIF_FAULT CID 15 at 0x005d2000 (0x005d200f) [infer, H-SA0] [predicted: held]
+q1-a	j2fault	cid15 page 0x005d2000	Q-SA0	fit	n3j design §9.5 (Q): job 2 not done; K5 BIF_FAULT CID 15 at 0x005d2000 (0x005d200f) [infer, H-SA0] [predicted: held]
+q1-a	j2	notdone	Q-LOW	fit	n3j design §9.5 (Q): the same at page 0x005d1000 (0x005d100f) [infer; held under "lowest page"] [predicted: failed]
+q1-a	j2fault	cid15 page 0x005d1000	Q-LOW	fit	n3j design §9.5 (Q): the same at page 0x005d1000 (0x005d100f) [infer; held under "lowest page"] [predicted: failed]
+q1-a	j2fault	@faultnotin:cid15 page 0x005d2000,cid15 page 0x005d1000	Q-OTHER	fit	n3j design §9.5 (Q): a fault at any other page (sa2's, sa13's, page 0) [predicted: printed]
+q1-a	j2	done	Q-SERVE	fit	n3j design §9.5 (Q): job 2 done, no fault [HW against: E1176-E1200's land stops] [predicted: failed]
+q1-a	res:0x0	0x4e574f53	CTL	fit	n3j design §9.5 (Q) PG: the page is ours and was read
+q1-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3j design §9.5 (Q) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+q1-a	j1rec:slot1	@runid1	CTL	fit	n3j design §9.5 (Q) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+q1-a	j1rec:cmd	0x0	CTL	fit	n3j design §9.5 (Q) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+q1-a	snap0:0x0acc	running	CTL	fit	n3j design §9.5 (Q) T0: the tick's timer running before the command
+q1-a	snap9:0x0c08	0x0	CTL	fit	n3j design §9.5 (Q) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+q1-a	j1	DONE	CTL	fit	n3j design §9.5 (Q) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+q1-a	j2rec:done	done	CTL	fit	n3j design §9.5 (Q) J2: job 2 done (its record)
+q1-a	j2rec:slot0	0x5a5a3306	CTL	fit	n3j design §9.5 (Q) J2: job 2's slot 6 marker M6 (its record)
+q1-a	j2rec:slot1	@runid2	CTL	fit	n3j design §9.5 (Q) J2: job 2's slot 6 run id (its record)
