@@ -1,0 +1,18 @@
+case	quantity	value	model	set	source
+ztt1-a	postsa1	@any:0x08400000,0x08000010	ZTT-LAST	fit	n3j design §9.4 (ZTT): sa1 = 0x08400000 (or 0x08000010) [infer, H-TRI] [predicted: held]
+ztt1-a	postsa1	@any:0x02400000,0x02000010	ZTT-FIRST	fit	n3j design §9.4 (ZTT): sa1 = 0x02400000 (or 0x02000010) [infer; held under H-FIRST] [predicted: failed]
+ztt1-a	sa02kind	@in:TRIPLE	ZTT-TRIPLE	fit	n3j design §9.4 (ZTT): sa0 = 0, sa2 timer [infer, H-KC's triple] [predicted: held]
+ztt1-a	sa02kind	@in:ONE	ZTT-ONE	fit	n3j design §9.4 (ZTT): sa0 = V0, sa2 = V2 [infer] [predicted: failed]
+ztt1-a	sa02kind	@notin:TRIPLE,ONE	ZTT-AOTHER	fit	n3j design §9.4 (ZTT): any other sa0, sa2 [predicted: printed]
+ztt1-a	snap9:0x0c08	0x0	Z-QUIET	fit	n3j design §9.4 (ZTT): snap9 BIF_FAULT 0 (control B as a scored outcome) [predicted: held]
+ztt1-a	fault1	yes	Z-FAULT	fit	n3j design §9.4 (ZTT): a BIF fault after job 1 (snap9 or the disarm's dump) [predicted: failed]
+ztt1-a	res:0x0	0x4e574f53	CTL	fit	n3j design §9.4 (ZTT) PG: the page is ours and was read
+ztt1-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3j design §9.4 (ZTT) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+ztt1-a	j1rec:slot1	@runid1	CTL	fit	n3j design §9.4 (ZTT) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+ztt1-a	j1rec:cmd	0x0	CTL	fit	n3j design §9.4 (ZTT) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+ztt1-a	snap0:0x0acc	running	CTL	fit	n3j design §9.4 (ZTT) T0: the tick's timer running before the command
+ztt1-a	snap9:0x0c08	0x0	CTL	fit	n3j design §9.4 (ZTT) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+ztt1-a	j1	DONE	CTL	fit	n3j design §9.4 (ZTT) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+ztt1-a	dr	ok	CTL	fit	n3j design §9.4 (ZTT) DR: the declared begin draws ran at try 1, each exact, no other draw between the begin reset and the arm
+ztt1-a	dk	ok	CTL	fit	n3j design §9.4 (ZTT) DK: the begin command count (ccb_sent, arm minus begin load) is 2 + 2 x fills + 6 x tris, no retry (K9)
+ztt1-a	znctl	SAME	CTL	fit	n3j design §9.4 (ZTT) ZN: control ZN (session-scoped, §9.2): the stage zn of the same attempt read ZN-SAME (post sa0 V0, sa1 M1, sa2 V2); when not, this stage's sa0/sa2 outcomes read cannot tell

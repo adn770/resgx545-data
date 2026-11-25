@@ -1,0 +1,97 @@
+# session.toml: the env of r45-n3j-n5, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r45-n3j-n5"
+prefix = "r45j5"                  # laptop files under ~/scratch/r45j5/ (run, stage, out)
+# the r45-kernel module (fork r45-kernel b1089172b2e7): crumbz and landq are its images; needs the user's OK and the one-shot boot onto it first
+srcversion = "EC553F41FD8324BB6BF1764"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"       # ssh HostKeyAlias, unless SGX_TARGET_SSH_OPTS names one
+job_timeout = 60                    # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t30"            # the tool of the health fill and triangle and the gate
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place",
+                  "--poke", "--pds", "--use", "--slot", "--scratch-at", "--refill", "--ctx2"]
+                                    # no stage runs a tool row: every row is an owntask row
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+[knobs]
+
+[kregs]
+
+# the stages in run order; every one flagged, on_stop "end" (any stop ends the session);
+# K7 (round 43), K8 (round 44), K9 (round 45): a plant stage runs no gate and no end draws; a Z stage
+# runs no gate and declares the draw sequence it reads after (begin_draws, a list or none)
+[stages]
+# wj: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wj = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# zn: N3j row ZN, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+zn = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "none", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wk: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wk = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# zt: N3j row ZT, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+zt = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "tri", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wl: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wl = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# zft: N3j row ZFT, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+zft = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "fill,tri", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wm: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wm = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# zf: N3j row ZF, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+zf = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "fill", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wn: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wn = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# zff: N3j row ZFF, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+zff = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "fill,fill", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wo: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wo = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# ztf: N3j row ZTF, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+ztf = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "tri,fill", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+# wp: N3j row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+wp = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# ztt: N3j row ZTT, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), crumbz at pdsat=fw14, form=sbc43; 1 job in one row
+ztt = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "tri,tri", own_gate = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=crumbz pdsat=fw14 form=sbc43" } }
+
+# the commits the kit copies and every pinned input are frozen against
+[freeze]
+resgx545 = "cf20aa8703f7bbd4825379cb3dd770ae5d378e12"
+data = "ebfeaa7754e402f31f52ef87c0bca3d0ff4fc5a0"
+# the blob's and its base's sources (tests/test_gen.py); round 44's kept stages N1 wa and ff,
+# N2 lm: the hooks' V0-V3 fallback (wa's snap0) and the bases of the scorer's
+# test attempts (tests/attempt.py)
+pins = [
+    "resgx545:asm/fwtask/emitsb_sbc43s.s",
+    "resgx545:asm/fwtask/emitsb_sbc43.s",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/wa/wa1-a.own_res.json.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/wa/wa1-a.txt.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/wa/wa1-a.snap0.regs.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/wa/wa1-a.snap9.regs.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/wa/kernel.log",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/ff1-a.own_res.json.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/ff1-a.txt.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/ff1-a.snap0.regs.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/ff1-a.snap9.regs.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/kernel.log",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/begin.fill1.1.txt.gz",
+    "data:render/closing-r44-n3i-n1/out/20261124-005624/ff/end.health2.txt.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.own_res.json.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.txt.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.snap0.regs.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.snap9.regs.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.stop1-own_res.json.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/lm1-a.stop1-regs.txt.gz",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/kernel.log",
+    "data:render/closing-r44-n3i-n2/out/20261124-010001/lm/begin.reghealth1.txt.gz",
+]
+
+[files]
+laptop = []
