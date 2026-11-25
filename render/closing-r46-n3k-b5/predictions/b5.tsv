@@ -1,0 +1,32 @@
+case	quantity	value	model	set	source
+b51-a	start	NEVER	B5-NEVER	fit	n3k design §10.1 (B5): S1 fill, T running: the program never started [HW against: bits 1:0 = 3, E1164, E1162] [predicted: failed]
+b51-a	start	T1	B5-T1	fit	n3k design §10.1 (B5): T 0, S1 fill: stopped at a douta [predicted: failed]
+b51-a	start	T2	B5-T2	fit	n3k design §10.1 (B5): T 0x200, S1 fill: stopped at the doutu [predicted: failed]
+b51-a	start	T3	B5-T3	fit	n3k design §10.1 (B5): T 0x005a3305, S1 fill: entry 1 never stored [predicted: failed]
+b51-a	start	E1	B5-E1	fit	n3k design §10.1 (B5): S1, no M4: entry 1 started, stopped after S1 [predicted: failed]
+b51-a	start	DONE	B5-DONE	fit	n3k design §10.1 (B5): S1, M4 with the run id, state 2 [infer: today's rule, bits 1:0 = 3 run the program to done, E1162-E1172] [predicted: held]
+b51-a	start	@in:T1,T2,T3,E1,DONE	B5-RUN	fit	n3k design §10.1 (B5): any of T1..DONE [infer, the rule] [predicted: held]
+b51-a	prepost	SAME	B5-HID	fit	n3k design §10.1 (B5): post sa0-sa31 = pre sa0-sa31 [HW for 0x843 and 0x003, E1162, E1164; infer here] [predicted: held]
+b51-a	j2	done	B5-SAME	fit	n3k design §10.1 (B5): job 2 done; its after-read = job 1's pre sa0-sa31 [HW for 0x843, C E1173; infer: no bit 10] [predicted: held]
+b51-a	after2	@in:PRE,BOTH	B5-SAME	fit	n3k design §10.1 (B5): job 2 done; its after-read = job 1's pre sa0-sa31 [HW for 0x843, C E1173; infer: no bit 10] [predicted: held]
+b51-a	j2	done	B5-REBASE	fit	n3k design §10.1 (B5): job 2 done; after = job 1's post, post != pre [held with bit 10: X, Y E1174, E1175] [predicted: failed]
+b51-a	after2	POST	B5-REBASE	fit	n3k design §10.1 (B5): job 2 done; after = job 1's post, post != pre [held with bit 10: X, Y E1174, E1175] [predicted: failed]
+b51-a	j2	done	B5-AOTHER	fit	n3k design §10.1 (B5): job 2 done; after neither pre nor post [predicted: printed]
+b51-a	after2	OTHER	B5-AOTHER	fit	n3k design §10.1 (B5): job 2 done; after neither pre nor post [predicted: printed]
+b51-a	j2	notdone	B5-NOKICK	fit	n3k design §10.1 (B5): job 2 not done 200 ms after its kick [predicted: failed]
+b51-a	gate1	exact	B5-GATE	fit	n3k design §10.1 (B5): the gate's fill and triangle exact [HW for 0x843, C E1173; B1's post E1164] [predicted: held]
+b51-a	gate2	exact	B5-GATE	fit	n3k design §10.1 (B5): the gate's fill and triangle exact [HW for 0x843, C E1173; B1's post E1164] [predicted: held]
+b51-a	gate1	@notin:exact	B5-FILL	fit	n3k design §10.1 (B5): the gate's fill not exact (a fault, a hang) [held with bit 10: X-FILL, Y-FILL E1174, E1175] [predicted: failed]
+b51-a	snap9:0x0c08	0x0	B5-QUIET	fit	n3k design §10.1 (B5): snap9 BIF_FAULT 0 after the row [predicted: held]
+b51-a	landing	EVERY4	B5-LAND4	fit	n3k design §10.1 (B5): V0 at pa0, pa4, pa8, pa12 and V2 at pa2, pa6, pa10, pa14 (as 0x003, E1164) [predicted: printed]
+b51-a	landing	NONE	B5-LANDNONE	fit	n3k design §10.1 (B5): no V0 or V2 in pa0-pa15 (as 0x843, E1162) [predicted: printed]
+b51-a	res:0x0	0x4e574f53	CTL	fit	n3k design §10.1 (B5) PG: the page is ours and was read
+b51-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3k design §10.1 (B5) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+b51-a	j1rec:slot1	@runid1	CTL	fit	n3k design §10.1 (B5) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+b51-a	j1rec:cmd	0x0	CTL	fit	n3k design §10.1 (B5) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+b51-a	snap0:0x0acc	running	CTL	fit	n3k design §10.1 (B5) T0: the tick's timer running before the command
+b51-a	snap9:0x0c08	0x0	CTL	fit	n3k design §10.1 (B5) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+b51-a	j1	DONE	CTL	fit	n3k design §10.1 (B5) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+b51-a	j2rec:done	done	CTL	fit	n3k design §10.1 (B5) J2: job 2 done (its record)
+b51-a	j2rec:slot0	0x5a5a3306	CTL	fit	n3k design §10.1 (B5) J2: job 2's slot 6 marker M6 (its record)
+b51-a	j2rec:slot1	@runid2	CTL	fit	n3k design §10.1 (B5) J2: job 2's slot 6 run id (its record)
