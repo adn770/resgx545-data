@@ -1,0 +1,118 @@
+# session.toml: the env of r46-n3k-n11, a closing session built with the session kit (HACKING.md,
+# "Session kit"). kit/session.py writes run/session.env from it for the laptop.
+name = "r46-n3k-n11"
+prefix = "r46k11"                  # laptop files under ~/scratch/r46k11/ (run, stage, out)
+# the r46-kernel module (fork r46-kernel c5094783eb88): landr and landp are its images; needs the user's OK and the one-shot boot onto it first
+srcversion = "10BBF3BFBD51D559106589F"               # the gma500 module: loaded = installed = this build
+host_key_alias = "cedar"       # ssh HostKeyAlias, unless SGX_TARGET_SSH_OPTS names one
+job_timeout = 60                    # seconds one job may take (timeout -k 10)
+min_free_mb = 300                   # MiB free on ~ before each job (HACKING: at least 200)
+health_tool = "t30"            # the tool of the health fill and triangle and the gate
+debugfs = []                        # debugfs files the preflight needs besides reset, regs, knobs
+outdir_opts = []                    # options naming a file the tool writes
+extra_knobs = []                    # the session's own knob words, read by run/hooks.sh
+forbid_options = ["--kpoke", "--low", "--late", "--scratch-heap", "--tri", "--fault", "--place",
+                  "--poke", "--pds", "--use", "--slot", "--scratch-at", "--refill", "--ctx2"]
+                                    # no stage runs a tool row: every row is an owntask row
+
+[tools.t30]
+path = "sgxfive-test-t30"
+sha256 = "b5ea288d273f0da50884bbeec38f784a5d19773b8ed20efc7937dd455c1b87a5"
+built_from = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+built_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+recipe = "data:render/closing-r30-pde/lead/build_tool30_laptop.sh"
+source = "42c4de7855d6f310321cc03fa0780b698a735e4d:userspace/libsgxfive/tools/sgxfive-test.c"
+source_sha256 = "253fd15bcb6a0a6381d20aacbb635af1c99d764388f394f9a24dc61266b6418d"
+
+[knobs]
+
+[kregs]
+
+# the stages in run order; every one flagged, on_stop "end" (any stop ends the session);
+# K7-K9: a plant stage runs no gate and no end draws; a read or land stage declares the draw
+# sequence it reads after (begin_draws, a list or none)
+[stages]
+# w11: N3k row W, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), mark at pdsat=fw14, form=sbc43; 1 job in one row
+w11 = { alarm = 600, class = "flagged", on_stop = "end", own_gate = "none", end_draws = "none", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=mark pdsat=fw14 form=sbc43" } }
+# lfk2: N3k row LFK2, emitsb_sbc43s (emitsb_sbc43 with the cmd 6 after-read), land at pdsat=fw14, form=sbc43; 2 jobs in one row
+lfk2 = { alarm = 600, class = "flagged", on_stop = "end", begin_draws = "fill", owntask = { blob = "emitsb_sbc43s", arm = "slots=0x1 entry=0 pds=land pdsat=fw14 form=sbc43" } }
+
+# the commits the kit copies and every pinned input are frozen against
+[freeze]
+resgx545 = "b4e31c7614382befb8143baa18ec5a3c899d4c9f"
+data = "72e07b2d64160753214dbd67d11bdff44f42e30c"
+# the blob's and its base's sources (tests/test_gen.py); round 45's kept stages N4 wi
+# and lff, N5 zff, N6 wq and q, N2 wg and lf2, N3 wh and lt: the hooks' V0-V3
+# fallback (wi's snap0), the bases of the scorer's test attempts and the design's
+# fixtures (tests/attempt.py; round 46's n1 lff2 and n4 q2 are tests/fixtures/)
+pins = [
+    "resgx545:asm/fwtask/emitsb_sbc43s.s",
+    "resgx545:asm/fwtask/emitsb_sbc43.s",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2.log",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/begin.fill1.1.txt.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/kernel.log",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.stop1-own_res.json.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.stop1-regs.txt.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/lf2/lf21-a.txt.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/kernel.log",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/owntask.reset.json.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/wg1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/wg1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/wg1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n2/out/20261124-210558/wg/wg1-a.txt.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt.log",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/begin.health1.1.txt.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/kernel.log",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.stop1-own_res.json.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.stop1-regs.txt.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/lt/lt1-a.txt.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/kernel.log",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/owntask.reset.json.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/wh1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/wh1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/wh1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n3/out/20261124-210651/wh/wh1-a.txt.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff.log",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/begin.fill1.1.txt.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/begin.fill1.2.txt.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/kernel.log",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.stop1-own_res.json.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.stop1-regs.txt.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/lff/lff1-a.txt.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/kernel.log",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/owntask.reset.json.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/wi1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/wi1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/wi1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n4/out/20261124-210745/wi/wi1-a.txt.gz",
+    "data:render/closing-r45-n3j-n5/out/20261125-092017/zff/begin.fill1.1.txt.gz",
+    "data:render/closing-r45-n3j-n5/out/20261125-092017/zff/end.health2.txt.gz",
+    "data:render/closing-r45-n3j-n5/out/20261125-092017/zff/kernel.log",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q.log",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/begin.reghealth1.txt.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/kernel.log",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.stop1-own_res.json.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.stop1-regs.txt.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/q/q1-a.txt.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/kernel.log",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/owntask.reset.json.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/wq1-a.own_res.json.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/wq1-a.snap0.regs.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/wq1-a.snap9.regs.gz",
+    "data:render/closing-r45-n3j-n6/out/20261125-092604/wq/wq1-a.txt.gz",
+]
+
+[files]
+laptop = []
