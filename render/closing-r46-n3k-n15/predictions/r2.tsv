@@ -1,0 +1,23 @@
+case	quantity	value	model	set	source
+r21-a	j1	DONE	R2-WRITE	fit	n3k design §4.8, §11.4 (R2): job 1 done; sa0 = 0x04400000, sa1 = M1 [infer: Q-WRITE's douta, E1233] [predicted: held]
+r21-a	postsa0	0x04400000	R2-WRITE	fit	n3k design §4.8, §11.4 (R2): job 1 done; sa0 = 0x04400000, sa1 = M1 [infer: Q-WRITE's douta, E1233] [predicted: held]
+r21-a	postsa1	0x005d1000	R2-WRITE	fit	n3k design §4.8, §11.4 (R2): job 1 done; sa0 = 0x04400000, sa1 = M1 [infer: Q-WRITE's douta, E1233] [predicted: held]
+r21-a	j2	notdone	R2-LOW	fit	n3k design §4.8, §11.4 (R2): job 2 not done; BIF_FAULT 0x005d100f (list 15, M1's page) [infer, R-LOW] [predicted: held]
+r21-a	j2fault	cid15 page 0x005d1000	R2-LOW	fit	n3k design §4.8, §11.4 (R2): job 2 not done; BIF_FAULT 0x005d100f (list 15, M1's page) [infer, R-LOW] [predicted: held]
+r21-a	j2	notdone	R2-SA0	fit	n3k design §4.8, §11.4 (R2): the same at 0x0440000f (sa0's page) [held under R-SA0 and R-SA0'] [predicted: failed]
+r21-a	j2fault	cid15 page 0x04400000	R2-SA0	fit	n3k design §4.8, §11.4 (R2): the same at 0x0440000f (sa0's page) [held under R-SA0 and R-SA0'] [predicted: failed]
+r21-a	j2fault	@faultnotin:cid15 page 0x005d1000,cid15 page 0x04400000,cid15 page 0x36404000	R2-OTHER	fit	n3k design §4.8, §11.4 (R2): a fault at any other page (sa2's, sa13's, page 0; not the SUM page) [predicted: printed]
+r21-a	j2	done	R2-SERVE	fit	n3k design §4.8, §11.4 (R2): job 2 done [HW against: every land row] [predicted: failed]
+r21-a	postsa12	@V0	R2-E12	fit	n3k design §4.8, §11.4 (R2): post sa12 = V0 (B6's pa0 still there) [HW, 10 reads on this boot]; failed: the row's C-E0 column cannot tell [predicted: held]
+r21-a	j2	notdone	R2-SUM	fit	n3k design §4.8, §11.4 (R2): job 2 not done; list 15 at 0x36404000 (sa0 + sa12) [C-E0+, A0 first, unmapped] [predicted: failed]
+r21-a	j2fault	cid15 page 0x36404000	R2-SUM	fit	n3k design §4.8, §11.4 (R2): job 2 not done; list 15 at 0x36404000 (sa0 + sa12) [C-E0+, A0 first, unmapped] [predicted: failed]
+r21-a	res:0x0	0x4e574f53	CTL	fit	n3k design §4.8, §11.4 (R2) PG: the page is ours and was read
+r21-a	j1rec:slot0	0x5a5a3301	CTL	fit	n3k design §4.8, §11.4 (R2) E0: entry 0 ran job 1 (slot 1 marker, job 1's record)
+r21-a	j1rec:slot1	@runid1	CTL	fit	n3k design §4.8, §11.4 (R2) E0: entry 0 ran job 1 (slot 1 run id, job 1's record)
+r21-a	j1rec:cmd	0x0	CTL	fit	n3k design §4.8, §11.4 (R2) E0: cmd 0 (entry 0 cleared it; job 1's record's cmd_after)
+r21-a	snap0:0x0acc	running	CTL	fit	n3k design §4.8, §11.4 (R2) T0: the tick's timer running before the command
+r21-a	snap9:0x0c08	0x0	CTL	fit	n3k design §4.8, §11.4 (R2) B: no BIF fault after the row (a fault is read by the outcomes that name it)
+r21-a	j1	DONE	CTL	fit	n3k design §4.8, §11.4 (R2) J1: job 1 DONE (X0, S1, M4 with its run id, done)
+r21-a	j2rec:done	done	CTL	fit	n3k design §4.8, §11.4 (R2) J2: job 2 done (its record)
+r21-a	j2rec:slot0	0x5a5a3306	CTL	fit	n3k design §4.8, §11.4 (R2) J2: job 2's slot 6 marker M6 (its record)
+r21-a	j2rec:slot1	@runid2	CTL	fit	n3k design §4.8, §11.4 (R2) J2: job 2's slot 6 run id (its record)
